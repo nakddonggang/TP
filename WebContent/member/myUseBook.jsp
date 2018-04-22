@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- member/myUseBook.jsp / MyUseIndex - 대출예약조회 페이지 -->
+	<!-- member/myUseBook.jsp / MyUseIndex >> 대출예약조회 페이지 -->
 	<div id="wrap">
 		<div id="main_menu">
 			<jsp:include page="../include/header.jsp" />

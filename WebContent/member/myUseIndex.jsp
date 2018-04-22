@@ -51,6 +51,12 @@
 						<td>대출일자</td>
 						<td>반납할 일자</td>
 					</tr>
+					<tr>
+						<td>책 번호</td>
+						<td>책 제목</td>
+						<td>대출일자</td>
+						<td>반납할 일자</td>
+					</tr>
 				</table>
 			</div>
 			<hr>
@@ -66,6 +72,12 @@
 						<td>시작시간</td>
 						<td>종료시간</td>
 						<td>자리유형</td>
+					</tr>
+					<tr>
+						<td>책 번호</td>
+						<td>책 제목</td>
+						<td>대출일자</td>
+						<td>반납할 일자</td>
 					</tr>
 				</table>
 			</div>

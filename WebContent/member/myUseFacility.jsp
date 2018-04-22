@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- member/myUseFacility.jsp / MyUseIndex - 시설이용현황 페이지 -->
+	<!-- member/myUseFacility.jsp / MyUseIndex >> 시설이용현황 페이지 -->
 	<div id="wrap">
 		<div id="main_menu">
 			<jsp:include page="../include/header.jsp" />
