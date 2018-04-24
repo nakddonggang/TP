@@ -20,7 +20,7 @@ public class BoardFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("")){
+		if(command.equals("/BoardQnaList.bo")){
 			
 		}
 		
