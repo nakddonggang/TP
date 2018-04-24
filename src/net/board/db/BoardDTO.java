@@ -8,7 +8,7 @@ public class BoardDTO {
 	String notice_type;				//	글 종류	char(20)			공지사항 종류 ex)공고/행사…
 	String notice_subject;			//	글 제목	varchar(100)			공지사항 제목
 	String notice_content;			//	글 내용	varchar(2000)			공지사항 내용
-	String notice_file;					//	파일 이름	varchar(50)			공지사항 첨부파일 이름
+	String notice_file;				//	파일 이름	varchar(50)			공지사항 첨부파일 이름
 	Timestamp notice_date;		//	등록일	date			공지사항 작성일
 	int notice_readcount;			//	조회수	int(5)		0	공지사항 조회수
 
@@ -17,35 +17,35 @@ public class BoardDTO {
 	String faq_type;					//	글 종류	char(20)			FAQ 종류 ex)이용/회원…
 	String faq_subject;				//	글 제목	varchar(100)			FAQ 질문
 	String faq_content;				//	글 내용	varchar(2000)			FAQ 답변
-	String faq_file;						//	파일 이름	varchar(50)			FAQ 올릴경우 파일 이름
+	String faq_file;					//	파일 이름	varchar(50)			FAQ 올릴경우 파일 이름
 
 	//	<suggest table>						
-	int sug_num;						//	글 번호	int(5)	PK		사용자가 작성한 건의사항 관리자 전용 게시판에 순서대로 번호…(관리자가 확인할 때 필요/관리자 전용)
+	int sug_num;					//	글 번호	int(5)	PK		사용자가 작성한 건의사항 관리자 전용 게시판에 순서대로 번호…(관리자가 확인할 때 필요/관리자 전용)
 	String sug_type;					//	글 종류	char(20)			건의사항 종류 ex)도서/시설…
 	String sug_subject;				//	글 제목	varchar(100)			건의사항 제목
 	String sug_content;				//	글 내용	varchar(2000)			건의사항 내용
 	Timestamp sug_date;			//	글 작성일	date			건의한 날짜(관리자가 확인할 때 필요/관리자 전용)
 
 	//	<qna table>						
-	int qna_num;						//	글 번호	int(5)	PK		질문게시판 글 번호
+	int qna_num;					//	글 번호	int(5)	PK		질문게시판 글 번호
 	String qna_subject;				//	글 제목	varchar(100)			질문게시판 글 제목
 	String qna_content;				//	글 내용	varchar(2000)			질문게시판 글 내용
 	Timestamp qna_date;			//	작성일	date			질문게시판 글 작성일
 	int qna_readcount;				//	조회수	int(5)		0	해당 글 조회수
-	int qna_ref;							//	참조글 번호	int(5)			관리자 답변글에 쓰일 참조번호
+	int qna_ref;						//	참조글 번호	int(5)			관리자 답변글에 쓰일 참조번호
 	String qna_check;				//	답변 유무	char(2)	check in ('0', '1')	0	관리자 답변이 달렸는지 아닌지 여부(답변대기/답변등록)
 		
 	//	<reply table>						
-	String rep_name;					//	답변자 이름	char(10)			답변자 이름 ex) 관리자/xx부…
-	String rep_email;					//	답변자 email	varchar(320)			답변자 E-mail
+	String rep_name;				//	답변자 이름	char(10)			답변자 이름 ex) 관리자/xx부…
+	String rep_email;				//	답변자 email	varchar(320)			답변자 E-mail
 	String rep_content;				//	답변내용	varchar(2000)			질문에 대한 답변 내용
 	
 	//	<curation table>						
 	int cur_num;						//	글 번호	int(5)	PK		큐레이션 순서번호
-	String cur_name;					//	작성자	char(10)			큐레이션 작성자
+	String cur_name;				//	작성자	char(10)			큐레이션 작성자
 	String cur_subject;				//	글 제목	varchar(100)			큐레이션 제목
 	String cur_content;				//	글 내용	varchar(2000)			큐레이션 내용
-	String cur_file;						//	파일명	varchar(50)			해당 큐레이션에 첨부된 파일이름
+	String cur_file;					//	파일명	varchar(50)			해당 큐레이션에 첨부된 파일이름
 	int cur_readcount;				//	조회수	int(5)		0	해당 큐레이션 조회수
 	String cur_type;					//	테마 종류	char(20)			큐레이션 테마 종류
 	
