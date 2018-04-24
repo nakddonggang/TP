@@ -7,6 +7,7 @@ public class BoardQnaList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("BoardQnaList execute()");
 		
 		
 		
