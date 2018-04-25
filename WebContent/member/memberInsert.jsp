@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- member/memberUpdate.jsp 개인정보수정 페이지 -->
+	<!-- member/memberInsert.jsp 회원가입 페이지 -->
 	<div id="wrap">
 		<div id="main_menu">
 			<jsp:include page="../include/header.jsp" />	<!-- div id=header -->
