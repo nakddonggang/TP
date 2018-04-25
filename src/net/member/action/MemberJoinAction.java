@@ -29,7 +29,7 @@ public class MemberJoinAction implements Action{
 		mDTO.setMember_email(request.getParameter("member_email"));
 		mDTO.setMember_date(new Timestamp(System.currentTimeMillis()));
 		
-		result = mDAO.insertjoin(mDTO);
+		result = mDAO.insertMember(mDTO);
 	
 		if(result==0){
 			System.out.println("Faile");
