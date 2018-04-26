@@ -20,7 +20,30 @@ public class BoardFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/BoardQnaList.bo")){
+		if(command.equals("/BoardNoticeWrite.bo")){
+			forward = new ActionForward();
+			forward.setPath("./board/boardNWrite.jsp");
+			forward.setRedirect(false);
+			
+		}else if(command.equals("/BoardNoticeWriteAction.bo")){
+			action = new BoardNoticeWriteAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
+		}else if(command.equals("/BoardNoticeList.bo")){
+			action = new BoardNoticeList();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+			
+		}
+		
+		else if(command.equals("/BoardQnaList.bo")){
 			action = new BoardQnaList();
 			try{
 				forward = action.execute(request, response);
@@ -98,6 +121,7 @@ public class BoardFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./board/boardFDelete.jsp");
 			forward.setRedirect(false);
+			
 		}else if(command.equals("/BoardFaqDeleteAction.bo")){
 			action = new BoardFaqDeleteAction();
 			try{
@@ -105,6 +129,7 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+			
 		}
 		
 		
