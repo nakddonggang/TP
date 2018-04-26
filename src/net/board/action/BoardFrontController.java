@@ -108,7 +108,7 @@ public class BoardFrontController extends HttpServlet{
 			forward.setRedirect(false);
 		}else if(command.equals("/BoardCurWrite.bo")){
 			forward = new ActionForward();
-			forward.setPath("./board/boardCurWrite.jsp");
+			forward.setPath("board/boardCuWrite.jsp");
 			forward.setRedirect(false);
 		}else if(command.equals("/BoardCurWriteAction.bo")){
 			action = new BoardCurWriteAction();
