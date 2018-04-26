@@ -12,4 +12,17 @@ public class BoardDAO {
 	public BoardDAO(){
 		sqlsession = sessionf.openSession(true);
 	}
+	
+	public void insertFaq(BoardDTO bDTO) {
+		sqlsession.insert("insertFaq",bDTO);
+	}
+	
+	public int selectFaq() {
+		int result;
+		result=sqlsession.selectOne("selectFaq");
+		return result;
+	}
+	
+	
+	
 }
