@@ -39,6 +39,18 @@
 					
 					<!-- 본문 공간 -->
 					
+
+<!--로그인 수정 -->
+		<%			
+		String id=(String)session.getAttribute("id");
+		if(id==null){
+			response.sendRedirect("./MemberLogin.me");
+		}			
+					
+		%>			
+		<%=id %>님이 로그인 하셨습니다.			
+<!--/로그인 수정 -->				
+				
 					
 				</article>
 			</section>
