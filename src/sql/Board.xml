@@ -34,5 +34,5 @@
 		select * from notice order by notice_num desc limit #{startRow},#{pageSize}
 	</select>
 
->>>>>>> 1bf12302d993cca8766fdf1324f82d3466513e69
+
 </mapper>
