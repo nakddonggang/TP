@@ -2,6 +2,7 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
+
 	<insert id="insertCur" parameterType="net.board.db.BoardDTO">
 		insert into curation(
 			cur_num, cur_name, cur_subject, cur_content, cur_file, cur_readcount, cur_type
@@ -11,7 +12,13 @@
 		)
 	</insert>
 
-	<select id="countCur" resultType="int">
-		select max(cur_num) from curation
+	<insert id="insertNotice" parameterType="net.board.db.BoardDTO">
+		insert into notice(notice_num, notice_type, notice_subject, notice_content, notice_file, notice_date, notice_readcount)
+		values (#{notice_num}, #{notice_type}, #{notice_subject}, #{notice_content}, #{notice_file}, #{notice_date}, #{notice_readcount})
+	</insert>
+
+	<select id="selectMaxNum" resultType="int">
+		select ifnull(max(notice_num),0) from notice
 	</select>
+	
 </mapper>
