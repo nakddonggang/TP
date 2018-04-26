@@ -47,7 +47,8 @@ public class MemberLoginAction implements Action {
 		session.setAttribute("id", request.getParameter("id"));
 		
 		forward.setRedirect(true);
-		forward.setPath("main.me");
+		//	forward.setPath("main.me"); 잠시 보내는곳 변경을 위해 주석처리함
+		forward.setPath("MemberInfo.me");
 		return forward;
 	}
 
