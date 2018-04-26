@@ -2,12 +2,15 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
-	<insert id="insertjoin" parameterType="net.board.db.BoardDTO">
-		insert into guest(id,pw,name,nick,addr,email,birth)
-		values (#{id},#{pw},#{name},#{nick},#{addr},#{email},#{birth})
+	<insert id="insertFaq" parameterType="net.board.db.BoardDTO">
+		insert into faq(faq_num,faq_type,faq_subject,faq_content,faq_file)
+		values (#{faq_num},#{faq_type},#{faq_subject},#{faq_content},#{faq_file})
 	</insert>
 
-	<select id="selectPerson" parameterType="int" resultType="hashmap">
-		SELECT * FROM PERSON WHERE ID = #{id}
+	<select id="selectFaq" resultType="int">
+		select ifnull(max(faq_num),0) from faq
 	</select>
+	
+	
+	
 </mapper>
