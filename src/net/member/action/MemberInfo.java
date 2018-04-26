@@ -22,8 +22,11 @@ public class MemberInfo implements Action {
 			forward.setRedirect(true);
 			return forward;
 		}
+		MemberDTO mDTO = new MemberDTO();
 		MemberDAO mDAO = new MemberDAO();
-		mDAO.getMember(member_id);
+		mDTO = mDAO.getMember(member_id);
+		
+		request.setAttribute("mDTO", mDTO);
 		
 		forward.setPath("./MemberInfo.me");
 		forward.setRedirect(true);
