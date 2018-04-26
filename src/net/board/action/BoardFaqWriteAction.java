@@ -17,6 +17,8 @@ public class BoardFaqWriteAction implements Action{
 		BoardDAO bDAO=new BoardDAO();
 		ActionForward forward=new ActionForward();
 		
+		int faq_num;
+		int result;
 		
 		
 		bDTO.setFaq_num(Integer.parseInt(request.getParameter("faq_num")));

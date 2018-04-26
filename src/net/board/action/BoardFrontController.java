@@ -20,19 +20,35 @@ public class BoardFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/BoardQnaList.bo")){
+		if(command.equals("/BoardNoticeWrite.bo")){
+			forward = new ActionForward();
+			forward.setPath("./board/boardNWrite.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/BoardNoticeWriteAction.bo")){
+			action = new BoardNoticeWriteAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardNoticeList.bo")){
+			action = new BoardNoticeList();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardQnaList.bo")){
 			action = new BoardQnaList();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/BoardQnaWrite.bo")){
 			forward = new ActionForward();
 			forward.setPath("./board/boardQWrite.jsp");
 			forward.setRedirect(false);
-			
 		} else if(command.equals("/BoardQnaWriteAction.bo")){
 			action = new BoardQnaWriteAction();
 			try{
@@ -40,7 +56,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/BoardQnaContent.bo")){
 			action = new BoardQnaContent();
 			try{
@@ -48,7 +63,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/BoardQnaSearch.bo")){
 			action = new BoardQnaSearch();
 			try{
@@ -56,7 +70,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/BoardQnaDeleteAction.bo")){
 			action = new BoardQnaDeleteAction();
 			try{
@@ -64,7 +77,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		}else if(command.equals("/BoardFaqWrite.bo")){
 			forward = new ActionForward();
 			forward.setPath("./board/boardFWrite.jsp");
@@ -77,7 +89,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		}else if(command.equals("/BoardFaqList.bo")){
 			action = new BoardFaqList();
 			try{
@@ -85,7 +96,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		}else if(command.equals("/BoardFaqUpdate.bo")){
 			action = new BoardFaqUpdate();
 			try{
@@ -93,7 +103,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		}else if(command.equals("/BoardFaqUpdateAction.bo")){
 			action = new BoardFaqUpdateAction();
 			try{
@@ -101,11 +110,11 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		}else if(command.equals("/BoardFaqDelete.bo")){
 			forward = new ActionForward();
 			forward.setPath("./board/boardFDelete.jsp");
 			forward.setRedirect(false);
+			
 		}else if(command.equals("/BoardFaqDeleteAction.bo")){
 			action = new BoardFaqDeleteAction();
 			try{
@@ -113,11 +122,23 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		}else if(command.equals("/BoardFaqDelete.bo")){
+			forward = new ActionForward();
+			forward.setPath("./board/boardFDelete.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/BoardCurWrite.bo")){
+			forward = new ActionForward();
+			forward.setPath("board/boardCuWrite.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/BoardCurWriteAction.bo")){
+			action = new BoardCurWriteAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
-		
-		
-		
-		
+
 		if(forward != null){
 			if(forward.isRedirect){
 				response.sendRedirect(forward.getPath());

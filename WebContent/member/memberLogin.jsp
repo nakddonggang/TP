@@ -25,7 +25,7 @@
 					<tr><td>비밀번호:</td><td><input type="password" name="member_pass"></td></tr>
 					<tr><td colspan="2">
 							<input type="button" value="로그인" onclick="sub()">
-							<input type="button" value="회원가입" onclick="location.href = 'insertForm.jsp'">
+							<input type="button" value="회원가입" onclick="location.href = './MemberJoin.me'">
 					</td></tr>
 				</table>
 			</form>
