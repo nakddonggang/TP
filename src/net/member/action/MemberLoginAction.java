@@ -12,6 +12,7 @@ public class MemberLoginAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("MemberLoginAction execute()");
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
 		MemberDAO mDAO = new MemberDAO();
