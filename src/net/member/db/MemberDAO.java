@@ -48,6 +48,13 @@ public class MemberDAO {
 		return mList;
 	}
 	
+	// 맴버 Info 불러오기
+	public MemberDTO getMember(String member_id) {
+		MemberDTO mDTO = new MemberDTO();
+		mDTO = sqlsession.selectOne("selectMember" , member_id);
+		return mDTO;
+	}
+	
 	
 	
 	
