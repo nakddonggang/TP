@@ -19,13 +19,15 @@ public class BoardDAO {
 		sqlsession = sessionf.openSession(true);
 	}
 	
-	//NOtice 게시판 글쓰기
+	//Notice 게시판 글쓰기
 	public int insertNotice(BoardDTO bDTO){
 		int result;
 		result = sqlsession.insert("insertNotice", bDTO);
 		return result;
 	}
 	
+	//Notice 
+	public 
 	
 	//Qna 게시판 글쓰기
 	public int insertQna(Vector vector) {
