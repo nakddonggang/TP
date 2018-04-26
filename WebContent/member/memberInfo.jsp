@@ -58,7 +58,7 @@
 					<th colspan="2"><a href="memberUpdate.jsp">
 					<input type="button" value="회원수정"></a> <a href="memberDelete.jsp">
 					<input type="button" value="회원탈퇴"></a>
-					<input type = "button" value = "로그아웃" onclick = "location.href = 'MemberInfo.me'"> <!--  잠시 사용할 버튼 -->
+					<input type = "button" value = "로그아웃" onclick = "location.href = 'MemberLogoutAction.me'"> <!--  잠시 사용할 버튼 -->
 					</th>
 				</tr>
 			</table>
