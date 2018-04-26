@@ -47,6 +47,13 @@ public class MemberFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberInfo.me")) {
+			action = new MemberInfo();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			} // try_catch end
 		}
 		
 		if(forward!=null) {
