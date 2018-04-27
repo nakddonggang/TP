@@ -17,7 +17,7 @@ public class BoardNoticeList implements Action{
 		ActionForward forward = new ActionForward();
 		
 		BoardDAO bDAO = new BoardDAO();			// BoardDAO bdao 객체생성
-		int count = bDAO.getBoardCount();		// getBoardCount() 메서드 호출
+		//int count = bDAO.getBoardCount();		// getBoardCount() 메서드 호출
 		
 		int pageSize = 10;	//한 화면에 보여줄 글 개수 설정
 		String pageNum = request.getParameter("pageNum");	//list.jsp?pageNum=?	페이지 번호(파라미터 "pageNum") 가져오기
