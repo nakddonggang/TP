@@ -37,7 +37,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>NoticeFrontController</servlet-name>
-		<url-pattern>*.bo</url-pattern>
+		<url-pattern>*.no</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -46,7 +46,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>QnaFrontController</servlet-name>
-		<url-pattern>*.bo</url-pattern>
+		<url-pattern>*.qn</url-pattern>
 	</servlet-mapping>
 	
 	<servlet>
@@ -55,7 +55,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>CurationFrontController</servlet-name>
-		<url-pattern>*.bo</url-pattern>
+		<url-pattern>*.cu</url-pattern>
 	</servlet-mapping>
 	
 </web-app>
