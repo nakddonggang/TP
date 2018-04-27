@@ -27,7 +27,7 @@
 				<h2 class="hide">Main</h2>
 
 				<!-- left_content -->
-				<jsp:include page="../include/submenu.jsp" />
+				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //left_content -->
 				<article class="rgt_con section SECTION">
 					<!-- 본문 공간 -->
