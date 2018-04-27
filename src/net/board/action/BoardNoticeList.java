@@ -15,25 +15,25 @@ public class BoardNoticeList implements Action{
 		System.out.println("BoardNoticeList execute()");
 		request.setCharacterEncoding("utf-8");
 		ActionForward forward = new ActionForward();
+
+		BoardDAO bDAO = new BoardDAO();
+		int count = bDAO.getNoticeCount();		// 공지사항 글 개수 구해 count에 저장
 		
-		BoardDAO bDAO = new BoardDAO();			// BoardDAO bdao 객체생성
-		//int count = bDAO.getBoardCount();		// getBoardCount() 메서드 호출
-		
-		int pageSize = 10;	//한 화면에 보여줄 글 개수 설정
-		String pageNum = request.getParameter("pageNum");	//list.jsp?pageNum=?	페이지 번호(파라미터 "pageNum") 가져오기
+		int pageSize = 2;	//한 화면에 보여줄 글 개수 설정
+		String pageNum = request.getParameter("pageNum");	// 페이지 번호(파라미터 "pageNum") 가져오기
 
 		if(pageNum == null){	//페이지 번호가 없으면 무조건 "1"페이지 설정
 			pageNum = "1";
 		}
 
 		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage-1)*pageSize+1;	//10개씩 첫번째 페이지 첫 행 구하기
-		int endRow = currentPage*pageSize;			//마지막행 구하기
+		int startRow = (currentPage-1)*pageSize+1;	// 페이지 첫 행 구하기
+		int endRow = currentPage*pageSize;			// 마지막행 구하기
 		
 		List<BoardDTO> noticeList = null;
 		
 		if(count != 0){
-			noticeList = bDAO.getBoardList(startRow, pageSize);
+			noticeList = bDAO.getNoticeList(startRow, pageSize);
 		}
 		
 		//게시판 전체 페이지수 구하기 => ex)전체 글 개수(count):50개, 한 화면에 보여줄 글 개수(pageSize):10개
