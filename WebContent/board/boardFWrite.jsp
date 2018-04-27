@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- member/memberInsert.jsp 회원가입 페이지 -->
+<!-- board/boardFWrite.jsp FAQ 글쓰기 페이지 -->
 	<div id="wrap">
 		<div id="main_menu">
 			<jsp:include page="../include/header.jsp" />	<!-- div id=header -->
@@ -18,7 +18,7 @@
 		
 		<!-- 본문 시작되는 곳 -->
 		<article>
-			<h1>Notice 글쓰기</h1>
+			<h1>FAQ 글쓰기</h1>
 			<form action="./BoardFaqWriteAction.fa"  method="post"  name="fr" enctype="multipart/form-data">
 				<table class="" >
 					<tr>

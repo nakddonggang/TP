@@ -30,9 +30,7 @@
 		select ifnull(max(notice_num),0) from notice
 	</select>
 	
-	<select id="getNoticeList" parameterType="int" resultMap="List">
-		select * from notice order by notice_num desc limit #{startRow},#{pageSize}
-	</select>
+	
 
 
 </mapper>
