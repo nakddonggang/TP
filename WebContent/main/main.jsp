@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 <link href="../css/jquery.fullpage" rel="stylesheet" type="text/css">
 <link href="../css/import.css?ver=1" rel="stylesheet" type="text/css">
-<script src="../js/jquery-1.9.1.min.js"></script>
+<script src="../js/jquery-3.3.1.min.js"></script>
 <script src="../js/jquery.bxslider.min.js"></script>
 <script src="../js/jquery.fullpage.min.js"></script>
 <script src="../js/common.js"></script>
