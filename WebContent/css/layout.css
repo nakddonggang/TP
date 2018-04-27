@@ -1,0 +1,118 @@
+header {position:fixed; z-index:1; top:0; bottom:0; width:180px; height:100vh; min-height:960px; background:#151515;}
+header .logo {display:inline-block; position:relative; z-index:100; margin:61px 0 0 31px;}
+header .logo a {display:block;}
+body {overflow-y:scroll !important;}
+
+/* 메뉴 설정 */
+nav {margin-top:180px;}
+nav > div > ul > li {display:inline-block; width:100%; line-height:20px; letter-spacing:-0.1em;}
+nav > div > ul > li > a {display:block; margin:10px 30px; font-size:1.21em; cursor:pointer; color:#fff !important;}
+nav > div > ul > li > ul {display:none; width:100%; padding:14px 0; background:#f3f3f3;}
+nav > div > ul > li > ul > li {font-size:1em; color:#333;}
+nav > div > ul > li > ul > li > a {display:block; margin-bottom:10px; padding-left:30px; line-height:14px; cursor:pointer;}
+nav > div > ul > li > ul > li > a:hover {background-color: #fff;} /* 하위메뉴 호버 시 변화*/
+nav > div > ul > li > ul > li:last-child > a {margin-bottom:0;}
+nav > div > ul > li.btn_newsletter {font-size:1.21em; background:#5e1012;}
+nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;} 
+
+.container {overflow:hidden; position:relative; min-width:1200px; padding-left:180px;} /* 본문 컨테이너 설정 */
+
+.fullpage {z-index:2;} /* 본문 z-index설정 */
+
+/* footer 설정 */
+.footer {position:absolute; bottom:20px; width:100%;}
+.footer ul > li {padding:15px 31px; font-size:0.86em;}
+.footer ul > li span {display:block; font-size:1.14em;}
+.footer ul > li a {color:#999; letter-spacing:0;}
+.nav_clo {display:none;}
+
+/* 태그 감추기, 보이기 기능(class로 선언) */
+.show {display:block;}
+.hide {display:none;}
+
+.lft_con {height:100% !important; float:left; width:40%; }
+.rgt_con {float:left; width:60% !important;}
+
+.SECTION_FULL_PAGE01 .slide_con {position:relative; width:100%;}
+.SECTION_FULL_PAGE01 .slide_con .box_txt {position:absolute; top:50%; left:50%; margin-left:-170px; margin-top:-65px; width:340px; height:130px; text-align:center; letter-spacing:-0.08em; word-spacing:-3px;}
+.SECTION_FULL_PAGE01 .slide_con .box_txt p {font-family:"Noto_M"; font-size:1.5em; color:#fff;}
+.SECTION_FULL_PAGE01 .slide_con .box_txt span {font-family:"Noto_B"; font-size:3.85em; color:#fff;}
+.SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm01 {width:100%; height:100vh; background:url("http://img.designsoft.co.kr/WisdomForest/Main/main_slider_01.jpg") center; background-repeat:no-repeat; background-size:cover;}
+.SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm02 {width:100%; height:100vh; background:url("http://img.designsoft.co.kr/WisdomForest/Main/main_slider_02.jpg") center; background-repeat:no-repeat; background-size:cover;}
+.SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm03 {width:100%; height:100vh; background:url("http://img.designsoft.co.kr/WisdomForest/Main/main_slider_03.jpg") center; background-repeat:no-repeat; background-size:cover;}
+
+/* 반응형 디자인 설정 */
+@media (max-width:1023px){
+	header {width:128px;}
+	header .logo {margin:20px 0 0 33px;}
+	header .logo a {width:62px;}
+	header .logo a img {width:100%;}
+	nav {font-size:1em;}
+	nav > div > ul > li {margin:0;}
+	nav > div > ul > li > a {margin:10px 20px; letter-spacing:-0.08em; font-size:1em;}
+	nav > div > ul > li.btn_newsletter {font-size:0.93em;}
+	
+	.container {min-width:100%; padding-left:128px;}
+	
+	.footer ul li {padding:10px 20px; word-wrap:break-word;}
+	
+	
+	.SECTION_FULL_PAGE01 .fp-slides {height:240px !important;}
+	.SECTION_FULL_PAGE01 .fp-tableCell {height:720px !important;}
+	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-prev {left:20px !important;}
+	.SECTION_FULL_PAGE01 .fp-slidesNav {bottom:10px !important;}
+	.SECTION_FULL_PAGE01 .arrow_wrap {margin:10px auto 0 !important;}
+	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-prev {width:40px !important; height:40px !important; background-size:40px 40px !important;} 
+	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-next {width:40px !important; height:40px !important; background-size:40px 40px !important;}
+	.SECTION_FULL_PAGE01 .lft_con {float:none; width:100%;}
+	.SECTION_FULL_PAGE01 .slide_con .box_thm {height:240px;}
+	.SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm01,
+	.SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm02,
+	.SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm03 {height:240px !important; min-height:inherit;}
+	.SECTION_FULL_PAGE01 .slide_con .box_txt {margin-top:-40px;}
+	.SECTION_FULL_PAGE01 .slide_con .box_txt p {font-size:1.29em;}
+	.SECTION_FULL_PAGE01 .slide_con .box_txt span {font-size:3.42em; line-height:48px;}
+}
+
+@media (min-width:768px){
+	.mb_nav {display:none;}
+	.mb_nav_clo {display:none;}
+	.mb_wrap {display:block !important;}
+	.wrapper_shadow {display:none !important}
+}
+
+@media (max-width:767px){
+	header {z-index:10; width:100%; height:67px; min-height:67px; background:#262626; border-bottom:1px solid #1f1f1f;}
+	header .logo {width:100%; margin-left:0;}
+	header .logo a {margin:0 auto;}
+	nav {position:relative; top:30px !important; margin-top:0; border-top:1px solid #484848;}
+	nav > div > ul {margin:7px 0;}
+	nav > div > ul > li {margin:0;}
+	nav > div > ul > li > a {margin:0; padding:13px 45px; font-size:1.14em;}
+	nav > div > ul > li > ul {background:#686868;}
+	nav > div > ul > li > ul > li {font-size:0.93em; color:#eee;}
+	nav > div > ul > li > ul > li > a {padding-left:55px;}
+	nav > div > ul > li > ul > li > a:hover {background-position:left 45px center;}
+	nav > div > ul > li.btn_newsletter a {text-align:center;} 
+	
+	.container {padding-left:0;}
+	
+	.footer {position:relative; top:30px; bottom:inherit; background:#262626; padding-bottom:20px;}
+	.footer ul li {text-align:center;}
+	.footer ul > li span {display:inline-block; padding-left:5px; font-size:1em; letter-spacing:-0.08em;}
+	.footer ul > li a {letter-spacing:0;}
+
+	.mb_wrap {display:none; position:absolute; z-index:20; top:67px; width:100%; background:#262626;}
+	.mb_nav {position:absolute; top:20px; left:20px; z-index:100; width:27px; height:27px;}
+	.mb_nav_clo {position:absolute; z-index:110; top:24px; right:20px;}
+	
+	.lft_con {min-width:100%;}
+	.fp-slidesNav {left:50% !important;}
+	.slide_con .box_txt p {font-size:1.14em;}
+	.slide_con .box_txt span {font-size:2.57em;}
+	.slide_con .box_txt {width:204px; margin-left:-102px;}
+	.SECTION_FULL_PAGE01 .arrow_wrap {top:52% !important;}
+	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-prev {left:20px !important; width:30px !important; height:30px !important; background-size:30px 30px !important;}
+	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-next {right:20px !important; width:30px !important; height:30px !important; background-size:30px 30px !important;}
+	
+}
