@@ -64,6 +64,22 @@ public class BoardDAO {
 		return count;
 	}
 	
+	//Notice 게시판 해당 번호 글 가져오기
+	public BoardDTO getNotice(int notice_num){
+		BoardDTO bDTO = sqlsession.selectOne("getNotice", notice_num);
+		return bDTO;
+	}
+	
+	//Notice 게시판 글 수정
+	public void updateNotice(BoardDTO bDTO){
+		sqlsession.update("updateNotice", bDTO);
+	}
+	
+	//Notice 게시판 글 삭제
+	public void deleteNotice(int notice_num){
+		sqlsession.delete("deleteNotice", notice_num);
+	}
+	
 	//Qna 게시판 글쓰기
 	public int insertQna(Vector vector) {
 		int result;

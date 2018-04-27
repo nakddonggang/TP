@@ -43,9 +43,8 @@
 					<!-- right content -->
 					
 					<h1>게시판 글목록 [전체글개수 : <%=count %>]</h1>
-<h1><a href="./BoardNoticeWrite.no">게시판 글쓰기</a>
 <table border="1">
-<tr><td>번호</td><td>종류</td><td>제목</td><td>내용</td><td>파일</td><td>날짜</td><td>조회수</td></tr>
+<tr><td>번호</td><td>종류</td><td>제목</td><td>내용</td><td>파일</td><td>날짜</td><td>조회수</td><td></td></tr>
 <%
 for(int i=0; i<noticeList.size(); i++){
 	BoardDTO bDTO = noticeList.get(i);	//제너릭 사용해서 형변환 할 필요없음
@@ -53,12 +52,14 @@ for(int i=0; i<noticeList.size(); i++){
 	<tr><td><%=bDTO.getNotice_num() %></td><td><%=bDTO.getNotice_type() %></td>
 	<td><%=bDTO.getNotice_subject() %></td><td><%=bDTO.getNotice_content() %></td>
 	<td><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></td><td><%=bDTO.getNotice_date() %></td>
-	<td><%=bDTO.getNotice_readcount() %></td></tr>
+	<td><%=bDTO.getNotice_readcount() %></td>
+	<td><input type="button" value="글수정" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"> 
+	<input type="button" value="글삭제" onclick="location.href='./BoardNoticeDelete.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"></td></tr>
 <%	
 }
 %>
-
 </table>
+<input type="button" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
 <%
 if(count != 0){
 		

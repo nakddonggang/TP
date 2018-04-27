@@ -37,6 +37,19 @@
 	<select id="getNoticeCount" resultType="int">
 		select count(*) from notice
 	</select>
+	
+	<select id="getNotice" parameterType="int" resultType="net.board.db.BoardDTO">
+		select * from notice where notice_num=#{notice_num}
+	</select>
+	
+	<update id="updateNotice" parameterType="net.board.db.BoardDTO">
+		update notice set notice_type=#{notice_type}, notice_subject=#{notice_subject}, notice_content=#{notice_content}, notice_file=#{notice_file} 
+		where notice_num=#{notice_num}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		delete from notice where notice_num=#{notice_num}
+	</delete>
 
 
 </mapper>

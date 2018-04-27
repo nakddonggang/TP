@@ -38,6 +38,27 @@ public class NoticeFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		}else if(command.equals("/BoardNoticeUpdate.no")){
+			action = new BoardNoticeUpdate();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardNoticeUpdateAction.no")){
+			action = new BoardNoticeUpdateAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardNoticeDelete.no")){
+			action = new BoardNoticeDelete();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null){
