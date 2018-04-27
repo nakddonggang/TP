@@ -2,12 +2,37 @@
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="board">
-	<insert id="insertjoin" parameterType="net.board.db.BoardDTO">
-		insert into guest(id,pw,name,nick,addr,email,birth)
-		values (#{id},#{pw},#{name},#{nick},#{addr},#{email},#{birth})
+
+	<insert id="insertFaq" parameterType="net.board.db.BoardDTO">
+		insert into faq(faq_num,faq_type,faq_subject,faq_content,faq_file)
+		values (#{faq_num},#{faq_type},#{faq_subject},#{faq_content},#{faq_file})
 	</insert>
 
-	<select id="selectPerson" parameterType="int" resultType="hashmap">
-		SELECT * FROM PERSON WHERE ID = #{id}
+	<select id="selectFaq" resultType="int">
+		select ifnull(max(faq_num),0) from faq
 	</select>
+
+	<insert id="insertCur" parameterType="net.board.db.BoardDTO">
+		insert into curation(
+			cur_num, cur_name, cur_subject, cur_content, cur_file, cur_readcount, cur_type
+		)
+		values (
+			#{cur_num}, #{cur_name}, #{cur_subject}, #{cur_content}, #{cur_fi;e}, 0, #{cur_type}
+		)
+	</insert>
+
+	<insert id="insertNotice" parameterType="net.board.db.BoardDTO">
+		insert into notice(notice_num, notice_type, notice_subject, notice_content, notice_file, notice_date, notice_readcount)
+		values (#{notice_num}, #{notice_type}, #{notice_subject}, #{notice_content}, #{notice_file}, #{notice_date}, #{notice_readcount})
+	</insert>
+
+	<select id="selectMaxNum" resultType="int">
+		select ifnull(max(notice_num),0) from notice
+	</select>
+	
+	<select id="getNoticeList" parameterType="int" resultMap="List">
+		select * from notice order by notice_num desc limit #{startRow},#{pageSize}
+	</select>
+
+
 </mapper>

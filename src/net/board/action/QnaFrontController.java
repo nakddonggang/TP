@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BoardFrontController extends HttpServlet{
+public class QnaFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 가상주소 뽑아오기
@@ -27,12 +27,10 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/BoardQnaWrite.bo")){
 			forward = new ActionForward();
 			forward.setPath("./board/boardQWrite.jsp");
 			forward.setRedirect(false);
-			
 		} else if(command.equals("/BoardQnaWriteAction.bo")){
 			action = new BoardQnaWriteAction();
 			try{
@@ -40,7 +38,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/BoardQnaContent.bo")){
 			action = new BoardQnaContent();
 			try{
@@ -48,7 +45,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/BoardQnaSearch.bo")){
 			action = new BoardQnaSearch();
 			try{
@@ -56,7 +52,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		} else if(command.equals("/BoardQnaDeleteAction.bo")){
 			action = new BoardQnaDeleteAction();
 			try{
@@ -64,7 +59,6 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
 		}
 		
 		if(forward != null){
@@ -85,5 +79,5 @@ public class BoardFrontController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
-	}	
+	}
 }
