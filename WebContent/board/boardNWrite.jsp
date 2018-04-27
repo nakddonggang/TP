@@ -21,7 +21,7 @@
 		<!-- 본문 시작되는 곳 -->
 		<article>
 			<h1>Notice 글쓰기</h1>
-			<form action="./BoardNoticeWriteAction.bo"  method="post"  name="fr" enctype="multipart/form-data">
+			<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" enctype="multipart/form-data">
 				<table class="" >
 					<tr>
 						<th>TYPE</th>

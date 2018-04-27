@@ -20,45 +20,44 @@ public class FaqFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/BoardFaqWrite.bo")){
+		if(command.equals("/BoardFaqWrite.fa")){
 			forward = new ActionForward();
 			forward.setPath("./board/boardFWrite.jsp");
 			forward.setRedirect(false);
-			
-		}else if(command.equals("/BoardFaqWriteAction.bo")){
+		}else if(command.equals("/BoardFaqWriteAction.fa")){
 			action = new BoardFaqWriteAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/BoardFaqList.bo")){
+		}else if(command.equals("/BoardFaqList.fa")){
 			action = new BoardFaqList();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/BoardFaqUpdate.bo")){
+		}else if(command.equals("/BoardFaqUpdate.fa")){
 			action = new BoardFaqUpdate();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/BoardFaqUpdateAction.bo")){
+		}else if(command.equals("/BoardFaqUpdateAction.fa")){
 			action = new BoardFaqUpdateAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/BoardFaqDelete.bo")){
+		}else if(command.equals("/BoardFaqDelete.fa")){
 			forward = new ActionForward();
 			forward.setPath("./board/boardFDelete.jsp");
 			forward.setRedirect(false);
 			
-		}else if(command.equals("/BoardFaqDeleteAction.bo")){
+		}else if(command.equals("/BoardFaqDeleteAction.fa")){
 			action = new BoardFaqDeleteAction();
 			try{
 				forward = action.execute(request, response);
