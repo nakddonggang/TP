@@ -11,12 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("MemberFrontController doProcess()");
 		String requestURI= request.getRequestURI();
 		System.out.println("URI주소: " + requestURI);
 		
 		String contextPath = request.getContextPath();
-		System.out.println("컨텍스트 경로: " + contextPath);
 		System.out.println("컨텍스트 경로 길이: " + contextPath.length());
 		
 		String command=requestURI.substring(contextPath.length());
@@ -68,13 +66,11 @@ public class MemberFrontController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("MemberFrontController doGet()");
 		doProcess(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("MemberFrontController doPost()");
 		doProcess(request, response);
 	}
 	
