@@ -60,6 +60,10 @@ for(int i=0; i<noticeList.size(); i++){
 %>
 </table>
 <input type="button" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
+
+<form action="./BoardNoticeSearch.no" method="post">
+	<input type="text" name="search"> <input type="submit" value="검색">
+</form>
 <%
 if(count != 0){
 		
