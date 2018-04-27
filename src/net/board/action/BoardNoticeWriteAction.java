@@ -49,7 +49,7 @@ public class BoardNoticeWriteAction implements Action {
 			System.out.println("Sucsses");
 		}
 		
-		forward.setPath("./BoardNoticeList.bo");
+		forward.setPath("./BoardNoticeList.no");
 		forward.setRedirect(true);
 		
 		return forward;

@@ -1,5 +1,6 @@
 package net.board.db;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Vector;
@@ -45,6 +46,22 @@ public class BoardDAO {
 		int result;
 		result = sqlsession.insert("insertNotice", bDTO);
 		return result;
+	}
+	
+	//Notice 게시판 리스트
+	public List<BoardDTO> getNoticeList(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BoardDTO> noticeList = sqlsession.selectList("getNoticeList",map);
+		return noticeList;
+	}
+	
+	//Notice 게시판 글 개수 구하기
+	public int getNoticeCount(){
+		int count;
+		count = sqlsession.selectOne("getNoticeCount");
+		return count;
 	}
 	
 	//Qna 게시판 글쓰기
