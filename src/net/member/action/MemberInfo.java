@@ -28,8 +28,8 @@ public class MemberInfo implements Action {
 		
 		request.setAttribute("mDTO", mDTO);
 		
-		forward.setPath("./MemberInfo.me");
-		forward.setRedirect(true);
+		forward.setPath("./member/memberInfo.jsp");
+		forward.setRedirect(false);
 		return forward;
 	}
 
