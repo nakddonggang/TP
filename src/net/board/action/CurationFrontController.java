@@ -20,12 +20,47 @@ public class CurationFrontController extends HttpServlet {
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/BoardCurWrite.bo")){
+		if(command.equals("/BoardCurWrite.cu")){
 			forward = new ActionForward();
 			forward.setPath("board/boardCuWrite.jsp");
 			forward.setRedirect(false);
-		}else if(command.equals("/BoardCurWriteAction.bo")){
+		}else if(command.equals("/BoardCurWriteAction.cu")){
 			action = new BoardCurWriteAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardCurList.cu")){
+			action = new BoardCurList();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardCurUpdate.cu")){
+			action = new BoardNoticeUpdate();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardCurUpdateAction.cu")){
+			action = new BoardNoticeUpdateAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardCurDelete.cu")){
+			action = new BoardNoticeDelete();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardCurSearch.cu")){
+			action = new BoardCurSearch();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
