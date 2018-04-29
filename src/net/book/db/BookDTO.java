@@ -13,7 +13,7 @@ public class BookDTO {
 	String book_notation;			//	주기					varchar(100)						책 주기
 	String book_isbn;					//	국제표준번호		int(18)								국제표준번호 ISBN
 	String book_classification;		//	분류기호			varchar(40)							책 분류기호
-	String book_date;				//	입고일				date									도서관에 입고된 날짜
+	Timestamp book_date;				//	입고일				date									도서관에 입고된 날짜
 	
 	//	<dbook table>						
 	String dbook_reason;			//	사유					char(40)								파기 사유
@@ -65,9 +65,6 @@ public class BookDTO {
 	public void setBook_classification(String book_classification) {
 		this.book_classification = book_classification;
 	}
-	public void setBook_date(String book_date) {
-		this.book_date = book_date;
-	}
 	public void setDbook_reason(String dbook_reason) {
 		this.dbook_reason = dbook_reason;
 	}
@@ -110,4 +107,80 @@ public class BookDTO {
 	public void setHbook_explain(String hbook_explain) {
 		this.hbook_explain = hbook_explain;
 	}
+	public Timestamp getBook_date() {
+		return book_date;
+	}
+	public void setBook_date(Timestamp book_date) {
+		this.book_date = book_date;
+	}
+	public int getBook_number() {
+		return book_number;
+	}
+	public String getBook_subject() {
+		return book_subject;
+	}
+	public String getBook_author() {
+		return book_author;
+	}
+	public String getBook_publisher() {
+		return book_publisher;
+	}
+	public Timestamp getBook_pubDate() {
+		return book_pubDate;
+	}
+	public String getBook_form() {
+		return book_form;
+	}
+	public String getBook_notation() {
+		return book_notation;
+	}
+	public String getBook_isbn() {
+		return book_isbn;
+	}
+	public String getBook_classification() {
+		return book_classification;
+	}
+	public String getDbook_reason() {
+		return dbook_reason;
+	}
+	public String getDbook_state() {
+		return dbook_state;
+	}
+	public Timestamp getBbook_bdate() {
+		return bbook_bdate;
+	}
+	public Timestamp getBbook_rdate() {
+		return bbook_rdate;
+	}
+	public String getBbook_bstate() {
+		return bbook_bstate;
+	}
+	public int getRbook_num() {
+		return rbook_num;
+	}
+	public Timestamp getRbook_date() {
+		return rbook_date;
+	}
+	public String getRbook_check() {
+		return rbook_check;
+	}
+	public String getHbook_subject() {
+		return hbook_subject;
+	}
+	public String getHbook_author() {
+		return hbook_author;
+	}
+	public String getHbook_check() {
+		return hbook_check;
+	}
+	public String getHbook_publisher() {
+		return hbook_publisher;
+	}
+	public int getHbook_isbn() {
+		return hbook_isbn;
+	}
+	public String getHbook_explain() {
+		return hbook_explain;
+	}
+	
 }
