@@ -15,7 +15,7 @@
 			<jsp:include page="../include/footer.jsp" />	<!-- div id=footer -->
 		</div>
 		<div id="sub_menu">
-			<jsp:include page="../include/submenu.jsp"/>	<!-- div id=sub_menu -->
+			<jsp:include page="../include/submenu_main.jsp"/>	<!-- div id=sub_menu -->
 		</div>
 		
 		<!-- 본문 시작되는 곳 -->
