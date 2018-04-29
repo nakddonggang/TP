@@ -29,9 +29,7 @@
 		int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
 		int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer)request.getAttribute("endPage")).intValue();
-		List<BoardDTO> board = (List<BoardDTO>)request.getAttribute("board");
-		
-		if (pageNum == null) 	pageNum = "1";
+		List<BoardDTO> curationList = (List<BoardDTO>)request.getAttribute("curationList");
 	%>
 	<div class="wrapper">
 
@@ -72,12 +70,28 @@
 									<p>Total_<span>28</span></p>
 								</div>
 								<!-- //조회수 -->
+								<h1>게시판 글목록 [전체글개수 : <%=count %>]</h1>
+										<table border="1">
+											<tr><td>번호</td><td>작성자</td><td>제목</td><td>내용</td><td>파일</td><td>조회수</td><td>타입</td><td></td></tr>
+										<%
+										for(int i=0; i<curationList.size(); i++){
+											BoardDTO bDTO = curationList.get(i);
+										%>
+											<tr><td><%=bDTO.getCur_num() %></td><td><%=bDTO.getCur_name() %></td>
+											<td><%=bDTO.getCur_subject() %></td><td><%=bDTO.getCur_content() %></td>
+											<td><img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100"></td><td><%=bDTO.getCur_readcount() %></td>
+											<td><%=bDTO.getCur_type() %></td>
+											<td><input type="button" value="글수정" onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"> 
+											<input type="button" value="글삭제" onclick="location.href='./BoardCurDelete.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"></td></tr>
+										<%	
+										}
+										%>
+										</table>
 								
 								<ul class="brd_txt_lst">
 									<!-- 글목록 -->
 									<li class="view_lst">
-									<%
-										for (BoardDTO bDTO : board) {
+									<%	for (BoardDTO bDTO : curationList) {
 											out.print(
 													"<div class='con_lst DIV_CON_LST'>" + 
 														"<ul>" + 
@@ -101,18 +115,22 @@
 								</ul>
 							</div>
 							<!-- //리스트 -->
+							<input type="button" value="글쓰기" onclick="location.href='./BoardCurWrite.cu'">
+							<form action="./BoardCurSearch.cu" method="post">
+								<input type="text" name="search"> <input type="submit" value="검색">
+							</form>
 
 							<!-- 페이징 작업부분 -->
 							<div class="paginate pc_pg">
 							<%
 								if(pageCount < endPage)	endPage = pageCount;
 							
-								if(startPage > pageBlock)	{ %><a href="BoardList.bo?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
+								if(startPage > pageBlock)	{ %><a href="BoardCurList.cu?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
 								for (int p = startPage; p <= endPage; p++) {	
 									if(p==Integer.parseInt(pageNum)) {%><strong title="현재 페이지"><%=p %></strong>><%}
-									else {%><a href="BoardList.bo?pageNum=<%=p%>"><%=p %></a><%}
+									else {%><a href="BoardCurList.cu?pageNum=<%=p%>"><%=p %></a><%}
 								}
-								if(endPage < pageCount){	%><a href="BoardList.bo?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+								if(endPage < pageCount){	%><a href="BoardCurList.cu?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 							%>
 							</div>
 							<!-- //페이징 작업부분 -->
