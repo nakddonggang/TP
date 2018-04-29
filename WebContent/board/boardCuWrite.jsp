@@ -37,7 +37,7 @@
 					<jsp:include page="../include/submenu.jsp" />
 					<!-- //left_content -->
 					
-					<form action="BoardCurWriteAction.bo" method="post" name="fr">
+					<form action="./BoardCurWriteAction.cu" method="post" name="fr" enctype="multipart/form-data">
 						<table border="1">
 							<tr>
 								<td>글쓴이</td>
@@ -55,6 +55,12 @@
 								<td>타입</td>
 								<td>
 									<input type="text" name="cur_subject">
+								</td>
+							</tr>
+							<tr>
+								<td>파일</td>
+								<td>
+									<input type="file" name="cur_file">
 								</td>
 							</tr>
 							<tr>
