@@ -21,7 +21,7 @@
 		<servlet-name>MemberFrontController</servlet-name>
 		<url-pattern>*.me</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>FaqFrontController</servlet-name>
 		<servlet-class>net.board.action.FaqFrontController</servlet-class>
@@ -30,7 +30,7 @@
 		<servlet-name>FaqFrontController</servlet-name>
 		<url-pattern>*.fa</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>NoticeFrontController</servlet-name>
 		<servlet-class>net.board.action.NoticeFrontController</servlet-class>
@@ -39,7 +39,7 @@
 		<servlet-name>NoticeFrontController</servlet-name>
 		<url-pattern>*.no</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>QnaFrontController</servlet-name>
 		<servlet-class>net.board.action.QnaFrontController</servlet-class>
@@ -48,7 +48,7 @@
 		<servlet-name>QnaFrontController</servlet-name>
 		<url-pattern>*.qn</url-pattern>
 	</servlet-mapping>
-	
+
 	<servlet>
 		<servlet-name>CurationFrontController</servlet-name>
 		<servlet-class>net.board.action.CurationFrontController</servlet-class>
@@ -57,5 +57,5 @@
 		<servlet-name>CurationFrontController</servlet-name>
 		<url-pattern>*.cu</url-pattern>
 	</servlet-mapping>
-	
+
 </web-app>
