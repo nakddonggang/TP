@@ -9,7 +9,7 @@ public class BoardNoticeDelete implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardNoticeDeleteAction execute()");
+		System.out.println("BoardNoticeDelete execute()");
 		request.setCharacterEncoding("utf-8");
 		
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
