@@ -24,6 +24,45 @@ public class AdminFrontController extends HttpServlet{
 		// 뽑아온 주소 비교
 		ActionForward forward = null;
 		Action action = null;
+		if (command.equals("/AdminIndex.am")){
+			action = new AdminIndex();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}			
+		} else if (command.equals("/AdminBookWrite.am")){
+			forward = new ActionForward();
+			forward.setPath("./admin/admBookIOWrite.jsp");
+			forward.setRedirect(false);
+		} else if (command.equals("/AdminBookWriteAction.am")){
+			action = new AdminBookWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}				
+		} else if (command.equals("/AdminBookIO.am")){
+			action = new AdminBookIO();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}			
+		} else if (command.equals("/AdminBookInfo.am")){
+			action = new AdminBookInfo();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}			
+		} else if (command.equals("/AdminBookDLosWrite.am")){
+			forward = new ActionForward();
+			forward.setPath("./admin/admBookDLosWrite.jsp");
+			forward.setRedirect(false);			
+		} else if (command.equals("/AdminBookDLosWriteAction.am")){
+			action = new AdminBookDLosWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}				
+		} else if (command.equals("/AdminBookDLos.am")){
+			action = new AdminBookDLos();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		} 
 		
 		// 이동
 		if (forward!=null){
