@@ -38,7 +38,7 @@ String pageNum = request.getParameter("pageNum");
 					</tr>
 					<tr>
 						<th>CONTENT</th>
-						<td><input type="text" name="notice_content" value="<%=bDTO.getNotice_content()%>"></td>
+						<textarea cols="20" rows="10" name="notice_content" style="width: 580px; resize: none;"><%=bDTO.getNotice_content() %></textarea>
 					</tr>
 					<tr>
 						<th>FILE</th>

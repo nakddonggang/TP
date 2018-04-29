@@ -17,9 +17,11 @@ public class BoardNoticeUpdate implements Action{
 		
 		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		String pageNum = request.getParameter("pageNum");
+		String table = "notice";
+		String column = "notice_num";
 		
 		BoardDAO bDAO = new BoardDAO();
-		BoardDTO bDTO = bDAO.getNotice(notice_num);
+		BoardDTO bDTO = bDAO.getBoard(table, column, notice_num);
 		
 		request.setAttribute("bDTO", bDTO);
 		request.setAttribute("pageNum", pageNum);
