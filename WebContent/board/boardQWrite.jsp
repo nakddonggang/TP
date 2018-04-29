@@ -21,7 +21,7 @@
 		<!-- 본문 시작되는 곳 -->
 		<article>
 			<h1>Qna 글쓰기</h1>
-			<form action="./BoardQnaWriteAction.bo"  method="post"  name="fr" >
+			<form action="./BoardQnaWriteAction.qn"  method="post"  name="fr" >
 				<table class="" >
 					<tr>
 						<th>ID</th>
@@ -33,7 +33,7 @@
 					</tr>
 					<tr>
 						<th>CONTENT</th>
-						<td><input type="text" name="qna_content" value=""></td>
+						<td><textarea cols="20" rows="10" name="qna_content" style="width: 580px; resize: none;"></textarea></td>
 					</tr>
 					<tr>
 						<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
