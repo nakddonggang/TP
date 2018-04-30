@@ -9,28 +9,21 @@ import net.member.db.MemberDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class MemberInfo implements Action {
+public class MemberUpdate implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("MemberInfo execute()");
+		System.out.println("MemberUpdate execute()");
 		request.setCharacterEncoding("utf-8");
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
-		
 		String member_id = (String)session.getAttribute("member_id");
-		if(member_id == null) {
-			forward.setPath("./MemberLogin.me");
-			forward.setRedirect(true);
-			return forward;
-		}
-		MemberDTO mDTO = new MemberDTO();
-		MemberDAO mDAO = new MemberDAO();
-		mDTO = mDAO.getMember(member_id);
 		
+		MemberDAO mDAO = new MemberDAO();
+		MemberDTO mDTO = mDAO.getMember(member_id);
 		request.setAttribute("mDTO", mDTO);
 		
-		forward.setPath("./member/memberInfo.jsp");
+		forward.setPath("./member/memberUpdate.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

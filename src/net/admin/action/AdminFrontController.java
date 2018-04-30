@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
+
 public class AdminFrontController extends HttpServlet{
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 가상주소 뽑아오기
@@ -62,7 +65,37 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}						
-		} 
+		} else if (command.equals("/AdminMemberIndex.am")){
+			action = new AdminMemberIndex();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		} else if (command.equals("/AdminMemberInfo.am")){
+			action = new AdminMemberInfo();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		} else if (command.equals("/AdminMemberRank.am")){
+			action = new AdminMemberRank();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		} else if (command.equals("/AdminMemberGood.am")){
+			action = new AdminMemberGood();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		}else if (command.equals("/AdminMemberBlack.am")){
+			action = new AdminMemberBlack();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		}else if (command.equals("/AdminMemberNormal.am")){
+			action = new AdminMemberNormal();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		}    
 		
 		// 이동
 		if (forward!=null){

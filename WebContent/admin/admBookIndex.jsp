@@ -60,19 +60,18 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						</tr>
 						<%
 							for (BookDTO bookLists : bookList) {%>
-						<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>&pageNum=<%=pageNum%>'">
-							<td><%=bookLists.getBook_number()%></td>
-							<td><%=bookLists.getBook_subject()%></td>
-							<td><%=bookLists.getBook_author()%></td>
-							<td><%=bookLists.getBook_publisher()%></td>
-							<td><%=bookLists.getBook_pubDate()%></td>
-							<td><%=bookLists.getBook_form()%></td>
-							<td><%=bookLists.getBook_notation()%></td>
-							<td><%=bookLists.getBook_isbn()%></td>		
-							<td><%=bookLists.getBook_classification()%></td>		
-							<td><%=bookLists.getBook_date()%></td>					
-						</tr> <%
-							} %>
+								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>&pageNum=<%=pageNum%>'">
+									<td><%=bookLists.getBook_number()%></td>
+									<td><%=bookLists.getBook_subject()%></td>
+									<td><%=bookLists.getBook_author()%></td>
+									<td><%=bookLists.getBook_publisher()%></td>
+									<td><%=bookLists.getBook_pubDate()%></td>
+									<td><%=bookLists.getBook_form()%></td>
+									<td><%=bookLists.getBook_notation()%></td>
+									<td><%=bookLists.getBook_isbn()%></td>		
+									<td><%=bookLists.getBook_classification()%></td>		
+									<td><%=bookLists.getBook_date()%></td>					
+								</tr> <%	} %>
 					</table>
 					
 					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"><br>

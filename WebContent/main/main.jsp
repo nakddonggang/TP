@@ -10,6 +10,7 @@
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
@@ -30,14 +31,16 @@
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
 				
-				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
+				<!-- 메인 페이지 -->
+				
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
 					<div class=""></div>
-				</article>
+				
 				<!-- //메인 페이지-->
+				</article>
 				
 			</section>
 		</div>
