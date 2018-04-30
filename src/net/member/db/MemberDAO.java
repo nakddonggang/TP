@@ -56,7 +56,12 @@ public class MemberDAO {
 	
 	//	맴버 탈퇴
 	public void DeleteMember(String member_id) {
-		sqlsession.delete(member_id);
+		sqlsession.delete("deleteMember" , member_id);
+	}
+	
+	//	맴버 수정
+	public void UpdateMember(MemberDTO mDTO) {
+		sqlsession.update("updateMember" , mDTO);
 	}
 	
 	
