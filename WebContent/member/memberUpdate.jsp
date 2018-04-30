@@ -1,3 +1,4 @@
+<%@page import="net.member.db.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,36 +16,42 @@
 			<jsp:include page="../include/header.jsp" />
 <%-- 			<jsp:include page="../include/footer.jsp" /> --%>
 		</div>
-
+		<%
+			String member_id = (String)session.getAttribute("member_id");
+			MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
+			if(member_id == null) {
+				response.sendRedirect("./MemberLogin.me");
+			}
+		%>
 		<!-- 본문 시작되는 곳 -->
 		<article>
 			<h1>회원정보수정</h1>
-			<form action="" method="" name="">
+			<form action="MemberUpdateAction.me" method="post" name="">
 				<table class="">
 					<tr>
 						<th>ID</th>
-						<td><input type="text" name="id" value="" readonly></td>
+						<td><input type="text" name="id" value="<%=member_id %>" readonly></td>
 					</tr>
 					<tr>
 						<th>Name</th>
-						<td><input type="text" name="name" value=""></td>
+						<td><input type="text" name="name" value="<%=mDTO.getMember_name()%>"></td>
 					</tr>
 					<tr>
 						<th>Post</th>
-						<td><input type="text" name="post" value=""></td>
+						<td><input type="text" name="post" value="<%=mDTO.getMember_post()%>"></td>
 					</tr>
 					<tr>
 						<th>Address</th>
-						<td><input type="text" name="address" value=""> <input
-							type="text" name="address2" value=""></td>
+						<td><input type="text" name="address" value="<%=mDTO.getMember_address1()%>"> <input
+							type="text" name="address2" value="<%=mDTO.getMember_address2()%>"></td>
 					</tr>
 					<tr>
 						<th>Phone</th>
-						<td><input type="text" name="phone" value=""></td>
+						<td><input type="text" name="phone" value="<%=mDTO.getMember_phone()%>"></td>
 					</tr>
 					<tr>
 						<th>E-mail</th>
-						<td><input type="text" name="email" value=""></td>
+						<td><input type="text" name="email" value="<%=mDTO.getMember_email()%>"></td>
 					</tr>
 					<tr>
 						<th colspan="2"><input type="submit" value="회원수정"> <input
