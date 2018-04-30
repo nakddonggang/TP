@@ -6,6 +6,8 @@ import javax.servlet.http.HttpSession;
 
 import net.member.db.MemberDAO;
 import net.member.db.MemberDTO;
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
 
 public class MemberUpdate implements Action{
 
