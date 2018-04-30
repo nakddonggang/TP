@@ -26,9 +26,9 @@
 	 	select * from book where book_number=#{book_number}
 	 </select>
 	 
-<!-- 	 <select id="getDBookCount" resultType="int"> -->
-<!-- 	 	select count(*) from dbook -->
-<!-- 	 </select> -->
+	 <select id="getDBookCount" resultType="int">
+	 	select count(*) from dbook
+	 </select>
 	 
 	 <insert id="insertDBook" parameterType="net.book.db.BookDTO">
 	 	insert into dbook (dbook_reason, dbook_state)
