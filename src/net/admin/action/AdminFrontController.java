@@ -62,7 +62,37 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}						
-		} 
+		} else if (command.equals("/AdminMemberIndex.am")){
+			action = new AdminMemberIndex();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		} else if (command.equals("/AdminMemberInfo.am")){
+			action = new AdminMemberInfo();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		} else if (command.equals("/AdminMemberRank.am")){
+			action = new AdminMemberRank();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		} else if (command.equals("/AdminMemberGood.am")){
+			action = new AdminMemberGood();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		}else if (command.equals("/AdminMemberBlack.am")){
+			action = new AdminMemberBlack();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		}else if (command.equals("/AdminMemberNormal.am")){
+			action = new AdminMemberNormal();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
+		}    
 		
 		// 이동
 		if (forward!=null){

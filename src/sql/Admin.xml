@@ -45,4 +45,16 @@
  	select * from dbook order by book_number desc limit #{startRow}, #{pageSize} 
  </select>
  
+ <select id="getMemberCount" parameterType="int">
+ 	select count(*) as count from member
+ </select>
+ 
+ <select id="getMemberList" parameterType="hashmap" resultType="net.member.db.MemberDTO">
+		select * from member order by member_name desc limit #{startRow},#{pageSize}
+	</select>
+	
+	 <select id="getMemberInfo"  parameterType="String" resultType="net.member.db.MemberDTO">
+ 	select * from member where member_id=#{member_id}
+ </select>
+ 
  </mapper>
