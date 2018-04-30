@@ -12,10 +12,10 @@
 	<div id="wrap">
 		<div id="main_menu">
 			<jsp:include page="../include/header.jsp" />	<!-- div id=header -->
-			<jsp:include page="../include/footer.jsp" />	<!-- div id=footer -->
+<%-- 			<jsp:include page="../include/footer.jsp" />	<!-- div id=footer --> --%>
 		</div>
 		<div id="sub_menu">
-			<jsp:include page="../include/submenu.jsp"/>	<!-- div id=sub_menu -->
+			<jsp:include page="../include/submenu_main.jsp"/>	<!-- div id=sub_menu -->
 		</div>
 		<div>	
 			<form action="./MemberLoginAction.me" method="post" name="fr">
@@ -25,7 +25,7 @@
 					<tr><td>비밀번호:</td><td><input type="password" name="member_pass"></td></tr>
 					<tr><td colspan="2">
 							<input type="button" value="로그인" onclick="sub()">
-							<input type="button" value="회원가입" onclick="location.href = 'insertForm.jsp'">
+							<input type="button" value="회원가입" onclick="location.href = './MemberJoin.me'">
 					</td></tr>
 				</table>
 			</form>

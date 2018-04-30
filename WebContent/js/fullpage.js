@@ -99,7 +99,6 @@ $(function(){
     
     //page5 slide button    
     $('.fp-controlArrow').wrapAll('<div class="arrow_wrap"/>');
-
     $('.fp-slidesNav').insertAfter(".fp-slides > .fp-slidesContainer");
     $('.arrow_wrap').insertAfter(".fp-slides > .fp-slidesNav");
 });

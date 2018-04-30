@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,16 +7,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
-<link href="../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
-<link href="../css/jquery.fullpage" rel="stylesheet" type="text/css">
-<link href="../css/import.css?ver=1" rel="stylesheet" type="text/css">
-<script src="../js/jquery-3.3.1.js"></script>
-<script src="../js/jquery.bxslider.min.js"></script>
-<script src="../js/jquery.fullpage.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
-<script src="../js/common.min.js"></script>
-<script src="../js/fullpage.min.js"></script>
+<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
+<script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/common.js"/>"></script>
+<script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
 	<div class="wrapper">
@@ -24,37 +22,26 @@
 		<jsp:include page="../include/header.jsp" />
 		<!-- //header -->
 
-		<!-- top_link -->
-		<jsp:include page="../include/topmenu.jsp" />
-		<!-- //top_link -->
-
-		<!-- container -->
+		<!-- 본문 컨테이너 -->
 		<div class="container">
-			<section class="sub_con_half SEC_HALF">
-				<h2 class="hide">Title</h2>
-				<article>
-					<!-- left_content -->
-					<jsp:include page="../include/submenu.jsp" />
-					<!-- //left_content -->
-					
-					<!-- 본문 공간 -->
-					
+			<section class="fullpage SECTION_FULL_PAGE01">
 
-<!--로그인 수정 -->
-		<%			
-		String id=(String)session.getAttribute("id");
-		if(id==null){
-			response.sendRedirect("./MemberLogin.me");
-		}			
-					
-		%>			
-		<%=id %>님이 로그인 하셨습니다.			
-<!--/로그인 수정 -->				
+				<!-- 서브메뉴 -->
+				<jsp:include page="../include/submenu_main.jsp" />
+				<!-- //서브메뉴 -->
 				
-					
+				<!-- 메인 페이지 -->
+				<article class="mainmenu section SECTION">
+					<div class="total_search"></div>
+					<div class="curation"></div>
+					<div class=""></div>
+					<div class=""></div>
 				</article>
+				<!-- //메인 페이지-->
+				
 			</section>
 		</div>
+		<!-- //본문 컨테이너 -->
 	</div>
 </body>
 </html>

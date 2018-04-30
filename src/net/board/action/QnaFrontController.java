@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class BoardFrontController extends HttpServlet{
+public class QnaFrontController extends HttpServlet{
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 가상주소 뽑아오기
@@ -59,68 +59,7 @@ public class BoardFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/BoardFaqWrite.bo")){
-			forward = new ActionForward();
-			forward.setPath("./board/boardFWrite.jsp");
-			forward.setRedirect(false);
-		}else if(command.equals("/BoardFaqWriteAction.bo")){
-			action = new BoardFaqWriteAction();
-			try{
-				forward = action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/BoardFaqList.bo")){
-			action = new BoardFaqList();
-			try{
-				forward = action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/BoardFaqUpdate.bo")){
-			action = new BoardFaqUpdate();
-			try{
-				forward = action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/BoardFaqUpdateAction.bo")){
-			action = new BoardFaqUpdateAction();
-			try{
-				forward = action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/BoardFaqDelete.bo")){
-			forward = new ActionForward();
-			forward.setPath("./board/boardFDelete.jsp");
-			forward.setRedirect(false);
-		}else if(command.equals("/BoardFaqDeleteAction.bo")){
-			action = new BoardFaqDeleteAction();
-			try{
-				forward = action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-		}else if(command.equals("/BoardFaqDelete.bo")){
-			forward = new ActionForward();
-			forward.setPath("./board/boardFDelete.jsp");
-			forward.setRedirect(false);
-		}else if(command.equals("/BoardCurWrite.bo")){
-			forward = new ActionForward();
-			forward.setPath("./board/boardCurWrite.jsp");
-			forward.setRedirect(false);
-		}else if(command.equals("/BoardCurWriteAction.bo")){
-			action = new BoardCurWriteAction();
-			try{
-				forward = action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
 		}
-		
-		
-		
 		
 		if(forward != null){
 			if(forward.isRedirect){
@@ -140,5 +79,5 @@ public class BoardFrontController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doProcess(request, response);
-	}	
+	}
 }
