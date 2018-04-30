@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
 
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
+
 public class BoardCurList implements Action{
 
 	@Override
@@ -15,11 +18,9 @@ public class BoardCurList implements Action{
 		System.out.println("BoardCurList execute()");
 		request.setCharacterEncoding("utf-8");
 		ActionForward forward = new ActionForward();
-		
-		String table = "curation";
-		String column = "cur_num";
+
 		BoardDAO bDAO = new BoardDAO();
-		int count = bDAO.getBoardCount(table);		// Curation 글 개수 구해 count에 저장
+		int count = bDAO.getCurationCount();		// Curation 글 개수 구해 count에 저장
 		
 		int pageSize = 2;	//한 화면에 보여줄 글 개수 설정
 		String pageNum = request.getParameter("pageNum");	// 페이지 번호(파라미터 "pageNum") 가져오기
@@ -35,7 +36,7 @@ public class BoardCurList implements Action{
 		List<BoardDTO> curationList = null;
 		
 		if(count != 0){
-			curationList = bDAO.getBoardList(table, column, startRow, pageSize);
+			curationList = bDAO.getCurationList(startRow, pageSize);
 		}
 		
 		//게시판 전체 페이지수 구하기 => ex)전체 글 개수(count):50개, 한 화면에 보여줄 글 개수(pageSize):10개
