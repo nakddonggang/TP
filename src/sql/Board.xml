@@ -11,6 +11,15 @@
 	<select id="selectFaq" resultType="int">
 		select ifnull(max(faq_num),0) from faq
 	</select>
+	
+	<select id="getFaqCount" resultType="int">
+		select count(*) from faq
+	</select>
+	
+	<select id="getFaqList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from faq order by faq_num desc limit #{startRow},#{pageSize}
+	</select>
+	
 
 	<insert id="insertCur" parameterType="net.board.db.BoardDTO">
 		insert into curation(

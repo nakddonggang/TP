@@ -18,7 +18,7 @@ public class BoardDAO {
 		sqlsession = sessionf.openSession(true);
 	}
 	
-
+    //Faq 게시판 글쓰기
 	public void insertFaq(BoardDTO bDTO) {
 		sqlsession.insert("insertFaq",bDTO);
 	}
@@ -28,6 +28,22 @@ public class BoardDAO {
 		result=sqlsession.selectOne("selectFaq");
 		return result;
 	}
+	
+	//Faq 게시판 리스트
+		public List<BoardDTO> getFaqList(int startRow, int pageSize){
+			HashMap map = new HashMap();
+			map.put("startRow", startRow-1);
+			map.put("pageSize", pageSize);
+			List<BoardDTO> faqList = sqlsession.selectList("getFaqList",map);
+			return faqList;
+		}
+		
+		//Faq 게시판 글 개수 구하기
+		public int getFaqCount(){
+			int count;
+			count = sqlsession.selectOne("getFaqCount");
+			return count;
+		}
 	
 
 	//Notice 게시판 글쓰기
