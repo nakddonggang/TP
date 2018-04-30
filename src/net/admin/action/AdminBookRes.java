@@ -11,7 +11,7 @@ import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class AdminBookIO implements Action{
+public class AdminBookRes implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -45,11 +45,9 @@ public class AdminBookIO implements Action{
 		PrintWriter out = response.getWriter();
 		
 		// 책 뿌려주는 메소드 생성
-		List<BookDTO> bookList = null;
+		List<BookDTO> rbookList = null;
 		if (count!=0) {
-			bookList=adao.getBookList(startRow, pageSize);
-		} else {
-			System.out.println("책 목록이 없습니다");
+			rbookList=adao.getRBookList(startRow, pageSize);
 		}
 
 		// 게시판 전체 페이지 수
@@ -68,14 +66,14 @@ public class AdminBookIO implements Action{
 		// count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
 		request.setAttribute("count", count);
 		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("bookList", bookList);
+		request.setAttribute("rbookList", rbookList);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);		
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./admin/admBookIO.jsp");
+		forward.setPath("./admin/admBookRes.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

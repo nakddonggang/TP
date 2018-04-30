@@ -8,7 +8,7 @@ public class BookDTO {
 	String book_subject;				//	표제					varchar(100)						책 제목
 	String book_author;				//	저자					char(40)								책 저자
 	String book_publisher;			//	발행처				char(20)								출판사
-	Timestamp book_pubDate;	//	발행일				date									책 발행일
+	String book_pubDate;	//	발행일				date									책 발행일
 	String book_form;				//	형태					char(20)								책 형태
 	String book_notation;			//	주기					varchar(100)						책 주기
 	String book_isbn;					//	국제표준번호		int(18)								국제표준번호 ISBN
@@ -49,9 +49,6 @@ public class BookDTO {
 	}
 	public void setBook_publisher(String book_publisher) {
 		this.book_publisher = book_publisher;
-	}
-	public void setBook_pubDate(Timestamp book_pubDate) {
-		this.book_pubDate = book_pubDate;
 	}
 	public void setBook_form(String book_form) {
 		this.book_form = book_form;
@@ -125,8 +122,11 @@ public class BookDTO {
 	public String getBook_publisher() {
 		return book_publisher;
 	}
-	public Timestamp getBook_pubDate() {
+	public String getBook_pubDate() {
 		return book_pubDate;
+	}
+	public void setBook_pubDate(String book_pubDate) {
+		this.book_pubDate = book_pubDate;
 	}
 	public String getBook_form() {
 		return book_form;

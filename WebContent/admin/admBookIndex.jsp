@@ -1,6 +1,7 @@
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,13 +9,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="../css/jquery.fullpage" rel="stylesheet" type="text/css">
-<link href="../css/import.css?ver=1" rel="stylesheet" type="text/css">
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/jquery.bxslider.min.js"></script>
-<script src="../js/jquery.fullpage.min.js"></script>
-<script src="../js/common.js"></script>
-<script src="../js/fullpage.js"></script>
+<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
+<script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/common.js"/>"></script>
+<script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
 <%
@@ -34,17 +36,24 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 		<jsp:include page="../include/header.jsp" />
 		<!-- //header -->
 
-		<!-- container -->
+		<!-- 본문 컨테이너 -->
 		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
-				<h2 class="hide"></h2>
-				<!-- left_content -->
+
+				<!-- 서브메뉴 -->
 				<jsp:include page="../include/submenu_main.jsp" />
-				<!-- //left_content -->
-				<article class="rgt_con section SECTION">
+				<!-- //서브메뉴 -->
+				
+				<article class="mainmenu section SECTION">
+				<!-- 메인 페이지 -->
+				
+					<div class="total_search"></div>
+					<div class="curation"></div>
+					<div class=""></div>
+					<div class=""></div>
 					<!-- 본문 공간 -->
 					<h2>책 목록 [<%=count%>]</h2>
-					<%if(count==0){ out.print("책 목록이 없습니다"); } %>
+					<%if(count==0){ out.print("책 목록이 없습니다"); } else {%>
 					<table border="1">
 						<tr>
 							<th>고유번호</th>
@@ -73,7 +82,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 									<td><%=bookLists.getBook_date()%></td>					
 								</tr> <%	} %>
 					</table>
-					
+					<%}%><br>
 					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"><br>
 					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'"><br>
 								
