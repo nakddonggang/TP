@@ -12,7 +12,7 @@
 	 </select>
 	 
 	 <select id="getBookNum" parameterType="int" resultType="int">
-	 	select max(#{book_number}) from book
+	 	select ifnull(max(book_number),0) from book
 	 </select>
 	 
 	 <insert id="insertBook" parameterType="net.book.db.BookDTO">
