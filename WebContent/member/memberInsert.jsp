@@ -12,7 +12,7 @@
 	<div id="wrap">
 		<div id="main_menu">
 			<jsp:include page="../include/header.jsp" />	<!-- div id=header -->
-			<jsp:include page="../include/footer.jsp" />	<!-- div id=footer -->
+<%-- 			<jsp:include page="../include/footer.jsp" />	<!-- div id=footer --> --%>
 		</div>
 		<div id="sub_menu">
 			<jsp:include page="../include/submenu_main.jsp"/>	<!-- div id=sub_menu -->

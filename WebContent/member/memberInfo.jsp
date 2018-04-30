@@ -15,7 +15,7 @@
 	<div id="wrap">
 		<div id="main_menu">
 			<jsp:include page="../include/header.jsp" />
-			<jsp:include page="../include/footer.jsp" />
+<%-- 			<jsp:include page="../include/footer.jsp" /> --%>
 		</div>
 
 		<!-- 본문 시작되는 곳 -->
