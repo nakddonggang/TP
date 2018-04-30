@@ -1,48 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
- <mapper namespace="admin">
+<mapper namespace="admin">
  
- <select id="getBookCount" resultType="int">
- 	select count(*) from book
- </select>
+	<select id="getBookCount" resultType="int">
+		select count(*) from book
+	</select>
  
- <select id="getBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
- 	select * from book order by book_number desc limit #{startRow}, #{pageSize} 
- </select>
+	<select id="getBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select * from book order by book_number desc limit #{startRow}, #{pageSize}
+	</select>
  
- <select id="getBookNum" parameterType="int" resultType="int">
- 	select max(#{book_number}) from book
- </select>
+	<select id="getBookNum" parameterType="int" resultType="int">
+		select max(#{book_number}) from book
+	</select>
  
- <insert id="insertBook" parameterType="net.book.db.BookDTO">
- 	insert into book (book_number, book_subject, book_author, book_publisher, book_pubDate, 
- 	book_form, book_notation, book_isbn, book_classification, book_date)
- 	values (#{book_number}, #{book_subject}, #{book_author}, #{book_publisher}, #{book_pubDate}, 
- 	#{book_form}, #{book_notation}, #{book_isbn}, #{book_classification}, #{book_date})
- </insert>
+	<insert id="insertBook" parameterType="net.book.db.BookDTO">
+		insert into book (book_number, book_subject, book_author, book_publisher, book_pubDate,
+		book_form, book_notation, book_isbn, book_classification, book_date)
+		values (#{book_number}, #{book_subject}, #{book_author}, #{book_publisher}, #{book_pubDate},
+		#{book_form}, #{book_notation}, #{book_isbn}, #{book_classification}, #{book_date})
+	</insert>
  
- <select id="getBookInfo"  parameterType="int" resultType="net.book.db.BookDTO">
- 	select * from book where book_number=#{book_number}
- </select>
+	<select id="getBookInfo"  parameterType="int" resultType="net.book.db.BookDTO">
+		select * from book where book_number=#{book_number}
+	</select>
  
- <select id="getDBookCount" resultType="int">
- 	select count(*) from dbook
- </select>
+	<select id="getDBookCount" resultType="int">
+		select count(*) from dbook
+	</select>
  
- <insert id="insertDBook" parameterType="net.book.db.BookDTO">
- 	insert into dbook (dbook_reason, dbook_state)
- 	values (#{dbook_reason}, #{dbook_state})
- 	where book_number=#{book_number}
- </insert>
+	<insert id="insertDBook" parameterType="net.book.db.BookDTO">
+		insert into dbook (dbook_reason, dbook_state)
+		values (#{dbook_reason}, #{dbook_state})
+		where book_number=#{book_number}
+	</insert>
  
- <select id="getDBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-  	select * from dbook order by book_number desc limit #{startRow}, #{pageSize} 
- </select>
+	<select id="getDBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select * from dbook order by book_number desc limit #{startRow}, #{pageSize}
+	</select>
  
-  <select id="getDBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
- 	select * from dbook order by book_number desc limit #{startRow}, #{pageSize} 
- </select>
- 
- </mapper>
+</mapper>

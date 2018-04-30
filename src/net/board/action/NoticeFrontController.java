@@ -52,8 +52,8 @@ public class NoticeFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/BoardNoticeDelete.no")){
-			action = new BoardNoticeDelete();
+		}else if(command.equals("/BoardNoticeDeleteAction.no")){
+			action = new BoardNoticeDeleteAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
