@@ -15,7 +15,9 @@
 			<jsp:include page="../include/header.jsp" />
 <%-- 			<jsp:include page="../include/footer.jsp" /> --%>
 		</div>
-
+		<%
+			String member_id = (String)session.getAttribute("member_id");
+		%>
 		<!-- 본문 시작되는 곳 -->
 		<article>
 			<h1>회원탈퇴</h1>
@@ -24,7 +26,7 @@
 					<tr>
 						<th>아이디 : </th>
 						<td><input type="text" name="id" placeholder="아이디를 입력하세요"
-							value="" readonly></td>
+							value="<%=member_id %>" readonly></td>
 					</tr>
 					<tr>
 						<th>비밀번호 : </th>
