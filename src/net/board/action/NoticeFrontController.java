@@ -20,19 +20,40 @@ public class NoticeFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/BoardNoticeWrite.bo")){
+		if(command.equals("/BoardNoticeWrite.no")){
 			forward = new ActionForward();
 			forward.setPath("./board/boardNWrite.jsp");
 			forward.setRedirect(false);
-		}else if(command.equals("/BoardNoticeWriteAction.bo")){
+		}else if(command.equals("/BoardNoticeWriteAction.no")){
 			action = new BoardNoticeWriteAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/BoardNoticeList.bo")){
+		}else if(command.equals("/BoardNoticeList.no")){
 			action = new BoardNoticeList();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardNoticeUpdate.no")){
+			action = new BoardNoticeUpdate();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardNoticeUpdateAction.no")){
+			action = new BoardNoticeUpdateAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/BoardNoticeDelete.no")){
+			action = new BoardNoticeDelete();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
