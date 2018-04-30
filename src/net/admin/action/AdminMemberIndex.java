@@ -1,6 +1,5 @@
 package net.admin.action;
 
-
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,8 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.admin.db.AdminDAO;
 import net.member.db.MemberDTO;
-
-
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
 
 public class AdminMemberIndex implements Action {
 

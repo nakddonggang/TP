@@ -1,15 +1,12 @@
 package net.admin.action;
 
-
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-
 import net.member.db.MemberDAO;
 import net.member.db.MemberDTO;
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
 
 public class AdminMemberInfo implements Action{
 

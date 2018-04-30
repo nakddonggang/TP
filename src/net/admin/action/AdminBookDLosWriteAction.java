@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.admin.db.AdminDAO;
 import net.book.db.BookDTO;
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
 
 public class AdminBookDLosWriteAction implements Action {
 
