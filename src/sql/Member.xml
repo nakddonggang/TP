@@ -13,4 +13,8 @@
 		where member_id=#{member_id}
 	</select>
 	
+	<delete id="deleteMember" parameterType="String , String">
+		delete from member where member_id=#{member_id} and member_pass=#{member_pass}
+	</delete>
+	
 </mapper>
