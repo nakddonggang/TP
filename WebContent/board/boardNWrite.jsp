@@ -30,7 +30,7 @@
 				<!-- left_content -->
 				<jsp:include page="../include/submenu_board.jsp" />
 				<!-- //left_content -->
-				<article class="rgt_con section SECTION">
+				<article class="mainmenu section SECTION">
 			<h1>Notice 글쓰기</h1>
 			<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" enctype="multipart/form-data">
 				<table class="" >
