@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.member.db.MemberDAO;
 import net.member.db.MemberDTO;
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
 
 public class MemberJoinAction implements Action{
 	@Override
