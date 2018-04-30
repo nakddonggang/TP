@@ -55,8 +55,8 @@ public class MemberDAO {
 	}
 	
 	//	맴버 탈퇴
-	public void DeleteMember(String member_id , String member_pass) {
-		sqlsession.delete(member_id, member_pass);
+	public void DeleteMember(String member_id) {
+		sqlsession.delete(member_id);
 	}
 	
 	

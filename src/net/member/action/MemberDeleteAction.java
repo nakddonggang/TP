@@ -25,7 +25,7 @@ public class MemberDeleteAction implements Action {
 		
 		switch(check) {
 		case 1:
-			mDAO.DeleteMember(id, pass);
+			mDAO.DeleteMember(id);
 			out.print("<script>");
 			out.print("alert('삭제되었습니다.');");
 			out.print("location.href='./MemberLogin.me';");
