@@ -1,10 +1,11 @@
-package net.board.action;
+package util.actionForward;
 
 public class ActionForward {
-	//이동방식 저장	//약속 true response, false forward
-	boolean isRedirect;
-	//이동경로 저장
-	String path;
+	
+	// 이동방식 저장 변수
+	public boolean isRedirect;
+	// 이동경로 저장 변수
+	public String path;
 	
 	public boolean isRedirect() {
 		return isRedirect;
