@@ -14,7 +14,8 @@ public class MemberDeleteAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberDeleteAction execute()");
 		HttpSession session = request.getSession();
-		ActionForward forward = new ActionForward();
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
 		
 		String id = (String)session.getAttribute("member_id");
 		String pass = request.getParameter("pass");
@@ -25,12 +26,12 @@ public class MemberDeleteAction implements Action {
 		switch(check) {
 		case 1:
 			mDAO.DeleteMember(id, pass);
-			forward.setPath("./MemberLogin.me");
-			forward.setRedirect(true);
-			return forward;
+			out.print("<script>");
+			out.print("alert('삭제되었습니다.');");
+			out.print("location.href='./MemberLogin.me';");
+			out.print("</script>");
+			out.close();
 		default :
-			response.setContentType("text/html;charset=utf-8");
-			PrintWriter out = response.getWriter();
 			out.print("<script>");
 			out.print("alert('비밀번호가 일치하지 않음');");
 			out.print("location.href='./MemberDelete.me';");
