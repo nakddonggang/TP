@@ -65,9 +65,9 @@
 				</tr>
 				<tr>
 					<th colspan="2">
-					<input type="button" value="회원수정" onclick = "location.href = 'MemberUpdate.me'">
-					<input type="button" value="회원탈퇴" onclick = "location.href = 'MemberDelete.me'">
-					<input type = "button" value = "로그아웃" onclick = "location.href = 'MemberLogoutAction.me'"> <!--  잠시 사용할 버튼 -->
+					<input type="button" value="회원수정" onclick = "location.href = './MemberUpdate.me'">
+					<input type="button" value="회원탈퇴" onclick = "location.href = './MemberDelete.me'">
+					<input type = "button" value = "로그아웃" onclick = "location.href = './MemberLogoutAction.me'"> <!--  잠시 사용할 버튼 -->
 					</th>
 				</tr>
 			</table>
