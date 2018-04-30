@@ -44,7 +44,6 @@ public class MemberDAO {
 	public List<MemberDTO> selectMemberList(String member_id) {
 		List<MemberDTO> mList = new ArrayList<MemberDTO>();
 		mList = sqlsession.selectList("selectMember", member_id);
-		
 		return mList;
 	}
 	
@@ -53,6 +52,11 @@ public class MemberDAO {
 		MemberDTO mDTO = new MemberDTO();
 		mDTO = sqlsession.selectOne("selectMember" , member_id);
 		return mDTO;
+	}
+	
+	//	맴버 탈퇴
+	public void DeleteMember(String member_id , String member_pass) {
+		sqlsession.delete(member_id, member_pass);
 	}
 	
 	
