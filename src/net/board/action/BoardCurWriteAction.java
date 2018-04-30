@@ -8,6 +8,8 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
 
 public class BoardCurWriteAction implements Action {
 
@@ -29,7 +31,7 @@ public class BoardCurWriteAction implements Action {
 		bDTO.setCur_name(multi.getParameter("cur_name"));
 		bDTO.setCur_type(multi.getParameter("cur_type"));
 		bDTO.setCur_subject(multi.getParameter("cur_subject"));
-		bDTO.setCur_file(multi.getParameter("cur_file"));
+		bDTO.setCur_file(multi.getFilesystemName("cur_file"));
 		bDTO.setCur_content(multi.getParameter("cur_content"));
 		bDTO.setCur_readcount(0);
 	

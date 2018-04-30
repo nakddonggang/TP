@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
+
 public class CurationFrontController extends HttpServlet {
 	
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -39,21 +42,21 @@ public class CurationFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		}else if(command.equals("/BoardCurUpdate.cu")){
-			action = new BoardNoticeUpdate();
+			action = new BoardCurUpdate();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}else if(command.equals("/BoardCurUpdateAction.cu")){
-			action = new BoardNoticeUpdateAction();
+			action = new BoardCurUpdateAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/BoardCurDelete.cu")){
-			action = new BoardNoticeDelete();
+		}else if(command.equals("/BoardCurDeleteAction.cu")){
+			action = new BoardCurDeleteAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){

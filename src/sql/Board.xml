@@ -31,7 +31,7 @@
 	</delete>
 	
 	<select id="selectCMaxNum" resultType="int">
-		select ifnull(max(cur_num),0) from cur
+		select ifnull(max(cur_num),0) from curation
 	</select>
 	
 	<select id="getCurationList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
@@ -47,7 +47,7 @@
 	</select>
 	
 	<select id="getCSearchCount" parameterType="String" resultType="int">
-		select count(*) from curation where cur_subject like %#{search}%
+		select count(*) from curation where cur_subject like #{search}
 	</select>
 	
 	<select id="getCSearchList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
