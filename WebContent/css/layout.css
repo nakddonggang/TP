@@ -30,8 +30,8 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .show {display:block;}
 .hide {display:none;}
 
-.lft_con {height:100% !important; float:left; width:40%; }
-.rgt_con {float:left; width:60% !important;}
+.submenu {height:100% !important; float:left; width:40%; }
+.mainmenu {float:left; width:60% !important;}
 
 .SECTION_FULL_PAGE01 .slide_con {position:relative; width:100%;}
 .SECTION_FULL_PAGE01 .slide_con .box_txt {position:absolute; top:50%; left:50%; margin-left:-170px; margin-top:-65px; width:340px; height:130px; text-align:center; letter-spacing:-0.08em; word-spacing:-3px;}
@@ -40,6 +40,8 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm01 {width:100%; height:100vh; background:url("http://img.designsoft.co.kr/WisdomForest/Main/main_slider_01.jpg") center; background-repeat:no-repeat; background-size:cover;}
 .SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm02 {width:100%; height:100vh; background:url("http://img.designsoft.co.kr/WisdomForest/Main/main_slider_02.jpg") center; background-repeat:no-repeat; background-size:cover;}
 .SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm03 {width:100%; height:100vh; background:url("http://img.designsoft.co.kr/WisdomForest/Main/main_slider_03.jpg") center; background-repeat:no-repeat; background-size:cover;}
+
+.ui-dialog-titlebar {    display:none;}
 
 /* 반응형 디자인 설정 */
 @media (max-width:1023px){
@@ -64,7 +66,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 	.SECTION_FULL_PAGE01 .arrow_wrap {margin:10px auto 0 !important;}
 	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-prev {width:40px !important; height:40px !important; background-size:40px 40px !important;} 
 	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-next {width:40px !important; height:40px !important; background-size:40px 40px !important;}
-	.SECTION_FULL_PAGE01 .lft_con {float:none; width:100%;}
+	.SECTION_FULL_PAGE01 .submenu {float:none; width:100%;}
 	.SECTION_FULL_PAGE01 .slide_con .box_thm {height:240px;}
 	.SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm01,
 	.SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm02,
@@ -106,7 +108,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 	.mb_nav {position:absolute; top:20px; left:20px; z-index:100; width:27px; height:27px;}
 	.mb_nav_clo {position:absolute; z-index:110; top:24px; right:20px;}
 	
-	.lft_con {min-width:100%;}
+	.submenu {min-width:100%;}
 	.fp-slidesNav {left:50% !important;}
 	.slide_con .box_txt p {font-size:1.14em;}
 	.slide_con .box_txt span {font-size:2.57em;}

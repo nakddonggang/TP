@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<article class="lft_con section SECTION">
+<article class="submenu section SECTION">
 	<!-- main slider -->
 	<div class="slide DIV_SLIDE">
 		<div class="intro1">

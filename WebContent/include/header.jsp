@@ -10,6 +10,7 @@
 		<nav>
 			<div class="inner">
 				<ul>
+					<li><a href="#"  id="btn-open-dialog">LOGIN</a></li>
 					<li class="btn_newsletter"><a href="../book/bookSearch.jsp">통합 검색</a></li>
 					<li><a href="#">도서관 서비스</a>
 						<ul class="DIV_SUB_MNU">
@@ -67,4 +68,8 @@
 	</div>
 	
 </header>
+
+<div id="loginDialog">
+	<jsp:include page="../include/login.jsp" />
+</div>
 

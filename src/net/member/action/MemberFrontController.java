@@ -8,6 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
+
+
 public class MemberFrontController extends HttpServlet{
 
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -52,6 +56,42 @@ public class MemberFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			} // try_catch end
+		} else if(command.equals("/MemberUpdate.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/memberUpdate.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/MemberDelete.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/memberDelete.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/MemberDeleteAction.me")) {
+			action = new MemberDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemberUpdate.me")) {
+			action = new MemberUpdate();
+			try {
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemberUpdateAction.me")) {
+			action = new MemberUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberLogout.me")){
+			action = new MemberLogoutAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null){

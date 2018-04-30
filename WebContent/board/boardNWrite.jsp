@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,20 +7,30 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
+<script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/common.js"/>"></script>
+<script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
-<!-- member/memberInsert.jsp 회원가입 페이지 -->
-	<div id="wrap">
-		<div id="main_menu">
-			<jsp:include page="../include/header.jsp" />	<!-- div id=header -->
-			<jsp:include page="../include/footer.jsp" />	<!-- div id=footer -->
-		</div>
-		<div id="sub_menu">
-			<jsp:include page="../include/submenu.jsp"/>	<!-- div id=sub_menu -->
-		</div>
-		
-		<!-- 본문 시작되는 곳 -->
-		<article>
+	<div class="wrapper">
+
+		<!-- header -->
+		<jsp:include page="../include/header.jsp" />
+		<!-- //header -->
+
+		<!-- container -->
+		<div class="container">
+			<section class="fullpage SECTION_FULL_PAGE01">
+				<h2 class="hide">Main</h2>
+
+				<!-- left_content -->
+				<jsp:include page="../include/submenu_board.jsp" />
+				<!-- //left_content -->
+				<article class="mainmenu section SECTION">
 			<h1>Notice 글쓰기</h1>
 			<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" enctype="multipart/form-data">
 				<table class="" >
@@ -45,7 +56,10 @@
 				</table>
 			</form>
 
-		</article>
+				</article>
+			</section>
+		</div>
+		<!-- //container -->
 	</div>
 </body>
 </html>
