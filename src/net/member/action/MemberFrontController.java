@@ -56,7 +56,17 @@ public class MemberFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./member/memberUpdate.jsp");
 			forward.setRedirect(false);
-			
+		} else if(command.equals("/MemberDelete.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/memberDelete.jsp");
+			forward.setRedirect(false);
+		} else if(command.equals("/MemberDeleteAction.me")) {
+			action = new MemberDeleteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null){
