@@ -36,8 +36,12 @@
 	 	where book_number=#{book_number}
 	 </insert>
 	 
-	 <select id="getDBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 <select id="getDBookList" parameterType="java.util.HashMap" resultType="java.util.List">
 	  	select * from dbook order by book_number desc limit #{startRow}, #{pageSize} 
+	 </select>
+	 
+	 <select id="getRBookList" parameterType="java.util.HashMap" resultType="java.util.List">
+	 	select * from rbook order by book_number desc limit #{startRow}, #{PageSize}
 	 </select>
  
  <select id="getMemberCount" parameterType="int">
