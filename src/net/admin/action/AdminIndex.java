@@ -46,6 +46,8 @@ public class AdminIndex implements Action{
 		List<BookDTO> bookList = null;
 		if (count!=0) {
 			bookList=adao.getBookList(startRow, pageSize);
+		} else {
+			System.out.println("책 목록이 없습니다");
 		}
 
 		// 게시판 전체 페이지 수
