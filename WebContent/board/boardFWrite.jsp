@@ -7,17 +7,23 @@
 </head>
 <body>
 <!-- board/boardFWrite.jsp FAQ 글쓰기 페이지 -->
-	<div id="wrap">
-		<div id="main_menu">
-			<jsp:include page="../include/header.jsp" />	<!-- div id=header -->
-			<jsp:include page="../include/footer.jsp" />	<!-- div id=footer -->
-		</div>
-		<div id="sub_menu">
-			<jsp:include page="../include/submenu.jsp"/>	<!-- div id=sub_menu -->
-		</div>
-		
-		<!-- 본문 시작되는 곳 -->
-		<article>
+	<div class="wrapper">
+
+		<!-- header -->
+		<jsp:include page="../include/header.jsp" />
+		<!-- //header -->
+
+		<!-- container -->
+		<div class="container">
+			<section class="fullpage SECTION_FULL_PAGE01">
+				<h2 class="hide">Main</h2>
+
+				<!-- left_content -->
+				<jsp:include page="../include/submenu_main.jsp" />
+				<!-- //left_content -->
+				<article class="rgt_con section SECTION">
+					<!-- 본문 공간 -->
+	
 			<h1>FAQ 글쓰기</h1>
 			<form action="./BoardFaqWriteAction.fa"  method="post"  name="fr" enctype="multipart/form-data">
 				<table class="" >
@@ -43,7 +49,12 @@
 				</table>
 			</form>
 
-		</article>
+					<!-- // 본문 공간 -->
+				</article>
+			</section>
+		</div>
+		<!-- //container -->
 	</div>
+
 </body>
 </html>
