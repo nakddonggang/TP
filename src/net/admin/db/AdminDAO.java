@@ -18,14 +18,14 @@ public class AdminDAO {
 		sqlsession = sessionf.openSession(true);
 	}
 	
-	// 梨� �쟾泥� 媛쒖닔 援ы븯湲�
+	// 책 전체 개수 구하기
 	public int getBookCount(){
 		int count;
 		count=sqlsession.selectOne("getBookCount");
 		return count;
 	}
 	
-	// 梨� 由ъ뒪�듃 肉뚮젮二쇨린
+	// 책 리스트 뿌려주기
 	public List<BookDTO> getBookList(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
@@ -34,18 +34,18 @@ public class AdminDAO {
 		return bookList;
 	}
 	
-	// admBookWrite �엯怨좏븳 梨� insert �빐二쇨린
+	// admBookWrite 입고한 책 insert 해주기
 	public int insertBook(BookDTO bookdto){
 		int result;
-		// book_number 媛� 利앷��떆耳쒖＜湲�
+		// book_number 값 증가시켜주기
 		int book_number = sqlsession.selectOne("getBookNum");
-		book_number+=book_number+1;
+		book_number+=1;
 		bookdto.setBook_number(book_number);
 		result = sqlsession.insert("insertBook", bookdto);
 		return result;
 	}
 	
-	// 梨� �젙蹂� �닃���쓣 �븣 �긽�꽭�젙蹂� 蹂댁뿬二쇨린
+	// 책 정보 눌렀을 때 상세정보 보여주기
 	public List<BookDTO> getBookInfo(int book_number){
 		HashMap map = new HashMap();
 		map.put("book_number", book_number);
@@ -53,21 +53,21 @@ public class AdminDAO {
 		return bookList;
 	}
 	
-	// �넀留앹떎 梨� insert �빐二쇨린
+	// 손망실 책 insert 해주기
 	public int insertDBook(BookDTO bookdto){
 		int result;
 		result=sqlsession.insert("insertDBook", bookdto);
 		return result;
 	}
 	
-	// �넀留앹떎 梨� �쟾泥� 由ъ뒪�듃 媛쒖닔 援ы븯湲�
+	// 손망실 책 전체 리스트 개수 구하기
 	public int getDBookCount(){
 		int count;
 		count = sqlsession.selectOne("getDBookCount");
 		return count;
 	}
 	
-	// �넀留앹떎 由ъ뒪�듃
+	// 손망실 리스트
 	public List<BookDTO> getDBookList(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
@@ -75,6 +75,16 @@ public class AdminDAO {
 		List<BookDTO> dbookList = sqlsession.selectList("getDBookList", map);
 		return dbookList;
 	}
+	
+	// 예약관리 리스트
+	public List<BookDTO> getRBookList(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> rbookList = sqlsession.selectList("getRBookList", map);
+		return rbookList;
+	}
+	
 	public int getMemberCount(){
 		int count;
 		count = sqlsession.selectOne("getMemberCount");
