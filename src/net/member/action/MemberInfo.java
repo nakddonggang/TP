@@ -12,7 +12,7 @@ public class MemberInfo implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberInfo execute()");
-		request.setCharacterEncoding("uft-8");
+		request.setCharacterEncoding("utf-8");
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
 		
@@ -28,8 +28,8 @@ public class MemberInfo implements Action {
 		
 		request.setAttribute("mDTO", mDTO);
 		
-		forward.setPath("./MemberInfo.me");
-		forward.setRedirect(true);
+		forward.setPath("./member/memberInfo.jsp");
+		forward.setRedirect(false);
 		return forward;
 	}
 

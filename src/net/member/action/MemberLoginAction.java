@@ -26,7 +26,7 @@ public class MemberLoginAction implements Action {
 		int check = mDAO.selectUserChk(member_id, member_pass);
 		
 		if(check == 0) {
-			response.setContentType("text/html;charset=euc-kr");
+			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
 			out.print("alert('비밀번호 틀림');");
@@ -35,7 +35,7 @@ public class MemberLoginAction implements Action {
 			out.close();
 			return null;
 		}else if(check == -1){
-			response.setContentType("text/html;charset=euc-kr");
+			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
 			out.print("alert('아이디 틀림');");
@@ -45,7 +45,7 @@ public class MemberLoginAction implements Action {
 			return null;
 		}
 		
-		session.setAttribute("id", request.getParameter("id"));
+		session.setAttribute("member_id", member_id);
 		
 		forward.setRedirect(true);
 		//	forward.setPath("main.me"); 잠시 보내는곳 변경을 위해 주석처리함

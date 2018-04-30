@@ -2,3 +2,4 @@
 @import url("font.css");						/* font-face로 폰트 정의 */
 @import url("reset.css");						/* css 설정값 초기화 */
 @import url("jquery.fullpage.css");		/* jquery fullpage interface 적용 */
+@import url("layout.css");		/* 레이아웃 적용 */
