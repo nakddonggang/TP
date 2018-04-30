@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
 
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
+
 public class BoardNoticeList implements Action{
 
 	@Override
@@ -16,10 +19,8 @@ public class BoardNoticeList implements Action{
 		request.setCharacterEncoding("utf-8");
 		ActionForward forward = new ActionForward();
 
-		String table = "notice";
-		String column = "notice_num";
 		BoardDAO bDAO = new BoardDAO();
-		int count = bDAO.getBoardCount(table);		// 공지사항 글 개수 구해 count에 저장
+		int count = bDAO.getNoticeCount();		// 공지사항 글 개수 구해 count에 저장
 		
 		int pageSize = 2;	//한 화면에 보여줄 글 개수 설정
 		String pageNum = request.getParameter("pageNum");	// 페이지 번호(파라미터 "pageNum") 가져오기
@@ -35,7 +36,7 @@ public class BoardNoticeList implements Action{
 		List<BoardDTO> noticeList = null;
 		
 		if(count != 0){
-			noticeList = bDAO.getBoardList(table, column, startRow, pageSize);
+			noticeList = bDAO.getNoticeList(startRow, pageSize);
 		}
 		
 		//게시판 전체 페이지수 구하기 => ex)전체 글 개수(count):50개, 한 화면에 보여줄 글 개수(pageSize):10개
