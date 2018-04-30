@@ -32,13 +32,17 @@
 				
 				<article class="mainmenu section SECTION">
 				<!-- 메인 페이지 -->
+				
+				<%
+					String member_id = (String)session.getAttribute("member_id");
+				%>
 					<h1>회원탈퇴</h1>
 					<form action="" method="" name="">
 						<table class="">
 							<tr>
 								<th>아이디 : </th>
 								<td><input type="text" name="id" placeholder="아이디를 입력하세요"
-									value="" readonly></td>
+									value="<%=member_id %>" readonly></td>
 							</tr>
 							<tr>
 								<th>비밀번호 : </th>
@@ -51,7 +55,7 @@
 							</tr>
 						</table>
 					</form>
-		
+	
 				<!-- //메인 페이지-->
 				</article>
 				

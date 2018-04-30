@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import net.book.db.BookDTO;
+import net.member.db.MemberDTO;
 import util.myBatisSetting.sqlMapConfig;
 
 public class AdminDAO {
@@ -17,14 +18,14 @@ public class AdminDAO {
 		sqlsession = sessionf.openSession(true);
 	}
 	
-	// 책 전체 개수 구하기
+	// 梨� �쟾泥� 媛쒖닔 援ы븯湲�
 	public int getBookCount(){
 		int count;
 		count=sqlsession.selectOne("getBookCount");
 		return count;
 	}
 	
-	// 책 리스트 뿌려주기
+	// 梨� 由ъ뒪�듃 肉뚮젮二쇨린
 	public List<BookDTO> getBookList(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
@@ -33,10 +34,10 @@ public class AdminDAO {
 		return bookList;
 	}
 	
-	// admBookWrite 입고한 책 insert 해주기
+	// admBookWrite �엯怨좏븳 梨� insert �빐二쇨린
 	public int insertBook(BookDTO bookdto){
 		int result;
-		// book_number 값 증가시켜주기
+		// book_number 媛� 利앷��떆耳쒖＜湲�
 		int book_number = sqlsession.selectOne("getBookNum");
 		book_number+=book_number+1;
 		bookdto.setBook_number(book_number);
@@ -44,7 +45,7 @@ public class AdminDAO {
 		return result;
 	}
 	
-	// 책 정보 눌렀을 때 상세정보 보여주기
+	// 梨� �젙蹂� �닃���쓣 �븣 �긽�꽭�젙蹂� 蹂댁뿬二쇨린
 	public List<BookDTO> getBookInfo(int book_number){
 		HashMap map = new HashMap();
 		map.put("book_number", book_number);
@@ -52,21 +53,21 @@ public class AdminDAO {
 		return bookList;
 	}
 	
-	// 손망실 책 insert 해주기
+	// �넀留앹떎 梨� insert �빐二쇨린
 	public int insertDBook(BookDTO bookdto){
 		int result;
 		result=sqlsession.insert("insertDBook", bookdto);
 		return result;
 	}
 	
-	// 손망실 책 전체 리스트 개수 구하기
+	// �넀留앹떎 梨� �쟾泥� 由ъ뒪�듃 媛쒖닔 援ы븯湲�
 	public int getDBookCount(){
 		int count;
 		count = sqlsession.selectOne("getDBookCount");
 		return count;
 	}
 	
-	// 손망실 리스트
+	// �넀留앹떎 由ъ뒪�듃
 	public List<BookDTO> getDBookList(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
@@ -74,5 +75,23 @@ public class AdminDAO {
 		List<BookDTO> dbookList = sqlsession.selectList("getDBookList", map);
 		return dbookList;
 	}
+	public int getMemberCount(){
+		int count;
+		count = sqlsession.selectOne("getMemberCount");
+		return count;
+	}
 	
+	public List<MemberDTO> getMemberList(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<MemberDTO> memberList = sqlsession.selectList("getMemberList",map);
+		return memberList;
+	}
+	public List<MemberDTO> getMemberInfo(String member_id){
+		HashMap map = new HashMap();
+		map.put("Member_id", member_id);
+		List<MemberDTO> memberList = sqlsession.selectList("getMemberInfo", map);
+		return memberList;
+	}
 }
