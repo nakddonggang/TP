@@ -11,9 +11,6 @@ import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
 import net.member.db.MemberDTO;
 
-import util.actionForward.Action;
-import util.actionForward.ActionForward;
-
 public class BoardQnaWriteAction implements Action{
 
 	@Override
@@ -21,9 +18,13 @@ public class BoardQnaWriteAction implements Action{
 		System.out.println("BoardQnaWriteAction execute()");
 		request.setCharacterEncoding("utf-8");
 		
+		
 		HttpSession session = request.getSession();
 		session.setAttribute("id", "1111");			// 테스트
 		String id = (String)session.getAttribute("id");
+		
+		int qna_num = 0;
+		int result;
 		
 		BoardDAO bDAO = new BoardDAO();
 		BoardDTO bDTO = new BoardDTO();
@@ -31,7 +32,7 @@ public class BoardQnaWriteAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		
-		int qna_num = bDAO.selectQMaxNum()+1;
+		qna_num = bDAO.selectMaxNum()+1;
 		
 		bDTO.setQna_num(qna_num);
 		bDTO.setQna_subject(request.getParameter("qna_subject"));
@@ -41,9 +42,19 @@ public class BoardQnaWriteAction implements Action{
 		bDTO.setQna_ref(qna_num);
 		bDTO.setQna_check("0");
 		
-		bDAO.insertQna(bDTO, id);
-
-		forward.setPath("./BoardQnaList.qn");
+		Vector vector = new Vector();
+		vector.add(0, bDTO);
+		vector.add(1, id);
+		
+		result = bDAO.insertQna(vector);
+		
+		if(result==0){
+			System.out.println("Faile");
+		}else{
+			System.out.println("Sucsses");
+		}
+		
+		forward.setPath("./BoardQnaList.bo");
 		forward.setRedirect(true);
 		
 		return forward;

@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.member.action.MemberJoinAction;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
@@ -28,14 +27,19 @@ public class MainFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/MemberJoinAction.me")) {
-			action = new MemberJoinAction();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+		if(command.equals("/Main.fp")){
+			forward = new ActionForward();
+			forward.setPath("main/main.jsp");
+			forward.setRedirect(false);
 		}
+//		if(command.equals("/MemberJoinAction.me")) {
+//			action = new MemberJoinAction();
+//			try {
+//				forward = action.execute(request, response);
+//			} catch (Exception e) {
+//				e.printStackTrace();
+//			}
+//		}
 		
 		if(forward != null){
 			if(forward.isRedirect()){

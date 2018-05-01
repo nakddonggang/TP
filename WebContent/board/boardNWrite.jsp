@@ -16,59 +16,50 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
-<!-- board/boardNWrite.jsp Notice 게시판 글쓰기 페이지 -->
 	<div class="wrapper">
 
 		<!-- header -->
 		<jsp:include page="../include/header.jsp" />
 		<!-- //header -->
 
-		<!-- 본문 컨테이너 -->
+		<!-- container -->
 		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
+				<h2 class="hide">Main</h2>
 
-				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
-				<!-- //서브메뉴 -->
-				
-				<!-- 메인 페이지 -->
+				<!-- left_content -->
+				<jsp:include page="../include/submenu_board.jsp" />
+				<!-- //left_content -->
 				<article class="mainmenu section SECTION">
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
-					<div class=""></div>
-					
-					<h1>Notice 글쓰기</h1>
-					<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" enctype="multipart/form-data">
-						<table class="" >
-							<tr>
-								<th>TYPE</th>
-								<td><input type="text" name="notice_type" value=""></td>
-							</tr>
-							<tr>
-								<th>SUBJECT</th>
-								<td><input type="text" name="notice_subject" value=""></td>
-							</tr>
-							<tr>
-								<th>CONTENT</th>
-								<textarea cols="20" rows="10" name="notice_content" style="width: 580px; resize: none;"></textarea>
-							</tr>
-							<tr>
-								<th>FILE</th>
-								<td><input type="file" name="notice_file"></td>
-							</tr>
-							<tr>
-								<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
-							</tr>
-						</table>
-					</form>
+			<h1>Notice 글쓰기</h1>
+			<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" enctype="multipart/form-data">
+				<table class="" >
+					<tr>
+						<th>TYPE</th>
+						<td><input type="text" name="notice_type" value=""></td>
+					</tr>
+					<tr>
+						<th>SUBJECT</th>
+						<td><input type="text" name="notice_subject" value=""></td>
+					</tr>
+					<tr>
+						<th>CONTENT</th>
+						<td><input type="text" name="notice_content" value=""></td>
+					</tr>
+					<tr>
+						<th>FILE</th>
+						<td><input type="file" name="notice_file"></td>
+					</tr>
+					<tr>
+						<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
+					</tr>
+				</table>
+			</form>
 
 				</article>
-				<!-- //메인 페이지-->
-				
 			</section>
 		</div>
-		<!-- //본문 컨테이너 -->
+		<!-- //container -->
 	</div>
 </body>
 </html>

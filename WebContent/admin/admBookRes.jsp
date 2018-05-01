@@ -1,3 +1,4 @@
+<%@page import="java.sql.Timestamp"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -56,6 +57,7 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 					<%if(count==0){ out.print("예약 목록이 없습니다"); } else { %>
 					<table border="1">
 						<tr>
+							<th>고유번호</th>
 							<th>아이디</th>
 							<th>예약순서</th>
 							<th>예약일자</th>
@@ -64,14 +66,15 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 						<%
 							for (BookDTO rbookLists : rbookList) {%>
 						<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=rbookLists.getBook_number()%>&pageNum=<%=pageNum%>'">
-							<td><%=rbookLists.getBook_number()%></td>
-							<td><%=rbookLists.getBook_subject()%></td>
-							<td><%=rbookLists.getBook_author()%></td>
-							<td><%=rbookLists.getBook_publisher()%></td>			
+							<td><%=rbookLists.getRbook_num()%></td>
+							<td><%=(Timestamp)rbookLists.getRbook_date()%></td>
+							<td><%=rbookLists.getRbook_check()%></td>		
 						</tr> <%
 							} %>
 					</table><br>
 					<%} %>	
+					
+					<input type="button" value="도서관리페이지로 이동" onclick="location.href='./AdminIndex.am'">
 					<% // count = 전체 글의 개수
 						if (count != 0) {
 							// 이전페이지 // if (startPage와 pageBlock을 비교)

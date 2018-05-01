@@ -21,7 +21,7 @@ public class AdminBookDLos implements Action{
 		// AdminDAO 객체생성 및 total 책의 개수 가져오기
 		AdminDAO adao = new AdminDAO();
 		int count = adao.getDBookCount();
-		
+//		System.out.println(count);
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 5;		
 		
@@ -47,7 +47,9 @@ public class AdminBookDLos implements Action{
 		// 책 뿌려주는 메소드 생성
 		List<BookDTO> dbookList = null;
 		if (count!=0) {
-			dbookList=adao.getBookList(startRow, pageSize);
+			dbookList=adao.getDBookList(startRow, pageSize);
+		}  else {
+			System.out.println("손망실 목록이 없습니다");
 		}
 
 		// 게시판 전체 페이지 수

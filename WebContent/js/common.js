@@ -13,6 +13,7 @@ $(window).on('load', function() {
 		};
 	});
 	
+	//로그인 다이얼로그 설정
 	$( "#loginDialog" ).dialog({ 
 		autoOpen: false, 
 		width: 400, 
@@ -27,6 +28,7 @@ $(window).on('load', function() {
 	$("#btn-open-dialog").click(function() {
 		$("#loginDialog").dialog("open");
 	});
+	
 });
 
 $(function() {

@@ -1,5 +1,3 @@
-<%@page import="net.book.db.BookDTO"%>
-<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -19,17 +17,6 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
-<%
-request.setCharacterEncoding("utf-8");
-//count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
-int count = ((Integer)request.getAttribute("count")).intValue();
-String pageNum = (String)request.getAttribute("pageNum");
-int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
-int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
-int startPage = ((Integer)request.getAttribute("startPage")).intValue();
-int endPage = ((Integer)request.getAttribute("endPage")).intValue();
-List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
-%>
 	<div class="wrapper">
 
 		<!-- header -->
@@ -52,60 +39,50 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
-					<h2>입고 목록 [<%=count%>]</h2>
-					<%if(count==0){ out.print("책 목록이 없습니다"); } else { %>
-					<table border="1">
-						<tr>
-							<th>고유번호</th>
-							<th>표제</th>
-							<th>저자</th>
-							<th>발행처</th>
-							<th>발행일</th>
-							<th>형태</th>
-							<th>주기</th>
-							<th>국제표준번호</th>
-							<th>분류기호</th>
-							<th>입고일</th>
-						</tr>
-						<%
-							for (BookDTO bookLists : bookList) {%>
-						<tr>
-							<td><%=bookLists.getBook_number()%></td>
-							<td><%=bookLists.getBook_subject()%></td>
-							<td><%=bookLists.getBook_author()%></td>
-							<td><%=bookLists.getBook_publisher()%></td>
-							<td><%=bookLists.getBook_pubDate()%></td>
-							<td><%=bookLists.getBook_form()%></td>
-							<td><%=bookLists.getBook_notation()%></td>
-							<td><%=bookLists.getBook_isbn()%></td>		
-							<td><%=bookLists.getBook_classification()%></td>		
-							<td><%=bookLists.getBook_date()%></td>					
-						</tr> <%
-							} %>
-					</table>
-					<%}%> <br>
-					
-					<% // count = 전체 글의 개수
-						if (count != 0) {
-							// 이전페이지 // if (startPage와 pageBlock을 비교)
-							if (startPage > pageBlock) {
-					%><a href="./AdminBookIO.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
-						}
+			<h2>책 입고하기</h2>
+			<form action="./AdminBookWriteAction.am" method="post">
+				<table border="1">
+					<tr>
+						<td>표제 : </td>
+						<td><input type="text" name="book_subject"></td>
+					</tr>
+					<tr>
+						<td>저자 : </td>
+						<td><input type="text" name="book_author"></td>
+					</tr>
+					<tr>
+						<td>발행처 : </td>
+						<td><input type="text" name="book_publisher"></td>
+					</tr>
+<!-- 					<tr> -->
+<!-- 						<td>발행일 : </td> -->
+<!-- 						<td><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"></td> -->
+<!-- 					</tr> -->
+					<tr>
+						<td>형태 : </td>
+						<td><input type="text" name="book_form"></td>
+					</tr>
+					<tr>
+						<td>주기 : </td>
+						<td><input type="text" name="book_notation"></td>
+					</tr>
+					<tr>
+						<td>국제표준번호 : </td>
+						<td><input type="text" name="book_isbn"></td>
+					</tr>
+					<tr>
+						<td>분류기호 : </td>
+						<td><input type="text" name="book_classification"></td>
+					</tr>
+				</table>
+				
+				<div>
+					<input type="submit" value="입고하기">
+					<input type="reset" value="취소">
+				</div>
+			</form>
 
-							// 1~10		11~20		21~30
-							for (int i = startPage; i <= endPage; i++) {%>
-							<a href="./AdminBookIO.am?pageNum=<%=i%>">[<%=i%>]</a><%		
-							}
-	
-							// 다음 // if (endPage와 pageCount를 비교)
-							if (endPage<pageCount){%>
-							<a href="./AdminBookIO.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
-							}
-						} // if count 괄호 %>
-
-					<!-- // 본문 공간 -->
-				</article>
-			</section>
+			<!-- // 본문 공간 --> </article> </section>
 		</div>
 		<!-- //container -->
 	</div>
