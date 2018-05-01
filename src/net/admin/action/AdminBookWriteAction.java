@@ -21,6 +21,7 @@ public class AdminBookWriteAction implements Action{
 		BookDTO bookdto = new BookDTO();
 		bookdto.setBook_subject(request.getParameter("book_subject"));
 		bookdto.setBook_author(request.getParameter("book_author"));
+		bookdto.setBook_pubDate(new Timestamp(System.currentTimeMillis()));
 		bookdto.setBook_publisher(request.getParameter("book_publisher"));
 		bookdto.setBook_form(request.getParameter("book_form"));
 		bookdto.setBook_notation(request.getParameter("book_notation"));
@@ -40,9 +41,9 @@ public class AdminBookWriteAction implements Action{
 		
 		// ActionForward
 		ActionForward forward = new ActionForward();
-		forward.setPath("./AdminBookIO.am");
+		forward.setPath("./AdminIndex.am");
 		forward.setRedirect(true);
-		return null;
+		return forward;
 	}
 	
 }
