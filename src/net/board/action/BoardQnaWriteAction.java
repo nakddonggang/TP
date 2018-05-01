@@ -11,6 +11,9 @@ import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
 import net.member.db.MemberDTO;
 
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
+
 public class BoardQnaWriteAction implements Action{
 
 	@Override
@@ -21,8 +24,6 @@ public class BoardQnaWriteAction implements Action{
 		HttpSession session = request.getSession();
 		session.setAttribute("id", "1111");			// 테스트
 		String id = (String)session.getAttribute("id");
-		String table = "qna";
-		String column = "qna_num";
 		
 		BoardDAO bDAO = new BoardDAO();
 		BoardDTO bDTO = new BoardDTO();
@@ -30,7 +31,7 @@ public class BoardQnaWriteAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		
-		int qna_num = bDAO.selectMaxNum(table, column)+1;
+		int qna_num = bDAO.selectQMaxNum()+1;
 		
 		bDTO.setQna_num(qna_num);
 		bDTO.setQna_subject(request.getParameter("qna_subject"));
