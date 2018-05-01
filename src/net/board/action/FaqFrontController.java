@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
 
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
@@ -56,17 +58,13 @@ public class FaqFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}else if(command.equals("/BoardFaqDelete.fa")){
-			forward = new ActionForward();
-			forward.setPath("./board/boardFDelete.jsp");
-			forward.setRedirect(false);
-			
-		}else if(command.equals("/BoardFaqDeleteAction.fa")){
-			action = new BoardFaqDeleteAction();
+			action = new BoardFaqDelete();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+			
 		}
 		
 		if(forward != null){

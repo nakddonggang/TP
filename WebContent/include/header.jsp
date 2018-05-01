@@ -2,7 +2,7 @@
 
 <header>
 	<h1 class="logo">
-		<a href="Main.fp"><img src="" alt="Logo" /></a>
+		<a href="Main.fp"><img src="./resource/img/logo.png" alt="Logo" /></a>
 	</h1>
 	
 	<div class="mb_wrap DIV_MB_WRAP">
@@ -70,10 +70,10 @@
 	</div>
 	
 	<div class="mb_nav">
-		<a href="#" class="A_SIDE jsc_sidebar_trigger"><img src="../resource/img/ico_nav.png" alt="네비게이션 아이콘" /></a>
+		<a href="#" class="A_SIDE jsc_sidebar_trigger"><img src="./resource/img/ico_nav.png" alt="네비게이션 아이콘" /></a>
 	</div>
 	<div class="mb_nav_clo">
-		<a href="#" class="A_CLOSE nav_clo"><img src="../resource/img/ico_nav_clo.png" alt="메뉴 닫기" /></a>
+		<a href="#" class="A_CLOSE nav_clo"><img src="./resource/img/ico_nav_clo.png" alt="메뉴 닫기" /></a>
 	</div>
 	
 </header>

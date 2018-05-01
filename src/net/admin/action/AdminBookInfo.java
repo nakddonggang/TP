@@ -1,7 +1,5 @@
 package net.admin.action;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -21,8 +19,9 @@ public class AdminBookInfo implements Action{
 
 		// AdminDAO 객체 생성
 		AdminDAO adao = new AdminDAO();
+		
 		// BookDTO 객체 생성
-		List<BookDTO> bookList = adao.getBookInfo(book_number);
+		BookDTO bookList = adao.getBookInfo(book_number);
 		
 		request.setAttribute("bookList", bookList);
 		
