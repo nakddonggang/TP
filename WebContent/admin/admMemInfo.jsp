@@ -1,6 +1,6 @@
 <%@page import="net.member.db.MemberDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,18 +8,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="../css/jquery.fullpage" rel="stylesheet" type="text/css">
-<link href="../css/import.css?ver=1" rel="stylesheet" type="text/css">
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/jquery.bxslider.min.js"></script>
-<script src="../js/jquery.fullpage.min.js"></script>
-<script src="../js/common.js"></script>
-<script src="../js/fullpage.js"></script>
+<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
+<script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/common.js"/>"></script>
+<script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <%
 String member_id = request.getParameter("member_id");
 String pageNum = request.getParameter("pageNum");
 MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
+String type =request.getParameter("type");
 %>
 
 
@@ -30,52 +32,73 @@ MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
 		<jsp:include page="../include/header.jsp" />
 		<!-- //header -->
 
-		<!-- container -->
+		<!-- 본문 컨테이너 -->
 		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
-				<h2 class="hide">Main</h2>
 
-				<!-- left_content -->
+				<!-- 서브메뉴 -->
 				<jsp:include page="../include/submenu_main.jsp" />
-				<!-- //left_content -->
-				<article class="rgt_con section SECTION">
-					<!-- 본문 공간 -->
+				<!-- //서브메뉴 -->
+				
+				<article class="mainmenu section SECTION">
+				<!-- 메인 페이지 -->
 					<h2>사용자 정보보기</h2>
+					
+				<form id="info" name="fr" method="post">
+				<fieldset>
+					<legend>Basic Info</legend>
+					<label>User ID</label> <input type="text" name="id" class="id" value="<%=mDTO.getMember_id()%>" readonly><br>
+					<label>Password</label> <input type="text" name="pass" class="pass" value="<%=mDTO.getMember_pass()%>" readonly><br>
+					<label>Name</label> <input type="text" name="name" value="<%=mDTO.getMember_name()%>" readonly><br>
+					<label>E-Mail</label> <input type="email" name="email" value="<%=mDTO.getMember_email()%>" readonly><br>
+				</fieldset>
 
-					<table border="1">
-						<tr>
-							<th>아이디</th>
-							<th>비밀번호</th>
-							<th>이름</th>
-							<th>우편번호</th>
-							<th>기본주소</th>
-							<th>상세주소</th>
-							<th>전화번호</th>
-							<th>E-mail</th>
-							<th>가입일</th>
-						</tr>
-						<tr>
-							<td><%=mDTO.getMember_id()%></td>
-							<td><%=mDTO.getMember_pass()%></td>
-							<td><%=mDTO.getMember_name()%></td>
-							<td><%=mDTO.getMember_post()%></td>
-							<td><%=mDTO.getMember_address1()%></td>
-							<td><%=mDTO.getMember_address2()%></td>
-							<td><%=mDTO.getMember_phone()%></td>
-							<td><%=mDTO.getMember_email()%></td>
-							<td><%=mDTO.getMember_date()%></td>
-						</tr>
-						<tr>
-							<td colspan="9">
-							<input type="button" value="글목록" onclick="location.href='./AdminMemberIndex.am?pageNum=<%=pageNum%>'">
-							</td>
-						</tr>
-					</table>
-					<!-- // 본문 공간 -->
+				<fieldset>
+					<legend>Optional</legend>
+					<label>Address</label> <input type="text" name="address" value="<%=mDTO.getMember_post()%>" readonly><br>
+					<label>Address Detail</label> 
+					 <input type="text" name="address1" value="<%=mDTO.getMember_address1()%>" readonly>
+					  <input type="text" name="address2" value="<%=mDTO.getMember_address2()%>" readonly><br>
+					<label>Phone Number</label> <input type="text" name="phone" value="<%=mDTO.getMember_phone()%>" readonly><br>
+					<label>data</label> <input type="text" name="date" value="<%=mDTO.getMember_date()%>" readonly><br>
+				</fieldset>
+				
+				<%
+				if(type.equals("no")){
+					%>
+					<fieldset>
+					<legend>Level</legend>
+					<label>Member Level</label><input type="text" name="level" value="일반회원" readonly><br>
+					</fieldset>
+					<%
+				}else if(type.equals("gm")){
+					%>
+					<fieldset>
+					<legend>Level</legend>
+					<label>Member Level</label><input type="text" name="level" value="우수회원" readonly><br>
+					<label>대출횟수</label> <input type="text" name="borrow" value="<%=mDTO.getBorrow_count()%>" readonly><br>
+					</fieldset>
+					<%
+				}else if(type.equals("bl")){
+					%>
+					<fieldset>
+					<legend>Level</legend>
+					<label>Member Level</label><input type="text" name="level" value="블랙리스트" readonly><br>
+					<label>연체횟수</label> <input type="text" name="blcount" value="<%=mDTO.getBl_count()%>" readonly><br>
+					<label>연체총일수</label> <input type="text" name="bldate" value="<%=mDTO.getBl_date()%>" readonly><br>
+					</fieldset>
+					<%
+				}
+				
+				%>
+				</form>
+					<input type="button" value="글목록" onclick="location.href='./AdminMemberIndex.am?pageNum=<%=pageNum%>'">
+					<!-- //메인 페이지-->
 				</article>
+				
 			</section>
 		</div>
-		<!-- //container -->
+		<!-- //본문 컨테이너 -->
 	</div>
 </body>
 </html>
