@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -59,7 +57,7 @@ int book_number = Integer.parseInt(request.getParameter("book_number"));
 						</table>		
 						
 						<div>
-					<input type="submit" value="입고하기">
+					<input type="submit" value="손망실 신청하기">
 					<input type="reset" value="취소">
 				</div>
 							
