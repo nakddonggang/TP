@@ -3,7 +3,7 @@ package net.admin.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.member.db.MemberDAO;
+import net.admin.db.AdminDAO;
 import net.member.db.MemberDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
@@ -29,8 +29,8 @@ public class AdminMemberInfo implements Action{
 			return forward;
 		}
 		
-		MemberDAO mDAO = new MemberDAO();
-		MemberDTO mDTO = mDAO.getMember(member_id);
+		AdminDAO adao = new AdminDAO();
+		MemberDTO mDTO = adao.getAdminMember(member_id);
 		
 		request.setAttribute("mDTO", mDTO);
 		
