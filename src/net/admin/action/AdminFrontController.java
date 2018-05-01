@@ -34,18 +34,13 @@ public class AdminFrontController extends HttpServlet{
 			} catch (Exception e) {e.printStackTrace();}			
 		} else if (command.equals("/AdminBookWrite.am")){
 			forward = new ActionForward();
-			forward.setPath("./admin/admBookIOWrite.jsp");
+			forward.setPath("./admin/admBookIO.jsp");
 			forward.setRedirect(false);
 		} else if (command.equals("/AdminBookWriteAction.am")){
 			action = new AdminBookWriteAction();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}				
-		} else if (command.equals("/AdminBookIO.am")){
-			action = new AdminBookIO();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}			
+			} catch (Exception e) {e.printStackTrace();}					
 		} else if (command.equals("/AdminBookInfo.am")){
 			action = new AdminBookInfo();
 			try {
