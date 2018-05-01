@@ -39,31 +39,48 @@
 			cur_num, cur_name, cur_subject, cur_content, cur_file, cur_readcount, cur_type
 		)
 		values (
-			#{cur_num}, #{cur_name}, #{cur_subject}, #{cur_content}, #{cur_fi;e}, 0, #{cur_type}
+			#{cur_num}, #{cur_name}, #{cur_subject}, #{cur_content}, #{cur_file}, #{cur_readcount}, #{cur_type}
 		)
 	</insert>
+	
+	<update id="updateCur" parameterType="net.board.db.BoardDTO">
+		update curation set cur_name=#{cur_name}, cur_subject=#{cur_subject}, cur_content=#{cur_content}, cur_file=#{cur_file}, cur_type=#{cur_type} 
+		where cur_num=#{cur_num}
+	</update>
+	
+	<delete id="deleteCur" parameterType="int">
+		delete from curation where cur_num=#{cur_num}
+	</delete>
+	
+	<select id="selectCMaxNum" resultType="int">
+		select ifnull(max(cur_num),0) from curation
+	</select>
+	
+	<select id="getCurationList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from curation order by cur_num desc limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getCuration" parameterType="int" resultType="net.board.db.BoardDTO">
+		select * from curation where cur_num=#{cur_num}
+	</select>
+	
+	<select id="getCurationCount" resultType="int">
+		select ifnull(count(*),0) from curation
+	</select>
+	
+	<select id="getCSearchCount" parameterType="String" resultType="int">
+		select count(*) from curation where cur_subject like #{search}
+	</select>
+	
+	<select id="getCSearchList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from curation where cur_subject like %#{search}% order by cur_num desc limit #{startRow},#{pageSize}
+	</select>
 
 	<insert id="insertNotice" parameterType="net.board.db.BoardDTO">
 		insert into notice(notice_num, notice_type, notice_subject, notice_content, notice_file, notice_date, notice_readcount)
 		values (#{notice_num}, #{notice_type}, #{notice_subject}, #{notice_content}, #{notice_file}, #{notice_date}, #{notice_readcount})
 	</insert>
 
-	<select id="selectMaxNum" resultType="int">
-		select ifnull(max(notice_num),0) from notice
-	</select>
-
-	<select id="getNoticeList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
-		select * from notice order by notice_num desc limit #{startRow},#{pageSize}
-	</select>
-	
-	<select id="getNoticeCount" resultType="int">
-		select count(*) from notice
-	</select>
-	
-	<select id="getNotice" parameterType="int" resultType="net.board.db.BoardDTO">
-		select * from notice where notice_num=#{notice_num}
-	</select>
-	
 	<update id="updateNotice" parameterType="net.board.db.BoardDTO">
 		update notice set notice_type=#{notice_type}, notice_subject=#{notice_subject}, notice_content=#{notice_content}, notice_file=#{notice_file} 
 		where notice_num=#{notice_num}
@@ -72,7 +89,87 @@
 	<delete id="deleteNotice" parameterType="int">
 		delete from notice where notice_num=#{notice_num}
 	</delete>
-
-
+	
+	<select id="selectNMaxNum" resultType="int">
+		select ifnull(max(notice_num),0) from notice
+	</select>
+	
+	<select id="getNoticeList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from notice order by notice_num desc limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getNotice" parameterType="int" resultType="net.board.db.BoardDTO">
+		select * from notice where notice_num=#{notice_num}
+	</select>
+	
+	<select id="getNoticeCount" resultType="int">
+		select ifnull(count(*),0) from notice
+	</select>
+	
+	<select id="getNSearchCount" parameterType="String" resultType="int">
+		select ifnull(count(*),0) from notice where notice_subject like '%${value}%'
+	</select>
+	
+	<select id="getNSearchList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from notice where notice_subject like #{search} order by notice_num desc limit #{startRow},#{pageSize}
+	</select>
+	
+	<insert id="insertQna" parameterType="hashmap">
+		insert into qna(qna_num, member_id, qna_subject, qna_content, qna_date, qna_readcount, qna_ref, qna_check)
+		values (#{qna_num}, #{member_id}, #{qna_subject}, #{qna_content}, #{qna_date}, #{qna_readcount}, #{qna_ref}, #{qna_check})
+	</insert>
+	
+	<update id="updateQna" parameterType="net.board.db.BoardDTO">
+		update qna set qna_subject=#{qna_subject}, qna_content=#{qna_content} where qna_num=#{qna_num}
+	</update>
+	
+	<delete id="deleteQna" parameterType="int">
+		delete from qna where qna_num=#{qna_num}
+	</delete>
+	
+	<select id="selectQMaxNum" resultType="int">
+		select ifnull(max(qna_num),0) from qna
+	</select>
+	
+	<select id="getQnaList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from qna q join reply r on (q.qna_ref=r.qna_ref) order by q.qna_num desc limit #{startRow},#{pageSize}
+	</select>
+	
+	<select id="getQnaCount" resultType="int">
+		select ifnull(count(*),0) from qna
+	</select>
+	
+	<select id="getQna" parameterType="int" resultType="net.board.db.BoardDTO">
+		select * from qna where qna_num=#{qna_num}
+	</select>
+	
+	<select id="getQSearchCount" parameterType="String" resultType="int">
+		select count(*) from qna where qna_subject like %#{search}%
+	</select>
+	
+	<select id="getQSearchList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from qna where qna_subject like %#{search}% order by qna_num desc limit #{startRow},#{pageSize}
+	</select>
+	
+	<insert id="insertReply" parameterType="net.board.db.BoardDTO">
+		insert into reply(qna_ref, rep_name, rep_email, rep_content)
+		values (#{qna_ref}, #{rep_name}, #{rep_email}, #{rep_content})
+	</insert>
+	
+	<update id="updateCheck" parameterType="int">
+		update qna set qna_check='1' where qna_ref=#{qna_ref}
+	</update>
+	
+	<update id="updateReply" parameterType="net.board.db.BoardDTO">
+		update reply set rep_name=#{qna_name}, rep_email=#{rep_email}, rep_content=#{rep_content} where qna_ref=#{qna_ref}
+	</update>
+	
+	<delete id="deleteReply" parameterType="int">
+		delete from reply where qna_ref=#{qna_ref}
+	</delete>
+	
+	<select id="getReply" parameterType="int" resultType="net.board.db.BoardDTO">
+		select * from reply where qna_ref=#{qna_ref}
+	</select>
 
 </mapper>
