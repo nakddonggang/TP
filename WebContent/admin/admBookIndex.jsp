@@ -53,6 +53,14 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
+					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
+					<div>
+					 <form action="./AdminBookSearch" method="post">
+					 	<input type="text" name="search" placeholder="책 제목을 입력하세요">
+					 	<input type="submit" value="통합검색">
+					 </form>
+					</div>
+					
 					<h2>책 목록 [<%=count%>]</h2>
 					<%if(bookList.isEmpty()){ out.print("책 목록이 없습니다"); } else {%>
 					<table border="1">
@@ -61,12 +69,10 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<th>표제</th>
 							<th>저자</th>
 							<th>발행처</th>
-							<th>발행일</th>
-							<th>형태</th>
-							<th>주기</th>
-							<th>국제표준번호</th>
-							<th>분류기호</th>
-							<th>입고일</th>
+							<th>도서상태</th> <!-- dbook -->
+							<th>반납상태</th> <!-- bbook -->
+							<th>입고일자</th> <!-- rbook -->
+							<th> 입고현황</th> <!-- rbook -->
 						</tr>
 						<%
 							for (BookDTO bookLists : bookList) {%>
@@ -75,16 +81,14 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 									<td><%=bookLists.getBook_subject()%></td>
 									<td><%=bookLists.getBook_author()%></td>
 									<td><%=bookLists.getBook_publisher()%></td>
-									<td><%=(Timestamp)bookLists.getBook_pubDate()%></td>
-									<td><%=bookLists.getBook_form()%></td>
-									<td><%=bookLists.getBook_notation()%></td>
-									<td><%=bookLists.getBook_isbn()%></td>		
-									<td><%=bookLists.getBook_classification()%></td>		
-									<td><%=(Timestamp)bookLists.getBook_date()%></td>					
-								</tr> <%	} %>
+									<td><%=bookLists.getDbook_state()%></td>
+									<td><%=bookLists.getBbook_bstate()%></td>
+									<td><%=bookLists.getRbook_date()%></td>
+									<td><%=bookLists.getRbook_check()%></td>		
+								</tr> <%}%>
 					</table>
 					<%}%><br>
-					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"><br>
+					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"> 
 					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'"><br>
 								
 					<% // count = 전체 글의 개수
