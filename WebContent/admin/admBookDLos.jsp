@@ -53,7 +53,7 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 					<div class=""></div>
 					<!-- 본문 공간 -->
 					<h2>손망실 목록 [<%=count%>]</h2>
-					<%if(count==0){ out.print("손망실 목록이 없습니다"); }  else { %>
+					<%if(dbookList.isEmpty()){ out.print("손망실 목록이 없습니다"); }   else { %>
 					<table border="1">
 						<tr>
 							<th>고유번호</th>
@@ -71,7 +71,8 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 					</table>
 					<%} %><br>
 					
-					<input type="button" value="도서관리페이지로 이동" onclick="location.href='./AdminBookIndex.am'">
+					<input type="button" value="도서관리페이지로 이동" onclick="location.href='./AdminIndex.am'">
+					
 					<% // count = 전체 글의 개수
 						if (count != 0) {
 							// 이전페이지 // if (startPage와 pageBlock을 비교)
