@@ -76,6 +76,13 @@ public class AdminDAO {
 		return dbookList;
 	}
 	
+	// 예약관리 책 전체 리스트 개수 구하기
+	public int getRBookCount(){
+		int count;
+		count = sqlsession.selectOne("getRBookCount");
+		return count;
+	}
+	
 	// 예약관리 리스트
 	public List<BookDTO> getRBookList(int startRow, int pageSize){
 		HashMap map = new HashMap();
