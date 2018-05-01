@@ -41,6 +41,7 @@
 							response.sendRedirect("./MemberLogin.me");
 						}
 					%>
+					<div class="content">
 						<h1>개인정보관리</h1>
 						<table class="">
 							<tr>
@@ -84,7 +85,7 @@
 							</th>
 							</tr>
 						</table>
-						
+						</div>
 					<!-- //메인 페이지-->
 				</article>
 				
