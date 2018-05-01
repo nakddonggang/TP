@@ -3,33 +3,32 @@ package net.board.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
 
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class BoardQnaUpdateAction implements Action{
+public class BoardReplyAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardQnaUpdateAction execute()");
-		request.setCharacterEncoding("utf-8");
-		int num = Integer.parseInt(request.getParameter("num"));
+		System.out.println("BoardReplyAction execute()");
+		request.getParameter("utf-8");
 		String pageNum = request.getParameter("pageNum");
-		
-		BoardDTO bDTO = new BoardDTO();
-		bDTO.setQna_num(num);
-		bDTO.setQna_subject(request.getParameter("qna_subject"));
-		bDTO.setQna_content(request.getParameter("qna_content"));
+		int qna_ref = Integer.parseInt(request.getParameter("qna_ref"));
 		
 		BoardDAO bDAO = new BoardDAO();
-		bDAO.updateQna(bDTO);
-		
+		BoardDTO bDTO = new BoardDTO();
 		ActionForward forward = new ActionForward();
+		
+		bDTO.setQna_ref(qna_ref);
+		bDTO.setRep_name(request.getParameter("rep_name"));
+		bDTO.setRep_email(request.getParameter("rep_email"));
+		bDTO.setRep_content(request.getParameter("rep_content"));
+		bDAO.insertReply(bDTO);
+		bDAO.updateCheck(qna_ref);
+		
 		forward.setPath("./BoardQnaList.qn?pageNum="+pageNum);
 		forward.setRedirect(true);
 		

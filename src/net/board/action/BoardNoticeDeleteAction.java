@@ -5,7 +5,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.board.db.BoardDAO;
 
-public class BoardNoticeDelete implements Action{
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
+
+public class BoardNoticeDeleteAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {

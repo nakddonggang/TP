@@ -11,16 +11,16 @@ import net.board.db.BoardDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class BoardNoticeList implements Action{
+public class BoardCurList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		System.out.println("BoardNoticeList execute()");
+		System.out.println("BoardCurList execute()");
 		request.setCharacterEncoding("utf-8");
 		ActionForward forward = new ActionForward();
 
 		BoardDAO bDAO = new BoardDAO();
-		int count = bDAO.getNoticeCount();		// 공지사항 글 개수 구해 count에 저장
+		int count = bDAO.getCurationCount();		// Curation 글 개수 구해 count에 저장
 		
 		int pageSize = 2;	//한 화면에 보여줄 글 개수 설정
 		String pageNum = request.getParameter("pageNum");	// 페이지 번호(파라미터 "pageNum") 가져오기
@@ -33,10 +33,10 @@ public class BoardNoticeList implements Action{
 		int startRow = (currentPage-1)*pageSize+1;	// 페이지 첫 행 구하기
 		int endRow = currentPage*pageSize;			// 마지막행 구하기
 		
-		List<BoardDTO> noticeList = null;
+		List<BoardDTO> curationList = null;
 		
 		if(count != 0){
-			noticeList = bDAO.getNoticeList(startRow, pageSize);
+			curationList = bDAO.getCurationList(startRow, pageSize);
 		}
 		
 		//게시판 전체 페이지수 구하기 => ex)전체 글 개수(count):50개, 한 화면에 보여줄 글 개수(pageSize):10개
@@ -54,19 +54,19 @@ public class BoardNoticeList implements Action{
 			endPage = pageCount;	
 		}
 		
-		// count, pageNum, noticeList, pageCount
+		// count, pageNum, curationList, pageCount
 		// pageBlock, startPage, endPage 저장
 		request.setAttribute("count", count);
 		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("noticeList", noticeList);
+		request.setAttribute("curationList", curationList);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		
-		forward.setPath("./board/boardNews.jsp");
+		forward.setPath("./board/boardCu.jsp");
 		forward.setRedirect(false);
 		
 		return forward;
-	}
+	}	
 }

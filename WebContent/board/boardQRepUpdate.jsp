@@ -1,3 +1,4 @@
+<%@page import="net.board.db.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -16,7 +17,11 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
-<!-- board/boardCuWrite.jsp Curation 게시판 글쓰기 페이지 -->
+<%
+BoardDTO bDTO = (BoardDTO)request.getAttribute("bDTO");
+String pageNum = request.getParameter("pageNum");
+%>
+<!-- board/boardQRepUpdate.jsp 답변글 수정 페이지 -->
 	<div class="wrapper">
 
 		<!-- header -->
@@ -30,7 +35,7 @@
 				<!-- 서브메뉴 -->
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
-				
+		
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 					<div class="total_search"></div>
@@ -38,46 +43,36 @@
 					<div class=""></div>
 					<div class=""></div>
 					
-					<form action="./BoardCurWriteAction.cu" method="post" name="fr" enctype="multipart/form-data">
-						<table border="1">
-							<tr>
-								<td>글쓴이</td>
-								<td>
-									<input type="text" name="cur_name">
-								</td>
-							</tr>
-							<tr>
-								<td>제목</td>
-								<td>
-									<input type="text" name="cur_subject">
-								</td>
-							</tr>
-							<tr>
-								<td>타입</td>
-								<td>
-									<input type="text" name="cur_type">
-								</td>
-							</tr>
-							<tr>
-								<td>파일</td>
-								<td>
-									<input type="file" name="cur_file">
-								</td>
-							</tr>
-							<tr>
-								<td>내용</td>
-								<td>
-									<textarea cols="20" rows="10" name="cur_content" style="width: 580px; resize: none;"></textarea>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<input type="submit" value="등록"><input type="reset" value="뒤로">
-								</td>
-							</tr>
-						</table>
-					</form>
-	
+				<h1>답변하기</h1>
+				<form action="./BoardReplyUpdateAction.qn"  method="post"  name="fr" >
+					<input type="hidden" name="pageNum" value="<%=pageNum %>">
+					<input type="hidden" name="qna_ref" value="<%=bDTO.getQna_ref() %>">
+					<table class="" >
+						<tr>
+							<th>SUBJECT</th>
+							<td><input type="text" name="qna_subject" value="<%=bDTO.getQna_subject() %>" readonly></td>
+						</tr>
+						<tr>
+							<th>CONTENT</th>
+							<td><input type="text" name="qna_content" value="<%=bDTO.getQna_content() %>" readonly></td>
+						</tr>
+						<tr>
+							<th>NAME</th>
+							<td><input type="text" name="rep_name" value="<%=bDTO.getRep_name() %>"></td>
+						</tr>
+						<tr>
+							<th>EMAIL</th>
+							<td><input type="text" name="rep_email" value="<%=bDTO.getRep_email() %>"></td>
+						</tr>
+						<tr>
+							<th>CONTENT</th>
+							<td><textarea cols="20" rows="10" name="rep_content" style="width: 580px; resize: none;"><%=bDTO.getRep_content() %></textarea></td>
+						</tr>
+						<tr>
+							<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
+						</tr>
+					</table>
+				</form>
 				</article>
 				<!-- //메인 페이지-->
 				
