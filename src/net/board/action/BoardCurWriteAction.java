@@ -15,24 +15,16 @@ public class BoardCurWriteAction implements Action {
 		ActionForward forward = new ActionForward();
 		BoardDTO bDTO = new BoardDTO();
 		BoardDAO bDAO = new BoardDAO();
-		int result;
 		
 		bDTO.setCur_name(request.getParameter("cur_name"));
 		bDTO.setCur_type(request.getParameter("cur_type"));
 		bDTO.setCur_subject(request.getParameter("cur_subject"));
 		bDTO.setCur_content(request.getParameter("cur_content"));
 	
-		result = bDAO.insertCur(bDTO);
-		
-		if(result==0){
-			System.out.println("Faile");
-		}else{
-			System.out.println("Sucsses");
-		}
-			
-		forward.setPath("./BoardList.bo");
+		bDAO.insertCur(bDTO);
+	
+		forward.setPath("./BoardCurList.cu");
 		forward.setRedirect(true);
 		return forward;
 	}
-
 }

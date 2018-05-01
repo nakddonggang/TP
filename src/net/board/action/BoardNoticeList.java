@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
 
 public class BoardNoticeList implements Action{
 
@@ -17,18 +19,18 @@ public class BoardNoticeList implements Action{
 		ActionForward forward = new ActionForward();
 
 		BoardDAO bDAO = new BoardDAO();
-		int count = bDAO.getNoticeCount();		// 공지사항 글 개수 구해 count에 저장
+		int count = bDAO.getNoticeCount();		// 怨듭��궗�빆 湲� 媛쒖닔 援ы빐 count�뿉 ���옣
 		
-		int pageSize = 2;	//한 화면에 보여줄 글 개수 설정
-		String pageNum = request.getParameter("pageNum");	// 페이지 번호(파라미터 "pageNum") 가져오기
+		int pageSize = 2;	//�븳 �솕硫댁뿉 蹂댁뿬以� 湲� 媛쒖닔 �꽕�젙
+		String pageNum = request.getParameter("pageNum");	// �럹�씠吏� 踰덊샇(�뙆�씪誘명꽣 "pageNum") 媛��졇�삤湲�
 
-		if(pageNum == null){	//페이지 번호가 없으면 무조건 "1"페이지 설정
+		if(pageNum == null){	//�럹�씠吏� 踰덊샇媛� �뾾�쑝硫� 臾댁“嫄� "1"�럹�씠吏� �꽕�젙
 			pageNum = "1";
 		}
 
 		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage-1)*pageSize+1;	// 페이지 첫 행 구하기
-		int endRow = currentPage*pageSize;			// 마지막행 구하기
+		int startRow = (currentPage-1)*pageSize+1;	// �럹�씠吏� 泥� �뻾 援ы븯湲�
+		int endRow = currentPage*pageSize;			// 留덉�留됲뻾 援ы븯湲�
 		
 		List<BoardDTO> noticeList = null;
 		
@@ -36,15 +38,15 @@ public class BoardNoticeList implements Action{
 			noticeList = bDAO.getNoticeList(startRow, pageSize);
 		}
 		
-		//게시판 전체 페이지수 구하기 => ex)전체 글 개수(count):50개, 한 화면에 보여줄 글 개수(pageSize):10개
-							//count:50 pageSize:10 =>전체 페이지수 : 50/10+나머지0 => 5+0=5페이지
-							//count:58 pageSize:10 =>전체 페이지수 : 58/10+나머지1 => 5+1=6페이지
+		//寃뚯떆�뙋 �쟾泥� �럹�씠吏��닔 援ы븯湲� => ex)�쟾泥� 湲� 媛쒖닔(count):50媛�, �븳 �솕硫댁뿉 蹂댁뿬以� 湲� 媛쒖닔(pageSize):10媛�
+							//count:50 pageSize:10 =>�쟾泥� �럹�씠吏��닔 : 50/10+�굹癒몄�0 => 5+0=5�럹�씠吏�
+							//count:58 pageSize:10 =>�쟾泥� �럹�씠吏��닔 : 58/10+�굹癒몄�1 => 5+1=6�럹�씠吏�
 		int pageCount = count/pageSize+(count%pageSize==0? 0:1);
-		//한화면에 보여줄 페이지수 설정
+		//�븳�솕硫댁뿉 蹂댁뿬以� �럹�씠吏��닔 �꽕�젙
 		int pageBlock = 3;
-		//시작하는 페이지 번호 구하기 : 1~10 => 1, 11~20 => 11, 21~30 => 21 / currentPage, pageBlock 조합
+		//�떆�옉�븯�뒗 �럹�씠吏� 踰덊샇 援ы븯湲� : 1~10 => 1, 11~20 => 11, 21~30 => 21 / currentPage, pageBlock 議고빀
 		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
-		//끝나는 페이지 번호 구하기 : startPage pageBlock 조합
+		//�걹�굹�뒗 �럹�씠吏� 踰덊샇 援ы븯湲� : startPage pageBlock 議고빀
 		//1 10 => 10, 11 10 => 20, 21 10 => 30 ...
 		int endPage = startPage+pageBlock-1;
 		if(endPage > pageCount){
@@ -52,7 +54,7 @@ public class BoardNoticeList implements Action{
 		}
 		
 		// count, pageNum, noticeList, pageCount
-		// pageBlock, startPage, endPage 저장
+		// pageBlock, startPage, endPage ���옣
 		request.setAttribute("count", count);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("noticeList", noticeList);

@@ -4,6 +4,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.board.db.BoardDAO;
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
 
 public class BoardNoticeDelete implements Action{
 
