@@ -7,7 +7,7 @@
 	 	select count(*) from book
 	 </select>
 	 
-	 <select id="getBookList" parameterType="java.util.HashMap" resultType="java.util.List">
+	 <select id="getBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select * from book order by book_number desc limit #{startRow}, #{pageSize} 
 	 </select>
 	 
@@ -38,6 +38,10 @@
 	 
 	 <select id="getDBookList" parameterType="java.util.HashMap" resultType="java.util.List">
 	  	select * from dbook order by book_number desc limit #{startRow}, #{pageSize} 
+	 </select>
+	 
+	 <select id="getRBookCount" resultType="int">
+	 	select count(*) from rbook
 	 </select>
 	 
 	 <select id="getRBookList" parameterType="java.util.HashMap" resultType="java.util.List">
