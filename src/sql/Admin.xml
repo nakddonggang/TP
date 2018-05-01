@@ -31,12 +31,11 @@
 	 </select>
 	 
 	 <insert id="insertDBook" parameterType="net.book.db.BookDTO">
-	 	insert into dbook (dbook_reason, dbook_state)
-	 	values (#{dbook_reason}, #{dbook_state})
-	 	where book_number=#{book_number}
+	 	insert into dbook (book_number, dbook_reason, dbook_state)
+	 	values (#{book_number}, #{dbook_reason}, #{dbook_state})
 	 </insert>
 	 
-	 <select id="getDBookList" parameterType="java.util.HashMap" resultType="java.util.List">
+	 <select id="getDBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	  	select * from dbook order by book_number desc limit #{startRow}, #{pageSize} 
 	 </select>
 	 
@@ -44,7 +43,7 @@
 	 	select count(*) from rbook
 	 </select>
 	 
-	 <select id="getRBookList" parameterType="java.util.HashMap" resultType="java.util.List">
+	 <select id="getRBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select * from rbook order by book_number desc limit #{startRow}, #{PageSize}
 	 </select>
  
