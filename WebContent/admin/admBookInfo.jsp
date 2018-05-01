@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="java.sql.Timestamp"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -69,36 +71,52 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 					<form action="" method="post" name="fr">
 					<table border="1">
 						<tr>
-							<th>고유번호</th>
-							<th>표제</th>
-							<th>저자</th>
-							<th>발행처</th>
-							<th>발행일</th>
-							<th>형태</th>
-							<th>주기</th>
-							<th>국제표준번호</th>
-							<th>분류기호</th>
-							<th>입고일</th>
-						</tr>
-						<tr>
+							<th>고유번호 : </th>
 							<td><%=bookList.getBook_number()%></td>
+						</tr>	
+						<tr>						
+							<th>표제 : </th>
 							<td><%=bookList.getBook_subject()%></td>
+						</tr>	
+						<tr>	
+							<th>저자 : </th>
 							<td><%=bookList.getBook_author()%></td>
+						</tr>	
+						<tr>	
+							<th>발행처 : </th>
 							<td><%=bookList.getBook_publisher()%></td>
-							<td><%=bookList.getBook_pubDate()%></td>
+						</tr>	
+						<tr>	
+							<th>발행일 : </th>
+							<td><%=(Timestamp)bookList.getBook_pubDate()%></td>
+						</tr>	
+						<tr>	
+							<th>형태 : </th>
 							<td><%=bookList.getBook_form()%></td>
+						</tr>	
+						<tr>	
+							<th>주기 : </th>
 							<td><%=bookList.getBook_notation()%></td>
-							<td><%=bookList.getBook_isbn()%></td>		
-							<td><%=bookList.getBook_classification()%></td>		
-							<td><%=bookList.getBook_date()%></td>					
-						</tr>
+						</tr>	
+						<tr>	
+							<th>국제표준번호 : </th>
+							<td><%=bookList.getBook_isbn()%></td>
+						</tr>	
+						<tr>	
+							<th>분류기호 : </th>
+							<td><%=bookList.getBook_classification()%></td>
+						</tr>	
+						<tr>	
+							<th>입고일 : </th>
+							<td><%=(Timestamp)bookList.getBook_date()%></td>	
+						</tr>	
 					</table>
 					<div>
 							<!-- book/bookInfo.jsp 에 필요한 기능 -->
 						<input type="button" value="대출예약" onclick="location.href='javascript:bbook()'">
 						<input type="button" value="책바구니" onclick="location.href='javascript:basket()'">
 					</div>
-					</form>		
+					</form>
 					<form action="./AdminBookDLosWrite.am" method="post">
 						<input type="hidden" name="book_number" value="<%=bookList.getBook_number()%>"	>
 						<input type="submit" value="손망실">
