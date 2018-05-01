@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,38 +6,38 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
-<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
-<script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
-<script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
-<script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
-<script src="<c:url value="/js/common.js"/>"></script>
-<script src="<c:url value="/js/fullpage.js"/>"></script>
+<link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="../css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+<link href="../css/jquery.fullpage" rel="stylesheet" type="text/css">
+<link href="../css/import.css?ver=1" rel="stylesheet" type="text/css">
+<script src="../js/jquery-3.3.1.js"></script>
+<script src="../js/jquery.bxslider.min.js"></script>
+<script src="../js/jquery.fullpage.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/common.min.js"></script>
+<script src="../js/fullpage.min.js"></script>
 </head>
 <body>
-<!-- board/boardCuWrite.jsp Curation 게시판 글쓰기 페이지 -->
 	<div class="wrapper">
 
 		<!-- header -->
 		<jsp:include page="../include/header.jsp" />
 		<!-- //header -->
 
-		<!-- 본문 컨테이너 -->
-		<div class="container">
-			<section class="fullpage SECTION_FULL_PAGE01">
+		<!-- top_link -->
+		<jsp:include page="../include/topmenu.jsp" />
+		<!-- //top_link -->
 
-				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
-				<!-- //서브메뉴 -->
-				
-				<!-- 메인 페이지 -->
-				<article class="mainmenu section SECTION">
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
-					<div class=""></div>
+		<!-- container -->
+		<div class="container">
+			<section class="sub_con_half SEC_HALF">
+				<h2 class="hide">Title</h2>
+				<article>
+					<!-- left_content -->
+					<jsp:include page="../include/submenu.jsp" />
+					<!-- //left_content -->
 					
-					<form action="./BoardCurWriteAction.cu" method="post" name="fr" enctype="multipart/form-data">
+					<form action="BoardCurWriteAction.bo" method="post" name="fr">
 						<table border="1">
 							<tr>
 								<td>글쓴이</td>
@@ -49,19 +48,13 @@
 							<tr>
 								<td>제목</td>
 								<td>
-									<input type="text" name="cur_subject">
+									<input type="text" name="cur_type">
 								</td>
 							</tr>
 							<tr>
 								<td>타입</td>
 								<td>
-									<input type="text" name="cur_type">
-								</td>
-							</tr>
-							<tr>
-								<td>파일</td>
-								<td>
-									<input type="file" name="cur_file">
+									<input type="text" name="cur_subject">
 								</td>
 							</tr>
 							<tr>
@@ -79,11 +72,8 @@
 					</form>
 	
 				</article>
-				<!-- //메인 페이지-->
-				
 			</section>
 		</div>
-		<!-- //본문 컨테이너 -->
 	</div>
 </body>
 </html>

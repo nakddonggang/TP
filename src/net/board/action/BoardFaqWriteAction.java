@@ -9,6 +9,9 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
 
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
+
 public class BoardFaqWriteAction implements Action{
 
 	@Override

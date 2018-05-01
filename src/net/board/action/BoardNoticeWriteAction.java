@@ -25,10 +25,9 @@ public class BoardNoticeWriteAction implements Action {
 		BoardDAO bDAO = new BoardDAO();
 		
 		int notice_num;
-		String table = "notice";
-		String column = "notice_num";
+		int result;
 		
-		notice_num = bDAO.selectNMaxNum()+1;				// 게시판 max 번호 구한 뒤 +1
+		notice_num = bDAO.selectMaxNum()+1;				// 게시판 max 번호 구한 뒤 +1
 		
 		String realPath = request.getRealPath("/upload");
 		System.out.println("upload폴더 물리적경로 : "+realPath);
@@ -44,10 +43,17 @@ public class BoardNoticeWriteAction implements Action {
 		bDTO.setNotice_date(new Timestamp(System.currentTimeMillis()));
 		bDTO.setNotice_readcount(0);
 		
-		bDAO.insertNotice(bDTO);
+		result = bDAO.insertNotice(bDTO);
+		
+		if(result==0){
+			System.out.println("Faile");
+		}else{
+			System.out.println("Sucsses");
+		}
 		
 		forward.setPath("./BoardNoticeList.no");
-		forward.setRedirect(true);		
+		forward.setRedirect(true);
+		
 		return forward;
 	}
 }
