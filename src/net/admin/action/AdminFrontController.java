@@ -70,11 +70,6 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}						
-		} else if (command.equals("/AdminMemberRank.am")){
-			action = new AdminMemberRank();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}						
 		} else if (command.equals("/AdminMemberGood.am")){
 			action = new AdminMemberGood();
 			try {

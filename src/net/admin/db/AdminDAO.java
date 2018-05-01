@@ -102,7 +102,16 @@ public class AdminDAO {
 		count = sqlsession.selectOne("getMemberCount");
 		return count;
 	}
-	
+	public int getBlackMemberCount(){
+		int count;
+		count = sqlsession.selectOne("getBlackMemberCount");
+		return count;
+	}
+	public int getGoodMemberCount(){
+		int count;
+		count = sqlsession.selectOne("getGoodMemberCount");
+		return count;
+	}
 	public List<MemberDTO> getMemberList(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
@@ -110,10 +119,10 @@ public class AdminDAO {
 		List<MemberDTO> memberList = sqlsession.selectList("getMemberList",map);
 		return memberList;
 	}
-	public List<MemberDTO> getMemberInfo(String member_id){
-		HashMap map = new HashMap();
-		map.put("Member_id", member_id);
-		List<MemberDTO> memberList = sqlsession.selectList("getMemberInfo", map);
-		return memberList;
+	public MemberDTO getAdminMember(String member_id) {
+		MemberDTO mDTO = new MemberDTO();
+		mDTO = sqlsession.selectOne("getAdminMember" , member_id);
+		return mDTO;
 	}
+
 }
