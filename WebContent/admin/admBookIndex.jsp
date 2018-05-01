@@ -1,3 +1,4 @@
+<%@page import="java.sql.Timestamp"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -53,7 +54,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					<div class=""></div>
 					<!-- 본문 공간 -->
 					<h2>책 목록 [<%=count%>]</h2>
-					<%if(count==0){ out.print("책 목록이 없습니다"); } else {%>
+					<%if(bookList.isEmpty()){ out.print("책 목록이 없습니다"); } else {%>
 					<table border="1">
 						<tr>
 							<th>고유번호</th>
@@ -74,12 +75,12 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 									<td><%=bookLists.getBook_subject()%></td>
 									<td><%=bookLists.getBook_author()%></td>
 									<td><%=bookLists.getBook_publisher()%></td>
-									<td><%=bookLists.getBook_pubDate()%></td>
+									<td><%=(Timestamp)bookLists.getBook_pubDate()%></td>
 									<td><%=bookLists.getBook_form()%></td>
 									<td><%=bookLists.getBook_notation()%></td>
 									<td><%=bookLists.getBook_isbn()%></td>		
 									<td><%=bookLists.getBook_classification()%></td>		
-									<td><%=bookLists.getBook_date()%></td>					
+									<td><%=(Timestamp)bookLists.getBook_date()%></td>					
 								</tr> <%	} %>
 					</table>
 					<%}%><br>
