@@ -2,7 +2,7 @@
 
 <header>
 	<h1 class="logo">
-		<a href="../Main/Main"><img src="" alt="Logo" /></a>
+		<a href="Main.fp"><img src="" alt="Logo" /></a>
 	</h1>
 	
 	<div class="mb_wrap DIV_MB_WRAP">
@@ -10,28 +10,31 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li><a href="#"  id="btn-open-dialog">LOGIN</a></li>
 					<li class="btn_newsletter"><a href="../book/bookSearch.jsp">통합 검색</a></li>
+					
 					<li><a href="#">도서관 서비스</a>
 						<ul class="DIV_SUB_MNU">
-							<li><a href="../service/serveBook.jsp">희망도서 신청</a></li>
+							<li><a href="./service/serveBook.jsp">희망도서 신청</a></li>
 							<!-- 희망도서 신청 페이지 -->
 							<li><a href="../service/serveFacil.jsp">시설이용 신청</a></li>
 							<li><a href="../service/serveQues.jsp">사서에게 물어보세요</a></li>
 						</ul></li>
+						
 					<li><a href="#">게시판</a>
 						<ul class="DIV_SUB_MNU">
-							<li><a href="../board/boardNews.jsp">공지사항</a></li>
-							<li><a href="../board/boardCu.jsp">큐레이션</a></li>
-							<li><a href="../board/boardQna.jsp">QnA</a></li>
-							<li><a href="../board/boardFaq.jsp">자주하는 질문</a></li>
+							<li><a href="./BoardNoticeList.no">공지사항</a></li>
+							<li><a href="./BoardCurList.cu">큐레이션</a></li>
+							<li><a href="./BoardQnaList.bo">QnA</a></li>
+							<li><a href="./BoardFaqList.fa">자주하는 질문</a></li>
 						</ul></li>
+						
 					<li><a href="#">내 서재</a>
 						<ul class="DIV_SUB_MNU">
 							<li><a href="../member/memberInfo.jsp">개인정보관리</a></li>
 							<li><a href="../member/myUseIndex.jsp">이용현황</a></li>
 							<li></li>
 						</ul></li>
+						
 					<li><a href="#">도서관 안내</a>
 						<ul class="DIV_SUB_MNU">
 							<li><a href="../guide/guideIntro.jsp">도서관 소개</a></li>
@@ -44,7 +47,6 @@
 							<li></li>
 							<li></li>
 							<li></li>
-							<li></li>
 						</ul></li>
 				</ul>
 			</div>
@@ -52,8 +54,15 @@
 		
 		<div class="footer">
 			<ul>
-				<li><a href="#"><span>출판도시문화재단</span></a></li>
-				<li><a href="#" class="addr" style="cursor: default;">우)10881<br />경기도 파주시 <br />회동길 145<br />상호명: <br />(재)출판도시문화재단<br />사업자등록번호: <br />128-82-08500<br />전화번호: <br />031-955-0082<br />대표자: 김언호
+				<li><a href="#"><span>ITWILL BUSAN</span></a></li>
+				<li><a href="#" class="addr" style="cursor: default;">
+					All contents Copyright <br />
+					2011 FunWeb Inc.<br />
+					all rights reserved <br /><br />
+					Contact mail: <br />
+					funweb@funwebbiz.com<br />
+					Tel +82 64 123 4315: <br />
+					Fax +82 64 123 4321<br />
 				</a></li>
 			</ul>
 		</div>
@@ -68,8 +77,4 @@
 	</div>
 	
 </header>
-
-<div id="loginDialog">
-	<jsp:include page="../include/login.jsp" />
-</div>
 

@@ -10,34 +10,44 @@
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
-	<!-- member/memberLogin.jsp 로그인 페이지 -->
-	<div id="wrap">
-		<div id="main_menu">
-			<jsp:include page="../include/header.jsp" />	<!-- div id=header -->
+	<div class="wrapper">
 
-		</div>
-		<div id="sub_menu">
-			<jsp:include page="../include/submenu_main.jsp"/>	<!-- div id=sub_menu -->
-		</div>
-		<div>	
-			<form action="./MemberLoginAction.me" method="post" name="fr">
-				<table border="1">
-					<tr><td colspan="2">로그인 페이지</td>	</tr>
-					<tr><td>아이디:</td>	<td><input type="text" name="member_id"></td></tr>
-					<tr><td>비밀번호:</td><td><input type="password" name="member_pass"></td></tr>
-					<tr><td colspan="2">
-							<input type="button" value="로그인" onclick="sub()">
-							<input type="button" value="회원가입" onclick="location.href = './MemberJoin.me'">
-					</td></tr>
-				</table>
-			</form>
+		<!-- header -->
+		<jsp:include page="../include/header.jsp" />
+		<!-- //header -->
 
+		<!-- 본문 컨테이너 -->
+		<div class="container">
+			<section class="fullpage SECTION_FULL_PAGE01">
+
+				<!-- 서브메뉴 -->
+				<jsp:include page="../include/submenu_main.jsp" />
+				<!-- //서브메뉴 -->
+				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
+				<!-- 메인 페이지 -->
+					<form action="./MemberLoginAction.me" method="post" name="fr">
+						<table border="1">
+							<tr><td colspan="2">로그인 페이지</td>	</tr>
+							<tr><td>아이디:</td>	<td><input type="text" name="member_id"></td></tr>
+							<tr><td>비밀번호:</td><td><input type="password" name="member_pass"></td></tr>
+							<tr><td colspan="2">
+									<input type="button" value="로그인" onclick="sub()">
+									<input type="button" value="회원가입" onclick="location.href = './MemberJoin.me'">
+							</td></tr>
+						</table>
+					</form>
+				<!-- //메인 페이지-->
+				</article>
+				
+			</section>
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
