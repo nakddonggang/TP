@@ -44,16 +44,38 @@
 	 	select * from rbook order by book_number desc limit #{startRow}, #{PageSize}
 	 </select>
  
- <select id="getMemberCount" parameterType="int">
- 	select count(*) as count from member
- </select>
  
- <select id="getMemberList" parameterType="hashmap" resultType="net.member.db.MemberDTO">
-		select * from member order by member_name desc limit #{startRow},#{pageSize}
+ 
+ 
+	<select id="getMemberCount" resultType="int">
+ 		select count(*) as count from member
+ 	</select>
+ 
+	<select id="getBlackMemberCount" resultType="int">
+ 	select count(*) from blacklist;
+ 	</select>
+ 	
+ 	<select id="getGoodMemberCount" resultType="int">
+ 	select count(*) from good_member;
+ 	</select>
+ 	<select id="getMemberList" parameterType="hashmap" resultType="net.member.db.MemberDTO">
+   	 	select m.member_id, m.member_pass, m.member_name, m.member_post, m.member_address1, m.member_address2, 
+		m.member_phone, m.member_email, m.member_date, g.borrow_count, ifnull(g.gm_check, 0) gm_check, b.bl_count, b.bl_date, ifnull(b.bl_check, 0) bl_check
+		from member m
+		left join good_member g
+		on m.member_id=g.member_id 
+		left join blacklist b 
+		on m.member_id = b.member_id order by member_name desc limit #{startRow},#{pageSize}
+   	</select>
+	<select id="getAdminMember" parameterType="String" resultType="net.member.db.MemberDTO">
+	select m.member_id, m.member_pass, m.member_name, m.member_post, m.member_address1, m.member_address2, 
+		m.member_phone, m.member_email, m.member_date, g.borrow_count, ifnull(g.gm_check, 0) gm_check, b.bl_count, b.bl_date, ifnull(b.bl_check, 0) bl_check
+		from member m
+		left join good_member g
+		on m.member_id=g.member_id 
+		left join blacklist b 
+		on m.member_id = b.member_id where m.member_id=#{member_id};
 	</select>
 	
-	 <select id="getMemberInfo"  parameterType="String" resultType="net.member.db.MemberDTO">
- 	select * from member where member_id=#{member_id}
- </select>
  
  </mapper>
