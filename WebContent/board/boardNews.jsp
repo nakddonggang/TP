@@ -54,7 +54,9 @@
 					<h1>Notice [전체글개수 : <%=count %>]</h1>
 					<table border="1">
 						<tr><td>번호</td><td>종류</td><td>제목</td><td>내용</td><td>파일</td><td>날짜</td><td>조회수</td><td></td></tr>
-					<%
+					<%if(noticeList==null){
+						%><tr><td colspan="8">게시물이 없습니다.</td></tr><%
+					}else{
 						for(int i=0; i<noticeList.size(); i++){
 							BoardDTO bDTO = noticeList.get(i);	//제너릭 사용해서 형변환 할 필요없음
 						%>
@@ -66,6 +68,7 @@
 								<input type="button" value="글삭제" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"></td></tr>
 						<%
 						}
+					}
 					%>
 					</table>
 					

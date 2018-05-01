@@ -47,11 +47,11 @@
 	</select>
 	
 	<select id="getCSearchCount" parameterType="String" resultType="int">
-		select count(*) from curation where cur_subject like #{search}
+		select count(*) from curation where cur_subject like '%${value}%'
 	</select>
 	
 	<select id="getCSearchList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
-		select * from curation where cur_subject like %#{search}% order by cur_num desc limit #{startRow},#{pageSize}
+		select * from curation where cur_subject like #{search} order by cur_num desc limit #{startRow},#{pageSize}
 	</select>
 
 	<insert id="insertNotice" parameterType="net.board.db.BoardDTO">
@@ -122,11 +122,11 @@
 	</select>
 	
 	<select id="getQSearchCount" parameterType="String" resultType="int">
-		select count(*) from qna where qna_subject like %#{search}%
+		select count(*) from qna where qna_subject like '%${search}%'
 	</select>
 	
 	<select id="getQSearchList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
-		select * from qna where qna_subject like %#{search}% order by qna_num desc limit #{startRow},#{pageSize}
+		select * from qna where qna_subject like #{search} order by qna_num desc limit #{startRow},#{pageSize}
 	</select>
 	
 	<insert id="insertReply" parameterType="net.board.db.BoardDTO">

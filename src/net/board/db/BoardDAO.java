@@ -76,6 +76,7 @@ public class BoardDAO {
 	//Curation 게시판 검색결과 보여주기
 	public List<BoardDTO> getCSearchList(int startRow, int pageSize, String search){
 		HashMap map = new HashMap();
+		search = search.replaceAll(search, "%"+search+"%");
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		map.put("search", search);
@@ -146,10 +147,10 @@ public class BoardDAO {
 		return maxNum;
 	}
 	//Q&A 게시판 글쓰기
-	public void insertQna(BoardDTO bDTO, String id) {
+	public void insertQna(BoardDTO bDTO, String member_id) {
 		HashMap map = new HashMap();
 		map.put("bDTO", bDTO);
-		map.put("member_id", id);	
+		map.put("member_id", member_id);	
 		sqlsession.insert("insertQna", map);
 	}
 	//Q&A 게시판 글 수정
@@ -188,6 +189,7 @@ public class BoardDAO {
 	//Q&A 게시판 검색결과 보여주기
 	public List<BoardDTO> getQSearchList(int startRow, int pageSize, String search){
 		HashMap map = new HashMap();
+		search = search.replaceAll(search, "%"+search+"%");
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		map.put("search", search);
