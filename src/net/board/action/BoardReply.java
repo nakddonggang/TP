@@ -21,7 +21,7 @@ public class BoardReply implements Action{
 		String pageNum = request.getParameter("pageNum");
 		
 		BoardDAO bDAO = new BoardDAO();
-		BoardDTO bDTO = bDAO.getReply(qna_ref);
+		BoardDTO bDTO = bDAO.getQna(qna_ref);
 		
 		request.setAttribute("bDTO", bDTO);
 		request.setAttribute("pageNum", pageNum);

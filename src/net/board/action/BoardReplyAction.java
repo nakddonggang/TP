@@ -26,7 +26,8 @@ public class BoardReplyAction implements Action{
 		bDTO.setRep_name(request.getParameter("rep_name"));
 		bDTO.setRep_email(request.getParameter("rep_email"));
 		bDTO.setRep_content(request.getParameter("rep_content"));
-		bDAO.insertReply(bDTO);
+		
+		bDAO.updateReply(bDTO);
 		bDAO.updateCheck(qna_ref);
 		
 		forward.setPath("./BoardQnaList.qn?pageNum="+pageNum);

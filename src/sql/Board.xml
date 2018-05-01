@@ -109,8 +109,12 @@
 		select ifnull(max(qna_num),0) from qna
 	</select>
 	
-	<select id="getQnaList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
-		select * from qna q join reply r on (q.qna_ref=r.qna_ref) order by q.qna_num desc limit #{startRow},#{pageSize}
+	<select id="getQnaReplyCount" parameterType="int" resultType="int">
+		select ifnull(count(*),0) from reply where qna_ref=#{qna_ref}
+	</select>
+	
+	<select id="getQnaReplyList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from qna q join reply r on (q.qna_num=r.qna_ref) order by q.qna_num desc limit #{startRow},#{pageSize}
 	</select>
 	
 	<select id="getQnaCount" resultType="int">
@@ -122,29 +126,29 @@
 	</select>
 	
 	<select id="getQSearchCount" parameterType="String" resultType="int">
-		select count(*) from qna where qna_subject like '%${search}%'
+		select count(*) from qna where qna_subject like '%${value}%'
 	</select>
 	
 	<select id="getQSearchList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
-		select * from qna where qna_subject like #{search} order by qna_num desc limit #{startRow},#{pageSize}
+		select * from qna q join reply r on (q.qna_num=r.qna_ref) where qna_subject like #{search} order by q.qna_num desc limit #{startRow},#{pageSize}
 	</select>
 	
-	<insert id="insertReply" parameterType="net.board.db.BoardDTO">
-		insert into reply(qna_ref, rep_name, rep_email, rep_content)
-		values (#{qna_ref}, #{rep_name}, #{rep_email}, #{rep_content})
+	<insert id="insertReply" parameterType="int">
+		insert into reply(qna_ref)
+		values (#{qna_ref})
 	</insert>
 	
 	<update id="updateCheck" parameterType="int">
 		update qna set qna_check='1' where qna_ref=#{qna_ref}
 	</update>
 	
-	<update id="updateReply" parameterType="net.board.db.BoardDTO">
-		update reply set rep_name=#{qna_name}, rep_email=#{rep_email}, rep_content=#{rep_content} where qna_ref=#{qna_ref}
+	<update id="deleteCheck" parameterType="int">
+		update qna set qna_check='0' where qna_ref=#{qna_ref}
 	</update>
 	
-	<delete id="deleteReply" parameterType="int">
-		delete from reply where qna_ref=#{qna_ref}
-	</delete>
+	<update id="updateReply" parameterType="net.board.db.BoardDTO">
+		update reply set rep_name=#{rep_name}, rep_email=#{rep_email}, rep_content=#{rep_content} where qna_ref=#{qna_ref}
+	</update>
 	
 	<select id="getReply" parameterType="int" resultType="net.board.db.BoardDTO">
 		select * from reply where qna_ref=#{qna_ref}

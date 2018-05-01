@@ -8,6 +8,7 @@ import java.util.Vector;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import net.member.db.MemberDTO;
 import util.myBatisSetting.sqlMapConfig;
 
 public class BoardDAO {
@@ -149,8 +150,14 @@ public class BoardDAO {
 	//Q&A 게시판 글쓰기
 	public void insertQna(BoardDTO bDTO, String member_id) {
 		HashMap map = new HashMap();
-		map.put("bDTO", bDTO);
+		map.put("qna_num", bDTO.getQna_num());
 		map.put("member_id", member_id);	
+		map.put("qna_subject",bDTO.getQna_subject());
+		map.put("qna_content", bDTO.getQna_content());
+		map.put("qna_date", bDTO.getQna_date());
+		map.put("qna_readcount", bDTO.getQna_readcount());
+		map.put("qna_ref", bDTO.getQna_ref());
+		map.put("qna_check", bDTO.getQna_check());
 		sqlsession.insert("insertQna", map);
 	}
 	//Q&A 게시판 글 수정
@@ -168,11 +175,11 @@ public class BoardDAO {
 		return count;
 	}
 	//Q&A 게시판 리스트
-	public List<BoardDTO> getQnaList(int startRow, int pageSize){
+	public List<BoardDTO> getQnaReplyList(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
-		List<BoardDTO> qnaList = sqlsession.selectList("getQnaList", map);
+		List<BoardDTO> qnaList = sqlsession.selectList("getQnaReplyList", map);
 		return qnaList;
 	}
 	//Q&A 게시판 번호에 해당하는 글 가져오기
@@ -199,24 +206,24 @@ public class BoardDAO {
 	
 	/* **************Q&A 답변글************** */
 	//Q&A 답변글쓰기
-	public void insertReply(BoardDTO bDTO) {	
-		sqlsession.insert("insertReply", bDTO);
+	public void insertReply(int qna_ref) {
+		sqlsession.insert("insertReply", qna_ref);
 	}
-	//Q&A 답변글 달린 것 체크 수정 : "0" => "1"\
+	//Q&A 답변글 달린 것 체크 수정 : "0" => "1"
 	public void updateCheck(int qna_ref){
 		sqlsession.update("updateCheck", qna_ref);
+	}
+	//Q&A 답변글 삭제했을 경우 체크 수정 : "1" => "0"
+	public void deleteCheck(int qna_ref){
+		sqlsession.update("deleteCheck", qna_ref);
 	}
 	//Q&A 답변글 수정
 	public void updateReply(BoardDTO bDTO){
 		sqlsession.update("updateReply", bDTO);
 	}
-	//Q&A 답변글 삭제
-	public void deleteReply(int qna_ref){
-		sqlsession.delete("deleteReply", qna_ref);
-	}
 	//Q&A 게시판 글 번호에 해당하는 답변글 가져오기
-	public BoardDTO getReply(int num){
-		BoardDTO bDTO = sqlsession.selectOne("getReply", num);
+	public BoardDTO getReply(int qna_ref){
+		BoardDTO bDTO = sqlsession.selectOne("getReply", qna_ref);
 		return bDTO;
 	}
 }
