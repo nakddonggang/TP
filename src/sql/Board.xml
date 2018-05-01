@@ -85,7 +85,7 @@
 	</select>
 	
 	<select id="getNSearchCount" parameterType="String" resultType="int">
-		select ifnull(count(*),0) from notice where notice_subject like #{search}
+		select ifnull(count(*),0) from notice where notice_subject like '%${value}%'
 	</select>
 	
 	<select id="getNSearchList" parameterType="hashmap" resultType="net.board.db.BoardDTO">

@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
 
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
+
 public class BoardNoticeSearch implements Action{
 
 	@Override
@@ -60,6 +63,7 @@ public class BoardNoticeSearch implements Action{
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
+		request.setAttribute("search", search);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./board/boardNSearch.jsp");

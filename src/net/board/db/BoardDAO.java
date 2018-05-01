@@ -130,9 +130,10 @@ public class BoardDAO {
 	//Notice 게시판 검색결과 보여주기
 	public List<BoardDTO> getNSearchList(int startRow, int pageSize, String search){
 		HashMap map = new HashMap();
+		search = search.replaceAll(search, "%"+search+"%");
+		map.put("search", search);
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
-		map.put("search", search);
 		List<BoardDTO> searchList = sqlsession.selectList("getNSearchList", map);
 		return searchList;
 	}
