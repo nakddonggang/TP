@@ -24,7 +24,7 @@
 						<ul class="DIV_SUB_MNU">
 							<li><a href="./BoardNoticeList.no">공지사항</a></li>
 							<li><a href="./BoardCurList.cu">큐레이션</a></li>
-							<li><a href="./BoardQnaList.bo">QnA</a></li>
+							<li><a href="./BoardQnaList.qn">QnA</a></li>
 							<li><a href="./BoardFaqList.fa">자주하는 질문</a></li>
 						</ul></li>
 						

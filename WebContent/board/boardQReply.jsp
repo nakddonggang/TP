@@ -11,6 +11,7 @@
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
@@ -38,15 +39,14 @@ String pageNum = request.getParameter("pageNum");
 		
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
 					<div class=""></div>
 					
 					<h1>답변하기</h1>
-					<form action="./BoardQnaReplyAction.qn"  method="post"  name="fr" >
-						<input type="hidden" name="pageNum" value="<%=pageNum %>">
-						<input type="hidden" name="qna_ref" value="<%=bDTO.getQna_ref() %>">
+					<form action="./BoardReplyAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" >
 						<table class="" >
 							<tr>
 								<th>SUBJECT</th>
@@ -54,7 +54,7 @@ String pageNum = request.getParameter("pageNum");
 							</tr>
 							<tr>
 								<th>CONTENT</th>
-								<td><input type="text" name="qna_content" value="<%=bDTO.getQna_content() %>" readonly></td>
+								<td><textarea cols="20" rows="10" name="qna_content" readonly="readonly" style="width: 580px; resize: none;"><%=bDTO.getQna_content() %></textarea></td>
 							</tr>
 							<tr>
 								<th>NAME</th>
