@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
 
+import util.actionForward.Action;
+import util.actionForward.ActionForward;
+
 public class BoardCurSearch implements Action{
 
 	@Override
@@ -15,6 +18,7 @@ public class BoardCurSearch implements Action{
 		System.out.println("BoardCurSearch execute()");
 		request.setCharacterEncoding("utf-8");
 		String search = request.getParameter("search");
+		search.replaceAll(search, "%"+search+"%");
 		
 		BoardDAO bDAO = new BoardDAO();
 		int count = bDAO.getCSearchCount(search);

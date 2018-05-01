@@ -49,13 +49,13 @@
 							<tr>
 								<td>제목</td>
 								<td>
-									<input type="text" name="cur_type">
+									<input type="text" name="cur_subject">
 								</td>
 							</tr>
 							<tr>
 								<td>타입</td>
 								<td>
-									<input type="text" name="cur_subject">
+									<input type="text" name="cur_type">
 								</td>
 							</tr>
 							<tr>
