@@ -20,7 +20,7 @@ public class AdminBookRes implements Action{
 		
 		// AdminDAO 객체생성 및 total 책의 개수 가져오기
 		AdminDAO adao = new AdminDAO();
-		int count = adao.getBookCount();
+		int count = adao.getRBookCount();
 		
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 5;		
@@ -48,6 +48,8 @@ public class AdminBookRes implements Action{
 		List<BookDTO> rbookList = null;
 		if (count!=0) {
 			rbookList=adao.getRBookList(startRow, pageSize);
+		} else {
+			System.out.println("예약관리 목록이 없습니다");
 		}
 
 		// 게시판 전체 페이지 수

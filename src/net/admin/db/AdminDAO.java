@@ -46,11 +46,16 @@ public class AdminDAO {
 	}
 	
 	// 책 정보 눌렀을 때 상세정보 보여주기
-	public List<BookDTO> getBookInfo(int book_number){
-		HashMap map = new HashMap();
-		map.put("book_number", book_number);
-		List<BookDTO> bookList = sqlsession.selectList("getBookInfo", map);
+	public BookDTO getBookInfo(int book_number){
+		BookDTO bookList = sqlsession.selectOne("getBookInfo", book_number);
 		return bookList;
+	}
+	
+	// 손망실 책 정보 존재하는지 select 구문
+	public int getDBookInfo(){
+		int result;
+		result = sqlsession.selectOne("getDBookInfo");
+		return result;
 	}
 	
 	// 손망실 책 insert 해주기
@@ -74,6 +79,13 @@ public class AdminDAO {
 		map.put("pageSize", pageSize);
 		List<BookDTO> dbookList = sqlsession.selectList("getDBookList", map);
 		return dbookList;
+	}
+	
+	// 예약관리 책 전체 리스트 개수 구하기
+	public int getRBookCount(){
+		int count;
+		count = sqlsession.selectOne("getRBookCount");
+		return count;
 	}
 	
 	// 예약관리 리스트
