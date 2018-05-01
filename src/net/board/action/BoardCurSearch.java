@@ -18,7 +18,6 @@ public class BoardCurSearch implements Action{
 		System.out.println("BoardCurSearch execute()");
 		request.setCharacterEncoding("utf-8");
 		String search = request.getParameter("search");
-		search.replaceAll(search, "%"+search+"%");
 		
 		BoardDAO bDAO = new BoardDAO();
 		int count = bDAO.getCSearchCount(search);
@@ -64,6 +63,7 @@ public class BoardCurSearch implements Action{
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
+		request.setAttribute("search", search);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./board/boardCuSearch.jsp");

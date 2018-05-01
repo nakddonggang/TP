@@ -12,12 +12,12 @@
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
-<body>
 <body>
 	<%
 		request.setCharacterEncoding("UTF-8");
@@ -48,6 +48,7 @@
 		
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
@@ -57,15 +58,21 @@
 					<table border="1">
 						<tr><td>번호</td><td>작성자</td><td>제목</td><td>내용</td><td>작성일</td><td>조회수</td><td>답변유무</td><td></td></tr>
 						<%
+						if(qnaList==null){
+							%><tr><td colspan="8">게시물이 없습니다.</td></tr><%
+						}else{
 							for(int i=0; i<qnaList.size(); i++){
 								BoardDTO bDTO = qnaList.get(i);
+								String check = bDTO.getQna_check();
+								if(check.equals("1")){check="답변완료";}
+								else {check="답변대기";}
 								%>
 								<tr><td><%=bDTO.getQna_num() %></td><td><%=id %></td>
 								<td><%=bDTO.getQna_subject() %></td><td><%=bDTO.getQna_content() %></td>
 								<td><%=bDTO.getQna_date() %></td><td><%=bDTO.getQna_readcount() %></td>
-								<td><%=bDTO.getQna_check() %></td>
+								<td><%=check %></td>
 								<td><input type="button" value="글수정" onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'"> 
-									<input type="button" value="글삭제" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>'">
+									<input type="button" value="글삭제" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">
 									<input type="button" value="답변하기" onclick="location.href='./BoardReply.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'"></td></tr>
 								<tr><td><%=bDTO.getRep_name() %></td><td colspan="3"><%=bDTO.getRep_email() %></td><td colspan="3"><%=bDTO.getRep_content() %></td>
 								<td><input type="button" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>&qna_ref=<%=bDTO.getQna_ref() %>'"> 
@@ -73,6 +80,7 @@
 								</td></tr>
 						<%	
 							}
+						}
 						%>
 					</table>
 

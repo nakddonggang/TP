@@ -8,6 +8,7 @@ import java.util.Vector;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import net.member.db.MemberDTO;
 import util.myBatisSetting.sqlMapConfig;
 
 public class BoardDAO {
@@ -18,7 +19,7 @@ public class BoardDAO {
 		sqlsession = sessionf.openSession(true);
 	}
 	
-
+    //Faq 게시판 글쓰기
 	public void insertFaq(BoardDTO bDTO) {
 		sqlsession.insert("insertFaq",bDTO);
 	}
@@ -29,12 +30,48 @@ public class BoardDAO {
 		return result;
 	}
 	
+
+	//Faq 게시판 리스트
+		public List<BoardDTO> getFaqList(int startRow, int pageSize){
+			HashMap map = new HashMap();
+			map.put("startRow", startRow-1);
+			map.put("pageSize", pageSize);
+			List<BoardDTO> faqList = sqlsession.selectList("getFaqList",map);
+			return faqList;
+		}
+		
+		//Faq 게시판 글 개수 구하기
+		public int getFaqCount(){
+			int count;
+			count = sqlsession.selectOne("getFaqCount");
+			return count;
+		}
+		
+		//Notice 게시판 해당 번호 글 가져오기
+		public BoardDTO getFaq(int faq_num){
+			BoardDTO bDTO = sqlsession.selectOne("getFaq", faq_num);
+			return bDTO;
+		}
+		
+		//Notice 게시판 글 수정
+		public void updateFaq(BoardDTO bDTO){
+			sqlsession.update("updateFaq", bDTO);
+		}
+		
+		//Notice 게시판 글 삭제
+		public void deleteFaq(int faq_num){
+			sqlsession.delete("deleteFaq", faq_num);
+		}
+	
+
+
 	/* **************큐레이션(Curation)************** */
 	//Curation 게시판 Max Number 구하기
 	public int selectCMaxNum() {
 		int maxNum;
 		maxNum = sqlsession.selectOne("selectCMaxNum");
 		return maxNum;
+
 	}
 	//Curation 게시판 글쓰기
 	public void insertCur(BoardDTO bDTO) {
@@ -76,6 +113,7 @@ public class BoardDAO {
 	//Curation 게시판 검색결과 보여주기
 	public List<BoardDTO> getCSearchList(int startRow, int pageSize, String search){
 		HashMap map = new HashMap();
+		search = search.replaceAll(search, "%"+search+"%");
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		map.put("search", search);
@@ -146,10 +184,16 @@ public class BoardDAO {
 		return maxNum;
 	}
 	//Q&A 게시판 글쓰기
-	public void insertQna(BoardDTO bDTO, String id) {
+	public void insertQna(BoardDTO bDTO, String member_id) {
 		HashMap map = new HashMap();
-		map.put("bDTO", bDTO);
-		map.put("member_id", id);	
+		map.put("qna_num", bDTO.getQna_num());
+		map.put("member_id", member_id);	
+		map.put("qna_subject",bDTO.getQna_subject());
+		map.put("qna_content", bDTO.getQna_content());
+		map.put("qna_date", bDTO.getQna_date());
+		map.put("qna_readcount", bDTO.getQna_readcount());
+		map.put("qna_ref", bDTO.getQna_ref());
+		map.put("qna_check", bDTO.getQna_check());
 		sqlsession.insert("insertQna", map);
 	}
 	//Q&A 게시판 글 수정
@@ -167,11 +211,11 @@ public class BoardDAO {
 		return count;
 	}
 	//Q&A 게시판 리스트
-	public List<BoardDTO> getQnaList(int startRow, int pageSize){
+	public List<BoardDTO> getQnaReplyList(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
-		List<BoardDTO> qnaList = sqlsession.selectList("getQnaList", map);
+		List<BoardDTO> qnaList = sqlsession.selectList("getQnaReplyList", map);
 		return qnaList;
 	}
 	//Q&A 게시판 번호에 해당하는 글 가져오기
@@ -188,6 +232,7 @@ public class BoardDAO {
 	//Q&A 게시판 검색결과 보여주기
 	public List<BoardDTO> getQSearchList(int startRow, int pageSize, String search){
 		HashMap map = new HashMap();
+		search = search.replaceAll(search, "%"+search+"%");
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		map.put("search", search);
@@ -197,24 +242,24 @@ public class BoardDAO {
 	
 	/* **************Q&A 답변글************** */
 	//Q&A 답변글쓰기
-	public void insertReply(BoardDTO bDTO) {	
-		sqlsession.insert("insertReply", bDTO);
+	public void insertReply(int qna_ref) {
+		sqlsession.insert("insertReply", qna_ref);
 	}
-	//Q&A 답변글 달린 것 체크 수정 : "0" => "1"\
+	//Q&A 답변글 달린 것 체크 수정 : "0" => "1"
 	public void updateCheck(int qna_ref){
 		sqlsession.update("updateCheck", qna_ref);
+	}
+	//Q&A 답변글 삭제했을 경우 체크 수정 : "1" => "0"
+	public void deleteCheck(int qna_ref){
+		sqlsession.update("deleteCheck", qna_ref);
 	}
 	//Q&A 답변글 수정
 	public void updateReply(BoardDTO bDTO){
 		sqlsession.update("updateReply", bDTO);
 	}
-	//Q&A 답변글 삭제
-	public void deleteReply(int qna_ref){
-		sqlsession.delete("deleteReply", qna_ref);
-	}
 	//Q&A 게시판 글 번호에 해당하는 답변글 가져오기
-	public BoardDTO getReply(int num){
-		BoardDTO bDTO = sqlsession.selectOne("getReply", num);
+	public BoardDTO getReply(int qna_ref){
+		BoardDTO bDTO = sqlsession.selectOne("getReply", qna_ref);
 		return bDTO;
 	}
 }

@@ -46,6 +46,7 @@
 				
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
@@ -55,16 +56,20 @@
 					<table border="1">
 						<tr><td>번호</td><td>작성자</td><td>제목</td><td>내용</td><td>파일</td><td>조회수</td><td>타입</td><td></td></tr>
 						<%
-						for(int i=0; i<curationList.size(); i++){
-							BoardDTO bDTO = curationList.get(i);
-						%>
-							<tr><td><%=bDTO.getCur_num() %></td><td><%=bDTO.getCur_name() %></td>
-								<td><%=bDTO.getCur_subject() %></td><td><%=bDTO.getCur_content() %></td>
-								<td><img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100"></td><td><%=bDTO.getCur_readcount() %></td>
-								<td><%=bDTO.getCur_type() %></td>
-								<td><input type="button" value="글수정" onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"> 
-									<input type="button" value="글삭제" onclick="location.href='./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"></td></tr>
-						<%	
+						if(curationList==null){
+							%><tr><td colspan="8">게시물이 없습니다.</td></tr><%
+						}else{
+							for(int i=0; i<curationList.size(); i++){
+								BoardDTO bDTO = curationList.get(i);
+							%>
+								<tr><td><%=bDTO.getCur_num() %></td><td><%=bDTO.getCur_name() %></td>
+									<td><%=bDTO.getCur_subject() %></td><td><%=bDTO.getCur_content() %></td>
+									<td><img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100"></td><td><%=bDTO.getCur_readcount() %></td>
+									<td><%=bDTO.getCur_type() %></td>
+									<td><input type="button" value="글수정" onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"> 
+										<input type="button" value="글삭제" onclick="location.href='./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"></td></tr>
+							<%	
+							}
 						}
 						%>
 					</table>

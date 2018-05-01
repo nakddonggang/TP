@@ -11,6 +11,7 @@
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
@@ -20,6 +21,7 @@
 <%
 BoardDTO bDTO = (BoardDTO)request.getAttribute("bDTO");
 String pageNum = request.getParameter("pageNum");
+String id = (String)session.getAttribute("id");
 %>
 <!-- board/boardQUpdate.jsp Q&A 게시판 글 수정 페이지 -->
 	<div class="wrapper">
@@ -38,6 +40,7 @@ String pageNum = request.getParameter("pageNum");
 
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>

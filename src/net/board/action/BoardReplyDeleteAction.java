@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import net.board.db.BoardDAO;
-
+import net.board.db.BoardDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
@@ -19,7 +19,10 @@ public class BoardReplyDeleteAction implements Action{
 		String pageNum = request.getParameter("pageNum");
 		
 		BoardDAO bDAO = new BoardDAO();
-		bDAO.deleteReply(qna_ref);
+		BoardDTO bDTO = new BoardDTO();
+		bDTO.setQna_ref(qna_ref);
+		bDAO.updateReply(bDTO);
+		bDAO.deleteCheck(qna_ref);
 
 		ActionForward forward = new ActionForward();
 		forward.setPath("./BoardQnaList.qn?pageNum"+pageNum);

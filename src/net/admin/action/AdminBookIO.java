@@ -11,7 +11,7 @@ import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class AdminIndex implements Action{
+public class AdminBookIO implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -73,10 +73,9 @@ public class AdminIndex implements Action{
 		request.setAttribute("endPage", endPage);		
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./admin/admBookIndex.jsp");
+		forward.setPath("./admin/admBookIO.jsp");
 		forward.setRedirect(false);
 		return forward;
-		
 	}
 	
 }

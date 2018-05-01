@@ -60,11 +60,6 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}						
-		} else if (command.equals("/AdminBookRes.am")){
-			action = new AdminBookRes();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}
 		} else if (command.equals("/AdminMemberIndex.am")){
 			action = new AdminMemberIndex();
 			try {
@@ -72,11 +67,6 @@ public class AdminFrontController extends HttpServlet{
 			} catch (Exception e) {e.printStackTrace();}						
 		} else if (command.equals("/AdminMemberInfo.am")){
 			action = new AdminMemberInfo();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}						
-		} else if (command.equals("/AdminMemberRank.am")){
-			action = new AdminMemberRank();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}						

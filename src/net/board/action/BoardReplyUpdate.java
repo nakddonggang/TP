@@ -22,10 +22,10 @@ public class BoardReplyUpdate implements Action{
 		
 		BoardDAO bDAO = new BoardDAO();
 		BoardDTO bDTO = bDAO.getQna(qna_num);
-
-		bDTO = bDAO.getReply(qna_ref);
+		BoardDTO bDTO1 = bDAO.getReply(qna_ref);
 		
 		request.setAttribute("bDTO", bDTO);
+		request.setAttribute("bDTO1", bDTO1);
 		request.setAttribute("pageNum", pageNum);
 		
 		ActionForward forward = new ActionForward();

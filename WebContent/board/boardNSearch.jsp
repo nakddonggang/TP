@@ -47,6 +47,7 @@
 				
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
@@ -56,6 +57,9 @@
 					<table border="1">
 						<tr><td>번호</td><td>종류</td><td>제목</td><td>내용</td><td>파일</td><td>날짜</td><td>조회수</td><td></td></tr>
 						<%
+						if(searchList==null){
+							%><tr><td colspan="8">게시물이 없습니다.</td></tr><%
+						}else{
 							for(int i=0; i<searchList.size(); i++){
 								BoardDTO bDTO = searchList.get(i);
 								String word = bDTO.getNotice_subject();
@@ -69,6 +73,7 @@
 										<input type="button" value="글삭제" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"></td></tr>
 						<%	
 							}
+						}
 						%>
 					</table>
 					<input type="button" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">

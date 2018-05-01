@@ -1,10 +1,11 @@
 header {position:fixed; z-index:1; top:0; bottom:0; width:180px; height:100vh; min-height:960px; background:#151515;}
-header .logo {display:inline-block; position:relative; z-index:100; margin:61px 0 0 31px;}
+header .logo {display:inline-block; position:relative; z-index:100;	}
 header .logo a {display:block;}
+header .logo a img {width: 100%;}
 body {overflow-y:scroll !important;}
 
 /* 메뉴 설정 */
-nav {margin-top:180px;}
+nav {margin-top:100px;}
 nav > div > ul > li {display:inline-block; width:100%; line-height:20px; letter-spacing:-0.1em;}
 nav > div > ul > li > a {display:block; margin:10px 30px; font-size:1.21em; cursor:pointer; color:#fff !important;}
 nav > div > ul > li > ul {display:none; width:100%; padding:14px 0; background:#f3f3f3;}
@@ -33,6 +34,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .submenu {height:100% !important; float:left; width:40%; }
 .mainmenu {float:left; width:60% !important;}
 
+
 .SECTION_FULL_PAGE01 .slide_con {position:relative; width:100%;}
 .SECTION_FULL_PAGE01 .slide_con .box_txt {position:absolute; top:50%; left:50%; margin-left:-170px; margin-top:-65px; width:340px; height:130px; text-align:center; letter-spacing:-0.08em; word-spacing:-3px;}
 .SECTION_FULL_PAGE01 .slide_con .box_txt p {font-family:"Noto_M"; font-size:1.5em; color:#fff;}
@@ -41,14 +43,14 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm02 {width:100%; height:100vh; background:url("http://img.designsoft.co.kr/WisdomForest/Main/main_slider_02.jpg") center; background-repeat:no-repeat; background-size:cover;}
 .SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm03 {width:100%; height:100vh; background:url("http://img.designsoft.co.kr/WisdomForest/Main/main_slider_03.jpg") center; background-repeat:no-repeat; background-size:cover;}
 
-.ui-dialog-titlebar {    display:none;}
+.ui-dialog-titlebar {	display:none;	}
+.top_bar {  float: left; margin: 0; padding: 0;  list-style: none; width: 100%;	 height: 40px;	}
+.top_bar  ul > li {  display: inline-block;	float:right; margin: 10px 20px 8px 20px; }
 
 /* 반응형 디자인 설정 */
 @media (max-width:1023px){
 	header {width:128px;}
-	header .logo {margin:20px 0 0 33px;}
-	header .logo a {width:62px;}
-	header .logo a img {width:100%;}
+	header .logo a {width:100%;}
 	nav {font-size:1em;}
 	nav > div > ul > li {margin:0;}
 	nav > div > ul > li > a {margin:10px 20px; letter-spacing:-0.08em; font-size:1em;}
@@ -58,6 +60,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 	
 	.footer ul li {padding:10px 20px; word-wrap:break-word;}
 	
+	.mainmenu {width:100% !important;}
 	
 	.SECTION_FULL_PAGE01 .fp-slides {height:240px !important;}
 	.SECTION_FULL_PAGE01 .fp-tableCell {height:720px !important;}
@@ -86,10 +89,10 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 @media (max-width:767px){
 	header {z-index:10; width:100%; height:67px; min-height:67px; background:#262626; border-bottom:1px solid #1f1f1f;}
 	header .logo {width:100%; margin-left:0;}
-	header .logo a {margin:0 auto;}
+	header .logo a {width:62px; margin:0 auto;}
 	nav {position:relative; top:30px !important; margin-top:0; border-top:1px solid #484848;}
 	nav > div > ul {margin:7px 0;}
-	nav > div > ul > li {margin:0;}
+	nav > div > ul > li {margin:0; text-align:center;}
 	nav > div > ul > li > a {margin:0; padding:13px 45px; font-size:1.14em;}
 	nav > div > ul > li > ul {background:#686868;}
 	nav > div > ul > li > ul > li {font-size:0.93em; color:#eee;}
@@ -109,6 +112,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 	.mb_nav_clo {position:absolute; z-index:110; top:24px; right:20px;}
 	
 	.submenu {min-width:100%;}
+	.mainmenu {width:100% !important;}
 	.fp-slidesNav {left:50% !important;}
 	.slide_con .box_txt p {font-size:1.14em;}
 	.slide_con .box_txt span {font-size:2.57em;}

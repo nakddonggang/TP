@@ -11,6 +11,7 @@
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
@@ -19,6 +20,7 @@
 <body>
 <%
 BoardDTO bDTO = (BoardDTO)request.getAttribute("bDTO");
+BoardDTO bDTO1 = (BoardDTO)request.getAttribute("bDTO1");
 String pageNum = request.getParameter("pageNum");
 %>
 <!-- board/boardQRepUpdate.jsp 답변글 수정 페이지 -->
@@ -38,6 +40,7 @@ String pageNum = request.getParameter("pageNum");
 		
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
@@ -54,19 +57,19 @@ String pageNum = request.getParameter("pageNum");
 						</tr>
 						<tr>
 							<th>CONTENT</th>
-							<td><input type="text" name="qna_content" value="<%=bDTO.getQna_content() %>" readonly></td>
+							<td><textarea cols="20" rows="10" name="qna_content" readonly="readonly" style="width: 580px; resize: none;"><%=bDTO.getQna_content() %></textarea></td>
 						</tr>
 						<tr>
 							<th>NAME</th>
-							<td><input type="text" name="rep_name" value="<%=bDTO.getRep_name() %>"></td>
+							<td><input type="text" name="rep_name" value="<%=bDTO1.getRep_name() %>"></td>
 						</tr>
 						<tr>
 							<th>EMAIL</th>
-							<td><input type="text" name="rep_email" value="<%=bDTO.getRep_email() %>"></td>
+							<td><input type="text" name="rep_email" value="<%=bDTO1.getRep_email() %>"></td>
 						</tr>
 						<tr>
 							<th>CONTENT</th>
-							<td><textarea cols="20" rows="10" name="rep_content" style="width: 580px; resize: none;"><%=bDTO.getRep_content() %></textarea></td>
+							<td><textarea cols="20" rows="10" name="rep_content" style="width: 580px; resize: none;"><%=bDTO1.getRep_content() %></textarea></td>
 						</tr>
 						<tr>
 							<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
