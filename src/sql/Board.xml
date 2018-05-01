@@ -20,6 +20,19 @@
 		select * from faq order by faq_num desc limit #{startRow},#{pageSize}
 	</select>
 	
+	<select id="getFaq" parameterType="int" resultType="net.board.db.BoardDTO">
+		select * from faq where faq_num=#{faq_num}
+	</select>
+	
+	<update id="updateFaq" parameterType="net.board.db.BoardDTO">
+		update faq set faq_type=#{faq_type}, faq_subject=#{faq_subject}, faq_content=#{faq_content}, faq_file=#{faq_file} 
+		where faq_num=#{faq_num}
+	</update>
+	
+	<delete id="deleteFaq" parameterType="int">
+		delete from faq where faq_num=#{faq_num}
+	</delete>
+	
 
 	<insert id="insertCur" parameterType="net.board.db.BoardDTO">
 		insert into curation(
