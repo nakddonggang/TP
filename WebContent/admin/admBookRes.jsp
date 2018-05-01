@@ -72,6 +72,8 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 							} %>
 					</table><br>
 					<%} %>	
+					
+					<input type="button" value="도서관리페이지로 이동" onclick="location.href='./AdminIndex.am'">
 					<% // count = 전체 글의 개수
 						if (count != 0) {
 							// 이전페이지 // if (startPage와 pageBlock을 비교)
