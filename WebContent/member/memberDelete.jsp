@@ -33,33 +33,22 @@
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-				
+				<div class="content">
 				<%
 					String member_id = (String)session.getAttribute("member_id");
 				%>
-					<h1>회원탈퇴</h1>
-					<form action="" method="" name="">
-						<table class="">
-							<tr>
-								<th>아이디 : </th>
-								<td><input type="text" name="id" placeholder="아이디를 입력하세요"
-									value="<%=member_id %>" readonly></td>
-							</tr>
-							<tr>
-								<th>비밀번호 : </th>
-								<td><input type="password" name="pass"
-									placeholder="비밀번호를 입력하세요"></td>
-							</tr>
-							<tr>
-								<th colspan="2"><input type="submit" value="회원탈퇴"> <input
-									type="reset" value="취소"></th>
-							</tr>
-						</table>
+					
+					<form action="MemberDeleteAction.me" method="post" name="">
+						<fieldset class="memberform">
+						<legend>회원탈퇴</legend>
+							<label>아이디 : </label><input type="text" name="id" placeholder="아이디를 입력하세요" value="<%=member_id %>" readonly><br>
+							<label>비밀번호 : </label><input type="password" name="pass"	placeholder="비밀번호를 입력하세요">
+						</fieldset>
+						<input type="submit" value="회원탈퇴"> <input	type="reset" value="취소">
 					</form>
-	
+				</div>
 				<!-- //메인 페이지-->
 				</article>
-				
 			</section>
 		</div>
 		<!-- //본문 컨테이너 -->

@@ -42,53 +42,21 @@
 						}
 					%>
 					<div class="content">
-						<h1>개인정보관리</h1>
-						<table class="">
-							<tr>
-								<th>ID</th>
-								<td><input type="text" name="id" value="<%=member_id %>" readonly></td>
-							</tr>
-							<tr>
-								<th>Name</th>
-								<td><input type="text" name="name" value="<%=mDTO.getMember_name() %>" readonly>
-								</td>
-							</tr>
-							<tr>
-								<th>Post</th>
-								<td><input type="text" name="post" value="<%=mDTO.getMember_post() %>"  readonly>
-								</td>
-							</tr>
-							<tr>
-								<th>Address</th>
-								<td><input type="text" name="address" value="<%=mDTO.getMember_address1() %>" readonly>
-									<input type="text" name="address2" value="<%=mDTO.getMember_address2() %>" readonly></td>
-							</tr>
-							<tr>
-								<th>Phone</th>
-								<td><input type="text" name="phone" value="<%=mDTO.getMember_phone() %>" readonly>
-								</td>
-							</tr>
-							<tr>
-								<th>E-mail</th>
-								<td><input type="text" name="email" value="<%=mDTO.getMember_email() %>" readonly>
-								</td>
-							</tr>
-							<tr>
-								<th>가입날짜</th>
-								<td><input type="text" name="date" value="<%=mDTO.getMember_date() %>" readonly>
-								</td>
-							</tr>
-							<tr>
-								<th colspan="2">
-								<input type="button" value="회원수정" onclick = "location.href = './MemberUpdate.me'">
-								<input type="button" value="회원탈퇴" onclick = "location.href = './MemberDelete.me'">
-							</th>
-							</tr>
-						</table>
-						</div>
+						<fieldset class="memberform">
+							<legend>개인정보관리</legend>
+							<label>ID</label><input type="text" name="id" value="<%=member_id %>" readonly><br>
+							<label>Name</label><input type="text" name="name" value="<%=mDTO.getMember_name() %>" readonly><br>
+							<label>Post</label><input type="text" name="post" value="<%=mDTO.getMember_post() %>"  readonly><br>
+							<label>Address</label><input type="text" name="address" value="<%=mDTO.getMember_address1() %>" readonly><input type="text" name="address2" value="<%=mDTO.getMember_address2() %>" readonly><br>
+							<label>Phone</label><input type="text" name="phone" value="<%=mDTO.getMember_phone() %>" readonly><br>
+							<label>E-mail</label><input type="text" name="email" value="<%=mDTO.getMember_email() %>" readonly><br>
+							<label>가입날짜</label><input type="text" name="date" value="<%=mDTO.getMember_date() %>" readonly>
+						</fieldset>
+						<input type="button" value="회원수정" onclick = "location.href = './MemberUpdate.me'">
+						<input type="button" value="회원탈퇴" onclick = "location.href = './MemberDelete.me'">
+					</div>
 					<!-- //메인 페이지-->
 				</article>
-				
 			</section>
 		</div>
 		<!-- //본문 컨테이너 -->

@@ -31,52 +31,33 @@
 				<!-- 서브메뉴 -->
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
-		<%
-			String member_id = (String)session.getAttribute("member_id");
-			MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
-			if(member_id == null) {
-				response.sendRedirect("./MemberLogin.me");
-			}
-		%>
-		<article class="mainmenu section SECTION">
-		<jsp:include page="../include/topbar.jsp" />
+				<%
+					String member_id = (String)session.getAttribute("member_id");
+					MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
+					if(member_id == null) {
+						response.sendRedirect("./MemberLogin.me");
+					}
+				%>
+				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-			<h1>회원정보수정</h1>
-			<form action="MemberUpdateAction.me" method="post" name="">
-				<table class="">
-					<tr>
-						<th>ID</th>
-						<td><input type="text" name="id" value="<%=member_id %>" readonly></td>
-					</tr>
-					<tr>
-						<th>Name</th>
-						<td><input type="text" name="name" value="<%=mDTO.getMember_name()%>"></td>
-					</tr>
-					<tr>
-						<th>Post</th>
-						<td><input type="text" name="post" value="<%=mDTO.getMember_post()%>"></td>
-					</tr>
-					<tr>
-						<th>Address</th>
-						<td><input type="text" name="address" value="<%=mDTO.getMember_address1()%>"> <input
-							type="text" name="address2" value="<%=mDTO.getMember_address2()%>"></td>
-					</tr>
-					<tr>
-						<th>Phone</th>
-						<td><input type="text" name="phone" value="<%=mDTO.getMember_phone()%>"></td>
-					</tr>
-					<tr>
-						<th>E-mail</th>
-						<td><input type="text" name="email" value="<%=mDTO.getMember_email()%>"></td>
-					</tr>
-					<tr>
-						<th colspan="2"><input type="submit" value="회원수정"> <input
-							type="reset" value="취소"></th>
-					</tr>
-				</table>
-			</form>
-
-			<!-- //메인 페이지-->
+					<div class="content">
+						<form action="MemberUpdateAction.me" method="post" name="">
+							<fieldset class="memberform">
+								<legend>회원정보수정</legend>
+								<label>User ID</label><input type="text" name="member_id" value="<%=member_id %>" readonly><br>
+<!-- 								<label>Password</label> <input type="password" name="pass"><br> -->
+<!-- 								<label>RetypePassword</label><input type="password" name="pass2"><br> -->
+								<label>Name</label><input type="text" name="member_name" value="<%=mDTO.getMember_name()%>"><br>
+								<label>Post</label><input type="text" name="member_post" value="<%=mDTO.getMember_post()%>"><br>
+								<label>Address</label><input type="text" name="member_address1" value="<%=mDTO.getMember_address1()%>"><input type="text" name="member_address2" value="<%=mDTO.getMember_address2()%>"><br>
+								<label>Phone</label> <input type="text" name="member_phone" value="<%=mDTO.getMember_phone()%>"><br> 
+								<label>E-Mail</label><input type="text" name="member_email" value="<%=mDTO.getMember_email()%>">
+							</fieldset>
+							<input type="submit" value="회원수정"><input type="reset" value="취소">
+						</form>
+					</div>
+				<!-- //메인 페이지-->
 				</article>
 				
 			</section>

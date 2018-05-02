@@ -31,12 +31,15 @@ public class MemberUpdateAction implements Action {
 		
 		MemberDAO mDAO = new MemberDAO();
 		MemberDTO mDTO = new MemberDTO();
+				
+		mDTO.setMember_id(member_id);
+		mDTO.setMember_name(request.getParameter("member_name"));
+		mDTO.setMember_post(request.getParameter("member_post"));
+		mDTO.setMember_address1(request.getParameter("member_address1"));
+		mDTO.setMember_address2(request.getParameter("member_address2"));
+		mDTO.setMember_phone(request.getParameter("member_phone"));
+		mDTO.setMember_email(request.getParameter("member_email"));
 		
-		mDTO.setMember_post(request.getParameter("post"));
-		mDTO.setMember_address1(request.getParameter("address1"));
-		mDTO.setMember_address2(request.getParameter("address2"));
-		mDTO.setMember_phone(request.getParameter("phone"));
-		mDTO.setMember_email(request.getParameter("email"));
 		mDAO.UpdateMember(mDTO);
 		
 		out.print("<script>");

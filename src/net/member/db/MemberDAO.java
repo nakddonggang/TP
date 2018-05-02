@@ -61,7 +61,8 @@ public class MemberDAO {
 	
 	//	맴버 수정
 	public void UpdateMember(MemberDTO mDTO) {
-		sqlsession.update("updateMember" , mDTO);
+		int result = sqlsession.update("updateMember" , mDTO);
+		System.out.println(result);
 	}
 	
 	
