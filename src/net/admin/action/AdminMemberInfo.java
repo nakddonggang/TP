@@ -31,8 +31,11 @@ public class AdminMemberInfo implements Action{
 		
 		AdminDAO adao = new AdminDAO();
 		MemberDTO mDTO = adao.getAdminMember(member_id);
-		
+		String bl_check = mDTO.getBl_check();
+		String gm_check = mDTO.getGm_check();
 		request.setAttribute("mDTO", mDTO);
+		request.setAttribute("bl_check", bl_check);
+		request.setAttribute("gm_check", gm_check);
 		
 		forward.setPath("./admin/admMemInfo.jsp");
 		forward.setRedirect(false);
