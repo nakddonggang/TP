@@ -50,7 +50,7 @@
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 					
 					<h1>Notice [전체글개수 : <%=count %>]</h1>
 					<table border="1">
@@ -75,29 +75,21 @@
 					
 					<input type="button" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
 
-					<form action="./BoardNoticeSearch.no?pageNum=<%=pageNum %>" method="post">
+					<form action="./BoardNoticeSearch.no" method="post">
 						<input type="text" name="search"> <input type="submit" value="검색">
 					</form>
 
 					<%
-					if(count != 0){
-		
-						//이전
-						if(startPage > pageBlock){
-						%><a href="./BoardNoticeList.no?pageNum=<%=startPage-1 %>">[이전]</a>&nbsp;<%
-						}
-	
-						//1~10	11~20	21~30
-						for(int i=startPage; i<=endPage; i++){
-						%>&nbsp;<a href="./BoardNoticeList.no?pageNum=<%=i %>"><%=i %></a>&nbsp;<%
-						}
-	
-						//다음
-						if(endPage < pageCount){
-						%>&nbsp;<a href="./BoardNoticeList.no?pageNum=<%=startPage+pageBlock %>">[다음]</a><%
-						}
+					if(pageCount < endPage)	endPage = pageCount;
+					
+					if(startPage > pageBlock)	{ %><a href="BoardNoticeList.no?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
+					for (int p = startPage; p <= endPage; p++) {	
+						if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+						else {%> &nbsp;<a href="BoardNoticeList.no?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
 					}
+					if(endPage < pageCount){	%><a href="BoardNoticeList.no?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 					%>
+					</div>
 
 				</article>
 				<!-- //메인 페이지-->

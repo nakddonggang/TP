@@ -37,7 +37,7 @@
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 					
 					<h1>Notice 글쓰기</h1>
 					<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" enctype="multipart/form-data">
@@ -63,6 +63,7 @@
 							</tr>
 						</table>
 					</form>
+					</div>
 
 				</article>
 				<!-- //메인 페이지-->

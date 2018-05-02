@@ -8,6 +8,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
+
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
@@ -17,7 +18,7 @@ public class BoardNoticeUpdateAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardNoticeUpdateAction execute()");
 		request.setCharacterEncoding("utf-8");
-		int num = Integer.parseInt(request.getParameter("num"));
+		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
 		String pageNum = request.getParameter("pageNum");
 		
 		String realPath = request.getRealPath("/upload");
@@ -27,7 +28,7 @@ public class BoardNoticeUpdateAction implements Action{
 		MultipartRequest multi = new MultipartRequest(request,realPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
 		
 		BoardDTO bDTO = new BoardDTO();
-		bDTO.setNotice_num(num);
+		bDTO.setNotice_num(notice_num);
 		bDTO.setNotice_type(multi.getParameter("notice_type"));
 		bDTO.setNotice_subject(multi.getParameter("notice_subject"));
 		bDTO.setNotice_content(multi.getParameter("notice_content"));

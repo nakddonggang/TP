@@ -24,7 +24,11 @@ public class BoardNoticeWriteAction implements Action {
 		BoardDTO bDTO = new BoardDTO();
 		BoardDAO bDAO = new BoardDAO();
 		
-		int notice_num = bDAO.selectNMaxNum()+1;				// 게시판 max 번호 구한 뒤 +1
+		int notice_num;
+		String table = "notice";
+		String column = "notice_num";
+		
+		notice_num = bDAO.selectNMaxNum()+1;				// 게시판 max 번호 구한 뒤 +1
 		
 		String realPath = request.getRealPath("/upload");
 		System.out.println("upload폴더 물리적경로 : "+realPath);
