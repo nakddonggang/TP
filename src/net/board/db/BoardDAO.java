@@ -45,18 +45,18 @@ public class BoardDAO {
        return count;
     }
     
-    //Notice 게시판 해당 번호 글 가져오기
+    //Faq 게시판 해당 번호 글 가져오기
     public BoardDTO getFaq(int faq_num){
        BoardDTO bDTO = sqlsession.selectOne("getFaq", faq_num);
        return bDTO;
     }
     
-    //Notice 게시판 글 수정
+    //Faq 게시판 글 수정
     public void updateFaq(BoardDTO bDTO){
        sqlsession.update("updateFaq", bDTO);
     }
     
-    //Notice 게시판 글 삭제
+    //Faq 게시판 글 삭제
     public void deleteFaq(int faq_num){
        sqlsession.delete("deleteFaq", faq_num);
     }
