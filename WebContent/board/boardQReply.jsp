@@ -43,7 +43,7 @@ String pageNum = request.getParameter("pageNum");
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 					
 					<h1>답변하기</h1>
 					<form action="./BoardReplyAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" >
@@ -73,6 +73,7 @@ String pageNum = request.getParameter("pageNum");
 							</tr>
 						</table>
 					</form>
+					</div>
 				</article>
 				<!-- //메인 페이지-->
 				

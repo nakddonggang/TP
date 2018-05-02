@@ -17,14 +17,7 @@ public class BoardQnaSearch implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardQnaSearch execute()");
 		request.setCharacterEncoding("utf-8");
-		ActionForward forward = new ActionForward();
-		
 		String search = request.getParameter("search");
-		if(search == null){
-			forward.setPath("./BoardQnaList.cu");
-			forward.setRedirect(true);
-			return forward;
-		}
 		
 		BoardDAO bDAO = new BoardDAO();
 		int count = bDAO.getQSearchCount(search);
@@ -70,8 +63,8 @@ public class BoardQnaSearch implements Action{
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
-		request.setAttribute("search", search);
 		
+		ActionForward forward = new ActionForward();
 		forward.setPath("./board/boardQSearch.jsp");
 		forward.setRedirect(false);
 		

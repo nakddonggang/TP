@@ -44,38 +44,39 @@ String pageNum = request.getParameter("pageNum");
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 					
-				<h1>답변하기</h1>
-				<form action="./BoardReplyUpdateAction.qn"  method="post"  name="fr" >
-					<input type="hidden" name="pageNum" value="<%=pageNum %>">
-					<input type="hidden" name="qna_ref" value="<%=bDTO.getQna_ref() %>">
-					<table class="" >
-						<tr>
-							<th>SUBJECT</th>
-							<td><input type="text" name="qna_subject" value="<%=bDTO.getQna_subject() %>" readonly></td>
-						</tr>
-						<tr>
-							<th>CONTENT</th>
-							<td><textarea cols="20" rows="10" name="qna_content" readonly="readonly" style="width: 580px; resize: none;"><%=bDTO.getQna_content() %></textarea></td>
-						</tr>
-						<tr>
-							<th>NAME</th>
-							<td><input type="text" name="rep_name" value="<%=bDTO1.getRep_name() %>"></td>
-						</tr>
-						<tr>
-							<th>EMAIL</th>
-							<td><input type="text" name="rep_email" value="<%=bDTO1.getRep_email() %>"></td>
-						</tr>
-						<tr>
-							<th>CONTENT</th>
-							<td><textarea cols="20" rows="10" name="rep_content" style="width: 580px; resize: none;"><%=bDTO1.getRep_content() %></textarea></td>
-						</tr>
-						<tr>
-							<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
-						</tr>
-					</table>
-				</form>
+					<h1>답변하기</h1>
+					<form action="./BoardReplyUpdateAction.qn"  method="post"  name="fr" >
+						<input type="hidden" name="pageNum" value="<%=pageNum %>">
+						<input type="hidden" name="qna_ref" value="<%=bDTO.getQna_ref() %>">
+						<table class="" >
+							<tr>
+								<th>SUBJECT</th>
+								<td><input type="text" name="qna_subject" value="<%=bDTO.getQna_subject() %>" readonly></td>
+							</tr>
+							<tr>
+								<th>CONTENT</th>
+								<td><textarea cols="20" rows="10" name="qna_content" readonly="readonly" style="width: 580px; resize: none;"><%=bDTO.getQna_content() %></textarea></td>
+							</tr>
+							<tr>
+								<th>NAME</th>
+								<td><input type="text" name="rep_name" value="<%=bDTO1.getRep_name() %>"></td>
+							</tr>
+							<tr>
+								<th>EMAIL</th>
+								<td><input type="text" name="rep_email" value="<%=bDTO1.getRep_email() %>"></td>
+							</tr>
+							<tr>
+								<th>CONTENT</th>
+								<td><textarea cols="20" rows="10" name="rep_content" style="width: 580px; resize: none;"><%=bDTO1.getRep_content() %></textarea></td>
+							</tr>
+							<tr>
+								<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
+							</tr>
+						</table>
+					</form>
+					</div>
 				</article>
 				<!-- //메인 페이지-->
 				
