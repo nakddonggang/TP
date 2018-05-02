@@ -49,7 +49,7 @@ public class AdminBookRes implements Action{
 		if (count!=0) {
 			rbookList=adao.getRBookList(startRow, pageSize);
 		} else {
-			System.out.println("예약관리 목록이 없습니다");
+			
 		}
 
 		// 게시판 전체 페이지 수
