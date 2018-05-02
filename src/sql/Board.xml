@@ -69,7 +69,7 @@
 	</select>
 	
 	<select id="getCSearchCount" parameterType="String" resultType="int">
-		select count(*) from curation where cur_subject like '%${value}%'
+		select count(*) from curation where cur_subject like #{search}
 	</select>
 	
 	<select id="getCSearchList" parameterType="hashmap" resultType="net.board.db.BoardDTO">

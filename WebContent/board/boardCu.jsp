@@ -50,7 +50,7 @@
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 
 					<h1>Curation [전체글개수 : <%=count %>]</h1>
 					<table border="1">
@@ -84,11 +84,12 @@
 					
 					if(startPage > pageBlock)	{ %><a href="BoardCurList.cu?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
 					for (int p = startPage; p <= endPage; p++) {	
-						if(p==Integer.parseInt(pageNum)) {%><strong title="현재 페이지"><%=p %></strong>><%}
-						else {%><a href="BoardCurList.cu?pageNum=<%=p%>"><%=p %></a><%}
+						if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+						else {%> &nbsp;<a href="BoardCurList.cu?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
 					}
 					if(endPage < pageCount){	%><a href="BoardCurList.cu?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 					%>
+					</div>
 					
 				</article>
 				<!-- //메인 페이지-->

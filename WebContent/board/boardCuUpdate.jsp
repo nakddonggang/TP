@@ -42,7 +42,7 @@ String pageNum = request.getParameter("pageNum");
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 					
 					<h1>Curation 글쓰기</h1>
 					<form action="./BoardCurUpdateAction.cu?num=<%=bDTO.getCur_num() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" enctype="multipart/form-data">
@@ -72,6 +72,7 @@ String pageNum = request.getParameter("pageNum");
 							</tr>
 						</table>
 					</form>
+					</div>
 
 				</article>
 				<!-- //메인 페이지-->

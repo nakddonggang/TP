@@ -51,7 +51,7 @@
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 					
 					<h1>Curation [<%=search %>에 대한 검색결과 : <%=count %>]</h1>
 					<table border="1">
@@ -84,24 +84,16 @@
 					</form>
 	
 					<%
-					if(count != 0){
-		
-						//이전
-						if(startPage > pageBlock){
-						%><a href="./BoardCurSearch.cu?pageNum=<%=startPage-1 %>&search=<%=search %>">[이전]</a>&nbsp;<%
-						}
-	
-						//1~10	11~20	21~30
-						for(int i=startPage; i<=endPage; i++){
-						%>&nbsp;<a href="./BoardCurSearch.cu?pageNum=<%=i %>&search=<%=search %>"><%=i %></a>&nbsp;<%
-						}
-	
-						//다음
-						if(endPage < pageCount){
-						%>&nbsp;<a href="./BoardCurSearch.cu?pageNum=<%=startPage+pageBlock %>&search=<%=search %>">[다음]</a><%
-						}
+					if(pageCount < endPage)	endPage = pageCount;
+					
+					if(startPage > pageBlock)	{ %><a href="BoardCurSearch.cu?pageNum=<%=startPage-pageBlock%>&search=<%=search%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
+					for (int p = startPage; p <= endPage; p++) {	
+						if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+						else {%> &nbsp;<a href="BoardCurSearch.cu?pageNum=<%=p%>&search=<%=search%>"><%=p %></a> &nbsp;<%}
 					}
+					if(endPage < pageCount){	%><a href="BoardCurSearch.cu?pageNum=<%=startPage+pageBlock%>&search=<%=search %>" class="next"><span class="hide">다음 페이지</span></a><% }
 					%>
+					</div>
 
 				</article>
 				<!-- //메인 페이지-->
