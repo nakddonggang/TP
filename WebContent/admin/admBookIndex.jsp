@@ -50,16 +50,16 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				<!-- 메인 페이지 -->
 				
 					<div class="total_search">
-					<form action="./AdminBookSearch.am" method="post">
-					 	<input type="text" name="search" placeholder="책 제목을 입력하세요">
-					 	<input type="submit" value="통합검색">
-					 </form>
 					</div>
 					<div class="curation"></div>
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
 					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
+					<form action="./AdminBookSearch.am" method="post">
+					 	<input type="text" name="search" placeholder="책 제목을 입력하세요">
+					 	<input type="submit" value="통합검색">
+					 </form>
 					
 					<h2>책 목록 [<%=count%>]</h2>
 					<%if(bookList.isEmpty()){ out.print("책 목록이 없습니다"); } else {%>
