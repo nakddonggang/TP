@@ -29,6 +29,38 @@ public class BoardDAO {
 		return result;
 	}
 	
+	 //Faq 게시판 리스트
+    public List<BoardDTO> getFaqList(int startRow, int pageSize){
+       HashMap map = new HashMap();
+       map.put("startRow", startRow-1);
+       map.put("pageSize", pageSize);
+       List<BoardDTO> faqList = sqlsession.selectList("getFaqList",map);
+       return faqList;
+    }
+    
+    //Faq 게시판 글 개수 구하기
+    public int getFaqCount(){
+       int count;
+       count = sqlsession.selectOne("getFaqCount");
+       return count;
+    }
+    
+    //Notice 게시판 해당 번호 글 가져오기
+    public BoardDTO getFaq(int faq_num){
+       BoardDTO bDTO = sqlsession.selectOne("getFaq", faq_num);
+       return bDTO;
+    }
+    
+    //Notice 게시판 글 수정
+    public void updateFaq(BoardDTO bDTO){
+       sqlsession.update("updateFaq", bDTO);
+    }
+    
+    //Notice 게시판 글 삭제
+    public void deleteFaq(int faq_num){
+       sqlsession.delete("deleteFaq", faq_num);
+    }
+	
 	/* **************큐레이션(Curation)************** */
 	//Curation 게시판 Max Number 구하기
 	public int selectCMaxNum() {
