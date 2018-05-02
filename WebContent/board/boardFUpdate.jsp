@@ -37,8 +37,13 @@ String pageNum = request.getParameter("pageNum");
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
 				
+					<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
-				<!-- 메인 페이지 -->
+				<jsp:include page="../include/topbar.jsp" />
+					<div class="total_search"></div>
+					<div class="curation"></div>
+					<div class=""></div>
+					<div class="content">
 	
 			<h1>FAQ 글쓰기</h1>
 			<form action="./BoardFaqUpdateAction.fa?num=<%=bDTO.getFaq_num() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" enctype="multipart/form-data">
@@ -65,6 +70,7 @@ String pageNum = request.getParameter("pageNum");
 					</tr>
 				</table>
 			</form>
+			</div>
 			<!-- //메인 페이지-->
 				</article>
 				

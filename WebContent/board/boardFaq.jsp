@@ -46,8 +46,13 @@ List<BoardDTO> faqList=(List<BoardDTO>)request.getAttribute("faqList");
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
 				
+					<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
-				<!-- 메인 페이지 -->
+				<jsp:include page="../include/topbar.jsp" />
+					<div class="total_search"></div>
+					<div class="curation"></div>
+					<div class=""></div>
+					<div class="content">
 								
 					<h1>게시판 글목록 [전체글개수 : <%=count %>]</h1>
 <table border="1">
@@ -90,7 +95,7 @@ if(count != 0){
 	}
 }
 %>
-					
+					</div>
 			<!-- //메인 페이지-->
 				</article>
 				
