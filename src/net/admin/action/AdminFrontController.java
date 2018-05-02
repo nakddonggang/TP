@@ -60,6 +60,11 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}						
+		} else if (command.equals("/AdminBookDLosInfo.am")){
+			action = new AdminBookDLosInfo();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
 		} else if (command.equals("/AdminBookRes.am")){
 			action = new AdminBookRes();
 			try {
