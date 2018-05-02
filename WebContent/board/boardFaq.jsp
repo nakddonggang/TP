@@ -89,7 +89,7 @@
 								<td><img src="./upload/<%=bDTO.getFaq_file()%>" width="100"
 									height="100"></td>
 								<%
-									if (member_id.equals("admin")) {
+									if ("admin".equals(member_id)) {
 								%>
 								<td><input type="button" value="글수정"
 									onclick="location.href='./BoardFaqUpdate.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'">
@@ -107,7 +107,7 @@
 							%>
 						</table>
 						<%
-							if (member_id.equals("admin")) {
+							if ("admin".equals(member_id)) {
 						%><input type="button" value="글쓰기"
 							onclick="location.href='./BoardFaqWrite.fa'">
 						<%

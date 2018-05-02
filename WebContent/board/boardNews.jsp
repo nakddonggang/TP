@@ -69,7 +69,7 @@
 							<td><%=bDTO.getNotice_readcount() %></td>
 							
 							<%
-									if (member_id.equals("admin")) {
+									if ("admin".equals(member_id)) {
 								%>
 							<td><input type="button" value="글수정" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"> 
 								<input type="button" value="글삭제" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"></td></tr>
@@ -81,7 +81,7 @@
 					</table>
 					
 					<%		
-					if (member_id.equals("admin")) {
+					if ("admin".equals(member_id)) {
 					%>
 					<input type="button" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
 					<%} %>
