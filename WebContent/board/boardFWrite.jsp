@@ -31,13 +31,13 @@
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
 				
-				<article class="mainmenu section SECTION">
 				<!-- 메인 페이지 -->
-				
+				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 	
 			<h1>FAQ 글쓰기</h1>
 			<form action="./BoardFaqWriteAction.fa"  method="post"  name="fr" enctype="multipart/form-data">
@@ -63,6 +63,7 @@
 					</tr>
 				</table>
 			</form>
+			</div>
 
 				<!-- //메인 페이지-->
 				</article>

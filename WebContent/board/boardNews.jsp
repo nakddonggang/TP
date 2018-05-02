@@ -21,6 +21,8 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 		int count = ((Integer)request.getAttribute("count")).intValue();
+		
+		String member_id = (String) session.getAttribute("member_id");
 
 		String pageNum =  (String)request.getAttribute("pageNum");
 		int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
@@ -65,15 +67,25 @@
 							<td><%=bDTO.getNotice_subject() %></td><td><%=bDTO.getNotice_content() %></td>
 							<td><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></td><td><%=bDTO.getNotice_date() %></td>
 							<td><%=bDTO.getNotice_readcount() %></td>
+							
+							<%
+									if ("admin".equals(member_id)) {
+								%>
 							<td><input type="button" value="글수정" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"> 
 								<input type="button" value="글삭제" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"></td></tr>
+								<%} %>
 						<%
 						}
 					}
 					%>
 					</table>
 					
+					<%		
+					if ("admin".equals(member_id)) {
+					%>
 					<input type="button" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
+					<%} %>
+					
 
 					<form action="./BoardNoticeSearch.no" method="post">
 						<input type="text" name="search"> <input type="submit" value="검색">

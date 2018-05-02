@@ -22,7 +22,7 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 		int count = ((Integer)request.getAttribute("count")).intValue();
-		String id = (String)session.getAttribute("id");
+		String member_id = (String)session.getAttribute("member_id");
 
 		String pageNum =  (String)request.getAttribute("pageNum");
 		int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
@@ -67,17 +67,28 @@
 								if(check.equals("1")){check="답변완료";}
 								else {check="답변대기";}
 								%>
-								<tr><td><%=bDTO.getQna_num() %></td><td><%=id %></td>
+								<tr><td><%=bDTO.getQna_num() %></td><td><%=bDTO.getMember_id() %></td>
 								<td><%=bDTO.getQna_subject() %></td><td><%=bDTO.getQna_content() %></td>
 								<td><%=bDTO.getQna_date() %></td><td><%=bDTO.getQna_readcount() %></td>
 								<td><%=check %></td>
-								<td><input type="button" value="글수정" onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'"> 
-									<input type="button" value="글삭제" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">
-									<input type="button" value="답변하기" onclick="location.href='./BoardReply.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'"></td></tr>
-								<tr><td><%=bDTO.getRep_name() %></td><td colspan="3"><%=bDTO.getRep_email() %></td><td colspan="3"><%=bDTO.getRep_content() %></td>
-								<td><input type="button" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>&qna_ref=<%=bDTO.getQna_ref() %>'"> 
-									<input type="button" value="답변삭제" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref()%>&pageNum=<%=pageNum%>'">
+								<td><%if(bDTO.getMember_id().equals(member_id)){
+									%><input type="button" value="글수정" onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">
+									<input type="button" value="글삭제" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'"> 
+								<%}									
+									if("admin".equals(member_id)){
+										%><input type="button" value="답변하기" onclick="location.href='./BoardReply.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'"><%
+									}%>
 								</td></tr>
+									<tr>
+									<%if(bDTO.getQna_check().equals("1")){
+										%><td>답변자</td><td colspan="3">담당자 E-mail</td><td colspan="3">답변내용</td></tr><tr>
+										<td><%=bDTO.getRep_name() %></td><td colspan="3"><%=bDTO.getRep_email() %></td><td colspan="3"><%=bDTO.getRep_content() %></td>
+								 	<% }
+									if("admin".equals(member_id)){
+									%><td><input type="button" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>&qna_ref=<%=bDTO.getQna_ref() %>'"> 
+									<input type="button" value="답변삭제" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref()%>&pageNum=<%=pageNum%>'"></td><%
+								}%>
+								</tr>
 						<%	
 							}
 						}
