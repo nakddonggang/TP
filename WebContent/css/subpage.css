@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.seatLayout > ul {
+    clear:both;
+}
+.seatLayout > ul > li {
+    float:left;
+    width: 50px;
+}
+
+.memberform {position:relative; padding:30px; border-top:2px solid #464646; 
+border-bottom:2px solid #464646;}
+.memberform legend { font-size: 1.4em;}
+.memberform label{ width:100px; }
+.memberform input{border:1px solid #666;}

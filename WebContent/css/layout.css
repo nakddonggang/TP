@@ -33,6 +33,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 
 .submenu {height:100% !important; float:left; width:40%; }
 .mainmenu {float:left; width:60% !important;}
+.content {width: calc(100% - 60px);  margin:50px 30px 30px 30px; }
 
 
 .SECTION_FULL_PAGE01 .slide_con {position:relative; width:100%;}

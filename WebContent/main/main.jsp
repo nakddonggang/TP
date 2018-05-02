@@ -33,12 +33,12 @@
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-				
+				<div class="content">
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
 					<div class=""></div>
-				
+				</div>
 				<!-- //메인 페이지-->
 				</article>
 				

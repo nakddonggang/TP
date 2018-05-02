@@ -6,3 +6,4 @@
 @import url("jquery-ui.structure.min.css");
 @import url("jquery-ui.theme.min.css");	
 @import url("layout.css");		/* 레이아웃 적용 */
+@import url("subpage.css");		/* 서브페이지 css 적용 */
