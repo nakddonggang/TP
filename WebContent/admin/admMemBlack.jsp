@@ -73,7 +73,7 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 							if(bl_check.equals("1")){
 						%>
 						<tr
-							onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>&type=bl'">
+							onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>'">
 							<td><%=mt.getMember_id()%></td>
 							<td><%=mt.getMember_pass()%></td>
 							<td><%=mt.getMember_name()%></td>
