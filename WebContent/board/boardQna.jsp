@@ -67,7 +67,7 @@
 								if(check.equals("1")){check="답변완료";}
 								else {check="답변대기";}
 								%>
-								<tr><td><%=bDTO.getQna_num() %></td><td><%=id %></td>
+								<tr><td><%=bDTO.getQna_num() %></td><td><%=bDTO.getMember_id() %></td>
 								<td><%=bDTO.getQna_subject() %></td><td><%=bDTO.getQna_content() %></td>
 								<td><%=bDTO.getQna_date() %></td><td><%=bDTO.getQna_readcount() %></td>
 								<td><%=check %></td>
