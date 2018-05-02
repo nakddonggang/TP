@@ -35,18 +35,22 @@ public class AdminDAO {
 	}
 	
 	// 책 제목 검색결과 개수 구하기
-	public int getBookSearchCount(String search){
+	public int getBookSearchCount(String search, String category){
 		int count;
-		count = sqlsession.selectOne("getBookSearchCount", search);
+		HashMap map = new HashMap();
+		map.put("search", search);
+		map.put("category", category);
+		count = sqlsession.selectOne("getBookSearchCount", map);
 		return count;
 	}
 	
 	// 검색된 책 리스트 뿌려주기
-	public List<BookDTO> getBookSearchList(int startRow, int pageSize, String search){
+	public List<BookDTO> getBookSearchList(int startRow, int pageSize, String search, String category_){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		map.put("search", search);
+		map.put("category_", category_);
 		List<BookDTO> booksearchList = sqlsession.selectList("getBookSearchList", map);
 		return booksearchList;
 	}	

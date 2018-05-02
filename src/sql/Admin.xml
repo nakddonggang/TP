@@ -7,8 +7,8 @@
 	 	select count(*) from book
 	 </select>
 	 
-	 <select id="getBookSearchCount" parameterType="String" resultType="int">
-	 	select count(*) from book where book_subject like '%${value}%'
+	 <select id="getBookSearchCount" parameterType="net.book.db.BookDTO" resultType="int">
+	 	select count(*) from book where ${category} like '%${value}%'
 	 </select>
 	 
 	 <select id="getBookSearchList" parameterType="hashmap" resultType="net.book.db.BookDTO">
@@ -21,7 +21,7 @@
 		on b.book_number=bb.book_number
 		left join rbook rb
 		on b.book_number=rb.book_number
-		where b.book_subject like '%${search}%'
+		where b.${category_} like '%${search}%'
 		order by b.book_number desc limit #{startRow},#{pageSize}
 	 </select> 
 	 
