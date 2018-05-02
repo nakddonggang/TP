@@ -44,6 +44,7 @@ function basket(){
 int book_number = Integer.parseInt(request.getParameter("book_number"));
 String pageNum = request.getParameter("pageNum");
 BookDTO bookList = (BookDTO)request.getAttribute("bookList");
+String dbook_reason= (String)request.getAttribute("dbook_reason");
 %>
 	<div class="wrapper">
 
@@ -120,7 +121,9 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 					</form>
 					<form action="./AdminBookDLosWrite.am" method="post">
 						<input type="hidden" name="book_number" value="<%=bookList.getBook_number()%>"	>
-						<input type="submit" value="손망실">
+						<%if(dbook_reason == null){%> 
+						<input type="submit" value="손망실"><%
+						 }%>
 					</form>
 					<!-- // 본문 공간 -->
 				</article>

@@ -22,9 +22,10 @@ public class AdminBookInfo implements Action{
 		
 		// BookDTO 객체 생성
 		BookDTO bookList = adao.getBookInfo(book_number);
+		String dbook_reason = bookList.getDbook_reason();
 		
 		request.setAttribute("bookList", bookList);
-		
+		request.setAttribute("dbook_reason", dbook_reason);
 		ActionForward forward = new ActionForward();
 		forward.setPath("./admin/admBookInfo.jsp");
 		forward.setRedirect(false);

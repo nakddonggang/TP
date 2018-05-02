@@ -49,7 +49,12 @@
 	 </insert>
 	 
 	 <select id="getBookInfo"  parameterType="int" resultType="net.book.db.BookDTO">
-	 	select * from book where book_number=#{book_number}
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, b.book_pubDate, b.book_form, b.book_notation,
+	 	 b.book_isbn, b.book_classification, b.book_date, d.dbook_reason, d.dbook_state 
+	 	from book b
+	 	left join dbook d
+	 	on d.book_number=b.book_number
+	 	where b.book_number=#{book_number}
 	 </select>
 	 
 	 <select id="getDBookCount" resultType="int">
