@@ -11,17 +11,22 @@ import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class AdminBookIO implements Action{
+public class AdminBookSearch implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		
-		// AdminDAO 객체생성 및 total 책의 개수 가져오기
-		AdminDAO adao = new AdminDAO();
-		int count = adao.getBookCount();
+		// search 파라미터값 가져오기
+		String search = request.getParameter("search");
+		System.out.println(search);
 		
+		// AdminDAO adao 객체 생성 및 count 메소드 호출
+		AdminDAO adao = new AdminDAO();
+		int count = adao.getBookSearchCount(search);
+		System.out.println(count);
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 5;		
 		
@@ -45,11 +50,13 @@ public class AdminBookIO implements Action{
 		PrintWriter out = response.getWriter();
 		
 		// 책 뿌려주는 메소드 생성
-		List<BookDTO> bookList = null;
+		List<BookDTO> booksearchList = null;
 		if (count!=0) {
-			bookList=adao.getBookList(startRow, pageSize);
+			booksearchList=adao.getBookSearchList(startRow, pageSize, search);
+		} else {
+			System.out.println("검색된 목록이 없습니다.");
 		}
-
+		
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);
 		// 한 화면에 보여줄 페이지수 설정
@@ -61,20 +68,21 @@ public class AdminBookIO implements Action{
 		// 끝나는 페이지보다 전체페이지의 수가 작은 경우 if 문을 이용하여 제어해주기
 		if (endPage>pageCount){
 			endPage=pageCount;
-		}		
+		}	
 		
 		// count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
 		request.setAttribute("count", count);
+		request.setAttribute("search", search);
 		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("bookList", bookList);
+		request.setAttribute("booksearchList", booksearchList);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
-		request.setAttribute("endPage", endPage);		
+		request.setAttribute("endPage", endPage);				
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./admin/admBookIO.jsp");
-		forward.setRedirect(false);
+		forward.setPath("./admin/admBookIndexSearch.jsp");
+		forward.setRedirect(true);
 		return forward;
 	}
 	

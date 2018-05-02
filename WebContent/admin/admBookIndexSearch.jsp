@@ -23,13 +23,14 @@
 <%
 request.setCharacterEncoding("utf-8");
 //count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
+String search = request.getParameter("search");
 int count = ((Integer)request.getAttribute("count")).intValue();
 String pageNum = (String)request.getAttribute("pageNum");
 int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
 int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
 int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 int endPage = ((Integer)request.getAttribute("endPage")).intValue();
-List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
+List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchList");
 %>
 	<div class="wrapper">
 
@@ -50,10 +51,10 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				<!-- 메인 페이지 -->
 				
 					<div class="total_search">
-					<form action="./AdminBookSearch.am" method="post">
-					 	<input type="text" name="search" placeholder="책 제목을 입력하세요">
-					 	<input type="submit" value="통합검색">
-					 </form>
+						<form action="./AdminBookSearch.am" method="post">
+						 	<input type="text" name="search" placeholder="책 제목을 입력하세요">
+						 	<input type="submit" value="통합검색">
+						 </form>
 					</div>
 					<div class="curation"></div>
 					<div class=""></div>
@@ -62,7 +63,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
 					
 					<h2>책 목록 [<%=count%>]</h2>
-					<%if(bookList.isEmpty()){ out.print("책 목록이 없습니다"); } else {%>
+					<%if(booksearchList.isEmpty()){ out.print("책 목록이 없습니다"); } else {%>
 					<table border="1">
 						<tr>
 							<th>고유번호</th>
@@ -75,16 +76,16 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<th> 입고현황</th> <!-- rbook -->
 						</tr>
 						<%
-							for (BookDTO bookLists : bookList) {%>
-								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>&pageNum=<%=pageNum%>'">
-									<td><%=bookLists.getBook_number()%></td>
-									<td><%=bookLists.getBook_subject()%></td>
-									<td><%=bookLists.getBook_author()%></td>
-									<td><%=bookLists.getBook_publisher()%></td>
-									<td><%=bookLists.getDbook_state()%></td>
-									<td><%=bookLists.getBbook_bstate()%></td>
-									<td><%=bookLists.getRbook_date()%></td>
-									<td><%=bookLists.getRbook_check()%></td>		
+							for (BookDTO booksearchLists : booksearchList) {%>
+								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>&pageNum=<%=pageNum%>'">
+									<td><%=booksearchLists.getBook_number()%></td>
+									<td><%=booksearchLists.getBook_subject()%></td>
+									<td><%=booksearchLists.getBook_author()%></td>
+									<td><%=booksearchLists.getBook_publisher()%></td>
+									<td><%=booksearchLists.getDbook_state()%></td>
+									<td><%=booksearchLists.getBbook_bstate()%></td>
+									<td><%=booksearchLists.getRbook_date()%></td>
+									<td><%=booksearchLists.getRbook_check()%></td>	
 								</tr> <%}%>
 					</table>
 					<%}%><br>
@@ -95,17 +96,17 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						if (count != 0) {
 							// 이전페이지 // if (startPage와 pageBlock을 비교)
 							if (startPage > pageBlock) {
-					%><a href="./AdminIndex.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
+					%><a href="./AdminBookSearch.am?pageNum=<%=startPage - pageBlock%>&search=<%=search%>">[이전]</a><%
 						}
 
 							// 1~10		11~20		21~30
 							for (int i = startPage; i <= endPage; i++) {%>
-							<a href="./AdminIndex.am?pageNum=<%=i%>">[<%=i%>]</a><%		
+							<a href="./AdminBookSearch.am?pageNum=<%=i%>&search=<%=search%>">[<%=i%>]</a><%		
 							}
 	
 							// 다음 // if (endPage와 pageCount를 비교)
 							if (endPage<pageCount){%>
-							<a href="./AdminIndex.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
+							<a href="./AdminBookSearch.am?pageNum=<%=startPage+pageBlock%>&search=<%=search%>">[다음]</a><%
 							}
 						} // if count 괄호 %>
 
