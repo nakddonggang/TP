@@ -46,20 +46,20 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				<!-- //서브메뉴 -->
 				
 				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				
-					<div class="total_search"></div>
+					<div class="total_search">
+					</div>
 					<div class="curation"></div>
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
 					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
-					<div>
-					 <form action="./AdminBookSearch" method="post">
+					<form action="./AdminBookSearch.am" method="post">
 					 	<input type="text" name="search" placeholder="책 제목을 입력하세요">
 					 	<input type="submit" value="통합검색">
 					 </form>
-					</div>
 					
 					<h2>책 목록 [<%=count%>]</h2>
 					<%if(bookList.isEmpty()){ out.print("책 목록이 없습니다"); } else {%>

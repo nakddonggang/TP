@@ -45,6 +45,7 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 				<!-- //서브메뉴 -->
 				
 				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				
 					<div class="total_search"></div>

@@ -21,7 +21,8 @@
 String member_id = request.getParameter("member_id");
 String pageNum = request.getParameter("pageNum");
 MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
-String type =request.getParameter("type");
+String gm_check =(String)request.getAttribute("gm_check");
+String bl_check =(String)request.getAttribute("bl_check");
 %>
 
 
@@ -47,50 +48,38 @@ String type =request.getParameter("type");
 				<form id="info" name="fr" method="post">
 				<fieldset>
 					<legend>Basic Info</legend>
-					<label>User ID</label> <input type="text" name="id" class="id" value="<%=mDTO.getMember_id()%>" readonly><br>
-					<label>Password</label> <input type="text" name="pass" class="pass" value="<%=mDTO.getMember_pass()%>" readonly><br>
-					<label>Name</label> <input type="text" name="name" value="<%=mDTO.getMember_name()%>" readonly><br>
-					<label>E-Mail</label> <input type="email" name="email" value="<%=mDTO.getMember_email()%>" readonly><br>
+					<label>User ID</label> <input type="text" name="member_id" class="id" value="<%=mDTO.getMember_id()%>" readonly><br>
+					<label>Password</label> <input type="text" name="member_pass" class="pass" value="<%=mDTO.getMember_pass()%>" readonly><br>
+					<label>Name</label> <input type="text" name="member_name" value="<%=mDTO.getMember_name()%>" readonly><br>
+					<label>E-Mail</label> <input type="email" name="member_email" value="<%=mDTO.getMember_email()%>" readonly><br>
 				</fieldset>
 
 				<fieldset>
 					<legend>Optional</legend>
-					<label>Address</label> <input type="text" name="address" value="<%=mDTO.getMember_post()%>" readonly><br>
+					<label>Address</label> <input type="text" name="member_post" value="<%=mDTO.getMember_post()%>" readonly><br>
 					<label>Address Detail</label> 
-					 <input type="text" name="address1" value="<%=mDTO.getMember_address1()%>" readonly>
-					  <input type="text" name="address2" value="<%=mDTO.getMember_address2()%>" readonly><br>
-					<label>Phone Number</label> <input type="text" name="phone" value="<%=mDTO.getMember_phone()%>" readonly><br>
-					<label>data</label> <input type="text" name="date" value="<%=mDTO.getMember_date()%>" readonly><br>
+					 <input type="text" name="member_address1" value="<%=mDTO.getMember_address1()%>" readonly>
+					  <input type="text" name="member_address2" value="<%=mDTO.getMember_address2()%>" readonly><br>
+					<label>Phone Number</label> <input type="text" name="member_phone" value="<%=mDTO.getMember_phone()%>" readonly><br>
+					<label>data</label> <input type="text" name="member_date" value="<%=mDTO.getMember_date()%>" readonly><br>
 				</fieldset>
-				
-				<%
-				if(type.equals("no")){
-					%>
+					
 					<fieldset>
 					<legend>Level</legend>
-					<label>Member Level</label><input type="text" name="level" value="일반회원" readonly><br>
-					</fieldset>
 					<%
-				}else if(type.equals("gm")){
+					if(gm_check.equals("0")&&bl_check.equals("0")){
+						%><label>Member Level</label><input type="text" name="level" value="일반회원" readonly><br><%
+					}else if(gm_check.equals("1")){
+						%><label>Member Level</label><input type="text" name="level" value="우수회원" readonly><br><%
+					}else if(bl_check.equals("1")){
+						%><label>Member Level</label><input type="text" name="level" value="블랙리스트" readonly><br><%
+					}
 					%>
-					<fieldset>
-					<legend>Level</legend>
-					<label>Member Level</label><input type="text" name="level" value="우수회원" readonly><br>
-					<label>대출횟수</label> <input type="text" name="borrow" value="<%=mDTO.getBorrow_count()%>" readonly><br>
+					<label>대출횟수</label> <input type="text" name="borrow_count" value="<%=mDTO.getBorrow_count()%>" readonly><br>
+					<label>연체횟수</label> <input type="text" name="bl_count" value="<%=mDTO.getBl_count()%>" readonly><br>
+					<label>연체총일수</label> <input type="text" name="bl_date" value="<%=mDTO.getBl_date()%>" readonly><br>
 					</fieldset>
-					<%
-				}else if(type.equals("bl")){
-					%>
-					<fieldset>
-					<legend>Level</legend>
-					<label>Member Level</label><input type="text" name="level" value="블랙리스트" readonly><br>
-					<label>연체횟수</label> <input type="text" name="blcount" value="<%=mDTO.getBl_count()%>" readonly><br>
-					<label>연체총일수</label> <input type="text" name="bldate" value="<%=mDTO.getBl_date()%>" readonly><br>
-					</fieldset>
-					<%
-				}
-				
-				%>
+
 				</form>
 					<input type="button" value="글목록" onclick="location.href='./AdminMemberIndex.am?pageNum=<%=pageNum%>'">
 					<!-- //메인 페이지-->

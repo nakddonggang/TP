@@ -21,11 +21,12 @@ public class AdminBookSearch implements Action{
 		
 		// search 파라미터값 가져오기
 		String search = request.getParameter("search");
+		System.out.println(search);
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		AdminDAO adao = new AdminDAO();
 		int count = adao.getBookSearchCount(search);
-		
+		System.out.println(count);
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 5;		
 		
@@ -51,9 +52,9 @@ public class AdminBookSearch implements Action{
 		// 책 뿌려주는 메소드 생성
 		List<BookDTO> booksearchList = null;
 		if (count!=0) {
-			booksearchList=adao.getBookList(startRow, pageSize);
+			booksearchList=adao.getBookSearchList(startRow, pageSize, search);
 		} else {
-			System.out.println("검색된 목록이 없습니다.");
+			
 		}
 		
 		// 게시판 전체 페이지 수
@@ -71,6 +72,7 @@ public class AdminBookSearch implements Action{
 		
 		// count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
 		request.setAttribute("count", count);
+		request.setAttribute("search", search);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("booksearchList", booksearchList);
 		request.setAttribute("pageCount", pageCount);
@@ -80,7 +82,7 @@ public class AdminBookSearch implements Action{
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./admin/admBookIndexSearch.jsp");
-		forward.setRedirect(true);
+		forward.setRedirect(false);
 		return forward;
 	}
 	

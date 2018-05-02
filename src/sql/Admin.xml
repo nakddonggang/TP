@@ -8,11 +8,21 @@
 	 </select>
 	 
 	 <select id="getBookSearchCount" parameterType="String" resultType="int">
-	 	select count(*) from book where book_subject like concat('%',#{search},'%')
+	 	select count(*) from book where book_subject like '%${value}%'
 	 </select>
 	 
 	 <select id="getBookSearchList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select * from book where subject like concat('%',#{search},'%') order by notice_num desc limit #{startRow},#{pageSize}
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where b.book_subject like '%${search}%'
+		order by b.book_number desc limit #{startRow},#{pageSize}
 	 </select> 
 	 
 	 <select id="getBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
@@ -24,7 +34,7 @@
 		left join bbook bb
 		on b.book_number=bb.book_number
 		left join rbook rb
-		on b.book_number=rb.book_number order by book_number desc limit #{startRow}, #{pageSize} 
+		on b.book_number=rb.book_number order by b.book_number desc limit #{startRow}, #{pageSize} 
 	 </select>
 	 
 	 <select id="getBookNum" parameterType="int" resultType="int">
@@ -62,7 +72,6 @@
 	 <select id="getRBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select * from rbook order by book_number desc limit #{startRow}, #{PageSize}
 	 </select>
- 
  
  
  

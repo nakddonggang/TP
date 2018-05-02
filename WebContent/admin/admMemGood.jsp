@@ -71,8 +71,7 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 								String gm_check = mt.getGm_check();
 							if(gm_check.equals("1")){
 						%>
-						<tr
-							onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>&type=gm'">
+						<tr onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>'">
 							<td><%=mt.getMember_id()%></td>
 							<td><%=mt.getMember_pass()%></td>
 							<td><%=mt.getMember_name()%></td>
