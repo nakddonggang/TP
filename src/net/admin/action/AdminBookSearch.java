@@ -54,7 +54,7 @@ public class AdminBookSearch implements Action{
 		if (count!=0) {
 			booksearchList=adao.getBookSearchList(startRow, pageSize, search);
 		} else {
-			System.out.println("검색된 목록이 없습니다.");
+			
 		}
 		
 		// 게시판 전체 페이지 수
@@ -82,7 +82,7 @@ public class AdminBookSearch implements Action{
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./admin/admBookIndexSearch.jsp");
-		forward.setRedirect(true);
+		forward.setRedirect(false);
 		return forward;
 	}
 	
