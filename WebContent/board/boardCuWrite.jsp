@@ -37,7 +37,7 @@
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 					
 					<form action="./BoardCurWriteAction.cu" method="post" name="fr" enctype="multipart/form-data">
 						<table border="1">
@@ -78,6 +78,7 @@
 							</tr>
 						</table>
 					</form>
+					</div>
 	
 				</article>
 				<!-- //메인 페이지-->

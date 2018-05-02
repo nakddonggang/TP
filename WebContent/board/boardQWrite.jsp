@@ -42,7 +42,7 @@ String id = (String)session.getAttribute("id");
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 					
 					<h1>Qna 글쓰기</h1>
 					<form action="./BoardQnaWriteAction.qn"  method="post"  name="fr" >
@@ -64,6 +64,7 @@ String id = (String)session.getAttribute("id");
 							</tr>
 						</table>
 					</form>
+					</div>
 				</article>
 				<!-- //메인 페이지-->
 				

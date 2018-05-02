@@ -52,7 +52,7 @@
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
-					<div class=""></div>
+					<div class="content">
 			
 					<h1>Q&A [전체글개수 : <%=count %>]</h1>
 					<table border="1">
@@ -90,15 +90,16 @@
 					</form>
 					
 					<%
-						if(pageCount < endPage)	endPage = pageCount;
-							
-						if(startPage > pageBlock)	{ %><a href="BoardQnaList.qn?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
-						for (int p = startPage; p <= endPage; p++) {	
-							if(p==Integer.parseInt(pageNum)) {%><strong title="현재 페이지"><%=p %></strong>><%}
-							else {%><a href="BoardQnaList.qn?pageNum=<%=p%>"><%=p %></a><%}
-						}
-						if(endPage < pageCount){	%><a href="BoardQnaList.qn?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+					if(pageCount < endPage)	endPage = pageCount;
+					
+					if(startPage > pageBlock)	{ %><a href="BoardQnaList.qn?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
+					for (int p = startPage; p <= endPage; p++) {	
+						if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+						else {%> &nbsp;<a href="BoardQnaList.qn?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+					}
+					if(endPage < pageCount){	%><a href="BoardQnaList.qn?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 					%>
+					</div>
 
 				</article>
 				<!-- //메인 페이지-->
