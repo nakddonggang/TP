@@ -75,7 +75,7 @@
 								String bl_check = mt.getBl_check();
 						%>
 						<tr
-							onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>&type=no'">
+							onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>'">
 							<td><%=mt.getMember_id()%></td>
 							<td><%=mt.getMember_pass()%></td>
 							<td><%=mt.getMember_name()%></td>
