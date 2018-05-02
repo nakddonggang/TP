@@ -28,6 +28,7 @@ public class BoardDTO {
 
 	//	<qna table>						
 	int qna_num;					//	글 번호	int(5)	PK		질문게시판 글 번호
+	String member_id;				//	아이디	varchar(20)		작성자 아이디
 	String qna_subject;				//	글 제목	varchar(100)			질문게시판 글 제목
 	String qna_content;				//	글 내용	varchar(2000)			질문게시판 글 내용
 	Timestamp qna_date;			//	작성일	date			질문게시판 글 작성일
@@ -253,5 +254,11 @@ public class BoardDTO {
 	}
 	public void setCur_type(String cur_type) {
 		this.cur_type = cur_type;
+	}
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 }
