@@ -63,7 +63,7 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 						</tr>
 						<%
 							for (BookDTO dbookLists : dbookList) {%>
-						<tr>
+						<tr onclick="location.href='./AdminBookDLosInfo.am?book_number=<%=dbookLists.getBook_number()%>&pageNum=<%=pageNum%>'">
 							<td><%=dbookLists.getBook_number()%></td>
 							<td><%=dbookLists.getDbook_reason()%></td>
 							<td><%=dbookLists.getDbook_state()%></td>			
