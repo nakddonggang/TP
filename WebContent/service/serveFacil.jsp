@@ -39,7 +39,7 @@
 								out.print("<ul>");
 								for (int r = 1; r <= 7; r++) {
 									out.print("<li id='"+ c + r + "' class='seat'>"+
-									"<div><a href = './FacilityDetail.fy?facil_num="+c+r+"'>1</a></div></li>");
+									"<div><a href = './FacilityView.fy?facil_num="+c+r+"'>1</a></div></li>");
 								}
 								out.print("</ul>");
 							}
