@@ -100,7 +100,18 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}						
-		}    
+		}else if(command.equals("/AdminFacilityInsert.am")) {
+			forward = new ActionForward();
+			forward.setPath("./admin/admFacilityInsert.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/AdminFacilityInsertAction.am")) {
+			action = new AdminFacilityInsertAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		// 이동
 		if (forward!=null){
