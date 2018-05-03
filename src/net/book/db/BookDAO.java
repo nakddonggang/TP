@@ -25,5 +25,10 @@ public class BookDAO {
 		List<BookDTO> popularList = sqlsession.selectList("popularList");
 		return popularList;
 	}
+	// 신작도서 리스트 출력(2일 이내 출판된 것으로. 추후 원하는 기간이나 원하는 기준(ex>도서관 자체 입고날짜)으로 수정하면 됨)
+	public List<BookDTO> newBookList(){
+		List<BookDTO> newBookList = sqlsession.selectList("newBookList");
+		return newBookList;
+	}
 
 }

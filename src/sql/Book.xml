@@ -11,5 +11,9 @@
 		select bb.book_number,count(*),b.* from bbook bb join book b on (bb.book_number=b.book_number) 
 		group by bb.book_number order by count(*) desc
 	</select>
+	
+	<select id="newBookList" resultType="net.book.db.BookDTO">
+		select * from book where book_pubDate >= date_sub(now(),interval 2 day) order by book_pubDate desc, book_number desc
+	</select>
 
 </mapper>

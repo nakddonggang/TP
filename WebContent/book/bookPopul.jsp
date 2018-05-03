@@ -53,6 +53,7 @@ List<BookDTO> popularList = (List<BookDTO>)request.getAttribute("popularList");
 								<li>발행처 : <%=bkDTO.getBook_publisher() %></li>
 								<li>발행일 : <%=bkDTO.getBook_pubDate() %></li>
 							</ol>
+							<br>
 							<%
 						}
 					%>
