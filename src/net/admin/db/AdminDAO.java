@@ -150,7 +150,7 @@ public class AdminDAO {
 	//	facility 시설자리 생성
 	public int insertFacility(FacilityDTO fDTO) {
 		int result;
-		result = sqlsession.selectOne("AdminFacilityInsert", fDTO);
+		result = sqlsession.insert("AdminFacilityInsert", fDTO);
 		return result;
 	}
 }
