@@ -99,7 +99,9 @@ public class AdminFrontController extends HttpServlet{
 			action = new AdminMemberNormal();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}						
+			} catch (Exception e) {e.printStackTrace();}
+			
+			//  여기서 부터는 Facility 구간
 		}else if(command.equals("/AdminFacilityInsert.am")) {
 			forward = new ActionForward();
 			forward.setPath("./admin/admFacilityInsert.jsp");
@@ -111,6 +113,7 @@ public class AdminFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+			// 여기까지 Facility 구간
 		}
 		
 		// 이동
