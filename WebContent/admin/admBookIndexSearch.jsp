@@ -57,21 +57,23 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 				<!-- //메인 페이지-->
 					<!-- 본문 공간 -->
 					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
-					<form action="./AdminBookSearch.am" method="post" name="form1">
-						<fieldset>
-						<legend>상세검색</legend>
-							<select name="category">
-							<option value="book_subject">전체</option>
-							<option value="book_subject">제목</option>
-							<option value="book_author">저자</option>
-							<option value="book_publisher">출판사</option>
-							<option value="book_isbn">국제표준번호</option>
-							<option value="book_classification">분류기호</option>				
-							</select>
-					 		<input type="text" name="search" placeholder="책 제목을 입력하세요">
-							<input type="submit" value="상세검색">	
-						</fieldset>
-					</form>
+					<div>
+						<form action="./AdminBookSearch.am" method="post">
+							<fieldset>
+							<legend>상세검색</legend>
+								<select name="category">
+								<option value="all">전체</option>
+								<option value="book_subject">제목</option>
+								<option value="book_author">저자</option>
+								<option value="book_publisher">출판사</option>
+								<option value="book_isbn">국제표준번호</option>
+								<option value="book_classification">분류기호</option>				
+								</select>
+						 		<input type="text" name="search" placeholder="책 제목을 입력하세요">
+								<input type="submit" value="상세검색">	
+							</fieldset>
+						</form>
+					</div>
 					
 					<h2>책 목록 [<%=count%>]</h2>
 					<%if(count==0){ out.print("검색된 책 목록이 없습니다"); } else {%>

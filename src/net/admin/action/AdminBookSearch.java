@@ -27,7 +27,12 @@ public class AdminBookSearch implements Action{
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		AdminDAO adao = new AdminDAO();
-		int count = adao.getBookSearchCount(search, category);
+		int count = 0;
+		if (category.equals("all")){
+			count = adao.getBookCount();
+		} else {
+			count = adao.getBookSearchCount(search, category);
+		}
 		System.out.println(count);
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 5;		
@@ -54,10 +59,9 @@ public class AdminBookSearch implements Action{
 		// 책 뿌려주는 메소드 생성
 		List<BookDTO> booksearchList = null;
 		if (count!=0) {
-			booksearchList=adao.getBookSearchList(startRow, pageSize, search, category);
-		} else {
-			
-		}
+			if (category.equals("all")) booksearchList=adao.getBookList(startRow, pageSize);
+			else booksearchList = adao.getBookSearchList(startRow, pageSize, search, category);
+		} else { }
 		
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);

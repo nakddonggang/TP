@@ -61,7 +61,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						<fieldset>
 						<legend>상세검색</legend>
 							<select name="category">
-							<option value="book_subject">전체</option>
+							<option value="all">전체</option>
 							<option value="book_subject">제목</option>
 							<option value="book_author">저자</option>
 							<option value="book_publisher">출판사</option>
