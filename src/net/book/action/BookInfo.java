@@ -15,7 +15,7 @@ public class BookInfo implements Action{
 		
 		//int book_number = Integer.parseInt(request.getParameter("book_number"));
 		int book_number = 1;
-		String pageNum = request.getParameter("pageNum");
+		//String pageNum = request.getParameter("pageNum");
 
 		BookDAO bdao=new BookDAO();
 		

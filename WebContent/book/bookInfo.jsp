@@ -42,7 +42,7 @@ function basket(){
 <body>
 <%
 int book_number = Integer.parseInt(request.getParameter("book_number"));
-String pageNum = request.getParameter("pageNum");
+//String pageNum = request.getParameter("pageNum");
 BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 %>
 	<div class="wrapper">
