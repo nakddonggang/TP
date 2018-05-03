@@ -41,7 +41,7 @@ function basket(){
 </head>
 <body>
 <%
-int book_number = Integer.parseInt(request.getParameter("book_number"));
+int book_number = ((Integer)request.getAttribute("book_number")).intValue();
 String pageNum = request.getParameter("pageNum");
 BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 %>

@@ -17,7 +17,7 @@ public class BookDAO {
 	
 	// 책 정보 눌렀을 때 상세정보 보여주기
 	public BookDTO getBookInfo(int book_number){
-		BookDTO bookList = sqlsession.selectOne("getBookInfo", book_number);
+		BookDTO bookList = sqlsession.selectOne("book.getBookInfo", book_number);
 		return bookList;
 	}
 	// 인기도서 리스트 출력
