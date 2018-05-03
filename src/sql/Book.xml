@@ -3,4 +3,7 @@
  
 <mapper namespace="book">
 
+	 <select id="getBookInfo"  parameterType="int" resultType="net.book.db.BookDTO">
+	 	select * from book where book_number=#{book_number}
+	 </select>
 </mapper>

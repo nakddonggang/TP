@@ -78,7 +78,7 @@
 	
 	<servlet>
 		<servlet-name>BookFrontController</servlet-name>
-		<servlet-class>net.book.action.BoodFrontController</servlet-class>
+		<servlet-class>net.book.action.BookFrontController</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BookFrontController</servlet-name>
