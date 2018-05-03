@@ -110,5 +110,9 @@
 		on m.member_id = b.member_id where m.member_id=#{member_id};
 	</select>
 	
+	<insert id="AdminFacilityInsert" parameterType="net.facility.db.FacilityDTO">
+		insert into facility(facil_num , facil_type , facil_use)
+		values (#{facil_num} , #{facil_type} , 0)
+	</insert>
  
  </mapper>
