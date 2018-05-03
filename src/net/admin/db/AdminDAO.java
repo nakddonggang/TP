@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import net.book.db.BookDTO;
+import net.facility.db.FacilityDTO;
 import net.member.db.MemberDTO;
 import util.myBatisSetting.sqlMapConfig;
 
@@ -145,5 +146,11 @@ public class AdminDAO {
 		mDTO = sqlsession.selectOne("getAdminMember" , member_id);
 		return mDTO;
 	}
-
+	
+	//	facility 시설자리 생성
+	public int insertFacility(FacilityDTO fDTO) {
+		int result;
+		result = sqlsession.selectOne("AdminFacilityInsert", fDTO);
+		return result;
+	}
 }
