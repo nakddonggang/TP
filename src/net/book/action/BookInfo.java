@@ -12,19 +12,23 @@ public class BookInfo implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		int book_number = Integer.parseInt(request.getParameter("book_number"));
+		
+		//int book_number = Integer.parseInt(request.getParameter("book_number"));
+		int book_number = 1;
 		String pageNum = request.getParameter("pageNum");
 
 		BookDAO bdao=new BookDAO();
 		
 		BookDTO bookList =bdao.getBookInfo(book_number);
 		
+		request.setAttribute("book_number", book_number);
 		request.setAttribute("bookList", bookList);
-		
+
 		ActionForward forward=new ActionForward();
 		forward.setPath("./book/bookInfo.jsp");
 		forward.setRedirect(false);
 		return forward;
+
 	}
     
 }

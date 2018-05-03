@@ -3,6 +3,10 @@
  
 <mapper namespace="book">
 
+	 <select id="getBookInfo"  parameterType="int" resultType="net.book.db.BookDTO">
+	 	select * from book where book_number=#{book_number}
+	 </select>
+
 	<select id="popularList" resultType="net.book.db.BookDTO">
 		select bb.book_number,count(*),b.* from bbook bb join book b on (bb.book_number=b.book_number) 
 		group by bb.book_number order by count(*) desc
