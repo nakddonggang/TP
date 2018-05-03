@@ -75,6 +75,18 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 						</form>
 					</div>
 					
+					<fieldset>
+					<legend>책 목록 정렬</legend>
+					<select name="sort">
+						<option value="number" checked>정렬</option>
+						<option value="book_subject" onclick="location.href='./AdminBookSort.am?sort=book_subject'">제목순</option>
+						<option value="book_author" onclick="location.href='./AdminBookSort.am?sort=book_author'">저자순</option>
+						<option value="book_popul" onclick="location.href='./AdminBookSort.am?sort=book_number'">인기순</option>
+						<option value="book_pubDate" onclick="location.href='./AdminBookSort.am?sort=book_pubDate'">신작순</option>
+						<option value="book_date" onclick="location.href='./AdminBookSort.am?sort=book_date'">입고순</option>
+					</select>
+					</fieldset>
+					
 					<h2>책 목록 [<%=count%>]</h2>
 					<%if(count==0){ out.print("검색된 책 목록이 없습니다"); } else {%>
 					<table border="1">
@@ -103,7 +115,8 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 					</table>
 					<%}%><br>
 					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"> 
-					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'"><br>
+					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'">					
+					<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'"><br>
 								
 					<% // count = 전체 글의 개수
 						if (count != 0) {
