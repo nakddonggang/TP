@@ -44,12 +44,12 @@
 					<form action="./AdminFacilityInsertAction.am" method="post">
 						<table border="1">
 							<tr>
-								<th>자리번호 : </th><td><input type="text" name="fac_number" ></td>
+								<th>자리번호 : </th><td><input type="text" name="facil_num" ></td>
 							</tr>
 							<tr>	
 								<th>자리유형 : </th>
 								<td>
-									<select name = "fac_type">
+									<select name = "facil_type">
 									<option value ="media">미디어</option>
 									<option value ="desk">칸막이</option>
 									<option value ="etc">기타</option>
