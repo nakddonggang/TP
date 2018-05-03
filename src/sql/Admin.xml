@@ -112,7 +112,7 @@
 	
 	<insert id="AdminFacilityInsert" parameterType="net.facility.db.FacilityDTO">
 		insert into facility(facil_num , facil_type , facil_use)
-		values (#{facil_num} , #{facil_type} , 0)
+		values (#{facil_num} , #{facil_type} , #{facil_use})
 	</insert>
  
  </mapper>
