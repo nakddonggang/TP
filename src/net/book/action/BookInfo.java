@@ -24,11 +24,9 @@ public class BookInfo implements Action{
 		
 		request.setAttribute("book_number", book_number);
 		request.setAttribute("bookList", bookList);
+
 		
-		ActionForward forward=new ActionForward();
-		forward.setPath("./book/bookInfo.jsp");
-		forward.setRedirect(false);
-		return forward;
+		return null;
 	}
     
 }
