@@ -1,19 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
- 
+
 <mapper namespace="book">
 
-	 <select id="getBookInfo"  parameterType="int" resultType="net.book.db.BookDTO">
-	 	select * from book where book_number=#{book_number}
-	 </select>
+	<select id="getBookInfo" parameterType="int"
+		resultType="net.book.db.BookDTO">
+		select * from book where book_number=#{book_number}
+	</select>
 
 	<select id="popularList" resultType="net.book.db.BookDTO">
-		select bb.book_number,count(*),b.* from bbook bb join book b on (bb.book_number=b.book_number) 
+		select
+		bb.book_number,count(*),b.* from bbook bb join book b on
+		(bb.book_number=b.book_number)
 		group by bb.book_number order by count(*) desc
 	</select>
-	
+
 	<select id="newBookList" resultType="net.book.db.BookDTO">
-		select * from book where book_pubDate >= date_sub(now(),interval 2 day) order by book_pubDate desc, book_number desc
+		select * from book where
+		book_pubDate >= date_sub(now(),interval 2 day) order by book_pubDate
+		desc, book_number desc
+	</select>
+
+	<select id="getBookSearchCount" parameterType="String"
+		resultType="int">
+		select count(*) from book where book_subject like '%${value}%'
+	</select>
+
+	<select id="getBookSearchList" parameterType="hashmap"
+		resultType="net.book.db.BookDTO">
+		select distinct b.book_number, b.book_subject, b.book_author, b.book_publisher,
+		db.dbook_state, bb.bbook_bstate
+		from book
+		b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		where b.book_subject like '%${search}%'
+		order by b.book_number desc limit #{startRow},#{pageSize}
 	</select>
 
 </mapper>
