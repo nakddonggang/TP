@@ -21,15 +21,15 @@ public class AdminBookSearch implements Action{
 		
 		// search 파라미터값 가져오기
 		String category = request.getParameter("category");
-		System.out.println("category 값"+category);
+		System.out.println("category 값 "+category);
 		String search = request.getParameter("search");
-		System.out.println(search);
+		System.out.println("search 값 "+search);
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		AdminDAO adao = new AdminDAO();
 		int count = 0;
 		if (category.equals("all")){
-			count = adao.getBookCount();
+			count = adao.getBookSearchAllCount(search);
 		} else {
 			count = adao.getBookSearchCount(search, category);
 		}
@@ -59,7 +59,7 @@ public class AdminBookSearch implements Action{
 		// 책 뿌려주는 메소드 생성
 		List<BookDTO> booksearchList = null;
 		if (count!=0) {
-			if (category.equals("all")) booksearchList=adao.getBookList(startRow, pageSize);
+			if (category.equals("all")) booksearchList=adao.getBookSearchAllList(startRow, pageSize, search);
 			else booksearchList = adao.getBookSearchList(startRow, pageSize, search, category);
 		} else { }
 		

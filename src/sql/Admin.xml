@@ -7,9 +7,29 @@
 	 	select count(*) from book
 	 </select>
 	 
-	 <select id="getBookSearchCount" parameterType="net.book.db.BookDTO" resultType="int">
+	 <select id="getBookSearchAllCount" resultType="int" parameterType="hashmap">
+	 	select count(*) from book where book_subject like #{all} or book_author like #{all} or
+	 	book_publisher like #{all} or book_classification like #{all}
+	 </select>
+	 
+	 <select id="getBookSearchCount" parameterType="hashmap" resultType="int">
 	 	select count(*) from book where ${category} like '%${value}%'
 	 </select>
+	 
+	 <select id="getBookSearchAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where b.book_subject like '%${value}%' or b.book_author like '%${value}%' or
+	 	b.book_publisher like '%${value}%' or b.book_classification like '%${value}%'
+		order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select> 
 	 
 	 <select id="getBookSearchList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,

@@ -34,11 +34,30 @@ public class AdminDAO {
 		return bookList;
 	}
 	
+	// 검색결과로 나온 책 전체 개수 구하기
+	public int getBookSearchAllCount(String search){
+		int count;
+		HashMap map = new HashMap();
+		map.put("all", "%"+search+"%");
+		count=sqlsession.selectOne("getBookSearchAllCount", map);
+		return count;
+	}
+	
+	// 검색결과로 나온 책 전체 리스트 뿌려주기
+	public List<BookDTO> getBookSearchAllList(int startRow, int pageSize, String search){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("value", search);
+		List<BookDTO> booksearchList = sqlsession.selectList("getBookSearchAllList", map);
+		return booksearchList;
+	}		
+	
 	// 책 제목 검색결과 개수 구하기
 	public int getBookSearchCount(String search, String category){
 		int count;
 		HashMap map = new HashMap();
-		map.put("search", search);
+		map.put("value", search);
 		map.put("category", category);
 		count = sqlsession.selectOne("getBookSearchCount", map);
 		return count;
