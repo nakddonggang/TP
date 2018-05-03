@@ -76,4 +76,13 @@
 		<url-pattern>*.am</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>BookFrontController</servlet-name>
+		<servlet-class>net.book.action.BoodFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BookFrontController</servlet-name>
+		<url-pattern>*.bk</url-pattern>
+	</servlet-mapping>
+	
 </web-app>
