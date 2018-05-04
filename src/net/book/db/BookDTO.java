@@ -37,9 +37,19 @@ public class BookDTO {
 	int hbook_isbn;					//	국제표준번호		int(18)								국제표준번호 ISBN
 	String hbook_explain;			//	희망도서 설명		varchar(2000)						희망도서 설명
 	
+	// hbook table
+	String member_id;
+	
 	//getter, setter 구현
+	
 	public int getBook_number() {
 		return book_number;
+	}
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 	public void setBook_number(int book_number) {
 		this.book_number = book_number;

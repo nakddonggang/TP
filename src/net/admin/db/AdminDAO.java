@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import net.book.db.BookDTO;
+import net.facility.db.FacilityDTO;
 import net.member.db.MemberDTO;
 import util.myBatisSetting.sqlMapConfig;
 
@@ -34,19 +35,85 @@ public class AdminDAO {
 		return bookList;
 	}
 	
-	// 책 제목 검색결과 개수 구하기
-	public int getBookSearchCount(String search){
+// 책 정렬 메소드
+	// 제목 정렬
+	public List<BookDTO> getBookSortSubject(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> bookList = sqlsession.selectList("getBookSortSubject", map);
+		return bookList;
+	}	
+	// 저자 정렬
+	public List<BookDTO> getBookSortAuthor(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> bookList = sqlsession.selectList("getBookSortAuthor", map);
+		return bookList;
+	}	
+	// 인기순
+	public List<BookDTO> getBookSortNumber(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> bookList = sqlsession.selectList("getBookSortNumber", map);
+		return bookList;
+	}	
+	// 신작순
+	public List<BookDTO> getBookSortPubDate(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> bookList = sqlsession.selectList("getBookSortPubDate", map);
+		return bookList;
+	}	
+	// 입고순
+	public List<BookDTO> getBookSortDate(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> booksortList = sqlsession.selectList("getBookSortDate", map);
+		return booksortList;
+	}	
+// 책 정렬 메소드 끝
+	
+	// 검색결과로 나온 책 전체 개수 구하기
+	public int getBookSearchAllCount(String search){
 		int count;
-		count = sqlsession.selectOne("getBookSearchCount", search);
+		HashMap map = new HashMap();
+		map.put("all", "%"+search+"%");
+		count=sqlsession.selectOne("getBookSearchAllCount", map);
+		return count;
+	}
+	
+	// 검색결과로 나온 책 전체 리스트 뿌려주기
+	public List<BookDTO> getBookSearchAllList(int startRow, int pageSize, String search){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("value", search);
+		List<BookDTO> booksearchList = sqlsession.selectList("getBookSearchAllList", map);
+		return booksearchList;
+	}		
+	
+	// 책 제목 검색결과 개수 구하기
+	public int getBookSearchCount(String search, String category){
+		int count;
+		HashMap map = new HashMap();
+		map.put("value", search);
+		map.put("category", category);
+		count = sqlsession.selectOne("getBookSearchCount", map);
 		return count;
 	}
 	
 	// 검색된 책 리스트 뿌려주기
-	public List<BookDTO> getBookSearchList(int startRow, int pageSize, String search){
+	public List<BookDTO> getBookSearchList(int startRow, int pageSize, String search, String category_){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		map.put("search", search);
+		map.put("category_", category_);
 		List<BookDTO> booksearchList = sqlsession.selectList("getBookSearchList", map);
 		return booksearchList;
 	}	
@@ -114,6 +181,22 @@ public class AdminDAO {
 		return rbookList;
 	}
 	
+	// 희망도서 책 전체 리스트 개수 구하기
+	public int getHBookCount(){
+		int count;
+		count = sqlsession.selectOne("getHBookCount");
+		return count;
+	}
+	
+	// 희망도서 신청 목록 리스트
+	public List<BookDTO> getHBookList(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> hbookList = sqlsession.selectList("getHBookList", map);
+		return hbookList;
+	}	
+	
 	public int getMemberCount(){
 		int count;
 		count = sqlsession.selectOne("getMemberCount");
@@ -141,5 +224,11 @@ public class AdminDAO {
 		mDTO = sqlsession.selectOne("getAdminMember" , member_id);
 		return mDTO;
 	}
-
+	
+	//	facility 시설자리 생성
+	public int insertFacility(FacilityDTO fDTO) {
+		int result;
+		result = sqlsession.insert("AdminFacilityInsert", fDTO);
+		return result;
+	}
 }

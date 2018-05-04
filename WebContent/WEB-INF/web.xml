@@ -77,6 +77,15 @@
 	</servlet-mapping>
 	
 	<servlet>
+		<servlet-name>FacilityFrontController</servlet-name>
+		<servlet-class>net.facility.action.FacilityFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FacilityFrontController</servlet-name>
+		<url-pattern>*.fy</url-pattern>
+	</servlet-mapping>
+			
+	<servlet>
 		<servlet-name>BookFrontController</servlet-name>
 		<servlet-class>net.book.action.BookFrontController</servlet-class>
 	</servlet>

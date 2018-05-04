@@ -1,3 +1,4 @@
+<%@page import="net.book.db.BookDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -16,6 +17,11 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
+<%
+String pageNum = (String)request.getAttribute("pageNum");
+BookDTO bookList = (BookDTO)request.getAttribute("bookList");
+%>
+
 <body>
 	<div class="wrapper">
 
@@ -33,18 +39,34 @@
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-				<div class="seatLayout">
-						<%
-							for (char c = 'A'; c <= 'E'; c++) {
-								out.print("<ul>");
-								for (int r = 1; r <= 7; r++) {
-									out.print("<li id='"+ c + r + "' class='seat'>"+
-									"<div><a href = './FacilityView.fy?facil_num="+c+r+"'>1</a></div></li>");
-								}
-								out.print("</ul>");
-							}
-						%>
-				</div>
+				
+					<div class="total_search"></div>
+					<div class="curation"></div>
+					<div class=""></div>
+					<div class=""></div>
+					<!-- 본문 공간 -->
+					<h2>책 정보보기</h2>
+					<form action="" method="post" name="fr">
+					<table border="1">
+						<tr>
+							<th>고유번호 : </th>
+							<td><%=bookList.getBook_number()%></td>
+						</tr>	
+						<tr>						
+							<th>사유 : </th>
+							<td><%=bookList.getDbook_reason()%></td>
+						</tr>	
+						<tr>	
+							<th>도서상태 : </th>
+							<td><%=bookList.getDbook_state()%></td>
+						</tr>	
+						
+					</table>
+					<div>
+						<input type="button" value="목록보기" onclick="location.href='./AdminBookDLos.am?pageNum=<%=pageNum%>'">
+					</div>
+					</form>
+					
 				<!-- //메인 페이지-->
 				</article>
 				

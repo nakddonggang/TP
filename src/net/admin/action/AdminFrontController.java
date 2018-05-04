@@ -60,6 +60,11 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}						
+		} else if (command.equals("/AdminBookDLosInfo.am")){
+			action = new AdminBookDLosInfo();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}						
 		} else if (command.equals("/AdminBookRes.am")){
 			action = new AdminBookRes();
 			try {
@@ -70,6 +75,16 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}	
+		} else if (command.equals("/AdminBookSort.am")){
+			action = new AdminBookSort();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}		
+		} else if (command.equals("/AdminHBookList.am")){
+			action = new AdminHBookList();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}				
 		} else if (command.equals("/AdminMemberIndex.am")){
 			action = new AdminMemberIndex();
 			try {
@@ -94,8 +109,22 @@ public class AdminFrontController extends HttpServlet{
 			action = new AdminMemberNormal();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}						
-		}    
+			} catch (Exception e) {e.printStackTrace();}
+			
+			//  여기서 부터는 Facility 구간
+		}else if(command.equals("/AdminFacilityInsert.am")) {
+			forward = new ActionForward();
+			forward.setPath("./admin/admFacilityInsert.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/AdminFacilityInsertAction.am")) {
+			action = new AdminFacilityInsertAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			// 여기까지 Facility 구간
+		}
 		
 		// 이동
 		if (forward!=null){

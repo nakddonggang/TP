@@ -44,6 +44,7 @@ function basket(){
 int book_number = Integer.parseInt(request.getParameter("book_number"));
 String pageNum = request.getParameter("pageNum");
 BookDTO bookList = (BookDTO)request.getAttribute("bookList");
+String dbook_reason= (String)request.getAttribute("dbook_reason");
 %>
 	<div class="wrapper">
 
@@ -116,11 +117,14 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 							<!-- book/bookInfo.jsp 에 필요한 기능 -->
 						<input type="button" value="대출예약" onclick="location.href='javascript:bbook()'">
 						<input type="button" value="책바구니" onclick="location.href='javascript:basket()'">
+						<input type="button" value="목록보기" onclick="location.href='./AdminIndex.am?pageNum=<%=pageNum%>'">
 					</div>
 					</form>
 					<form action="./AdminBookDLosWrite.am" method="post">
 						<input type="hidden" name="book_number" value="<%=bookList.getBook_number()%>"	>
-						<input type="submit" value="손망실">
+						<%if(dbook_reason == null){%> 
+						<input type="submit" value="손망실"><%
+						 }%>
 					</form>
 					<!-- // 본문 공간 -->
 				</article>

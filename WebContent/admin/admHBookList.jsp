@@ -28,7 +28,7 @@ int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
 int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
 int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 int endPage = ((Integer)request.getAttribute("endPage")).intValue();
-List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
+List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 %>
 	<div class="wrapper">
 
@@ -53,44 +53,51 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
-					<h2>손망실 목록 [<%=count%>]</h2>
-					<%if(dbookList.isEmpty()){ out.print("손망실 목록이 없습니다"); }   else { %>
+					<h2> 희망도서 신청 목록 [<%=count%>]</h2>
+					<%if(count==0){ out.print("희망도서 신청 목록이 없습니다"); } else { %>
 					<table border="1">
 						<tr>
-							<th>고유번호</th>
-							<th>사유</th>
-							<th>도서상태</th>
+							<th>아이디</th>
+							<th>도서명</th>
+							<th>저자</th>
+							<th>처리상태</th>
+							<th>발행처</th>
+							<th>국제표준번호</th>
+							<th>희망도서 설명</th>
 						</tr>
 						<%
-							for (BookDTO dbookLists : dbookList) {%>
-						<tr onclick="location.href='./AdminBookDLosInfo.am?book_number=<%=dbookLists.getBook_number()%>&pageNum=<%=pageNum%>'">
-							<td><%=dbookLists.getBook_number()%></td>
-							<td><%=dbookLists.getDbook_reason()%></td>
-							<td><%=dbookLists.getDbook_state()%></td>			
+							for (BookDTO hbookLists : hbookList) {%>
+						<tr>
+							<td><%=hbookLists.getMember_id()%></td>
+							<td><%=hbookLists.getHbook_subject()%></td>
+							<td><%=hbookLists.getHbook_author()%></td>
+							<td><%=hbookLists.getHbook_check()%></td>
+							<td><%=hbookLists.getHbook_publisher()%></td>
+							<td><%=hbookLists.getHbook_isbn()%></td>
+							<td><%=hbookLists.getHbook_explain()%></td>
 						</tr> <%
 							} %>
-					</table>
-					<%} %><br>
+					</table><br>
+					<%} %>	
 					
 					<input type="button" value="도서관리페이지로 이동" onclick="location.href='./AdminIndex.am'">
-					
 					<% // count = 전체 글의 개수
 						if (count != 0) {
 							// 이전페이지 // if (startPage와 pageBlock을 비교)
 							if (startPage > pageBlock) {
-					%><a href="./AdminBookDLos.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
+					%><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
 						}
 
 							// 1~10		11~20		21~30
 							for (int i = startPage; i <= endPage; i++) {%>
-							<a href="./AdminBookDLos.am?pageNum=<%=i%>">[<%=i%>]</a><%		
+							<a href="./AdminHBookList.am?pageNum=<%=i%>">[<%=i%>]</a><%		
 							}
 	
 							// 다음 // if (endPage와 pageCount를 비교)
 							if (endPage<pageCount){%>
-							<a href="./AdminBookDLos.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
+							<a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
 							}
-						} // if count 괄호 %>						
+						} // if count 괄호 %>					
 					<!-- // 본문 공간 -->
 				</article>
 			</section>

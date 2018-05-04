@@ -30,27 +30,45 @@
 				<!-- 서브메뉴 -->
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
+				
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-				<div class="seatLayout">
-						<%
-							for (char c = 'A'; c <= 'E'; c++) {
-								out.print("<ul>");
-								for (int r = 1; r <= 7; r++) {
-									out.print("<li id='"+ c + r + "' class='seat'>"+
-									"<div><a href = './FacilityView.fy?facil_num="+c+r+"'>1</a></div></li>");
-								}
-								out.print("</ul>");
-							}
-						%>
-				</div>
-				<!-- //메인 페이지-->
-				</article>
 				
+					<div class="total_search"></div>
+					<div class="curation"></div>
+					<div class=""></div>
+					<div class=""></div>
+					<!-- 본문 공간 -->
+					<h2>자리 생성</h2>
+					<form action="./AdminFacilityInsertAction.am" method="post">
+						<table border="1">
+							<tr>
+								<th>자리번호 : </th><td><input type="text" name="facil_num" ></td>
+							</tr>
+							<tr>	
+								<th>자리유형 : </th>
+								<td>
+									<select name = "facil_type">
+									<option value ="media">미디어</option>
+									<option value ="desk">칸막이</option>
+									<option value ="etc">기타</option>
+									</select>
+								</td>
+							</tr>
+						</table>		
+						
+						<div>
+					<input type="submit" value="열람실 자리 생성">
+					<input type="reset" value="취소">
+				</div>
+							
+					</form>
+					<!-- // 본문 공간 -->
+				</article>
 			</section>
 		</div>
-		<!-- //본문 컨테이너 -->
+		<!-- //container -->
 	</div>
 </body>
 </html>
