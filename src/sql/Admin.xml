@@ -18,7 +18,7 @@
 	 
 	 <select id="getBookSearchAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -33,7 +33,7 @@
 	 
 	 <select id="getBookSearchList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -47,7 +47,7 @@
 	 
 	 <select id="getBookSortSubject" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -59,7 +59,7 @@
 	 
 	 <select id="getBookSortAuthor" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -71,7 +71,7 @@
 
 	 <select id="getBookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -83,7 +83,7 @@
 
 	 <select id="getBookSortPubDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -95,7 +95,7 @@
 
 	 <select id="getBookSortDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -107,7 +107,7 @@
 	 
 	 <select id="getBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -130,7 +130,7 @@
 	 
 	 <select id="getBookInfo"  parameterType="int" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, b.book_pubDate, b.book_form, b.book_notation,
-	 	 b.book_isbn, b.book_classification, b.book_date, d.dbook_reason, d.dbook_state 
+	 	 b.book_isbn, b.book_classification, b.book_date, d.dbook_reason, d.dbook_state , b.book_file
 	 	from book b
 	 	left join dbook d
 	 	on d.book_number=b.book_number

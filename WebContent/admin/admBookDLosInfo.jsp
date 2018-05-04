@@ -54,7 +54,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 						</tr>	
 						<tr>						
 							<th>사유 : </th>
-							<td><%=bookList.getDbook_reason()%></td>
+							<td><textarea cols="20" rows="10"><%=bookList.getDbook_reason()%></textarea></td>
 						</tr>	
 						<tr>	
 							<th>도서상태 : </th>

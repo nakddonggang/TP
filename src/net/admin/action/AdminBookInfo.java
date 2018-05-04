@@ -15,7 +15,6 @@ public class AdminBookInfo implements Action{
 		
 		// int book_number, String pageNum 파라미터 값 가져오기
 		int book_number = Integer.parseInt(request.getParameter("book_number"));
-		String pageNum = request.getParameter("pageNum");
 
 		// AdminDAO 객체 생성
 		AdminDAO adao = new AdminDAO();

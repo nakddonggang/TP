@@ -103,7 +103,7 @@ public class AdminDAO {
 		HashMap map = new HashMap();
 		map.put("value", search);
 		map.put("category", category);
-		count = sqlsession.selectOne("getBookSearchCount", map);
+		count = sqlsession.selectOne("admin.getBookSearchCount", map);
 		return count;
 	}
 	
@@ -114,7 +114,7 @@ public class AdminDAO {
 		map.put("pageSize", pageSize);
 		map.put("search", search);
 		map.put("category_", category_);
-		List<BookDTO> booksearchList = sqlsession.selectList("getBookSearchList", map);
+		List<BookDTO> booksearchList = sqlsession.selectList("admin.getBookSearchList", map);
 		return booksearchList;
 	}	
 	
@@ -131,7 +131,7 @@ public class AdminDAO {
 	
 	// 책 정보 눌렀을 때 상세정보 보여주기
 	public BookDTO getBookInfo(int book_number){
-		BookDTO bookList = sqlsession.selectOne("getBookInfo", book_number);
+		BookDTO bookList = sqlsession.selectOne("admin.getBookInfo", book_number);
 		return bookList;
 	}
 	
