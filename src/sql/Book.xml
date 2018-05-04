@@ -39,5 +39,10 @@
 		where b.book_subject like '%${search}%'
 		order by b.book_number desc limit #{startRow},#{pageSize}
 	</select>
+	
+	<insert id="insertHBook" parameterType="net.book.db.BookDTO">
+		insert into hbook(member_id, hbook_subject, hbook_author, hbook_publisher, hbook_explain)
+		values(#{member_id}, #{hbook_subject}, #{hbook_author}, #{hbook_publisher}, #{hbook_explain})
+	</insert>
 
 </mapper>

@@ -55,10 +55,10 @@
 						<td>발행처 : </td>
 						<td><input type="text" name="book_publisher"></td>
 					</tr>
-<!-- 					<tr> -->
-<!-- 						<td>발행일 : </td> -->
-<!-- 						<td><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"></td> -->
-<!-- 					</tr> -->
+					<tr>
+						<td>발행일 : </td>
+						<td><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"></td>
+					</tr>
 					<tr>
 						<td>형태 : </td>
 						<td><input type="text" name="book_form"></td>
