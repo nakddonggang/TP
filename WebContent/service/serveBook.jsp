@@ -52,10 +52,11 @@ if(member_id != null) {
 					<div class=""></div>
 					<!-- 본문 공간 -->
 					<h2>희망도서 신청</h2>
-					<form action="./MemberHBook.me" method="post">
+					<form action="ServeBookAction.bk" method="post">
+						<input type="hidden" value="대기" name="hbook_check">
 						<table border="1">
 							<tr>
-								<th>아이디 : </th><td><input type="text" name="member_id" value="<%=member_id%>" readonly></td>
+								<th>아이디 : </th><td><input type="text" name="member_id" value="1111" readonly></td>
 							</tr>
 							<tr>	
 								<th>도서명  : </th><td><input type="text" name="hbook_subject"></td>

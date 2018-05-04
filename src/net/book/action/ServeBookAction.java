@@ -22,6 +22,7 @@ public class ServeBookAction implements Action {
 		bookdto.setHbook_author(request.getParameter("hbook_author"));
 		bookdto.setHbook_publisher(request.getParameter("hbook_publisher"));
 		bookdto.setHbook_explain(request.getParameter("hbook_explain"));
+		bookdto.setHbook_check(request.getParameter("hbook_check"));
 		
 		BookDAO bdao = new BookDAO();
 		int result = bdao.insertHBook(bookdto);
@@ -33,7 +34,7 @@ public class ServeBookAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./Main.fp");
-		forward.setRedirect(false);
+		forward.setRedirect(true);
 		return forward;
 	}
 	

@@ -41,8 +41,8 @@
 	</select>
 	
 	<insert id="insertHBook" parameterType="net.book.db.BookDTO">
-		insert into hbook(member_id, hbook_subject, hbook_author, hbook_publisher, hbook_explain)
-		values(#{member_id}, #{hbook_subject}, #{hbook_author}, #{hbook_publisher}, #{hbook_explain})
+		insert into hbook(member_id, hbook_subject, hbook_author, hbook_publisher, hbook_explain, hbook_check)
+		values(#{member_id}, #{hbook_subject}, #{hbook_author}, #{hbook_publisher}, #{hbook_explain}, #{hbook_check})
 	</insert>
 
 </mapper>
