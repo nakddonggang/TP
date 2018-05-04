@@ -197,6 +197,29 @@ public class AdminDAO {
 		return hbookList;
 	}	
 	
+	// 희망도서 눌러서 정보보기
+	public BookDTO getHBookInfo(String member_id, String hbook_subject, String hbook_author){
+		HashMap map = new HashMap();
+		map.put("member_id", member_id);
+		map.put("hbook_subject", hbook_subject);
+		map.put("hbook_author", hbook_author);
+		BookDTO hbookinfo = sqlsession.selectOne("getHBookInfo", map);
+		return hbookinfo;
+	}
+	
+	// 희망도서 처리상태 수정하기
+	public int getHBookReWrite(String hbook_check, int hbook_isbn, String member_id, String hbook_subject, String hbook_author){
+		int result = 0;
+		HashMap map = new HashMap();
+		map.put("hbook_check", hbook_check);
+		map.put("hbook_isbn", hbook_isbn);
+		map.put("member_id", member_id);
+		map.put("hbook_subject", hbook_subject);
+		map.put("hbook_author", hbook_author);
+		result = sqlsession.selectOne("getHBookReWrite", map);
+		return result;
+	}
+	
 	public int getMemberCount(){
 		int count;
 		count = sqlsession.selectOne("getMemberCount");

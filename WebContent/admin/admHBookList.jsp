@@ -67,14 +67,14 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 						</tr>
 						<%
 							for (BookDTO hbookLists : hbookList) {%>
-						<tr>
+						<tr onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>%hbook_subject=<%=hbookLists.getBook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'">
 							<td><%=hbookLists.getMember_id()%></td>
 							<td><%=hbookLists.getHbook_subject()%></td>
 							<td><%=hbookLists.getHbook_author()%></td>
 							<td><%=hbookLists.getHbook_check()%></td>
 							<td><%=hbookLists.getHbook_publisher()%></td>
 							<td><%=hbookLists.getHbook_isbn()%></td>
-							<td><%=hbookLists.getHbook_explain()%></td>
+							<td><textarea cols="20" rows="10"><%=hbookLists.getHbook_explain()%></textarea></td>
 						</tr> <%
 							} %>
 					</table><br>
