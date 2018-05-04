@@ -21,11 +21,28 @@ public class FacilityFrontController extends HttpServlet {
 		Action action = null;
 		
 		if(command.equals("/Facility.fy")) {
-			forward = new ActionForward();
-			forward.setPath("./service/serveFacil.jsp");
-			forward.setRedirect(false);
+			action = new FacilityInfo();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/FacilityView.fy")) {
 			action = new FacilityView();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/FacilityUseAction.fy")) {
+			action = new FacilityUseAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/FacilityUnUseAction.fy")) {
+			action = new FacilityUnUseAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {
