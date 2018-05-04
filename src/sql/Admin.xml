@@ -170,9 +170,9 @@
 	 	select * from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
 	 </select>
 	 
-	 <update id="getHBookReWrite" parameterType="hashmap">
+	 <update id="getHBookReWrite" parameterType="String">
 	 	update hbook set hbook_check=#{hbook_check}, hbook_isbn={#hbook_isbn}
-	 	where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
+	 	where member_id=#{member_id}
 	 </update>
  
 	<select id="getMemberCount" resultType="int">
