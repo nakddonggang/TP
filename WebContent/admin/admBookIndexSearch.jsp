@@ -57,21 +57,35 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 				<!-- //메인 페이지-->
 					<!-- 본문 공간 -->
 					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
-					<form action="./AdminBookSearch.am" method="post" name="form1">
-						<fieldset>
-						<legend>상세검색</legend>
-							<select name="category">
-							<option value="book_subject">전체</option>
-							<option value="book_subject">제목</option>
-							<option value="book_author">저자</option>
-							<option value="book_publisher">출판사</option>
-							<option value="book_isbn">국제표준번호</option>
-							<option value="book_classification">분류기호</option>				
-							</select>
-					 		<input type="text" name="search" placeholder="책 제목을 입력하세요">
-							<input type="submit" value="상세검색">	
-						</fieldset>
-					</form>
+					<div>
+						<form action="./AdminBookSearch.am" method="post">
+							<fieldset>
+							<legend>상세검색</legend>
+								<select name="category">
+								<option value="all">전체</option>
+								<option value="book_subject">제목</option>
+								<option value="book_author">저자</option>
+								<option value="book_publisher">출판사</option>
+								<option value="book_isbn">국제표준번호</option>
+								<option value="book_classification">분류기호</option>				
+								</select>
+						 		<input type="text" name="search" placeholder="책 제목을 입력하세요">
+								<input type="submit" value="상세검색">	
+							</fieldset>
+						</form>
+					</div>
+					
+					<fieldset>
+					<legend>책 목록 정렬</legend>
+					<select name="sort">
+						<option value="number" checked>정렬</option>
+						<option value="book_subject" onclick="location.href='./AdminBookSort.am?sort=book_subject'">제목순</option>
+						<option value="book_author" onclick="location.href='./AdminBookSort.am?sort=book_author'">저자순</option>
+						<option value="book_popul" onclick="location.href='./AdminBookSort.am?sort=book_number'">인기순</option>
+						<option value="book_pubDate" onclick="location.href='./AdminBookSort.am?sort=book_pubDate'">신작순</option>
+						<option value="book_date" onclick="location.href='./AdminBookSort.am?sort=book_date'">입고순</option>
+					</select>
+					</fieldset>
 					
 					<h2>책 목록 [<%=count%>]</h2>
 					<%if(count==0){ out.print("검색된 책 목록이 없습니다"); } else {%>
@@ -101,7 +115,8 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 					</table>
 					<%}%><br>
 					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"> 
-					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'"><br>
+					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'">					
+					<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'"><br>
 								
 					<% // count = 전체 글의 개수
 						if (count != 0) {
