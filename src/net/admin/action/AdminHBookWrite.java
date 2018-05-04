@@ -8,25 +8,23 @@ import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class AdminBookInfo implements Action{
+public class AdminHBookWrite implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// 파라미터값 받아오기
+		String member_id = request.getParameter("member_id");
+		String hbook_subject = request.getParameter("hbook_subject");
+		String hbook_author = request.getParameter("hbook_author");
 		
-		// int book_number, String pageNum 파라미터 값 가져오기
-		int book_number = Integer.parseInt(request.getParameter("book_number"));
-
-		// AdminDAO 객체 생성
+		// DAO 생성
 		AdminDAO adao = new AdminDAO();
+		BookDTO bookdto = adao.getHBookInfo(member_id, hbook_subject, hbook_author);
 		
-		// BookDTO 객체 생성
-		BookDTO bookList = adao.getBookInfo(book_number);
-		String dbook_reason = bookList.getDbook_reason();
+		request.setAttribute("bookdto", bookdto);
 		
-		request.setAttribute("bookList", bookList);
-		request.setAttribute("dbook_reason", dbook_reason);
 		ActionForward forward = new ActionForward();
-		forward.setPath("./admin/admBookInfo.jsp");
+		forward.setPath("./admin/admHBookWrite.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

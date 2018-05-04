@@ -51,4 +51,10 @@ public class BookDAO {
 		return booksearchList;
 	}
 
+	// 희망도서 신청 insert 해주기
+	public int insertHBook(BookDTO bookdto){
+		int result;
+		result = sqlsession.insert("insertHBook", bookdto);
+		return result;
+	}
 }

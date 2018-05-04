@@ -56,7 +56,17 @@ public class BookFrontController extends HttpServlet{
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-				}
+				} else if (command.equals("/ServeBook.bk")){
+					forward = new ActionForward();
+					forward.setPath("./service/serveBook.jsp");
+					forward.setRedirect(false);
+				} else if (command.equals("/ServeBookAction.bk")){
+						action = new ServeBookAction();
+						try{
+							forward = action.execute(request, response);
+						}catch(Exception e){e.printStackTrace();}
+					}
+				
 		
 		if (forward!=null){
 			if (forward.isRedirect())

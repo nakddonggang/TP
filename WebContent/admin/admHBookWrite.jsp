@@ -1,3 +1,4 @@
+<%@page import="net.book.db.BookDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -17,6 +18,9 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
+<%
+BookDTO bookdto = (BookDTO)request.getAttribute("bookdto");
+%>
 	<div class="wrapper">
 
 		<!-- header -->
@@ -40,49 +44,45 @@
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
-			<h2>책 입고하기</h2>
-			<form action="./AdminBookWriteAction.am" method="post" enctype="multipart/form-data">
+			<h2>희망도서 정보</h2>
+			<form action="./AdminHBookWriteAction.am" method="post">
 				<table border="1">
 					<tr>
-						<td>표제 : </td>
-						<td><input type="text" name="book_subject"></td>
+						<td>아이디 : </td>
+						<td><input type="text" name="member_id" value="<%=bookdto.getMember_id()%>" readonly></td>
+					</tr>
+					<tr>
+						<td>도서명 : </td>
+						<td><input type="text" name="hbook_subject" value="<%=bookdto.getHbook_subject() %>" readonly></td>
 					</tr>
 					<tr>
 						<td>저자 : </td>
-						<td><input type="text" name="book_author"></td>
+						<td><input type="text" name="hbook_author" value="<%=bookdto.getHbook_author()%>" readonly></td>
+					</tr>
+					<tr>
+						<td>처리상태 : <%=bookdto.getHbook_check()%>"></td>
+						<td><select name="hbook_check">
+							<option value="wait" <%if(bookdto.getHbook_check()=="wait") {%>selected<%}%>>대기</option>
+							<option value="in" <%if(bookdto.getHbook_check()=="in") {%>selected<%}%>>입고됨</option>
+							<option value="not-in" <%if(bookdto.getHbook_check()=="not-in") {%>selected<%}%>>입고불가</option>
+						</select></td>
 					</tr>
 					<tr>
 						<td>발행처 : </td>
-						<td><input type="text" name="book_publisher"></td>
-					</tr>
-					<tr>
-						<td>발행일 : </td>
-						<td><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"></td>
-					</tr>
-					<tr>
-						<td>형태 : </td>
-						<td><input type="text" name="book_form"></td>
-					</tr>
-					<tr>
-						<td>주기 : </td>
-						<td><input type="text" name="book_notation"></td>
+						<td><input type="text" name="hbook_publisher" value="<%=bookdto.getHbook_publisher()%>" readonly></td>
 					</tr>
 					<tr>
 						<td>국제표준번호 : </td>
-						<td><input type="text" name="book_isbn"></td>
+						<td><input type="text" name="hbook_isbn" value="<%=bookdto.getHbook_isbn()%>"></td>
 					</tr>
 					<tr>
-						<td>분류기호 : </td>
-						<td><input type="text" name="book_classification"></td>
-					</tr>
-					<tr>
-						<td>책 사진 : </td>
-						<td><input type="file" name="book_file"></td>
+						<td>희망도서 설명 : </td>
+						<td><input type="text" name="book_isbn" value="<%=bookdto.getHbook_explain()%>" readonly></td>
 					</tr>
 				</table>
 				
 				<div>
-					<input type="submit" value="입고하기">
+					<input type="submit" value="수정">
 					<input type="reset" value="취소">
 				</div>
 			</form>

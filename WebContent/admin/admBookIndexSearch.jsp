@@ -97,13 +97,13 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 							<th>출판사</th>
 							<th>도서상태</th> <!-- dbook -->
 							<th>반납상태</th> <!-- bbook -->
-							<th>입고일자</th> <!-- rbook -->
-							<th> 입고현황</th> <!-- rbook -->
+							<th>예약일자</th> <!-- rbook -->
+							<th> 예약현황</th> <!-- rbook -->
 						</tr>
 						<%
 							for (BookDTO booksearchLists : booksearchList) {%>
-								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>&pageNum=<%=pageNum%>'">
-									<td><%=booksearchLists.getBook_number()%></td>
+								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'">
+									<td><img src="./upload/<%=booksearchLists.getBook_file()%>" width="100" height="100"><%=booksearchLists.getBook_number()%></td>
 									<td><%=booksearchLists.getBook_subject()%></td>
 									<td><%=booksearchLists.getBook_author()%></td>
 									<td><%=booksearchLists.getBook_publisher()%></td>

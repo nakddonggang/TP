@@ -74,7 +74,7 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 					<table border="1">
 						<tr>
 							<th>고유번호 : </th>
-							<td><%=bookList.getBook_number()%></td>
+							<td><img src="./upload/<%=bookList.getBook_file()%>" width="100" height="100"><%=bookList.getBook_number()%></td>
 						</tr>	
 						<tr>						
 							<th>표제 : </th>
@@ -90,7 +90,7 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 						</tr>	
 						<tr>	
 							<th>발행일 : </th>
-							<td><%=(Timestamp)bookList.getBook_pubDate()%></td>
+							<td><%=bookList.getBook_pubDate()%></td>
 						</tr>	
 						<tr>	
 							<th>형태 : </th>
@@ -110,14 +110,14 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 						</tr>	
 						<tr>	
 							<th>입고일 : </th>
-							<td><%=(Timestamp)bookList.getBook_date()%></td>	
+							<td><%=bookList.getBook_date()%></td>	
 						</tr>	
 					</table>
 					<div>
 							<!-- book/bookInfo.jsp 에 필요한 기능 -->
 						<input type="button" value="대출예약" onclick="location.href='javascript:bbook()'">
 						<input type="button" value="책바구니" onclick="location.href='javascript:basket()'">
-						<input type="button" value="목록보기" onclick="location.href='./AdminIndex.am?pageNum=<%=pageNum%>'">
+						<input type="button" value="목록보기" onclick="location.href='./AdminIndex.am">
 					</div>
 					</form>
 					<form action="./AdminBookDLosWrite.am" method="post">

@@ -103,7 +103,7 @@ public class AdminDAO {
 		HashMap map = new HashMap();
 		map.put("value", search);
 		map.put("category", category);
-		count = sqlsession.selectOne("getBookSearchCount", map);
+		count = sqlsession.selectOne("admin.getBookSearchCount", map);
 		return count;
 	}
 	
@@ -114,7 +114,7 @@ public class AdminDAO {
 		map.put("pageSize", pageSize);
 		map.put("search", search);
 		map.put("category_", category_);
-		List<BookDTO> booksearchList = sqlsession.selectList("getBookSearchList", map);
+		List<BookDTO> booksearchList = sqlsession.selectList("admin.getBookSearchList", map);
 		return booksearchList;
 	}	
 	
@@ -131,7 +131,7 @@ public class AdminDAO {
 	
 	// 책 정보 눌렀을 때 상세정보 보여주기
 	public BookDTO getBookInfo(int book_number){
-		BookDTO bookList = sqlsession.selectOne("getBookInfo", book_number);
+		BookDTO bookList = sqlsession.selectOne("admin.getBookInfo", book_number);
 		return bookList;
 	}
 	
@@ -196,6 +196,23 @@ public class AdminDAO {
 		List<BookDTO> hbookList = sqlsession.selectList("getHBookList", map);
 		return hbookList;
 	}	
+	
+	// 희망도서 눌러서 정보보기
+	public BookDTO getHBookInfo(String member_id, String hbook_subject, String hbook_author){
+		HashMap map = new HashMap();
+		map.put("member_id", member_id);
+		map.put("hbook_subject", hbook_subject);
+		map.put("hbook_author", hbook_author);
+		BookDTO hbookinfo = sqlsession.selectOne("getHBookInfo", map);
+		return hbookinfo;
+	}
+	
+	// 희망도서 처리상태 수정하기
+	public int getHBookReWrite(String member_id){
+		int result = 0;
+		result = sqlsession.selectOne("getHBookReWrite", member_id);
+		return result;
+	}
 	
 	public int getMemberCount(){
 		int count;
