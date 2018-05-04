@@ -20,6 +20,7 @@
 		<mapper resource="sql/Board.xml" />
 		<mapper resource="sql/Admin.xml" />
 		<mapper resource="sql/Facility.xml"/>
+		<mapper resource="sql/Book.xml" />
 	</mappers>
 
 </configuration>

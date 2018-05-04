@@ -84,5 +84,14 @@
 		<servlet-name>FacilityFrontController</servlet-name>
 		<url-pattern>*.fy</url-pattern>
 	</servlet-mapping>
+			
+	<servlet>
+		<servlet-name>BookFrontController</servlet-name>
+		<servlet-class>net.book.action.BookFrontController</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>BookFrontController</servlet-name>
+		<url-pattern>*.bk</url-pattern>
+	</servlet-mapping>
 	
 </web-app>
