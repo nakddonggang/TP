@@ -208,15 +208,9 @@ public class AdminDAO {
 	}
 	
 	// 희망도서 처리상태 수정하기
-	public int getHBookReWrite(String hbook_check, int hbook_isbn, String member_id, String hbook_subject, String hbook_author){
+	public int getHBookReWrite(String member_id){
 		int result = 0;
-		HashMap map = new HashMap();
-		map.put("hbook_check", hbook_check);
-		map.put("hbook_isbn", hbook_isbn);
-		map.put("member_id", member_id);
-		map.put("hbook_subject", hbook_subject);
-		map.put("hbook_author", hbook_author);
-		result = sqlsession.selectOne("getHBookReWrite", map);
+		result = sqlsession.selectOne("getHBookReWrite", member_id);
 		return result;
 	}
 	
