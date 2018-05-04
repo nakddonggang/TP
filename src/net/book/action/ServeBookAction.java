@@ -32,7 +32,7 @@ public class ServeBookAction implements Action {
 		}
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./main/main.jsp");
+		forward.setPath("./Main.fp");
 		forward.setRedirect(false);
 		return forward;
 	}

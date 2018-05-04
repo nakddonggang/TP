@@ -123,9 +123,9 @@
 	 
 	 <insert id="insertBook" parameterType="net.book.db.BookDTO">
 	 	insert into book (book_number, book_subject, book_author, book_publisher, book_pubDate, 
-	 	book_form, book_notation, book_isbn, book_classification, book_date)
+	 	book_form, book_notation, book_isbn, book_classification, book_date, book_file)
 	 	values (#{book_number}, #{book_subject}, #{book_author}, #{book_publisher}, #{book_pubDate}, 
-	 	#{book_form}, #{book_notation}, #{book_isbn}, #{book_classification}, now()
+	 	#{book_form}, #{book_notation}, #{book_isbn}, #{book_classification}, now(), #{book_file})
 	 </insert>
 	 
 	 <select id="getBookInfo"  parameterType="int" resultType="net.book.db.BookDTO">

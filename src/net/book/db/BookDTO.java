@@ -13,7 +13,8 @@ public class BookDTO {
 	String book_notation;			//	주기					varchar(100)						책 주기
 	String book_isbn;					//	국제표준번호		int(18)								국제표준번호 ISBN
 	String book_classification;		//	분류기호			varchar(40)							책 분류기호
-	Date book_date;				//	입고일				date									도서관에 입고된 날짜
+	Date book_date;			 //	입고일				date									도서관에 입고된 날짜
+	String book_file;			// 책 사진 넣기			file
 	
 	//	<dbook table>						
 	String dbook_reason;			//	사유					char(40)								파기 사유
@@ -42,8 +43,15 @@ public class BookDTO {
 	
 	//getter, setter 구현
 	
+	
 	public int getBook_number() {
 		return book_number;
+	}
+	public String getBook_file() {
+		return book_file;
+	}
+	public void setBook_file(String book_file) {
+		this.book_file = book_file;
 	}
 	public String getMember_id() {
 		return member_id;

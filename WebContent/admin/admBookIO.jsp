@@ -41,7 +41,7 @@
 					<div class=""></div>
 					<!-- 본문 공간 -->
 			<h2>책 입고하기</h2>
-			<form action="./AdminBookWriteAction.am" method="post">
+			<form action="./AdminBookWriteAction.am" method="post" enctype="multipart/form-data">
 				<table border="1">
 					<tr>
 						<td>표제 : </td>
@@ -74,6 +74,10 @@
 					<tr>
 						<td>분류기호 : </td>
 						<td><input type="text" name="book_classification"></td>
+					</tr>
+					<tr>
+						<td>책 사진 : </td>
+						<td><input type="file" name="book_file"></td>
 					</tr>
 				</table>
 				
