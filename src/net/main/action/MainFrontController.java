@@ -31,6 +31,10 @@ public class MainFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("main/main.jsp");
 			forward.setRedirect(false);
+		}if(command.equals("/GuideMap.fp")){
+			forward = new ActionForward();
+			forward.setPath("guide/guideMap.jsp");
+			forward.setRedirect(false);
 		}
 //		if(command.equals("/MemberJoinAction.me")) {
 //			action = new MemberJoinAction();
