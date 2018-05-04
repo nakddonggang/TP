@@ -1,3 +1,5 @@
+<%@page import="net.facility.db.FacilityDAO"%>
+<%@page import="net.member.db.MemberDTO"%>
 <%@page import="net.facility.db.FacilityDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -18,9 +20,21 @@
 		<%
 	}
 	FacilityDTO fDTO = (FacilityDTO)request.getAttribute("fDTO");
+	FacilityDAO fDAO = new FacilityDAO();
+	int check = fDAO.useMember(member_id);
+	if(!(fDTO.getMember_id()!=null || fDTO.getMember_id().equals(member_id))) {
+	if(check == 1) {
+		%>
+		<script type="text/javascript">
+			alert("사용중일 때에는 다른 열람실을 사용할 수 없습니다.");
+			location.href = "./Facility.fy";
+		</script>
+		<%
+		}
+	}
 %>
 					<h2>자리 세부정보</h2>
-					<form action="./FacilityUseAction.fy" method="post">
+					<form action="./FacilityUseAction.fy?facil_num=<%=fDTO.getFacil_num() %>" method="post" name = "facilviewform">
 						<table border="1">
 							<tr>
 								<th>자리번호 : </th><td><%=fDTO.getFacil_num() %></td>
@@ -52,9 +66,17 @@
 						</table>		
 						<input type="hidden" value="<%=fDTO.getFacil_use()%>" name = "facil_use">
 						<div>
-					<input type="submit" value="자리 빌리기">
-					<input type="button" value="뒤로가기" onclick = "history.back()">
+						<%
+						if(Integer.parseInt(fDTO.getFacil_use()) != 1) {
+							%><input type = "submit" value = "사용하기" ><%
+						} else if(fDTO.getMember_id().equals(member_id)){
+							%><input type = "button" value = "반납" 
+							onclick = "location.href = './FacilityUnUseAction.fy?facil_num=<%=fDTO.getFacil_num()%>&facil_use=<%=fDTO.getFacil_use()%>'"><%
+						}
+						%>	
+					<input type="button" value="뒤로가기" onclick = "location.href = './Facility.fy'">
 				</div>
 				</form>
+
 </body>
 </html>
