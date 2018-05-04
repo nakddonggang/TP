@@ -38,7 +38,7 @@
 					<li><a href="#">도서관 안내</a>
 						<ul class="DIV_SUB_MNU">
 							<li><a href="../guide/guideIntro.jsp">도서관 소개</a></li>
-							<li><a href="../guide/guideMap.jsp">찾아오시는 길</a></li>
+							<li><a href="./GuideMap.fp">찾아오시는 길</a></li>
 							<li><a href="../guide/guideStatis.jsp">도서관 통계</a></li>
 						</ul></li>
 					
