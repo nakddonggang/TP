@@ -1,3 +1,5 @@
+<%@page import="net.facility.db.FacilityDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -34,16 +36,18 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="seatLayout">
-						<%
-							for (char c = 'A'; c <= 'E'; c++) {
-								out.print("<ul>");
-								for (int r = 1; r <= 7; r++) {
-									out.print("<li id='"+ c + r + "' class='seat'>"+
-									"<div><a href = './FacilityView.fy?facil_num="+c+r+"'>1</a></div></li>");
-								}
-								out.print("</ul>");
-							}
-						%>
+					<ul>
+				<%
+				List<FacilityDTO> Facilitylist = (List<FacilityDTO>)request.getAttribute("Facilitylist");
+				for(FacilityDTO fDTO : Facilitylist) {
+						out.print("<li id='"+fDTO.getFacil_num()+"' class='seat'>"+
+						"<div><a href = './FacilityView.fy?facil_num="+fDTO.getFacil_num()+"'>1</a></div></li>");
+					if(fDTO.getFacil_num().substring(1, 2).equals("7")) {
+							out.print("</ul><ul>");
+					}
+				}
+				%>
+				</ul>
 				</div>
 				<!-- //메인 페이지-->
 				</article>
