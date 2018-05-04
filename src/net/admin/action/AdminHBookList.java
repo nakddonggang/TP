@@ -11,29 +11,18 @@ import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class AdminBookSearch implements Action{
+public class AdminHBookList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		
-		// search 파라미터값 가져오기
-		String category = request.getParameter("category");
-		System.out.println("category 값 "+category);
-		String search = request.getParameter("search");
-		System.out.println("search 값 "+search);
-		
-		// AdminDAO adao 객체 생성 및 count 메소드 호출
+		// AdminDAO 객체생성 및 total 책의 개수 가져오기
 		AdminDAO adao = new AdminDAO();
-		int count = 0;
-		if (category.equals("all")){
-			count = adao.getBookSearchAllCount(search);
-		} else {
-			count = adao.getBookSearchCount(search, category);
-		}
-		System.out.println(count);
+		int count = adao.getHBookCount();
+		
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 5;		
 		
@@ -57,12 +46,11 @@ public class AdminBookSearch implements Action{
 		PrintWriter out = response.getWriter();
 		
 		// 책 뿌려주는 메소드 생성
-		List<BookDTO> booksearchList = null;
-		if (count!=0) {
-			if (category.equals("all")) booksearchList=adao.getBookSearchAllList(startRow, pageSize, search);
-			else booksearchList = adao.getBookSearchList(startRow, pageSize, search, category);
+		List<BookDTO> hbookList = null;
+		if (count!=0){
+			hbookList=adao.getHBookList(startRow, pageSize);
 		} else { }
-		
+	
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);
 		// 한 화면에 보여줄 페이지수 설정
@@ -74,22 +62,21 @@ public class AdminBookSearch implements Action{
 		// 끝나는 페이지보다 전체페이지의 수가 작은 경우 if 문을 이용하여 제어해주기
 		if (endPage>pageCount){
 			endPage=pageCount;
-		}	
+		}		
 		
 		// count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
 		request.setAttribute("count", count);
-		request.setAttribute("search", search);
 		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("booksearchList", booksearchList);
+		request.setAttribute("hbookList", hbookList);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);				
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./admin/admBookIndexSearch.jsp");
+		forward.setPath("./admin/admHBookList.jsp");
 		forward.setRedirect(false);
-		return forward;
+		return forward;		
 	}
 	
 }

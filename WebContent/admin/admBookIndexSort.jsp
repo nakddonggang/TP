@@ -23,13 +23,14 @@
 <%
 request.setCharacterEncoding("utf-8");
 //count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
+String sort = (String)request.getAttribute("sort");
 int count = ((Integer)request.getAttribute("count")).intValue();
 String pageNum = (String)request.getAttribute("pageNum");
 int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
 int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
 int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 int endPage = ((Integer)request.getAttribute("endPage")).intValue();
-List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
+List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList");
 %>
 	<div class="wrapper">
 
@@ -87,7 +88,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					</fieldset>
 					
 					<h2>책 목록 [<%=count%>]</h2>
-					<%if(bookList.isEmpty()){ out.print("책 목록이 없습니다"); } else {%>
+					<%if(booksortList.isEmpty()){ out.print("책 목록이 없습니다"); } else {%>
 					<table border="1">
 						<tr>
 							<th>고유번호</th>
@@ -100,16 +101,16 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<th> 입고현황</th> <!-- rbook -->
 						</tr>
 						<%
-							for (BookDTO bookLists : bookList) {%>
-								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>&pageNum=<%=pageNum%>'">
-									<td><%=bookLists.getBook_number()%></td>
-									<td><%=bookLists.getBook_subject()%></td>
-									<td><%=bookLists.getBook_author()%></td>
-									<td><%=bookLists.getBook_publisher()%></td>
-									<td><%=bookLists.getDbook_state()%></td>
-									<td><%=bookLists.getBbook_bstate()%></td>
-									<td><%=bookLists.getRbook_date()%></td>
-									<td><%=bookLists.getRbook_check()%></td>		
+							for (BookDTO booksortLists : booksortList) {%>
+								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=booksortLists.getBook_number()%>&pageNum=<%=pageNum%>'">
+									<td><%=booksortLists.getBook_number()%></td>
+									<td><%=booksortLists.getBook_subject()%></td>
+									<td><%=booksortLists.getBook_author()%></td>
+									<td><%=booksortLists.getBook_publisher()%></td>
+									<td><%=booksortLists.getDbook_state()%></td>
+									<td><%=booksortLists.getBbook_bstate()%></td>
+									<td><%=booksortLists.getRbook_date()%></td>
+									<td><%=booksortLists.getRbook_check()%></td>		
 								</tr> <%}%>
 					</table>
 					<%}%><br>
@@ -121,17 +122,17 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						if (count != 0) {
 							// 이전페이지 // if (startPage와 pageBlock을 비교)
 							if (startPage > pageBlock) {
-					%><a href="./AdminIndex.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
+					%><a href="./AdminBookSort.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
 						}
 
 							// 1~10		11~20		21~30
 							for (int i = startPage; i <= endPage; i++) {%>
-							<a href="./AdminIndex.am?pageNum=<%=i%>">[<%=i%>]</a><%		
+							<a href="./AdminBookSort.am?pageNum=<%=i%>">[<%=i%>]</a><%		
 							}
 	
 							// 다음 // if (endPage와 pageCount를 비교)
 							if (endPage<pageCount){%>
-							<a href="./AdminIndex.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
+							<a href="./AdminBookSort.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
 							}
 						} // if count 괄호 %>
 
