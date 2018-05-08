@@ -55,13 +55,8 @@ public class FacilityDAO {
 	//	facility 중복 확인
 	public int useMember(String member_id) {
 		FacilityDTO fDTO = new FacilityDTO();
-		MemberDTO mDTO = new MemberDTO();
 		int check = 0;
-		mDTO = sqlsession.selectOne("selectMember", member_id);
-		String id = mDTO.getMember_id();
-		System.out.println("id : "+id);
-		check = sqlsession.selectOne("selectFacilMember", id);
-		System.out.println("check : "+check);
+		check = sqlsession.selectOne("selectFacilMember", member_id);
 		return check;
 	}
 }
