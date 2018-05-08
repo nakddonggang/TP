@@ -34,20 +34,62 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 					<div class="content">
-						<h1>회원가입</h1>
+					<div class='member_content'>
 						<form action="MemberJoinAction.me"  method="post"  name="fr" >
 							<fieldset class="memberform">
 								<legend>회원가입</legend>
-								<label>ID</label><input type="text" name="member_id" value=""><br>
-								<label>Pass</label><input type="text" name="member_pass" value=""><br>
-								<label>Name</label><input type="text" name="member_name" value=""><br>
-								<label>Post</label><input type="text" name="member_post" value=""><br>
-								<label>Address</label><input type="text" name="member_address1" value=""><input type="text" name="member_address2" value=""><br>
-								<label>Phone</label><input type="text" name="member_phone" value=""><br>
-								<label>E-mail</label><input type="text" name="member_email" value="">
+								<div class="row_group">
+									<div class="join_row">
+										<span>
+											<label>ID</label>
+											<input type="text" name="member_id" value="">
+										</span>
+									</div>
+									<div class="join_row">
+										<span>
+											<label>Pass</label>
+											<input type="text" name="member_pass" value="">
+										</span>
+									</div>
+									<div class="join_row">
+										<span>
+											<label>Name</label>
+											<input type="text" name="member_name" value="">
+										</span>
+									</div>
+									<div class="join_row">
+										<span>
+											<label>Post</label>
+											<input type="text" name="member_post" value="">
+										</span>
+									</div>
+									<div class="join_row">
+										<span>
+											<label>Address</label>
+											<input type="text" name="member_address1" value="">
+										</span>
+										<span>
+											<input type="text" name="member_address2" value=""><br>
+										</span>
+									</div>
+									<div class="join_row">
+										<span>
+											<label>Phone</label>
+											<input type="text" name="member_phone" value="">
+										</span>
+									</div>
+									<div class="join_row">
+										<span>
+											<label>E-mail</label>
+											<input type="text" name="member_email" value="">
+										</span>
+									</div>
+								</div>
 							</fieldset>
-							<input type="submit" value="회원가입"> <input type="reset" value="취소">
+							<input type="submit" value="회원가입" class ="btn">
+							<input type="reset" value="취소" class ="btn">
 						</form>
+						</div>
 					</div>
 		<!-- //메인 페이지-->
 				</article>

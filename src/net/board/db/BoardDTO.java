@@ -1,6 +1,6 @@
 package net.board.db;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class BoardDTO {
 	//	<notice table>						
@@ -9,7 +9,7 @@ public class BoardDTO {
 	String notice_subject;			//	글 제목	varchar(100)			공지사항 제목
 	String notice_content;			//	글 내용	varchar(2000)			공지사항 내용
 	String notice_file;				//	파일 이름	varchar(50)			공지사항 첨부파일 이름
-	Timestamp notice_date;		//	등록일	date			공지사항 작성일
+	Date notice_date;		//	등록일	date			공지사항 작성일
 	int notice_readcount;			//	조회수	int(5)		0	공지사항 조회수
 
 	//	<faq table>						
@@ -24,14 +24,14 @@ public class BoardDTO {
 	String sug_type;					//	글 종류	char(20)			건의사항 종류 ex)도서/시설…
 	String sug_subject;				//	글 제목	varchar(100)			건의사항 제목
 	String sug_content;				//	글 내용	varchar(2000)			건의사항 내용
-	Timestamp sug_date;			//	글 작성일	date			건의한 날짜(관리자가 확인할 때 필요/관리자 전용)
+	Date sug_date;			//	글 작성일	date			건의한 날짜(관리자가 확인할 때 필요/관리자 전용)
 
 	//	<qna table>						
 	int qna_num;					//	글 번호	int(5)	PK		질문게시판 글 번호
 	String member_id;				//	아이디	varchar(20)		작성자 아이디
 	String qna_subject;				//	글 제목	varchar(100)			질문게시판 글 제목
 	String qna_content;				//	글 내용	varchar(2000)			질문게시판 글 내용
-	Timestamp qna_date;			//	작성일	date			질문게시판 글 작성일
+	Date qna_date;			//	작성일	date			질문게시판 글 작성일
 	int qna_readcount;				//	조회수	int(5)		0	해당 글 조회수
 	int qna_ref;						//	참조글 번호	int(5)			관리자 답변글에 쓰일 참조번호
 	String qna_check;				//	답변 유무	char(2)	check in ('0', '1')	0	관리자 답변이 달렸는지 아닌지 여부(답변대기/답변등록)
@@ -81,10 +81,10 @@ public class BoardDTO {
 	public void setNotice_file(String notice_file) {
 		this.notice_file = notice_file;
 	}
-	public Timestamp getNotice_date() {
+	public Date getNotice_date() {
 		return notice_date;
 	}
-	public void setNotice_date(Timestamp notice_date) {
+	public void setNotice_date(Date notice_date) {
 		this.notice_date = notice_date;
 	}
 	public int getNotice_readcount() {
@@ -147,10 +147,10 @@ public class BoardDTO {
 	public void setSug_content(String sug_content) {
 		this.sug_content = sug_content;
 	}
-	public Timestamp getSug_date() {
+	public Date getSug_date() {
 		return sug_date;
 	}
-	public void setSug_date(Timestamp sug_date) {
+	public void setSug_date(Date sug_date) {
 		this.sug_date = sug_date;
 	}
 	public int getQna_num() {
@@ -171,10 +171,10 @@ public class BoardDTO {
 	public void setQna_content(String qna_content) {
 		this.qna_content = qna_content;
 	}
-	public Timestamp getQna_date() {
+	public Date getQna_date() {
 		return qna_date;
 	}
-	public void setQna_date(Timestamp qna_date) {
+	public void setQna_date(Date qna_date) {
 		this.qna_date = qna_date;
 	}
 	public int getQna_readcount() {

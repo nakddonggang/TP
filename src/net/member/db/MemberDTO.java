@@ -1,6 +1,6 @@
 package net.member.db;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class MemberDTO {
 	//	Member table
@@ -12,7 +12,7 @@ public class MemberDTO {
 	String member_address2; 		//	상세주소				varchar(60)						회원 상세주소
 	String member_phone; 		//	전화번호				char(14)							회원 전화번호
 	String member_email; 			//	E-mail					varchar(320)					회원 E-mail
-	Timestamp member_date;		// 가입일					date								회원 가입일
+	Date member_date;		// 가입일					date								회원 가입일
 	
 	//	BlackList table
 	int bl_count;						 //	연체 횟수				int(3)								해당 회원 연체 횟수
@@ -76,10 +76,10 @@ public class MemberDTO {
 	public void setMember_email(String member_email) {
 		this.member_email = member_email;
 	}
-	public Timestamp getMember_date() {
+	public Date getMember_date() {
 		return member_date;
 	}
-	public void setMember_date(Timestamp member_date) {
+	public void setMember_date(Date member_date) {
 		this.member_date = member_date;
 	}
 	public int getBl_count() {

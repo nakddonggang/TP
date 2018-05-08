@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-
-
 public class MainFrontController extends HttpServlet{
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String requestURI= request.getRequestURI();
