@@ -19,21 +19,57 @@ public class AdminBookSearch implements Action{
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		
-		// search 파라미터값 가져오기
-		String category = request.getParameter("category");
-		System.out.println("category 값 "+category);
-		String search = request.getParameter("search");
-		System.out.println("search 값 "+search);
+		// 검색 파라미터값 가져오기
+		String category1 = request.getParameter("category1");
+		System.out.println(category1);
+		String search1 = request.getParameter("search1");
+		System.out.println(search1);
+		String opt1 = request.getParameter("opt1");
+		System.out.println(opt1);
+
+		String category2 = request.getParameter("category2");
+		System.out.println(category2);
+		String search2 = request.getParameter("search2");
+		System.out.println(search2);
+		String opt2 = request.getParameter("opt2");
+		System.out.println(opt2);
+
+		String category3 = request.getParameter("category3");
+		System.out.println(category3);
+		String search3 = request.getParameter("search3");
+		System.out.println(search3);
+		String opt3 = request.getParameter("opt3");
+		System.out.println(opt3);
+		
+		String book_pubDate = request.getParameter("book_pubDate");
+		System.out.println("발행년 pubDate 값 ");
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		AdminDAO adao = new AdminDAO();
 		int count = 0;
-		if (category.equals("all")){
-			count = adao.getBookSearchAllCount(search);
-		} else {
-			count = adao.getBookSearchCount(search, category);
+		
+		// book_pubDate에 선택조건이 없을 때
+		if(book_pubDate.equals("all")){
+			// category1의 값이 all이 아닐 때
+			if(!category1.equals("all")) {
+				count = adao.getBookSearchCount(search1, category1);
+					// category1의 내용+and+category2의 내용
+					if(!category2.equals("all")&&opt1.equals("and")) {
+						
+						// category1의 내용+and+category2+and+category3의 내용
+						if(!category3.equals("all")&&opt2.equals("and")){
+						
+						// category1의 내용+and+category2+or+category3의 내용
+						} else if (!category3.equals("all")&&opt2.equals("or")){
+							
+						}
+					// category1의 내용+or+category2의 내용
+					} else if (!category2.equals("all")&&opt1.equals("or"){
+						// category1의 내용+or+category2의 내용
+					}
+			} // !category1.equals("all")
 		}
-		System.out.println(count);
+		
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 5;		
 		

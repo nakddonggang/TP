@@ -122,17 +122,17 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 						if (count != 0) {
 							// 이전페이지 // if (startPage와 pageBlock을 비교)
 							if (startPage > pageBlock) {
-					%><a href="./AdminBookSort.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
+					%><a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=<%=startPage - pageBlock%>">[이전]</a><%
 						}
 
 							// 1~10		11~20		21~30
 							for (int i = startPage; i <= endPage; i++) {%>
-							<a href="./AdminBookSort.am?pageNum=<%=i%>">[<%=i%>]</a><%		
+							<a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=<%=i%>">[<%=i%>]</a><%		
 							}
 	
 							// 다음 // if (endPage와 pageCount를 비교)
 							if (endPage<pageCount){%>
-							<a href="./AdminBookSort.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
+							<a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=<%=startPage+pageBlock%>">[다음]</a><%
 							}
 						} // if count 괄호 %>
 
