@@ -1,6 +1,6 @@
 package net.board.action;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +36,7 @@ public class BoardQnaWriteAction implements Action{
 		bDTO.setQna_num(qna_num);
 		bDTO.setQna_subject(request.getParameter("qna_subject"));
 		bDTO.setQna_content(request.getParameter("qna_content"));
-		bDTO.setQna_date(new Timestamp(System.currentTimeMillis()));
+		bDTO.setQna_date(new Date(System.currentTimeMillis()));
 		bDTO.setQna_readcount(0);
 		bDTO.setQna_ref(qna_num);
 		bDTO.setQna_check("0");

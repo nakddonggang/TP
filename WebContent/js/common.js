@@ -48,4 +48,21 @@ $(function() {
 		$(".DIV_MB_WRAP").stop(true, false).slideUp("fast");
 		$(".DIV_SHADOW").hide();
 	});
+	
+    //게시판 상세보기
+    $(".DIV_CON_LST > ul").click(function ()
+    {
+        if ($(this).hasClass('active'))
+        {
+            $(this).removeClass('active');
+            $(this).siblings("div.DIV_CON_DETAIL").stop(true, false).slideUp("fast");
+        }
+        else
+        {
+            $("div.DIV_CON_DETAIL").slideUp("fast");
+            $(".DIV_CON_LST > ul").removeClass("active");
+            $(this).siblings("div.DIV_CON_DETAIL").stop(true, false).slideDown("fast");
+            $(this).addClass('active');
+        };
+    });
 });

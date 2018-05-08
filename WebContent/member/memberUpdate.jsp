@@ -42,20 +42,56 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 					<div class="content">
+					<div class='member_content'>
 						<form action="MemberUpdateAction.me" method="post" name="">
 							<fieldset class="memberform">
 								<legend>회원정보수정</legend>
-								<label>User ID</label><input type="text" name="member_id" value="<%=member_id %>" readonly><br>
-<!-- 								<label>Password</label> <input type="password" name="pass"><br> -->
-<!-- 								<label>RetypePassword</label><input type="password" name="pass2"><br> -->
-								<label>Name</label><input type="text" name="member_name" value="<%=mDTO.getMember_name()%>"><br>
-								<label>Post</label><input type="text" name="member_post" value="<%=mDTO.getMember_post()%>"><br>
-								<label>Address</label><input type="text" name="member_address1" value="<%=mDTO.getMember_address1()%>"><input type="text" name="member_address2" value="<%=mDTO.getMember_address2()%>"><br>
-								<label>Phone</label> <input type="text" name="member_phone" value="<%=mDTO.getMember_phone()%>"><br> 
-								<label>E-Mail</label><input type="text" name="member_email" value="<%=mDTO.getMember_email()%>">
+								<div class="row_group">
+									<div id="idDiv" class="join_row">
+										<span>
+											<label>User ID</label>
+											<input type="text" name="member_id" value="<%=member_id %>" readonly>
+										</span>
+									</div>
+									<div id="nameDiv" class="join_row">
+										<span>
+											<label>Name</label>
+											<input type="text" name="member_name" value="<%=mDTO.getMember_name()%>">
+										</span>
+									</div>
+									<div id="postDiv" class="join_row">
+										<span>
+											<label>Post</label>
+											<input type="text" name="member_post" value="<%=mDTO.getMember_post()%>">
+										</span>
+									</div>
+									<div id="adressDiv" class="join_row">
+										<span>
+											<label>Address 1</label>
+											<input type="text" name="member_address1" value="<%=mDTO.getMember_address1()%>">
+										</span>
+										<span>
+											<input type="text" name="member_address2" value="<%=mDTO.getMember_address2()%>">
+										</span>
+									</div>
+									<div id="phoneDiv" class="join_row">
+										<span>
+											<label>Phone</label>
+											<input type="text" name="member_phone" value="<%=mDTO.getMember_phone()%>">
+										</span>
+									</div> 
+									<div id="emailDiv" class="join_row">
+										<span>
+											<label>E-Mail</label>
+											<input type="text" name="member_email" value="<%=mDTO.getMember_email()%>">
+										</span>
+									</div>
+								</div>
 							</fieldset>
-							<input type="submit" value="회원수정"><input type="reset" value="취소">
+							<input type="submit" value="회원수정" class ="btn">
+							<input type="reset" value="취소" class ="btn">
 						</form>
+						</div>
 					</div>
 				<!-- //메인 페이지-->
 				</article>

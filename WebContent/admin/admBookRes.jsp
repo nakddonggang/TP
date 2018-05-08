@@ -1,4 +1,4 @@
-<%@page import="java.sql.Timestamp"%>
+<%@page import="java.sql.Date"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -68,7 +68,7 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 							for (BookDTO rbookLists : rbookList) {%>
 						<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=rbookLists.getBook_number()%>&pageNum=<%=pageNum%>'">
 							<td><%=rbookLists.getRbook_num()%></td>
-							<td><%=(Timestamp)rbookLists.getRbook_date()%></td>
+							<td><%=(Date)rbookLists.getRbook_date()%></td>
 							<td><%=rbookLists.getRbook_check()%></td>		
 						</tr> <%
 							} %>

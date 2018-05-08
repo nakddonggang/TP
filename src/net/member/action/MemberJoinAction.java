@@ -1,6 +1,6 @@
 package net.member.action;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,7 +29,7 @@ public class MemberJoinAction implements Action{
 		mDTO.setMember_address2(request.getParameter("member_address2"));
 		mDTO.setMember_phone(request.getParameter("member_phone"));
 		mDTO.setMember_email(request.getParameter("member_email"));
-		mDTO.setMember_date(new Timestamp(System.currentTimeMillis()));
+		mDTO.setMember_date(new Date(System.currentTimeMillis()));
 		
 		result = mDAO.insertMember(mDTO);
 	

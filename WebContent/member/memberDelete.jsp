@@ -37,15 +37,29 @@
 				<%
 					String member_id = (String)session.getAttribute("member_id");
 				%>
-					
-					<form action="MemberDeleteAction.me" method="post" name="">
-						<fieldset class="memberform">
-						<legend>회원탈퇴</legend>
-							<label>아이디 : </label><input type="text" name="id" placeholder="아이디를 입력하세요" value="<%=member_id %>" readonly><br>
-							<label>비밀번호 : </label><input type="password" name="pass"	placeholder="비밀번호를 입력하세요">
-						</fieldset>
-						<input type="submit" value="회원탈퇴"> <input	type="reset" value="취소">
-					</form>
+					<div class='member_content'>
+						<form action="MemberDeleteAction.me" method="post" name="">
+							<fieldset class="memberform">
+								<legend>회원탈퇴</legend>
+								<div class="row_group">
+									<div id="idDiv" class="join_row">
+										<span>
+											<label>아이디</label>
+											<input type="text" name="id" placeholder="아이디를 입력하세요" value="<%=member_id %>" readonly>
+										</span>
+									</div>
+									<div id="idDiv" class="join_row">
+										<span>
+											<label>비밀번호 : </label>
+											<input type="password" name="pass"	placeholder="비밀번호를 입력하세요">
+										</span>
+									</div>
+								</div>
+							</fieldset>
+							<input type="submit"  value="회원탈퇴"  class ="btn">
+							<input	type="reset"  value="취소"  class ="btn">
+						</form>
+					</div>
 				</div>
 				<!-- //메인 페이지-->
 				</article>

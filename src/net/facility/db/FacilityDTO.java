@@ -1,7 +1,6 @@
 package net.facility.db;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.sql.Date;
 
 public class FacilityDTO {
 	//	<facilility table>						
@@ -34,7 +33,7 @@ public class FacilityDTO {
 	public Date getFacil_etime() {
 		return facil_etime;
 	}
-	public void setFacil_etime(Timestamp facil_etime) {
+	public void setFacil_etime(Date facil_etime) {
 		this.facil_etime = facil_etime;
 	}
 	public String getFacil_use() {

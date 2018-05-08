@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="java.sql.Timestamp"%>
+<%@page import="java.sql.Date"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -90,7 +90,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 						</tr>	
 						<tr>	
 							<th>발행일 : </th>
-							<td><%=(Timestamp)bookList.getBook_pubDate()%></td>
+							<td><%=(Date)bookList.getBook_pubDate()%></td>
 						</tr>	
 						<tr>	
 							<th>형태 : </th>
@@ -110,7 +110,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 						</tr>	
 						<tr>	
 							<th>입고일 : </th>
-							<td><%=(Timestamp)bookList.getBook_date()%></td>	
+							<td><%=(Date)bookList.getBook_date()%></td>	
 						</tr>	
 					</table>
 					<div>
