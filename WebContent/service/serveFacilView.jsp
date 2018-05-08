@@ -11,27 +11,13 @@
 <body>
 <%
 	String member_id = (String)session.getAttribute("member_id");
-	if(member_id == null) {
-		%>
-		<script type="text/javascript">
-			alert("로그인후 사용 부탁드립니다.");
-			location.href = "./MemberLogin.me";
-		</script>
-		<%
-	}
 	FacilityDTO fDTO = (FacilityDTO)request.getAttribute("fDTO");
 	FacilityDAO fDAO = new FacilityDAO();
-	int check = fDAO.useMember(member_id);
-	if(!(fDTO.getMember_id()!=null || fDTO.getMember_id().equals(member_id))) {
-	if(check == 1) {
-		%>
-		<script type="text/javascript">
-			alert("사용중일 때에는 다른 열람실을 사용할 수 없습니다.");
-			location.href = "./Facility.fy";
-		</script>
-		<%
-		}
+	String userCheck = fDTO.getMember_id();
+	if(userCheck == null) {
+		userCheck = "";
 	}
+	int check = fDAO.useMember(member_id);
 %>
 					<h2>자리 세부정보</h2>
 					<form action="./FacilityUseAction.fy?facil_num=<%=fDTO.getFacil_num() %>" method="post" name = "facilviewform">
@@ -67,16 +53,21 @@
 						<input type="hidden" value="<%=fDTO.getFacil_use()%>" name = "facil_use">
 						<div>
 						<%
-						if(Integer.parseInt(fDTO.getFacil_use()) != 1) {
-							%><input type = "submit" value = "사용하기" ><%
-						} else if(fDTO.getMember_id().equals(member_id)){
-							%><input type = "button" value = "반납" 
-							onclick = "location.href = './FacilityUnUseAction.fy?facil_num=<%=fDTO.getFacil_num()%>&facil_use=<%=fDTO.getFacil_use()%>'"><%
+						if(member_id != null){
+							if(Integer.parseInt(fDTO.getFacil_use()) != 1 && check == 0) {
+								%><input type = "submit" value = "사용하기" ><%
+							} else if(userCheck.equals(member_id)){
+								%><input type = "button" value = "반납" 
+								onclick = "location.href = './FacilityUnUseAction.fy?facil_num=<%=fDTO.getFacil_num()%>&facil_use=<%=fDTO.getFacil_use()%>'"><%
+							} else if(check == 1) {
+								out.print("<span>사용중인 자리 반납 후 사용 가능 합니다.</span>");
+							} 
+						} else {
+							out.print("<span>좌석 예약은 로그인 후 이용 가능합니다</span>");
 						}
 						%>	
 					<input type="button" value="뒤로가기" onclick = "location.href = './Facility.fy'">
 				</div>
 				</form>
-
 </body>
 </html>
