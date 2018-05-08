@@ -34,61 +34,76 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 					<div class="content">
-					<div class='member_content'>
+					
+					<h3>회원가입</h3>
+					
+					<div class='join_form'>
 						<form action="MemberJoinAction.me"  method="post"  name="fr" >
-							<fieldset class="memberform">
-								<legend>회원가입</legend>
-								<div class="row_group">
-									<div class="join_row">
-										<span>
-											<label>ID</label>
-											<input type="text" name="member_id" value="">
-										</span>
+							<ul class="row">
+								<li>
+									<ul class="row_sub">
+										<li class="title"><span>ID</span></li>
+										<li class="inp_form"><input type="text" name="member_id" value=""></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">Pass</li>
+										<li class="inp_form"><input type="text" name="member_pass" value=""></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">Name</li>
+										<li class="inp_form"><input type="text" name="member_name" value=""></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">Post</li>
+										<li class="inp_form"><input type="text" name="member_post" value=""></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">Address</li>
+										<li class="inp_addr"><input type="text" name="member_address1" value=""><input type="text" name="member_address2" value=""></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">Phone</li>
+										<li class="inp_form"><input type="text" name="member_phone" value=""></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">E-mail</li>
+										<li class="mb_mail"><input type="text" name="member_email" value=""></li>
+									</ul>
+								</li>
+								<li>
+									<div class="btn_btm_center">
+										<ul>
+											<li class="btn_cancle">
+												<input type="submit" value="회원가입" class ="btn_type4">
+											</li>
+											<li>
+												<input type="reset" value="취소" class ="btn_type4">
+											</li>
+										</ul>
 									</div>
-									<div class="join_row">
-										<span>
-											<label>Pass</label>
-											<input type="text" name="member_pass" value="">
-										</span>
-									</div>
-									<div class="join_row">
-										<span>
-											<label>Name</label>
-											<input type="text" name="member_name" value="">
-										</span>
-									</div>
-									<div class="join_row">
-										<span>
-											<label>Post</label>
-											<input type="text" name="member_post" value="">
-										</span>
-									</div>
-									<div class="join_row">
-										<span>
-											<label>Address</label>
-											<input type="text" name="member_address1" value="">
-										</span>
-										<span>
-											<input type="text" name="member_address2" value=""><br>
-										</span>
-									</div>
-									<div class="join_row">
-										<span>
-											<label>Phone</label>
-											<input type="text" name="member_phone" value="">
-										</span>
-									</div>
-									<div class="join_row">
-										<span>
-											<label>E-mail</label>
-											<input type="text" name="member_email" value="">
-										</span>
-									</div>
-								</div>
-							</fieldset>
-							<input type="submit" value="회원가입" class ="btn">
-							<input type="reset" value="취소" class ="btn">
+								</li>
+							</ul>
 						</form>
+						
+						
 						</div>
 					</div>
 		<!-- //메인 페이지-->
