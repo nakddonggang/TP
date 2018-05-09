@@ -28,6 +28,12 @@
 .brd_txt_lst li > .con_lst > ul > li.col_rc {width:10%; padding:0 20px;}
 
 .view_lst .con_lst > ul {overflow:hidden; background:url("../resource/img/ico_lst_down.png") right 20px center; background-repeat:no-repeat; cursor:pointer; border-bottom:1px solid #e4e4e4;}
+<<<<<<< HEAD
+.view_lst .con_lst > ul.no_scroll{background: none;} /* 화살표 없는 리스트UL */
+.view_lst .con_lst > ul.title_t{background-color: #464646; color:white;} /* title css */
+.view_lst .con_lst > ul > li {}
+=======
+>>>>>>> 4269c7dc13a071314c5c43516eef6950b2b519f9
 .view_lst .con_lst > ul > li.col_tit {text-align:left;}
 .view_lst .con_lst .con_detail {display:none; width:100%; height:100%; padding:20px; background:#f5f5f5;}
 .view_lst .con_lst .con_detail p {display:block; padding-bottom:20px;}
