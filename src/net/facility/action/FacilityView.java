@@ -21,7 +21,7 @@ public class FacilityView implements Action {
 
 		FacilityDAO fDAO = new FacilityDAO();
 		FacilityDTO fDTO = new FacilityDTO();
-		fDTO = fDAO.getFacilityDetail(member_id);
+		fDTO = fDAO.getFacilityDetail(request.getParameter("facil_num"));
 		
 		request.setAttribute("fDTO", fDTO);
 		ActionForward forward = new ActionForward();

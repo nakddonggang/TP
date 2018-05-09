@@ -10,6 +10,7 @@
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
@@ -34,35 +35,59 @@
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
 					<div class="content">
 					
-					<h1>Notice 글쓰기</h1>
-					<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" enctype="multipart/form-data">
-						<table class="" >
-							<tr>
-								<th>TYPE</th>
-								<td><input type="text" name="notice_type" value=""></td>
-							</tr>
-							<tr>
-								<th>SUBJECT</th>
-								<td><input type="text" name="notice_subject" value=""></td>
-							</tr>
-							<tr>
-								<th>CONTENT</th>
-								<textarea cols="20" rows="10" name="notice_content" style="width: 580px; resize: none;"></textarea>
-							</tr>
-							<tr>
-								<th>FILE</th>
-								<td><input type="file" name="notice_file"></td>
-							</tr>
-							<tr>
-								<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
-							</tr>
-						</table>
-					</form>
+						<div class="write_form">
+							<h1>Notice 글쓰기</h1>
+							<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" enctype="multipart/form-data">
+								<ul class="row">
+									<li>
+										<ul class="row_sub">
+											<li class="title">TYPE</li>
+											<li class="inp_form"><input type="text" name="notice_type" value=""></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">SUBJECT</li>
+											<li class="inp_form"><input type="text" name="notice_subject" value=""></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">CONTENT</li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="notice_content"></textarea></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">FILE</li>
+											<li class="inp_form">
+											<!-- start 파일 입력부분 -->
+												<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
+												<div class="file_input_div">
+													<input type="button" value="파일 찾기" class="file_input_button btn_type4">
+													<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" name="notice_file">
+												</div>
+											<!-- end 파일 입력부분 -->
+											</li>
+										</ul>
+									</li>
+									<li>
+										<div class="btn_btm_center">
+											<ul>
+												<li class="btn_cancle">
+													<input type="submit" value="글쓰기" class ="btn_type4">
+												</li>
+												<li>
+													<input type="reset" value="취소" class ="btn_type4">
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</form>
+						</div>
 					</div>
 
 				</article>

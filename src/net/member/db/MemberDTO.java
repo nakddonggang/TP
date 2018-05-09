@@ -1,6 +1,6 @@
 package net.member.db;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class MemberDTO {
 	//	Member table

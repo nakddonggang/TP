@@ -1,5 +1,6 @@
 <%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -87,16 +88,20 @@
 												<p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p>
 												<p><%=bDTO.getNotice_content() %></p>		
 												<div class="file"><span>첨부파일</span><ul><!-- 첨부파일 들어가는 부분 --></ul></div>
-												<%
-												if ("admin".equals(member_id)) {
-													%><div class="fix">
-														<ul>
-															<li><input type="button" value="글수정" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"></li>
-															<li><input type="button" value="글삭제" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"></li>
-														</ul>
-													</div><%
-												}%>
+									<%
+										if ("admin".equals(member_id)) {
+											%><div class="btn_btm_board">
+													<ul>
+														<li class="btn_cancle">
+															<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
+														</li>
+														<li>
+															<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
+														</li>
+													</ul>
+												</div>
 											</div>
+										<%	}	%>
 										</div>
 									<%	}	%>
 								<%	}	%>
