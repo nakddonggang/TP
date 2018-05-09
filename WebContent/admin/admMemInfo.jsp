@@ -43,46 +43,108 @@ String bl_check =(String)request.getAttribute("bl_check");
 				<!-- //서브메뉴 -->
 				
 				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-					<h2>사용자 정보보기</h2>
-					
-				<form id="info" name="fr" method="post">
-				<fieldset>
-					<legend>Basic Info</legend>
-					<label>User ID</label> <input type="text" name="member_id" class="id" value="<%=mDTO.getMember_id()%>" readonly><br>
-					<label>Password</label> <input type="text" name="member_pass" class="pass" value="<%=mDTO.getMember_pass()%>" readonly><br>
-					<label>Name</label> <input type="text" name="member_name" value="<%=mDTO.getMember_name()%>" readonly><br>
-					<label>E-Mail</label> <input type="email" name="member_email" value="<%=mDTO.getMember_email()%>" readonly><br>
-				</fieldset>
-
-				<fieldset>
-					<legend>Optional</legend>
-					<label>Address</label> <input type="text" name="member_post" value="<%=mDTO.getMember_post()%>" readonly><br>
-					<label>Address Detail</label> 
-					 <input type="text" name="member_address1" value="<%=mDTO.getMember_address1()%>" readonly>
-					  <input type="text" name="member_address2" value="<%=mDTO.getMember_address2()%>" readonly><br>
-					<label>Phone Number</label> <input type="text" name="member_phone" value="<%=mDTO.getMember_phone()%>" readonly><br>
-					<label>data</label> <input type="text" name="member_date" value="<%=mDTO.getMember_date()%>" readonly><br>
-				</fieldset>
-					
-					<fieldset>
-					<legend>Level</legend>
-					<%
-					if(gm_check.equals("0")&&bl_check.equals("0")){
-						%><label>Member Level</label><input type="text" name="level" value="일반회원" readonly><br><%
-					}else if(gm_check.equals("1")){
-						%><label>Member Level</label><input type="text" name="level" value="우수회원" readonly><br><%
-					}else if(bl_check.equals("1")){
-						%><label>Member Level</label><input type="text" name="level" value="블랙리스트" readonly><br><%
-					}
-					%>
-					<label>대출횟수</label> <input type="text" name="borrow_count" value="<%=mDTO.getBorrow_count()%>" readonly><br>
-					<label>연체횟수</label> <input type="text" name="bl_count" value="<%=mDTO.getBl_count()%>" readonly><br>
-					<label>연체총일수</label> <input type="text" name="bl_date" value="<%=mDTO.getBl_date()%>" readonly><br>
-					</fieldset>
-
-				</form>
-					<input type="button" value="글목록" onclick="location.href='./AdminMemberIndex.am?pageNum=<%=pageNum%>'">
+				<div class="content">
+				
+					<h3>사용자 정보보기</h3>
+				
+					<div class='join_form'>
+						<ul class="row">
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>User ID</span></li>
+										<li class="inp_form"><input type="text" name="member_id" value="<%=mDTO.getMember_id()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>Password</span></li>
+										<li class="inp_form"><input type="text" name="member_pass"  value="<%=mDTO.getMember_pass()%>"  readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>Name</span></li>
+										<li class="inp_form"><input type="text" name="member_name" value="<%=mDTO.getMember_name()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>E-Mail</span></li>
+										<li class="inp_form"><input type="text" name="member_email" value="<%=mDTO.getMember_email()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>Post</span></li>
+										<li class="inp_form"><input type="text" name="member_post"  value="<%=mDTO.getMember_post()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>Address</span></li>
+										<li class="inp_form"><input type="text" name="member_address"  value="<%=mDTO.getMember_address1()%><%=mDTO.getMember_address2()%> " readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>Name</span></li>
+										<li class="inp_form"><input type="text" name="member_phone" value="<%=mDTO.getMember_phone()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>E-Mail</span></li>
+										<li class="inp_form"><input type="text" name="member_date" value="<%=mDTO.getMember_date()%>" readonly></li>
+								</ul>
+							</li>
+						</ul>
+						
+						
+						
+						<ul class="row">
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>회원등급</span></li>
+										<%
+										if(gm_check.equals("0")&&bl_check.equals("0")){
+										%><li class="inp_form"><input type="text" name="level" value="일반회원" readonly></li><%
+										}else if(gm_check.equals("1")){
+											%><li class="inp_form"><input type="text" name="level" value="우수회원" readonly></li><%
+										}else if(bl_check.equals("1")){
+											%><li class="inp_form"><input type="text" name="level" value="블랙리스트" readonly></li><%
+										}%>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>대출횟수</span></li>
+										<li class="inp_form"><input type="text" name="borrow_count"  value="<%=mDTO.getBorrow_count()%>"  readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>연체횟수</span></li>
+										<li class="inp_form"><input type="text" name="bl_count" value="<%=mDTO.getBl_count()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>연체총일수</span></li>
+										<li class="inp_form"><input type="text" name="bl_date" value="<%=mDTO.getBl_date()%>" readonly></li>
+								</ul>
+							</li>
+						</ul>
+				<div class="btn_btm_center">
+				<ul>
+											<li class="btn_cancle">
+				<input type="button" value="글목록" onclick="location.href='./AdminMemberIndex.am?pageNum=<%=pageNum%>'" class ="btn_type4">
+				</li>
+				</ul>
+				</div>
+				</div>
+			</div>
 					<!-- //메인 페이지-->
 				</article>
 				
