@@ -266,7 +266,8 @@
 	 </select>
  
  	 <select id="getHBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select * from hbook order by member_id desc limit #{startRow}, #{PageSize}
+	 	select member_id,hbook_subject,hbook_author,hbook_check,hbook_publisher,ifnull(hbook_isbn, 0) hbook_isbn,hbook_explain
+	 	from hbook order by member_id desc limit #{startRow},#{pageSize}
 	 </select>
 	 
 	 <select id="getHBookInfo" parameterType="hashmap" resultType="net.book.db.BookDTO">
