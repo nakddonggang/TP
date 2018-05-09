@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -69,32 +70,35 @@
 						</p>
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
-							<li class="col_nm">
-								<ul>
+							<li class="view_lst">
+							<div class="con_lst">
+								<ul class="no_scroll title_t">
 									<li class="col_num">번호</li>
 									<li class="col_id">작성자</li>
 									<li class="col_title">제목</li>
-									<li class="col_date"><span class="tit_date">작성일</span></li>
+									<li class="col_date">작성일</li>
 									<li class="col_rc">조회수</li>
 									<li class="col_check">답변여부</li>
 								</ul>
+							</div>
 							<%
 								if(qnaList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
 								else{
+									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 									for(int i=0; i<qnaList.size(); i++){
 										BoardDTO bDTO = qnaList.get(i);
 										String check = bDTO.getQna_check();
 										if(check.equals("1")){check="답변완료";}
 										else {check="답변대기";}
 									%>
-										<div class="con_lst DIV_CON_LST">
-											<ul>
-												<li class="col_num"><a href="#"><p><%=bDTO.getQna_num() %></p></a></li>
-												<li class="col_id"><a href="#"><p><%=bDTO.getMember_id() %></p></a></li>
-												<li class="col_title"><a href="#"><p><%=bDTO.getQna_subject() %></p></a></li>
-												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=bDTO.getQna_date() %></span></li>
-												<li class="col_rc"><a href="#"><%=bDTO.getQna_readcount() %></a></li>
-												<li class="col_check"><a href="#"><%=check %></a></li>
+										<div class="con_lst">
+											<ul class="no_scroll">
+												<li class="col_num"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=bDTO.getQna_num() %></p></a></li>
+												<li class="col_id"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>"><p><%=bDTO.getMember_id() %></p></a></li>
+												<li class="col_title"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>"><p><%=bDTO.getQna_subject() %></p></a></li>
+												<li class="col_date"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>"><span><%=date.format(bDTO.getQna_date()) %></span></a></li>
+												<li class="col_rc"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>"><%=bDTO.getQna_readcount() %></a></li>
+												<li class="col_check"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>"><%=check %></a></li>
 											</ul>
 										</div>
 										<%	}	%>
@@ -102,7 +106,7 @@
 							</li>
 						</ul>
 						
-						<input type="button" value="글쓰기" onclick="location.href='./BoardQnaWrite.qn'">
+						<input type="button" value="글쓰기" class="btn_type1" onclick="location.href='./BoardQnaWrite.qn'">
 					
 						<%
 						if(pageCount < endPage)	endPage = pageCount;

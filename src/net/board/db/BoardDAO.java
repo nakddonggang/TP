@@ -180,17 +180,8 @@ public class BoardDAO {
 		return maxNum;
 	}
 	//Q&A 게시판 글쓰기
-	public void insertQna(BoardDTO bDTO, String id) {
-		HashMap map = new HashMap();
-		map.put("qna_num",bDTO.getQna_num());
-		map.put("member_id", id);	
-		map.put("qna_subject", bDTO.getQna_subject());
-		map.put("qna_content", bDTO.getQna_content());
-		map.put("qna_date", bDTO.getQna_date());
-		map.put("qna_readcount", bDTO.getQna_readcount());
-		map.put("qna_ref", bDTO.getQna_ref());
-		map.put("qna_check", bDTO.getQna_check());
-		sqlsession.insert("insertQna", map);
+	public void insertQna(BoardDTO bDTO) {
+		sqlsession.insert("insertQna", bDTO);
 	}
 	//Q&A 게시판 글 수정
 	public void updateQna(BoardDTO bDTO){

@@ -109,19 +109,10 @@
 .join_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;}
 
 /* start 윤창훈 작업(Q&A) */
-.col_qna {background-color: #464646; color: #fff}
-.col_qna li {float:left; display:block; height:48px; line-height:48px; text-align:center;}
-.col_qna .col_num {width:10%; padding:0 20px;}
-.col_qna .col_id {width:15%; padding:0 20px;}
-.col_qna .col_title {width:35%; padding:0 20px;}
-.col_qna .col_date {width:15%; padding:0 20px;}
-.col_qna .col_rc {width:10%; padding:0 20px;}
-.col_qna .col_check {width:15%; padding:0 20px;}
-.col_nm {border-bottom:2px solid #464646;}
-.con_lst .col_num {width:10%; padding:0 20px;}
-.con_lst .col_id {width:15%; padding:0 20px;}
-.con_lst .col_title {width:35%; padding:0 20px;}
-.con_lst .col_date {width:15%; padding:0 20px;}
-.con_lst .col_rc {width:10%; padding:0 20px;}
-.con_lst .col_check {width:15%; padding:0 20px;}
+.view_lst .con_lst > ul.no_scroll .col_num {width:5%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .col_id {width:15%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .col_title {width:35%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .col_date {width:15%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .col_rc {width:10%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .col_check {width:10%; padding:0 15px;}
 /* end 윤창훈 작업(Q&A) */
