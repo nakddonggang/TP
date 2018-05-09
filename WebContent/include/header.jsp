@@ -30,7 +30,7 @@
 						
 					<li><a href="#">내 서재</a>
 						<ul class="DIV_SUB_MNU">
-							<li><a href="../member/memberInfo.jsp">개인정보관리</a></li>
+							<li><a href="./MemberInfo.me">개인정보관리</a></li>
 							<li><a href="../member/myUseIndex.jsp">이용현황</a></li>
 							<li></li>
 						</ul></li>
