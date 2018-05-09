@@ -23,4 +23,18 @@
 		where  member_id=#{member_id}
 	</update>
 	
+	
+	<insert id="insertBasket" parameterType="net.member.db.MemberDTO">
+		insert into basket(member_id, book_number, basket_number)
+		values (#{member_id}, #{book_number}, #{basket_number})
+	</insert>
+	
+	<select id="MemberBasketList" parameterType="String" resultType="net.member.db.MemberDTO">
+		select * from member m
+		left join basket b
+		on m.member_id = b.member_id
+		left join book bk
+		on b.book_number = bk.book_number
+		where m.member_id=#{member_id}
+	</select>	
 </mapper>
