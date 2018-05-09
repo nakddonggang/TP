@@ -77,4 +77,9 @@ $(function() {
 		else if(activeTab == "tab2") {	$('.tab_content').attr('src', tab2);	}
 		else if(activeTab == "tab3") {	$('.tab_content').attr('src', tab3);	}
 	});
+	
+	$(".BTN_IF_LIST").click(function() {
+		var listPage = $(this).attr("rel");
+		parent.$('.tab_content', parent.document).attr('src', listPage);
+	});
 });

@@ -21,32 +21,18 @@
 <%
 String member_id = request.getParameter("member_id");
 String pageNum = request.getParameter("pageNum");
+String pageType = request.getParameter("pageType");
 MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
 String gm_check =(String)request.getAttribute("gm_check");
 String bl_check =(String)request.getAttribute("bl_check");
 %>
 
 
-<body>
+<body class="if_board">
 	<div class="wrapper">
 
-		<!-- header -->
-		<jsp:include page="../include/header.jsp" />
-		<!-- //header -->
-
-		<!-- 본문 컨테이너 -->
-		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
-
-				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
-				<!-- //서브메뉴 -->
-				
 				<article class="mainmenu section SECTION">
-				<jsp:include page="../include/topbar.jsp" />
-				<!-- 메인 페이지 -->
-				<div class="content">
-				
 					<h3>사용자 정보보기</h3>
 				
 					<div class='join_form'>
@@ -139,17 +125,17 @@ String bl_check =(String)request.getAttribute("bl_check");
 				<div class="btn_btm_center">
 				<ul>
 											<li class="btn_cancle">
-				<input type="button" value="글목록" onclick="location.href='./AdminMemberIndex.am?pageNum=<%=pageNum%>'" class ="btn_type4">
+				<input type="button" value="글목록" rel="./AdminMember<%=pageType%>.am?pageNum=<%=pageNum%>" class ="btn_type4 BTN_IF_LIST">
 				</li>
 				</ul>
 				</div>
 				</div>
-			</div>
+		
 					<!-- //메인 페이지-->
 				</article>
 				
 			</section>
-		</div>
+		
 		<!-- //본문 컨테이너 -->
 	</div>
 </body>

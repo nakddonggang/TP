@@ -26,6 +26,7 @@
 		int count = ((Integer) request.getAttribute("count")).intValue();
 
 		String pageNum = (String) request.getAttribute("pageNum");
+		String pageType = "Normal";
 		int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
 		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
@@ -80,7 +81,7 @@
 						%>
 						<div class="con_lst">
 							<ul
-								onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>'"  class="no_scroll">
+								onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>&pageType=<%=pageType %>'"  class="no_scroll">
 								<li class="col_type"><a href="#"><p><%=mt.getMember_id()%></p></a></li>
 								<li class="col_type"><a href="#"><p><%=mt.getMember_pass()%></p></a></li>
 								<li class="col_type"><a href="#"><%=mt.getMember_name()%></li>
