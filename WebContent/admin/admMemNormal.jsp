@@ -78,7 +78,7 @@
 						<%
 							if (memberList == null) {
 						%><ul>
-							<li class="col_tit"><p>게시글이 없습니다</p></li>
+							<li class="col_tit"><p>회원이 없습니다</p></li>
 						</ul>
 						<%
 							} else {
