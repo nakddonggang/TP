@@ -1,7 +1,8 @@
 <%@page import="net.member.db.MemberDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -47,79 +48,91 @@
 				<!-- 서브메뉴 -->
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
+
 				
-				<article class="mainmenu section SECTION">
-				<!-- 메인 페이지 -->
-					<h2>
-						member 목록 [<%=count%>]
-					</h2>
-					<table border="1">
-						<tr>
-							<th>아이디</th>
-							<th>비밀번호</th>
-							<th>이름</th>
-							<th>전화번호</th>
-							<th>회원등급</th>
-							<th>가입일</th>
-							<!--리스트에서는 필요한 항목만 보이게끔 -->
-						</tr>
+					<!-- 메인 페이지 -->
+					<article class="mainmenu section SECTION">
+					<jsp:include page="../include/topbar.jsp" />
+					<div class="content">
+						<div class=board>
+						<div class="view_cnt">
+							<p>
+								Total_<span><%=count%></span>
+							</p>
+						</div>
+						
+						
+						<ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="view_lst">
+							<div class="con_lst">
+							<ul class="no_scroll title_t">
+								<li class="col_type">아이디</li>
+								<li class="col_type">비밀번호</li>
+								<li class="col_type">이름</li>
+								<li class="col_date">전화번호</li>
+								<li class="col_type">회원등급</li>
+								<li class="col_date">가입일</li>
+							</ul>
+							</div>
 						<%
-							if(memberList != null){
-							for (int i = 0; i < memberList.size(); i++) {
-								MemberDTO mt = memberList.get(i);
-								String gm_check = mt.getGm_check();
-								String bl_check = mt.getBl_check();
-						%>
-						<tr
-							onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>'">
-							<td><%=mt.getMember_id()%></td>
-							<td><%=mt.getMember_pass()%></td>
-							<td><%=mt.getMember_name()%></td>
-							<td><%=mt.getMember_phone()%></td>
-							<td>
-								<%
-									if (gm_check.equals("0") && bl_check.equals("0")) {%>일반회원<%} 
-									else if (gm_check.equals("1") && bl_check.equals("0")) {%>우수회원<%} 
-									else if (bl_check.equals("1") && gm_check.equals("0")) {%>블랙리스트<%}
-									else {%>일반회원<%}
-								%>
-							</td>
-							<td><%=mt.getMember_date()%></td>
-						</tr>
+							if (memberList == null) {
+						%><ul>
+							<li class="col_tit"><p>게시글이 없습니다</p></li>
+						</ul>
 						<%
-							}
-							}else{
-								%><td colspan='6'><%out.print("회원이 없습니다");%></td><%
-							}
+							} else {
+								for (int i = 0; i < memberList.size(); i++) {
+									MemberDTO mt = memberList.get(i); //제너릭 사용해서 형변환 할 필요없음
+									String gm_check = mt.getGm_check();
+									String bl_check = mt.getBl_check();
 						%>
-					</table>
-
-					<%
-						if (count != 0) {
-
-							//이전
-							if (startPage > pageBlock) {
-					%><a href="./AdminMemberNormal.am?pageNum=<%=startPage - pageBlock%>">[이전]</a>
-					<%
-						}
-							// 1~10 11~20 21~30
+						<div class="con_lst">
+							<ul
+								onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>'"  class="no_scroll">
+								<li class="col_type"><a href="#"><p><%=mt.getMember_id()%></p></a></li>
+								<li class="col_type"><a href="#"><p><%=mt.getMember_pass()%></p></a></li>
+								<li class="col_type"><a href="#"><%=mt.getMember_name()%></li>
+								<li class="col_date"><a href="#"><%=mt.getMember_phone()%></a></li>
+								<li class="col_type">
+									<%
+										if (gm_check.equals("0") && bl_check.equals("0")) {
+									%>일반회원<%
+										} else if (gm_check.equals("1") && bl_check.equals("0")) {
+									%>우수회원<%
+										} else if (bl_check.equals("1") && gm_check.equals("0")) {
+									%>블랙리스트<%
+										} else {
+									%>일반회원<%
+										}
+									%>
+								</li>
+								<li class="col_date"><%=mt.getMember_date()%></li>
+							</ul>
+						</div>
+						<%}%>
+						<%}%>
+							</li>
+						</ul>
+						<%if (count != 0) {//이전
+								if (startPage > pageBlock) {
+						%><a href="./AdminMemberNormal.am?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+						<%}// 1~10 11~20 21~30
 							for (int i = startPage; i <= endPage; i++) {
-					%><a href="./AdminMemberNormal.am?pageNum=<%=i%>"><%=i%></a>
-					<%
-						}
-							//다음
-							if (endPage < pageCount) {
-					%><a href="./AdminMemberNormal.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
-					<%
-						}
-						}
-					%>
-					<!-- //메인 페이지-->
-				</article>
-				
-			</section>
+						%><a href="./AdminMemberNormal.am?pageNum=<%=i%>"><%=i%></a>
+						<%}//다음
+								if (endPage < pageCount) {
+						%><a href="./AdminMemberNormal.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+						<%}}%>
+						</div>
+					</div>
+					</article>
+
+		</section>
 		</div>
-		<!-- //본문 컨테이너 -->
+		<!-- //메인 페이지-->
+		
 	</div>
+	<!-- //본문 컨테이너 -->
 </body>
 </html>
