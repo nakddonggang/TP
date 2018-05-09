@@ -71,7 +71,6 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					</select><br>
 					
 							<select name="category2">
-							<option value="all">전체</option>
 							<option value="book_subject">제목</option>
 							<option value="book_author">저자</option>
 							<option value="book_publisher">출판사</option>
@@ -85,7 +84,6 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					</select><br>
 					
 							<select name="category3">
-							<option value="all">전체</option>
 							<option value="book_subject">제목</option>
 							<option value="book_author">저자</option>
 							<option value="book_publisher">출판사</option>

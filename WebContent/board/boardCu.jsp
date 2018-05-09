@@ -50,45 +50,72 @@
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
+					
 					<div class="content">
+					  <div class=board>
+					  
+					  <h1>Curation</h1>
+					  
+					  <div class="search_bx">
+							<form action="./BoardCurSearch.cu" method="post">
+								<input type="text" name="search" class="inp_search"><input type="submit" value="검색" class="btn_search" >
+							</form>
+						</div>
+						
+						<div class="view_cnt">
+							<p>Total_<span><%=count %></span></p>
+						</div>
+					  
+					  
+					  <ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="view_lst">
 
-					<h1>Curation [전체글개수 : <%=count %>]</h1>
-					<table border="1">
-						<tr><td>번호</td><td>종류</td><td>작성자</td><td>제목</td><td>내용</td><td>파일</td><td>조회수</td><td></td></tr>
-						<%
+	                  <%
 						if(curationList==null){
-							%><tr><td colspan="8">게시물이 없습니다.</td></tr><%
+							%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%
 						}else{
 							for(int i=0; i<curationList.size(); i++){
 								BoardDTO bDTO = curationList.get(i);
 							%>
-								<tr><td><%=bDTO.getCur_num() %></td><td><%=bDTO.getCur_type() %></td>
-									<td><%=bDTO.getCur_name() %></td><td><%=bDTO.getCur_subject() %></td>
-									<td><%=bDTO.getCur_content() %></td><td><img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100"></td>
-									<td><%=bDTO.getCur_readcount() %></td>
+							
+							<div class="con_lst DIV_CON_LST">
+							  <ul>
+								<li class="col_rc"><a href="#"><%=bDTO.getCur_num() %></a></li>
+								<li class="col_type"><a href="#"><p><%=bDTO.getCur_type() %></p></a></li>
+								<li class="col_type"><a href="#"><p><%=bDTO.getCur_name() %></p></a></li>
+							    <li class="col_title"><a href="#"><p><%=bDTO.getCur_subject() %></p></a></li>
+							    <li class="col_rc"><a href="#"><%=bDTO.getCur_readcount() %></a></li>
+					          </ul>
+					          
+					         <div class="con_detail DIV_CON_DETAIL">
+									
+									<p><img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100"></p>
+									<p><%=bDTO.getCur_content() %></p>
+									<div class="file"><span>첨부파일</span><ul><!-- 첨부파일 들어가는 부분 --></ul></div>
+									
 									<%
 									if ("admin".equals(member_id)) {
-								%>
-									<td><input type="button" value="글수정" onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"> 
-										<input type="button" value="글삭제" onclick="location.href='./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"></td></tr>
-										<%} %>
+								    %><div class="fix">
+								       <ul>
+									     <li><input type="button" value="글수정" onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"></li>
+									     <li><input type="button" value="글삭제" onclick="location.href='./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"></li>
+									   </ul>
+									 </div>	<%} %>
+							</div>
+						  </div>
 							<%	
 							}
 						}
 						%>
-					</table>
-								<%
-									if ("admin".equals(member_id)) {
-								%>	
+				      </li>
+				     </ul>
+					<%
+				    if ("admin".equals(member_id)) {
+					%>	
 					<input type="button" value="글쓰기" onclick="location.href='./BoardCurWrite.cu'">
 					<%} %>
 			
-					<form action="./BoardCurSearch.cu" method="post">
-						<input type="text" name="search"> <input type="submit" value="검색">
-					</form>
 
 					<%
 					if(pageCount < endPage)	endPage = pageCount;
@@ -101,6 +128,7 @@
 					if(endPage < pageCount){	%><a href="BoardCurList.cu?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 					%>
 					</div>
+				</div>
 					
 				</article>
 				<!-- //메인 페이지-->

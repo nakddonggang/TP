@@ -21,7 +21,7 @@
 <%
 BoardDTO bDTO = (BoardDTO)request.getAttribute("bDTO");
 String pageNum = request.getParameter("pageNum");
-String id = (String)session.getAttribute("id");
+String member_id = (String)session.getAttribute("member_id");
 %>
 <!-- board/boardQUpdate.jsp Q&A 게시판 글 수정 페이지 -->
 	<div class="wrapper">

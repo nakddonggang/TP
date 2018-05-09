@@ -15,7 +15,7 @@
 /* start 게시판 부분 */
 .board {position:relative;}
 .board .search_bx {top:-5px;}
-.view_cnt {position:relative; top:-10px; font-size:0.86em; font-family:"Noto_M"; color:#666;}
+.view_cnt {position:relative; top:-5px; font-size:0.86em; font-family:"Noto_M"; color:#666;}
 .brd_txt_lst {overflow:hidden; position:relative; margin-bottom:30px; border-top:2px solid #464646; border-bottom:1px solid #464646;}
 .brd_txt_lst li {float:left; width:100%; }
 .col_nm {border-bottom:2px solid #464646;}
@@ -101,3 +101,15 @@
 .join_form .row_sub > li p {float:left; margin-left:10px; color:#999; letter-spacing:-0.08em; line-height:30px;}
 .join_form .row_sub > li.inp_form input[type="radio"] {margin-top:6px;}
 .join_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;}
+
+/* start 윤창훈 작업(Q&A) */
+.col_qna {background-color: #464646; color: #fff}
+.col_qna li {float:left;}
+.col_qna .col_num {width:10%; padding:0 20px;}
+.col_qna .col_id {width:15%; padding:0 20px;}
+.col_qna .col_title {width:35%; padding:0 20px;}
+.col_qna .col_date {width:15%; padding:0 20px;}
+.col_qna .col_rc {width:10%; padding:0 20px;}
+.col_qna .col_check {width:15%; padding:0 20px;}
+
+/* end 윤창훈 작업(Q&A) */
