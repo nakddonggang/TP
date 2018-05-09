@@ -97,10 +97,6 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 								<li class="col_date"><a href="#"><%=mt.getBl_date()%></a></li>
 							</ul>
 						</div>
-						<%}else {%>
-							<ul>
-							<li class="col_tit"><p>블랙리스트가 없습니다</p></li>
-							</ul>
 						<%}}}%>
 							</li>
 						</ul>

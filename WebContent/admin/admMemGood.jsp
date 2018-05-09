@@ -93,10 +93,6 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 								<li class="col_date"><a href="#"><%=mt.getBorrow_count()%></a></li>
 							</ul>
 						</div>
-						<%}else {%>
-						<ul>
-							<li class="col_tit"><p>우수회원이 없습니다</p></li>
-						</ul>
 						<%}}}%>
 							</li>
 						</ul>
