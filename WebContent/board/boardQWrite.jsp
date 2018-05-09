@@ -19,7 +19,7 @@
 <body>
 <%
 request.setCharacterEncoding("utf-8");
-String id = (String)session.getAttribute("id");
+String member_id = (String)session.getAttribute("member_id");
 %>
 <!-- board/boardQWrite.jsp Q&A 글쓰기 페이지 -->
 	<div class="wrapper">
@@ -49,7 +49,7 @@ String id = (String)session.getAttribute("id");
 						<table class="" >
 							<tr>
 								<th>ID</th>
-								<td><input type="text" name="member_id" value="<%=id %>" readonly></td>
+								<td><input type="text" name="member_id" value="<%=member_id %>" readonly></td>
 							</tr>
 							<tr>
 								<th>SUBJECT</th>

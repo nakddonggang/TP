@@ -3,9 +3,27 @@
 
 <mapper namespace="facility">
 
-	<select id="selectFacility" parameterType="int" resultType="net.facility.db.FacilityDTO">
+	<select id="selectFacility" parameterType="String" resultType="net.facility.db.FacilityDTO">
 		select * from facility
 		where facil_num = #{facil_num}
+	</select>
+	
+	<update id="updateFacility" parameterType="hashmap">
+		update facility set member_id = #{member_id} , facil_use = #{facil_use} , facil_stime = now()
+		where facil_num = #{facil_num}
+	</update>
+	
+	<update id="UnupdateFacility" parameterType="hashmap">
+		update facility set facil_use = #{facil_use} , facil_stime = #{facil_stime}
+		where facil_num = #{facil_num}
+	</update>
+	
+	<select id="getFacilityList" resultType="net.facility.db.FacilityDTO">
+		select * from facility
+	</select>
+	
+	<select id="selectFacilMember" parameterType="String" resultType="int">
+		select count(*) from facility where member_id = #{member_id}
 	</select>
 	
 </mapper>

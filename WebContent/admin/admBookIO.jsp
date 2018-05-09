@@ -41,7 +41,7 @@
 					<div class=""></div>
 					<!-- 본문 공간 -->
 			<h2>책 입고하기</h2>
-			<form action="./AdminBookWriteAction.am" method="post">
+			<form action="./AdminBookWriteAction.am" method="post" enctype="multipart/form-data">
 				<table border="1">
 					<tr>
 						<td>표제 : </td>
@@ -55,10 +55,10 @@
 						<td>발행처 : </td>
 						<td><input type="text" name="book_publisher"></td>
 					</tr>
-<!-- 					<tr> -->
-<!-- 						<td>발행일 : </td> -->
-<!-- 						<td><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"></td> -->
-<!-- 					</tr> -->
+					<tr>
+						<td>발행일 : </td>
+						<td><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"></td>
+					</tr>
 					<tr>
 						<td>형태 : </td>
 						<td><input type="text" name="book_form"></td>
@@ -74,6 +74,10 @@
 					<tr>
 						<td>분류기호 : </td>
 						<td><input type="text" name="book_classification"></td>
+					</tr>
+					<tr>
+						<td>책 사진 : </td>
+						<td><input type="file" name="book_file"></td>
 					</tr>
 				</table>
 				

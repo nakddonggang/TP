@@ -30,7 +30,7 @@
 						
 					<li><a href="#">내 서재</a>
 						<ul class="DIV_SUB_MNU">
-							<li><a href="../member/memberInfo.jsp">개인정보관리</a></li>
+							<li><a href="./MemberInfo.me">개인정보관리</a></li>
 							<li><a href="../member/myUseIndex.jsp">이용현황</a></li>
 							<li></li>
 						</ul></li>
@@ -38,15 +38,16 @@
 					<li><a href="#">도서관 안내</a>
 						<ul class="DIV_SUB_MNU">
 							<li><a href="../guide/guideIntro.jsp">도서관 소개</a></li>
-							<li><a href="../guide/guideMap.jsp">찾아오시는 길</a></li>
+							<li><a href="./GuideMap.fp">찾아오시는 길</a></li>
 							<li><a href="../guide/guideStatis.jsp">도서관 통계</a></li>
 						</ul></li>
 					
 					<li><a href="#">관리자 페이지</a>
 						<ul class="DIV_SUB_MNU">
-							<li></li>
-							<li></li>
-							<li></li>
+							<li><a href="./AdminIndex.am">통합검색관리</a></li>
+							<li><a href="/AdminBookDLos.am">손망실</a></li>
+							<li><a href="/AdminMemberIndex.am"></a>회원정보관리</li>
+							<li><a href="#"></a>시설관리</li>
 						</ul></li>
 				</ul>
 			</div>

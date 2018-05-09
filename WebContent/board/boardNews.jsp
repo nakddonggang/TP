@@ -1,5 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -12,6 +14,7 @@
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
@@ -49,58 +52,82 @@
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
+					
 					<div class="content">
-					
-					<h1>Notice [전체글개수 : <%=count %>]</h1>
-					<table border="1">
-						<tr><td>번호</td><td>종류</td><td>제목</td><td>내용</td><td>파일</td><td>날짜</td><td>조회수</td><td></td></tr>
-					<%if(noticeList==null){
-						%><tr><td colspan="8">게시물이 없습니다.</td></tr><%
-					}else{
-						for(int i=0; i<noticeList.size(); i++){
-							BoardDTO bDTO = noticeList.get(i);	//제너릭 사용해서 형변환 할 필요없음
-						%>
-							<tr><td><%=bDTO.getNotice_num() %></td><td><%=bDTO.getNotice_type() %></td>
-							<td><%=bDTO.getNotice_subject() %></td><td><%=bDTO.getNotice_content() %></td>
-							<td><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></td><td><%=bDTO.getNotice_date() %></td>
-							<td><%=bDTO.getNotice_readcount() %></td>
-							
+						<div class=board>
+						
+						<h1>Notice</h1>
+						
+						<div class="search_bx">
+							<form action="./BoardNoticeSearch.no" method="post">
+								<input type="text" name="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
+							</form>
+						</div>
+						
+						<div class="view_cnt">
+							<p>Total_<span><%=count %></span></p>
+						</div>
+						
+						<ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="view_lst">
 							<%
-									if ("admin".equals(member_id)) {
-								%>
-							<td><input type="button" value="글수정" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"> 
-								<input type="button" value="글삭제" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"></td></tr>
-								<%} %>
+								if(noticeList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
+								else{
+									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+									for(int i=0; i<noticeList.size(); i++){
+										BoardDTO bDTO = noticeList.get(i);	//제너릭 사용해서 형변환 할 필요없음
+									%>
+										<div class="con_lst DIV_CON_LST">
+											<ul>
+												<li class="col_type"><a href="#"><p><%=bDTO.getNotice_type() %></p></a></li>
+												<li class="col_title"><a href="#"><p><%=bDTO.getNotice_subject() %></p></a></li>
+												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getNotice_date()) %></span></li>
+												<li class="col_rc"><a href="#"><%=bDTO.getNotice_readcount() %></a></li>
+											</ul>
+											
+											<div class="con_detail DIV_CON_DETAIL">
+												<p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p>
+												<p><%=bDTO.getNotice_content() %></p>		
+												<div class="file"><span>첨부파일</span><ul><!-- 첨부파일 들어가는 부분 --></ul></div>
+									<%
+										if ("admin".equals(member_id)) {
+											%><div class="btn_btm_board">
+													<ul>
+														<li>
+															<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
+															<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
+														</li>
+													</ul>
+												</div>
+										<%	}	%>
+											</div>
+										</div>
+									<%	}	%>
+								<%	}	%>
+							</li>
+						</ul>
+						
+						<%		
+						if ("admin".equals(member_id)) {
+						%>
+						<input type="button"  class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
+						<%} %>
+						
+	
+						
+	
 						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						
+						if(startPage > pageBlock)	{ %><a href="BoardNoticeList.no?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="BoardNoticeList.no?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
 						}
-					}
-					%>
-					</table>
-					
-					<%		
-					if ("admin".equals(member_id)) {
-					%>
-					<input type="button" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
-					<%} %>
-					
-
-					<form action="./BoardNoticeSearch.no" method="post">
-						<input type="text" name="search"> <input type="submit" value="검색">
-					</form>
-
-					<%
-					if(pageCount < endPage)	endPage = pageCount;
-					
-					if(startPage > pageBlock)	{ %><a href="BoardNoticeList.no?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
-					for (int p = startPage; p <= endPage; p++) {	
-						if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
-						else {%> &nbsp;<a href="BoardNoticeList.no?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
-					}
-					if(endPage < pageCount){	%><a href="BoardNoticeList.no?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
-					%>
+						if(endPage < pageCount){	%><a href="BoardNoticeList.no?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						</div>
 					</div>
 
 				</article>

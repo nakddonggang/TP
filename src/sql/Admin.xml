@@ -6,19 +6,27 @@
 	 <select id="getBookCount" resultType="int">
 	 	select count(*) from book
 	 </select>
+	 	 
+	 <select id="getBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number order by b.book_number desc limit #{startRow}, #{pageSize} 
+	 </select>
 	 
 	 <select id="getBookSearchAllCount" resultType="int" parameterType="hashmap">
 	 	select count(*) from book where book_subject like #{all} or book_author like #{all} or
 	 	book_publisher like #{all} or book_classification like #{all}
 	 </select>
 	 
-	 <select id="getBookSearchCount" parameterType="hashmap" resultType="int">
-	 	select count(*) from book where ${category} like '%${value}%'
-	 </select>
-	 
 	 <select id="getBookSearchAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -30,10 +38,14 @@
 	 	b.book_publisher like '%${value}%' or b.book_classification like '%${value}%'
 		order by b.book_number desc limit #{startRow},#{pageSize}
 	 </select> 
+	 	 
+	 <select id="getBookSearchCount" parameterType="hashmap" resultType="int">
+	 	select count(*) from book where ${category} like '%${value}%'
+	 </select>
 	 
 	 <select id="getBookSearchList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -45,9 +57,112 @@
 		order by b.book_number desc limit #{startRow},#{pageSize}
 	 </select> 
 	 
+	 <select id="SearchTwoCountN">
+	 	select count(*) from book where ${category1} like '%${value1}%'
+		and ${category2} like '%${value2}%'
+	 </select>
+	 
+	 <select id="SearchTwoListN" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where b.${category1} like '%${search1}%'
+		and b.${category2} like '%${search2}%'
+		order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select>	 
+	 
+	 <select id="SearchTwoCountO">
+	 	select count(*) from book where ${category1} like '%${value1}%'
+		or ${category2} like '%${value2}%'
+	 </select>
+
+	 <select id="SearchTwoListO" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where b.${category1} like '%${search1}%'
+		or b.${category2} like '%${search2}%'
+		order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select>
+	 
+	 <select id="SearchThrCountNN">
+	 	select count(*) from book where ${category1} like '%${value1}%'
+		and ${category2} like '%${value2}%' and ${category3} like '%${value3}%'
+	 </select>	 
+
+	 <select id="SearchThrListNN" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where b.${category1} like '%${search1}%'
+		and b.${category2} like '%${search2}%'
+		and b.${category3} like '%${search3}%'
+		order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select>
+	 
+	 <select id="SearchThrCountNO">
+	 	select count(*) from book where ${category1} like '%${value1}%'
+		and ${category2} like '%${value2}%' or ${category3} like '%${value3}%'
+	 </select>	 
+
+	 <select id="SearchThrListNO" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where b.${category1} like '%${search1}%'
+		and b.${category2} like '%${search2}%'
+		or b.${category3} like '%${search3}%'
+		order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select>
+
+	 <select id="SearchThrCountOO">
+	 	select count(*) from book where ${category1} like '%${value1}%'
+		or ${category2} like '%${value2}%' or ${category3} like '%${value3}%'
+	 </select>	 
+
+	 <select id="SearchThrListOO" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where b.${category1} like '%${search1}%'
+		or b.${category2} like '%${search2}%'
+		or b.${category3} like '%${search3}%'
+		order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select>
+	 
 	 <select id="getBookSortSubject" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -59,7 +174,7 @@
 	 
 	 <select id="getBookSortAuthor" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -71,7 +186,7 @@
 
 	 <select id="getBookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -83,7 +198,7 @@
 
 	 <select id="getBookSortPubDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -95,7 +210,7 @@
 
 	 <select id="getBookSortDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
+		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -105,32 +220,20 @@
 		on b.book_number=rb.book_number order by b.book_date desc limit #{startRow}, #{pageSize} 	 
 	 </select>	 	 	
 	 
-	 <select id="getBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check
-		from book b
-		left join dbook db
-		on b.book_number=db.book_number
-		left join bbook bb
-		on b.book_number=bb.book_number
-		left join rbook rb
-		on b.book_number=rb.book_number order by b.book_number desc limit #{startRow}, #{pageSize} 
-	 </select>
-	 
 	 <select id="getBookNum" parameterType="int" resultType="int">
 	 	select ifnull(max(book_number),0) from book
 	 </select>
 	 
 	 <insert id="insertBook" parameterType="net.book.db.BookDTO">
 	 	insert into book (book_number, book_subject, book_author, book_publisher, book_pubDate, 
-	 	book_form, book_notation, book_isbn, book_classification, book_date)
+	 	book_form, book_notation, book_isbn, book_classification, book_date, book_file)
 	 	values (#{book_number}, #{book_subject}, #{book_author}, #{book_publisher}, #{book_pubDate}, 
-	 	#{book_form}, #{book_notation}, #{book_isbn}, #{book_classification}, #{book_date})
+	 	#{book_form}, #{book_notation}, #{book_isbn}, #{book_classification}, now(), #{book_file})
 	 </insert>
 	 
 	 <select id="getBookInfo"  parameterType="int" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, b.book_pubDate, b.book_form, b.book_notation,
-	 	 b.book_isbn, b.book_classification, b.book_date, d.dbook_reason, d.dbook_state 
+	 	 b.book_isbn, b.book_classification, b.book_date, d.dbook_reason, d.dbook_state , b.book_file
 	 	from book b
 	 	left join dbook d
 	 	on d.book_number=b.book_number
@@ -165,6 +268,15 @@
  	 <select id="getHBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select * from hbook order by member_id desc limit #{startRow}, #{PageSize}
 	 </select>
+	 
+	 <select id="getHBookInfo" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select * from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
+	 </select>
+	 
+	 <update id="getHBookReWrite" parameterType="String">
+	 	update hbook set hbook_check=#{hbook_check}, hbook_isbn={#hbook_isbn}
+	 	where member_id=#{member_id}
+	 </update>
  
 	<select id="getMemberCount" resultType="int">
  		select count(*) as count from member

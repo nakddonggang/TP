@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-
-
 public class MainFrontController extends HttpServlet{
 	protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String requestURI= request.getRequestURI();
@@ -27,19 +25,23 @@ public class MainFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		
-		if(command.equals("/Main.fp")){
-			forward = new ActionForward();
-			forward.setPath("main/main.jsp");
-			forward.setRedirect(false);
-		}
-//		if(command.equals("/MemberJoinAction.me")) {
-//			action = new MemberJoinAction();
+//		if(command.equals("/Main.fp")) {
+//			action = new MainAction();
 //			try {
-//				forward = action.execute(request, response);
+//				forward = action.execute(request, response);		
 //			} catch (Exception e) {
 //				e.printStackTrace();
 //			}
 //		}
+		if(command.equals("/Main.fp")){
+			forward = new ActionForward();
+			forward.setPath("main/main.jsp");
+			forward.setRedirect(false);
+		}else if(command.equals("/GuideMap.fp")){
+			forward = new ActionForward();
+			forward.setPath("guide/guideMap.jsp");
+			forward.setRedirect(false);
+		}
 		
 		if(forward != null){
 			if(forward.isRedirect()){

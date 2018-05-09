@@ -18,10 +18,6 @@ $(window).on('load', function() {
 		autoOpen: false, 
 		width: 400, 
 		modal: true, 
-		buttons: [ 
-			{ text: "로그인",	click: function() { $('#loginForm').submit(); } }, 
-			{ text: "닫기", click: function() { $( this ).dialog( "close" ); }	} 
-		]
 	});
 	
 	//로그인 다이얼로그 오픈 버튼
@@ -29,6 +25,9 @@ $(window).on('load', function() {
 		$("#loginDialog").dialog("open");
 	});
 	
+	$("#BTN_CLOSE").click(function() {
+		$("#loginDialog").dialog("close");
+	});
 });
 
 $(function() {
@@ -48,4 +47,21 @@ $(function() {
 		$(".DIV_MB_WRAP").stop(true, false).slideUp("fast");
 		$(".DIV_SHADOW").hide();
 	});
+	
+    //게시판 상세보기
+    $(".DIV_CON_LST > ul").click(function ()
+    {
+        if ($(this).hasClass('active'))
+        {
+            $(this).removeClass('active');
+            $(this).siblings("div.DIV_CON_DETAIL").stop(true, false).slideUp("fast");
+        }
+        else
+        {
+            $("div.DIV_CON_DETAIL").slideUp("fast");
+            $(".DIV_CON_LST > ul").removeClass("active");
+            $(this).siblings("div.DIV_CON_DETAIL").stop(true, false).slideDown("fast");
+            $(this).addClass('active');
+        };
+    });
 });

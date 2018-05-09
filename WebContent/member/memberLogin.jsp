@@ -34,14 +34,29 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 					<div class="content">
-						<form action="./MemberLoginAction.me" method="post" name="fr">
-							<fieldset class="memberform">
-								<legend>로그인 페이지</legend>
-								<label>아이디:</label><input type="text" name="member_id"><br>
-								<label>비밀번호:</label><input type="password" name="member_pass">
-							</fieldset>
-							<input type="button" value="로그인" onclick="sub()"><input type="button" value="회원가입" onclick="location.href = './MemberJoin.me'">
-						</form>
+						<div class='member_content'>
+							<form action="./MemberLoginAction.me" method="post" name="fr">
+								<fieldset class="memberform">
+									<legend>로그인 페이지</legend>
+									<div class="row_group">
+										<div id="idDiv" class="join_row">
+											<span>
+												<label>아이디:</label>
+												<input type="text" name="member_id">
+											</span>
+										</div>
+										<div id="idDiv" class="join_row">
+											<span>
+												<label>비밀번호:</label>
+												<input type="password" name="member_pass">
+											</span>
+										</div>
+									</div>
+								</fieldset>
+								<input type="button" value="로그인" onclick="sub()" class ="btn">
+								<input type="button" value="회원가입" onclick="location.href = './MemberJoin.me'" class ="btn">
+							</form>
+							</div>
 					</div>
 				<!-- //메인 페이지-->
 				</article>

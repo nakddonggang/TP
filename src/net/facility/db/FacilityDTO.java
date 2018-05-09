@@ -1,14 +1,15 @@
 package net.facility.db;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class FacilityDTO {
 	//	<facilility table>						
-	int facil_num;					//	자리 번호	int(3)	PK								해당 자리 번호
-	Timestamp facil_stime;		//	시작시간	date									자리 이용 시작 시간
-	Timestamp facil_etime;		//	종료시간	date									자리 이용 종료 시간
+	String facil_num;					//	자리 번호	int(3)	PK								해당 자리 번호
+	Date facil_stime;		//	시작시간	date									자리 이용 시작 시간
+	Date facil_etime;		//	종료시간	date									자리 이용 종료 시간
 	String facil_use;				//	사용유무	char(2)	check in ('0','1')		자리 사용중인지 여부
 	String facil_type;				//	자리유형	varchar(20)							해당 자리 유형
+	String member_id;
 	
 	//	<object table>						
 	String obj_mname;			//	모델명		varchar(20)							물품 모델명
@@ -17,22 +18,22 @@ public class FacilityDTO {
 	String obj_phone;			//	연락처		char(14)								담당업체 연락처			
 	
 	//getter, setter 구현
-	public int getFacil_num() {
+	public String getFacil_num() {
 		return facil_num;
 	}
-	public void setFacil_num(int facil_num) {
+	public void setFacil_num(String facil_num) {
 		this.facil_num = facil_num;
 	}
-	public Timestamp getFacil_stime() {
+	public Date getFacil_stime() {
 		return facil_stime;
 	}
-	public void setFacil_stime(Timestamp facil_stime) {
+	public void setFacil_stime(Date facil_stime) {
 		this.facil_stime = facil_stime;
 	}
-	public Timestamp getFacil_etime() {
+	public Date getFacil_etime() {
 		return facil_etime;
 	}
-	public void setFacil_etime(Timestamp facil_etime) {
+	public void setFacil_etime(Date facil_etime) {
 		this.facil_etime = facil_etime;
 	}
 	public String getFacil_use() {
@@ -70,5 +71,11 @@ public class FacilityDTO {
 	}
 	public void setObj_phone(String obj_phone) {
 		this.obj_phone = obj_phone;
+	}
+	public String getMember_id() {
+		return member_id;
+	}
+	public void setMember_id(String member_id) {
+		this.member_id = member_id;
 	}
 }

@@ -1,4 +1,4 @@
-<%@page import="java.sql.Timestamp"%>
+<%@page import="java.util.Date"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -48,19 +48,15 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
-					<div class=""></div>
 				</div>
 				<!-- //메인 페이지-->
 					<!-- 본문 공간 -->
 					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
 					<div>
-					<form action="./AdminBookSearch.am" method="post">
-						<fieldset>
-						<legend>상세검색</legend>
-							<select name="category">
+					<form action="./AdminBookSearch.am" method="get">
+					<fieldset>
+						<legend>통합검색</legend>
+							<select name="category1">
 							<option value="all">전체</option>
 							<option value="book_subject">제목</option>
 							<option value="book_author">저자</option>
@@ -68,9 +64,52 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<option value="book_isbn">국제표준번호</option>
 							<option value="book_classification">분류기호</option>				
 							</select>
-					 		<input type="text" name="search" placeholder="책 제목을 입력하세요">
-							<input type="submit" value="상세검색">	
-						</fieldset>
+					 		<input type="text" name="search1" placeholder="입력하세요"><br>
+					<select name="opt1">
+						<option value="and">and</option>
+						<option value="or">or</option>
+					</select><br>
+					
+							<select name="category2">
+							<option value="book_subject">제목</option>
+							<option value="book_author">저자</option>
+							<option value="book_publisher">출판사</option>
+							<option value="book_isbn">국제표준번호</option>
+							<option value="book_classification">분류기호</option>				
+							</select>
+					 		<input type="text" name="search2" placeholder="입력하세요"><br>
+					<select name="opt2">
+						<option value="and">and</option>
+						<option value="or">or</option>
+					</select><br>
+					
+							<select name="category3">
+							<option value="book_subject">제목</option>
+							<option value="book_author">저자</option>
+							<option value="book_publisher">출판사</option>
+							<option value="book_isbn">국제표준번호</option>
+							<option value="book_classification">분류기호</option>				
+							</select>
+					 		<input type="text" name="search3" placeholder="입력하세요"><br>
+					<select name="opt3">
+						<option value="and">and</option>
+						<option value="or">or</option>
+					</select><br>
+					</fieldset>
+							
+					<fieldset>
+							<legend>발행년</legend>
+							<select name="book_pubDate">
+							<option value="all">전체</option>
+							<option value="1">최근 1년</option>
+							<option value="2">최근 2년</option>
+							<option value="5">최근 5년</option>
+							<option value="10">최근 10년</option>
+							<option value="20">최근 20년</option>				
+							</select>
+					</fieldset>	
+							<input type="submit" value="상세검색">
+							<input type="reset" value="입력 초기화">
 					</form>
 					</div>
 					
@@ -87,7 +126,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					</fieldset>
 					
 					<h2>책 목록 [<%=count%>]</h2>
-					<%if(bookList.isEmpty()){ out.print("책 목록이 없습니다"); } else {%>
+					<%if(count==0){ out.print("책 목록이 없습니다"); } else {%>
 					<table border="1">
 						<tr>
 							<th>고유번호</th>
@@ -96,13 +135,13 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<th>출판사</th>
 							<th>도서상태</th> <!-- dbook -->
 							<th>반납상태</th> <!-- bbook -->
-							<th>입고일자</th> <!-- rbook -->
-							<th> 입고현황</th> <!-- rbook -->
+							<th>예약일자</th> <!-- rbook -->
+							<th> 예약현황</th> <!-- rbook -->
 						</tr>
 						<%
 							for (BookDTO bookLists : bookList) {%>
-								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>&pageNum=<%=pageNum%>'">
-									<td><%=bookLists.getBook_number()%></td>
+								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'">
+									<td><img src="./upload/<%=bookLists.getBook_file()%>" width="100" height="100"><%=bookLists.getBook_number()%></td>
 									<td><%=bookLists.getBook_subject()%></td>
 									<td><%=bookLists.getBook_author()%></td>
 									<td><%=bookLists.getBook_publisher()%></td>

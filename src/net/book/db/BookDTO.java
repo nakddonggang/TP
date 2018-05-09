@@ -1,6 +1,6 @@
 package net.book.db;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 public class BookDTO {
 	//	<book table>	
@@ -8,25 +8,26 @@ public class BookDTO {
 	String book_subject;				//	표제					varchar(100)						책 제목
 	String book_author;				//	저자					char(40)								책 저자
 	String book_publisher;			//	발행처				char(20)								출판사
-	Timestamp book_pubDate;	//	발행일				date									책 발행일
+	Date book_pubDate;	//	발행일				date									책 발행일
 	String book_form;				//	형태					char(20)								책 형태
 	String book_notation;			//	주기					varchar(100)						책 주기
 	String book_isbn;					//	국제표준번호		int(18)								국제표준번호 ISBN
 	String book_classification;		//	분류기호			varchar(40)							책 분류기호
-	Timestamp book_date;				//	입고일				date									도서관에 입고된 날짜
+	Date book_date;			 //	입고일				date									도서관에 입고된 날짜
+	String book_file;			// 책 사진 넣기			file
 	
 	//	<dbook table>						
 	String dbook_reason;			//	사유					char(40)								파기 사유
 	String dbook_state;				//	도서상태			char(40)								책 상태
 	
 	//	<bbook table>						
-	Timestamp bbook_bdate;		//	대출일자			date									책 빌려간 날짜
-	Timestamp bbook_rdate;		//	반납일자			date									책 반납한 날짜
+	Date bbook_bdate;		//	대출일자			date									책 빌려간 날짜
+	Date bbook_rdate;		//	반납일자			date									책 반납한 날짜
 	String bbook_bstate;			//	반납상태			char(2)	check in ('0','1')		반납됐는지 여부(대출중/반납됨)
 													
 	//	<rbook table>						
 	int rbook_num;					//	예약순서			int(2)									회원의 해당 책 예약 우선순위
-	Timestamp rbook_date;		//	예약일자			date									회원이 예약한 날짜
+	Date rbook_date;		//	예약일자			date									회원이 예약한 날짜
 	String rbook_check;				//	입고현황			char(2)	check in ('0','1')		예약된 책 도서관에 있는지 여부(없음/있음)
 	
 	//	<hbook table>						
@@ -42,8 +43,15 @@ public class BookDTO {
 	
 	//getter, setter 구현
 	
+	
 	public int getBook_number() {
 		return book_number;
+	}
+	public String getBook_file() {
+		return book_file;
+	}
+	public void setBook_file(String book_file) {
+		this.book_file = book_file;
 	}
 	public String getMember_id() {
 		return member_id;
@@ -72,10 +80,10 @@ public class BookDTO {
 	public void setBook_publisher(String book_publisher) {
 		this.book_publisher = book_publisher;
 	}
-	public Timestamp getBook_pubDate() {
+	public Date getBook_pubDate() {
 		return book_pubDate;
 	}
-	public void setBook_pubDate(Timestamp book_pubDate) {
+	public void setBook_pubDate(Date book_pubDate) {
 		this.book_pubDate = book_pubDate;
 	}
 	public String getBook_form() {
@@ -102,10 +110,10 @@ public class BookDTO {
 	public void setBook_classification(String book_classification) {
 		this.book_classification = book_classification;
 	}
-	public Timestamp getBook_date() {
+	public Date getBook_date() {
 		return book_date;
 	}
-	public void setBook_date(Timestamp book_date) {
+	public void setBook_date(Date book_date) {
 		this.book_date = book_date;
 	}
 	public String getDbook_reason() {
@@ -120,16 +128,16 @@ public class BookDTO {
 	public void setDbook_state(String dbook_state) {
 		this.dbook_state = dbook_state;
 	}
-	public Timestamp getBbook_bdate() {
+	public Date getBbook_bdate() {
 		return bbook_bdate;
 	}
-	public void setBbook_bdate(Timestamp bbook_bdate) {
+	public void setBbook_bdate(Date bbook_bdate) {
 		this.bbook_bdate = bbook_bdate;
 	}
-	public Timestamp getBbook_rdate() {
+	public Date getBbook_rdate() {
 		return bbook_rdate;
 	}
-	public void setBbook_rdate(Timestamp bbook_rdate) {
+	public void setBbook_rdate(Date bbook_rdate) {
 		this.bbook_rdate = bbook_rdate;
 	}
 	public String getBbook_bstate() {
@@ -144,10 +152,10 @@ public class BookDTO {
 	public void setRbook_num(int rbook_num) {
 		this.rbook_num = rbook_num;
 	}
-	public Timestamp getRbook_date() {
+	public Date getRbook_date() {
 		return rbook_date;
 	}
-	public void setRbook_date(Timestamp rbook_date) {
+	public void setRbook_date(Date rbook_date) {
 		this.rbook_date = rbook_date;
 	}
 	public String getRbook_check() {

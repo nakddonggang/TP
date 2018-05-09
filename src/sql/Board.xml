@@ -78,7 +78,7 @@
 
 	<insert id="insertNotice" parameterType="net.board.db.BoardDTO">
 		insert into notice(notice_num, notice_type, notice_subject, notice_content, notice_file, notice_date, notice_readcount)
-		values (#{notice_num}, #{notice_type}, #{notice_subject}, #{notice_content}, #{notice_file}, #{notice_date}, #{notice_readcount})
+		values (#{notice_num}, #{notice_type}, #{notice_subject}, #{notice_content}, #{notice_file}, now(), #{notice_readcount})
 	</insert>
 
 	<update id="updateNotice" parameterType="net.board.db.BoardDTO">
@@ -116,7 +116,7 @@
 	
 	<insert id="insertQna" parameterType="hashmap">
 		insert into qna(qna_num, member_id, qna_subject, qna_content, qna_date, qna_readcount, qna_ref, qna_check)
-		values (#{qna_num}, #{member_id}, #{qna_subject}, #{qna_content}, #{qna_date}, #{qna_readcount}, #{qna_ref}, #{qna_check})
+		values (#{qna_num}, #{member_id}, #{qna_subject}, #{qna_content}, now(), #{qna_readcount}, #{qna_ref}, #{qna_check})
 	</insert>
 	
 	<update id="updateQna" parameterType="net.board.db.BoardDTO">

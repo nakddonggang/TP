@@ -1,4 +1,4 @@
-<%@page import="java.sql.Timestamp"%>
+<%@page import="java.util.Date"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -23,7 +23,9 @@
 <%
 request.setCharacterEncoding("utf-8");
 //count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
-String search = (String)request.getAttribute("search");
+String search1 = (String)request.getAttribute("search1");
+String search2 = (String)request.getAttribute("search2");
+String search3 = (String)request.getAttribute("search3");
 int count = ((Integer)request.getAttribute("count")).intValue();
 String pageNum = (String)request.getAttribute("pageNum");
 int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
@@ -97,13 +99,13 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 							<th>출판사</th>
 							<th>도서상태</th> <!-- dbook -->
 							<th>반납상태</th> <!-- bbook -->
-							<th>입고일자</th> <!-- rbook -->
-							<th> 입고현황</th> <!-- rbook -->
+							<th>예약일자</th> <!-- rbook -->
+							<th> 예약현황</th> <!-- rbook -->
 						</tr>
 						<%
 							for (BookDTO booksearchLists : booksearchList) {%>
-								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>&pageNum=<%=pageNum%>'">
-									<td><%=booksearchLists.getBook_number()%></td>
+								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'">
+									<td><img src="./upload/<%=booksearchLists.getBook_file()%>" width="100" height="100"><%=booksearchLists.getBook_number()%></td>
 									<td><%=booksearchLists.getBook_subject()%></td>
 									<td><%=booksearchLists.getBook_author()%></td>
 									<td><%=booksearchLists.getBook_publisher()%></td>
@@ -122,17 +124,17 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 						if (count != 0) {
 							// 이전페이지 // if (startPage와 pageBlock을 비교)
 							if (startPage > pageBlock) {
-					%><a href="./AdminBookSearch.am?pageNum=<%=startPage - pageBlock%>&search=<%=search%>">[이전]</a><%
+					%><a href="./AdminBookSearch.am?pageNum=<%=startPage - pageBlock%>&search1=<%=search1%>&search2=<%=search2%>&search3=<%=search3%>">[이전]</a><%
 						}
 
 							// 1~10		11~20		21~30
 							for (int i = startPage; i <= endPage; i++) {%>
-							<a href="./AdminBookSearch.am?pageNum=<%=i%>&search=<%=search%>">[<%=i%>]</a><%		
+							<a href="./AdminBookSearch.am?pageNum=<%=i%>&search1=<%=search1%>&search2=<%=search2%>&search3=<%=search3%>">[<%=i%>]</a><%		
 							}
 	
 							// 다음 // if (endPage와 pageCount를 비교)
 							if (endPage<pageCount){%>
-							<a href="./AdminBookSearch.am?pageNum=<%=startPage+pageBlock%>&search=<%=search%>">[다음]</a><%
+							<a href="./AdminBookSearch.am?pageNum=<%=startPage+pageBlock%>&search1=<%=search1%>&search2=<%=search2%>&search3=<%=search3%>">[다음]</a><%
 							}
 						} // if count 괄호 %>
 

@@ -1,6 +1,6 @@
 package net.board.action;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -41,7 +41,7 @@ public class BoardNoticeWriteAction implements Action {
 		bDTO.setNotice_subject(multi.getParameter("notice_subject"));
 		bDTO.setNotice_content(multi.getParameter("notice_content"));
 		bDTO.setNotice_file(multi.getFilesystemName("notice_file"));
-		bDTO.setNotice_date(new Timestamp(System.currentTimeMillis()));
+		bDTO.setNotice_date(new Date(System.currentTimeMillis()));
 		bDTO.setNotice_readcount(0);
 		
 		bDAO.insertNotice(bDTO);

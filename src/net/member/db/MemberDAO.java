@@ -30,6 +30,8 @@ public class MemberDAO {
 		int check = 0;
 		mDTO = sqlsession.selectOne("selectMember", member_id);
 		
+		System.out.println(mDTO.getMember_id());
+		
 		String id = mDTO.getMember_id();
 		
 		if (id != null) {	
