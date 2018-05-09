@@ -43,19 +43,7 @@
 					    <li rel="tab3">블랙리스트</li>
 					</ul>
 					<div class="tab_container">
-				  
-					    <div id="tab1" class="tab_content">
-							<iframe src="./AdminMemberNormal.am">이 브라우저는 iframe을 지원하지 않습니다</iframe>
-					    </div>
-					    
-					    <div id="tab2" class="tab_content">
-							<iframe src="./AdminMemberGood.am">이 브라우저는 iframe을 지원하지 않습니다</iframe>
-					    </div>
-					    
-					    <div id="tab3" class="tab_content">
-							<iframe src="./AdminMemberBlack.am">이 브라우저는 iframe을 지원하지 않습니다</iframe>
-					    </div>
-					    
+						<iframe class="tab_content" src="./AdminMemberNormal.am">이 브라우저는 iframe을 지원하지 않습니다</iframe>
 					</div>
 				</div>
 				<!-- //메인 페이지-->

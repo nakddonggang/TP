@@ -66,14 +66,15 @@ $(function() {
     });
     
 	//탭메뉴 기능 구현
-	$(".tab_content").hide();
-	$(".tab_content:first").show();
-
 	$("ul.tabs li").click(function() {
 		$("ul.tabs li").removeClass("active").css("color", "#333");
 		$(this).addClass("active").css("color", "darkred");
-		$(".tab_content").hide()
+		var tab1="./AdminMemberNormal.am";
+		var tab2="./AdminMemberGood.am";
+		var tab3="./AdminMemberBlack.am";
 		var activeTab = $(this).attr("rel");
-		$("#" + activeTab).fadeIn()
+		if(activeTab == "tab1") {		$('.tab_content').attr('src', tab1);	}
+		else if(activeTab == "tab2") {	$('.tab_content').attr('src', tab2);	}
+		else if(activeTab == "tab3") {	$('.tab_content').attr('src', tab3);	}
 	});
 });

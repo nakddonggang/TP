@@ -63,10 +63,9 @@ ul.tabs li {	float: left;	text-align: center;	cursor: pointer;	width: 82px;	heig
 
 ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
-.tab_container {border-top: none;clear: both;float: left;width: 100%;background: #FFFFFF;}
-.tab_content {padding: 5px;font-size: 12px;display: none;height: 800px;}
-.tab_container .tab_content iframe {width: 100%;height: 100%;border: none;}
-body.if_board{overflow-y:hidden !important;}
+.tab_container {border-top: none;clear: both;float: left;	width: 100%;	height:800px;}
+.tab_container iframe {width: 100%;height: 100%;border: none;}
+body.if_board{overflow-y:hidden !important; margin-top: 10px}
 
 /* end 게시판 부분 */
 .btn_type1 {position:absolute; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; font-size:1.14em;}
