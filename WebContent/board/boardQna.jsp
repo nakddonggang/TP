@@ -49,68 +49,120 @@
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
+					
 					<div class="content">
-			
-					<h1>Q&A [전체글개수 : <%=count %>]</h1>
-					<table border="1">
-						<tr><td>번호</td><td>작성자</td><td>제목</td><td>내용</td><td>작성일</td><td>조회수</td><td>답변유무</td><td></td></tr>
+						<div class=board>
+						
+						<h1>Q&A</h1>
+						
+						<div class="search_bx">
+							<form action="./BoardQnaSearch.qn" method="post">
+								<input type="text" name="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
+							</form>
+						</div>
+						
+						<div class="view_cnt">
+							<p>Total_<span><%=count %></span></p>
+						</div>
+						<p class="sub_txt">
+							신청일로부터 주말 제외 3일 이내에 방문 신청이 승인되지 않았거나 신청 취소를 원하시면 지혜의숲(031-955-0082)번으로 연락 부탁드립니다.
+						</p>
+						<ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="col_qna">
+								<ul>
+									<li class="col_num">번호</li>
+									<li class="col_id">작성자</li>
+									<li class="col_title">제목</li>
+									<li class="col_date"><span class="tit_date">작성일</span></li>
+									<li class="col_rc">조회수</li>
+									<li class="col_check">답변여부</li>
+								</ul>
+							<%
+								if(qnaList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
+								else{
+									for(int i=0; i<qnaList.size(); i++){
+										BoardDTO bDTO = qnaList.get(i);
+										String check = bDTO.getQna_check();
+										if(check.equals("1")){check="답변완료";}
+										else {check="답변대기";}
+									%>
+										<div class="con_lst DIV_CON_LST">
+											<ul>
+												<li class="col_num"><a href="#"><p><%=bDTO.getMember_id() %></p></a></li>
+												<li class="col_id"><a href="#"><p><%=bDTO.getMember_id() %></p></a></li>
+												<li class="col_title"><a href="#"><p><%=bDTO.getQna_subject() %></p></a></li>
+												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=bDTO.getQna_date() %></span></li>
+												<li class="col_rc"><a href="#"><%=bDTO.getQna_readcount() %></a></li>
+												<li class="col_check"><a href="#"><%=check %></a></li>
+											</ul>
+											
+											<div class="con_detail DIV_CON_DETAIL">
+												<p><%=bDTO.getNotice_content() %></p>		
+												
+												<%
+												if (bDTO.getMember_id().equals(member_id)) {
+													%><div class="fix">
+														<ul>
+															<li><input type="button" value="글수정" onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'"></li>
+															<li><input type="button" value="글삭제" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'"></li>
+															<%
+															if("admin".equals(member_id)){
+																%>
+																<li><input type="button" value="답변하기" onclick="location.href='./BoardReply.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'"></li>
+																<%
+															}
+															%>
+														</ul>
+													</div><%
+												}
+												if(bDTO.getQna_check().equals("1")){
+												%>
+												<div class="con_lst DIV_CON_LST">
+													<ul>
+														<li class="col_type"><a href="#"><p><%=bDTO.getRep_name() %></p></a></li>
+														<li class="col_type"><a href="#"><p><%=bDTO.getRep_email() %></p></a></li>
+													</ul>
+													
+													<div class="con_detail DIV_CON_DETAIL">
+														<p><%=bDTO.getRep_content() %></p>
+														<%
+														if("admin".equals(member_id)){
+															%><div class="fix">
+																<ul>
+																	<li><input type="button" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>&qna_ref=<%=bDTO.getQna_ref() %>'"></li>
+																	<li><input type="button" value="답변삭제" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref()%>&pageNum=<%=pageNum%>'"></td></li>
+																</ul>
+															</div>
+															<%
+														}
+														%>
+													</div>
+												</div>
+												
+											</div>
+										</div>
+										<%	}	%>
+									<%	}	%>
+								<%	}	%>
+							</li>
+						</ul>
+						
+						<input type="button" value="글쓰기" onclick="location.href='./BoardQnaWrite.qn'">
+					
 						<%
-						if(qnaList==null){
-							%><tr><td colspan="8">게시물이 없습니다.</td></tr><%
-						}else{
-							for(int i=0; i<qnaList.size(); i++){
-								BoardDTO bDTO = qnaList.get(i);
-								String check = bDTO.getQna_check();
-								if(check.equals("1")){check="답변완료";}
-								else {check="답변대기";}
-								%>
-								<tr><td><%=bDTO.getQna_num() %></td><td><%=bDTO.getMember_id() %></td>
-								<td><%=bDTO.getQna_subject() %></td><td><%=bDTO.getQna_content() %></td>
-								<td><%=bDTO.getQna_date() %></td><td><%=bDTO.getQna_readcount() %></td>
-								<td><%=check %></td>
-								<td><%if(bDTO.getMember_id().equals(member_id)){
-									%><input type="button" value="글수정" onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">
-									<input type="button" value="글삭제" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'"> 
-								<%}									
-									if("admin".equals(member_id)){
-										%><input type="button" value="답변하기" onclick="location.href='./BoardReply.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'"><%
-									}%>
-								</td></tr>
-									<tr>
-									<%if(bDTO.getQna_check().equals("1")){
-										%><td>답변자</td><td colspan="3">담당자 E-mail</td><td colspan="3">답변내용</td></tr><tr>
-										<td><%=bDTO.getRep_name() %></td><td colspan="3"><%=bDTO.getRep_email() %></td><td colspan="3"><%=bDTO.getRep_content() %></td>
-								 	<% }
-									if("admin".equals(member_id)){
-									%><td><input type="button" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>&qna_ref=<%=bDTO.getQna_ref() %>'"> 
-									<input type="button" value="답변삭제" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref()%>&pageNum=<%=pageNum%>'"></td><%
-								}%>
-								</tr>
-						<%	
-							}
+						if(pageCount < endPage)	endPage = pageCount;
+					
+						if(startPage > pageBlock)	{ %><a href="BoardQnaList.qn?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="BoardQnaList.qn?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
 						}
-						%>
-					</table>
+						if(endPage < pageCount){ %><a href="BoardQnaList.qn?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><%	}
 
-					<input type="button" value="글쓰기" onclick="location.href='./BoardQnaWrite.qn'">
-					<form action="./BoardQnaSearch.qn" method="post">
-						<input type="text" name="search"> <input type="submit" value="검색">
-					</form>
-					
-					<%
-					if(pageCount < endPage)	endPage = pageCount;
-					
-					if(startPage > pageBlock)	{ %><a href="BoardQnaList.qn?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
-					for (int p = startPage; p <= endPage; p++) {	
-						if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
-						else {%> &nbsp;<a href="BoardQnaList.qn?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
-					}
-					if(endPage < pageCount){	%><a href="BoardQnaList.qn?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
-					%>
+						%>
 					</div>
+				</div>
 
 				</article>
 				<!-- //메인 페이지-->

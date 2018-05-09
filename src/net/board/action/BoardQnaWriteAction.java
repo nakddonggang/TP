@@ -22,8 +22,7 @@ public class BoardQnaWriteAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("id", "1111");			// 테스트
-		String id = (String)session.getAttribute("id");
+		String member_id = (String)session.getAttribute("member_id");
 		
 		BoardDAO bDAO = new BoardDAO();
 		BoardDTO bDTO = new BoardDTO();
@@ -41,7 +40,7 @@ public class BoardQnaWriteAction implements Action{
 		bDTO.setQna_ref(qna_num);
 		bDTO.setQna_check("0");
 		
-		bDAO.insertQna(bDTO, id);
+		bDAO.insertQna(bDTO, member_id);
 		bDAO.insertReply(qna_num);
 
 		forward.setPath("./BoardQnaList.qn");

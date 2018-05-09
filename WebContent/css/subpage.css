@@ -22,7 +22,7 @@
 
 .board {position:relative;}
 .board .search_bx {top:-5px;}
-.view_cnt {position:relative; top:-10px; font-size:0.86em; font-family:"Noto_M"; color:#666;}
+.view_cnt {position:relative; top:-5px; font-size:0.86em; font-family:"Noto_M"; color:#666;}
 .brd_txt_lst {overflow:hidden; position:relative; margin-bottom:30px; border-top:2px solid #464646; border-bottom:1px solid #464646;}
 .brd_txt_lst li {float:left; width:100%; }
 .col_nm {border-bottom:2px solid #464646;}
