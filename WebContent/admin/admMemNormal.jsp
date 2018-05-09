@@ -20,7 +20,7 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
-<body>
+<body class="if_board">
 	<%
 		request.setCharacterEncoding("UTF-8");
 		int count = ((Integer) request.getAttribute("count")).intValue();
@@ -37,23 +37,14 @@
 
 	<div class="wrapper">
 
-		<!-- header -->
-		<jsp:include page="../include/header.jsp" />
-		<!-- //header -->
 
 		<!-- 본문 컨테이너 -->
-		<div class="container">
+	
 			<section class="fullpage SECTION_FULL_PAGE01">
 
-				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
-				<!-- //서브메뉴 -->
-
-				
 					<!-- 메인 페이지 -->
 					<article class="mainmenu section SECTION">
-					<jsp:include page="../include/topbar.jsp" />
-					<div class="content">
+
 						<div class=board>
 						<div class="view_cnt">
 							<p>
@@ -125,11 +116,11 @@
 						%><a href="./AdminMemberNormal.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
 						<%}}%>
 						</div>
-					</div>
+
 					</article>
 
 		</section>
-		</div>
+		
 		<!-- //메인 페이지-->
 		
 	</div>
