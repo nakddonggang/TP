@@ -158,13 +158,12 @@ public class AdminDAO {
 	}
 	
 	// 상세검색 책 리스트 뿌려주기 2
-	public List<BookDTO> SearchTwoAllList(String category1, String value1, String option, String category2, String value2, int startRow, int pageSize){
+	public List<BookDTO> SearchTwoAllList(String value, String option, String category1, String value1, int startRow, int pageSize){
 		HashMap map = new HashMap();
+		map.put("value", value);
+		map.put("option", option);
 		map.put("category1", category1);
 		map.put("value1", value1);
-		map.put("option", option);
-		map.put("category2", category2);
-		map.put("value2", value2);
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		List<BookDTO> booksearchList = sqlsession.selectList("SearchTwoAllList", map);
