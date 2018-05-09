@@ -49,7 +49,7 @@ public class AdminHBookList implements Action{
 		List<BookDTO> hbookList = null;
 		if (count!=0){
 			hbookList=adao.getHBookList(startRow, pageSize);
-		} else { }
+		} else { System.out.println("오류");}
 	
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);
