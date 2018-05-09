@@ -18,6 +18,16 @@
 						</span>
 					</div>
 				</div>
+				<div class="btn_btm_center">
+					<ul>
+						<li class="btn_cancle">
+							<input type="submit" value="회원가입" class ="btn_type4">
+						</li>
+						<li>
+							<input type="reset" value="취소" class ="btn_type4">
+						</li>
+					</ul>
+				</div>
 			</fieldset>
 		</form>
 	</div>

@@ -1,5 +1,6 @@
 <%@page import="net.member.db.MemberDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -52,11 +53,6 @@
 					<h2>
 						member 목록 [<%=count%>]
 					</h2>
-					<%
-						if (count == 0) {
-							out.print("가입자가 없습니다");
-						}
-					%>
 					<table border="1">
 						<tr>
 							<th>아이디</th>
@@ -68,7 +64,7 @@
 							<!--리스트에서는 필요한 항목만 보이게끔 -->
 						</tr>
 						<%
-							if(!(memberList.isEmpty())){
+							if(memberList != null){
 							for (int i = 0; i < memberList.size(); i++) {
 								MemberDTO mt = memberList.get(i);
 								String gm_check = mt.getGm_check();

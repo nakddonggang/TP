@@ -1,6 +1,6 @@
 package net.board.action;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Vector;
 
 import javax.servlet.http.HttpServletRequest;

@@ -53,7 +53,7 @@ if(member_id != null) {
 					<!-- 본문 공간 -->
 					<h2>희망도서 신청</h2>
 					<form action="ServeBookAction.bk" method="post">
-						<input type="hidden" value="대기" name="hbook_check">
+						<input type="hidden" value="wait" name="hbook_check">
 						<table border="1">
 							<tr>
 								<th>아이디 : </th><td><input type="text" name="member_id" value="1111" readonly></td>
