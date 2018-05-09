@@ -27,6 +27,8 @@ public class MemberLoginAction implements Action {
 		
 		int check = mDAO.selectUserChk(member_id, member_pass);
 		
+		System.out.println(check);
+		
 		if(check == 0) {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
