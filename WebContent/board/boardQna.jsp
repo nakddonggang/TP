@@ -69,7 +69,7 @@
 						</p>
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
-							<li class="col_qna">
+							<li class="col_nm">
 								<ul>
 									<li class="col_num">번호</li>
 									<li class="col_id">작성자</li>
@@ -96,55 +96,9 @@
 												<li class="col_rc"><a href="#"><%=bDTO.getQna_readcount() %></a></li>
 												<li class="col_check"><a href="#"><%=check %></a></li>
 											</ul>
-											
-											<div class="con_detail DIV_CON_DETAIL">
-												<p><%=bDTO.getNotice_content() %></p>		
-												
-												<%
-												if (bDTO.getMember_id().equals(member_id)) {
-													%><div class="fix">
-														<ul>
-															<li><input type="button" value="글수정" onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'"></li>
-															<li><input type="button" value="글삭제" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'"></li>
-															<%
-															if("admin".equals(member_id)){
-																%>
-																<li><input type="button" value="답변하기" onclick="location.href='./BoardReply.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'"></li>
-																<%
-															}
-															%>
-														</ul>
-													</div><%
-												}
-												if(bDTO.getQna_check().equals("1")){
-												%>
-												<div class="con_lst DIV_CON_LST">
-													<ul>
-														<li class="col_type"><a href="#"><p><%=bDTO.getRep_name() %></p></a></li>
-														<li class="col_type"><a href="#"><p><%=bDTO.getRep_email() %></p></a></li>
-													</ul>
-													
-													<div class="con_detail DIV_CON_DETAIL">
-														<p><%=bDTO.getRep_content() %></p>
-														<%
-														if("admin".equals(member_id)){
-															%><div class="fix">
-																<ul>
-																	<li><input type="button" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>&qna_ref=<%=bDTO.getQna_ref() %>'"></li>
-																	<li><input type="button" value="답변삭제" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref()%>&pageNum=<%=pageNum%>'"></td></li>
-																</ul>
-															</div>
-															<%
-														}
-														%>
-													</div>
-												</div>
-												
-											</div>
 										</div>
 										<%	}	%>
 									<%	}	%>
-								<%	}	%>
 							</li>
 						</ul>
 						

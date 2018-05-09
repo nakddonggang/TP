@@ -135,8 +135,8 @@
 		select ifnull(count(*),0) from reply where qna_ref=#{qna_ref}
 	</select>
 	
-	<select id="getQnaReplyList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
-		select * from qna q join reply r on (q.qna_num=r.qna_ref) order by q.qna_num desc limit #{startRow},#{pageSize}
+	<select id="getQnaList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from qna order by qna_num desc limit #{startRow},#{pageSize}
 	</select>
 	
 	<select id="getQnaCount" resultType="int">

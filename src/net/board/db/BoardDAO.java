@@ -207,11 +207,11 @@ public class BoardDAO {
 		return count;
 	}
 	//Q&A 게시판 리스트
-	public List<BoardDTO> getQnaReplyList(int startRow, int pageSize){
+	public List<BoardDTO> getQnaList(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
-		List<BoardDTO> qnaList = sqlsession.selectList("getQnaReplyList", map);
+		List<BoardDTO> qnaList = sqlsession.selectList("getQnaList", map);
 		return qnaList;
 	}
 	//Q&A 게시판 번호에 해당하는 글 가져오기
