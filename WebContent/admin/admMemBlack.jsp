@@ -50,11 +50,6 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 				<article class="mainmenu section SECTION">
 				<!-- 메인 페이지 -->
 					<h2>블랙리스트 목록보기</h2>
-					<%
-						if (count == 0) {
-							out.print("블랙리스트가 없습니다");
-						}
-					%>
 					<table border="1">
 						<tr>
 							<th>아이디</th>
@@ -66,7 +61,7 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 							<th>가입일</th>
 						</tr>
 						<%
-							if(!(memberList.isEmpty())){
+							if(memberList != null){
 							for (int i = 0; i < memberList.size(); i++) {
 								MemberDTO mt = memberList.get(i);
 								String bl_check = mt.getBl_check();
