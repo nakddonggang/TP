@@ -67,9 +67,8 @@
 .btn_btm_center ul li {display:inline-block;}
 .btn_btm_center ul li.btn_cancle {padding-right:6px;}
 .btn_btm_modal { margin-bottom: 20px !important;}
-.btn_btm_board {display:table; position:relative; width:100%; margin-bottom:50px; margin-top:30px;}
-.btn_btm_board ul {text-align:center;}
-.btn_btm_board ul li {width: none; display:inline-block;}
+.btn_btm_board {display:table; position:relative; margin: 5px -10px 0px auto;}
+.btn_btm_board ul input[type="button"] {float: left; margin-right: 10px;}
 
 .login {min-height:600px; margin-top:100px;}
 .login .top_tit {position:relative; top:50px; text-align:center; letter-spacing:-0.05em;}
