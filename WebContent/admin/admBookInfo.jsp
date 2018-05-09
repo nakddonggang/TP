@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="java.sql.Date"%>
+<%@page import="java.util.Date"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -117,7 +117,7 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 							<!-- book/bookInfo.jsp 에 필요한 기능 -->
 						<input type="button" value="대출예약" onclick="location.href='javascript:bbook()'">
 						<input type="button" value="책바구니" onclick="location.href='javascript:basket()'">
-						<input type="button" value="목록보기" onclick="location.href='./AdminIndex.am">
+						<input type="button" value="목록보기" onclick="history.back()">
 					</div>
 					</form>
 					<form action="./AdminBookDLosWrite.am" method="post">
