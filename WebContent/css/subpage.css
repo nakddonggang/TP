@@ -99,3 +99,15 @@
 .join_form .row_sub > li p {float:left; margin-left:10px; color:#999; letter-spacing:-0.08em; line-height:30px;}
 .join_form .row_sub > li.inp_form input[type="radio"] {margin-top:6px;}
 .join_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;}
+
+/* start 윤창훈 작업(Q&A) */
+.col_qna {background-color: #464646; color: #fff}
+.col_qna li {float:left;}
+.col_qna .col_num {width:10%; padding:0 20px;}
+.col_qna .col_id {width:15%; padding:0 20px;}
+.col_qna .col_title {width:35%; padding:0 20px;}
+.col_qna .col_date {width:15%; padding:0 20px;}
+.col_qna .col_rc {width:10%; padding:0 20px;}
+.col_qna .col_check {width:15%; padding:0 20px;}
+
+/* end 윤창훈 작업(Q&A) */

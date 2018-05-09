@@ -89,7 +89,7 @@
 									%>
 										<div class="con_lst DIV_CON_LST">
 											<ul>
-												<li class="col_num"><a href="#"><p><%=bDTO.getMember_id() %></p></a></li>
+												<li class="col_num"><a href="#"><p><%=bDTO.getQna_num() %></p></a></li>
 												<li class="col_id"><a href="#"><p><%=bDTO.getMember_id() %></p></a></li>
 												<li class="col_title"><a href="#"><p><%=bDTO.getQna_subject() %></p></a></li>
 												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=bDTO.getQna_date() %></span></li>
