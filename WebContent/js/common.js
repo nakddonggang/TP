@@ -18,10 +18,6 @@ $(window).on('load', function() {
 		autoOpen: false, 
 		width: 400, 
 		modal: true, 
-		buttons: [ 
-			{ text: "로그인",	click: function() { $('#loginForm').submit(); } }, 
-			{ text: "닫기", click: function() { $( this ).dialog( "close" ); }	} 
-		]
 	});
 	
 	//로그인 다이얼로그 오픈 버튼
@@ -29,6 +25,9 @@ $(window).on('load', function() {
 		$("#loginDialog").dialog("open");
 	});
 	
+	$("#BTN_CLOSE").click(function() {
+		$("#loginDialog").dialog("close");
+	});
 });
 
 $(function() {
