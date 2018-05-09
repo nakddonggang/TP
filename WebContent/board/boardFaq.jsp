@@ -36,6 +36,7 @@
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 		List<BoardDTO> faqList = (List<BoardDTO>) request.getAttribute("faqList");
 	%>
+	<!-- board/boardFaq.jsp FAQ 게시판  페이지 -->
 	<div class="wrapper">
 
 		<!-- header -->
@@ -53,86 +54,95 @@
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
+
 					<div class="content">
+						<div class=board>
 
-						<h1>
-							게시판 글목록 [전체글개수 :
-							<%=count%>]
-						</h1>
-						<table border="1">
-							<tr>
-								<td>번호</td>
-								<td>종류</td>
-								<td>제목</td>
-								<td>내용</td>
-								<td>파일</td>
-								<td></td>
-							</tr>
+							<h1>FAQ</h1>
+
+							<div class="view_cnt">
+								<p>
+									Total_<span><%=count%></span>
+								</p>
+							</div>
+
+							<ul class="brd_txt_lst">
+								<!-- 글목록 -->
+								<li class="view_lst">
+									<%
+										if (faqList == null) {
+									%><ul>
+										<li class="col_tit"><p>게시글이 없습니다</p></li>
+									</ul>
+									<%
+										} else {
+											for (int i = 0; i < faqList.size(); i++) {
+												BoardDTO bDTO = faqList.get(i); //제너릭 사용해서 형변환 할 필요없음
+									%>
+									<div class="con_lst DIV_CON_LST">
+										<ul>
+											<li class="col_rc"><a href="#"><%=bDTO.getFaq_num()%></a></li>
+											<li class="col_type"><a href="#"><p><%=bDTO.getFaq_type()%></p></a></li>
+											<li class="col_title"><a href="#"><p><%=bDTO.getFaq_subject()%></p></a></li>
+										</ul>
+
+										<div class="con_detail DIV_CON_DETAIL">
+
+
+											<p>
+												<img src="./upload/<%=bDTO.getFaq_file()%>" width="100"
+													height="100">
+											</p>
+											<p><%=bDTO.getFaq_content()%></p>
+											<div class="file">
+												<span>첨부파일</span>
+												<ul>
+													<!-- 첨부파일 들어가는 부분 -->
+												</ul>
+											</div>
+											<%
+												if ("admin".equals(member_id)) {
+											%><div class="fix">
+												<ul>
+													<li><input type="button" value="글수정"
+														onclick="location.href='./BoardFaqUpdate.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'"></li>
+													<li><input type="button" value="글삭제"
+														onclick="location.href='./BoardFaqDelete.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'"></li>
+												</ul>
+											</div>
+											<%
+												}
+											%>
+										</div>
+									</div> <%
+ 	}
+ 	}
+ %>
+								</li>
+							</ul>
 							<%
-								if (faqList == null) {
-							%><tr>
-								<td colspan="6">게시물이 없습니다.</td>
-							</tr>
-							<%
-								} else {
-									for (int i = 0; i < faqList.size(); i++) {
-										BoardDTO bDTO = faqList.get(i); //제너릭 사용해서 형변환 할 필요없음
-							%>
-							<tr>
-								<td><%=bDTO.getFaq_num()%></td>
-								<td><%=bDTO.getFaq_type()%></td>
-								<td><%=bDTO.getFaq_subject()%></td>
-								<td><%=bDTO.getFaq_content()%></td>
-								<td><img src="./upload/<%=bDTO.getFaq_file()%>" width="100"
-									height="100"></td>
-								<%
-									if ("admin".equals(member_id)) {
-								%>
-								<td><input type="button" value="글수정"
-									onclick="location.href='./BoardFaqUpdate.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'">
-									<input type="button" value="글삭제"
-									onclick="location.href='./BoardFaqDelete.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'"></td>
-							</tr>
+								if ("admin".equals(member_id)) {
+							%><input type="button" value="글쓰기"
+								onclick="location.href='./BoardFaqWrite.fa'">
 							<%
 								}
 							%>
+
+
+							<%
+					
+							if(pageCount < endPage)	endPage = pageCount;
+							if (startPage > pageBlock) { %><a href="./BoardFaqList.fa?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%}
+
+							for (int p = startPage; p <= endPage; p++) {	
+								if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%>&nbsp;<a href="./BoardFaqList.fa?pageNum=<%=p%>"><%=p%></a>&nbsp;<%}
+							}
 							
-							
-							<%
-								}
-								}
+							if (endPage < pageCount) { %><a href="./BoardFaqList.fa?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a> <%}
+				
 							%>
-						</table>
-						<%
-							if ("admin".equals(member_id)) {
-						%><input type="button" value="글쓰기"
-							onclick="location.href='./BoardFaqWrite.fa'">
-						<%
-							}
-						%>
-						<%
-							if (count != 0) {
-
-								//이전
-								if (startPage > pageBlock) {
-						%><a href="./BoardFaqList.fa?pageNum=<%=startPage - 1%>">[이전]</a>&nbsp;<%
-							}
-
-								//1~10	11~20	21~30
-								for (int i = startPage; i <= endPage; i++) {
-						%>&nbsp;<a href="./BoardFaqList.fa?pageNum=<%=i%>"><%=i%></a>&nbsp;<%
-							}
-
-								//다음
-								if (endPage < pageCount) {
-						%>&nbsp;<a href="./BoardFaqList.fa?pageNum=<%=startPage + pageBlock%>">[다음]</a>
-						<%
-							}
-							}
-						%>
+						</div>
 					</div>
 					<!-- //메인 페이지-->
 				</article>

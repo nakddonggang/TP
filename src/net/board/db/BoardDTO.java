@@ -33,7 +33,7 @@ public class BoardDTO {
 	String qna_content;				//	글 내용	varchar(2000)			질문게시판 글 내용
 	Date qna_date;			//	작성일	date			질문게시판 글 작성일
 	int qna_readcount;				//	조회수	int(5)		0	해당 글 조회수
-	int qna_ref;						//	참조글 번호	int(5)			관리자 답변글에 쓰일 참조번호
+	int qna_ref;					//	참조글 번호	int(5)			관리자 답변글에 쓰일 참조번호
 	String qna_check;				//	답변 유무	char(2)	check in ('0', '1')	0	관리자 답변이 달렸는지 아닌지 여부(답변대기/답변등록)
 		
 	//	<reply table>						
