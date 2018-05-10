@@ -36,10 +36,10 @@
 
 	<insert id="insertCur" parameterType="net.board.db.BoardDTO">
 		insert into curation(
-			cur_num, cur_name, cur_subject, cur_content, cur_file, cur_readcount, cur_type
+			cur_num, cur_name, cur_subject, cur_content, cur_file, cur_readcount, cur_type, cur_date
 		)
 		values (
-			#{cur_num}, #{cur_name}, #{cur_subject}, #{cur_content}, #{cur_file}, #{cur_readcount}, #{cur_type}
+			#{cur_num}, #{cur_name}, #{cur_subject}, #{cur_content}, #{cur_file}, #{cur_readcount}, #{cur_type}, now()
 		)
 	</insert>
 	

@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -74,6 +75,7 @@
 					if(searchList==null){
 						%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%
 					}else{
+						SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 						for(int i=0; i<searchList.size(); i++){
 							BoardDTO bDTO = searchList.get(i);
 							String word = bDTO.getCur_subject();
@@ -86,6 +88,7 @@
 						<li class="col_type"><a href="#"><p><%=bDTO.getCur_type() %></p></a></li>
 						<li class="col_type"><a href="#"><p><%=bDTO.getCur_name() %></p></a></li>
 						<li class="col_title"><a href="#"><p><%=word %></p></a></li>
+						<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getCur_date()) %></span></li>
 						<li class="col_rc"><a href="#"><%=bDTO.getCur_readcount() %></a></li>
 					  </ul>
 							
