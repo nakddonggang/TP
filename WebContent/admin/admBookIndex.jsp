@@ -67,8 +67,8 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					<div>
 					<form action="./AdminBookSearch.am" method="get" id="SearchForm">
 					<fieldset>
-						<legend>통합검색</legend>
-							<select name="category1">
+					<legend>통합검색</legend>
+						<select name="category1">
 							<option value="all">전체</option>
 							<option value="book_subject">제목</option>
 							<option value="book_author">저자</option>
@@ -77,6 +77,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<option value="book_classification">분류기호</option>				
 							</select>
 					 		<input type="text" id="search1" name="search1" placeholder="입력하세요"><br>
+					 		
 					<select name="opt1">
 						<option value="and">and</option>
 						<option value="or">or</option>
@@ -133,33 +134,41 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					</select>
 					</fieldset>
 					
-					<h2>책 목록 [<%=count%>]</h2>
+					<h1>통합도서관리시스템<br>Total_<%=count%></h1>
 					<%if(count==0){ out.print("책 목록이 없습니다"); } else {%>
-					<table border="1">
-						<tr>
-							<th>고유번호</th>
-							<th>제목</th>
-							<th>저자</th>
-							<th>출판사</th>
-							<th>도서상태</th> <!-- dbook -->
-							<th>반납상태</th> <!-- bbook -->
-							<th>예약일자</th> <!-- rbook -->
-							<th> 예약현황</th> <!-- rbook -->
-						</tr>
-						<%
-							for (BookDTO bookLists : bookList) {%>
-								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'">
-									<td><img src="./upload/<%=bookLists.getBook_file()%>" width="100" height="100"><%=bookLists.getBook_number()%></td>
-									<td><%=bookLists.getBook_subject()%></td>
-									<td><%=bookLists.getBook_author()%></td>
-									<td><%=bookLists.getBook_publisher()%></td>
-									<td><%=bookLists.getDbook_state()%></td>
-									<td><%=bookLists.getBbook_bstate()%></td>
-									<td><%=bookLists.getRbook_date()%></td>
-									<td><%=bookLists.getRbook_check()%></td>		
-								</tr> <%}%>
-					</table>
-					<%}%><br>
+					<ul class="brd_txt_lst">
+						<li class="view_lst">
+							<div class="con_lst">
+								<ul class="no_scroll title_t">
+									<li class="col_num">고유번호</li>
+									<li class="col_type"></li>
+									<li class="col_rc">제목</li>
+									<li class="col_rc">저자</li>
+									<li class="col_rc">출판사</li>
+									<li class="col_rc">도서상태</li> <!-- dbook -->
+									<li class="col_rc">반납상태</li> <!-- bbook -->
+									<li class="col_rc">예약일자</li> <!-- rbook -->
+									<li class="col_rc">예약현황</li> <!-- rbook -->
+								</ul>
+							</div>
+						<% for (BookDTO bookLists : bookList) { %>
+							<div class="con_lst">
+								<ul class="no_scroll">
+									<li class="col_num"><%=bookLists.getBook_number()%></li>
+									<li class="col_type" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><img src="./upload/<%=bookLists.getBook_file()%>" width="100" height="100"></li>
+									<li class="col_rc"><%=bookLists.getBook_subject()%></li>
+									<li class="col_rc"><%=bookLists.getBook_author()%></li>
+									<li class="col_rc"><%=bookLists.getBook_publisher()%></li>
+									<li class="col_rc"><%=bookLists.getDbook_state()%></li>
+									<li class="col_rc"><%=bookLists.getBbook_bstate()%></li>
+									<li class="col_rc"><%=bookLists.getRbook_date()%></li>
+									<li class="col_rc"><%=bookLists.getRbook_check()%></li>
+								</ul>
+								</div><%}%>
+						</li>
+					</ul>
+					<%}%>
+					<input type="button" value="HOME" onclick="location.href='./AdminIndex.ma''">
 					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"> 
 					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'">					
 					<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'"><br>
