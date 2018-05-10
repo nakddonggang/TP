@@ -232,7 +232,179 @@ public class AdminDAO {
 		map.put("pageSize", pageSize);
 		List<BookDTO> booksearchList = sqlsession.selectList("SearchThrAllList", map);
 		return booksearchList;
+	}			
+	
+	
+	// 발행일을 검색내용에 넣을 때 책 검색
+	
+	// 검색결과로 나온 책 전체 개수 구하기
+	public int getBookDateSearchAllCount(String search, String pubDate){
+		int count;
+		HashMap map = new HashMap();
+		map.put("all", "%"+search+"%");
+		count=sqlsession.selectOne("getBookDateSearchAllCount", map);
+		return count;
+	}
+	
+	// 검색결과로 나온 책 전체 리스트 뿌려주기
+	public List<BookDTO> getBookDateSearchAllList(int startRow, int pageSize, String search, String pubDate){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("value", search);
+		map.put("pubDate", pubDate);
+		List<BookDTO> booksearchList = sqlsession.selectList("getBookDateSearchAllList", map);
+		return booksearchList;
 	}		
+	
+	// 책 제목 검색결과 개수 구하기
+	public int getBookDateSearchCount(String search, String category, String pubDate){
+		int count;
+		HashMap map = new HashMap();
+		map.put("value", search);
+		map.put("category", category);
+		map.put("pubDate", pubDate);
+		count = sqlsession.selectOne("getBookDateSearchCount", map);
+		return count;
+	}
+	
+	// 검색된 책 리스트 뿌려주기
+	public List<BookDTO> getBookDateSearchList(int startRow, int pageSize, String search, String category_, String pubDate){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("search", search);
+		map.put("category_", category_);
+		map.put("pubDate", pubDate);
+		List<BookDTO> booksearchList = sqlsession.selectList("getBookDateSearchList", map);
+		return booksearchList;
+	}	
+	
+	// 상세검색 책 개수 구하기 1
+	public int SearchDateTwoCount(String category1, String value1, String option, String category2, String value2 , String pubDate){
+		int count;
+		HashMap map = new HashMap();
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option", option);
+		map.put("category2", category2);
+		map.put("value2", value2);
+		map.put("pubDate", pubDate);
+		count = sqlsession.selectOne("SearchDateTwoCount", map);
+		return count;
+	}
+	
+	// 상세검색 책 리스트 뿌려주기 1
+	public List<BookDTO> SearchDateTwoList(String category1, String search1, String option, String category2, String search2, int startRow, int pageSize, String pubDate){
+		HashMap map = new HashMap();
+		map.put("category1", category1);
+		map.put("search1", search1);
+		map.put("option", option);
+		map.put("category2", category2);
+		map.put("search2", search2);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("pubDate", pubDate);
+		List<BookDTO> booksearchList = sqlsession.selectList("SearchDateTwoList", map);
+		return booksearchList;
+	}	
+	
+	// 상세검색 책 개수 구하기 2
+	public int SearchDateTwoAllCount(String all, String option, String category, String value, String pubDate){
+		int count;
+		HashMap map = new HashMap();
+		map.put("all", "%"+all+"%");
+		map.put("option", option);
+		map.put("category", category);
+		map.put("value", value);
+		map.put("pubDate", pubDate);
+		count = sqlsession.selectOne("SearchDateTwoAllCount", map);
+		return count;
+	}
+	
+	// 상세검색 책 리스트 뿌려주기 2
+	public List<BookDTO> SearchDateTwoAllList(String value, String option, String category1, String value1, int startRow, int pageSize, String pubDate){
+		HashMap map = new HashMap();
+		map.put("value", value);
+		map.put("option", option);
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("pubDate", pubDate);
+		List<BookDTO> booksearchList = sqlsession.selectList("SearchDateTwoAllList", map);
+		return booksearchList;
+	}	
+
+	// 상세검색 책 개수 구하기 1
+	public int SearchDateThrCount(String category1, String value1, String option1, String category2, String value2, String option2, String category3, String value3, String pubDate){
+		int count;
+		HashMap map = new HashMap();
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option1", option1);
+		map.put("category2", category2);
+		map.put("value2", value2);
+		map.put("option2", option2);
+		map.put("category3", category3);
+		map.put("value3", value3);
+		map.put("pubDate", pubDate);
+		count = sqlsession.selectOne("SearchDateThrCount", map);
+		return count;
+	}
+	
+	// 상세검색 책 리스트 뿌려주기 1
+	public List<BookDTO> SearchDateThrList(String category1, String value1, String option1, String category2, String value2, String option2, String category3, String value3, int startRow, int pageSize, String pubDate){
+		HashMap map = new HashMap();
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option1", option1);
+		map.put("category2", category2);
+		map.put("value2", value2);
+		map.put("option2", option2);
+		map.put("category3", category3);
+		map.put("value3", value3);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("pubDate", pubDate);
+		List<BookDTO> booksearchList = sqlsession.selectList("SearchDateThrList", map);
+		return booksearchList;
+	}	
+	
+	// 상세검색 책 개수 구하기 2
+	public int SearchDateThrAllCount(String all, String option1, String category1, String value1, String option2, String category2, String value2, String pubDate){
+		int count;
+		HashMap map = new HashMap();
+		map.put("all", "%"+all+"%");
+		map.put("option1", option1);
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option2", option2);
+		map.put("category2", category2);
+		map.put("value2", value2);
+		map.put("pubDate", pubDate);
+		count = sqlsession.selectOne("SearchDateThrAllCount", map);
+		return count;
+	}
+	
+	// 상세검색 책 리스트 뿌려주기 2
+	public List<BookDTO> SearchDateThrAllList(String value, String option1, String category1, String value1, String option2, String category2, String search2, int startRow, int pageSize, String pubDate){
+		HashMap map = new HashMap();
+		map.put("value", value);
+		map.put("option1", option1);
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option2", option2);
+		map.put("category2", category2);
+		map.put("search2", search2);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("pubDate", pubDate);
+		List<BookDTO> booksearchList = sqlsession.selectList("SearchDateThrAllList", map);
+		return booksearchList;
+	}		
+	// end 발행일을 검색내용에 넣을 때 책 검색
+	
 	
 	// admBookWrite 입고한 책 insert 해주기
 	public int insertBook(BookDTO bookdto){

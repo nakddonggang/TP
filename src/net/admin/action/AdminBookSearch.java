@@ -45,44 +45,86 @@ public class AdminBookSearch implements Action{
 		String search3 = request.getParameter("search3");
 		System.out.println(search3);
 		
+		String pubDate = request.getParameter("pubDate");
+		System.out.println(pubDate);
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		AdminDAO adao = new AdminDAO();
 		int count = 0;
-		// 값을 한 개 입력했을 때
-		if (search1!=""&&search2==""&&search3==""){
-			if (category1.equals("all")){
-				count = adao.getBookSearchAllCount(search1);
-			} else {
-				count = adao.getBookSearchCount(search1, category1);
-			}
-		} else if (search1==""&&search2!=""&&search3==""){
-			count = adao.getBookSearchCount(search2, category2);
-		} else if (search1==""&&search2==""&&search3!=""){
-			count = adao.getBookSearchCount(search3, category3);
-		// 값을 두 개 입력했을 때
-		} else if (search1!=""&&search2!=""&&search3==""){
-			if (category1.equals("all")){
-				count = adao.SearchTwoAllCount(search1, opt1, category2, search2);
-			} else {
-				count = adao.SearchTwoCount(category1, search1, opt1, category2, search2);
-			}
-		} else if (search1!=""&&search2==""&&search3!=""){
-			if (category1.equals("all")){
-					count = adao.SearchTwoAllCount(search1, opt2, category3, search3);
-			} else {
-					count = adao.SearchTwoCount(category1, search1, opt2, category3, search3);
-			}
-		} else if (search1==""&&search2!=""&&search3!=""){
-			count = adao.SearchTwoCount(category2, search2, opt2, category3, search3);
-		// 값을 모두 입력했을 때
-		} else if (search1!=""&&search2!=""&&search3!=""){
-			if (category1.equals("all")){
-				count = adao.SearchThrAllCount(search1, opt1, category2, search2, opt2, category3, search3);
-			} else {
-				count = adao.SearchThrCount(category1, search1, opt1, category2, search2, opt2, category3, search3);
-			}
-		} else { System.out.println("값을 입력받지 못함");}
+		
+		// pubDate에 값이 없을 때
+		if (pubDate.equals("all")) {
+			// 값을 한 개 입력했을 때
+			if (search1!=""&&search2==""&&search3==""){
+				if (category1.equals("all")){
+					count = adao.getBookSearchAllCount(search1);
+				} else {
+					count = adao.getBookSearchCount(search1, category1);
+				}
+			} else if (search1==""&&search2!=""&&search3==""){
+				count = adao.getBookSearchCount(search2, category2);
+			} else if (search1==""&&search2==""&&search3!=""){
+				count = adao.getBookSearchCount(search3, category3);
+			// 값을 두 개 입력했을 때
+			} else if (search1!=""&&search2!=""&&search3==""){
+				if (category1.equals("all")){
+					count = adao.SearchTwoAllCount(search1, opt1, category2, search2);
+				} else {
+					count = adao.SearchTwoCount(category1, search1, opt1, category2, search2);
+				}
+			} else if (search1!=""&&search2==""&&search3!=""){
+				if (category1.equals("all")){
+						count = adao.SearchTwoAllCount(search1, opt2, category3, search3);
+				} else {
+						count = adao.SearchTwoCount(category1, search1, opt2, category3, search3);
+				}
+			} else if (search1==""&&search2!=""&&search3!=""){
+				count = adao.SearchTwoCount(category2, search2, opt2, category3, search3);
+			// 값을 모두 입력했을 때
+			} else if (search1!=""&&search2!=""&&search3!=""){
+				if (category1.equals("all")){
+					count = adao.SearchThrAllCount(search1, opt1, category2, search2, opt2, category3, search3);
+				} else {
+					count = adao.SearchThrCount(category1, search1, opt1, category2, search2, opt2, category3, search3);
+				}
+			} else { System.out.println("값을 입력받지 못함");}
+		// pubDate에 값이 있을 때
+		} else {
+			// 값을 한 개 입력했을 때
+			if (search1!=""&&search2==""&&search3==""){
+				if (category1.equals("all")){
+					count = adao.getBookDateSearchAllCount(search1, pubDate);
+				} else {
+					count = adao.getBookDateSearchCount(search1, category1, pubDate);
+				}
+			} else if (search1==""&&search2!=""&&search3==""){
+				count = adao.getBookDateSearchCount(search2, category2, pubDate);
+			} else if (search1==""&&search2==""&&search3!=""){
+				count = adao.getBookDateSearchCount(search3, category3, pubDate);
+			// 값을 두 개 입력했을 때
+			} else if (search1!=""&&search2!=""&&search3==""){
+				if (category1.equals("all")){
+					count = adao.SearchDateTwoAllCount(search1, opt1, category2, search2, pubDate);
+				} else {
+					count = adao.SearchDateTwoCount(category1, search1, opt1, category2, search2, pubDate);
+				}
+			} else if (search1!=""&&search2==""&&search3!=""){
+				if (category1.equals("all")){
+						count = adao.SearchDateTwoAllCount(search1, opt2, category3, search3, pubDate);
+				} else {
+						count = adao.SearchDateTwoCount(category1, search1, opt2, category3, search3, pubDate);
+				}
+			} else if (search1==""&&search2!=""&&search3!=""){
+				count = adao.SearchDateTwoCount(category2, search2, opt2, category3, search3, pubDate);
+			// 값을 모두 입력했을 때
+			} else if (search1!=""&&search2!=""&&search3!=""){
+				if (category1.equals("all")){
+					count = adao.SearchDateThrAllCount(search1, opt1, category2, search2, opt2, category3, search3, pubDate);
+				} else {
+					count = adao.SearchDateThrCount(category1, search1, opt1, category2, search2, opt2, category3, search3, pubDate);
+				}
+			} else { System.out.println("값을 입력받지 못함");}		
+		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 2;		
@@ -106,42 +148,80 @@ public class AdminBookSearch implements Action{
 		List<BookDTO> booksearchList = null;
 		System.out.println(count);
 			if (count!=0) {
-				// 값을 한 개 입력했을 때
-				if (search1!=""&&search2==""&&search3==""){
-					if (category1.equals("all")){
-						booksearchList = adao.getBookSearchAllList(startRow, pageSize, search1);
-					} else {
-						booksearchList = adao.getBookSearchList(startRow, pageSize, search1, category1);
-					}
-				} else if (search1==""&&search2!=""&&search3==""){
-					booksearchList = adao.getBookSearchList(startRow, pageSize, search2, category2);
-				} else if (search1==""&&search2==""&&search3!=""){
-					booksearchList = adao.getBookSearchList(startRow, pageSize, search3, category3);
-				// 값을 두 개 입력했을 때
-				} else if (search1!=""&&search2!=""&&search3==""){
-					if (category1.equals("all")){
-						booksearchList = adao.SearchTwoAllList(search1, opt1, category2, search2, startRow, pageSize);
-					} else {
-						booksearchList = adao.SearchTwoList(category1, search1, opt1, category2, search2, startRow, pageSize);
-					}
-				} else if (search1!=""&&search2==""&&search3!=""){
-					if (category1.equals("all")){
-						booksearchList = adao.SearchTwoAllList(search1, opt2, category3, search3, startRow, pageSize);
-					} else {
-						booksearchList = adao.SearchTwoList(category1, search1, opt2, category3, search3, startRow, pageSize);
-					}
-				} else if (search1==""&&search2!=""&&search3!=""){
-					booksearchList = adao.SearchTwoList(category2, search2, opt2, category3, search3, startRow, pageSize);
+				// pubDate에 값이 없을 때
+				if (pubDate.equals("all")) {
+					// 값을 한 개 입력했을 때
+					if (search1!=""&&search2==""&&search3==""){
+						if (category1.equals("all")){
+							booksearchList = adao.getBookSearchAllList(startRow, pageSize, search1);
+						} else {
+							booksearchList = adao.getBookSearchList(startRow, pageSize, search1, category1);
+						}
+					} else if (search1==""&&search2!=""&&search3==""){
+						booksearchList = adao.getBookSearchList(startRow, pageSize, search2, category2);
+					} else if (search1==""&&search2==""&&search3!=""){
+						booksearchList = adao.getBookSearchList(startRow, pageSize, search3, category3);
+					// 값을 두 개 입력했을 때
+					} else if (search1!=""&&search2!=""&&search3==""){
+						if (category1.equals("all")){
+							booksearchList = adao.SearchTwoAllList(search1, opt1, category2, search2, startRow, pageSize);
+						} else {
+							booksearchList = adao.SearchTwoList(category1, search1, opt1, category2, search2, startRow, pageSize);
+						}
+					} else if (search1!=""&&search2==""&&search3!=""){
+						if (category1.equals("all")){
+							booksearchList = adao.SearchTwoAllList(search1, opt2, category3, search3, startRow, pageSize);
+						} else {
+							booksearchList = adao.SearchTwoList(category1, search1, opt2, category3, search3, startRow, pageSize);
+						}
+					} else if (search1==""&&search2!=""&&search3!=""){
+						booksearchList = adao.SearchTwoList(category2, search2, opt2, category3, search3, startRow, pageSize);
+						// 값을 모두 입력했을 때
+					} else if (search1!=""&&search2!=""&&search3!=""){
+						if (category1.equals("all")){
+							booksearchList = adao.SearchThrAllList(search1, opt1, category2, search2, opt2, category3, search3, startRow, pageSize);
+						} else {
+							booksearchList = adao.SearchThrList(category1, search1, opt1, category2, search2, opt2, category3, search3, startRow, pageSize);
+						}
+					} else { System.out.println("값을 입력받지 못함"); }
+				// pubDate에 값이 있을 때
+				} else {
+					// 값을 한 개 입력했을 때
+					if (search1!=""&&search2==""&&search3==""){
+						if (category1.equals("all")){
+							booksearchList = adao.getBookDateSearchAllList(startRow, pageSize, search1, pubDate);
+						} else {
+							booksearchList = adao.getBookDateSearchList(startRow, pageSize, search1, category1, pubDate);
+						}
+					} else if (search1==""&&search2!=""&&search3==""){
+						booksearchList = adao.getBookDateSearchList(startRow, pageSize, search2, category2, pubDate);
+					} else if (search1==""&&search2==""&&search3!=""){
+						booksearchList = adao.getBookDateSearchList(startRow, pageSize, search3, category3, pubDate);
+					// 값을 두 개 입력했을 때
+					} else if (search1!=""&&search2!=""&&search3==""){
+						if (category1.equals("all")){
+							booksearchList = adao.SearchDateTwoAllList(search1, opt1, category2, search2, startRow, pageSize, pubDate);
+						} else {
+							booksearchList = adao.SearchDateTwoList(category1, search1, opt1, category2, search2, startRow, pageSize, pubDate);
+						}
+					} else if (search1!=""&&search2==""&&search3!=""){
+						if (category1.equals("all")){
+							booksearchList = adao.SearchDateTwoAllList(search1, opt2, category3, search3, startRow, pageSize, pubDate);
+						} else {
+							booksearchList = adao.SearchDateTwoList(category1, search1, opt2, category3, search3, startRow, pageSize, pubDate);
+						}
+					} else if (search1==""&&search2!=""&&search3!=""){
+						booksearchList = adao.SearchDateTwoList(category2, search2, opt2, category3, search3, startRow, pageSize, pubDate);
 					// 값을 모두 입력했을 때
-				} else if (search1!=""&&search2!=""&&search3!=""){
-					if (category1.equals("all")){
-						booksearchList = adao.SearchThrAllList(search1, opt1, category2, search2, opt2, category3, search3, startRow, pageSize);
-					} else {
-						booksearchList = adao.SearchThrList(category1, search1, opt1, category2, search2, opt2, category3, search3, startRow, pageSize);
-					}
-				} else { System.out.println("값을 입력받지 못함");}
-			} else { System.out.println("count==0"); }
-		
+					} else if (search1!=""&&search2!=""&&search3!=""){
+						if (category1.equals("all")){
+							booksearchList = adao.SearchDateThrAllList(search1, opt1, category2, search2, opt2, category3, search3, startRow, pageSize, pubDate);
+						} else {
+							booksearchList = adao.SearchDateThrList(category1, search1, opt1, category2, search2, opt2, category3, search3, startRow, pageSize, pubDate);
+						}
+					} else { System.out.println("값을 입력받지 못함");}
+				}
+		} else { System.out.println("count==0"); }
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);
 		// 한 화면에 보여줄 페이지수 설정

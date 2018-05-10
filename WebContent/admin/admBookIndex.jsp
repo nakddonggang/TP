@@ -109,11 +109,11 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<legend>발행년</legend>
 							<select name="pubDate">
 							<option value="all">전체</option>
-							<option value="1">최근 1년</option>
-							<option value="2">최근 2년</option>
-							<option value="5">최근 5년</option>
-							<option value="10">최근 10년</option>
-							<option value="20">최근 20년</option>				
+							<option value="INTERVAL 1 YEAR">최근 1년</option>
+							<option value="INTERVAL 2 YEAR">최근 2년</option>
+							<option value="INTERVAL 5 YEAR">최근 5년</option>
+							<option value="INTERVAL 10 YEAR">최근 10년</option>
+							<option value="INTERVAL 20 YEAR">최근 20년</option>				
 							</select>
 					</fieldset>	
 							<input type="submit" value="상세검색">
