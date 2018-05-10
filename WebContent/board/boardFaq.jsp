@@ -100,7 +100,7 @@
 												</ul>
 											</div>
 											<%
-												/* if ("admin".equals(member_id)) { */
+												 if ("admin".equals(member_id)) { 
 											%><div class="btn_btm_board">
 												<ul>
 													<li>  
@@ -110,7 +110,7 @@
 												</ul>
 											</div>
 											<%
-												/* } */
+												 } 
 											%>
 										</div>
 									</div> <%
@@ -120,12 +120,12 @@
 								</li>
 							</ul>
 							<%
-								 /* if ("admin".equals(member_id)) {  */
+								  if ("admin".equals(member_id)) {  
 							%>
 							<input type="button" class="btn_type1" value="글쓰기"
 								onclick="location.href='./BoardFaqWrite.fa'">
 							<%
-								 /* } */ 
+								 } 
 							%>
 
 
