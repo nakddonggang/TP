@@ -57,25 +57,25 @@
 									<%
 									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 									%>
-										<li class="col_type"><p>작성자</p></li>
-										<li class="col_type"><p><%=member_id %></p></li>
-										<li class="col_type"><p>등록일</p></li>
-										<li class="col_type"><p><%=date.format(bDTO.getQna_date()) %></p></li>
-										<li class="col_type"><p>제목</p></li>
-										<li class="col_type"><%=bDTO.getQna_subject() %></li>
-										<li class="col_type"><p>조회수</p></li>
-										<li class="col_type"><%=bDTO.getQna_readcount() %></li>
+										
+										<li class="col_rc"><a href="#"><%=bDTO.getCur_num() %></a></li>
+										<li class="col_title"><a href="#"><p><%=bDTO.getCur_subject() %></p></a></li>
+										<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getCur_date()) %></span></li>
+										<li class="col_rc"><span class="tit_date">조회수 :&nbsp;</span><span><%=bDTO.getCur_readcount() %></span></li>
+								        <p><%=bDTO.getCur_file() %></p>	
+								        <p><%=bDTO.getCur_content() %></p>	
+							
 									</ul>
 										
 									<div class="con_detail DIV_CON_DETAIL">
-										<p><%=bDTO.getQna_content() %></p>		
+											
 										<%
-											if (bDTO.getMember_id().equals(member_id)) {
+											if("admin".equals(member_id)) {
 												%><div class="btn_btm_board">
 													<ul>
 														<li>
-															<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">
-															<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">				
+															<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'">
+															<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'">				
 														</li>
 													</ul>
 												</div>
@@ -85,12 +85,8 @@
 							</li>
 						</ul>
 						
-						<input type="button" class="" value="목록" onclick="location.href='./BoardQnaList.qn?pageNum=<%=pageNum %>'">
-						<%		
-						if ("admin".equals(member_id)) {
-						%>
-						<input type="button"  class="btn_type1" value="답변하기" onclick="location.href='./BoardRepWrite.qn'">
-						<%} %>
+						<input type="button" class="" value="목록" onclick="location.href='./BoardCurList.cu?pageNum=<%=pageNum %>'">
+					
 						
 						</div>
 					</div>

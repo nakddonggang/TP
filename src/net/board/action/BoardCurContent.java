@@ -17,10 +17,13 @@ public class BoardCurContent implements Action{
 		
 		ActionForward forward = new ActionForward();
 		int cur_num = Integer.parseInt(request.getParameter("cur_num"));
+		String pageNum=request.getParameter("pageNum");
 		
 		BoardDAO bDAO = new BoardDAO();
 		BoardDTO bDTO = bDAO.getCuration(cur_num);
 		
+		
+		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("bDTO", bDTO);
 		forward.setPath("./board/boardCuContent.jsp");
 		forward.setRedirect(false);
