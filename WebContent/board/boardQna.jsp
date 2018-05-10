@@ -18,6 +18,19 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(function(){
+	var data=[
+		{value:"1차 테스트",label:"1차 테스트"},
+		{value:"2차 테스트",label:"2차 테스트"},
+		{value:"6차 테스트",label:"6차 테스트"},
+	];
+	$('.inp_search').autocomplete({
+		source : data,
+		minLength : 1
+	});
+});
+</script>
 </head>
 <body>
 	<%
