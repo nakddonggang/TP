@@ -43,10 +43,6 @@
 		<!-- 본문 컨테이너 -->
 		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
-
-				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
-				<!-- //서브메뉴 -->
 				
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
@@ -82,7 +78,7 @@
 							%>
 							
 							<div class="con_lst DIV_CON_LST">
-							  <ul>
+							  <ul onclick="location.href='./BoardCurContent.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum %>'">
 								<li class="col_rc"><a href="#"><%=bDTO.getCur_num() %></a></li>
 								<li class="col_type"><a href="#"><p><%=bDTO.getCur_type() %></p></a></li>
 								<li class="col_type"><a href="#"><p><%=bDTO.getCur_name() %></p></a></li>
