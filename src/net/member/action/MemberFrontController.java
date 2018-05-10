@@ -38,9 +38,7 @@ public class MemberFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		
-		else if(command.equals("/MemberLogin.me")) {
+		}else if(command.equals("/MemberLogin.me")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberLogin.jsp");
 			forward.setRedirect(false);
@@ -51,54 +49,70 @@ public class MemberFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
-		
-		else if(command.equals("/MemberInfo.me")) {
+		}else if(command.equals("/MemberInfo.me")) {
 			action = new MemberInfo();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();
 			} // try_catch end
-		}
-		
-		else if(command.equals("/MemberUpdate.me")) {
+		}else if(command.equals("/MemberUpdate.me")) {
 			action = new MemberUpdate();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();
 			} // try_catch end
-		}else if(command.equals("/MemberUpdateAction.me")) {
-			action = new MemberUpdateAction();
-			try {
-				forward = action.execute(request, response);
-			}catch(Exception e) {
-				e.printStackTrace();
-			}
-		}
-		
-		else if(command.equals("/MemberDelete.me")) {
+		} else if(command.equals("/MemberDelete.me")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberDelete.jsp");
 			forward.setRedirect(false);
-		}else if(command.equals("/MemberDeleteAction.me")) {
+		} else if(command.equals("/MemberDeleteAction.me")) {
 			action = new MemberDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
-		
-		else if(command.equals("/MemberLogout.me")){
+		} else if(command.equals("/MemberUpdate.me")) {
+			action = new MemberUpdate();
+			try {
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if(command.equals("/MemberUpdateAction.me")) {
+			action = new MemberUpdateAction();
+			try {
+				forward = action.execute(request, response);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberLogout.me")){
 			action = new MemberLogoutAction();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}
+		}if(command.equals("/MemberBasketAdd.me")){
+			action = new MemberBasketAdd();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+				
+				
+			}else if(command.equals("/MemberBasketList.me")){
+				action = new MemberBasketList();
+				try {
+					forward = action.execute(request, response);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} 
 		
 		if(forward != null){
 			if(forward.isRedirect()){

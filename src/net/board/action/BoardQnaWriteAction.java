@@ -9,7 +9,6 @@ import javax.servlet.http.HttpSession;
 
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
-import net.member.db.MemberDTO;
 
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
@@ -22,18 +21,17 @@ public class BoardQnaWriteAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("id", "1111");			// 테스트
-		String id = (String)session.getAttribute("id");
+		String member_id = (String)session.getAttribute("member_id");
 		
 		BoardDAO bDAO = new BoardDAO();
 		BoardDTO bDTO = new BoardDTO();
-		MemberDTO mDTO = new MemberDTO();
 		
 		ActionForward forward = new ActionForward();
 		
 		int qna_num = bDAO.selectQMaxNum()+1;
 		
 		bDTO.setQna_num(qna_num);
+		bDTO.setMember_id(member_id);
 		bDTO.setQna_subject(request.getParameter("qna_subject"));
 		bDTO.setQna_content(request.getParameter("qna_content"));
 		bDTO.setQna_date(new Date(System.currentTimeMillis()));
@@ -41,8 +39,7 @@ public class BoardQnaWriteAction implements Action{
 		bDTO.setQna_ref(qna_num);
 		bDTO.setQna_check("0");
 		
-		bDAO.insertQna(bDTO, id);
-		bDAO.insertReply(qna_num);
+		bDAO.insertQna(bDTO);
 
 		forward.setPath("./BoardQnaList.qn");
 		forward.setRedirect(true);

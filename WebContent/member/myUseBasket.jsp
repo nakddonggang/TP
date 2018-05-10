@@ -1,3 +1,6 @@
+<%@page import="net.member.db.MemberDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="net.member.action.MemberBasketList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -25,16 +28,31 @@
 					<td>예약번호</td>
 					<td>대출신청/삭제<input type="checkbox"></td>
 				</tr>
+				<%
+				List MemberBasketList=(List)request.getAttribute("MemberBasketList");
+				
+				for(int i=0; i<MemberBasketList.size(); i++){
+					MemberDTO bDTO = (MemberDTO)MemberBasketList.get(i);
+				}
+				%>
 				<tr>
-					<td>책 번호</td>
-					<td>예약번호</td>
+					<td><%=MemberDTO.book_number() %>책 번호</td>
+					<td><%=MemberDTO.basket_number() %>예약번호</td>
 					<td>대출신청/삭제<input type="checkbox"></td>
 				</tr>
+				
+				
+				
+<!-- 				<tr> -->
+<!-- 					<td>책 번호</td> -->
+<!-- 					<td>예약번호</td> -->
+<!-- 					<td>대출신청/삭제<input type="checkbox"></td> -->
+<!-- 				</tr> -->
 			</table>
 
 			<div>
-				<input type="button" value="선택한 도서 예약하기"> <input
-					type="button" value="삭제하기">
+				<input type="button" value="선택한 도서 예약하기"> 
+				<input type="button" value="삭제하기">
 			</div>
 
 		</article>

@@ -37,7 +37,7 @@ public class BoardQnaList implements Action{
 		List<BoardDTO> qnaList = null;
 		
 		if(count != 0){
-			qnaList = bDAO.getQnaReplyList(startRow, pageSize);
+			qnaList = bDAO.getQnaList(startRow, pageSize);
 		}
 		
 		//게시판 전체 페이지수 구하기 => ex)전체 글 개수(count):50개, 한 화면에 보여줄 글 개수(pageSize):10개

@@ -19,7 +19,7 @@
 <body>
 <%
 request.setCharacterEncoding("utf-8");
-String id = (String)session.getAttribute("id");
+String member_id = (String)session.getAttribute("member_id");
 %>
 <!-- board/boardQWrite.jsp Q&A 글쓰기 페이지 -->
 	<div class="wrapper">
@@ -39,31 +39,45 @@ String id = (String)session.getAttribute("id");
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
 					<div class="content">
 					
-					<h1>Qna 글쓰기</h1>
-					<form action="./BoardQnaWriteAction.qn"  method="post"  name="fr" >
-						<table class="" >
-							<tr>
-								<th>ID</th>
-								<td><input type="text" name="member_id" value="<%=id %>" readonly></td>
-							</tr>
-							<tr>
-								<th>SUBJECT</th>
-								<td><input type="text" name="qna_subject" value=""></td>
-							</tr>
-							<tr>
-								<th>CONTENT</th>
-								<td><textarea cols="20" rows="10" name="qna_content" style="width: 580px; resize: none;"></textarea></td>
-							</tr>
-							<tr>
-								<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
-							</tr>
-						</table>
-					</form>
+						<div class="write_form">
+							<h1>Qna 글쓰기</h1>
+							<form action="./BoardQnaWriteAction.qn"  method="post"  name="fr" >
+								<ul class="row">
+									<li>
+										<ul class="row_sub">
+											<li class="title">ID</li>
+											<li class="inp_form"><input type="text" name="member_id" value="<%=member_id %>" readonly></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">SUBJECT</li>
+											<li class="inp_form"><input type="text" name="qna_subject" value=""></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">CONTENT</li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="qna_content"></textarea></li>
+										</ul>
+									</li>
+									<li>
+										<div class="btn_btm_center">
+											<ul>
+												<li class="btn_cancle">
+													<input type="submit" value="글쓰기" class ="btn_type4">
+												</li>
+												<li>
+													<input type="reset" value="취소" class ="btn_type4">
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</form>
+						</div>
 					</div>
 				</article>
 				<!-- //메인 페이지-->

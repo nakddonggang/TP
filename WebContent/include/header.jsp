@@ -42,11 +42,12 @@
 							<li><a href="../guide/guideStatis.jsp">도서관 통계</a></li>
 						</ul></li>
 					
-					<li><a href="./AdminIndex.am">관리자 페이지</a>
+					<li><a href="#">관리자 페이지</a>
 						<ul class="DIV_SUB_MNU">
-							<li><a href="./AdminBookWrite.am">입고하기</a></li>
-							<li><a href=""></a></li>
-							<li><a href=""></a></li>
+							<li><a href="./AdminIndex.am">통합검색관리</a></li>
+							<li><a href="/AdminBookDLos.am">손망실</a></li>
+							<li><a href="/AdminMemberIndex.am"></a>회원정보관리</li>
+							<li><a href="#"></a>시설관리</li>
 						</ul></li>
 				</ul>
 			</div>

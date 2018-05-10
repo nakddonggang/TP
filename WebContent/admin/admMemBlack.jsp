@@ -23,6 +23,7 @@ request.setCharacterEncoding("UTF-8");
 int count = ((Integer) request.getAttribute("count")).intValue();
 
 String pageNum = (String) request.getAttribute("pageNum");
+String pageType = "Black";
 int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
 int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 int startPage = ((Integer) request.getAttribute("startPage")).intValue();
@@ -32,86 +33,78 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 %>
 
 
-<body>
+<body class="if_board">
 	<div class="wrapper">
 
-		<!-- header -->
-		<jsp:include page="../include/header.jsp" />
-		<!-- //header -->
-
 		<!-- 본문 컨테이너 -->
-		<div class="container">
+
 			<section class="fullpage SECTION_FULL_PAGE01">
 
-				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
-				<!-- //서브메뉴 -->
-				
-				<article class="mainmenu section SECTION">
-				<!-- 메인 페이지 -->
-					<h2>블랙리스트 목록보기</h2>
-					<table border="1">
-						<tr>
-							<th>아이디</th>
-							<th>비밀번호</th>
-							<th>이름</th>
-							<th>전화번호</th>
-							<th>연체 횟수</th>
-							<th>연체 총 일수</th>
-							<th>가입일</th>
-						</tr>
+					<!-- 메인 페이지 -->
+					<article class="mainmenu section SECTION">
+						<div class=board>
+						<div class="view_cnt">
+							<p>
+								Total_<span><%=count%></span>
+							</p>
+						</div>
+						
+						
+						<ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="view_lst">
+							<div class="con_lst">
+							<ul class="no_scroll title_t">
+								<li class="col_type">아이디</li>
+								<li class="col_type">비밀번호</li>
+								<li class="col_type">이름</li>
+								<li class="col_date">전화번호</li>
+								<li class="col_type">연체 횟수</li>
+								<li class="col_date">연체 총 일수</li>
+							</ul>
+							</div>
 						<%
-							if(memberList != null){
-							for (int i = 0; i < memberList.size(); i++) {
-								MemberDTO mt = memberList.get(i);
-								String bl_check = mt.getBl_check();
-							if(bl_check.equals("1")){
-						%>
-						<tr
-							onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>'">
-							<td><%=mt.getMember_id()%></td>
-							<td><%=mt.getMember_pass()%></td>
-							<td><%=mt.getMember_name()%></td>
-							<td><%=mt.getMember_phone()%></td>
-							<td><%=mt.getBl_count()%></td>
-							<td><%=mt.getBl_date()%></td>
-							<td><%=mt.getMember_date()%></td>
-						</tr>
+							if (memberList == null) {
+						%><ul>
+							<li class="col_tit"><p>블랙리스트가 없습니다</p></li>
+						</ul>
 						<%
-							}
-							}
-							}else{
-								%><td colspan='7'><%out.print("블랙리스트가 없습니다");%></td><%
-							}
+							} else {
+								for (int i = 0; i < memberList.size(); i++) {
+									MemberDTO mt = memberList.get(i); //제너릭 사용해서 형변환 할 필요없음
+									String bl_check = mt.getBl_check();
+									if(bl_check.equals("1")){
 						%>
-
-					</table>
-					<%
-						if (count != 0) {
-
-							//이전
-							if (startPage > pageBlock) {
-					%><a href="./AdminMemberBlack.am?pageNum=<%=startPage - pageBlock%>">[이전]</a>
-					<%
-						}
-							// 1~10 11~20 21~30
+						<div class="con_lst">
+							<ul
+								onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>&pageType=<%=pageType %>'"  class="no_scroll">
+								<li class="col_type"><a href="#"><p><%=mt.getMember_id()%></p></a></li>
+								<li class="col_type"><a href="#"><p><%=mt.getMember_pass()%></p></a></li>
+								<li class="col_type"><a href="#"><%=mt.getMember_name()%></li>
+								<li class="col_date"><a href="#"><%=mt.getMember_phone()%></a></li>
+								<li class="col_type"><a href="#"><%=mt.getBl_count()%></a></li>
+								<li class="col_date"><a href="#"><%=mt.getBl_date()%></a></li>
+							</ul>
+						</div>
+						<%}}}%>
+							</li>
+						</ul>
+						<%if (count != 0) {//이전
+								if (startPage > pageBlock) {
+						%><a href="./AdminMemberBlack.am?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+						<%}// 1~10 11~20 21~30
 							for (int i = startPage; i <= endPage; i++) {
-					%><a href="./AdminMemberBlack.am?pageNum=<%=i%>"><%=i%></a>
-					<%
-						}
-							//다음
-							if (endPage < pageCount) {
-					%><a href="./AdminMemberBlack.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
-					<%
-						}
-						}
-					%>
-					<!-- //메인 페이지-->
-				</article>
-				
-			</section>
-		</div>
-		<!-- //본문 컨테이너 -->
+						%><a href="./AdminMemberBlack.am?pageNum=<%=i%>"><%=i%></a>
+						<%}//다음
+								if (endPage < pageCount) {
+						%><a href="./AdminMemberBlack.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+						<% }}%>
+						</div>
+					</article>
+
+		</section>
+
+
 	</div>
 </body>
 </html>

@@ -114,7 +114,7 @@
 		select * from notice where notice_subject like #{search} order by notice_num desc limit #{startRow},#{pageSize}
 	</select>
 	
-	<insert id="insertQna" parameterType="hashmap">
+	<insert id="insertQna" parameterType="net.board.db.BoardDTO">
 		insert into qna(qna_num, member_id, qna_subject, qna_content, qna_date, qna_readcount, qna_ref, qna_check)
 		values (#{qna_num}, #{member_id}, #{qna_subject}, #{qna_content}, now(), #{qna_readcount}, #{qna_ref}, #{qna_check})
 	</insert>
@@ -135,8 +135,8 @@
 		select ifnull(count(*),0) from reply where qna_ref=#{qna_ref}
 	</select>
 	
-	<select id="getQnaReplyList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
-		select * from qna q join reply r on (q.qna_num=r.qna_ref) order by q.qna_num desc limit #{startRow},#{pageSize}
+	<select id="getQnaList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from qna order by qna_num desc limit #{startRow},#{pageSize}
 	</select>
 	
 	<select id="getQnaCount" resultType="int">

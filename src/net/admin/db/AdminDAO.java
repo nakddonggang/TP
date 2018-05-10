@@ -118,6 +118,59 @@ public class AdminDAO {
 		return booksearchList;
 	}	
 	
+	// 상세검색 책 개수 구하기 1
+	public int SearchTwoCount(String category1, String value1, String option, String category2, String value2){
+		int count;
+		HashMap map = new HashMap();
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option", option);
+		map.put("category2", category2);
+		map.put("value2", value2);
+		count = sqlsession.selectOne("SearchTwoCount", map);
+		return count;
+	}
+	
+	// 상세검색 책 리스트 뿌려주기 1
+	public List<BookDTO> SearchTwoList(String category1, String value1, String option, String category2, String value2, int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option", option);
+		map.put("category2", category2);
+		map.put("value2", value2);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> booksearchList = sqlsession.selectList("SearchTwoList", map);
+		return booksearchList;
+	}	
+	
+	// 상세검색 책 개수 구하기 2
+	public int SearchTwoAllCount(String all, String option, String category, String value){
+		int count;
+		HashMap map = new HashMap();
+		map.put("all", all);
+		map.put("option", option);
+		map.put("category", category);
+		map.put("value", value);
+		count = sqlsession.selectOne("SearchTwoAllCount", map);
+		return count;
+	}
+	
+	// 상세검색 책 리스트 뿌려주기 2
+	public List<BookDTO> SearchTwoAllList(String category1, String value1, String option, String category2, String value2, int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option", option);
+		map.put("category2", category2);
+		map.put("value2", value2);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> booksearchList = sqlsession.selectList("SearchTwoAllList", map);
+		return booksearchList;
+	}	
+	
 	// admBookWrite 입고한 책 insert 해주기
 	public int insertBook(BookDTO bookdto){
 		int result;

@@ -30,6 +30,8 @@ public class MemberDAO {
 		int check = 0;
 		mDTO = sqlsession.selectOne("selectMember", member_id);
 		
+		System.out.println(mDTO.getMember_id());
+		
 		String id = mDTO.getMember_id();
 		
 		if (id != null) {	
@@ -65,7 +67,18 @@ public class MemberDAO {
 		System.out.println(result);
 	}
 	
-	
+	// 도서바구니 담기
+	public int insertBasket(MemberDTO ibDTO) {
+		int result;
+		result = sqlsession.insert("insertBasket", ibDTO);
+		return result;
+	}	
+	// 도서바구니 리스트
+	public List<MemberDTO> MemberBasketAdd(String mDTO){
+		List<MemberDTO> bList = new ArrayList<MemberDTO>();
+		bList = sqlsession.selectList("selectBasket", mDTO);
+		return bList;
+	}
 	
 	
 }

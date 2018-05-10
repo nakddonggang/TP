@@ -1,34 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<div class="content">
-	<div class='loginmodal'>
-		<form action="./MemberLoginAction.me" method="post" name="fr" id="loginForm">
-			<fieldset class="memberform">
-				<legend>로그인 페이지</legend>
-				<div class="row_group">
-					<div id="idDiv" class="join_row">
-						<span>
-							<label>아이디:</label>
-							<input type="text" name="member_id">
-						</span>
-					</div>
-					<div id="idDiv" class="join_row">
-						<span>
-							<label>비밀번호:</label>
-							<input type="password" name="member_pass">
-						</span>
-					</div>
+<div class='member_modal'>
+	<form action="./MemberLoginAction.me" method="post" name="fr" id=>
+		<fieldset>
+			<div class="row_group">
+				<div class="info_txt">
+					<p><span>아이디</span><input type="text" name="member_id"></p>
 				</div>
-				<div class="btn_btm_center">
-					<ul>
-						<li class="btn_cancle">
-							<input type="submit" value="회원가입" class ="btn_type4">
-						</li>
-						<li>
-							<input type="reset" value="취소" class ="btn_type4">
-						</li>
-					</ul>
+				<div class="info_txt">
+					<p><span>비밀번호</span><input type="password" name="member_pass"></p>
 				</div>
-			</fieldset>
-		</form>
-	</div>
+			</div>
+			<div class="btn_btm_center btn_btm_modal">
+				<ul>
+					<li class="btn_cancle">
+						<input type="submit" value="로그인" class ="btn_type4">
+					</li>
+					<li>
+						<input type="button" value="닫기" class ="btn_type4" id="BTN_CLOSE">
+					</li>
+				</ul>
+			</div>
+		</fieldset>
+	</form>
 </div>

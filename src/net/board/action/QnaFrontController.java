@@ -104,6 +104,13 @@ public class QnaFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		} else if(command.equals("/BoardQnaContent.qn")){
+			action = new BoardQnaContent();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 			
 		if(forward != null){

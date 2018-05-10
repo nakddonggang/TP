@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
@@ -73,6 +74,7 @@
 							<%
 								if(noticeList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
 								else{
+									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 									for(int i=0; i<noticeList.size(); i++){
 										BoardDTO bDTO = noticeList.get(i);	//제너릭 사용해서 형변환 할 필요없음
 									%>
@@ -80,7 +82,7 @@
 											<ul>
 												<li class="col_type"><a href="#"><p><%=bDTO.getNotice_type() %></p></a></li>
 												<li class="col_title"><a href="#"><p><%=bDTO.getNotice_subject() %></p></a></li>
-												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=bDTO.getNotice_date() %></span></li>
+												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getNotice_date()) %></span></li>
 												<li class="col_rc"><a href="#"><%=bDTO.getNotice_readcount() %></a></li>
 											</ul>
 											
@@ -88,25 +90,28 @@
 												<p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p>
 												<p><%=bDTO.getNotice_content() %></p>		
 												<div class="file"><span>첨부파일</span><ul><!-- 첨부파일 들어가는 부분 --></ul></div>
-												<%
-												if ("admin".equals(member_id)) {
-													%><div class="fix">
-														<ul>
-															<li><input type="button" value="글수정" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"></li>
-															<li><input type="button" value="글삭제" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'"></li>
-														</ul>
-													</div><%
-												}%>
+									<%
+										if ("admin".equals(member_id)) {
+											%><div class="btn_btm_board">
+													<ul>
+														<li>
+															<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
+															<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
+														</li>
+													</ul>
+												</div>
+										<%	}	%>
 											</div>
 										</div>
 									<%	}	%>
 								<%	}	%>
 							</li>
 						</ul>
+						
 						<%		
 						if ("admin".equals(member_id)) {
 						%>
-						<input type="button" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
+						<input type="button"  class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
 						<%} %>
 						
 	

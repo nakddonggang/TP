@@ -1,6 +1,7 @@
 package net.admin.action;
 
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,6 +19,11 @@ public class AdminBookSearch implements Action{
 
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
+		
+		// 현재날짜 값 얻기
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+//		String now = sdf.format(new Date(System.currentTimeMillis()));
+//		System.out.println("현재시간"+now);
 		
 		// 검색 파라미터값 가져오기
 		String category1 = request.getParameter("category1");
@@ -38,36 +44,39 @@ public class AdminBookSearch implements Action{
 		System.out.println(category3);
 		String search3 = request.getParameter("search3");
 		System.out.println(search3);
-		String opt3 = request.getParameter("opt3");
-		System.out.println(opt3);
 		
-		String book_pubDate = request.getParameter("book_pubDate");
-		System.out.println("발행년 pubDate 값 ");
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		AdminDAO adao = new AdminDAO();
 		int count = 0;
-		
-		// book_pubDate에 선택조건이 없을 때
-		if(book_pubDate.equals("all")){
-			// category1의 값이 all이 아닐 때
-			if(!category1.equals("all")) {
+		// 값을 하나만 입력했을 때
+		if( (search1==""&&search2=="")||(search2==""&&search3=="")||(search1==""&&search3=="") ){
+			if (search1!="" && category1.equals("all")){
+				count = adao.getBookSearchAllCount(search1);
+			} else if (search1!=""&& !category1.equals("all")){
 				count = adao.getBookSearchCount(search1, category1);
-					// category1의 내용+and+category2의 내용
-					if(!category2.equals("all")&&opt1.equals("and")) {
-						
-						// category1의 내용+and+category2+and+category3의 내용
-						if(!category3.equals("all")&&opt2.equals("and")){
-						
-						// category1의 내용+and+category2+or+category3의 내용
-						} else if (!category3.equals("all")&&opt2.equals("or")){
-							
-						}
-					// category1의 내용+or+category2의 내용
-					} else if (!category2.equals("all")&&opt1.equals("or"){
-						// category1의 내용+or+category2의 내용
-					}
-			} // !category1.equals("all")
+			} else if (search2!=""){
+				count = adao.getBookSearchCount(search2, category2);
+			} else if (search3!=""){
+				count = adao.getBookSearchCount(search3, category3);
+			}
+		// 값을 두개 입력했을 때
+		} else if (search1==""||search2==""||search3==""){
+			if (search1==""){
+				count = adao.SearchTwoCount(category2, search2, opt2, category3, search3);
+			} else if (search2==""){
+				if (category1.equals("all")){
+					count = adao.SearchTwoAllCount(category1, search1, opt2, category3, search3);
+				} else if (!category1.equals("all")){
+					count = adao.SearchTwoCount(category2, search2, opt2, category3, search3);
+				}
+			} else if (search3==""){
+				if (category1.equals("all")){
+					
+				} else if (!category1.equals("all")){
+					count = adao.SearchTwoCount(category2, search2, opt2, category3, search3);
+				}		
+			}
 		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
@@ -88,16 +97,23 @@ public class AdminBookSearch implements Action{
 			// 1page - 10 / 2page - 20 / 3page - 30
 		int endRow = pageSize*currentPage;
 		
-		// 입출력
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		
 		// 책 뿌려주는 메소드 생성
 		List<BookDTO> booksearchList = null;
+		System.out.println(count);
 		if (count!=0) {
-			if (category.equals("all")) booksearchList=adao.getBookSearchAllList(startRow, pageSize, search);
-			else booksearchList = adao.getBookSearchList(startRow, pageSize, search, category);
-		} else { }
+			if( (search1==""&&search2=="")||(search2==""&&search3=="")||(search1==""&&search3=="") ){
+				// search1
+				if (search1!="" && category1.equals("all")){
+					booksearchList = adao.getBookSearchAllList(startRow, pageSize, search1);
+				} else if (search1!=""&& !category1.equals("all")){
+					booksearchList = adao.getBookSearchList(startRow, pageSize, search1, category1);
+				} else if (search2!=""){
+					booksearchList = adao.getBookSearchList(startRow, pageSize, search2, category2);
+				} else if (search3!=""){
+					booksearchList = adao.getBookSearchList(startRow, pageSize, search3, category3);
+				}
+			} else { System.out.println("실패3"); }
+		} else { System.out.println("실패4"); }
 		
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);
@@ -114,13 +130,15 @@ public class AdminBookSearch implements Action{
 		
 		// count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
 		request.setAttribute("count", count);
-		request.setAttribute("search", search);
+		request.setAttribute("search1", search1);
+		request.setAttribute("search2", search2);
+		request.setAttribute("search3", search3);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("booksearchList", booksearchList);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
-		request.setAttribute("endPage", endPage);				
+		request.setAttribute("endPage", endPage);	
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./admin/admBookIndexSearch.jsp");

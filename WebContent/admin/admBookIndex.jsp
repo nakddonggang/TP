@@ -18,6 +18,18 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#SearchForm').submit(
+			function(){
+				if($('#search1').val()==""&&$('#search2').val()==""&&$('#search3').val()==""){
+				alert ("검색어를 입력해주세요");
+				$('#search1').focus();
+				return false;
+				} else { }
+		});
+	});
+</script>
 </head>
 <body>
 <%
@@ -53,7 +65,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					<!-- 본문 공간 -->
 					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
 					<div>
-					<form action="./AdminBookSearch.am" method="get">
+					<form action="./AdminBookSearch.am" method="get" id="SearchForm">
 					<fieldset>
 						<legend>통합검색</legend>
 							<select name="category1">
@@ -64,44 +76,38 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<option value="book_isbn">국제표준번호</option>
 							<option value="book_classification">분류기호</option>				
 							</select>
-					 		<input type="text" name="search1" placeholder="입력하세요"><br>
+					 		<input type="text" id="search1" name="search1" placeholder="입력하세요"><br>
 					<select name="opt1">
 						<option value="and">and</option>
 						<option value="or">or</option>
 					</select><br>
 					
 							<select name="category2">
-							<option value="all">전체</option>
 							<option value="book_subject">제목</option>
 							<option value="book_author">저자</option>
 							<option value="book_publisher">출판사</option>
 							<option value="book_isbn">국제표준번호</option>
 							<option value="book_classification">분류기호</option>				
 							</select>
-					 		<input type="text" name="search2" placeholder="입력하세요"><br>
+					 		<input type="text" id="search2" name="search2" placeholder="입력하세요"><br>
 					<select name="opt2">
 						<option value="and">and</option>
 						<option value="or">or</option>
 					</select><br>
 					
 							<select name="category3">
-							<option value="all">전체</option>
 							<option value="book_subject">제목</option>
 							<option value="book_author">저자</option>
 							<option value="book_publisher">출판사</option>
 							<option value="book_isbn">국제표준번호</option>
 							<option value="book_classification">분류기호</option>				
 							</select>
-					 		<input type="text" name="search3" placeholder="입력하세요"><br>
-					<select name="opt3">
-						<option value="and">and</option>
-						<option value="or">or</option>
-					</select><br>
+					 		<input type="text" id="search3" name="search3" placeholder="입력하세요"><br>
 					</fieldset>
 							
 					<fieldset>
 							<legend>발행년</legend>
-							<select name="book_pubDate">
+							<select name="pubDate">
 							<option value="all">전체</option>
 							<option value="1">최근 1년</option>
 							<option value="2">최근 2년</option>
