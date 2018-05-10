@@ -229,8 +229,8 @@ public class BoardDAO {
 	
 	/* **************Q&A 답변글************** */
 	//Q&A 답변글쓰기
-	public void insertReply(int qna_ref) {	
-		sqlsession.insert("insertReply", qna_ref);
+	public void insertReply(BoardDTO bDTO) {	
+		sqlsession.insert("insertReply", bDTO);
 	}
 	//Q&A 답변글 달린 것 체크 수정 : "0" => "1"
 	public void updateCheck(int qna_ref){
@@ -244,9 +244,20 @@ public class BoardDAO {
 	public void updateReply(BoardDTO bDTO){
 		sqlsession.update("updateReply", bDTO);
 	}
+	//Q&A 답변글 삭제
+	public void deleteReply(int qna_ref){
+		sqlsession.delete("deleteReply",qna_ref);
+	}
 	//Q&A 게시판 글 번호에 해당하는 답변글 가져오기
 	public BoardDTO getReply(int num){
 		BoardDTO bDTO = sqlsession.selectOne("getReply", num);
 		return bDTO;
+	}
+	//글 내용 확인시 조회수 증가
+	public void updateReadcount(String table, int num){
+		HashMap map = new HashMap();
+		map.put("table", table);
+		map.put("num", num);
+		sqlsession.update("updateReadcount", map);
 	}
 }

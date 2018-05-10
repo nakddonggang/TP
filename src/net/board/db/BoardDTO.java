@@ -49,6 +49,7 @@ public class BoardDTO {
 	String cur_file;					//	파일명	varchar(50)			해당 큐레이션에 첨부된 파일이름
 	int cur_readcount;				//	조회수	int(5)		0	해당 큐레이션 조회수
 	String cur_type;					//	테마 종류	char(20)			큐레이션 테마 종류
+	Date cur_date;                  //	작성일	date			큐레이션 글 작성일
 	
 	//getter, setter 구현
 	public int getNotice_num() {
@@ -261,4 +262,11 @@ public class BoardDTO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	public Date getCur_date() {
+		return cur_date;
+	}
+	public void setCur_date(Date cur_date) {
+		this.cur_date = cur_date;
+	}
+	
 }

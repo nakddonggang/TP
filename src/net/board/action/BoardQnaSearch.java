@@ -63,6 +63,7 @@ public class BoardQnaSearch implements Action{
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
+		request.setAttribute("search", search);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./board/boardQSearch.jsp");

@@ -69,6 +69,13 @@ public class CurationFrontController extends HttpServlet {
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		} else if(command.equals("/BoardCurContent.cu")){
+			action = new BoardCurContent();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null){
