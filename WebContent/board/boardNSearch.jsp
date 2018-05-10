@@ -11,11 +11,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet"
-	type="text/css">
-<link href="<c:url value="/css/import.css"/>" rel="stylesheet"
-	type="text/css">
+<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
@@ -26,9 +25,7 @@
 		request.setCharacterEncoding("UTF-8");
 		int count = ((Integer) request.getAttribute("count")).intValue();
 		String search = request.getParameter("search");
-
 		String member_id = (String) session.getAttribute("member_id");
-
 		String pageNum = (String) request.getAttribute("pageNum");
 		int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
 		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
@@ -62,16 +59,13 @@
 
 							<div class="search_bx">
 								<form action="./BoardNoticeSearch.no" method="post">
-									<input type="text" name="search" placeholder="공지사항을 검색해 보세요."
-										class="inp_search"><input type="submit" value="검색"
-										class="btn_search">
+									<input type="text" name="search" placeholder="공지사항을 검색해 보세요." class="inp_search">
+									<input type="submit" value="검색" class="btn_search">
 								</form>
 							</div>
 
 							<div class="view_cnt">
-								<p>
-									Total_<span><%=count%></span>
-								</p>
+								<p>Search_<span><%=count%></span></p>
 							</div>
 
 							<ul class="brd_txt_lst">
@@ -79,63 +73,55 @@
 								<li class="view_lst">
 									<%
 										if (searchList == null) {
-									%><ul>
-										<li class="col_tit"><p>게시글이 없습니다</p></li>
-									</ul>
-									<%
-										} else {
+									%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul>
+									<% }else {
 											SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 											for (int i = 0; i < searchList.size(); i++) {
 												BoardDTO bDTO = searchList.get(i);
+												String notice_content = bDTO.getNotice_content();
+												notice_content = notice_content.replaceAll("\r\n", "<br>");
+												notice_content = notice_content.replaceAll("\u0020", "&nbsp;");
 												String word = bDTO.getNotice_subject();
 												word = word.replaceAll(search, "<mark>" + search + "</mark>");
-									%>
-									<div class="con_lst DIV_CON_LST">
-										<ul>
-											<li class="col_type"><a href="#"><p><%=bDTO.getNotice_type()%></p></a></li>
-											<li class="col_title"><a href="#"><p><%=word%></p></a></li>
-											<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getNotice_date()) %></span></li>
-											<li class="col_rc"><a href="#"><%=bDTO.getNotice_readcount()%></a></li>
-										</ul>
+											%>
+											<div class="con_lst DIV_CON_LST">
+												<ul>
+													<li class="col_type"><a href="#"><p><%=bDTO.getNotice_type()%></p></a></li>
+													<li class="col_title"><a href="#"><p><%=word%></p></a></li>
+													<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getNotice_date()) %></span></li>
+													<li class="col_rc"><a href="#"><%=bDTO.getNotice_readcount()%></a></li>
+												</ul>
 										
-										<div class="con_detail DIV_CON_DETAIL">
-											<p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p>
-											<p><%=bDTO.getNotice_content()%></p>
-											<div class="file"><span>첨부파일</span><ul><!-- 첨부파일 들어가는 부분 --></ul></div>
+												<div class="con_detail DIV_CON_DETAIL">
+													<p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p>
+													<p><%=notice_content%></p>
+													<div class="file"><span>첨부파일</span><ul><%=bDTO.getNotice_file() %></ul></div>
 											
-											<%
-												/* if ("admin".equals(member_id)) { */
-											%><div class="btn_btm_board">
-													<ul>
-														<li>
-											              <input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
-												          <input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
-											   		    </li>
-													</ul>
-											  </div>
-											<%
-								             /*   } */
-											%>
+													<%
+													if ("admin".equals(member_id)) {
+														%><div class="btn_btm_board">
+															<ul>
+																<li>
+											 		             <input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
+														          <input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
+											 		  		    </li>
+															</ul>
+														 </div>
+													<% } %>
+												</div>
 											</div>
-										</div>
 									
-											<%
-												}
-												}
-											%>
+										<%
+											}
+										}
+										%>
 										</li>
 									</ul>
 								
 											<%
-												/* if ("admin".equals(member_id)) { */
-											%>
-											<input type="button" class="btn_type1" value="글쓰기"
-												onclick="location.href='./BoardNoticeWrite.no'">
-											<%
-												/* } */
-											%>
-
-			
+											 if ("admin".equals(member_id)) {
+											%><input type="button" class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
+											<% } %>
 
 											<%
 												if (pageCount < endPage) endPage = pageCount;
@@ -150,9 +136,9 @@
 												if (endPage < pageCount) {%><a href="BoardNoticeSearch.no?pageNum=<%=startPage + pageBlock%>&search=<%=search%>"
 												class="next"><span class="hide">다음 페이지</span></a>
 											<% } %>
-										</div>
-									</div>
-				       </article>
+							</div>
+						</div>
+				   </article>
 				<!-- //메인 페이지-->
 
 			</section>

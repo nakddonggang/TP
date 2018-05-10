@@ -11,6 +11,7 @@
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
@@ -71,8 +72,7 @@ String pageNum = request.getParameter("pageNum");
 										  <input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
 										  <div class="file_input_div">
 											 <input type="button" value="파일 찾기" class="file_input_button btn_type4">
-											 <input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" name="notice_file"
-											       value="<%=bDTO.getNotice_file()%>">
+											 <input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" name="notice_file" value="<%=bDTO.getNotice_file()%>">
 										  </div>
 									 <!-- end 파일 입력부분 -->
 								  </li>

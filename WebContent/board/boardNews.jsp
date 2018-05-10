@@ -22,17 +22,15 @@
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("UTF-8");
 		int count = ((Integer)request.getAttribute("count")).intValue();
-		
 		String member_id = (String) session.getAttribute("member_id");
-
 		String pageNum =  (String)request.getAttribute("pageNum");
 		int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
 		int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
 		int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 		List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
+
 	%>
 <!-- board/boardNews.jsp Notice 게시판  페이지 -->
 	<div class="wrapper">
@@ -77,30 +75,32 @@
 									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 									for(int i=0; i<noticeList.size(); i++){
 										BoardDTO bDTO = noticeList.get(i);	//제너릭 사용해서 형변환 할 필요없음
+										String notice_content = bDTO.getNotice_content();
+										notice_content = notice_content.replaceAll("\r\n", "<br>");
+										notice_content = notice_content.replaceAll("\u0020", "&nbsp;");
 									%>
 										<div class="con_lst DIV_CON_LST">
 											<ul>
 												<li class="col_type"><a href="#"><p><%=bDTO.getNotice_type() %></p></a></li>
 												<li class="col_title"><a href="#"><p><%=bDTO.getNotice_subject() %></p></a></li>
 												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getNotice_date()) %></span></li>
-												<li class="col_rc"><a href="#"><%=bDTO.getNotice_readcount() %></a></li>
 											</ul>
 											
 											<div class="con_detail DIV_CON_DETAIL">
 												<p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p>
-												<p><%=bDTO.getNotice_content() %></p>		
-												<div class="file"><span>첨부파일</span><ul><!-- 첨부파일 들어가는 부분 --></ul></div>
+												<p><%=notice_content %></p>		
+												<div class="file"><span>첨부파일</span><ul><%=bDTO.getNotice_file() %></ul></div>
 									<%
-										/* if ("admin".equals(member_id)) {  */
+										if ("admin".equals(member_id)) {
 											%><div class="btn_btm_board">
 													<ul>
 														<li>
 															<input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
-															<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
+															<input type="button" value="글삭제" id="" class ="btn_type4 deleteBoard" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
 														</li>
 													</ul>
 												</div>
-										<%	/* } */	%>
+										<%	 }	%>
 											</div>
 										</div>
 									<%	}	%>
@@ -109,10 +109,10 @@
 						</ul>
 						
 						<%		
-						/* if ("admin".equals(member_id)) {  */
+						if ("admin".equals(member_id)) {
 						%>
 						<input type="button"  class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
-						<% /* }  */ %>
+						<%  }  %>
 						
 	
 						
@@ -137,5 +137,22 @@
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.deleteBoard').each(function(index){
+		$(this).attr('id','delete'+index);
+	})
+	var pageNum = "<%=pageNum %>";
+	$('#deleteBoard').click(
+		function(){
+			var result = confirm('정말 삭제하시겠습니까?');
+			if(result){
+				return;
+			}else{
+				location.replace("./BoardNoticeList.no?pageNum="+pageNum);
+			}
+		});
+});
+</script>
 </body>
 </html>
