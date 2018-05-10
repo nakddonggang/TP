@@ -91,16 +91,16 @@
 												<p><%=bDTO.getNotice_content() %></p>		
 												<div class="file"><span>첨부파일</span><ul><!-- 첨부파일 들어가는 부분 --></ul></div>
 									<%
-										if ("admin".equals(member_id)) { 
+										/* if ("admin".equals(member_id)) {  */
 											%><div class="btn_btm_board">
 													<ul>
 														<li>
-															<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
+															<input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
 															<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
 														</li>
 													</ul>
 												</div>
-										<%	}	%>
+										<%	/* } */	%>
 											</div>
 										</div>
 									<%	}	%>
@@ -109,10 +109,10 @@
 						</ul>
 						
 						<%		
-						if ("admin".equals(member_id)) { 
+						/* if ("admin".equals(member_id)) {  */
 						%>
 						<input type="button"  class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
-						<% }  %>
+						<% /* }  */ %>
 						
 	
 						
