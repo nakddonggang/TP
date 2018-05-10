@@ -54,7 +54,7 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 					<div class=""></div>
 					<!-- 본문 공간 -->
 					<h2>손망실 목록 [<%=count%>]</h2>
-					<%if(dbookList.isEmpty()){ out.print("손망실 목록이 없습니다"); }   else { %>
+					<%if(count==0){ out.print("손망실 목록이 없습니다"); }   else { %>
 					<table border="1">
 						<tr>
 							<th>고유번호</th>

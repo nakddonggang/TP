@@ -40,53 +40,78 @@
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
+			<div class="fp-tableCell">	
 			<h2>책 입고하기</h2>
+			<div class="join_form">
 			<form action="./AdminBookWriteAction.am" method="post" enctype="multipart/form-data">
-				<table border="1">
-					<tr>
-						<td>표제 : </td>
-						<td><input type="text" name="book_subject"></td>
-					</tr>
-					<tr>
-						<td>저자 : </td>
-						<td><input type="text" name="book_author"></td>
-					</tr>
-					<tr>
-						<td>발행처 : </td>
-						<td><input type="text" name="book_publisher"></td>
-					</tr>
-					<tr>
-						<td>발행일 : </td>
-						<td><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"></td>
-					</tr>
-					<tr>
-						<td>형태 : </td>
-						<td><input type="text" name="book_form"></td>
-					</tr>
-					<tr>
-						<td>주기 : </td>
-						<td><input type="text" name="book_notation"></td>
-					</tr>
-					<tr>
-						<td>국제표준번호 : </td>
-						<td><input type="text" name="book_isbn"></td>
-					</tr>
-					<tr>
-						<td>분류기호 : </td>
-						<td><input type="text" name="book_classification"></td>
-					</tr>
-					<tr>
-						<td>책 사진 : </td>
-						<td><input type="file" name="book_file"></td>
-					</tr>
-				</table>
+				<ul class="row">
+					<li>
+						<ul class="row_sub">
+							<li class="title"><span>표제</span></li>
+							<li class="inp_form"><input type="text" name="book_subject"></li>
+						</ul>
+					</li>
+					<li>
+						<ul class="row_sub">
+						<li class="title"><span>저자</span></li>
+						<li class="inp_form"><input type="text" name="book_author"></li>
+						</ul>
+					</li>
+					<li>
+						<ul class="row_sub">
+						<li class="title"><span>발행처</span></li>
+						<li class="inp_form"><input type="text" name="book_publisher"></li>
+						</ul>
+					</li>
+					<li>
+						<ul class="row_sub">
+						<li class="title"><span>발행일</span></li>
+						<li class="inp_form"><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"></li>
+						</ul>
+					</li>
+					<li>
+						<ul class="row_sub">
+						<li class="title"><span>형태</span></li>
+						<li class="inp_form"><input type="text" name="book_form"></li>
+						</ul>
+					</li>
+					<li>
+						<ul class="row_sub">
+						<li class="title"><span>주기</span></li>
+						<li class="inp_form"><input type="text" name="book_notation"></li>
+						</ul>
+					</li>
+					<li>
+						<ul class="row_sub">
+						<li class="title"><span>국제표준번호</span></li>
+						<li class="inp_form"><input type="text" name="book_isbn"></li>
+						</ul>
+					</li>
+					<li>
+						<ul class="row_sub">
+						<li class="title"><span>분류기호</span></li>
+						<li class="inp_form"><input type="text" name="book_classification"></li>
+						</ul>
+					</li>
+					<li>
+						<ul class="row_sub">
+						<li class="title"><span>책 사진</span></li>
+						<li class="inp_form"><input type="file" name="book_file"></li>
+						</ul>
+					</li>
+				</ul>
 				
-				<div>
-					<input type="submit" value="입고하기">
-					<input type="reset" value="취소">
+				<div class="btn_btm_center">
+				<ul>
+					<li class="btn_cancle"><input type="submit" value="입고하기">
+					<input type="reset" value="취소"></li>
+				</ul>
 				</div>
+				
 			</form>
-
+			</div>
+		</div> <!-- table 풀 페이지 div -->
+		
 			<!-- // 본문 공간 --> </article> </section>
 		</div>
 		<!-- //container -->

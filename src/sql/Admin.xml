@@ -21,7 +21,7 @@
 	 
 	 <select id="getBookSearchAllCount" resultType="int" parameterType="hashmap">
 	 	select count(*) from book where book_subject like #{all} or book_author like #{all} or
-	 	book_publisher like #{all} or book_classification like #{all}
+	 	book_publisher like #{all} or book_isbn like #{all} or book_classification like #{all}
 	 </select>
 	 
 	 <select id="getBookSearchAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
@@ -35,7 +35,7 @@
 		left join rbook rb
 		on b.book_number=rb.book_number
 		where b.book_subject like '%${value}%' or b.book_author like '%${value}%' or
-	 	b.book_publisher like '%${value}%' or b.book_classification like '%${value}%'
+	 	b.book_publisher like '%${value}%' or b.book_isbn like '%${value}%' or b.book_classification like '%${value}%'
 		order by b.book_number desc limit #{startRow},#{pageSize}
 	 </select> 
 	 	 
@@ -80,7 +80,8 @@
 	 <select id="SearchTwoAllCount" parameterType="hashmap" resultType="int">	
 		select count(*)
 		from book
-		where book_subject like #{all} or book_author like #{all} or book_publisher like #{all} or book_classification like #{all} ${option} ${category} like '%${value}%'
+		where (book_subject like #{all} or book_author like #{all} or book_publisher like #{all} or book_isbn like #{all} or book_classification like #{all})
+		${option} ${category} like '%${value}%'
 	</select>
 
 	<select id="SearchTwoAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
@@ -93,11 +94,207 @@
 		on b.book_number=bb.book_number
 		left join rbook rb
 		on b.book_number=rb.book_number
-		where b.book_subject like '%${value}%' or b.book_author like '%${value}%' or
-	 	b.book_publisher like '%${value}%' or b.book_classification like '%${value}%'
+		where (b.book_subject like '%${value}%' or b.book_author like '%${value}%' or
+	 	b.book_publisher like '%${value}%' or b.book_isbn like '%${value}%' or b.book_classification like '%${value}%')
 		${option} ${category1} like '%${value1}%'
 		order by b.book_number desc limit #{startRow},#{pageSize}	 
+	 </select> 
+
+	 <select id="SearchThrCount" parameterType="hashmap" resultType="int">
+	 	select count(*)
+		from book
+		where (${category1} like '%${value1}%'
+		${option1} ${category2} like '%${value2}%')
+		${option2} ${category3} like '%${value3}%'
+	 </select>	
+
+	<select id="SearchThrList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where (b.${category1} like '%${search1}%'
+		${option1} b.${category2} like '%${search2}%')
+		${option2} b.${category3} like '%${search3}%'
+		order by b.book_number desc limit #{startRow},#{pageSize}
 	 </select>
+	 
+	 <select id="SearchThrAllCount" parameterType="hashmap" resultType="int">	
+		select count(*)
+		from book
+		where ((book_subject like #{all} or book_author like #{all} or book_publisher like #{all} or book_isbn like #{all} or book_classification like #{all})
+		${option1} ${category1} like '%${value1}%')
+		${option2} ${category2} like '%${value2}%'
+	</select>
+
+	<select id="SearchThrAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where ((b.book_subject like '%${value}%' or b.book_author like '%${value}%' or b.book_publisher like '%${value}%' or b.book_isbn like '%${value}%' or b.book_classification like '%${value}%')
+		${option1} ${category1} like '%${value1}%')
+		${option2} b.${category2} like '%${search2}%'
+		order by b.book_number desc limit #{startRow},#{pageSize}	 
+	 </select>	 
+	 
+	 	 <select id="getBookDateSearchAllCount" resultType="int" parameterType="hashmap">
+	 	select count(*)
+		from book
+		where (book_subject like #{all} or book_author like #{all} or book_publisher like #{all} or book_isbn like #{all} or book_classification like #{all})
+		and book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+	 </select>
+	 
+	 <select id="getBookDateSearchAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where (b.book_subject like '%${value}%' or b.book_author like '%${value}%' or b.book_publisher like '%${value}%' or b.book_isbn like '%${value}%' or b.book_classification like '%${value}%')
+		and b.book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+		order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select> 
+	 	 
+	 <select id="getBookDateSearchCount" parameterType="hashmap" resultType="int">
+	 	select count(*) from book where ${category} like '%${value}%'
+		and book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+	 </select>
+	 
+	 <select id="getBookDateSearchList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where b.${category_} like '%${search}%'
+		and b.book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+		order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select> 
+	 
+	 <select id="SearchDateTwoCount" parameterType="hashmap" resultType="int">
+	 	select count(*)
+		from book
+		where (${category1} like '%${value1}%'
+		${option} ${category2} like '%${value2}%')
+		and book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+	 </select>	
+
+	<select id="SearchDateTwoList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where (b.${category1} like '%${search1}%'
+		${option} b.${category2} like '%${search2}%')
+		and b.book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+		order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select>
+	 
+	 <select id="SearchDateTwoAllCount" parameterType="hashmap" resultType="int">	
+		select count(*)
+		from book
+		where ((book_subject like #{all} or book_author like #{all} or book_publisher like #{all} or book_isbn like #{all} or book_classification like #{all})
+		${option} ${category} like '%${value}%')
+		and book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+	</select>
+
+	<select id="SearchDateTwoAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where ((b.book_subject like '%${value}%' or b.book_author like '%${value}%' or
+	 	b.book_publisher like '%${value}%' or b.book_isbn like '%${value}%' or b.book_classification like '%${value}%')
+		${option} b.${category1} like '%${value1}%')
+		and b.book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+		order by b.book_number desc limit #{startRow},#{pageSize}	 
+	 </select> 
+
+	 <select id="SearchDateThrCount" parameterType="hashmap" resultType="int">
+	 	select count(*)
+		from book
+		where ((${category1} like '%${value1}%'
+		${option1} ${category2} like '%${value2}%')
+		${option2} ${category3} like '%${value3}%')
+		and book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+	 </select>	
+
+	<select id="SearchDateThrList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where ((b.${category1} like '%${search1}%'
+		${option1} b.${category2} like '%${search2}%')
+		${option2} b.${category3} like '%${search3}%')
+		and b.book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+		order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select>
+	 
+	 <select id="SearchDateThrAllCount" parameterType="hashmap" resultType="int">	
+		select count(*)
+		from book
+		where (((book_subject like #{all} or book_author like #{all} or book_publisher like #{all} or book_isbn like #{all} or book_classification like #{all})
+		${option1} ${category1} like '%${value1}%')
+		${option2} ${category2} like '%${value2}%')
+		and book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+	</select>
+
+	<select id="SearchDateThrAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where (((b.book_subject like '%${value}%' or b.book_author like '%${value}%' or b.book_publisher like '%${value}%' or b.book_isbn like '%${value}%' or b.book_classification like '%${value}%')
+		${option1} b.${category1} like '%${value1}%')
+		${option2} b.${category2} like '%${search2}%')
+		and b.book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+		order by b.book_number desc limit #{startRow},#{pageSize}	 
+	 </select>	 
+	 
+	 
+	 
+	 
+	 
 	 
 	 <select id="getBookSortSubject" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,

@@ -51,14 +51,11 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
-					<div class=""></div>
 				</div>
 				<!-- //메인 페이지-->
 					<!-- 본문 공간 -->
 					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
+					<div>
 					<form action="./AdminBookSearch.am" method="get" id="SearchForm">
 					<fieldset>
 						<legend>통합검색</legend>
@@ -114,6 +111,18 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 							<input type="reset" value="입력 초기화">
 					</form>
 					</div>
+					
+					<fieldset>
+					<legend>책 목록 정렬</legend>
+					<select name="sort">
+						<option value="number" checked>정렬</option>
+						<option value="book_subject" onclick="location.href='./AdminBookSort.am?sort=book_subject'">제목순</option>
+						<option value="book_author" onclick="location.href='./AdminBookSort.am?sort=book_author'">저자순</option>
+						<option value="book_popul" onclick="location.href='./AdminBookSort.am?sort=book_number'">인기순</option>
+						<option value="book_pubDate" onclick="location.href='./AdminBookSort.am?sort=book_pubDate'">신작순</option>
+						<option value="book_date" onclick="location.href='./AdminBookSort.am?sort=book_date'">입고순</option>
+					</select>
+					</fieldset>
 					
 					<h2>책 목록 [<%=count%>]</h2>
 					<%if(count==0){ out.print("검색된 책 목록이 없습니다"); } else {%>
