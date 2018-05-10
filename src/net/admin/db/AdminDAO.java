@@ -242,6 +242,7 @@ public class AdminDAO {
 		int count;
 		HashMap map = new HashMap();
 		map.put("all", "%"+search+"%");
+		map.put("pubDate", pubDate);
 		count=sqlsession.selectOne("getBookDateSearchAllCount", map);
 		return count;
 	}

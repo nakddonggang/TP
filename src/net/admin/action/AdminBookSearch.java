@@ -94,6 +94,7 @@ public class AdminBookSearch implements Action{
 			if (search1!=""&&search2==""&&search3==""){
 				if (category1.equals("all")){
 					count = adao.getBookDateSearchAllCount(search1, pubDate);
+					System.out.println("값");
 				} else {
 					count = adao.getBookDateSearchCount(search1, category1, pubDate);
 				}
