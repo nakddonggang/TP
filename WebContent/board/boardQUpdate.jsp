@@ -41,26 +41,38 @@ String member_id = (String)session.getAttribute("member_id");
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
 					<div class="content">
-					<h1>Q&A 글수정</h1>
-					<form action="./BoardQnaUpdateAction.qn?num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"  method="post"  name="fr">
-						<table>
-							<tr>
-								<th>SUBJECT</th>
-								<td><input type="text" name="qna_subject" value="<%=bDTO.getQna_subject()%>"></td>
-							</tr>
-							<tr>
-								<th>CONTENT</th>
-								<textarea cols="20" rows="10" name="qna_content" style="width: 580px; resize: none;"><%=bDTO.getQna_content() %></textarea>
-							</tr>
-							<tr>
-								<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
-							</tr>
-						</table>
-					</form>
+						<div class="write_form">
+							<h1>Qna 글수정</h1>
+							<form action="./BoardQnaUpdateAction.qn?num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>" method="post"  name="fr" >
+								<ul class="row">
+									<li>
+										<ul class="row_sub">
+											<li class="title">SUBJECT</li>
+											<li class="inp_form"><input type="text" name="qna_subject" value="<%=bDTO.getQna_subject()%>"></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">CONTENT</li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="qna_content"><%=bDTO.getQna_content() %></textarea></li>
+										</ul>
+									</li>
+									<li>
+										<div class="btn_btm_center">
+											<ul>
+												<li class="btn_cancle">
+													<input type="submit" value="수정" class ="btn_type4">
+												</li>
+												<li>
+													<input type="reset" value="취소" class ="btn_type4">
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</form>
+						</div>
 					</div>
 				</article>
 				<!-- //메인 페이지-->

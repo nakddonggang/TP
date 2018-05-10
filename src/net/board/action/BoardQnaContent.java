@@ -16,11 +16,16 @@ public class BoardQnaContent implements Action{
 		request.setCharacterEncoding("utf-8");
 		ActionForward forward = new ActionForward();
 		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
+		String table = "qna";
 		
 		BoardDAO bDAO = new BoardDAO();
+		bDAO.updateReadcount(table, qna_num);
 		BoardDTO bDTO = bDAO.getQna(qna_num);
+		BoardDTO bDTO1 = bDAO.getReply(qna_num);
 		
 		request.setAttribute("bDTO", bDTO);
+		request.setAttribute("bDTO1", bDTO1);
+
 		forward.setPath("./board/boardQContent.jsp");
 		forward.setRedirect(false);
 		

@@ -21,10 +21,8 @@
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("UTF-8");
 		int count = ((Integer)request.getAttribute("count")).intValue();
 		String member_id = (String)session.getAttribute("member_id");
-
 		String pageNum =  (String)request.getAttribute("pageNum");
 		int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
 		int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
@@ -92,14 +90,16 @@
 										else {check="답변대기";}
 									%>
 										<div class="con_lst">
+											
 											<ul class="no_scroll">
 												<li class="col_num"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=bDTO.getQna_num() %></p></a></li>
-												<li class="col_id"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>"><p><%=bDTO.getMember_id() %></p></a></li>
-												<li class="col_title"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>"><p><%=bDTO.getQna_subject() %></p></a></li>
-												<li class="col_date"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>"><span><%=date.format(bDTO.getQna_date()) %></span></a></li>
-												<li class="col_rc"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>"><%=bDTO.getQna_readcount() %></a></li>
-												<li class="col_check"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>"><%=check %></a></li>
+												<li class="col_id"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=bDTO.getMember_id() %></p></a></li>
+												<li class="col_title"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=bDTO.getQna_subject() %></p></a></li>
+												<li class="col_date"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><span><%=date.format(bDTO.getQna_date()) %></span></a></li>
+												<li class="col_rc"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><%=bDTO.getQna_readcount() %></a></li>
+												<li class="col_check"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><%=check %></a></li>
 											</ul>
+											
 										</div>
 										<%	}	%>
 									<%	}	%>

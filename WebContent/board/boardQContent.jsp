@@ -23,9 +23,10 @@
 <body>
 	<%
 		request.setCharacterEncoding("UTF-8");
-		String member_id = (String) session.getAttribute("member_id");
-		String pageNum =  (String)request.getAttribute("pageNum");
+		String member_id = (String)session.getAttribute("member_id");
+		String pageNum = request.getParameter("pageNum");
 		BoardDTO bDTO = (BoardDTO)request.getAttribute("bDTO");
+		BoardDTO bDTO1 = (BoardDTO)request.getAttribute("bDTO1");
 	%>
 <!-- board/boardNews.jsp Notice 게시판  페이지 -->
 	<div class="wrapper">
@@ -56,9 +57,12 @@
 									<ul>
 									<%
 									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+									String qna_content = bDTO.getQna_content();
+									qna_content = qna_content.replaceAll("\r\n", "<br>");
+									qna_content = qna_content.replaceAll("\u0020", "&nbsp;");
 									%>
 										<li class="col_type"><p>작성자</p></li>
-										<li class="col_type"><p><%=member_id %></p></li>
+										<li class="col_type"><p><%=bDTO.getMember_id() %></p></li>
 										<li class="col_type"><p>등록일</p></li>
 										<li class="col_type"><p><%=date.format(bDTO.getQna_date()) %></p></li>
 										<li class="col_type"><p>제목</p></li>
@@ -68,28 +72,52 @@
 									</ul>
 										
 									<div class="con_detail DIV_CON_DETAIL">
-										<p><%=bDTO.getQna_content() %></p>		
+										<p><%=qna_content %></p>		
 										<%
 											if (bDTO.getMember_id().equals(member_id)) {
 												%><div class="btn_btm_board">
 													<ul>
 														<li>
-															<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">
-															<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">				
+															<input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">
+															<input type="button" value="글삭제" class ="btn_type4" id="deleteBoard" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">				
 														</li>
 													</ul>
 												</div>
 										<%	}	%>
 									</div>
+									<%if(bDTO1!=null){
+										%>
+									<ul>
+										<li class="col_type"><p>답변자</p></li>
+										<li class="col_type"><p><%=bDTO1.getRep_name() %></p></li>
+										<li class="col_type"><p>연락처</p></li>
+										<li class="col_type"><p><%=bDTO1.getRep_email() %></p></li>
+									</ul>
+									<div class="con_detail DIV_CON_DETAIL">
+										<p><%=bDTO1.getRep_content() %></p>
+										<%
+											if ("admin".equals(member_id)) {
+												%><div class="btn_btm_board">
+													<ul>
+														<li>
+															<input type="button"  class="btn_type4" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">
+															<input type="button"  class="btn_type4" value="답변삭제" id="deleteBoard" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">				
+														</li>
+													</ul>
+												</div>
+										<%	}	%>
+									</div>
+									<% } %>
 								</div>
 							</li>
 						</ul>
 						
-						<input type="button" class="" value="목록" onclick="location.href='./BoardQnaList.qn?pageNum=<%=pageNum %>'">
+						<input type="button" class="btn_type4" value="목록" onclick="location.href='./BoardQnaList.qn?pageNum=<%=pageNum %>'">
 						<%		
-						if ("admin".equals(member_id)) {
+						if ("admin".equals(member_id) && bDTO.getQna_check().equals("0")) {
 						%>
-						<input type="button"  class="btn_type1" value="답변하기" onclick="location.href='./BoardRepWrite.qn'">
+						<input type="button"  class="btn_type1" value="답변하기" onclick="location.href='./BoardReply.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">
+						
 						<%} %>
 						
 						</div>
@@ -102,5 +130,15 @@
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	var pageNum = "<%=pageNum %>";
+	$("#deleteBoard").click(function(){
+		var result = confirm('정말 삭제하시겠습니까?');
+		if(result){}
+		else{location.replace("./BoardQnaList.qn?pageNum="+pageNum);}
+	});
+});
+</script>
 </body>
 </html>
