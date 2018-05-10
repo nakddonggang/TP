@@ -23,6 +23,7 @@
 <body>
 	<%
 		request.setCharacterEncoding("UTF-8");
+		String anonymous = "알수없음";
 		String member_id = (String)session.getAttribute("member_id");
 		String pageNum = request.getParameter("pageNum");
 		BoardDTO bDTO = (BoardDTO)request.getAttribute("bDTO");
@@ -63,9 +64,14 @@
 									qna_content = qna_content.replaceAll("\u0020", "&nbsp;");
 									%>
 									</ul>
-									<ul class="no_scroll">	
-										<li class="col_con_id"><p>작성자-<%=bDTO.getMember_id() %></p></li>
-																		
+									<ul class="no_scroll">
+										<%
+										if(bDTO.getMember_id()==null){
+											%><li class="col_con_id"><p>작성자-<%=anonymous %></p></li><%
+										}else{
+											%><li class="col_con_id"><p>작성자-<%=bDTO.getMember_id() %></p></li><%
+										}
+										%>	
 										<li class="col_con_avg"><p>조회수-<%=bDTO.getQna_readcount() %></p></li>
 										<li class="col_con_avg"><p>등록일-<%=date.format(bDTO.getQna_date()) %></p></li>	
 									</ul>
@@ -73,7 +79,9 @@
 									<div class="con_detail_block">
 										<p><%=qna_content %></p>		
 										<%
-											if (bDTO.getMember_id().equals(member_id)) {
+											if(bDTO.getMember_id()==null){}											
+											else{
+												if(bDTO.getMember_id().equals(member_id)) {
 												%><div class="btn_btm_board">
 													<ul>
 														<li>
@@ -82,6 +90,7 @@
 														</li>
 													</ul>
 												</div>
+												<% } %>
 										<%	}	%>
 									</div>
 								</div>
