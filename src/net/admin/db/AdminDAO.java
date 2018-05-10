@@ -132,13 +132,13 @@ public class AdminDAO {
 	}
 	
 	// 상세검색 책 리스트 뿌려주기 1
-	public List<BookDTO> SearchTwoList(String category1, String value1, String option, String category2, String value2, int startRow, int pageSize){
+	public List<BookDTO> SearchTwoList(String category1, String search1, String option, String category2, String search2, int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("category1", category1);
-		map.put("value1", value1);
+		map.put("search1", search1);
 		map.put("option", option);
 		map.put("category2", category2);
-		map.put("value2", value2);
+		map.put("search2", search2);
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		List<BookDTO> booksearchList = sqlsession.selectList("SearchTwoList", map);
@@ -149,7 +149,7 @@ public class AdminDAO {
 	public int SearchTwoAllCount(String all, String option, String category, String value){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", all);
+		map.put("all", "%"+all+"%");
 		map.put("option", option);
 		map.put("category", category);
 		map.put("value", value);
@@ -169,6 +169,70 @@ public class AdminDAO {
 		List<BookDTO> booksearchList = sqlsession.selectList("SearchTwoAllList", map);
 		return booksearchList;
 	}	
+
+	// 상세검색 책 개수 구하기 1
+	public int SearchThrCount(String category1, String value1, String option1, String category2, String value2, String option2, String category3, String value3){
+		int count;
+		HashMap map = new HashMap();
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option1", option1);
+		map.put("category2", category2);
+		map.put("value2", value2);
+		map.put("option2", option2);
+		map.put("category3", category3);
+		map.put("value3", value3);
+		count = sqlsession.selectOne("SearchThrCount", map);
+		return count;
+	}
+	
+	// 상세검색 책 리스트 뿌려주기 1
+	public List<BookDTO> SearchThrList(String category1, String value1, String option1, String category2, String value2, String option2, String category3, String value3, int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option1", option1);
+		map.put("category2", category2);
+		map.put("value2", value2);
+		map.put("option2", option2);
+		map.put("category3", category3);
+		map.put("value3", value3);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> booksearchList = sqlsession.selectList("SearchThrList", map);
+		return booksearchList;
+	}	
+	
+	// 상세검색 책 개수 구하기 2
+	public int SearchThrAllCount(String all, String option1, String category1, String value1, String option2, String category2, String value2){
+		int count;
+		HashMap map = new HashMap();
+		map.put("all", "%"+all+"%");
+		map.put("option1", option1);
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option2", option2);
+		map.put("category2", category2);
+		map.put("value2", value2);
+		count = sqlsession.selectOne("SearchThrAllCount", map);
+		return count;
+	}
+	
+	// 상세검색 책 리스트 뿌려주기 2
+	public List<BookDTO> SearchThrAllList(String value, String option1, String category1, String value1, String option2, String category2, String search2, int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("value", value);
+		map.put("option1", option1);
+		map.put("category1", category1);
+		map.put("value1", value1);
+		map.put("option2", option2);
+		map.put("category2", category2);
+		map.put("search2", search2);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> booksearchList = sqlsession.selectList("SearchThrAllList", map);
+		return booksearchList;
+	}		
 	
 	// admBookWrite 입고한 책 insert 해주기
 	public int insertBook(BookDTO bookdto){

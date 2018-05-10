@@ -49,39 +49,43 @@ public class AdminBookSearch implements Action{
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		AdminDAO adao = new AdminDAO();
 		int count = 0;
-		// 값을 하나만 입력했을 때
-		if( (search1==""&&search2=="")||(search2==""&&search3=="")||(search1==""&&search3=="") ){
-			if (search1!="" && category1.equals("all")){
+		// 값을 한 개 입력했을 때
+		if (search1!=""&&search2==""&&search3==""){
+			if (category1.equals("all")){
 				count = adao.getBookSearchAllCount(search1);
-			} else if (search1!=""&& !category1.equals("all")){
+			} else {
 				count = adao.getBookSearchCount(search1, category1);
-			} else if (search2!=""){
-				count = adao.getBookSearchCount(search2, category2);
-			} else if (search3!=""){
-				count = adao.getBookSearchCount(search3, category3);
 			}
-		// 값을 두개 입력했을 때
-		} else if (search1==""||search2==""||search3==""){
-			if (search1==""){
-				count = adao.SearchTwoCount(category2, search2, opt2, category3, search3);
-			} else if (search2==""){
-				if (category1.equals("all")){
+		} else if (search1==""&&search2!=""&&search3==""){
+			count = adao.getBookSearchCount(search2, category2);
+		} else if (search1==""&&search2==""&&search3!=""){
+			count = adao.getBookSearchCount(search3, category3);
+		// 값을 두 개 입력했을 때
+		} else if (search1!=""&&search2!=""&&search3==""){
+			if (category1.equals("all")){
+				count = adao.SearchTwoAllCount(search1, opt1, category2, search2);
+			} else {
+				count = adao.SearchTwoCount(category1, search1, opt1, category2, search2);
+			}
+		} else if (search1!=""&&search2==""&&search3!=""){
+			if (category1.equals("all")){
 					count = adao.SearchTwoAllCount(search1, opt2, category3, search3);
-				} else if (!category1.equals("all")){
+			} else {
 					count = adao.SearchTwoCount(category1, search1, opt2, category3, search3);
-				}
-			} else if (search3==""){
-				if (category1.equals("all")){
-					count = adao.SearchTwoAllCount(search1, opt1, category2, search2);
-				} else if (!category1.equals("all")){
-					count = adao.SearchTwoCount(category1, search1, opt1, category2, search2);
-				}		
 			}
+		} else if (search1==""&&search2!=""&&search3!=""){
+			count = adao.SearchTwoCount(category2, search2, opt2, category3, search3);
 		// 값을 모두 입력했을 때
-		} else { }
+		} else if (search1!=""&&search2!=""&&search3!=""){
+			if (category1.equals("all")){
+				count = adao.SearchThrAllCount(search1, opt1, category2, search2, opt2, category3, search3);
+			} else {
+				count = adao.SearchThrCount(category1, search1, opt1, category2, search2, opt2, category3, search3);
+			}
+		} else { System.out.println("값을 입력받지 못함");}
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 5;		
+		int pageSize = 2;		
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
@@ -101,38 +105,42 @@ public class AdminBookSearch implements Action{
 		// 책 뿌려주는 메소드 생성
 		List<BookDTO> booksearchList = null;
 		System.out.println(count);
-		if (count!=0) {
-			// 값을 하나만 입력
-			if( (search1==""&&search2=="")||(search2==""&&search3=="")||(search1==""&&search3=="") ){
-				if (search1!="" && category1.equals("all")){
-					booksearchList = adao.getBookSearchAllList(startRow, pageSize, search1);
-				} else if (search1!=""&& !category1.equals("all")){
-					booksearchList = adao.getBookSearchList(startRow, pageSize, search1, category1);
-				} else if (search2!=""){
-					booksearchList = adao.getBookSearchList(startRow, pageSize, search2, category2);
-				} else if (search3!=""){
-					booksearchList = adao.getBookSearchList(startRow, pageSize, search3, category3);
-				}
-			// 값을 두개 입력
-			} else if (search1==""||search2==""||search3==""){
-				if (search1==""){
-					booksearchList = adao.SearchTwoList(category2, search2, opt2, category3, search3, startRow, pageSize);
-				} else if (search2==""){
+			if (count!=0) {
+				// 값을 한 개 입력했을 때
+				if (search1!=""&&search2==""&&search3==""){
 					if (category1.equals("all")){
-						booksearchList = adao.SearchTwoAllList(search1, opt2, category3, search3, startRow, pageSize);
-					} else if (!category1.equals("all")){
-						booksearchList = adao.SearchTwoList(category1, search1, opt2, category3, search3, startRow, pageSize);
+						booksearchList = adao.getBookSearchAllList(startRow, pageSize, search1);
+					} else {
+						booksearchList = adao.getBookSearchList(startRow, pageSize, search1, category1);
 					}
-				} else if (search3==""){
+				} else if (search1==""&&search2!=""&&search3==""){
+					booksearchList = adao.getBookSearchList(startRow, pageSize, search2, category2);
+				} else if (search1==""&&search2==""&&search3!=""){
+					booksearchList = adao.getBookSearchList(startRow, pageSize, search3, category3);
+				// 값을 두 개 입력했을 때
+				} else if (search1!=""&&search2!=""&&search3==""){
 					if (category1.equals("all")){
 						booksearchList = adao.SearchTwoAllList(search1, opt1, category2, search2, startRow, pageSize);
-					} else if (!category1.equals("all")){
+					} else {
 						booksearchList = adao.SearchTwoList(category1, search1, opt1, category2, search2, startRow, pageSize);
-					}		
-				}
-			// 값을 모두 입력
-			} else {System.out.println("실패3"); }
-		} else { System.out.println("실패4"); }
+					}
+				} else if (search1!=""&&search2==""&&search3!=""){
+					if (category1.equals("all")){
+						booksearchList = adao.SearchTwoAllList(search1, opt2, category3, search3, startRow, pageSize);
+					} else {
+						booksearchList = adao.SearchTwoList(category1, search1, opt2, category3, search3, startRow, pageSize);
+					}
+				} else if (search1==""&&search2!=""&&search3!=""){
+					booksearchList = adao.SearchTwoList(category2, search2, opt2, category3, search3, startRow, pageSize);
+					// 값을 모두 입력했을 때
+				} else if (search1!=""&&search2!=""&&search3!=""){
+					if (category1.equals("all")){
+						booksearchList = adao.SearchThrAllList(search1, opt1, category2, search2, opt2, category3, search3, startRow, pageSize);
+					} else {
+						booksearchList = adao.SearchThrList(category1, search1, opt1, category2, search2, opt2, category3, search3, startRow, pageSize);
+					}
+				} else { System.out.println("값을 입력받지 못함");}
+			} else { System.out.println("count==0"); }
 		
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);
