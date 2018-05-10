@@ -43,7 +43,7 @@
 								<li>
 									<ul class="row_sub">
 										<li class="title"><span>ID</span></li>
-										<li class="inp_form"><input type="text" name="member_id" value=""></li>
+										<li class="inp_form"><input type="text" name="member_id" value=""><input type = "button" name = "id_search" value = "중복확인"></li>
 									</ul>
 								</li>
 								
@@ -64,7 +64,7 @@
 								<li>
 									<ul class="row_sub">
 										<li class="title">Post</li>
-										<li class="inp_form"><input type="text" name="member_post" value=""></li>
+										<li class="inp_form"><input type="text" name="member_post" value=""><input type = "button" name = "address_search"  value = "주소찾기"></li>
 									</ul>
 								</li>
 								
@@ -78,14 +78,28 @@
 								<li>
 									<ul class="row_sub">
 										<li class="title">Phone</li>
-										<li class="inp_form"><input type="text" name="member_phone" value=""></li>
+										<li class="inp_form">
+										<select name = "phone_frist">
+										<option value = "phone_010">010</option>
+										<option value = "phone_011">011</option>
+										<option value = "phone_016">016</option>
+										<option value = "phone_018">018</option>
+										</select>
+										<input type="text" name="member_phone1" value="" ><input type="text" name="member_phone2" value="" ></li>
 									</ul>
 								</li>
 								
 								<li>
 									<ul class="row_sub">
 										<li class="title">E-mail</li>
-										<li class="mb_mail"><input type="text" name="member_email" value=""></li>
+										<li class="mb_mail"><input type="text" name="member_email" value="">
+										<select name = "email_address">
+										<option value = "naver">네이버</option>
+										<option value = "daum">다음</option>
+										<option value = "google">구글</option>
+										<option value = "nate">네이트</option>
+										<option value = "write">직접입력</option>
+										</select></li>
 									</ul>
 								</li>
 								<li>
