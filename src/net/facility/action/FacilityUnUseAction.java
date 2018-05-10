@@ -14,7 +14,7 @@ public class FacilityUnUseAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("FacilityUnUseAction execute()");
 		String facil_num = request.getParameter("facil_num");
-		int check = Integer.parseInt(request.getParameter("facil_use"))-1;
+		int check = 0;
 		System.out.println("check : " + check);
 		
 		FacilityDAO fDAO = new FacilityDAO();
@@ -22,7 +22,7 @@ public class FacilityUnUseAction implements Action {
 		fDAO.UnUseFacility(facil_num, Integer.toString(check));
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./Facility.fy");
+		forward.setPath("./FacilityView.fy?facil_num=" + facil_num);
 		forward.setRedirect(true);
 		return forward;
 	}

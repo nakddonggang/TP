@@ -35,19 +35,30 @@
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-				<div class="seatLayout">
-					<ul>
-				<%
-				List<FacilityDTO> Facilitylist = (List<FacilityDTO>)request.getAttribute("Facilitylist");
-				for(FacilityDTO fDTO : Facilitylist) {
-						out.print("<li id='"+fDTO.getFacil_num()+"' class='seat'>"+
-						"<div><a href = './FacilityView.fy?facil_num="+fDTO.getFacil_num()+"'>1</a></div></li>");
-					if(fDTO.getFacil_num().substring(1, 2).equals("7")) {
-							out.print("</ul><ul>");
+				<div class="content">
+					<div class="seatLayout">
+						<ul>
+					<%
+					List<FacilityDTO> Facilitylist = (List<FacilityDTO>)request.getAttribute("Facilitylist");
+					for(FacilityDTO fDTO : Facilitylist) {
+						out.print(
+							"<li class='seat'>" + 
+								"<a class='btn-open-facil' rel='./FacilityView.fy?facil_num="+fDTO.getFacil_num()+"' href = '#'>" + 
+									"<div class='ucheck" + fDTO.getFacil_use() + "' id='" + fDTO.getFacil_num() + "'>" + 
+										"<span>" + fDTO.getFacil_num() + "</span>" + 
+									"</div>" + 
+								"</a>" + 
+							"</li>");
+						if(fDTO.getFacil_num().substring(1, 2).equals("7")) {
+								out.print("</ul><ul>");
+						}
 					}
-				}
-				%>
-				</ul>
+					%>
+					</ul>
+					<div id="facil_dialog">
+						<iframe src=''>이 브라우저는 iframe을 지원하지 않습니다</iframe>
+					</div>
+					</div>
 				</div>
 				<!-- //메인 페이지-->
 				</article>

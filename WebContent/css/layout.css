@@ -3,6 +3,7 @@ header .logo {display:inline-block; position:relative; z-index:100;	}
 header .logo a {display:block;}
 header .logo a img {width: 100%;}
 body {overflow-y:scroll !important;}
+body.if_board{overflow-y:hidden !important; margin-top: 10px}
 
 /* 메뉴 설정 */
 nav {margin-top:100px;}

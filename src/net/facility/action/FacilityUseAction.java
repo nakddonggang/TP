@@ -1,7 +1,5 @@
 package net.facility.action;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -22,7 +20,7 @@ public class FacilityUseAction implements Action {
 			response.sendRedirect("./MemberLogin.me");
 		}
 		
-		int check = Integer.parseInt(request.getParameter("facil_use")+1);
+		int check = 1;
 		String facil_num = request.getParameter("facil_num");
 		System.out.println("check : " + check);
 		
@@ -31,7 +29,7 @@ public class FacilityUseAction implements Action {
 		fDAO.UseFacility(facil_num, member_id, Integer.toString(check));
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./Facility.fy");
+		forward.setPath("./FacilityView.fy?facil_num=" + facil_num);
 		forward.setRedirect(true);
 		return forward;
 	}

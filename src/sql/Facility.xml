@@ -14,7 +14,7 @@
 	</update>
 	
 	<update id="UnupdateFacility" parameterType="hashmap">
-		update facility set facil_use = #{facil_use} , facil_stime = #{facil_stime}
+		update facility set facil_use = #{facil_use} , facil_stime = #{facil_stime}, member_id = null
 		where facil_num = #{facil_num}
 	</update>
 	

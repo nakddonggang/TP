@@ -21,13 +21,32 @@ $(window).on('load', function() {
 	});
 	
 	//로그인 다이얼로그 오픈 버튼
-	$("#btn-open-dialog").click(function() {
+	$("#btn-open-login").click(function() {
 		$("#loginDialog").dialog("open");
 	});
 	
 	$("#BTN_CLOSE").click(function() {
 		$("#loginDialog").dialog("close");
 	});
+	
+	//시설 세부정보 다이얼로그 설정
+	$("#facil_dialog").dialog({ 
+		autoOpen: false, 
+		width: 400, 
+		height: 500,
+		modal: true,
+	});
+	
+	//시설 세부정보 iframe 주소줄 변경기능
+	$(".btn-open-facil").click(function() {
+		var facil_add = $(this).attr("rel");
+		$("#facil_dialog > iframe" ).attr('src', facil_add);	
+		$("#facil_dialog").dialog("open");
+	});
+	$("#BTN_FACIL_CLOSE").click(function() {
+		parent.$("#facil_dialog").dialog("close");
+	});
+	
 });
 
 $(function() {
