@@ -53,25 +53,24 @@
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
-								<div class="con_lst DIV_CON_LST">
-									<ul>
+								<div class="con_lst">
+									<ul class="no_scroll">
+										<li class="col_con_title"><%=bDTO.getQna_subject() %></li>
 									<%
 									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 									String qna_content = bDTO.getQna_content();
 									qna_content = qna_content.replaceAll("\r\n", "<br>");
 									qna_content = qna_content.replaceAll("\u0020", "&nbsp;");
 									%>
-										<li class="col_type"><p>작성자</p></li>
-										<li class="col_type"><p><%=bDTO.getMember_id() %></p></li>
-										<li class="col_type"><p>등록일</p></li>
-										<li class="col_type"><p><%=date.format(bDTO.getQna_date()) %></p></li>
-										<li class="col_type"><p>제목</p></li>
-										<li class="col_type"><%=bDTO.getQna_subject() %></li>
-										<li class="col_type"><p>조회수</p></li>
-										<li class="col_type"><%=bDTO.getQna_readcount() %></li>
+									</ul>
+									<ul class="no_scroll">	
+										<li class="col_con_id"><p>작성자-<%=bDTO.getMember_id() %></p></li>
+																		
+										<li class="col_con_avg"><p>조회수-<%=bDTO.getQna_readcount() %></p></li>
+										<li class="col_con_avg"><p>등록일-<%=date.format(bDTO.getQna_date()) %></p></li>	
 									</ul>
 										
-									<div class="con_detail DIV_CON_DETAIL">
+									<div class="con_detail_block">
 										<p><%=qna_content %></p>		
 										<%
 											if (bDTO.getMember_id().equals(member_id)) {
@@ -85,15 +84,19 @@
 												</div>
 										<%	}	%>
 									</div>
+								</div>
+							</li>
+						</ul>
+						<ul class="brd_txt_lst">
+							<li class="view_lst">
+								<div class="con_lst">
 									<%if(bDTO1!=null){
 										%>
-									<ul>
-										<li class="col_type"><p>답변자</p></li>
-										<li class="col_type"><p><%=bDTO1.getRep_name() %></p></li>
-										<li class="col_type"><p>연락처</p></li>
-										<li class="col_type"><p><%=bDTO1.getRep_email() %></p></li>
+									<ul class="no_scroll">
+										<li class="col_con_id"><p>담당자-<%=bDTO1.getRep_name() %></p></li>
+										<li class="col_con_email"><p>담당자 연락처-<%=bDTO1.getRep_email() %></p></li>
 									</ul>
-									<div class="con_detail DIV_CON_DETAIL">
+									<div class="con_detail_block">
 										<p><%=bDTO1.getRep_content() %></p>
 										<%
 											if ("admin".equals(member_id)) {
