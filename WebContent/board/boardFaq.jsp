@@ -1,7 +1,8 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@page import="java.util.Date"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -10,10 +11,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet"
-	type="text/css">
-<link href="<c:url value="/css/import.css"/>" rel="stylesheet"
-	type="text/css">
+<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
@@ -101,17 +100,17 @@
 												</ul>
 											</div>
 											<%
-												if ("admin".equals(member_id)) {
-											%><div class="fix">
+												/* if ("admin".equals(member_id)) { */
+											%><div class="btn_btm_board">
 												<ul>
-													<li><input type="button" value="글수정"
-														onclick="location.href='./BoardFaqUpdate.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'"></li>
-													<li><input type="button" value="글삭제"
-														onclick="location.href='./BoardFaqDelete.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'"></li>
+													<li>  
+													    <input type="button" class="btn_type4" value="글수정" onclick="location.href='./BoardFaqUpdate.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'">
+													    <input type="button" class="btn_type4" value="글삭제" onclick="location.href='./BoardFaqDelete.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'">
+													</li>
 												</ul>
 											</div>
 											<%
-												}
+												/* } */
 											%>
 										</div>
 									</div> <%
@@ -121,11 +120,12 @@
 								</li>
 							</ul>
 							<%
-								if ("admin".equals(member_id)) {
-							%><input type="button" value="글쓰기"
+								 /* if ("admin".equals(member_id)) {  */
+							%>
+							<input type="button" class="btn_type1" value="글쓰기"
 								onclick="location.href='./BoardFaqWrite.fa'">
 							<%
-								}
+								 /* } */ 
 							%>
 
 
@@ -144,9 +144,9 @@
 							%>
 						</div>
 					</div>
-					<!-- //메인 페이지-->
+					
 				</article>
-
+                 <!-- //메인 페이지-->
 			</section>
 		</div>
 		<!-- //본문 컨테이너 -->
