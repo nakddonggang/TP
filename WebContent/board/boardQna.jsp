@@ -123,9 +123,9 @@ $(function(){
 									<%	}	%>
 							</li>
 						</ul>
-						
-						<input type="button" value="글쓰기" class="btn_type1" onclick="location.href='./BoardQnaWrite.qn'">
-					
+						<%if(member_id != null){
+							%><input type="button" value="글쓰기" class="btn_type1" onclick="location.href='./BoardQnaWrite.qn'"><%
+						}%>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 					
