@@ -65,14 +65,15 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				
-					<h3>책 정보 보기</h3>
+					
 					<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
-					<div class='join_form'>
+					<div class='join_form adminfo_join_form' >
+					<h3>책 정보 보기</h3>
 						<ul class="row">
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>고유번호 : <%=bookList.getBook_number()%></span></li>
-										<li class="inp_form"><img src="./upload/<%=bookList.getBook_file()%>" width="100" height="100"></li>
+										<li class="inp_form"><img src="./upload/<%=bookList.getBook_file()%>" width="110" height="130"></li>
 								</ul>
 							</li>
 							<li>
@@ -136,9 +137,7 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 					<li class="btn_cancle">
 						<input type="button" value="목록보기" onclick="history.back()" class ="btn_type4 BTN_IF_LIST">
 					</li>
-				</ul>
-				<ul>
-					<li class="btn_cancle">
+					<li class="adm_btn__left">
 						<form action="./AdminBookDLosWrite.am" method="post">
 						<input type="hidden" name="book_number" value="<%=bookList.getBook_number()%>"	>
 						<%if(dbook_reason == null){%> 

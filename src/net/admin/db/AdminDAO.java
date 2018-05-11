@@ -497,10 +497,8 @@ public class AdminDAO {
 	}
 	
 	// 희망도서 처리상태 수정하기
-	public int getHBookReWrite(String member_id){
-		int result = 0;
-		result = sqlsession.selectOne("getHBookReWrite", member_id);
-		return result;
+	public void getHBookReWrite(BookDTO bookdto){
+		sqlsession.update("getHBookReWrite", bookdto);
 	}
 	
 	public int getMemberCount(){

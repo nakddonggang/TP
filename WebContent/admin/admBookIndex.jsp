@@ -60,7 +60,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-				</div>
+				
 				<!-- //메인 페이지-->
 					<!-- 본문 공간 -->
 					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
@@ -191,6 +191,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						} // if count 괄호 %>
 
 					<!-- // 본문 공간 -->
+					</div> <!-- content -->
 				</article>
 			</section>
 		</div>
