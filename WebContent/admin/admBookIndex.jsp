@@ -76,8 +76,8 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<option value="book_isbn">국제표준번호</option>
 							<option value="book_classification">분류기호</option>				
 							</select>
-					 		<input type="text" id="search1" name="search1" placeholder="입력하세요"><br>
-					 		
+							<input type="text" id="search1" name="search1" placeholder="입력하세요"><br>
+					
 					<select name="opt1">
 						<option value="and">and</option>
 						<option value="or">or</option>
@@ -141,8 +141,8 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<div class="con_lst">
 								<ul class="no_scroll title_t">
 									<li class="col_num">고유번호</li>
-									<li class="col_type"></li>
-									<li class="col_rc">제목</li>
+									<li class="col_rc">사진</li>
+									<li class="col_date">제목</li>
 									<li class="col_rc">저자</li>
 									<li class="col_rc">출판사</li>
 									<li class="col_rc">도서상태</li> <!-- dbook -->
@@ -155,8 +155,8 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<div class="con_lst">
 								<ul class="no_scroll">
 									<li class="col_num"><%=bookLists.getBook_number()%></li>
-									<li class="col_type" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><img src="./upload/<%=bookLists.getBook_file()%>" width="100" height="100"></li>
-									<li class="col_rc"><%=bookLists.getBook_subject()%></li>
+									<li class="col_rc" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><img src="./upload/<%=bookLists.getBook_file()%>" width="70px" height="60px"></li>
+									<li class="col_date"><%=bookLists.getBook_subject()%></li>
 									<li class="col_rc"><%=bookLists.getBook_author()%></li>
 									<li class="col_rc"><%=bookLists.getBook_publisher()%></li>
 									<li class="col_rc"><%=bookLists.getDbook_state()%></li>
@@ -168,7 +168,6 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						</li>
 					</ul>
 					<%}%>
-					<input type="button" value="HOME" onclick="location.href='./AdminIndex.am''">
 					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"> 
 					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'">					
 					<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'"><br>
