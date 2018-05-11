@@ -45,7 +45,7 @@
 			<section class="fullpage SECTION_FULL_PAGE01">
 				
 				<!-- 메인 페이지 -->
-				<article class="mainmenu section SECTION">
+				<article class="mainmenu_no_sub section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 					
 					<div class="content">
@@ -79,29 +79,17 @@
 							
 							<div class="con_lst DIV_CON_LST">
 							  <ul onclick="location.href='./BoardCurContent.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum %>'">
+							    <li><img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100"></li>
 								<li class="col_rc"><a href="#"><%=bDTO.getCur_num() %></a></li>
 								<li class="col_type"><a href="#"><p><%=bDTO.getCur_type() %></p></a></li>
 								<li class="col_type"><a href="#"><p><%=bDTO.getCur_name() %></p></a></li>
 							    <li class="col_title"><a href="#"><p><%=bDTO.getCur_subject() %></p></a></li>
+							    <p><%=bDTO.getCur_content() %></p>
 							    <li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getCur_date()) %></span></li>
 							    <li class="col_rc"><a href="#"><%=bDTO.getCur_readcount() %></a></li>
+							    <div class="file"><span>첨부파일</span><ul><!-- 첨부파일 들어가는 부분 --></ul></div>
 					          </ul>
-					          
-					         <div class="con_detail DIV_CON_DETAIL">
-									
-									<p><img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100"></p>
-									<p><%=bDTO.getCur_content() %></p>
-									<div class="file"><span>첨부파일</span><ul><!-- 첨부파일 들어가는 부분 --></ul></div>
-									
-									<%
-									/* if ("admin".equals(member_id)) { */
-								    %><div class="fix">
-								       <ul>
-									     <li><input type="button" value="글수정" onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"></li>
-									     <li><input type="button" value="글삭제" onclick="location.href='./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"></li>
-									   </ul>
-									 </div>	<%/* }  */%>
-							</div>
+
 						  </div>
 							<%	
 							}
@@ -110,10 +98,10 @@
 				      </li>
 				     </ul>
 					<%
-				   /*  if ("admin".equals(member_id)) { */
+				     if ("admin".equals(member_id)) { 
 					%>	
-					<input type="button" value="글쓰기" onclick="location.href='./BoardCurWrite.cu'">
-					<%/* } */ %>
+					<input type="button" class="btn_type1" value="글쓰기" onclick="location.href='./BoardCurWrite.cu'">
+					<% }  %>
 			
 
 					<%
