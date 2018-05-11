@@ -7,8 +7,8 @@
 					if (session.getAttribute("member_id") != null) {
 						String member_id = (String) session.getAttribute("member_id");
 						out.print(member_id + "님이 로그인하셨습니다");
-						%> | <a href="MemberLogout.me">LOGOUT</a> | <a href="MemberInfo.me">ACCOUNT</a><%
-					}else{	%><a href="#"  id="btn-open-dialog">LOGIN</a> | <a href="MemberJoin.me">JOIN</a><%	}
+						%> | <a href="./MemberLogout.me">LOGOUT</a> | <a href="./MemberInfo.me">ACCOUNT</a><%
+					}else{	%><a href="#"  id="btn-open-dialog">LOGIN</a> | <a href="./MemberJoin.me">JOIN</a><%	}
 				%>
 			</div>
 			<div id="loginDialog">
