@@ -104,7 +104,7 @@ public class MemberFrontController extends HttpServlet{
 			}
 				
 				
-			}/*else if(command.equals("/MemberBasketList.me")){
+			}else if(command.equals("/MemberBasketList.me")){
 				action = new MemberBasketList();
 				try {
 					forward = action.execute(request, response);
@@ -112,7 +112,7 @@ public class MemberFrontController extends HttpServlet{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} */
+			}  
 		
 		if(forward != null){
 			if(forward.isRedirect()){

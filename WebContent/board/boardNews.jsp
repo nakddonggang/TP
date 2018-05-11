@@ -69,7 +69,7 @@
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
-							<%
+							   <%
 								if(noticeList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
 								else{
 									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
