@@ -96,7 +96,8 @@
 												if ("admin".equals(member_id)) {
 											%><div class="btn_btm_board">
 												<ul>
-													<li><input type="button" class="btn_type4" value="글수정"
+													<li class="btn_con_right">
+														<input type="button" class="btn_type4" value="글수정"
 														onclick="location.href='./BoardFaqUpdate.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'">
 														<input type="button" class="btn_type4 deleteBoard" value="글삭제"
 														onclick="location.href='./BoardFaqDelete.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'">

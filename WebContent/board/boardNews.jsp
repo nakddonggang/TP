@@ -99,7 +99,7 @@
 										if ("admin".equals(member_id)) {
 											%><div class="btn_btm_board">
 													<ul>
-														<li>
+														<li class="btn_con_right">
 															<input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
 															<input type="button" value="글삭제" id="" class ="btn_type4 deleteBoard" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
 														</li>
