@@ -15,6 +15,46 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script>
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var fullAddr = '';
+                var extraAddr = '';
+
+                if (data.userSelectedType === 'R') {
+                    fullAddr = data.roadAddress;
+
+                } else {
+                    fullAddr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== ''){
+                        extraAddr += data.bname;
+                    }
+                    if(data.buildingName !== ''){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
+                }
+
+                document.getElementById('member_post').value = data.zonecode; 
+                document.getElementById('member_address1').value = fullAddr;
+                document.getElementById('member_address2').focus();
+            }
+        }).open();
+    }
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#submit_button").click(function() {
+		alert("ok");
+	});
+});
+
+</script>
 </head>
 <body>
 	<div class="wrapper">
@@ -64,40 +104,40 @@
 								<li>
 									<ul class="row_sub">
 										<li class="title">Post</li>
-										<li class="inp_form"><input type="text" name="member_post" value=""><input type = "button" name = "address_search"  value = "주소찾기"></li>
+										<li class="inp_form"><input type="text" name="member_post" id = "member_post" value="" ><input type = "button" name = "address_search"  value = "주소찾기" onclick = "sample6_execDaumPostcode()"></li>
 									</ul>
 								</li>
 								
 								<li>
 									<ul class="row_sub">
 										<li class="title">Address</li>
-										<li class="inp_addr"><input type="text" name="member_address1" value=""><input type="text" name="member_address2" value=""></li>
+										<li ><input type="text" name="member_address1" id = "member_address1" value=""  placeholder="주소" class="inp_addr"><br><input type="text" name="member_address2"  id = "member_address2" value="" placeholder="상세주소" class="inp_addr2"></li>
 									</ul>
 								</li>
 								
 								<li>
 									<ul class="row_sub">
 										<li class="title">Phone</li>
-										<li class="inp_form">
-										<select name = "phone_frist">
+										<li>
+										<select name = "phone_frist" class = "phone_frist">
 										<option value = "phone_010">010</option>
 										<option value = "phone_011">011</option>
 										<option value = "phone_016">016</option>
 										<option value = "phone_018">018</option>
 										</select>
-										<input type="text" name="member_phone1" value="" ><input type="text" name="member_phone2" value="" ></li>
+										<input type="text" name="member_phone1" value=""  class="inp_form"><input type="text" name="member_phone2" value=""  class="inp_form2"></li>
 									</ul>
 								</li>
 								
 								<li>
 									<ul class="row_sub">
 										<li class="title">E-mail</li>
-										<li class="mb_mail"><input type="text" name="member_email" value="">
+										<li><input type="text" class="mb_mail" name="member_email" value="">
 										<select name = "email_address">
-										<option value = "naver">네이버</option>
-										<option value = "daum">다음</option>
-										<option value = "google">구글</option>
-										<option value = "nate">네이트</option>
+										<option value = "naver.com">naver.com</option>
+										<option value = "daum.net">daum.net</option>
+										<option value = "google.com">google.com</option>
+										<option value = "nate.com">nate.com</option>
 										<option value = "write">직접입력</option>
 										</select></li>
 									</ul>
@@ -106,7 +146,7 @@
 									<div class="btn_btm_center">
 										<ul>
 											<li class="btn_cancle">
-												<input type="submit" value="회원가입" class ="btn_type4">
+												<input type="button" value="회원가입" class ="btn_type4" id = "submit_button">
 											</li>
 											<li>
 												<input type="reset" value="취소" class ="btn_type4">
