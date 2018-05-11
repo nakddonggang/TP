@@ -16,6 +16,27 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#rWriteForm').submit(function(){
+		if($('#name').val()==""){
+			alert('답변자 소속부서 혹은 이름 입력하세요');
+			$('#name').focus();
+			return false;
+		}
+		if($('#email').val()==""){
+			alert("답변자 EMAIL 입력하세요");
+			$('#email').focus();
+			return false;
+		}
+		if($('#content').val()==""){
+			alert('답변내용 입력하세요');
+			$('#content').focus();
+			return false;
+		}
+	});
+});
+</script>
 </head>
 <body>
 <%
@@ -43,7 +64,7 @@ String pageNum = request.getParameter("pageNum");
 					<div class="content">
 						<div class="write_form">
 							<h1>답변하기</h1>
-							<form action="./BoardReplyAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" >
+							<form action="./BoardReplyAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" id="rWriteForm">
 								<ul class="row">
 									<li>
 										<ul class="row_sub">
@@ -60,20 +81,20 @@ String pageNum = request.getParameter("pageNum");
 									<li>
 										<ul class="row_sub">
 											<li class="title">NAME</li>
-											<li class="inp_form"><input type="text" name="rep_name" value=""></li>
+											<li class="inp_form"><input type="text" name="rep_name" id="name" value=""></li>
 										</ul>
 									</li>
 									<li>
 									<li>
 										<ul class="row_sub">
 											<li class="title">EMAIL</li>
-											<li class="inp_form"><input type="text" name="rep_email" value=""></li>
+											<li class="inp_form"><input type="text" name="rep_email" id="email" value=""></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title">CONTENT</li>
-											<li class="ta_form"><textarea cols="20" rows="10" name="rep_content"></textarea></li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="rep_content" id="content"></textarea></li>
 										</ul>
 									</li>
 									<li>

@@ -113,7 +113,7 @@
 													<ul>
 														<li>
 															<input type="button"  class="btn_type4" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">
-															<input type="button"  class="btn_type4" value="답변삭제" id="deleteBoard" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">				
+															<input type="button"  class="btn_type4" value="답변삭제" id="deleteBoardRe" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">				
 														</li>
 													</ul>
 												</div>
@@ -145,10 +145,17 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var pageNum = "<%=pageNum %>";
+	var qna_num = "<%=bDTO.getQna_num() %>";
+	
 	$("#deleteBoard").click(function(){
 		var result = confirm('정말 삭제하시겠습니까?');
 		if(result){}
-		else{location.replace("./BoardQnaList.qn?pageNum="+pageNum);}
+		else{location.replace("./BoardQnaContent.qn?qna_num="+qna_num+"&pageNum="+pageNum); }
+	});
+	$("#deleteBoardRe").click(function(){
+		var result = confirm('정말 삭제하시겠습니까?');
+		if(result){}
+		else{location.replace("./BoardQnaContent.qn?qna_num="+qna_num+"&pageNum="+pageNum); }
 	});
 });
 </script>

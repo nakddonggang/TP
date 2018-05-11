@@ -15,6 +15,22 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#qWriteForm').submit(function(){
+		if($('#subject').val()==""){
+			alert('제목 입력하세요');
+			$('#subject').focus();
+			return false;
+		}
+		if($('#content').val()==""){
+			alert('내용 입력하세요');
+			$('#content').focus();
+			return false;
+		}
+	});
+});
+</script>
 </head>
 <body>
 <%
@@ -43,7 +59,7 @@ String member_id = (String)session.getAttribute("member_id");
 					
 						<div class="write_form">
 							<h1>Qna 글쓰기</h1>
-							<form action="./BoardQnaWriteAction.qn"  method="post"  name="fr" >
+							<form action="./BoardQnaWriteAction.qn"  method="post"  name="fr" id="qWriteForm">
 								<ul class="row">
 									<li>
 										<ul class="row_sub">
@@ -54,13 +70,13 @@ String member_id = (String)session.getAttribute("member_id");
 									<li>
 										<ul class="row_sub">
 											<li class="title">SUBJECT</li>
-											<li class="inp_form"><input type="text" name="qna_subject" value=""></li>
+											<li class="inp_form"><input type="text" name="qna_subject" id="subject" value=""></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title">CONTENT</li>
-											<li class="ta_form"><textarea cols="20" rows="10" name="qna_content"></textarea></li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="qna_content" id="content"></textarea></li>
 										</ul>
 									</li>
 									<li>

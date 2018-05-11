@@ -8,16 +8,35 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet"
-	type="text/css">
-<link href="<c:url value="/css/import.css"/>" rel="stylesheet"
-	type="text/css">
+<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet"	type="text/css">
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#fWriteForm').submit(function(){
+		if($('#type').val()==""){
+			alert('분류항목 입력하세요');
+			$('#type').focus();
+			return false;
+		}
+		if($('#subject').val()==""){
+			alert('제목 입력하세요');
+			$('#subject').focus();
+			return false;
+		}
+		if($('#content').val()==""){
+			alert('내용 입력하세요');
+			$('#content').focus();
+			return false;
+		}
+	});
+});
+</script>
 </head>
 <body>
 	<!-- board/boardFWrite.jsp FAQ 글쓰기 페이지 -->
@@ -43,20 +62,20 @@
 						<div class="write_form">
 
 							<h1>FAQ 글쓰기</h1>
-							<form action="./BoardFaqWriteAction.fa" method="post" name="fr"
+							<form action="./BoardFaqWriteAction.fa" method="post" name="fr" id="fWriteForm"
 								enctype="multipart/form-data">
 								<ul class="row">
 									<li>
 										<ul class="row_sub">
 											<li class="title">TYPE</li>
-											<li class="inp_form"><input type="text" name="faq_type"
+											<li class="inp_form"><input type="text" name="faq_type" id="type"
 												value=""></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title">SUBJECT</li>
-											<li class="inp_form"><input type="text"
+											<li class="inp_form"><input type="text" id="subject"
 												name="faq_subject" value=""></li>
 										</ul>
 									</li>
@@ -64,7 +83,7 @@
 										<ul class="row_sub">
 											<li class="title">CONTENT</li>
 											<li class="ta_form"><textarea cols="20" rows="10"
-													name="faq_content"></textarea></li>
+													name="faq_content" id="content"></textarea></li>
 										</ul>
 									</li>
 									<li>
@@ -98,7 +117,6 @@
 
 						</div>
 					</div>
-
 
 				</article>
 				<!-- //메인 페이지-->

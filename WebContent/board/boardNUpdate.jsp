@@ -16,6 +16,34 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var result;
+	
+	$('.updateBoard').click(function(){
+		result = confirm('수정하시겠습니까?');
+	});
+	$('#nUpdateForm').submit(function(){
+		if($('#type').val()==""){
+			alert("분류항목 입력하세요");
+			$('#type').focus();
+			return false;
+		}
+		if($('#subject').val()==""){
+			alert("제목 입력하세요");
+			$('#subject').focus();
+			return false;
+		}
+		if($('#content').val()==""){
+			alert("내용 입력하세요");
+			$('#content').focus();
+			return false;
+		}
+		if(result){}
+		else return false;
+	});
+});
+</script>
 </head>
 <body>
 <%
@@ -49,19 +77,19 @@ String pageNum = request.getParameter("pageNum");
 						   <li>
 							 <ul class="row_sub">
 								<li class="title">TYPE</li>
-								<li class="inp_form"><input type="text" name="notice_type" value="<%=bDTO.getNotice_type()%>"></li>
+								<li class="inp_form"><input type="text" name="notice_type" id="type" value="<%=bDTO.getNotice_type()%>"></li>
 							 </ul>
 						   </li>
 						   <li>
 							  <ul class="row_sub">
 								 <li class="title">SUBJECT</li>
-								 <li class="inp_form"><input type="text" name="notice_subject" value="<%=bDTO.getNotice_subject()%>"></li>
+								 <li class="inp_form"><input type="text" name="notice_subject" id="subject" value="<%=bDTO.getNotice_subject()%>"></li>
 						      </ul>
 						   </li>
 						   <li>
 							  <ul class="row_sub">
 								 <li class="title">CONTENT</li>
-								 <li class="ta_form"><textarea cols="20" rows="10" name="notice_content"><%=bDTO.getNotice_content() %></textarea></li>
+								 <li class="ta_form"><textarea cols="20" rows="10" name="notice_content" id="content"><%=bDTO.getNotice_content() %></textarea></li>
 						      </ul>
 						   </li>
 							<li>
@@ -102,18 +130,5 @@ String pageNum = request.getParameter("pageNum");
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
-<script type="text/javascript">
-$(document).ready(function(){
-	var result;
-	
-	$('.updateBoard').click(function(){
-		result = confirm('수정하시겠습니까?');
-	});
-	$('#nUpdateForm').submit(function(){
-		if(result){}
-		else return false;
-	});
-});
-</script>
 </body>
 </html>

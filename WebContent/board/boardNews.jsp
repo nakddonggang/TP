@@ -30,7 +30,6 @@
 		int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 		List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
-		String file = "";
 	%>
 <!-- board/boardNews.jsp Notice 게시판  페이지 -->
 	<div class="wrapper">
@@ -65,6 +64,7 @@
 						<div class="view_cnt">
 							<p>Total_<span><%=count %></span></p>
 						</div>
+						<p class="sub_txt">이용자분들께 신속히 알려드릴 필요성이 있는 정보 및 자료를 제공해 드립니다.</p>
 						
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
@@ -78,6 +78,7 @@
 										String notice_content = bDTO.getNotice_content();
 										notice_content = notice_content.replaceAll("\r\n", "<br>");
 										notice_content = notice_content.replaceAll("\u0020", "&nbsp;");
+										String file = "";
 									%>
 										<div class="con_lst DIV_CON_LST">
 											<ul>
