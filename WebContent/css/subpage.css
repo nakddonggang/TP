@@ -60,12 +60,9 @@
 ul.tabs {	margin: 0;	padding: 0;	float: left;	list-style: none;	height: 32px;	border-bottom: 1px solid #eee;	border-left: 1px solid #eee;	width: 100%;	font-family: "dotum";	font-size: 12px;}
 ul.tabs li {	float: left;	text-align: center;	cursor: pointer;	width: 82px;	height: 31px;	line-height: 31px;	border: 1px solid #eee;	border-left: none;
 	font-weight: bold;	background: #fafafa;	overflow: hidden;	position: relative;}
-
 ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
-
 .tab_container {border-top: none;clear: both;float: left;	width: 100%;	height:800px;}
 .tab_container iframe {width: 100%;height: 100%;border: none;}
-body.if_board{overflow-y:hidden !important; margin-top: 10px}
 
 /* end 게시판 부분 */
 .btn_type1 {position:absolute; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; font-size:1.14em;}
@@ -118,10 +115,26 @@ body.if_board{overflow-y:hidden !important; margin-top: 10px}
 /* end 박용철 작업(Q&A) */
 
 /* start 윤창훈 작업(Q&A) */
-.view_lst .con_lst > ul.no_scroll .col_num {width:5%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .col_num {width:10%; padding:0 15px;}
 .view_lst .con_lst > ul.no_scroll .col_id {width:15%; padding:0 15px;}
-.view_lst .con_lst > ul.no_scroll .col_title {width:35%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .col_title {width:38%; padding:0 15px;}
 .view_lst .con_lst > ul.no_scroll .col_date {width:15%; padding:0 15px;}
 .view_lst .con_lst > ul.no_scroll .col_rc {width:10%; padding:0 15px;}
 .view_lst .con_lst > ul.no_scroll .col_check {width:10%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .col_con_title {width:100%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .col_con_id {width:20%; padding:0 5px;}
+.view_lst .con_lst > ul.no_scroll .col_con_avg {width:20%; padding:0 15px; float: right;}
+.view_lst .con_lst > ul.no_scroll .col_con_email {width:35%; padding:0 5px; float: right;}
+.view_lst .con_lst .con_detail_block {display:block; width:100%; height:100%; padding:20px; background:#f5f5f5;}
 /* end 윤창훈 작업(Q&A) */
+
+/* start 황해남 작업(Facility) */
+.seat{ display:inline-block; width: 100%; height:50px; margin:5px;}
+.seat > a > div{ background-color: #464646; display: table-cell; width: 50px; height:50px; cursor:pointer; text-align:center; vertical-align:middle; border-radius:10px;}
+.seat > a > div.ucheck0 { background-color:#21C252;}
+.seat > a > div.ucheck1 { background-color:#DE6363;}
+.seat > a > div.ucheck2 { background-color:#37373B;}
+.seat > a > div> span {color:#fff; font-size:1.4em;}
+#facil_dialog { margin:0; padding:0; overflow: hidden;}
+#facil_dialog > iframe {    border:none;    width:100%;    height:100%;}	
+/* end 황해남 작업(Facility) */

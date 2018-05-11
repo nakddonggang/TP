@@ -19,9 +19,10 @@ public class BoardQnaDeleteAction implements Action{
 		
 		BoardDAO bDAO = new BoardDAO();
 		bDAO.deleteQna(qna_num);
+		bDAO.deleteReply(qna_num);
 
 		ActionForward forward = new ActionForward();
-		forward.setPath("./BoardQnaList.qn?pageNum");
+		forward.setPath("./BoardQnaList.qn");
 		forward.setRedirect(true);
 		
 		return forward;

@@ -20,8 +20,8 @@ public class BoardReplyDeleteAction implements Action{
 		
 		BoardDAO bDAO = new BoardDAO();
 		BoardDTO bDTO = new BoardDTO();
-		bDTO.setQna_ref(qna_ref);
-		bDAO.updateReply(bDTO);
+
+		bDAO.deleteReply(qna_ref);
 		bDAO.deleteCheck(qna_ref);
 
 		ActionForward forward = new ActionForward();

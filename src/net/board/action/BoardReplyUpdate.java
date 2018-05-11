@@ -16,12 +16,11 @@ public class BoardReplyUpdate implements Action{
 		System.out.println("BoardReplyUpdate() execute");
 		request.setCharacterEncoding("utf-8");
 		
-		int qna_num = Integer.parseInt(request.getParameter("qna_num"));
 		int qna_ref = Integer.parseInt(request.getParameter("qna_ref"));
 		String pageNum = request.getParameter("pageNum");
 		
 		BoardDAO bDAO = new BoardDAO();
-		BoardDTO bDTO = bDAO.getQna(qna_num);
+		BoardDTO bDTO = bDAO.getQna(qna_ref);
 		BoardDTO bDTO1 = bDAO.getReply(qna_ref);
 		
 		request.setAttribute("bDTO", bDTO);

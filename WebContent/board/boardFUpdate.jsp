@@ -1,5 +1,6 @@
 <%@page import="net.board.db.BoardDTO"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
@@ -8,7 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet"	type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
@@ -18,10 +19,10 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
-<%
-BoardDTO bDTO = (BoardDTO)request.getAttribute("bDTO");
-String pageNum = request.getParameter("pageNum");
-%>
+	<%
+		BoardDTO bDTO = (BoardDTO) request.getAttribute("bDTO");
+		String pageNum = request.getParameter("pageNum");
+	%>
 
 	<div class="wrapper">
 
@@ -36,44 +37,78 @@ String pageNum = request.getParameter("pageNum");
 				<!-- 서브메뉴 -->
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
-				
-					<!-- 메인 페이지 -->
+
+				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
-				<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
+					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
-	
-			<h1>FAQ 글쓰기</h1>
-			<form action="./BoardFaqUpdateAction.fa?num=<%=bDTO.getFaq_num() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" enctype="multipart/form-data">
-	
-				<table class="" >
-					<tr>
-						<th>TYPE</th>
-						<td><input type="text" name="faq_type" value="<%=bDTO.getFaq_type()%>"></td>
-					</tr>
-					<tr>
-						<th>SUBJECT</th>
-						<td><input type="text" name="faq_subject" value="<%=bDTO.getFaq_subject()%>"></td>
-					</tr>
-					<tr>
-						<th>CONTENT</th>
-						<td><input type="text" name="faq_content" value="<%=bDTO.getFaq_content()%>"></td>
-					</tr>
-					<tr>
-						<th>FILE</th>
-						<td><input type="file" name="faq_file"><%=bDTO.getFaq_file()%></td>
-					</tr>
-					<tr>
-						<th colspan="2"><input type="submit" value="글수정"> <input type="reset" value="다시쓰기"></th>
-					</tr>
-				</table>
-			</form>
-			</div>
-			<!-- //메인 페이지-->
+
+						<div class="write_form">
+
+							<h1>FAQ 글쓰기</h1>
+							<form
+								action="./BoardFaqUpdateAction.fa?num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>"
+								method="post" name="fr" enctype="multipart/form-data">
+
+
+								<ul class="row">
+									<li>
+										<ul class="row_sub">
+											<li class="title">TYPE</li>
+											<li class="inp_form"><input type="text" name="faq_type"
+												value="<%=bDTO.getFaq_type()%>"></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">SUBJECT</li>
+											<li class="inp_form"><input type="text"
+												name="faq_subject" value="<%=bDTO.getFaq_subject()%>"></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">CONTENT</li>
+											<li class="ta_form"><textarea cols="20" rows="10"
+													name="faq_content"><%=bDTO.getFaq_content()%></textarea></li>
+
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">FILE</li>
+											<li class="inp_form">
+												<!-- start 파일 입력부분 --> <input type="text" id="fileName"
+												class="file_input_textbox" readonly="readonly">
+												<div class="file_input_div">
+													<input type="button" value="파일 찾기"
+														class="file_input_button btn_type4"> 
+														<input
+														type="file" class="file_input_hidden"
+														onchange="javascript: document.getElementById('fileName').value = this.value"
+														name="faq_file" value="<%=bDTO.getFaq_file()%>">
+												</div> <!-- end 파일 입력부분 -->
+											</li>
+										</ul>
+									</li>
+									<li>
+										<div class="btn_btm_center">
+											<ul>
+												<li class="btn_cancle"><input type="submit" value="글수정"
+													class="btn_type4"></li>
+												<li><input type="reset" value="다시쓰기" class="btn_type4">
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</form>
+						</div>
+					</div>
+
+
 				</article>
-				
+				<!-- //메인 페이지-->
 			</section>
 		</div>
 		<!-- //본문 컨테이너 -->

@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -17,15 +18,26 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(function(){
+	var data=[
+		{value:"1차 테스트",label:"1차 테스트"},
+		{value:"2차 테스트",label:"2차 테스트"},
+		{value:"6차 테스트",label:"6차 테스트"},
+	];
+	$('.inp_search').autocomplete({
+		source : data,
+		minLength : 1
+	});
+});
+</script>
 </head>
 <body>
 <%
-	request.setCharacterEncoding("UTF-8");
 	int count = ((Integer)request.getAttribute("count")).intValue();
 	String search = request.getParameter("search");
+	String anonymous = "알수없음";
 	String member_id = (String)session.getAttribute("member_id");
-	
-
 	String pageNum =  (String)request.getAttribute("pageNum");
 	int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
 	int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
@@ -51,69 +63,79 @@
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
 					<div class="content">
+						<div class=board>
+						<h1>Q&A</h1>
+							<div class="search_bx">
+							<form action="./BoardQnaSearch.qn" method="post">
+								<input type="text" name="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
+							</form>
+							</div>
+						
+							<div class="view_cnt">
+								<p>Search_<span><%=count %></span></p>
+							</div>
+							<p class="sub_txt">
+								신청일로부터 주말 제외 3일 이내에 방문 신청이 승인되지 않았거나 신청 취소를 원하시면 지혜의숲(031-955-0082)번으로 연락 부탁드립니다.
+							</p>
+							<ul class="brd_txt_lst">
+								<!-- 글목록 -->
+								<li class="view_lst">
+								<div class="con_lst">
+									<ul class="no_scroll title_t">
+										<li class="col_num">번호</li>
+										<li class="col_id">작성자</li>
+										<li class="col_title">제목</li>
+										<li class="col_date">작성일</li>
+										<li class="col_rc">조회수</li>
+										<li class="col_check">답변여부</li>
+									</ul>
+								</div>
+								<%
+								if(searchList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
+								else{
+									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+									for(int i=0; i<searchList.size(); i++){
+										BoardDTO bDTO = searchList.get(i);
+										String word = bDTO.getQna_subject();
+										word = word.replaceAll(search, "<mark>"+search+"</mark>");
+										String check = bDTO.getQna_check();
+										if(check.equals("1")){check="답변완료";}
+										else {check="답변대기";}
+									%>
+										<div class="con_lst">
+											<ul class="no_scroll">
+												<li class="col_num"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=bDTO.getQna_num() %></p></a></li>
+												<%if(bDTO.getMember_id()==null){
+													%><li class="col_id"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=anonymous %></p></a></li><%
+												}else{
+													%><li class="col_id"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=bDTO.getMember_id() %></p></a></li><%
+												}%>
+												<li class="col_title"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=word %></p></a></li>
+												<li class="col_date"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><span><%=date.format(bDTO.getQna_date()) %></span></a></li>
+												<li class="col_rc"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><%=bDTO.getQna_readcount() %></a></li>
+												<li class="col_check"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><%=check %></a></li>
+											</ul>
+										</div>
+										<%	}	%>
+									<%	}	%>
+							</li>
+						</ul>
+						
+						<input type="button" value="글쓰기" class="btn_type1" onclick="location.href='./BoardQnaWrite.qn'">
 					
-					<h1>Q&A [<%=search %>에 대한 검색결과 : <%=count %>]</h1>
-					<table border="1">
-						<tr><td>번호</td><td>작성자</td><td>제목</td><td>내용</td><td>작성일</td><td>조회수</td><td>답변</td><td></td></tr>
 						<%
-						if(searchList==null){
-							%><tr><td colspan="8">게시물이 없습니다.</td></tr><%
-						}else{
-							for(int i=0; i<searchList.size(); i++){
-							BoardDTO bDTO = searchList.get(i);
-							String word = bDTO.getQna_subject();
-							word = word.replaceAll(search, "<mark>"+search+"</mark>");
-							String check = bDTO.getQna_check();
-							if(check.equals("1")){check="답변완료";}
-							else {check="답변대기";}
-						%>
-						<tr><td><%=bDTO.getQna_num() %></td><td><%=bDTO.getMember_id() %></td>
-								<td><%=word %></td><td><%=bDTO.getQna_content() %></td>
-								<td><%=bDTO.getQna_date() %></td><td><%=bDTO.getQna_readcount() %></td>
-								<td><%=check %></td>
-								<td><%if(bDTO.getMember_id().equals(member_id)){
-									%><input type="button" value="글수정" onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">
-									<input type="button" value="글삭제" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'"> 
-								<%}									
-									if("admin".equals(member_id)){
-										%><input type="button" value="답변하기" onclick="location.href='./BoardReply.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'"><%
-									}%>
-								</td></tr>
-									<tr>
-									<%if(bDTO.getQna_check().equals("1")){
-										%><td>답변자</td><td colspan="3">담당자 E-mail</td><td colspan="3">답변내용</td></tr><tr>
-										<td><%=bDTO.getRep_name() %></td><td colspan="3"><%=bDTO.getRep_email() %></td><td colspan="3"><%=bDTO.getRep_content() %></td>
-								 	<% }
-									if("admin".equals(member_id)){
-									%><td><input type="button" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>&qna_ref=<%=bDTO.getQna_ref() %>'"> 
-									<input type="button" value="답변삭제" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref()%>&pageNum=<%=pageNum%>'"></td><%
-								}%>
-								</tr>
-						<%	
-							}
+						if(pageCount < endPage)	endPage = pageCount;
+					
+						if(startPage > pageBlock)	{ %><a href="BoardQnaSearch.qn?pageNum=<%=startPage-pageBlock%>&search=<%=search%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="BoardQnaSearch.qn?pageNum=<%=p%>&search=<%=search%>"><%=p %></a> &nbsp;<%}
 						}
-						%>
-					</table>
-					<input type="button" value="글쓰기" onclick="location.href='./BoardQnaWrite.qn'">
+						if(endPage < pageCount){ %><a href="BoardQnaSearch.qn?pageNum=<%=startPage+pageBlock%>&search=<%=search%>" class="next"><span class="hide">다음 페이지</span></a><%	}
 
-					<form action="./BoardQnaSearch.qn" method="post">
-						<input type="text" name="search"> <input type="submit" value="검색">
-					</form>
-					
-					<%
-					if(pageCount < endPage)	endPage = pageCount;
-					
-					if(startPage > pageBlock)	{ %><a href="BoardQnaSearch.qn?pageNum=<%=startPage-pageBlock%>&search=<%=search%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
-					for (int p = startPage; p <= endPage; p++) {	
-						if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
-						else {%> &nbsp;<a href="BoardQnaSearch.qn?pageNum=<%=p%>&search=<%=search%>"><%=p %></a> &nbsp;<%}
-					}
-					if(endPage < pageCount){	%><a href="BoardQnaSearch.qn?pageNum=<%=startPage+pageBlock%>&search=<%=search%>" class="next"><span class="hide">다음 페이지</span></a><% }
-					%>
+						%>
+						</div>
 					</div>
 
 				</article>

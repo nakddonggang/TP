@@ -62,7 +62,7 @@ public class AdminBookSort implements Action {
 				booksortList=adao.getBookSortPubDate(startRow, pageSize);
 			} else if (sort.equals("book_date")){
 				booksortList=adao.getBookSortDate(startRow, pageSize);
-			} else { booksortList=adao.getBookList(startRow, pageSize); }
+			} else{}
 		} else { out.println("null");}
 		
 		// 게시판 전체 페이지 수

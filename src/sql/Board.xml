@@ -36,10 +36,10 @@
 
 	<insert id="insertCur" parameterType="net.board.db.BoardDTO">
 		insert into curation(
-			cur_num, cur_name, cur_subject, cur_content, cur_file, cur_readcount, cur_type
+			cur_num, cur_name, cur_subject, cur_content, cur_file, cur_readcount, cur_type, cur_date
 		)
 		values (
-			#{cur_num}, #{cur_name}, #{cur_subject}, #{cur_content}, #{cur_file}, #{cur_readcount}, #{cur_type}
+			#{cur_num}, #{cur_name}, #{cur_subject}, #{cur_content}, #{cur_file}, #{cur_readcount}, #{cur_type}, now()
 		)
 	</insert>
 	
@@ -152,12 +152,12 @@
 	</select>
 	
 	<select id="getQSearchList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
-		select * from qna q join reply r on (q.qna_num=r.qna_ref) where qna_subject like #{search} order by q.qna_num desc limit #{startRow},#{pageSize}
+		select * from qna q where qna_subject like #{search} order by qna_num desc limit #{startRow},#{pageSize}
 	</select>
 	
-	<insert id="insertReply" parameterType="int">
-		insert into reply(qna_ref)
-		values (#{qna_ref})
+	<insert id="insertReply" parameterType="net.board.db.BoardDTO">
+		insert into reply(qna_ref, rep_name, rep_email, rep_content)
+		values (#{qna_ref}, #{rep_name}, #{rep_email}, #{rep_content})
 	</insert>
 	
 	<update id="updateCheck" parameterType="int">
@@ -172,8 +172,19 @@
 		update reply set rep_name=#{rep_name}, rep_email=#{rep_email}, rep_content=#{rep_content} where qna_ref=#{qna_ref}
 	</update>
 	
+	<delete id="deleteReply" parameterType="int">
+		delete from reply where qna_ref=#{qna_ref}
+	</delete>
+	
 	<select id="getReply" parameterType="int" resultType="net.board.db.BoardDTO">
 		select * from reply where qna_ref=#{qna_ref}
 	</select>
+	
+	<update id="updateReadcount" parameterType="hashmap">
+		update 
+		<if test='table != null and table.equals("qna")'>qna set qna_readcount = qna_readcount+1 where qna_num=</if>
+		<if test='table != null and table.equals("curation")'>curation set cur_readcount = cur_readcount+1 where cur_num=</if>
+		#{num}
+	</update>
 
 </mapper>

@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
 <%@page import="net.book.db.BookDTO"%>
@@ -63,13 +64,14 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-				
+					
 					<div class="total_search"></div>
 					<div class="curation"></div>
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
 					<h2>책 정보보기</h2>
+					<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 					<form action="" method="post" name="fr">
 					<table border="1">
 						<tr>
@@ -90,7 +92,7 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 						</tr>	
 						<tr>	
 							<th>발행일 : </th>
-							<td><%=bookList.getBook_pubDate()%></td>
+							<td><%=date.format(bookList.getBook_pubDate())%></td>
 						</tr>	
 						<tr>	
 							<th>형태 : </th>
@@ -110,7 +112,7 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 						</tr>	
 						<tr>	
 							<th>입고일 : </th>
-							<td><%=bookList.getBook_date()%></td>	
+							<td><%=date.format(bookList.getBook_date())%></td>	
 						</tr>	
 					</table>
 					<div>

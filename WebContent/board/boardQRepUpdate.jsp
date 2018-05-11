@@ -41,41 +41,57 @@ String pageNum = request.getParameter("pageNum");
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
 					<div class="content">
-					
-					<h1>답변하기</h1>
-					<form action="./BoardReplyUpdateAction.qn"  method="post"  name="fr" >
-						<input type="hidden" name="pageNum" value="<%=pageNum %>">
-						<input type="hidden" name="qna_ref" value="<%=bDTO.getQna_ref() %>">
-						<table class="" >
-							<tr>
-								<th>SUBJECT</th>
-								<td><input type="text" name="qna_subject" value="<%=bDTO.getQna_subject() %>" readonly></td>
-							</tr>
-							<tr>
-								<th>CONTENT</th>
-								<td><textarea cols="20" rows="10" name="qna_content" readonly="readonly" style="width: 580px; resize: none;"><%=bDTO.getQna_content() %></textarea></td>
-							</tr>
-							<tr>
-								<th>NAME</th>
-								<td><input type="text" name="rep_name" value="<%=bDTO1.getRep_name() %>"></td>
-							</tr>
-							<tr>
-								<th>EMAIL</th>
-								<td><input type="text" name="rep_email" value="<%=bDTO1.getRep_email() %>"></td>
-							</tr>
-							<tr>
-								<th>CONTENT</th>
-								<td><textarea cols="20" rows="10" name="rep_content" style="width: 580px; resize: none;"><%=bDTO1.getRep_content() %></textarea></td>
-							</tr>
-							<tr>
-								<th colspan="2"><input type="submit" value="글쓰기"> <input type="reset" value="취소"></th>
-							</tr>
-						</table>
-					</form>
+						<div class="write_form">
+							<h1>답변수정</h1>
+							<form action="./BoardReplyUpdateAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" >
+								<ul class="row">
+									<li>
+										<ul class="row_sub">
+											<li class="title">SUBJECT</li>
+											<li class="inp_form"><input type="text" name="qna_subject" value="<%=bDTO.getQna_subject() %>" readonly></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">CONTENT</li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="qna_content" readonly="readonly"><%=bDTO.getQna_content() %></textarea></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">NAME</li>
+											<li class="inp_form"><input type="text" name="rep_name" value="<%=bDTO1.getRep_name() %>"></li>
+										</ul>
+									</li>
+									<li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">EMAIL</li>
+											<li class="inp_form"><input type="text" name="rep_email" value="<%=bDTO1.getRep_email() %>"></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">CONTENT</li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="rep_content"><%=bDTO1.getRep_content() %></textarea></li>
+										</ul>
+									</li>
+									<li>
+										<div class="btn_btm_center">
+											<ul>
+												<li class="btn_cancle">
+													<input type="submit" value="수정" class ="btn_type4">
+												</li>
+												<li>
+													<input type="reset" value="취소" class ="btn_type4">
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</form>
+						</div>
 					</div>
 				</article>
 				<!-- //메인 페이지-->

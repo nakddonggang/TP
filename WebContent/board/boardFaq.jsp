@@ -1,5 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -66,6 +68,9 @@
 								</p>
 							</div>
 
+							<p class="sub_txt">신청일로부터 주말 제외 3일 이내에 방문 신청이 승인되지 않았거나 신청
+								취소를 원하시면 지혜의숲(031-955-0082)번으로 연락 부탁드립니다.</p>
+
 							<ul class="brd_txt_lst">
 								<!-- 글목록 -->
 								<li class="view_lst">
@@ -73,12 +78,11 @@
 										if (faqList == null) {
 									%><ul>
 										<li class="col_tit"><p>게시글이 없습니다</p></li>
-									</ul>
-									<%
-										} else {
-											for (int i = 0; i < faqList.size(); i++) {
-												BoardDTO bDTO = faqList.get(i); //제너릭 사용해서 형변환 할 필요없음
-									%>
+									</ul> <%
+ 	} else {
+ 		for (int i = 0; i < faqList.size(); i++) {
+ 			BoardDTO bDTO = faqList.get(i); //제너릭 사용해서 형변환 할 필요없음
+ %>
 									<div class="con_lst DIV_CON_LST">
 										<ul>
 											<li class="col_rc"><a href="#"><%=bDTO.getFaq_num()%></a></li>
@@ -102,12 +106,13 @@
 											</div>
 											<%
 												if ("admin".equals(member_id)) {
-											%><div class="fix">
+											%><div class="btn_btm_board">
 												<ul>
-													<li><input type="button" value="글수정"
-														onclick="location.href='./BoardFaqUpdate.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'"></li>
-													<li><input type="button" value="글삭제"
-														onclick="location.href='./BoardFaqDelete.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'"></li>
+													<li><input type="button" class="btn_type4" value="글수정"
+														onclick="location.href='./BoardFaqUpdate.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'">
+														<input type="button" class="btn_type4" value="글삭제"
+														onclick="location.href='./BoardFaqDelete.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'">
+													</li>
 												</ul>
 											</div>
 											<%
@@ -122,7 +127,8 @@
 							</ul>
 							<%
 								if ("admin".equals(member_id)) {
-							%><input type="button" value="글쓰기"
+							%>
+							<input type="button" class="btn_type1" value="글쓰기"
 								onclick="location.href='./BoardFaqWrite.fa'">
 							<%
 								}
@@ -130,23 +136,36 @@
 
 
 							<%
-					
-							if(pageCount < endPage)	endPage = pageCount;
-							if (startPage > pageBlock) { %><a href="./BoardFaqList.fa?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%}
+								if (pageCount < endPage)
+									endPage = pageCount;
+								if (startPage > pageBlock) {
+							%><a
+								href="./BoardFaqList.fa?pageNum=<%=startPage - pageBlock%>"
+								class="prev"><span class="hide">이전 페이지</span></a>
+							<%
+								}
 
-							for (int p = startPage; p <= endPage; p++) {	
-								if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%>&nbsp;<a href="./BoardFaqList.fa?pageNum=<%=p%>"><%=p%></a>&nbsp;<%}
-							}
-							
-							if (endPage < pageCount) { %><a href="./BoardFaqList.fa?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a> <%}
-				
+								for (int p = startPage; p <= endPage; p++) {
+									if (p == Integer.parseInt(pageNum)) {
+							%>
+							&nbsp;<strong title="현재 페이지"><%=p%></strong> &nbsp;<%
+ 	} else {
+ %>&nbsp;<a href="./BoardFaqList.fa?pageNum=<%=p%>"><%=p%></a>&nbsp;<%
+ 	}
+ 	}
+
+ 	if (endPage < pageCount) {
+ %><a
+								href="./BoardFaqList.fa?pageNum=<%=startPage + pageBlock%>"
+								class="next"><span class="hide">다음 페이지</span></a>
+							<%
+								}
 							%>
 						</div>
 					</div>
-					<!-- //메인 페이지-->
-				</article>
 
+				</article>
+				<!-- //메인 페이지-->
 			</section>
 		</div>
 		<!-- //본문 컨테이너 -->

@@ -27,7 +27,6 @@ String gm_check =(String)request.getAttribute("gm_check");
 String bl_check =(String)request.getAttribute("bl_check");
 %>
 
-
 <body class="if_board">
 	<div class="wrapper">
 
