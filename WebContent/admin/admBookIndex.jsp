@@ -168,7 +168,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						</li>
 					</ul>
 					<%}%>
-					<input type="button" value="HOME" onclick="location.href='./AdminIndex.ma''">
+					<input type="button" value="HOME" onclick="location.href='./AdminIndex.am''">
 					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"> 
 					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'">					
 					<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'"><br>

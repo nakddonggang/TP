@@ -34,7 +34,7 @@ public class AdminHBookWriteAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./AdminHBookList.am");
-		forward.setRedirect(false);
+		forward.setRedirect(true);
 		return forward;
 	}
 	

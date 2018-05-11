@@ -60,7 +60,7 @@ BookDTO bookdto = (BookDTO)request.getAttribute("bookdto");
 						<td><input type="text" name="hbook_author" value="<%=bookdto.getHbook_author()%>" readonly></td>
 					</tr>
 					<tr>
-						<td>처리상태 : <%=bookdto.getHbook_check()%>"></td>
+						<td>처리상태 : </td>
 						<td><select name="hbook_check">
 							<option value="wait" <%if(bookdto.getHbook_check()=="wait") {%>selected<%}%>>대기</option>
 							<option value="in" <%if(bookdto.getHbook_check()=="in") {%>selected<%}%>>입고됨</option>
@@ -77,7 +77,7 @@ BookDTO bookdto = (BookDTO)request.getAttribute("bookdto");
 					</tr>
 					<tr>
 						<td>희망도서 설명 : </td>
-						<td><input type="text" name="book_isbn" value="<%=bookdto.getHbook_explain()%>" readonly></td>
+						<td><input type="text" name="hbook_explain" value="<%=bookdto.getHbook_explain()%>" readonly></td>
 					</tr>
 				</table>
 				
