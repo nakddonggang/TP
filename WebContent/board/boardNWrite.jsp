@@ -15,6 +15,29 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#nWriteForm').submit(
+		function(){
+			if($('#type').val()==""){
+				alert("분류항목 입력하세요");
+				$('#type').focus();
+				return false;
+			}
+			if($('#subject').val()==""){
+				alert("제목 입력하세요");
+				$('#subject').focus();
+				return false;
+			}
+			if($('#content').val()==""){
+				alert("내용 입력하세요");
+				$('#content').focus();
+				return false;
+			}
+		}		
+	);
+});
+</script>
 </head>
 <body>
 <!-- board/boardNWrite.jsp Notice 게시판 글쓰기 페이지 -->
@@ -39,24 +62,24 @@
 					
 						<div class="write_form">
 							<h1>Notice 글쓰기</h1>
-							<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" enctype="multipart/form-data">
+							<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" id="nWriteForm" enctype="multipart/form-data">
 								<ul class="row">
 									<li>
 										<ul class="row_sub">
 											<li class="title">TYPE</li>
-											<li class="inp_form"><input type="text" name="notice_type" value=""></li>
+											<li class="inp_form"><input type="text" name="notice_type" id="type" value=""></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title">SUBJECT</li>
-											<li class="inp_form"><input type="text" name="notice_subject" value=""></li>
+											<li class="inp_form"><input type="text" name="notice_subject" id="subject" value=""></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title">CONTENT</li>
-											<li class="ta_form"><textarea cols="20" rows="10" name="notice_content"></textarea></li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="notice_content" id="content"></textarea></li>
 										</ul>
 									</li>
 									<li>

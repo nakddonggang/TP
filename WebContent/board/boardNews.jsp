@@ -30,7 +30,7 @@
 		int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 		List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
-
+		String file = "";
 	%>
 <!-- board/boardNews.jsp Notice 게시판  페이지 -->
 	<div class="wrapper">
@@ -87,16 +87,20 @@
 											</ul>
 											
 											<div class="con_detail DIV_CON_DETAIL">
-												<p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p>
-												<p><%=notice_content %></p>		
-												<div class="file"><span>첨부파일</span><ul><%=bDTO.getNotice_file() %></ul></div>
+												<%if(bDTO.getNotice_file()!=null){
+													file = bDTO.getNotice_file();
+													%><p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p><%
+												}
+												%>
+												<p><%=notice_content %></p>	
+												<div class="file"><span>첨부파일</span><ul><%=file %></ul></div>
 									<%
 										if ("admin".equals(member_id)) {
 											%><div class="btn_btm_board">
 													<ul>
 														<li>
 															<input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
-															<input type="button" value="글삭제" id="" class ="btn_type4 deleteBoard" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
+															<input type="button" value="글삭제" id="" class ="btn_type4 deleteBoard" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
 														</li>
 													</ul>
 												</div>
@@ -139,19 +143,16 @@
 	</div>
 <script type="text/javascript">
 $(document).ready(function(){
+	var pageNum = "<%=pageNum %>";
+	
 	$('.deleteBoard').each(function(index){
 		$(this).attr('id','delete'+index);
-	})
-	var pageNum = "<%=pageNum %>";
-	$('#deleteBoard').click(
-		function(){
+		$('#delete'+index).click(function(){
 			var result = confirm('정말 삭제하시겠습니까?');
-			if(result){
-				return;
-			}else{
-				location.replace("./BoardNoticeList.no?pageNum="+pageNum);
-			}
+			if(result){}
+			else{location.replace("./BoardNoticeList.no?pageNum="+pageNum);	}
 		});
+	});
 });
 </script>
 </body>
