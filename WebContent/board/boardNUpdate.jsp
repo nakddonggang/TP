@@ -44,7 +44,7 @@ String pageNum = request.getParameter("pageNum");
 					
 					<div class="write_form">
 					 <h1>Notice 글쓰기</h1>
-					 <form action="./BoardNoticeUpdateAction.no?notice_num=<%=bDTO.getNotice_num() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" enctype="multipart/form-data">
+					 <form action="./BoardNoticeUpdateAction.no?notice_num=<%=bDTO.getNotice_num() %>&pageNum=<%=pageNum %>"  method="post" id="nUpdateForm" name="fr" enctype="multipart/form-data">
 				          <ul class="row">
 						   <li>
 							 <ul class="row_sub">
@@ -82,7 +82,7 @@ String pageNum = request.getParameter("pageNum");
 								<div class="btn_btm_center">
 									<ul>
 										<li class="btn_cancle">
-											<input type="submit" value="수정하기" class ="btn_type4">
+											<input type="submit" value="수정하기" class ="btn_type4 updateBoard">
 										</li>
 										<li>
 											<input type="reset" value="다시쓰기" class ="btn_type4">
@@ -102,5 +102,18 @@ String pageNum = request.getParameter("pageNum");
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	var result;
+	
+	$('.updateBoard').click(function(){
+		result = confirm('수정하시겠습니까?');
+	});
+	$('#nUpdateForm').submit(function(){
+		if(result){}
+		else return false;
+	});
+});
+</script>
 </body>
 </html>
