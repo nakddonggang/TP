@@ -60,7 +60,7 @@
 										
 										<li class="col_rc"><a href="#"><%=bDTO.getCur_num() %></a></li>
 										<li class="col_title"><a href="#"><p><%=bDTO.getCur_subject() %></p></a></li>
-										<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getCur_date()) %></span></li>
+										<li class="col_date">작성일 :&nbsp;<span><%=date.format(bDTO.getCur_date()) %></span></li>
 										<li class="col_rc"><span class="tit_date">조회수 :&nbsp;</span><span><%=bDTO.getCur_readcount() %></span></li>
 								        <p><%=bDTO.getCur_file() %></p>	
 								        <p><%=bDTO.getCur_content() %></p>	

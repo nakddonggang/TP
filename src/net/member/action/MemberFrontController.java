@@ -104,15 +104,15 @@ public class MemberFrontController extends HttpServlet{
 			}
 				
 				
-			}//else if(command.equals("/MemberBasketList.me")){
-//				action = new MemberBasketList();
-//				try {
-//					forward = action.execute(request, response);
-//					
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			} 
+			}else if(command.equals("/MemberBasketList.me")){
+				action = new MemberBasketList();
+				try {
+					forward = action.execute(request, response);
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}  
 		
 		if(forward != null){
 			if(forward.isRedirect()){
