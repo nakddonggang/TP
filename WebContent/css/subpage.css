@@ -141,8 +141,12 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_rc {width:5%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_type {width:10%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_date {width:15%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_sub {width:20%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_ex {width:40%; padding:0 20px;}
 .adm { margin-top: 20px;}
+.btn_btm_center ul li.adm_btn_cancle {padding-right:0}
+#adm_brd_txt_lst li > .con_lst > ul > li {display:block; height:70px; line-height:70px; text-align:center;}
+#adm_brd_txt_lst { border: 2px solid black; width:100%;}
 /* End 김영지 작업 Admin */
  
 /* start 한진석 작업 (table) */
