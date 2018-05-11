@@ -49,9 +49,161 @@
 </script>
 <script type="text/javascript">
 $(document).ready(function() {
+	
+	$("#member_phone1").keyup(function() {
+		var charLimit = $(this).attr("maxlength");
+		if (this.value.length >= charLimit) {
+			$("#member_phone2").focus();
+			return ;
+		}
+	});
+	
+	$("#member_phone2").keyup(function() {
+		var charLimit = $(this).attr("maxlength");
+		if (this.value.length >= charLimit) {
+			$("#member_email").focus();
+			return ;
+		}
+	});
+	
+	$('#selectEmail').change(function(){ 
+		$("#selectEmail option:selected").each(function () { 
+			if($(this).val()== '1'){ 	//직접입력일 경우 
+				$("#str_email02").val(''); 	//값 초기화 
+				$("#str_email02").attr("disabled",false); //활성화 
+				}else{ 						//직접입력이 아닐경우 
+					$("#str_email02").val($(this).text()); 	//선택값 입력 
+					$("#str_email02").attr("disabled",true); 	//비활성화 
+				}
+			});
+		});
+
 	$("#submit_button").click(function() {
+		if ($("#member_id").val() == "") {
+            alert("아이디는 공백으로 입력할 수 없습니다.");
+            $("#member_id").focus();
+            return;
+        } 
+		
+		var id = document.getElementById("member_id").value;
+		var pass = document.getElementById("member_pass").value;
+		var name = document.getElementById("member_name").value;
+		var num = pass.search(/[0-9]/g);
+		var eng = pass.search(/[a-z]/ig);
+		var spe  = pass.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+		var err = 0;
+		var kor = 0;
+			for (var i=0; i<id.length; i++)  { 
+			    var chk = id.substring(i,i+1); 
+			    if(!chk.match(/[0-9]|[a-z]|[A-Z]/)) { 
+			        err = err + 1; 
+	    		} 
+			} // for - end
+			
+			for (var i=0; i<name.length; i++) {
+				var chk = name.substring(i,i+1);
+				if(chk.match(/[0-9]|[a-z]|[A-Z]|[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/)) {
+					kor = kor + 1;
+				}
+			} // for - end
+		if(err > 0) { 
+			alert("아이디는 숫자 및 영문만 입력가능합니다.");
+			$("#member_id").select();
+			return;
+		}
+			
+		if(id.length < 6 || id.length > 15) {
+			alert("아이디는 6 ~ 14 글자 사이로 입력해주세요.");
+			$("#member_id").select();
+			return;
+		}
+		
+		if(pass.length == 0) {
+			alert("비밀번호는 공백으로 입력할 수 없습니다.");
+			$("#member_pass").focus();
+			return;
+		}
+		
+		if(num < 0 || eng < 0 || spe < 0) {
+			alert("비밀번호는 영문,숫자, 특수문자를 혼합하여 입력해주세요.");
+			$("#member_pass").select();
+			  return;
+		}
+		
+		if(pass.length < 8 || pass.length > 21) {
+			alert("비밀번호는 8 ~ 20자 사이로 입력해주세요.");
+			$("#meber_pass").select();
+		}
+		
+		if(name.length == 0) {
+			alert("이름칸은 공백으로 입력할 수 없습니다.");
+			$("#member_name").focus();
+			return;
+		}
+		
+		if(kor > 0) {
+			alert("이름칸에는 한글만 입력 가능합니다.");
+			$("#member_name").focus();
+			return;
+		}
+		
+		if($("#member_post").val() == "") {
+			alert("우편번호 검색을 해주세요.");
+			return;
+		}
+		
+		if($("#member_address2").val() == "") {
+			alert("상세주소는 공백으로 입력할 수 없습니다.");
+			return;
+		}
+		
+		if($("#member_phone1").val() == "" ) {
+			alert("휴대폰 번호는 공백으로 입력할 수 없습니다.");
+			$("#member_phone1").focus();
+			return;
+		}
+		
+		if($("#member_phone1").val() < 4) {
+			alert("휴대폰 번호는 4자리를 입력해주세요.");
+			$("#member_phone1").select();
+			return;
+		}
+		
+		if (isNaN($("#member_phone1").val())) {
+			alert("휴대폰 번호는 숫자로 입력해주세요.");
+			$("#member_phone1").select();
+			return;
+		}
+	
+		if($("#member_phone2").val() == "") {
+			alert("휴대폰 번호는 공백으로 입력할 수 없습니다.");
+			$("#member_phone2").focus();
+			return;
+		}
+		
+		if($("#member_phone2").val() < 4) {
+			alert("휴대폰 번호는 4자리를 입력해주세요.");
+			$("#member_phone2").select();
+			return;
+		}
+		
+		if (isNaN($("#member_phone2").val())) {
+			alert("휴대폰 번호는 숫자로 입력해주세요.");
+			$("#member_phone2").focus();
+			return;
+		}
+		
+		if($("#member_email").val() == "") {
+			alert("이메일은 공백으로 입력할 수 없습니다. ");
+			$("#member_email").focus();
+			return;
+		}
+		
 		alert("ok");
 	});
+	
+	
+	
 });
 
 </script>
@@ -83,35 +235,35 @@ $(document).ready(function() {
 								<li>
 									<ul class="row_sub">
 										<li class="title"><span>ID</span></li>
-										<li class="inp_form"><input type="text" name="member_id" value=""><input type = "button" name = "id_search" value = "중복확인"></li>
+										<li class="inp_form"><input type="text" name="member_id"  id = "member_id" value="" ><input type = "button" name = "id_search" value = "중복확인"></li>
 									</ul>
 								</li>
 								
 								<li>
 									<ul class="row_sub">
 										<li class="title">Pass</li>
-										<li class="inp_form"><input type="text" name="member_pass" value=""></li>
+										<li class="inp_form"><input type="password" name="member_pass" id = "member_pass" value=""></li>
 									</ul>
 								</li>
 								
 								<li>
 									<ul class="row_sub">
 										<li class="title">Name</li>
-										<li class="inp_form"><input type="text" name="member_name" value=""></li>
+										<li class="inp_form"><input type="text" name="member_name" id = "member_name" value=""></li>
 									</ul>
 								</li>
 								
 								<li>
 									<ul class="row_sub">
 										<li class="title">Post</li>
-										<li class="inp_form"><input type="text" name="member_post" id = "member_post" value="" ><input type = "button" name = "address_search"  value = "주소찾기" onclick = "sample6_execDaumPostcode()"></li>
+										<li class="inp_form"><input type="text" name="member_post" id = "member_post" value=""  readonly><input type = "button" name = "address_search"  value = "주소찾기" onclick = "sample6_execDaumPostcode()"></li>
 									</ul>
 								</li>
 								
 								<li>
 									<ul class="row_sub">
 										<li class="title">Address</li>
-										<li ><input type="text" name="member_address1" id = "member_address1" value=""  placeholder="주소" class="inp_addr"><br><input type="text" name="member_address2"  id = "member_address2" value="" placeholder="상세주소" class="inp_addr2"></li>
+										<li ><input type="text" name="member_address1" id = "member_address1" value=""  placeholder="주소" class="inp_addr" readonly><br><input type="text" name="member_address2"  id = "member_address2" value="" placeholder="상세주소" class="inp_addr2"></li>
 									</ul>
 								</li>
 								
@@ -125,20 +277,20 @@ $(document).ready(function() {
 										<option value = "phone_016">016</option>
 										<option value = "phone_018">018</option>
 										</select>
-										<input type="text" name="member_phone1" value=""  class="inp_form"><input type="text" name="member_phone2" value=""  class="inp_form2"></li>
+										<input type="text" name="member_phone1" id ="member_phone1" value=""  class="inp_form" maxlength=4 ><input type="text" name="member_phone2" id ="member_phone2" value=""  class="inp_form2" maxlength=4></li>
 									</ul>
 								</li>
 								
 								<li>
 									<ul class="row_sub">
 										<li class="title">E-mail</li>
-										<li><input type="text" class="mb_mail" name="member_email" value="">
-										<select name = "email_address">
-										<option value = "naver.com">naver.com</option>
+										<li><input type="text" name="str_email01" id="str_email01"  class="mb_mail"><span id="address_shift2" >@</span><input type="text" name="str_email02" id="str_email02"  class="mb_mail2" disabled value="naver.com">
+										<select name = "selectEmail"" id="selectEmail">
+										<option value = "naver.com" selected>naver.com</option>
 										<option value = "daum.net">daum.net</option>
 										<option value = "google.com">google.com</option>
 										<option value = "nate.com">nate.com</option>
-										<option value = "write">직접입력</option>
+										<option value = "1">직접입력</option>
 										</select></li>
 									</ul>
 								</li>
