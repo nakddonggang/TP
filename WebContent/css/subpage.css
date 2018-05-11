@@ -144,3 +144,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_ex {width:40%; padding:0 20px;}
 .adm { margin-top: 20px;}
 /* End 김영지 작업 Admin */
+ 
+/* start 한진석 작업 (table) */
+.view_lst .con_lst > ul.no_scroll .col_dlos {width:60%; padding:0 15px;}
+/* end 한진석 작업 (table) */
