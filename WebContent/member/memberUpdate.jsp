@@ -43,7 +43,7 @@
 				<!-- 메인 페이지 -->
 					<div class="content">
 					<div class='member_content'>
-						<form action="MemberUpdateAction.me" method="post" name="">
+						<form action="./MemberUpdateAction.me" method="post" name="">
 							<fieldset class="memberform">
 								<legend>회원정보수정</legend>
 								<div class="row_group">

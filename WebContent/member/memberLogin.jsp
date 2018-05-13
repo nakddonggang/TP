@@ -53,7 +53,7 @@
 										</div>
 									</div>
 								</fieldset>
-								<input type="button" value="로그인" onclick="sub()" class ="btn">
+								<input type="submit" value="로그인" class ="btn">
 								<input type="button" value="회원가입" onclick="location.href = './MemberJoin.me'" class ="btn">
 							</form>
 							</div>
@@ -64,21 +64,6 @@
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
-<script>
-	function sub(){	//필수입력 아이디	
-		if(document.fr.member_id.value == ""){
-			alert("아이디를 입력해주시기 바랍니다");
-			document.fr.member_id.focus();
-			return;
-		}
-		
-		if(document.fr.member_pass.value == ""){
-			alert("비밀번호를 입력해주시기 바랍니다");
-			document.fr.member_pass.focus();
-			return;
-		}
-		document.fr.submit();
-	}
-</script>
+
 </body>
 </html>

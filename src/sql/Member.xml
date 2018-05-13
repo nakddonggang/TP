@@ -23,6 +23,11 @@
 		where  member_id=#{member_id}
 	</update>
 	
+	<select id="MemberUseFacilily" parameterType="String" resultType="net.facility.db.FacilityDTO">
+		select * from member m join facility f on m.member_id = f.member_id
+		where m.member_id=#{member_id}
+	</select>
+	
 	
 	<insert id="insertBasket" parameterType="net.member.db.MemberDTO">
 		insert into basket(member_id, book_number, basket_number)

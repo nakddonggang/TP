@@ -187,16 +187,16 @@ public class AdminDAO {
 	}
 	
 	// 상세검색 책 리스트 뿌려주기 1
-	public List<BookDTO> SearchThrList(String category1, String value1, String option1, String category2, String value2, String option2, String category3, String value3, int startRow, int pageSize){
+	public List<BookDTO> SearchThrList(String category1, String search1, String option1, String category2, String search2, String option2, String category3, String search3, int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("category1", category1);
-		map.put("value1", value1);
+		map.put("search1", search1);
 		map.put("option1", option1);
 		map.put("category2", category2);
-		map.put("value2", value2);
+		map.put("search2", search2);
 		map.put("option2", option2);
 		map.put("category3", category3);
-		map.put("value3", value3);
+		map.put("search3", search3);
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		List<BookDTO> booksearchList = sqlsession.selectList("SearchThrList", map);
@@ -497,10 +497,8 @@ public class AdminDAO {
 	}
 	
 	// 희망도서 처리상태 수정하기
-	public int getHBookReWrite(String member_id){
-		int result = 0;
-		result = sqlsession.selectOne("getHBookReWrite", member_id);
-		return result;
+	public void getHBookReWrite(BookDTO bookdto){
+		sqlsession.update("getHBookReWrite", bookdto);
 	}
 	
 	public int getMemberCount(){

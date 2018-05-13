@@ -47,50 +47,66 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-				
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
-					<div class=""></div>
 					<!-- 본문 공간 -->
-					<h2>손망실 목록 [<%=count%>]</h2>
-					<%if(count==0){ out.print("손망실 목록이 없습니다"); }   else { %>
-					<table border="1">
-						<tr>
-							<th>고유번호</th>
-							<th>사유</th>
-							<th>도서상태</th>
-						</tr>
+						<div class=board>
+						  <div class="view_cnt">
+						  	<p>
+								Total_<span><%=count%></span>
+							</p>
+						  </div>
+						  <ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="view_lst">
+							<div class="con_lst">
+							<ul class="no_scroll title_t">
+								<li class="col_con_id">고유번호</li>
+								<li class="col_dlos">사유</li>
+								<li class="col_con_id">도서상태</li>
+							</ul>
+							</div>
 						<%
-							for (BookDTO dbookLists : dbookList) {%>
-						<tr onclick="location.href='./AdminBookDLosInfo.am?book_number=<%=dbookLists.getBook_number()%>&pageNum=<%=pageNum%>'">
-							<td><%=dbookLists.getBook_number()%></td>
-							<td><%=dbookLists.getDbook_reason()%></td>
-							<td><%=dbookLists.getDbook_state()%></td>			
-						</tr> <%
-							} %>
-					</table>
-					<%} %><br>
-					
-					<input type="button" value="도서관리페이지로 이동" onclick="location.href='./AdminIndex.am'">
-					
-					<% // count = 전체 글의 개수
-						if (count != 0) {
-							// 이전페이지 // if (startPage와 pageBlock을 비교)
-							if (startPage > pageBlock) {
-					%><a href="./AdminBookDLos.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
-						}
-
-							// 1~10		11~20		21~30
-							for (int i = startPage; i <= endPage; i++) {%>
-							<a href="./AdminBookDLos.am?pageNum=<%=i%>">[<%=i%>]</a><%		
-							}
-	
-							// 다음 // if (endPage와 pageCount를 비교)
-							if (endPage<pageCount){%>
-							<a href="./AdminBookDLos.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
-							}
-						} // if count 괄호 %>						
+							if (dbookList == null) {
+						%><ul>
+							<li class="col_tit"><p>손망실이 없습니다</p></li>
+						</ul>
+						<%
+							} else {
+								for (int i = 0; i < dbookList.size(); i++) {
+									BookDTO dbookLists = dbookList.get(i); //제너릭 사용해서 형변환 할 필요없음
+				
+						%>
+						<div class="con_lst">
+							<ul
+								onclick="location.href='./AdminBookDLosInfo.am?book_number=<%=dbookLists.getBook_number()%>&pageNum=<%=pageNum%>'"  class="no_scroll">
+								<li class="col_con_id"><a href="#"><p><%=dbookLists.getBook_number()%></p></a></li>
+								<li class="col_dlos"><a href="#"><p><%=dbookLists.getDbook_reason()%></p></a></li>
+								<li class="col_con_id"><a href="#"><%=dbookLists.getDbook_state()%></li>
+							</ul>
+						</div>
+						<%}}%>
+							</li>
+						</ul>
+						<%if (count != 0) {//이전
+								if (startPage > pageBlock) {
+						%><a href="./AdminBookDLos.am?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+						<%}// 1~10 11~20 21~30
+							for (int i = startPage; i <= endPage; i++) {
+						%><a href="./AdminBookDLos.am?pageNum=<%=i%>"><%=i%></a>
+						<%}//다음
+								if (endPage < pageCount) {
+						%><a href="./AdminBookDLos.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+						<%}}%>
+						</div>
+						  <div class="btn_btm_center">
+							<ul>
+								<li class="btn_cancle">
+									<input type="button" value="도서관리페이지" onclick="location.href='./AdminIndex.am'" class ="btn_type4 BTN_IF_LIST">
+								</li>
+							</ul>
+						  </div>
+						  
+				
+						
 					<!-- // 본문 공간 -->
 				</article>
 			</section>

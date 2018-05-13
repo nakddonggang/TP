@@ -20,6 +20,7 @@ public class AdminHBookWriteAction implements Action {
 		String hbook_check = request.getParameter("hbook_check");
 		int hbook_isbn = Integer.parseInt(request.getParameter("hbook_isbn"));
 		
+		System.out.println(hbook_isbn+hbook_check+member_id);
 		
 		// DTO 생성 및 수정 값
 		BookDTO bookdto = new BookDTO();
@@ -29,12 +30,11 @@ public class AdminHBookWriteAction implements Action {
 		
 		// DAO 생성 및 메소드 불러오기
 		AdminDAO adao = new AdminDAO();
-		adao.getHBookReWrite(member_id);
-		
+		adao.getHBookReWrite(bookdto);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./AdminHBookList.am");
-		forward.setRedirect(false);
+		forward.setRedirect(true);
 		return forward;
 	}
 	
