@@ -19,16 +19,24 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
-		$('#SearchForm').submit(
-			function(){
-				if($('#search1').val()==""&&$('#search2').val()==""&&$('#search3').val()==""){
-				alert ("검색어를 입력해주세요");
-				$('#search1').focus();
-				return false;
-				} else { }
-		});
+$(document).ready(function(){
+	$('#SearchForm').submit(
+		function(){
+			if($('#search1').val()==""&&$('#search2').val()==""&&$('#search3').val()==""){
+			alert ("검색어를 입력해주세요");
+			$('#search1').focus();
+			return false;
+			} else { }
 	});
+	
+	$('#book_sort').change(function(){
+		var sort = $("select option:selected").val();	
+		if(vv!=""){
+			self("about:blank").location.href=sort;
+		}
+	})
+	
+});
 </script>
 </head>
 <body>
@@ -47,158 +55,110 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchList");
 %>
 	<div class="wrapper">
-
+		<!-- 본문 컨테이너 -->
+		
 		<!-- header -->
 		<jsp:include page="../include/header.jsp" />
 		<!-- //header -->
-
+	
 		<!-- 본문 컨테이너 -->
 		<div class="container">
+			
 			<section class="fullpage SECTION_FULL_PAGE01">
-
+			
 				<!-- 서브메뉴 -->
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
-				<article class="mainmenu section SECTION">
-				<jsp:include page="../include/topbar.jsp" />
+				
 				<!-- 메인 페이지 -->
-				<div class="content">
-				</div>
-				<!-- //메인 페이지-->
-					<!-- 본문 공간 -->
-					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
-					<div>
-					<form action="./AdminBookSearch.am" method="get" id="SearchForm">
-					<fieldset>
-					<legend>통합검색</legend>
-						<select name="category1">
-							<option value="all">전체</option>
-							<option value="book_subject">제목</option>
-							<option value="book_author">저자</option>
-							<option value="book_publisher">출판사</option>
-							<option value="book_isbn">국제표준번호</option>
-							<option value="book_classification">분류기호</option>				
-							</select>
-							<input type="text" id="search1" name="search1" placeholder="입력하세요"><br>
-					
-					<select name="opt1">
-						<option value="and">and</option>
-						<option value="or">or</option>
-					</select><br>
-					
-							<select name="category2">
-							<option value="book_subject">제목</option>
-							<option value="book_author">저자</option>
-							<option value="book_publisher">출판사</option>
-							<option value="book_isbn">국제표준번호</option>
-							<option value="book_classification">분류기호</option>				
-							</select>
-					 		<input type="text" id="search2" name="search2" placeholder="입력하세요"><br>
-					<select name="opt2">
-						<option value="and">and</option>
-						<option value="or">or</option>
-					</select><br>
-					
-							<select name="category3">
-							<option value="book_subject">제목</option>
-							<option value="book_author">저자</option>
-							<option value="book_publisher">출판사</option>
-							<option value="book_isbn">국제표준번호</option>
-							<option value="book_classification">분류기호</option>				
-							</select>
-					 		<input type="text" id="search3" name="search3" placeholder="입력하세요"><br>
-					</fieldset>
-							
-					<fieldset>
-							<legend>발행년</legend>
-							<select name="pubDate">
-							<option value="all">전체</option>
-							<option value="1">최근 1년</option>
-							<option value="2">최근 2년</option>
-							<option value="5">최근 5년</option>
-							<option value="10">최근 10년</option>
-							<option value="20">최근 20년</option>				
-							</select>
-					</fieldset>	
-							<input type="submit" value="상세검색">
-							<input type="reset" value="입력 초기화">
-					</form>
-					</div>
-					
-					<fieldset>
-					<legend>책 목록 정렬</legend>
-					<select name="sort">
-						<option value="number" checked>정렬</option>
-						<option value="book_subject" onclick="location.href='./AdminBookSort.am?sort=book_subject'">제목순</option>
-						<option value="book_author" onclick="location.href='./AdminBookSort.am?sort=book_author'">저자순</option>
-						<option value="book_popul" onclick="location.href='./AdminBookSort.am?sort=book_number'">인기순</option>
-						<option value="book_pubDate" onclick="location.href='./AdminBookSort.am?sort=book_pubDate'">신작순</option>
-						<option value="book_date" onclick="location.href='./AdminBookSort.am?sort=book_date'">입고순</option>
-					</select>
-					</fieldset>
-					
-					<h1>통합도서관리시스템<br>Total_<%=count%></h1>
-					<%if(count==0){ out.print("책 목록이 없습니다"); } else {%>
-					<ul class="brd_txt_lst">
-						<li class="view_lst">
+					<article class="mainmenu section SECTION">
+					<jsp:include page="../include/topbar.jsp" />
+						<div class='join_form adminfo_join_form' >
+							<h2>통합도서관리시스템</h2>
+							<p>
+								Total_<span><%=count%></span>
+							</p>
+						<div class="adm">			
+						<ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="view_lst">
 							<div class="con_lst">
-								<ul class="no_scroll title_t">
-									<li class="col_num">고유번호</li>
-									<li class="col_rc">사진</li>
-									<li class="col_date">제목</li>
-									<li class="col_rc">저자</li>
-									<li class="col_rc">출판사</li>
-									<li class="col_rc">도서상태</li> <!-- dbook -->
-									<li class="col_rc">반납상태</li> <!-- bbook -->
-									<li class="col_rc">예약일자</li> <!-- rbook -->
-									<li class="col_rc">예약현황</li> <!-- rbook -->
-								</ul>
+							<ul class="no_scroll title_t">
+								<li class="adm_col_rc">고유번호</li>
+								<li class="adm_col_date">사진</li>
+								<li class="adm_col_type">제목</li>
+								<li class="adm_col_type">저자</li>
+								<li class="adm_col_type">출판사</li>
+								<li class="adm_col_rc">도서상태</li>
+								<li class="adm_col_type">반납상태</li>
+								<li class="adm_col_rc">예약일자</li>
+								<li class="adm_col_rc">예약현황</li>
+							</ul>
 							</div>
-						<% for (BookDTO booksearchLists : booksearchList) { %>
-							<div class="con_lst">
-								<ul class="no_scroll">
-									<li class="col_num"><%=booksearchLists.getBook_number()%></li>
-									<li class="col_rc" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><img src="./upload/<%=booksearchLists.getBook_file()%>" width="70px" height="60px"></li>
-									<li class="col_date"><%=booksearchLists.getBook_subject()%></li>
-									<li class="col_rc"><%=booksearchLists.getBook_author()%></li>
-									<li class="col_rc"><%=booksearchLists.getBook_publisher()%></li>
-									<li class="col_rc"><%=booksearchLists.getDbook_state()%></li>
-									<li class="col_rc"><%=booksearchLists.getBbook_bstate()%></li>
-									<li class="col_rc"><%=booksearchLists.getRbook_date()%></li>
-									<li class="col_rc"><%=booksearchLists.getRbook_check()%></li>
-								</ul>
-								</div><%}%>
+						<%
+							if (count == 0) {
+						%><ul>
+							<li class="col_tit"><p>책 목록이 없습니다</p></li>
+						</ul>
+						<%
+							} else {
+								for (BookDTO booksearchLists : booksearchList){
+						%>
+						<div class="con_lst">
+							<ul class="no_scroll" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'">
+								<li class="adm_col_rc"><%=booksearchLists.getBook_number()%></li>
+								<li class="adm_col_date"><img src="./upload/<%=booksearchLists.getBook_file()%>" width="70px" height="60px"></li>
+								<li class="adm_col_type"><%=booksearchLists.getBook_subject()%></li>
+								<li class="adm_col_type"><%=booksearchLists.getBook_author()%></li>
+								<li class="adm_col_type"><%=booksearchLists.getBook_publisher()%></li>
+								<li class="adm_col_rc"><%=booksearchLists.getDbook_state()%></li>
+								<li class="adm_col_type"><%=booksearchLists.getBbook_bstate()%></li>
+								<li class="adm_col_rc"><%=booksearchLists.getRbook_date()%></li>
+								<li class="adm_col_rc"><%=booksearchLists.getRbook_check()%></li>
+							</ul>
+						</div><%}
+						}%>
+							</li>
+						</ul>
+								
+				<!-- 버튼 css 부분 -->	
+				<div class="btn_btm_center" >
+					<ul>
+						<li class="adm_btn_cancle">
+							<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'" class ="btn_type4 BTN_IF_LIST b">
+						</li>
+						<li class="adm_btn__left">
+							<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'" class ="btn_type4 BTN_IF_LIST">
+						</li>
+						<li class="adm_btn__left">
+							<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'" class ="btn_type4 BTN_IF_LIST">
 						</li>
 					</ul>
-					<%}%>
-					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"> 
-					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'">					
-					<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'"><br>
-								
-					<% // count = 전체 글의 개수
-						if (count != 0) {
-							// 이전페이지 // if (startPage와 pageBlock을 비교)
-							if (startPage > pageBlock) {
-					%><a href="./AdminBookSearch.am?pageNum=<%=startPage - pageBlock%>&search1=<%=search1%>&search2=<%=search2%>&search3=<%=search3%>">[이전]</a><%
-						}
+				
+				<% // count = 전체 글의 개수
+				if (count != 0) {
+					// 이전페이지 // if (startPage와 pageBlock을 비교)
+					if (startPage > pageBlock) {
+						%><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
+					}
+					// 1~10		11~20		21~30
+					for (int i = startPage; i <= endPage; i++) {%>
+					<a href="./AdminHBookList.am?pageNum=<%=i%>">[<%=i%>]</a><%		
+					}
+					// 다음 // if (endPage와 pageCount를 비교)
+					if (endPage<pageCount){%>
+						<a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
+					}
+				} // if count 괄호 %>		
+						</div>	
+					</div>
+				</div>
+			</article>
 
-							// 1~10		11~20		21~30
-							for (int i = startPage; i <= endPage; i++) {%>
-							<a href="./AdminBookSearch.am?pageNum=<%=i%>&search1=<%=search1%>&search2=<%=search2%>&search3=<%=search3%>">[<%=i%>]</a><%		
-							}
-	
-							// 다음 // if (endPage와 pageCount를 비교)
-							if (endPage<pageCount){%>
-							<a href="./AdminBookSearch.am?pageNum=<%=startPage+pageBlock%>&search1=<%=search1%>&search2=<%=search2%>&search3=<%=search3%>">[다음]</a><%
-							}
-						} // if count 괄호 %>
-
-					<!-- // 본문 공간 -->
-				</article>
-			</section>
+		</section>
+		
 		</div>
-		<!-- //container -->
+		<!-- //본문 컨테이너 -->
 	</div>
-
 </body>
 </html>
