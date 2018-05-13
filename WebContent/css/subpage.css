@@ -17,7 +17,8 @@
 .board .search_bx {top:-5px;}
 .view_cnt {position:relative; top:-5px; font-size:0.86em; font-family:"Noto_M"; color:#666;}
 .brd_txt_lst {overflow:hidden; position:relative; margin-bottom:30px; border-top:2px solid #464646; border-bottom:1px solid #464646;}
-.brd_txt_lst li {float:left; width:100%; }
+.brd_txt_lst li {float:left;}
+.brd_txt_lst > li {width:100%;}
 .col_nm {border-bottom:2px solid #464646;}
 .brd_txt_lst li > .con_lst > ul > li {display:block; height:48px; line-height:48px; text-align:center;}
 .brd_txt_lst li > .con_lst > ul > li.col_type {width:15%; padding:0 20px;}
@@ -75,8 +76,14 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .btn_btm_center ul li {display:inline-block;}
 .btn_btm_center ul li.btn_cancle {padding-right:6px;}
 .btn_btm_modal { margin-bottom: 20px !important;}
-.btn_btm_board {display:table; position:relative; margin: 5px -10px 0px auto;}
-.btn_btm_board ul input[type="button"] {float: left; margin-right: 10px;}
+.btn_btm_board {display:table;position:relative; margin: 5px -10px 0px 10px; width:100%; height:  40px;}
+.btn_btm_board li {float:none !important;}
+.btn_btm_board li.btn_con_left{display:table-cell; position:absolute; left:0px;}
+.btn_btm_board li.btn_con_right{display: table; position:absolute; right:0px;}
+.btn_btm_board ul input[type="button"] {float: left; margin-right:10px;}
+.btn_btm_board ul input[type="button"]:nth-last-child(1) {float: left; margin-right:10px;}
+
+
 
 .login {min-height:600px; margin-top:100px;}
 .login .top_tit {position:relative; top:50px; text-align:center; letter-spacing:-0.05em;}
@@ -122,6 +129,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .view_lst .con_lst > ul.no_scroll .col_con_avg {width:20%; padding:0 15px; float: right;}
 .view_lst .con_lst > ul.no_scroll .col_con_email {width:35%; padding:0 5px; float: right;}
 .view_lst .con_lst .con_detail_block {display:block; width:100%; height:100%; padding:20px; background:#f5f5f5;}
+p.sub_txt {margin: 15px 0 30px 0;}
 /* end 윤창훈 작업(Q&A) */
 
 /* start 황해남 작업(Facility) */

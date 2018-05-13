@@ -32,6 +32,7 @@
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 		List<BoardDTO> searchList = (List<BoardDTO>) request.getAttribute("searchList");
+		String file ="";
 	%>
 	<!-- board/boardNSearch.jsp Notice 게시판 글 검색 페이지 -->
 	<div class="wrapper">
@@ -93,9 +94,13 @@
 												</ul>
 										
 												<div class="con_detail DIV_CON_DETAIL">
-													<p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p>
+													<%if(bDTO.getNotice_file()!=null){
+														file = bDTO.getNotice_file();
+														%><p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p><%
+													}
+													%>
 													<p><%=notice_content%></p>
-													<div class="file"><span>첨부파일</span><ul><%=bDTO.getNotice_file() %></ul></div>
+													<div class="file"><span>첨부파일</span><ul><%=file %></ul></div>
 											
 													<%
 													if ("admin".equals(member_id)) {
@@ -103,7 +108,7 @@
 															<ul>
 																<li>
 											 		             <input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
-														          <input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
+														          <input type="button" value="글삭제" class ="btn_type4 deleteBoard" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
 											 		  		    </li>
 															</ul>
 														 </div>
@@ -145,5 +150,20 @@
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	var pageNum = "<%=pageNum %>";
+	var search = "<%=search %>";
+	
+	$('.deleteBoard').each(function(index){
+		$(this).attr('id','delete'+index);
+		$('#delete'+index).click(function(){
+			var result = confirm('정말 삭제하시겠습니까?');
+			if(result){}
+			else{location.replace("./BoardNoticeSearch.no?pageNum="+pageNum+"&search="+search);	}
+		});
+	});
+});
+</script>
 </body>
 </html>

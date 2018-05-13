@@ -104,7 +104,7 @@ $(function(){
 										else {check="답변대기";}
 									%>
 										<div class="con_lst">
-											<ul class="no_scroll">
+											<ul class="no_scroll" onclick="location.href='./BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>'">
 												<li class="col_num"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=bDTO.getQna_num() %></p></a></li>
 												<%if(bDTO.getMember_id()==null){
 													%><li class="col_id"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=anonymous %></p></a></li><%

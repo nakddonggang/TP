@@ -16,6 +16,34 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var result;
+	
+	$('.updateBoard').click(function(){
+		result = confirm('수정하시겠습니까?');
+	});
+	$('#nUpdateForm').submit(function(){
+		if($('#type').val()==""){
+			alert("분류항목 입력하세요");
+			$('#type').focus();
+			return false;
+		}
+		if($('#subject').val()==""){
+			alert("제목 입력하세요");
+			$('#subject').focus();
+			return false;
+		}
+		if($('#content').val()==""){
+			alert("내용 입력하세요");
+			$('#content').focus();
+			return false;
+		}
+		if(result){}
+		else return false;
+	});
+});
+</script>
 </head>
 <body>
 <%
@@ -44,24 +72,24 @@ String pageNum = request.getParameter("pageNum");
 					
 					<div class="write_form">
 					 <h1>Notice 글쓰기</h1>
-					 <form action="./BoardNoticeUpdateAction.no?notice_num=<%=bDTO.getNotice_num() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" enctype="multipart/form-data">
+					 <form action="./BoardNoticeUpdateAction.no?notice_num=<%=bDTO.getNotice_num() %>&pageNum=<%=pageNum %>"  method="post" id="nUpdateForm" name="fr" enctype="multipart/form-data">
 				          <ul class="row">
 						   <li>
 							 <ul class="row_sub">
 								<li class="title">TYPE</li>
-								<li class="inp_form"><input type="text" name="notice_type" value="<%=bDTO.getNotice_type()%>"></li>
+								<li class="inp_form"><input type="text" name="notice_type" id="type" value="<%=bDTO.getNotice_type()%>"></li>
 							 </ul>
 						   </li>
 						   <li>
 							  <ul class="row_sub">
 								 <li class="title">SUBJECT</li>
-								 <li class="inp_form"><input type="text" name="notice_subject" value="<%=bDTO.getNotice_subject()%>"></li>
+								 <li class="inp_form"><input type="text" name="notice_subject" id="subject" value="<%=bDTO.getNotice_subject()%>"></li>
 						      </ul>
 						   </li>
 						   <li>
 							  <ul class="row_sub">
 								 <li class="title">CONTENT</li>
-								 <li class="ta_form"><textarea cols="20" rows="10" name="notice_content"><%=bDTO.getNotice_content() %></textarea></li>
+								 <li class="ta_form"><textarea cols="20" rows="10" name="notice_content" id="content"><%=bDTO.getNotice_content() %></textarea></li>
 						      </ul>
 						   </li>
 							<li>
@@ -82,7 +110,7 @@ String pageNum = request.getParameter("pageNum");
 								<div class="btn_btm_center">
 									<ul>
 										<li class="btn_cancle">
-											<input type="submit" value="수정하기" class ="btn_type4">
+											<input type="submit" value="수정하기" class ="btn_type4 updateBoard">
 										</li>
 										<li>
 											<input type="reset" value="다시쓰기" class ="btn_type4">

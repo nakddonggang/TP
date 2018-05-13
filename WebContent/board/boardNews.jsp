@@ -30,7 +30,6 @@
 		int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 		List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
-
 	%>
 <!-- board/boardNews.jsp Notice 게시판  페이지 -->
 	<div class="wrapper">
@@ -65,11 +64,12 @@
 						<div class="view_cnt">
 							<p>Total_<span><%=count %></span></p>
 						</div>
+						<p class="sub_txt">이용자분들께 신속히 알려드릴 필요성이 있는 정보 및 자료를 제공해 드립니다.</p>
 						
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
-							<%
+							   <%
 								if(noticeList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
 								else{
 									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
@@ -78,6 +78,7 @@
 										String notice_content = bDTO.getNotice_content();
 										notice_content = notice_content.replaceAll("\r\n", "<br>");
 										notice_content = notice_content.replaceAll("\u0020", "&nbsp;");
+										String file = "";
 									%>
 										<div class="con_lst DIV_CON_LST">
 											<ul>
@@ -87,16 +88,20 @@
 											</ul>
 											
 											<div class="con_detail DIV_CON_DETAIL">
-												<p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p>
-												<p><%=notice_content %></p>		
-												<div class="file"><span>첨부파일</span><ul><%=bDTO.getNotice_file() %></ul></div>
+												<%if(bDTO.getNotice_file()!=null){
+													file = bDTO.getNotice_file();
+													%><p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p><%
+												}
+												%>
+												<p><%=notice_content %></p>	
+												<div class="file"><span>첨부파일</span><ul><%=file %></ul></div>
 									<%
 										if ("admin".equals(member_id)) {
 											%><div class="btn_btm_board">
 													<ul>
-														<li>
+														<li class="btn_con_right">
 															<input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
-															<input type="button" value="글삭제" id="" class ="btn_type4 deleteBoard" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
+															<input type="button" value="글삭제" id="" class ="btn_type4 deleteBoard" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
 														</li>
 													</ul>
 												</div>
@@ -139,19 +144,16 @@
 	</div>
 <script type="text/javascript">
 $(document).ready(function(){
+	var pageNum = "<%=pageNum %>";
+	
 	$('.deleteBoard').each(function(index){
 		$(this).attr('id','delete'+index);
-	})
-	var pageNum = "<%=pageNum %>";
-	$('#deleteBoard').click(
-		function(){
+		$('#delete'+index).click(function(){
 			var result = confirm('정말 삭제하시겠습니까?');
-			if(result){
-				return;
-			}else{
-				location.replace("./BoardNoticeList.no?pageNum="+pageNum);
-			}
+			if(result){}
+			else{location.replace("./BoardNoticeList.no?pageNum="+pageNum);	}
 		});
+	});
 });
 </script>
 </body>
