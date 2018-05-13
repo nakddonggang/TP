@@ -16,6 +16,29 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var result;
+	
+	$('.updateBoard').click(function(){
+		result = confirm('수정하시겠습니까?');
+	});
+	$('#qUpdateForm').submit(function(){
+		if($('#subject').val()==""){
+			alert('제목 입력하세요');
+			$('#subject').focus();
+			return false;
+		}
+		if($('#content').val()==""){
+			alert('내용 입력하세요');
+			$('#content').focus();
+			return false;
+		}
+		if(result){}
+		else return false;
+	});
+});
+</script>
 </head>
 <body>
 <%
@@ -44,25 +67,25 @@ String member_id = (String)session.getAttribute("member_id");
 					<div class="content">
 						<div class="write_form">
 							<h1>Qna 글수정</h1>
-							<form action="./BoardQnaUpdateAction.qn?num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>" method="post"  name="fr" >
+							<form action="./BoardQnaUpdateAction.qn?num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>" method="post"  name="fr" id="qUpdateForm">
 								<ul class="row">
 									<li>
 										<ul class="row_sub">
 											<li class="title">SUBJECT</li>
-											<li class="inp_form"><input type="text" name="qna_subject" value="<%=bDTO.getQna_subject()%>"></li>
+											<li class="inp_form"><input type="text" name="qna_subject" id="subject" value="<%=bDTO.getQna_subject()%>"></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title">CONTENT</li>
-											<li class="ta_form"><textarea cols="20" rows="10" name="qna_content"><%=bDTO.getQna_content() %></textarea></li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="qna_content" id="content"><%=bDTO.getQna_content() %></textarea></li>
 										</ul>
 									</li>
 									<li>
 										<div class="btn_btm_center">
 											<ul>
 												<li class="btn_cancle">
-													<input type="submit" value="수정" class ="btn_type4">
+													<input type="submit" value="수정" class ="btn_type4 updateBoard">
 												</li>
 												<li>
 													<input type="reset" value="취소" class ="btn_type4">

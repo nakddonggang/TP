@@ -84,7 +84,7 @@
 												if(bDTO.getMember_id().equals(member_id)) {
 												%><div class="btn_btm_board">
 													<ul>
-														<li>
+														<li class="btn_con_right">
 															<input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">
 															<input type="button" value="글삭제" class ="btn_type4" id="deleteBoard" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">				
 														</li>
@@ -111,9 +111,9 @@
 											if ("admin".equals(member_id)) {
 												%><div class="btn_btm_board">
 													<ul>
-														<li>
+														<li class="btn_con_right">
 															<input type="button"  class="btn_type4" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">
-															<input type="button"  class="btn_type4" value="답변삭제" id="deleteBoard" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">				
+															<input type="button"  class="btn_type4" value="답변삭제" id="deleteBoardRe" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">				
 														</li>
 													</ul>
 												</div>
@@ -123,15 +123,20 @@
 								</div>
 							</li>
 						</ul>
-						
-						<input type="button" class="btn_type4" value="목록" onclick="location.href='./BoardQnaList.qn?pageNum=<%=pageNum %>'">
-						<%		
-						if ("admin".equals(member_id) && bDTO.getQna_check().equals("0")) {
-						%>
-						<input type="button"  class="btn_type1" value="답변하기" onclick="location.href='./BoardReply.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">
-						
-						<%} %>
-						
+							<div class="btn_btm_board">
+								<ul>
+									<li class="btn_con_left">
+										<input type="button" class="btn_type4" value="목록" onclick="location.href='./BoardQnaList.qn?pageNum=<%=pageNum %>'">
+									</li>
+										<%		
+										if ("admin".equals(member_id) && bDTO.getQna_check().equals("0")) {
+										%>
+									<li class="btn_con_right">
+										<input type="button"  class="btn_type4" value="답변하기" onclick="location.href='./BoardReply.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">
+									</li>
+										<%} %>
+								</ul>
+							</div>
 						</div>
 					</div>
 
@@ -145,10 +150,17 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var pageNum = "<%=pageNum %>";
+	var qna_num = "<%=bDTO.getQna_num() %>";
+	
 	$("#deleteBoard").click(function(){
 		var result = confirm('정말 삭제하시겠습니까?');
 		if(result){}
-		else{location.replace("./BoardQnaList.qn?pageNum="+pageNum);}
+		else{location.replace("./BoardQnaContent.qn?qna_num="+qna_num+"&pageNum="+pageNum); }
+	});
+	$("#deleteBoardRe").click(function(){
+		var result = confirm('정말 삭제하시겠습니까?');
+		if(result){}
+		else{location.replace("./BoardQnaContent.qn?qna_num="+qna_num+"&pageNum="+pageNum); }
 	});
 });
 </script>
