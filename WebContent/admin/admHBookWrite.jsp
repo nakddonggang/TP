@@ -39,57 +39,83 @@ BookDTO bookdto = (BookDTO)request.getAttribute("bookdto");
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
-					<div class=""></div>
-					<!-- 본문 공간 -->
-			<h2>희망도서 정보</h2>
-			<form action="./AdminHBookWriteAction.am" method="post">
-				<table border="1">
-					<tr>
-						<td>아이디 : </td>
-						<td><input type="text" name="member_id" value="<%=bookdto.getMember_id()%>" readonly></td>
-					</tr>
-					<tr>
-						<td>도서명 : </td>
-						<td><input type="text" name="hbook_subject" value="<%=bookdto.getHbook_subject() %>" readonly></td>
-					</tr>
-					<tr>
-						<td>저자 : </td>
-						<td><input type="text" name="hbook_author" value="<%=bookdto.getHbook_author()%>" readonly></td>
-					</tr>
-					<tr>
-						<td>처리상태 : <%=bookdto.getHbook_check()%>"></td>
-						<td><select name="hbook_check">
-							<option value="wait" <%if(bookdto.getHbook_check()=="wait") {%>selected<%}%>>대기</option>
-							<option value="in" <%if(bookdto.getHbook_check()=="in") {%>selected<%}%>>입고됨</option>
-							<option value="not-in" <%if(bookdto.getHbook_check()=="not-in") {%>selected<%}%>>입고불가</option>
-						</select></td>
-					</tr>
-					<tr>
-						<td>발행처 : </td>
-						<td><input type="text" name="hbook_publisher" value="<%=bookdto.getHbook_publisher()%>" readonly></td>
-					</tr>
-					<tr>
-						<td>국제표준번호 : </td>
-						<td><input type="text" name="hbook_isbn" value="<%=bookdto.getHbook_isbn()%>"></td>
-					</tr>
-					<tr>
-						<td>희망도서 설명 : </td>
-						<td><input type="text" name="book_isbn" value="<%=bookdto.getHbook_explain()%>" readonly></td>
-					</tr>
-				</table>
-				
-				<div>
-					<input type="submit" value="수정">
-					<input type="reset" value="취소">
-				</div>
-			</form>
 
-			<!-- // 본문 공간 --> </article> </section>
+					<div class='join_form adminfo_join_form' >
+					<h2>희망도서 정보</h2>
+					<div class="adm">
+					<form action="./AdminHBookWriteAction.am" method="post">
+						<ul class="row">
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>아이디</span></li>
+										<li class="inp_form"><input type="text" name="member_id" value="<%=bookdto.getMember_id()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>도서명</span></li>
+										<li class="inp_form"><input type="text" name="hbook_subject" value="<%=bookdto.getHbook_subject() %>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>저자</span></li>
+										<li class="inp_form"><input type="text" name="hbook_author" value="<%=bookdto.getHbook_author()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>처리상태</span></li>
+										<li class="inp_form"><select name="hbook_check">
+										<option value="wait" <%if(bookdto.getHbook_check()=="wait") {%>selected<%}%>>대기</option>
+										<option value="in" <%if(bookdto.getHbook_check()=="in") {%>selected<%}%>>입고됨</option>
+										<option value="not-in" <%if(bookdto.getHbook_check()=="not-in") {%>selected<%}%>>입고불가</option>
+										</select></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>발행처</span></li>
+										<li class="inp_form"><input type="text" name="hbook_publisher" value="<%=bookdto.getHbook_publisher()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>국제표준번호</span></li>
+										<li class="inp_form"><input type="text" name="hbook_isbn" value="<%=bookdto.getHbook_isbn()%>"></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>희망도서 설명</span></li>
+										<li class="inp_form"><input type="text" name="hbook_explain" value="<%=bookdto.getHbook_explain()%>" readonly></li>
+								</ul>
+							</li>
+						</ul>
+							
+				<div class="btn_btm_center">
+				<ul>
+					<li class="btn_cancle">
+						<input type="submit" value="수정" class ="btn_type4 BTN_IF_LIST">
+					</li>
+					<li class="adm_btn__left">
+						<input type="reset" value="취소" class ="btn_type4 BTN_IF_LIST">
+					</li>
+				</ul>
+				</div>
+				</form>
+				
+				</div>
+				
+			</div>
+
+				</article>
+				<!-- //메인 페이지-->
+				
+			</section>
 		</div>
-		<!-- //container -->
+		<!-- //본문 컨테이너 -->
 	</div>
+
 </body>
 </html>

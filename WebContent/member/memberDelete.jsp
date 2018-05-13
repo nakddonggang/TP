@@ -38,7 +38,7 @@
 					String member_id = (String)session.getAttribute("member_id");
 				%>
 					<div class='member_content'>
-						<form action="MemberDeleteAction.me" method="post" name="">
+						<form action="./MemberDeleteAction.me" method="post" name="">
 							<fieldset class="memberform">
 								<legend>회원탈퇴</legend>
 								<div class="row_group">

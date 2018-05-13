@@ -40,7 +40,7 @@
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
-			<div class="fp-tableCell">	
+
 			<h2>책 입고하기</h2>
 			<div class="join_form">
 			<form action="./AdminBookWriteAction.am" method="post" enctype="multipart/form-data">
@@ -103,18 +103,20 @@
 				
 				<div class="btn_btm_center">
 				<ul>
-					<li class="btn_cancle"><input type="submit" value="입고하기">
-					<input type="reset" value="취소"></li>
+					<li class="btn_cancle"><input type="submit" value="입고하기" class ="btn_type4 BTN_IF_LIST"></li>
+					<li class="btn_cancle"><input type="reset" value="취소" class ="btn_type4 BTN_IF_LIST"></li>
 				</ul>
 				</div>
 				
 			</form>
 			</div>
-		</div> <!-- table 풀 페이지 div -->
+		 <!-- table 풀 페이지 div -->
 		
-			<!-- // 본문 공간 --> </article> </section>
+			<!-- // 본문 공간 --> 
+				</article>
+			 </section>
 		</div>
 		<!-- //container -->
-	</div>
+
 </body>
 </html>

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import net.facility.db.FacilityDTO;
 import util.myBatisSetting.sqlMapConfig;
 
 public class MemberDAO {
@@ -65,6 +66,13 @@ public class MemberDAO {
 	public void UpdateMember(MemberDTO mDTO) {
 		int result = sqlsession.update("updateMember" , mDTO);
 		System.out.println(result);
+	}
+	
+	// 맴버 사용 시설 정보
+	public FacilityDTO getMemberUseFacility(String member_id) {
+		FacilityDTO fDTO = new FacilityDTO();
+		fDTO = sqlsession.selectOne("MemberUseFacilily", member_id);
+		return fDTO;
 	}
 	
 	// 도서바구니 담기

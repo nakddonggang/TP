@@ -43,26 +43,46 @@ int book_number = Integer.parseInt(request.getParameter("book_number"));
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
-					<h2>손망실 작성</h2>
-					<form action="./AdminBookDLosWriteAction.am" method="post">
-						<table border="1">
-							<tr>
-								<th>고유번호 : </th><td><input type="text" name="book_number" value="<%=book_number%>" readonly></td>
-							</tr>
-							<tr>	
-								<th>사유 : </th><td><textarea cols="20" rows="10" name="dbook_reason"></textarea></td>
-							</tr>
-							<tr>	
-								<th>도서상태 : </th><td><input type="text" name="dbook_state"></td>
-							</tr>
-						</table>		
-						
-						<div>
-					<input type="submit" value="손망실 신청하기">
-					<input type="reset" value="취소">
-				</div>
-							
-					</form>
+					
+					<div class="content">
+					<div class="write_form">
+							<h1>손망실 작성</h1>
+							<form action="./AdminBookDLosWriteAction.am"  method="post"  name="fr" >
+								<ul class="row">
+									<li>
+										<ul class="row_sub">
+											<li class="title">고유번호</li>
+											<li class="inp_form"><input type="text" name="book_number" value="<%=book_number%>"></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">사유</li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="dbook_reason"></textarea></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">도서상태</li>
+											<li class="inp_form"><input type="text" name="dbook_state" value=""></li>
+										</ul>
+									</li>
+									<li>
+										<div class="btn_btm_center">
+											<ul>
+												<li class="btn_cancle">
+													<input type="submit" value="손망실 신청" class ="btn_type4">
+												</li>
+												<li>
+													<input type="reset" value="취소" class ="btn_type4">
+												</li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</form>
+							</div>
+						</div>
 					<!-- // 본문 공간 -->
 				</article>
 			</section>
