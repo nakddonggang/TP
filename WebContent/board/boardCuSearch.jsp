@@ -13,6 +13,7 @@
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
@@ -43,98 +44,77 @@
 		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
 
-				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
-				<!-- //서브메뉴 -->
-				
 				<!-- 메인 페이지 -->
-				<article class="mainmenu section SECTION">
+				<article class="mainmenu_no_sub section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 					
 					<div class="content">
 					  <div class=board>
-					  
-					  <h1>Curation</h1>
-					  
-					  <div class="search_bx">
+						  <h1>Curation</h1>
+						  <div class="search_bx">
 							<form action="./BoardCurSearch.cu" method="post">
 								<input type="text" name="search" class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
-						</div>
+						  </div>
 						
-						<div class="view_cnt">
-							<p>Total_<span><%=count %></span></p>
-						</div>
-						
-						<ul class="brd_txt_lst">
-							<!-- 글목록 -->
-							<li class="view_lst">
-					  
-					
-					<%
-					if(searchList==null){
-						%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%
-					}else{
-						SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
-						for(int i=0; i<searchList.size(); i++){
-							BoardDTO bDTO = searchList.get(i);
-							String word = bDTO.getCur_subject();
-							word = word.replaceAll(search, "<mark>"+search+"</mark>");
-					%>
-					
-					<div class="con_lst DIV_CON_LST">
-					  <ul>
-						<li class="col_rc"><a href="#"><%=bDTO.getCur_num() %></a></li>
-						<li class="col_type"><a href="#"><p><%=bDTO.getCur_type() %></p></a></li>
-						<li class="col_type"><a href="#"><p><%=bDTO.getCur_name() %></p></a></li>
-						<li class="col_title"><a href="#"><p><%=word %></p></a></li>
-						<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getCur_date()) %></span></li>
-						<li class="col_rc"><a href="#"><%=bDTO.getCur_readcount() %></a></li>
-					  </ul>
-							
-							
-						<div class="con_detail DIV_CON_DETAIL">	
-							<p><img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100"></p>
-							<p><%=bDTO.getCur_content() %></p>
-							<div class="file"><span>첨부파일</span><ul><!-- 첨부파일 들어가는 부분 --></ul></div>
-							
-						
+							<div class="view_cnt">
+								<p>Search_<span><%=count %></span></p>
+							</div>
+				
+							<ul class="cu_brd_txt_lst">
+								<!-- 글목록 -->
+								<li class="view_lst">
+								<%
+								if(searchList==null){
+								%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%
+								}else{
+									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+									for(int i=0; i<searchList.size(); i++){
+									BoardDTO bDTO = searchList.get(i);
+									String word = bDTO.getCur_subject();
+									word = word.replaceAll(search, "<mark>"+search+"</mark>");
+								%>
+									<div class="con_lst_cu DIV_CON_LST">
+									  <ul class="no_scroll" onclick="location.href='./BoardCurContent.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum %>'">
+									    <li class="cu_lst">
+								    		<div class="cu_thm">
+								   		 		<img src="./upload/<%=bDTO.getCur_file()%>" width="428" height="197">
+									    	</div>
+						 				   	<div class="cu_txt">
+									    		<h4><%=word %></h4>
+						 				   		<p><%=bDTO.getCur_content() %></p>
+						 				   		<div class="cu_btm_txt">
+						  				  			<span class="tit_date">작성일 :&nbsp;</span><span class="date"><%=date.format(bDTO.getCur_date()) %></span>
+						  				  			<span>조회수 <%=bDTO.getCur_readcount() %></span>
+						  				  		</div>
+						 				   	</div>
+										</li>
+				       				 </ul>
+									</div>
+					  				<%	
+									}
+								}
+								%>
+				  				</li>
+				 			</ul>
+				
 							<%
 							if ("admin".equals(member_id)) {
-							%><div class="fix">
-							   <ul>
-							     <li><input type="button" value="글수정" onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"></li>
-								 <li><input type="button" value="글삭제" onclick="location.href='./BoardCurDelete.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'"></li>
-							   </ul>
-							 </div> <%} %>
-						</div>
-					</div>
-					  <%	
-						}
-					}
-					%>
-				  </li>
-				 </ul>
-				
-					<%
-					if ("admin".equals(member_id)) {
-					%>	
-					
-					<input type="button" value="글쓰기" onclick="location.href='./BoardCurWrite.cu'">
-					<%} %>
+							%>				
+							<input type="button" class="btn_type1" value="글쓰기" onclick="location.href='./BoardCurWrite.cu'">
+							<%} %>
 
-	
-					<%
-					if(pageCount < endPage)	endPage = pageCount;
+							<%
+							if(pageCount < endPage)	endPage = pageCount;
 					
-					if(startPage > pageBlock)	{ %><a href="BoardCurSearch.cu?pageNum=<%=startPage-pageBlock%>&search=<%=search%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
-					for (int p = startPage; p <= endPage; p++) {	
-						if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
-						else {%> &nbsp;<a href="BoardCurSearch.cu?pageNum=<%=p%>&search=<%=search%>"><%=p %></a> &nbsp;<%}
-					}
-					if(endPage < pageCount){	%><a href="BoardCurSearch.cu?pageNum=<%=startPage+pageBlock%>&search=<%=search %>" class="next"><span class="hide">다음 페이지</span></a><% }
-					%>
-					 </div>
+							if(startPage > pageBlock)	{ %><a href="BoardCurSearch.cu?pageNum=<%=startPage-pageBlock%>&search=<%=search%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
+							for (int p = startPage; p <= endPage; p++) {	
+								if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+								else {%> &nbsp;<a href="BoardCurSearch.cu?pageNum=<%=p%>&search=<%=search%>"><%=p %></a> &nbsp;<%}
+							}
+							if(endPage < pageCount){	%><a href="BoardCurSearch.cu?pageNum=<%=startPage+pageBlock%>&search=<%=search %>" class="next"><span class="hide">다음 페이지</span></a><% }
+							%>
+						 </div>
 					</div>
 
 				</article>

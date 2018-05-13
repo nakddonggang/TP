@@ -15,6 +15,36 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#cWriteForm').submit(function(){
+		if($('#type').val()==""){
+			alert('분류항목 입력하세요');
+			$('#type').focus();
+			return false;
+		}
+		if($('#name').val()==""){
+			alert('작성자 입력하세요');
+			$('#name').focus();
+			return false;
+		}
+		if($('#subject').val()==""){
+			alert('제목 입력하세요');
+			$('#subject').focus();
+			return false;
+		}
+		if($('#content').val()==""){
+			alert('내용 입력하세요');
+			$('#content').focus();
+			return false;
+		}
+		if($('#fileName').val()==""){
+			alert('이미지 첨부하세요');
+			return false;
+		}
+	});
+});
+</script>
 </head>
 <body>
 <!-- board/boardCuWrite.jsp Curation 게시판 글쓰기 페이지 -->
@@ -35,50 +65,62 @@
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
 					<div class="content">
-					
-					<form action="./BoardCurWriteAction.cu" method="post" name="fr" enctype="multipart/form-data">
-						<table border="1">
-							<tr>
-								<td>글쓴이</td>
-								<td>
-									<input type="text" name="cur_name">
-								</td>
-							</tr>
-							<tr>
-								<td>제목</td>
-								<td>
-									<input type="text" name="cur_subject">
-								</td>
-							</tr>
-							<tr>
-								<td>타입</td>
-								<td>
-									<input type="text" name="cur_type">
-								</td>
-							</tr>
-							<tr>
-								<td>파일</td>
-								<td>
-									<input type="file" name="cur_file">
-								</td>
-							</tr>
-							<tr>
-								<td>내용</td>
-								<td>
-									<textarea cols="20" rows="10" name="cur_content" style="width: 580px; resize: none;"></textarea>
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">
-									<input type="submit" value="등록"><input type="reset" value="뒤로">
-								</td>
-							</tr>
-						</table>
-					</form>
+						<div class="write_form">
+
+							<h1>Curation 글쓰기</h1>
+							<form action="./BoardCurWriteAction.cu" method="post" name="fr" id="cWriteForm" enctype="multipart/form-data">
+								<ul class="row">
+									<li>
+										<ul class="row_sub">
+											<li class="title">TYPE</li>
+											<li class="inp_form"><input type="text" name="cur_type" id="type" value=""></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">Name</li>
+											<li class="inp_form"><input type="text" name="cur_name" id="name" value=""></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">SUBJECT</li>
+											<li class="inp_form"><input type="text" id="subject" name="cur_subject" value=""></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">CONTENT</li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="cur_content" id="content"></textarea></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">FILE</li>
+											<li class="inp_form">
+												<!-- start 파일 입력부분 -->
+												<input type="text" id="fileName" class="file_input_textbox" value="" readonly="readonly">
+												<div class="file_input_div">
+													<input type="button" value="파일 찾기"	class="file_input_button btn_type4">
+													<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" name="cur_file">
+												</div>
+												<!-- end 파일 입력부분 -->
+											</li>
+										</ul>
+									</li>
+									<li>
+										<div class="btn_btm_center">
+											<ul>
+												<li class="btn_cancle"><input type="submit" value="글쓰기" class="btn_type4"></li>
+												<li><input type="reset" value="취소" class="btn_type4"></li>
+											</ul>
+										</div>
+									</li>
+								</ul>
+							</form>
+
+						</div>
 					</div>
 	
 				</article>

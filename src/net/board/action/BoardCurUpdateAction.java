@@ -18,7 +18,7 @@ public class BoardCurUpdateAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("BoardCurUpdateAction execute()");
 		request.setCharacterEncoding("utf-8");
-		int num = Integer.parseInt(request.getParameter("num"));
+		int num = Integer.parseInt(request.getParameter("cur_num"));
 		String pageNum = request.getParameter("pageNum");
 		
 		String realPath = request.getRealPath("/upload");
