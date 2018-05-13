@@ -46,26 +46,35 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 					<div class=""></div>
 					<!-- 본문 공간 -->
 					<h2>책 정보보기</h2>
-					<form action="" method="post" name="fr">
-					<table border="1">
-						<tr>
-							<th>고유번호 : </th>
-							<td><%=bookList.getBook_number()%></td>
-						</tr>	
-						<tr>						
-							<th>사유 : </th>
-							<td><textarea cols="20" rows="10"><%=bookList.getDbook_reason()%></textarea></td>
-						</tr>	
-						<tr>	
-							<th>도서상태 : </th>
-							<td><%=bookList.getDbook_state()%></td>
-						</tr>	
-						
-					</table>
-					<div>
-						<input type="button" value="목록보기" onclick="location.href='./AdminBookDLos.am?pageNum=<%=pageNum%>'">
+					<div class='join_form'>
+						<ul class="row">
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>고유 번호</span></li>
+										<li class="inp_form"><input type="text" name="book_number" value="<%=bookList.getBook_number()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>사유</span></li>
+										<li class="inp_form"><textarea cols="20" rows="10" readonly><%=bookList.getDbook_reason()%></textarea></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>도서상태</span></li>
+										<li class="ta_form"><input type="text" name="dbook_state" value="<%=bookList.getDbook_state()%>" readonly></li>
+								</ul>
+							</li>
+						</ul>
+						<div class="btn_btm_center">
+							<ul>
+								<li class="btn_cancle">
+									<input type="button" value="글목록" onclick="location.href='./AdminBookDLos.am?pageNum=<%=pageNum%>'" class ="btn_type4 BTN_IF_LIST">
+								</li>
+							</ul>
+						</div>
 					</div>
-					</form>
 					
 				<!-- //메인 페이지-->
 				</article>

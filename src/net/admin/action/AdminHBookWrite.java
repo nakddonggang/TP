@@ -19,8 +19,15 @@ public class AdminHBookWrite implements Action {
 		
 		// DAO 생성
 		AdminDAO adao = new AdminDAO();
-		BookDTO bookdto = adao.getHBookInfo(member_id, hbook_subject, hbook_author);
+		BookDTO bookdto = new BookDTO();
+		bookdto.setMember_id(member_id);
+		bookdto.setHbook_subject(hbook_subject);
+		bookdto.setHbook_author(hbook_author);
+		bookdto = adao.getHBookInfo(member_id, hbook_subject, hbook_author);
 		
+		request.setAttribute("member_id", member_id);
+		request.setAttribute("hbook_subject", hbook_subject);
+		request.setAttribute("hbook_author", hbook_author);
 		request.setAttribute("bookdto", bookdto);
 		
 		ActionForward forward = new ActionForward();

@@ -142,3 +142,21 @@ p.sub_txt {margin: 15px 0 30px 0;}
 #facil_dialog { margin:0; padding:0; overflow: hidden;}
 #facil_dialog > iframe {    border:none;    width:100%;    height:100%;}	
 /* end 황해남 작업(Facility) */
+
+/* START 김영지 작업 Admin */
+.btn_btm_center .adm_btn__left { text-align: left;}
+.adminfo_join_form {padding: 5px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_rc {width:5%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_type {width:10%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_date {width:15%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_sub {width:20%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_ex {width:40%; padding:0 20px;}
+.adm { margin-top: 20px;}
+.btn_btm_center ul li.adm_btn_cancle {padding-right:0}
+#adm_brd_txt_lst li > .con_lst > ul > li {display:block; height:70px; line-height:70px; text-align:center;}
+#adm_brd_txt_lst { border: 2px solid black; width:100%;}
+/* End 김영지 작업 Admin */
+ 
+/* start 한진석 작업 (table) */
+.view_lst .con_lst > ul.no_scroll .col_dlos {width:60%; padding:0 15px;}
+/* end 한진석 작업 (table) */

@@ -18,6 +18,18 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#SearchForm').submit(
+			function(){
+				if($('#search1').val()==""&&$('#search2').val()==""&&$('#search3').val()==""){
+				alert ("검색어를 입력해주세요");
+				$('#search1').focus();
+				return false;
+				} else { }
+		});
+	});
+</script>
 </head>
 <body>
 <%
@@ -49,19 +61,15 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
-					<div class=""></div>
 				</div>
 				<!-- //메인 페이지-->
 					<!-- 본문 공간 -->
 					<!-- 통합검색 (제목을 이용하여 검색하는 창) -->
 					<div>
-					<form action="./AdminBookSearch.am" method="post">
-						<fieldset>
-						<legend>상세검색</legend>
-							<select name="category">
+					<form action="./AdminBookSearch.am" method="get" id="SearchForm">
+					<fieldset>
+					<legend>통합검색</legend>
+						<select name="category1">
 							<option value="all">전체</option>
 							<option value="book_subject">제목</option>
 							<option value="book_author">저자</option>
@@ -69,9 +77,49 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 							<option value="book_isbn">국제표준번호</option>
 							<option value="book_classification">분류기호</option>				
 							</select>
-					 		<input type="text" name="search" placeholder="책 제목을 입력하세요">
-							<input type="submit" value="상세검색">	
-						</fieldset>
+							<input type="text" id="search1" name="search1" placeholder="입력하세요"><br>
+					
+					<select name="opt1">
+						<option value="and">and</option>
+						<option value="or">or</option>
+					</select><br>
+					
+							<select name="category2">
+							<option value="book_subject">제목</option>
+							<option value="book_author">저자</option>
+							<option value="book_publisher">출판사</option>
+							<option value="book_isbn">국제표준번호</option>
+							<option value="book_classification">분류기호</option>				
+							</select>
+					 		<input type="text" id="search2" name="search2" placeholder="입력하세요"><br>
+					<select name="opt2">
+						<option value="and">and</option>
+						<option value="or">or</option>
+					</select><br>
+					
+							<select name="category3">
+							<option value="book_subject">제목</option>
+							<option value="book_author">저자</option>
+							<option value="book_publisher">출판사</option>
+							<option value="book_isbn">국제표준번호</option>
+							<option value="book_classification">분류기호</option>				
+							</select>
+					 		<input type="text" id="search3" name="search3" placeholder="입력하세요"><br>
+					</fieldset>
+							
+					<fieldset>
+							<legend>발행년</legend>
+							<select name="pubDate">
+							<option value="all">전체</option>
+							<option value="1">최근 1년</option>
+							<option value="2">최근 2년</option>
+							<option value="5">최근 5년</option>
+							<option value="10">최근 10년</option>
+							<option value="20">최근 20년</option>				
+							</select>
+					</fieldset>	
+							<input type="submit" value="상세검색">
+							<input type="reset" value="입력 초기화">
 					</form>
 					</div>
 					
@@ -87,33 +135,40 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 					</select>
 					</fieldset>
 					
-					<h2>책 목록 [<%=count%>]</h2>
-					<%if(booksortList.isEmpty()){ out.print("책 목록이 없습니다"); } else {%>
-					<table border="1">
-						<tr>
-							<th>고유번호</th>
-							<th>제목</th>
-							<th>저자</th>
-							<th>출판사</th>
-							<th>도서상태</th> <!-- dbook -->
-							<th>반납상태</th> <!-- bbook -->
-							<th>예약일자</th> <!-- rbook -->
-							<th> 예약현황</th> <!-- rbook -->
-						</tr>
-						<%
-							for (BookDTO booksortLists : booksortList) {%>
-								<tr onclick="location.href='./AdminBookInfo.am?book_number=<%=booksortLists.getBook_number()%>'">
-									<td><img src="./upload/<%=booksortLists.getBook_file()%>" width="100" height="100"><%=booksortLists.getBook_number()%></td>
-									<td><%=booksortLists.getBook_subject()%></td>
-									<td><%=booksortLists.getBook_author()%></td>
-									<td><%=booksortLists.getBook_publisher()%></td>
-									<td><%=booksortLists.getDbook_state()%></td>
-									<td><%=booksortLists.getBbook_bstate()%></td>
-									<td><%=booksortLists.getRbook_date()%></td>
-									<td><%=booksortLists.getRbook_check()%></td>		
-								</tr> <%}%>
-					</table>
-					<%}%><br>
+					<h1>통합도서관리시스템<br>Total_<%=count%></h1>
+					<%if(count==0){ out.print("책 목록이 없습니다"); } else {%>
+					<ul class="brd_txt_lst">
+						<li class="view_lst">
+							<div class="con_lst">
+								<ul class="no_scroll title_t">
+									<li class="col_num">고유번호</li>
+									<li class="col_rc">사진</li>
+									<li class="col_date">제목</li>
+									<li class="col_rc">저자</li>
+									<li class="col_rc">출판사</li>
+									<li class="col_rc">도서상태</li> <!-- dbook -->
+									<li class="col_rc">반납상태</li> <!-- bbook -->
+									<li class="col_rc">예약일자</li> <!-- rbook -->
+									<li class="col_rc">예약현황</li> <!-- rbook -->
+								</ul>
+							</div>
+						<% for (BookDTO booksortLists : booksortList) { %>
+							<div class="con_lst">
+								<ul class="no_scroll">
+									<li class="col_num"><%=booksortLists.getBook_number()%></li>
+									<li class="col_rc" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksortLists.getBook_number()%>'"><img src="./upload/<%=booksortLists.getBook_file()%>" width="70px" height="60px"></li>
+									<li class="col_date"><%=booksortLists.getBook_subject()%></li>
+									<li class="col_rc"><%=booksortLists.getBook_author()%></li>
+									<li class="col_rc"><%=booksortLists.getBook_publisher()%></li>
+									<li class="col_rc"><%=booksortLists.getDbook_state()%></li>
+									<li class="col_rc"><%=booksortLists.getBbook_bstate()%></li>
+									<li class="col_rc"><%=booksortLists.getRbook_date()%></li>
+									<li class="col_rc"><%=booksortLists.getRbook_check()%></li>
+								</ul>
+								</div><%}%>
+						</li>
+					</ul>
+					<%}%>
 					<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'"> 
 					<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'">					
 					<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'"><br>

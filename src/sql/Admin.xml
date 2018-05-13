@@ -94,9 +94,8 @@
 		on b.book_number=bb.book_number
 		left join rbook rb
 		on b.book_number=rb.book_number
-		where (b.book_subject like '%${value}%' or b.book_author like '%${value}%' or
-	 	b.book_publisher like '%${value}%' or b.book_isbn like '%${value}%' or b.book_classification like '%${value}%')
-		${option} ${category1} like '%${value1}%'
+		where (b.book_subject like '%${value}%' or b.book_author like '%${value}%' or b.book_publisher like '%${value}%' or b.book_isbn like '%${value}%' or b.book_classification like '%${value}%')
+		${option} b.${category1} like '%${value1}%'
 		order by b.book_number desc limit #{startRow},#{pageSize}	 
 	 </select> 
 
@@ -143,7 +142,7 @@
 		left join rbook rb
 		on b.book_number=rb.book_number
 		where ((b.book_subject like '%${value}%' or b.book_author like '%${value}%' or b.book_publisher like '%${value}%' or b.book_isbn like '%${value}%' or b.book_classification like '%${value}%')
-		${option1} ${category1} like '%${value1}%')
+		${option1} b.${category1} like '%${value1}%')
 		${option2} b.${category2} like '%${search2}%'
 		order by b.book_number desc limit #{startRow},#{pageSize}	 
 	 </select>	 
@@ -407,11 +406,11 @@
 	 </select>
 	 
 	 <select id="getHBookInfo" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select * from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
+	 	select * from hbook where (member_id=#{member_id} and hbook_subject=#{hbook_subject}) and hbook_author=#{hbook_author}
 	 </select>
 	 
-	 <update id="getHBookReWrite" parameterType="String">
-	 	update hbook set hbook_check=#{hbook_check}, hbook_isbn={#hbook_isbn}
+	 <update id="getHBookReWrite" parameterType="net.book.db.BookDTO">
+	 	update hbook set hbook_check=#{hbook_check}, hbook_isbn=#{hbook_isbn}
 	 	where member_id=#{member_id}
 	 </update>
  
