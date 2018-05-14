@@ -38,9 +38,6 @@
 		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
 
-				<%-- <!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
-				<!-- //서브메뉴 --> --%>
 				
 				<!-- 메인 페이지 -->
 				<article class="mainmenu_no_sub section SECTION">
@@ -52,22 +49,25 @@
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
+							
 								<div class="con_lst DIV_CON_LST">
 									<ul class="no_scroll">
 									<%
 									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 									%>
-										
-										<li class="col_rc"><a href="#"><%=bDTO.getCur_num() %></a></li>
-										<li class="col_title"><a href="#"><p><%=bDTO.getCur_subject() %></p></a></li>
-										<li class="col_date">작성일 :&nbsp;<span><%=date.format(bDTO.getCur_date()) %></span></li>
-										<li class="col_rc"><span class="tit_date">조회수 :&nbsp;</span><span><%=bDTO.getCur_readcount() %></span></li>
-								        <p><%=bDTO.getCur_file() %></p>	
-								        <p><%=bDTO.getCur_content() %></p>	
-							
-									</ul>
+									
+										<li class="cu_col_title"><a href="#"><p><%=bDTO.getCur_subject() %></p></a></li>
+										<li class="cu_col_date">작성일 :&nbsp;<span><%=date.format(bDTO.getCur_date()) %></span></li>
+										<li class="cu_col_rc"><span class="tit_date">조회수 :&nbsp;</span><span><%=bDTO.getCur_readcount() %></span></li>
+										  <div class="cu_col_thm">
+								           <img src="./upload/<%=bDTO.getCur_file()%>" width="700" height="700">
+								          </div>
+								        <p class="cu_col_content"><%=bDTO.getCur_content() %></p>
+								        <p class="cu_col_file">첨부파일 :&nbsp;<span><%=bDTO.getCur_file() %></span></p>	
+							       
+						            </ul>
 			
-								</div>
+						        </div>
 							</li>
 						</ul>
 						
@@ -75,19 +75,19 @@
 						
 						
 					      	          
-												<div class="btn_btm_board">
-													<ul>
-														<li class="btn_con_left">
-															<input type="button" class="btn_type4" value="목록" onclick="location.href='./BoardCurList.cu?pageNum=<%=pageNum %>'">
-														</li>
-														<%	if("admin".equals(member_id)) {
-															%><li class="btn_con_right">
-															<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'">
-															<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'">				
-														</li>
-														<%	}	%>
-													</ul>
-												</div>
+							<div class="btn_btm_board">
+								<ul>
+									<li class="btn_con_left">
+										<input type="button" class="btn_type4" value="목록" onclick="location.href='./BoardCurList.cu?pageNum=<%=pageNum %>'">
+									</li>
+									  <%	if("admin".equals(member_id)) {
+										%><li class="btn_con_right">
+											<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'">
+											<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'">				
+										  </li>
+										<%	}	%>
+								 </ul>
+							</div>
 										
 						
 						</div>

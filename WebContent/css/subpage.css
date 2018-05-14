@@ -181,3 +181,14 @@ ul.cu_brd_txt_lst > li.view_lst {float: left; width:100%;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.tit_date {display:none;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.date {margin-right:30px;}
 /* end 윤창훈 작업(Curation List) */
+
+
+/* start 김예린 작업(Curation Content) */
+.view_lst .con_lst > ul.no_scroll .cu_col_title {display:block; width:38%; padding:0px 15px; float: left;}
+.view_lst .con_lst > ul.no_scroll .cu_col_date {display:block; width:15%; padding:0 15px; float: right; margin-right: 20px;}
+.view_lst .con_lst > ul.no_scroll .cu_col_rc {display:block; width:10%; padding:0 15px; float: right; margin-right: 20px;}
+.view_lst > .con_lst > ul.no_scroll > div.cu_col_thm {float:left; width:40%; height:100%; padding-right:20px; padding-left: 20px;}
+.view_lst > .con_lst > ul.no_scroll > div.cu_col_thm img {width:100%; height:100%;}
+.view_lst .con_lst > ul.no_scroll .cu_col_content {display:block; width:38%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .cu_col_file {display:block; width:38%; padding:0 15px;}
+/* end 김예린 작업(Curation Content) */
