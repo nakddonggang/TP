@@ -18,8 +18,10 @@ public class BoardCurContent implements Action{
 		ActionForward forward = new ActionForward();
 		int cur_num = Integer.parseInt(request.getParameter("cur_num"));
 		String pageNum=request.getParameter("pageNum");
+		String table = "curation";
 		
 		BoardDAO bDAO = new BoardDAO();
+		bDAO.updateReadcount(table, cur_num);
 		BoardDTO bDTO = bDAO.getCuration(cur_num);
 		
 		
@@ -30,5 +32,4 @@ public class BoardCurContent implements Action{
 		
 		return forward;
 	}
-    
 }
