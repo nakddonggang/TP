@@ -10,7 +10,10 @@ public class MemberBasketList implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		return null;
+		ActionForward forward = new ActionForward();
+		forward.setPath("./member/myUseIndex.jsp");
+	    forward.setRedirect(false);
+	    return forward;
 	}
 
 }
