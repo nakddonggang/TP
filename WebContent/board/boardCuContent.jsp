@@ -54,6 +54,9 @@
 									<ul class="no_scroll">
 									<%
 									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+									String cur_content = bDTO.getCur_content();
+									cur_content = cur_content.replaceAll("\r\n", "<br>");
+									cur_content = cur_content.replaceAll("\u0020", "&nbsp;");
 									%>
 									
 										<li class="cu_col_title"><a href="#"><p><%=bDTO.getCur_subject() %></p></a></li>
