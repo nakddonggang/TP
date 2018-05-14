@@ -31,29 +31,30 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 %>
 	<div class="wrapper">
-
+		<!-- 본문 컨테이너 -->
+		
 		<!-- header -->
 		<jsp:include page="../include/header.jsp" />
 		<!-- //header -->
-
+	
 		<!-- 본문 컨테이너 -->
 		<div class="container">
+			
 			<section class="fullpage SECTION_FULL_PAGE01">
-
+			
 				<!-- 서브메뉴 -->
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
 				
-				<article class="mainmenu section SECTION">
-				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-					<!-- 본문 공간 -->
-						<div class=board>
-						  <div class="view_cnt">
+					<article class="mainmenu section SECTION">
+					<jsp:include page="../include/topbar.jsp" />
+						<div class='join_form adminfo_join_form' >
 						  	<p>
 								Total_<span><%=count%></span>
 							</p>
-						  </div>
+						  
+						<div class="adm">	
 						  <ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
@@ -96,22 +97,23 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 								if (endPage < pageCount) {
 						%><a href="./AdminBookDLos.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
 						<%}}%>
-						</div>
 						  <div class="btn_btm_center">
 							<ul>
 								<li class="btn_cancle">
 									<input type="button" value="도서관리페이지" onclick="location.href='./AdminIndex.am'" class ="btn_type4 BTN_IF_LIST">
 								</li>
 							</ul>
-						  </div>
+						  </div>	
 						  
-				
-						
-					<!-- // 본문 공간 -->
-				</article>
-			</section>
+						</div>	
+					</div>
+				</div>
+			</article>
+
+		</section>
+		
 		</div>
-		<!-- //container -->
+		<!-- //본문 컨테이너 -->
 	</div>
 </body>
 </html>

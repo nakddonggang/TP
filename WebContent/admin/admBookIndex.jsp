@@ -20,6 +20,7 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		
 		$('#SearchForm').submit(
 			function(){
 				if($('#search1').val()==""&&$('#search2').val()==""&&$('#search3').val()==""){
@@ -30,14 +31,15 @@
 		});
 		
 		$('#book_sort').change(function(){
-			var sort = $("select option:selected").val();	
-			if(vv!=""){
-				self("about:blank").location.href=sort;
-			}
-		})
+			var sort = $("#book_sort > option:selected").val();	
+			if(sort!=""){
+				$(location).attr('href', sort);
+			} else { }
+		});
 		
-	});
+});
 </script>
+
 </head>
 <body>
 <%
@@ -70,45 +72,57 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				<!-- 메인 페이지 -->
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
-					
-	<div style="border: 2px solid red;">
-		<form action="./AdminBookSearch.am" method="get" id="SearchForm">
-			<fieldset style="border: 1px solid;">
-				<legend>통합검색</legend>
-				<select name="category1">
-					<option value="all">전체</option>
+						
+<form action="./AdminBookSearch.am" method="get" id="SearchForm">
+		<fieldset id="adm_field">
+			<legend>&nbsp;통합검색&nbsp;</legend>
+	
+		<div id="admin_select_box">
+				<select name="category1" id="admin_select1">
+					<option value="all" >전체</option>
 					<option value="book_subject">제목</option>
 					<option value="book_author">저자</option>
 					<option value="book_publisher">출판사</option>
 					<option value="book_isbn">국제표준번호</option>
 					<option value="book_classification">분류기호</option>
-				</select> <input type="text" id="search1" name="search1" placeholder="입력하세요">
+				</select>
+				<input type="text" id="search1" name="search1" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
 
-				<select name="opt1">
+				<select name="opt1" id="admin_select2">
 					<option value="and">and</option>
 					<option value="or">or</option>
-				</select><br> <select name="category2">
+				</select>
+		</div>
+				
+		<div id="admin_select_box" >
+		<select name="category2" id="admin_select1">
 					<option value="book_subject">제목</option>
 					<option value="book_author">저자</option>
 					<option value="book_publisher">출판사</option>
 					<option value="book_isbn">국제표준번호</option>
 					<option value="book_classification">분류기호</option>
-				</select> <input type="text" id="search2" name="search2" placeholder="입력하세요">
-
-				<select name="opt2">
+		</select>
+		<input type="text" id="search2" name="search2" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
+				
+				<select name="opt2" id="admin_select2">
 					<option value="and">and</option>
 					<option value="or">or</option>
-				</select><br> <select name="category3">
+				</select>
+		</div>
+				
+		<div id="admin_select_box">
+		<select name="category3" id="admin_select1">
 					<option value="book_subject">제목</option>
 					<option value="book_author">저자</option>
 					<option value="book_publisher">출판사</option>
 					<option value="book_isbn">국제표준번호</option>
 					<option value="book_classification">분류기호</option>
-				</select> <input type="text" id="search3" name="search3" placeholder="입력하세요"><br>
-			</fieldset>
-
-			<fieldset>
-				<legend>발행년</legend>
+				</select>
+				<input type="text" id="search3" name="search3" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
+		</div>
+		
+		<div id="admin_select_box2">
+			<p>&nbsp;발행일
 				<select name="pubDate">
 					<option value="all">전체</option>
 					<option value="1">최근 1년</option>
@@ -117,46 +131,45 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					<option value="10">최근 10년</option>
 					<option value="20">최근 20년</option>
 				</select>
-			</fieldset>
-
-			<input type="submit" value="상세검색"> <input type="reset"
-				value="입력 초기화">
-		</form>
-	</div>
-
-	<div>
-		<fieldset>
-			<legend>책 목록 정렬</legend>
-			<select name="sort" id="book_sort">
-				<option value="" checked>정렬</option>
-				<option value="./AdminBookSort.am?sort=book_subject">제목순</option>
-				<option value="./AdminBookSort.am?sort=book_author">저자순</option>
-				<option value="./AdminBookSort.am?sort=book_number">인기순</option>
-				<option value="./AdminBookSort.am?sort=book_pubDate">신작순</option>
-				<option value="l./AdminBookSort.am?sort=book_date">입고순</option>
-			</select>
+			</p>
+		</div>
+		
+			<input type="submit" class="adm_btn_type4" value="상세검색">
+			<input type="reset" class="adm_btn_type5" value="입력 초기화">		
 		</fieldset>
-	</div>
+</form>
 					
-						<div class='join_form adminfo_join_form' >
-							<h2>통합도서관리시스템</h2>
+						<div class="adms">
+							<h1 style="font-size:18px; text-align:center;">&lt; 통합도서관리시스템 &gt;</h1>
 							<p>
-								Total_<span><%=count%></span>
-							</p>
-						<div class="adm">			
+								Total_<span><%=count%></span>	
+							</p>	
+							
+								
+							<div id="adm_select_box3">
+									<select name="sort" id="book_sort">
+											<option value="" selected="selected">정렬</option>
+											<option value="./AdminBookSort.am?sort=book_subject">제목순</option>
+											<option value="./AdminBookSort.am?sort=book_author">저자순</option>
+											<option value="./AdminBookSort.am?sort=book_number">인기순</option>
+											<option value="./AdminBookSort.am?sort=book_pubDate">신작순</option>
+											<option value="./AdminBookSort.am?sort=book_date">입고순</option>
+									</select>
+							</div>
+			
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
 							<div class="con_lst">
 							<ul class="no_scroll title_t">
 								<li class="adm_col_rc">고유번호</li>
-								<li class="adm_col_date">사진</li>
-								<li class="adm_col_type">제목</li>
-								<li class="adm_col_type">저자</li>
-								<li class="adm_col_type">출판사</li>
+								<li class="adm_col_type">사진</li>
+								<li class="adm_col_subs">제목</li>
+								<li class="adm_col_date">저자</li>
+								<li class="adm_col_date">출판사</li>
 								<li class="adm_col_rc">도서상태</li>
-								<li class="adm_col_type">반납상태</li>
-								<li class="adm_col_rc">예약일자</li>
+								<li class="adm_col_rc">반납상태</li>
+								<li class="adm_col_type">예약일자</li>
 								<li class="adm_col_rc">예약현황</li>
 							</ul>
 							</div>
@@ -171,15 +184,15 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						%>
 						<div class="con_lst">
 							<ul class="no_scroll" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'">
-								<li class="adm_col_rc"><%=bookLists.getBook_number()%></li>
-								<li class="adm_col_date"><img src="./upload/<%=bookLists.getBook_file()%>" width="70px" height="60px"></li>
-								<li class="adm_col_type"><%=bookLists.getBook_subject()%></li>
-								<li class="adm_col_type"><%=bookLists.getBook_author()%></li>
-								<li class="adm_col_type"><%=bookLists.getBook_publisher()%></li>
-								<li class="adm_col_rc"><%=bookLists.getDbook_state()%></li>
-								<li class="adm_col_type"><%=bookLists.getBbook_bstate()%></li>
-								<li class="adm_col_rc"><%=bookLists.getRbook_date()%></li>
-								<li class="adm_col_rc"><%=bookLists.getRbook_check()%></li>
+								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getBook_number()%></li>
+								<li class="adm_col_type" id="adm_book_high"><img src="./upload/<%=bookLists.getBook_file()%>" width="70px" height="80px"></li>
+								<li class="adm_col_subs" id="adm_book_high"><%=bookLists.getBook_subject()%></li>
+								<li class="adm_col_date" id="adm_book_high"><%=bookLists.getBook_author()%></li>
+								<li class="adm_col_date" id="adm_book_high"><%=bookLists.getBook_publisher()%></li>
+								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getDbook_state()%></li>
+								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getBbook_bstate()%></li>
+								<li class="adm_col_type" id="adm_book_high"><%=bookLists.getRbook_date()%></li>
+								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getRbook_check()%></li>
 							</ul>
 						</div><%}
 						}%>
@@ -217,7 +230,6 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				} // if count 괄호 %>		
 						</div>	
 					</div>
-				</div>
 			</article>
 
 		</section>
