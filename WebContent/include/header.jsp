@@ -14,8 +14,7 @@
 					
 					<li><a href="#">도서관 서비스</a>
 						<ul class="DIV_SUB_MNU">
-							<li><a href="./service/serveBook.jsp">(X)희망도서 신청</a></li>
-							<!-- 희망도서 신청 페이지 -->
+							<li><a href="./ServeBook.bk">희망도서 신청</a></li>
 							<li><a href="./Facility.fy">시설이용 신청</a></li>
 							<li><a href="./service/serveQues.jsp">(X)사서에게 물어보세요</a></li>
 						</ul></li>

@@ -181,6 +181,8 @@ input.adm_btn_search {width: 10%; float:left; margin-right:5px; width:35px; heig
 .adm_btn_type5 {display:inline; width:82px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 220px; text-align: center;}
 
 #adm_select_box3 { border:none; display:inline-block; position: relative; top:-5px; left: 880px;}
+
+.join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px}
 /* End 김영지 작업 Admin */
  
 /* start 한진석 작업 (table) */
