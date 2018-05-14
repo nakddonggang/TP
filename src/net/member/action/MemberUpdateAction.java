@@ -22,6 +22,13 @@ public class MemberUpdateAction implements Action {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
+		String phone = request.getParameter("phone_frist")+request.getParameter("member_phone1")+request.getParameter("member_phone2");
+		String email_check = request.getParameter("selectEmail");
+		if(email_check.equals("1")) {
+			email_check = request.getParameter("str_email02");
+		}
+		String email = request.getParameter("str_email01")+"@"+email_check;
+		
 		String member_id = (String)session.getAttribute("member_id");
 		if(member_id == null) {
 			forward.setPath("./MemberLogin.me");
@@ -37,8 +44,8 @@ public class MemberUpdateAction implements Action {
 		mDTO.setMember_post(request.getParameter("member_post"));
 		mDTO.setMember_address1(request.getParameter("member_address1"));
 		mDTO.setMember_address2(request.getParameter("member_address2"));
-		mDTO.setMember_phone(request.getParameter("member_phone"));
-		mDTO.setMember_email(request.getParameter("member_email"));
+		mDTO.setMember_phone(phone);
+		mDTO.setMember_email(email);
 		
 		mDAO.UpdateMember(mDTO);
 		
