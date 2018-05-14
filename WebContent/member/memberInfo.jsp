@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="net.member.db.MemberDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -41,61 +42,83 @@
 						if(member_id == null) {
 							response.sendRedirect("./MemberLogin.me");
 						}
+						SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 					%>
 					<div class="content">
 						<div class='member_content'>
-							<fieldset class="memberform">
-								<legend>개인정보관리</legend>
-								<div class="row_group">
-									<div class="join_row">
-										<span>
-											<label>ID</label>
-											<input type="text" name="id" value="<%=member_id %>" readonly>
-										</span>
+							<h3>회원정보 수정</h3>
+					
+					<div class='join_form'>
+						<form action="MemberUpdate.me"  method="post"  name="fr"  id = "fr">
+							<ul class="row">
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title"><span>ID</span></li>
+										<li class="inp_form"><input type="text" name="member_id"  id = "member_id" value="<%=mDTO.getMember_id() %>"  readonly></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">Name</li>
+										<li class="inp_form"><input type="text" name="member_name" id = "member_name" value="<%=mDTO.getMember_name()%>" readonly></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">Post</li>
+										<li class="inp_form"><input type="text" name="member_post" id = "member_post" value="<%=mDTO.getMember_post() %>"  readonly></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title" id="title_address">Address</li>
+										<li ><input type="text" name="member_address1" id = "member_address1" value="<%=mDTO.getMember_address1() %>"  placeholder="주소" class="inp_addr" readonly><br><input type="text" name="member_address2"  id = "member_address2" value="<%=mDTO.getMember_address2() %>" placeholder="상세주소" class="inp_addr2" readonly></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">Phone</li>
+										<li>
+										<input type="text" name="member_phone1" id ="member_phone1" value="<%=mDTO.getMember_phone() %>"  readonly></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">E-mail</li>
+										<li><input type="text" name="str_email02" id="str_email02"  value ="<%=mDTO.getMember_email() %>" readonly>
+										</li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+									<li class="title">Join Date</li>
+									<li><input type="text" value="<%=date.format(mDTO.getMember_date()) %>" readonly></li>
+									</ul>
+								</li>
+								
+								<li>
+									<div class="btn_btm_center">
+										<ul>
+											<li class="btn_cancle">
+												<input type="submit" value="정보 수정" class ="btn_type4" id = "submit_button">
+											</li>
+											<li>
+												<input type="button" value="회원탈퇴" class ="btn_type4" onclick = "location.href = 'MemberDelete.me'">
+											</li>
+										</ul>
 									</div>
-									<div class="join_row">
-										<span>
-											<label>Name</label>
-											<input type="text" name="name" value="<%=mDTO.getMember_name() %>" readonly>
-										</span>
-									</div>
-									<div class="join_row">
-										<span>
-											<label>Post</label>
-											<input type="text" name="post" value="<%=mDTO.getMember_post() %>"  readonly>
-										</span>
-									</div>
-									<div class="join_row">
-										<span>
-											<label>Address</label>
-											<input type="text" name="address" value="<%=mDTO.getMember_address1() %>" readonly>
-										</span>
-										<span>
-											<input type="text" name="address2" value="<%=mDTO.getMember_address2() %>" readonly>
-										</span>
-									</div>
-									<div class="join_row">
-										<span>
-											<label>Phone</label>
-											<input type="text" name="phone" value="<%=mDTO.getMember_phone() %>" readonly>
-										</span>
-									</div>
-									<div class="join_row">
-										<span>
-											<label>E-mail</label>
-											<input type="text" name="email" value="<%=mDTO.getMember_email() %>" readonly>
-										</span>
-									</div>
-									<div class="join_row">
-										<span>
-											<label>가입날짜</label>
-											<input type="text" name="date" value="<%=mDTO.getMember_date() %>" readonly>
-										</span>
-									</div>
-								</div>
-								<input type="button" value="회원수정" onclick = "location.href = './MemberUpdate.me'" class ="btn">
-								<input type="button" value="회원탈퇴" onclick = "location.href = './MemberDelete.me'"class ="btn">
-							</fieldset>
+								</li>
+								
+							</ul>
+						</form>
+						</div>
 						</div>
 					</div>
 					<!-- //메인 페이지-->

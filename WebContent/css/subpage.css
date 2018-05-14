@@ -118,7 +118,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .join_form .row_sub > li input[type="text"].mb_mail{margin-right:px}
 .join_form .row_sub > li input[type="text"].mb_mail2{width:100px;}
 .join_form .row_sub > li span#address_shift2 {float:left; background:#f6f6f6; height:30px; line-height:27px}
-.join_form .row_sub > li input[type="text"].inp_addr {width:400px; margin-bottom:5px;}
+.join_form .row_sub > li input[type="text"].inp_addr {width:300px; margin-bottom:5px;}
 .join_form .row_sub > li input[type="text"].inp_form {width:60px; margin-right:6px; margin-left:6px; text-indent:10px}
 .join_form .row_sub > li input[type="text"].inp_form2 {width:60px; text-indent:10px}
 .join_form .row_sub > li select.phone_frist {float:left}
@@ -153,15 +153,36 @@ p.sub_txt {margin: 15px 0 30px 0;}
 /* START 김영지 작업 Admin */
 .btn_btm_center .adm_btn__left { text-align: left;}
 .adminfo_join_form {padding: 5px;}
-.brd_txt_lst li > .con_lst > ul > li.adm_col_rc {width:5%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_rc {width:6%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_type {width:10%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_date {width:15%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_sub {width:20%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_subs {width:24%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_ex {width:40%; padding:0 20px;}
+ #adm_book_high{height: 80px; line-height: 80px;}
 .adm { margin-top: 20px;}
+.adms { width: 99%; margin: 5px auto;}
+.adms p {display: inline-block;}
 .btn_btm_center ul li.adm_btn_cancle {padding-right:0}
 #adm_brd_txt_lst li > .con_lst > ul > li {display:block; height:70px; line-height:70px; text-align:center;}
 #adm_brd_txt_lst { border: 2px solid black; width:100%;}
+#adm_field { border: 2px solid black;	padding: 20px; width: 99%; margin: 10px auto; }
+#adm_field > legend { font-size: 18px;}
+#admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; position: relative; height : 40px; width:60%;}
+#admin_select_box #admin_select1 {width:18%; border : none; float : left; height:34px; line-height: 34px; margin : 0 5px; }
+#admin_select_box #admin_select2 { width: 13%; float:left; border : none; height:32px; line-height: 32px; margin:0 5px; padding: 0 4px;}
+
+#admin_select_box2 { border: 1px solid #FAE0D4; margin: 0 7px 7px 7px; padding : 1px 2px 2px 2px; position: relative; height : 40px; width: 20%; float: left;}
+#admin_select_box2 p {height:38px; line-height: 38px; }
+#admin_select_box2 select { border: none; height:35px; line-height: 35px; margin : 0; float:right;}
+input.adm_inp_search {float:left; width:52%; height:34px; border:0; line-height: 34px;}
+input.adm_btn_search {width: 10%; float:left; margin-right:5px; width:35px; height:34px; border:0; line-height: 34px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
+.adm_btn_type4 {display:inline; width:80px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 210px; text-align: center;}
+.adm_btn_type5 {display:inline; width:82px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 220px; text-align: center;}
+
+#adm_select_box3 { border:none; display:inline-block; position: relative; top:-5px; left: 880px;}
+
+.join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px}
 /* End 김영지 작업 Admin */
  
 /* start 한진석 작업 (table) */

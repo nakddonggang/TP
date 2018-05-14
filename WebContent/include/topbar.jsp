@@ -8,12 +8,12 @@
 						String member_id = (String) session.getAttribute("member_id");
 						out.print(member_id + "님이 로그인하셨습니다");
 						%> | <a href="./MemberLogout.me">LOGOUT</a> | <a href="./MemberInfo.me">ACCOUNT</a><%
-					}else{	%><a href="#"  id="btn-open-dialog">LOGIN</a> | <a href="./MemberJoin.me">JOIN</a><%	}
+					}else{	%><a href="./MemberLogin.me"><!-- id="btn-open-login" -->LOGIN</a> | <a href="./MemberJoin.me">JOIN</a><%	}
 				%>
 			</div>
-			<div id="loginDialog">
+			<%-- <div id="loginDialog">
 				<jsp:include page="../include/login.jsp" />
-			</div>
+			</div> --%>
 		</li>
 	</ul>
 </div>
