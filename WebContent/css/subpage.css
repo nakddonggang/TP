@@ -153,12 +153,16 @@ p.sub_txt {margin: 15px 0 30px 0;}
 /* START 김영지 작업 Admin */
 .btn_btm_center .adm_btn__left { text-align: left;}
 .adminfo_join_form {padding: 5px;}
-.brd_txt_lst li > .con_lst > ul > li.adm_col_rc {width:5%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_rc {width:6%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_type {width:10%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_date {width:15%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_sub {width:20%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_subs {width:24%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_ex {width:40%; padding:0 20px;}
+ #adm_book_high{height: 80px; line-height: 80px;}
 .adm { margin-top: 20px;}
+.adms { width: 99%; margin: 5px auto;}
+.adms p {display: inline-block;}
 .btn_btm_center ul li.adm_btn_cancle {padding-right:0}
 #adm_brd_txt_lst li > .con_lst > ul > li {display:block; height:70px; line-height:70px; text-align:center;}
 #adm_brd_txt_lst { border: 2px solid black; width:100%;}
@@ -176,7 +180,7 @@ input.adm_btn_search {width: 10%; float:left; margin-right:5px; width:35px; heig
 .adm_btn_type4 {display:inline; width:80px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 210px; text-align: center;}
 .adm_btn_type5 {display:inline; width:82px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 220px; text-align: center;}
 
-#admin_select_box3 { border:none; float:right;}
+#adm_select_box3 { border:none; display:inline-block; position: relative; top:-5px; left: 880px;}
 /* End 김영지 작업 Admin */
  
 /* start 한진석 작업 (table) */
