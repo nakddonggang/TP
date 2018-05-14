@@ -41,7 +41,7 @@
 		<!-- //header -->
 
 		<!-- 본문 컨테이너 -->
-		<div class="container_cu">
+		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
 				
 				<!-- 메인 페이지 -->
@@ -55,7 +55,7 @@
 					  
 					  <div class="search_bx">
 							<form action="./BoardCurSearch.cu" method="post">
-								<input type="text" name="search" class="inp_search"><input type="submit" value="검색" class="btn_search" >
+								<input type="text" name="search" placeholder="큐레이션을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
 						</div>
 						
@@ -113,7 +113,7 @@
 					
 					if(startPage > pageBlock)	{ %><a href="BoardCurList.cu?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
 					for (int p = startPage; p <= endPage; p++) {	
-						if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+						if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지" id="currentPage"><%=p %></strong> &nbsp;<%}
 						else {%> &nbsp;<a href="BoardCurList.cu?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
 					}
 					if(endPage < pageCount){	%><a href="BoardCurList.cu?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }

@@ -68,6 +68,7 @@
 							<div class="view_cnt">
 								<p>Search_<span><%=count%></span></p>
 							</div>
+							<p class="sub_txt">이용자분들께 신속히 알려드릴 필요성이 있는 정보 및 자료를 제공해 드립니다.</p>
 
 							<ul class="brd_txt_lst">
 								<!-- 글목록 -->
@@ -135,7 +136,7 @@
 												class="prev"><span class="hide">이전 페이지</span></a>
 											<% }
 												for (int p = startPage; p <= endPage; p++) {
-													if (p == Integer.parseInt(pageNum)) {%>&nbsp;<strong title="현재 페이지"><%=p%></strong> &nbsp;<% } 
+													if (p == Integer.parseInt(pageNum)) {%>&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<% } 
 													else {%> &nbsp;<a href="BoardNoticeSearch.no?pageNum=<%=p%>&search=<%=search%>"><%=p%></a> &nbsp;<% }
 												}
 												if (endPage < pageCount) {%><a href="BoardNoticeSearch.no?pageNum=<%=startPage + pageBlock%>&search=<%=search%>"

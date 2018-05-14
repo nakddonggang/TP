@@ -68,7 +68,7 @@ $(function(){
 						<h1>Q&A</h1>
 							<div class="search_bx">
 							<form action="./BoardQnaSearch.qn" method="post">
-								<input type="text" name="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
+								<input type="text" name="search" placeholder="문의사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
 							</div>
 						
@@ -76,7 +76,7 @@ $(function(){
 								<p>Search_<span><%=count %></span></p>
 							</div>
 							<p class="sub_txt">
-								신청일로부터 주말 제외 3일 이내에 방문 신청이 승인되지 않았거나 신청 취소를 원하시면 지혜의숲(031-955-0082)번으로 연락 부탁드립니다.
+							게시 전 검색을 먼저 해주시고, 타인에 대한 욕설 및 비방글은 삼가주시기 바랍니다.
 							</p>
 							<ul class="brd_txt_lst">
 								<!-- 글목록 -->
@@ -129,7 +129,7 @@ $(function(){
 					
 						if(startPage > pageBlock)	{ %><a href="BoardQnaSearch.qn?pageNum=<%=startPage-pageBlock%>&search=<%=search%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
-							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지" id="currentPage"><%=p %></strong> &nbsp;<%}
 							else {%> &nbsp;<a href="BoardQnaSearch.qn?pageNum=<%=p%>&search=<%=search%>"><%=p %></a> &nbsp;<%}
 						}
 						if(endPage < pageCount){ %><a href="BoardQnaSearch.qn?pageNum=<%=startPage+pageBlock%>&search=<%=search%>" class="next"><span class="hide">다음 페이지</span></a><%	}
