@@ -14,11 +14,16 @@ public class MemberJoinAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberJoinAction execute()");
-	
 		request.setCharacterEncoding("UTF-8");
 		MemberDTO mDTO = new MemberDTO();
 		MemberDAO mDAO = new MemberDAO();
 		ActionForward forward = new ActionForward();
+		String phone = request.getParameter("phone_frist")+request.getParameter("member_phone1")+request.getParameter("member_phone2");
+		String email_check = request.getParameter("selectEmail");
+		if(email_check.equals("1")) {
+			email_check = request.getParameter("str_email02");
+		}
+		String email = request.getParameter("str_email01")+"@"+email_check;
 		int result;
 
 		mDTO.setMember_id(request.getParameter("member_id"));
@@ -27,8 +32,8 @@ public class MemberJoinAction implements Action{
 		mDTO.setMember_post(request.getParameter("member_post"));
 		mDTO.setMember_address1(request.getParameter("member_address1"));
 		mDTO.setMember_address2(request.getParameter("member_address2"));
-		mDTO.setMember_phone(request.getParameter("member_phone"));
-		mDTO.setMember_email(request.getParameter("member_email"));
+		mDTO.setMember_phone(phone);
+		mDTO.setMember_email(email);
 		
 		result = mDAO.insertMember(mDTO);
 	
