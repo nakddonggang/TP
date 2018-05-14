@@ -43,7 +43,7 @@
 				<div class="content">
 					<div>
 						<h5>막대그래프</h5>
-						<div id="bar-example" style="width:500px;"></div>
+						<div id="bar-example"></div>
 					</div>
 					<div></div>
 					<div></div>
