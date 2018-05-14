@@ -59,13 +59,13 @@
 									cur_content = cur_content.replaceAll("\u0020", "&nbsp;");
 									%>
 									
-										<li class="cu_col_title"><a href="#"><p><%=bDTO.getCur_subject() %></p></a></li>
+										<li class="cu_col_title"><%=bDTO.getCur_subject() %></li>
 										<li class="cu_col_date">작성일 :&nbsp;<span><%=date.format(bDTO.getCur_date()) %></span></li>
 										<li class="cu_col_rc"><span class="tit_date">조회수 :&nbsp;</span><span><%=bDTO.getCur_readcount() %></span></li>
 										  <div class="cu_col_thm">
 								           <img src="./upload/<%=bDTO.getCur_file()%>" width="700" height="700">
 								          </div>
-								        <p class="cu_col_content"><%=bDTO.getCur_content() %></p>
+								        <p class="cu_col_content"><%=cur_content%></p>
 								        <p class="cu_col_file">첨부파일 :&nbsp;<span><%=bDTO.getCur_file() %></span></p>	
 							       
 						            </ul>
@@ -86,7 +86,7 @@
 									  <%	if("admin".equals(member_id)) {
 										%><li class="btn_con_right">
 											<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'">
-											<input type="button" value="글삭제" class ="btn_type4" onclick="location.href='./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'">				
+											<input type="button" value="글삭제" id="deleteBoard" class ="btn_type4" onclick="location.href='./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'">				
 										  </li>
 										<%	}	%>
 								 </ul>
@@ -103,5 +103,19 @@
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+	
+<script type="text/javascript">
+$(document).ready(function(){
+	var pageNum = "<%=pageNum %>";
+	var cur_num = "<%=bDTO.getCur_num() %>";
+	
+	$("#deleteBoard").click(function(){
+		var result = confirm('정말 삭제하시겠습니까?');
+		if(result){}
+		else{location.replace("./BoardCurContent.cu?cur_num="+cur_num+"&pageNum="+pageNum); }
+	});
+	
+});
+</script>
 </body>
 </html>
