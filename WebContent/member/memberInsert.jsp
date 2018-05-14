@@ -199,10 +199,8 @@ $(document).ready(function() {
 			return;
 		}
 		
-		alert("ok");
+		$("#fr").submit();
 	});
-	
-	
 	
 });
 
@@ -230,7 +228,7 @@ $(document).ready(function() {
 					<h3>회원가입</h3>
 					
 					<div class='join_form'>
-						<form action="MemberJoinAction.me"  method="post"  name="fr" >
+						<form action="MemberJoinAction.me"  method="post"  name="fr"  id = "fr">
 							<ul class="row">
 								<li>
 									<ul class="row_sub">
@@ -271,11 +269,11 @@ $(document).ready(function() {
 									<ul class="row_sub">
 										<li class="title">Phone</li>
 										<li>
-										<select name = "phone_frist" class = "phone_frist">
-										<option value = "phone_010">010</option>
-										<option value = "phone_011">011</option>
-										<option value = "phone_016">016</option>
-										<option value = "phone_018">018</option>
+										<select name = "phone_frist" class ="phone_frist">
+										<option value = "010">010</option>
+										<option value = "011">011</option>
+										<option value = "016">016</option>
+										<option value = "018">018</option>
 										</select>
 										<input type="text" name="member_phone1" id ="member_phone1" value=""  class="inp_form" maxlength=4 ><input type="text" name="member_phone2" id ="member_phone2" value=""  class="inp_form2" maxlength=4></li>
 									</ul>
