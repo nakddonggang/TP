@@ -33,14 +33,15 @@
 				
 				for(int i=0; i<MemberBasketList.size(); i++){
 					MemberDTO bDTO = (MemberDTO)MemberBasketList.get(i);
-				}
 				%>
 				<tr>
-					<td><%=MemberDTO.book_number() %>책 번호</td>
-					<td><%=MemberDTO.basket_number() %>예약번호</td>
+					<td><%= %>책 번호</td>
+					<td><%=bDTO. %>예약번호</td>
 					<td>대출신청/삭제<input type="checkbox"></td>
 				</tr>
-				
+				<%
+				}
+				 %>
 				
 				
 <!-- 				<tr> -->
