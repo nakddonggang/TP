@@ -132,8 +132,34 @@ public class AdminFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			// 여기까지 Facility 구간
+		}else if (command.equals("/AdminFacilSugg.am")){
+			forward = new ActionForward();
+			forward.setPath("./admin/admFacilSugg.jsp");
+			forward.setRedirect(false);			
+		}else if(command.equals("/AdminFacilSuggInfo.am")) {
+			action = new AdminFacilSuggInfo();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) { e.printStackTrace();}
+		}else if(command.equals("/AdminFacilSuggUpdate.am")) {
+			action = new AdminFacilSuggUpdate();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) { e.printStackTrace();}
+		}else if(command.equals("/AdminFacilSuggAdd.am")) {
+			action = new AdminFacilSuggAdd();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) { e.printStackTrace();}
+		}else if(command.equals("/AdminFacilSuggAddAction.am")) {
+			action = new AdminFacilSuggAddAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) { e.printStackTrace();}
 		}
+		// 여기까지 Facility 구간
+		
+		
 		
 		// 이동
 		if (forward!=null){

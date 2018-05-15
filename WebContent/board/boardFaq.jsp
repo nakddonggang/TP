@@ -134,7 +134,7 @@
 								for (int p = startPage; p <= endPage; p++) {
 									if (p == Integer.parseInt(pageNum)) {
 										%>
-										&nbsp;<strong title="현재 페이지"><%=p%></strong> &nbsp;<%
+										&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<%
  									} else {
  										%>&nbsp;<a href="./BoardFaqList.fa?pageNum=<%=p%>"><%=p%></a>&nbsp;<%
  									}

@@ -15,7 +15,9 @@ public class FacilityDTO {
 	String obj_mname;			//	모델명		varchar(20)							물품 모델명
 	String obj_type;				//	물품종류	varchar(20)	check in ('chair','desk','mouse','keyboard','computer')		물품의 종류
 	String obj_enterprise;	//	업체명		varchar(20)							해당 물품 담당 업체명
-	String obj_phone;			//	연락처		char(14)								담당업체 연락처			
+	String obj_phone;			//	연락처		char(14)								담당업체 연락처	
+	String obj_condition;      // 시설 상태 varchar(100) 				시설 상태 적는것
+	String obj_d_reason;        // 시설의 상태이상 사유 적는곳
 	
 	//getter, setter 구현
 	public String getFacil_num() {
@@ -78,4 +80,17 @@ public class FacilityDTO {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
+	public String getObj_condition() {
+		return obj_condition;
+	}
+	public void setObj_condition(String obj_condition) {
+		this.obj_condition = obj_condition;
+	}
+	public String getObj_d_reason() {
+		return obj_d_reason;
+	}
+	public void setObj_d_reason(String obj_d_reason) {
+		this.obj_d_reason = obj_d_reason;
+	}
+	
 }
