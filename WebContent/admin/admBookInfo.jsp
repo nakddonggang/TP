@@ -64,7 +64,7 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-				
+				<div class="content">
 					
 					<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 					<div class='join_form adminfo_join_form' >
@@ -150,7 +150,7 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 				</div>
 				
 			</div>
-
+           </div>
 				</article>
 				<!-- //메인 페이지-->
 				
