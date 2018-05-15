@@ -32,6 +32,7 @@
 		List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
 	%>
 <!-- board/boardNews.jsp Notice 게시판  페이지 -->
+<iframe id="ifrm_filedown" style="position:absolute; z-index:1; visibility:hidden;"></iframe>   
 	<div class="wrapper">
 
 		<!-- header -->
@@ -94,7 +95,7 @@
 												}
 												%>
 												<p><%=notice_content %></p>	
-												<div class="file"><span>첨부파일</span><ul><%=file %></ul></div>
+												<div class="file"><span>첨부파일</span><ul><a href="#" class="down"><%=file %></a></ul></div>
 									<%
 										if ("admin".equals(member_id)) {
 											%><div class="btn_btm_board">
@@ -152,6 +153,16 @@ $(document).ready(function(){
 			var result = confirm('정말 삭제하시겠습니까?');
 			if(result){}
 			else{location.replace("./BoardNoticeList.no?pageNum="+pageNum);	}
+		});
+	});
+	
+	$('.down').each(function(index){
+		$(this).attr('id','down'+index);
+		var file = $('#down'+index).html();
+		var url = "./FileDownloadAction.no?filename="+file;
+		
+		$('#down'+index).click(function(){
+			$('#ifrm_filedown').attr('src',url);
 		});
 	});
 });
