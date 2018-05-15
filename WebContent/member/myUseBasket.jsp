@@ -19,50 +19,77 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <body>
+<%
+	List MemberBasketList = (List)request.getAttribute("bList");
+%>
 	<!-- member/myUseBasket.jsp / MyUseIndex >> 책바구니 페이지 -->
-	<div id="wrap">
-		<div id="main_menu">
-			<jsp:include page="../include/header.jsp" />
-<%-- 			<jsp:include page="../include/footer.jsp" /> --%>
-		</div>
+	<div class="wrapper">
 
-		<!-- 본문 시작되는 곳 -->
-		<article>
-			<h1>책 바구니</h1>
-			<table>
-				<tr>
-					<td>책 번호</td>
-					<td>예약번호</td>
-					<td>대출신청/삭제<input type="checkbox"></td>
-				</tr>
-				<%
-				List MemberBasketList = (List)request.getAttribute("bList");
+		<!-- header -->
+		<jsp:include page="../include/header.jsp" />
+		<!-- //header -->
+
+		<!-- 본문 컨테이너 -->
+		<div class="container">
+			<section class="fullpage SECTION_FULL_PAGE01">
+
+				<!-- 서브메뉴 -->
+				<jsp:include page="../include/submenu_main.jsp" />
+				<!-- //서브메뉴 -->
 				
-				for(int i=0; i<MemberBasketList.size(); i++){
-					MemberDTO mDTO = (MemberDTO)MemberBasketList.get(i);
-					%>
-				<tr>
-					<td><%=mDTO.getBook_number() %>책 번호</td>
-					<td><%=mDTO.getBasket_number() %>예약번호</td>
-					<td>대출신청/삭제<input type="checkbox"></td>
-				</tr>
-					<%
-				}
-				%>
+				<!-- 메인 페이지 -->
+				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
+					
+					<div class="content">
+						<div class=board>
+						
+						<h1>책 바구니</h1>
+						
+						<ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="view_lst">
+							<div class="con_lst">
+								<ul class="no_scroll title_t">
+									<li class="col_num">책 번호</li>
+									<li class="col_id">예약번호</li>
+									<li class="col_title">대출신청/삭제</li>
+								</ul>
+							</div>
+							<%
+							if(MemberBasketList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
+							else{
+								for(int i=0; i<MemberBasketList.size(); i++){
+									MemberDTO mDTO = (MemberDTO)MemberBasketList.get(i);
+									%>
+									<div class="con_lst">
+										<ul>
+											<li class="col_num"><%=mDTO.getBook_number() %></li>
+											<li class="col_id"><%=mDTO.getBasket_number() %></li>
+											<li class="col_title">대출신청/삭제</li>
+										</ul>
+									</div>
+								<%
+								}
+							}
+							%>
+							</li>
+						</ul>
 
-<!-- 				<tr> -->
-<!-- 					<td>책 번호</td> -->
-<!-- 					<td>예약번호</td> -->
-<!-- 					<td>대출신청/삭제<input type="checkbox"></td> -->
-<!-- 				</tr> -->
-			</table>
+						<div>
+							<input type="button" value="선택한 도서 예약하기"> 
+							<input type="button" value="삭제하기">
+						</div>
 
-			<div>
-				<input type="button" value="선택한 도서 예약하기"> 
-				<input type="button" value="삭제하기">
-			</div>
+					</div>
+				</div>
 
-		</article>
+				</article>
+				<!-- //메인 페이지-->
+				
+			</section>
+		</div>
+		<!-- //본문 컨테이너 -->
 	</div>
 </body>
 </html>
