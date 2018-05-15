@@ -147,4 +147,5 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
  
 /* start 한진석 작업 (table) */
 .view_lst .con_lst > ul.no_scroll .col_dlos {width:60%; padding:0 15px;}
+.write_form .row_sub .nofloat1{ width:200px; height:30px; background:#f6f6f6; border:0;}
 /* end 한진석 작업 (table) */

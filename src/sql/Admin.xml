@@ -449,4 +449,30 @@
 		values (#{facil_num} , #{facil_type} , #{facil_use})
 	</insert>
  
+ 	<select id="getFacility" parameterType="String" resultType="net.facility.db.FacilityDTO">
+		select * from facility
+		where facil_num = #{facil_num}
+	</select>
+ 	
+ 	<select id="getFacilList" parameterType="hashmap" resultType="net.facility.db.FacilityDTO">
+   	 	select f.facil_num, f.facil_use, s.obj_mname,s.obj_condition,s.obj_d_reason
+		from facility f
+		join seat s
+		on f.facil_num=s.facil_num where f.facil_num =#{facil_num} order by obj_mname limit #{startRow},#{pageSize}
+   	</select>
+   	
+   	<update id="updateFacilSugg" parameterType="net.facility.db.FacilityDTO">
+		update seat s join facility f on s.facil_num =f.facil_num
+		set f.facil_use=#{facil_use}, s.obj_condition=#{obj_condition} , s.obj_d_reason=#{obj_d_reason}
+		where f.facil_num=#{facil_num} and s.obj_mname=#{obj_mname};
+	</update>
+	
+	<select id="getFacilAddList"  resultType="net.facility.db.FacilityDTO">
+	 	select * from object
+	 </select>	
+	 
+	 <insert id="insertSeat" parameterType="net.facility.db.FacilityDTO">
+	 	insert into seat (facil_num, obj_mname)
+	 	values (#{facil_num}, #{obj_mname})
+	 </insert>
  </mapper>

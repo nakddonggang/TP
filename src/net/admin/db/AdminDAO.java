@@ -535,4 +535,35 @@ public class AdminDAO {
 		result = sqlsession.insert("AdminFacilityInsert", fDTO);
 		return result;
 	}
+	
+	public FacilityDTO getFacility(String facil_num){
+		FacilityDTO fDTO = new FacilityDTO();
+		fDTO = sqlsession.selectOne("getFacility", facil_num);
+		return fDTO;
+	}
+	
+	public List<FacilityDTO> getFacilList(String facil_num,int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("facil_num", facil_num);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<FacilityDTO> facilList = sqlsession.selectList("getFacilList", map);
+		return facilList;
+	}
+	
+	public void updateFacilSugg(FacilityDTO fDTO) {
+		int result = sqlsession.update("updateFacilSugg" , fDTO);
+		System.out.println(result);
+	}
+	
+	public List<FacilityDTO> getFacilAddList(){
+		List<FacilityDTO> facilList = sqlsession.selectList("getFacilAddList");
+		return facilList;
+	}
+	
+	public int insertSeat(FacilityDTO fDTO){
+		int result;
+		result=sqlsession.insert("insertSeat", fDTO);
+		return result;
+	}
 }
