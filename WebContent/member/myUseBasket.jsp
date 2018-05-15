@@ -63,10 +63,10 @@
 									MemberDTO mDTO = (MemberDTO)MemberBasketList.get(i);
 									%>
 									<div class="con_lst">
-										<ul>
-											<li class="col_num"><%=mDTO.getBook_number() %></li>
-											<li class="col_id"><%=mDTO.getBasket_number() %></li>
-											<li class="col_title">대출신청/삭제</li>
+										<ul class="no_scroll">
+											<li class="col_num"><p><%=mDTO.getBook_number() %></p></li>
+											<li class="col_num"><p><%=mDTO.getBasket_number() %></p></li>
+											<li class="col_title"><p>대출신청/삭제</p></li>
 										</ul>
 									</div>
 								<%
