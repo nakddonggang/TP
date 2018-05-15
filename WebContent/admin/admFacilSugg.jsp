@@ -41,9 +41,9 @@ request.setCharacterEncoding("UTF-8");
 				<div class="content">
 				
 					<div class="write_form">
-							<h1>Notice 글쓰기</h1>
+							<h1>시설관리</h1>
 							<form action="./AdminFacilSuggUpdate.am"  method="post"  name="fr">
-								<ul class="row">
+								<ul class="rowadmin">
 									<li>
 										<ul class="row_sub">
 											<li class="title">Facility Position</li>
@@ -71,46 +71,8 @@ request.setCharacterEncoding("UTF-8");
 												<%}%>			
 											</select></li>
 										</ul>
-									</li>
-									<li>
-										<ul class="row_sub">
-											<li class="title">시설상태</li>
-											<li class="inp_form">
-											<select name="category1">
-											<option value="facil_use" name="facil_use">사용가능</option>
-											<option value="facil_use" name="facil_use">사용불가능</option>
-											</select>
-<!-- 											<input type="text" name="object_condition" value="이용가능"> -->
-<!-- 											<input type="text" name="object_condition" value="이용불가능"> -->
-										</ul>
-									</li>
-									<li>
-										<ul class="row_sub">
-											<li class="title">자리 내용</li>
-											<% %>
-											<li class="inp_form">
-												<input type="text" name="obj_mname">
-												<select>
-												 <option name="obj_condition" value="obj_condition">사용가능</option>
-												 <option name="obj_condition" value="obj_condition">사용불가능</option>
-												</select>
-												<input type="text" name="object_condition" class="nofloat1">
-											</li>
-										</ul>
-											<%%>
-									</li>	
-										<div class="btn_btm_center">
-											<ul>
-												<li class="btn_cancle">
-													<input type="button" name="add" value="시설물 추가" class ="btn_type4" onclick="">
-												</li>
-												<li class="btn_cancle">
-													<input type="submit" value="시설물 수정" class ="btn_type4">
-												</li>
-											</ul>
-										</div>
-									
-								</ul>
+								</li>
+							</ul>
 							</form>
 						</div>
 

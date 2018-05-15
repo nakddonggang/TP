@@ -54,11 +54,11 @@ String pageNum = (String)request.getAttribute("pageNum");
 				<div class="content">
 				
 					<div class="write_form">
-							<h1>Notice 글쓰기</h1>
+							<h1>시설관리</h1>
 							<form action="./AdminFacilSuggUpdate.am"  method="post"  name="fr">
 							<input type="hidden" value=<%=facil_num%> name="facil_num" id="add1">
 							<input type="hidden" value=<%=facilList.size()%> name="facilList_size">
-								<ul class="row">
+								<ul class="rowadmin">
 									<li>
 										<ul class="row_sub">
 											<li class="title">Facility Position</li>
@@ -144,7 +144,10 @@ String pageNum = (String)request.getAttribute("pageNum");
 											<%}%>
 										</ul>	
 									</li>	
-										<div class="btn_btm_center">
+										
+									
+								</ul>
+								<div class="btn_btm_center">
 											<ul>
 												<li class="btn_cancle">
 													<input type="button" id="add" name="add" value="시설물 추가" class ="btn_type4" >
@@ -154,8 +157,6 @@ String pageNum = (String)request.getAttribute("pageNum");
 												</li>
 											</ul>
 										</div>
-									
-								</ul>
 							</form>
 						</div>
 
