@@ -87,9 +87,9 @@ public class MemberDAO {
 		return result;
 	}	
 	// 도서바구니 리스트
-	public List<MemberDTO> MemberBasketAdd(String mDTO){
+	public List<MemberDTO> MemberBasketList(String member_id){
 		List<MemberDTO> bList = new ArrayList<MemberDTO>();
-		bList = sqlsession.selectList("selectBasket", mDTO);
+		bList = sqlsession.selectList("MemberBasketList", member_id);
 		return bList;
 	}
 	

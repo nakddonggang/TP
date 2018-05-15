@@ -36,7 +36,7 @@
 					<td>대출신청/삭제<input type="checkbox"></td>
 				</tr>
 				<%
-				List MemberBasketList = (List)request.getAttribute("MemberBasketList");
+				List MemberBasketList = (List)request.getAttribute("bList");
 				
 				for(int i=0; i<MemberBasketList.size(); i++){
 					MemberDTO mDTO = (MemberDTO)MemberBasketList.get(i);
