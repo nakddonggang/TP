@@ -18,7 +18,6 @@ nav > div > ul > li.btn_newsletter {font-size:1.21em; background:#5e1012;}
 nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;} 
 
 .container {overflow:hidden; position:relative; min-width:1200px; padding-left:180px;} /* 본문 컨테이너 설정 */
-.container_cu {overflow:hidden; position:relative; min-width:1200px; padding-left:180px; z-index: -1}	/* curation 게시판 z-index 적용위해 추가함(ych) */
 
 .fullpage {z-index:2;} /* 본문 z-index설정 */
 
@@ -72,7 +71,6 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 	nav > div > ul > li.btn_newsletter {font-size:0.93em;}
 	
 	.container {min-width:100%; padding-left:128px;}
-	.container_cu {min-width:100%; padding-left:128px;}	/* curation 게시판 z-index 적용위해 추가함(ych) */
 	
 	.footer ul li {padding:10px 20px; word-wrap:break-word;}
 	
@@ -117,7 +115,6 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 	nav > div > ul > li.btn_newsletter a {text-align:center;} 
 	
 	.container {padding-left:0;}
-	.container_cu {padding-left:0;}	/* curation 게시판 z-index 적용위해 추가함(ych) */
 	
 	.footer {position:relative; top:30px; bottom:inherit; background:#262626; padding-bottom:20px;}
 	.footer ul li {text-align:center;}

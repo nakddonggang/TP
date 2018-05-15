@@ -206,7 +206,6 @@ ul.cu_brd_txt_lst > li.view_lst {float: left; width:100%;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.date {margin-right:30px;}
 /* end 윤창훈 작업(Curation List) */
 
-
 /* start 김예린 작업(Curation Content) */
 .view_lst .con_lst > ul.no_scroll .cu_col_title {display:block; width:38%; padding:0px 15px; float: left;}
 .view_lst .con_lst > ul.no_scroll .cu_col_date {display:block; width:15%; padding:0 15px; float: right; margin-right: 20px;}
@@ -216,3 +215,9 @@ ul.cu_brd_txt_lst > li.view_lst {float: left; width:100%;}
 .view_lst .con_lst > ul.no_scroll .cu_col_content {display:block; width:38%; padding:0 15px;}
 .view_lst .con_lst > ul.no_scroll .cu_col_file {display:block; width:38%; padding:0 15px;}
 /* end 김예린 작업(Curation Content) */
+
+/* start 윤창훈 작업(page) */
+strong#currentPage {font-weight: bold;}
+.prev {background: url("../resource/img/pagenate_btn_prev.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
+.next {background: url("../resource/img/pagenate_btn_next.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
+/* start 윤창훈 작업(page) */
