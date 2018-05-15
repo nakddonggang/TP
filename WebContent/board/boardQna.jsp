@@ -78,7 +78,7 @@ $(function(){
 							<p>Total_<span><%=count %></span></p>
 						</div>
 						<p class="sub_txt">
-							신청일로부터 주말 제외 3일 이내에 방문 신청이 승인되지 않았거나 신청 취소를 원하시면 지혜의숲(031-955-0082)번으로 연락 부탁드립니다.
+							게시 전 검색을 먼저 해주시고, 타인에 대한 욕설 및 비방글은 삼가주시기 바랍니다.
 						</p>
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
@@ -105,17 +105,17 @@ $(function(){
 									%>
 										<div class="con_lst">
 											
-											<ul class="no_scroll">
-												<li class="col_num"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=bDTO.getQna_num() %></p></a></li>
+											<ul class="no_scroll" onclick="location.href='./BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>'">
+												<li class="col_num"><p><%=bDTO.getQna_num() %></p></li>
 												<%if(bDTO.getMember_id()==null){
-													%><li class="col_id"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=anonymous %></p></a></li><%
+													%><li class="col_id"><p><%=anonymous %></p></li><%
 												}else{
-													%><li class="col_id"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=bDTO.getMember_id() %></p></a></li><%
+													%><li class="col_id"><p><%=bDTO.getMember_id() %></p></li><%
 												}%>
-												<li class="col_title"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><p><%=bDTO.getQna_subject() %></p></a></li>
-												<li class="col_date"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><span><%=date.format(bDTO.getQna_date()) %></span></a></li>
-												<li class="col_rc"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><%=bDTO.getQna_readcount() %></a></li>
-												<li class="col_check"><a href="BoardQnaContent.qn?qna_num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>"><%=check %></a></li>
+												<li class="col_title"><p><%=bDTO.getQna_subject() %></p></li>
+												<li class="col_date"><span><%=date.format(bDTO.getQna_date()) %></span></li>
+												<li class="col_rc"><p><%=bDTO.getQna_readcount() %></p></li>
+												<li class="col_check"><p><%=check %></p></li>
 											</ul>
 											
 										</div>

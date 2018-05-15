@@ -316,7 +316,7 @@
 		left join bbook bb
 		on b.book_number=bb.book_number
 		left join rbook rb
-		on b.book_number=rb.book_number order by b.book_author asc limit #{startRow}, #{pageSize}	 
+		on b.book_number=rb.book_number order by b.book_author limit #{startRow}, #{pageSize}	 
 	 </select>
 
 	 <select id="getBookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">

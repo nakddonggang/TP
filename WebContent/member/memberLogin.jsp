@@ -13,10 +13,19 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rng.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/login.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
+<%
+	String publicKeyModulus = (String) request.getAttribute("publicKeyModulus");
+	String publicKeyExponent = (String) request.getAttribute("publicKeyExponent");
+%>
 	<div class="wrapper">
 
 		<!-- header -->
@@ -35,28 +44,25 @@
 				<!-- 메인 페이지 -->
 					<div class="content">
 						<div class='member_content'>
-							<form action="./MemberLoginAction.me" method="post" name="fr">
-								<fieldset class="memberform">
-									<legend>로그인 페이지</legend>
+							<form action="./MemberLoginAction.me" method="post" name="securedLoginForm" id="securedLoginForm" onsubmit="return validateEncryptedForm()">
+								<fieldset>
 									<div class="row_group">
-										<div id="idDiv" class="join_row">
-											<span>
-												<label>아이디:</label>
-												<input type="text" name="member_id">
-											</span>
-										</div>
-										<div id="idDiv" class="join_row">
-											<span>
-												<label>비밀번호:</label>
-												<input type="password" name="member_pass">
-											</span>
-										</div>
+										<div class="info_txt"><p><span>아이디</span><input type="text" name="member_id" id="member_id"></p></div>
+										<div class="info_txt"><p><span>비밀번호</span><input type="password" name="member_pass" id="member_pass"></p></div>
+										<input type="hidden" id="rsaPublicKeyModulus" value="<%=publicKeyModulus%>" />
+						           		<input type="hidden" id="rsaPublicKeyExponent" value="<%=publicKeyExponent%>" />
+						           		<input type="hidden" name="securedUsername" id="securedUsername" value="" />
+										<input type="hidden" name="securedPassword" id="securedPassword" value="" />
+									</div>
+									<div class="btn_btm_center btn_btm_modal">
+										<ul>
+											<li class="btn_cancle"><input type="submit" value="로그인" class ="btn_type4"></li>
+											<li><input type="button" value="닫기" class ="btn_type4" id="BTN_CLOSE"></li>
+										</ul>
 									</div>
 								</fieldset>
-								<input type="button" value="로그인" onclick="sub()" class ="btn">
-								<input type="button" value="회원가입" onclick="location.href = './MemberJoin.me'" class ="btn">
-							</form>
-							</div>
+							</form>	
+						</div>
 					</div>
 				<!-- //메인 페이지-->
 				</article>
@@ -64,21 +70,6 @@
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
-<script>
-	function sub(){	//필수입력 아이디	
-		if(document.fr.member_id.value == ""){
-			alert("아이디를 입력해주시기 바랍니다");
-			document.fr.member_id.focus();
-			return;
-		}
-		
-		if(document.fr.member_pass.value == ""){
-			alert("비밀번호를 입력해주시기 바랍니다");
-			document.fr.member_pass.focus();
-			return;
-		}
-		document.fr.submit();
-	}
-</script>
+
 </body>
 </html>

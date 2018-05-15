@@ -14,8 +14,7 @@
 					
 					<li><a href="#">도서관 서비스</a>
 						<ul class="DIV_SUB_MNU">
-							<li><a href="./service/serveBook.jsp">(X)희망도서 신청</a></li>
-							<!-- 희망도서 신청 페이지 -->
+							<li><a href="./ServeBook.bk">희망도서 신청</a></li>
 							<li><a href="./Facility.fy">시설이용 신청</a></li>
 							<li><a href="./service/serveQues.jsp">(X)사서에게 물어보세요</a></li>
 						</ul></li>
@@ -30,7 +29,7 @@
 						
 					<li><a href="#">내 서재</a>
 						<ul class="DIV_SUB_MNU">
-							<li><a href="./member/myUseIndex.jsp">(X)이용현황</a></li>
+							<li><a href="./MemberBasketList.me">(X)이용현황</a></li>
 							<li></li>
 						</ul></li>
 						
@@ -38,13 +37,13 @@
 						<ul class="DIV_SUB_MNU">
 							<li><a href="./guide/guideIntro.jsp">(X)도서관 소개</a></li>
 							<li><a href="./GuideMap.fp">찾아오시는 길</a></li>
-							<li><a href="./guide/guideStatis.jsp">(X)도서관 통계</a></li>
+							<li><a href="./GuideStatis.fp">(X)도서관 통계</a></li>
 						</ul></li>
 					
 					<li><a href="#">관리자 페이지</a>
 						<ul class="DIV_SUB_MNU">
-							<li><a href="./AdminIndex.am">도서관리</a></li>
-							<li><a href="./AdminBookDLos.am">Test)손망실</a></li>
+							<li><a href="./AdminIndex.am">도서통합관리</a></li>
+							<li><a href="./AdminBookDLos.am">손망실관리</a></li>
 							<li><a href="./AdminMemberIndex.am">회원정보관리</a></li>
 							<li><a href="./AdminFacilSugg.am">시설관리</a></li>
 							<li><a href="#">(X)시설이용내역</a></li>

@@ -38,10 +38,21 @@ public class MemberFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/MemberLogin.me")) {
-			forward = new ActionForward();
-			forward.setPath("./member/memberLogin.jsp");
-			forward.setRedirect(false);
+		}
+		
+//		else if(command.equals("/MemberLogin.me")) {
+//			forward = new ActionForward();
+//			forward.setPath("./member/memberLogin.jsp");
+//			forward.setRedirect(false);
+//		}
+		
+		else if(command.equals("/MemberLogin.me")) {
+			action = new MemberLogin();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/MemberLoginAction.me")) {
 			action = new MemberLoginAction();
 			try {
@@ -95,16 +106,21 @@ public class MemberFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}if(command.equals("/MemberBasketAdd.me")){
+		}else if(command.equals("/MemberUseFacility.me")) {
+			action = new MemberUseFacility();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}else if(command.equals("/MemberBasketAdd.me")){
 			action = new MemberBasketAdd();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
 				e.printStackTrace();
-			}
-				
-				
-			}else if(command.equals("/MemberBasketList.me")){
+			}	
+		}else if(command.equals("/MemberBasketList.me")){
 				action = new MemberBasketList();
 				try {
 					forward = action.execute(request, response);
@@ -112,7 +128,7 @@ public class MemberFrontController extends HttpServlet{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-			} 
+			}  
 		
 		if(forward != null){
 			if(forward.isRedirect()){
