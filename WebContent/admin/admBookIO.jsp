@@ -34,6 +34,7 @@
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
+					<div class="content">
 				
 					<div class="total_search"></div>
 					<div class="curation"></div>
@@ -48,55 +49,55 @@
 					<li>
 						<ul class="row_sub">
 							<li class="title"><span>표제</span></li>
-							<li class="inp_form"><input type="text" name="book_subject"></li>
+							<li class="adm_inp_form"><input type="text" name="book_subject"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_sub">
 						<li class="title"><span>저자</span></li>
-						<li class="inp_form"><input type="text" name="book_author"></li>
+						<li class="adm_inp_form"><input type="text" name="book_author"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_sub">
 						<li class="title"><span>발행처</span></li>
-						<li class="inp_form"><input type="text" name="book_publisher"></li>
+						<li class="adm_inp_form"><input type="text" name="book_publisher"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_sub">
 						<li class="title"><span>발행일</span></li>
-						<li class="inp_form"><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"></li>
+						<li class="adm_inp_form"><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_sub">
 						<li class="title"><span>형태</span></li>
-						<li class="inp_form"><input type="text" name="book_form"></li>
+						<li class="adm_inp_form"><input type="text" name="book_form"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_sub">
 						<li class="title"><span>주기</span></li>
-						<li class="inp_form"><input type="text" name="book_notation"></li>
+						<li class="adm_inp_form"><input type="text" name="book_notation"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_sub">
 						<li class="title"><span>국제표준번호</span></li>
-						<li class="inp_form"><input type="text" name="book_isbn"></li>
+						<li class="adm_inp_form"><input type="text" name="book_isbn"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_sub">
 						<li class="title"><span>분류기호</span></li>
-						<li class="inp_form"><input type="text" name="book_classification"></li>
+						<li class="adm_inp_form"><input type="text" name="book_classification"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_sub">
 						<li class="title"><span>책 사진</span></li>
-						<li class="inp_form"><input type="file" name="book_file"></li>
+						<li class="adm_inp_form"><input type="file" name="book_file"></li>
 						</ul>
 					</li>
 				</ul>
@@ -111,7 +112,7 @@
 			</form>
 			</div>
 		 <!-- table 풀 페이지 div -->
-		
+			</div>
 			<!-- // 본문 공간 --> 
 				</article>
 			 </section>

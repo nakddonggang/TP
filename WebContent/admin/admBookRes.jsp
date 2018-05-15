@@ -49,6 +49,7 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 				<!-- 메인 페이지 -->
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
+					<div class="content">
 						<div class='join_form adminfo_join_form' >
 					<!-- 본문 공간 -->
 						<div class=board>
@@ -113,6 +114,7 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 							</ul>
 						 </div>	
 					</div>
+				</div>
 				</div>
 			</article>
 

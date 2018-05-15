@@ -73,6 +73,7 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 				<!-- 메인 페이지 -->
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
+					<div class="content">
 						
 <form action="./AdminBookSearch.am" method="get" id="SearchForm">
 		<fieldset id="adm_field">
@@ -227,6 +228,7 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 					}
 				} // if count 괄호 %>		
 						</div>	
+					</div>
 					</div>
 			</article>
 

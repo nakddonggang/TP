@@ -49,7 +49,9 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 				<!-- 메인 페이지 -->
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
+					<div class="content">
 						<div class='join_form adminfo_join_form' >
+						<h1 class="adm_h_1">손망실 책 관리</h1>
 						  	<p>
 								Total_<span><%=count%></span>
 							</p>

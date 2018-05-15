@@ -38,6 +38,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 				<!-- //서브메뉴 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
+					<div class="content">
 				<!-- 메인 페이지 -->
 				
 					<div class="total_search"></div>
@@ -45,7 +46,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
-					<h2>책 정보보기</h2>
+					<h2 class="adm_h_1">손망실 책 상세정보</h2>
 					<div class='join_form'>
 						<ul class="row">
 							<li>
@@ -57,7 +58,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>사유</span></li>
-										<li class="inp_form"><textarea cols="20" rows="10" readonly><%=bookList.getDbook_reason()%></textarea></li>
+										<li class="ta_form"><textarea cols="20" rows="10" readonly><%=bookList.getDbook_reason()%></textarea></li>
 								</ul>
 							</li>
 							<li>
@@ -75,7 +76,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 							</ul>
 						</div>
 					</div>
-					
+					</div>
 				<!-- //메인 페이지-->
 				</article>
 				

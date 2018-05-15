@@ -418,6 +418,13 @@ public class AdminDAO {
 		return result;
 	}
 	
+	// admBookReWrite 입고한 책 정보 수정해주기
+	public void admBookReWrite(BookDTO bookdto){
+		int result;
+		result = sqlsession.update("admBookReWrite", bookdto);
+		System.out.println(result);
+	}
+	
 	// 책 정보 눌렀을 때 상세정보 보여주기
 	public BookDTO getBookInfo(int book_number){
 		BookDTO bookList = sqlsession.selectOne("admin.getBookInfo", book_number);
