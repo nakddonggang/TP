@@ -46,6 +46,7 @@
 							<li><a href="./AdminIndex.am">도서관리</a></li>
 							<li><a href="./AdminBookDLos.am">Test)손망실</a></li>
 							<li><a href="./AdminMemberIndex.am">회원정보관리</a></li>
+							<li><a href="./AdminFacilSugg.am">시설관리</a></li>
 							<li><a href="#">(X)시설이용내역</a></li>
 						</ul></li>
 				</ul>
