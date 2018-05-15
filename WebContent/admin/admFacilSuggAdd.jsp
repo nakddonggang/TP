@@ -16,7 +16,7 @@ String facil_num = (String)request.getAttribute("facil_num");
 <body>
 <form action="./AdminFacilSuggAddAction.am?facil_num=<%=facil_num%>"  method="post"  name="fr">
 	<select name="obj_mname">
-<%for(int i= 1; i<facilList.size(); i++){
+<%for(int i= 0; i<facilList.size(); i++){
 	FacilityDTO fDTO = facilList.get(i);
 	%>
 	<option value="<%=fDTO.getObj_mname()%>"><%=fDTO.getObj_mname()%></option>
