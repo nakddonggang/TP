@@ -13,6 +13,11 @@
 		where member_id=#{member_id}
 	</select>
 	
+	<select id="getCheckId" parameterType="String" resultType="int">
+		select count(*) from member
+		where member_id=#{member_id}
+	</select>
+	
 	<delete id="deleteMember" parameterType="String">
 		delete from member where member_id=#{member_id}
 	</delete>

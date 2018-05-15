@@ -48,6 +48,29 @@
     }
 </script>
 <script type="text/javascript">
+var idcheck = 0;
+
+	function checkId() {
+		var inputid = $("#member_id").val();
+		$.ajax({
+			url:'./MemberIdCheck.me',
+			type:'POST',
+			data:{
+				'member_id':inputid
+			},
+			success:function(data) {
+				if(inputid == "" && data == '0') {
+					$("#member_id").css("background-color", "#FFCECE");
+				} else if(data == '0') {
+					 $("#member_id").css("background-color", "#B0F6AC");
+				} else if(data == '1') {
+					$("#member_id").css("background-color", "#FFCECE");
+				}
+				
+			}
+		});
+	}
+	
 $(document).ready(function() {
 	
 	$("#member_phone1").keyup(function() {
@@ -233,7 +256,7 @@ $(document).ready(function() {
 								<li>
 									<ul class="row_sub">
 										<li class="title"><span>ID</span></li>
-										<li class="inp_form"><input type="text" name="member_id"  id = "member_id" value="" ><input type = "button" name = "id_search" value = "중복확인"></li>
+										<li class="inp_form"><input type="text" name="member_id"  id = "member_id" value=""  onkeyup="checkId()"><span id = "idcheck_msg"></span></li>
 									</ul>
 								</li>
 								
