@@ -23,7 +23,7 @@ public class AdminFacilSuggUpdate implements Action{
 		fDTO.setFacil_num(request.getParameter("facil_num"));
 		fDTO.setFacil_use(request.getParameter("facil_use"));
 		
-		for(int i=1; i < facilList_size; i++){
+		for(int i=0; i < facilList_size; i++){
 			fDTO.setObj_mname(request.getParameter("obj_mname"+i));
 			fDTO.setObj_condition(request.getParameter("obj_condition"+i));
 			fDTO.setObj_d_reason(request.getParameter("obj_d_reason"+i));
