@@ -34,8 +34,8 @@ int num = Integer.parseInt(request.getParameter("num"));
 		
 		
 		forward.setPath("./MemberBasketList.me");
-	      forward.setRedirect(true);
-	      return forward;
+	    forward.setRedirect(true);
+	    return forward;
 	}
 
 }

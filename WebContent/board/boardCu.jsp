@@ -41,7 +41,7 @@
 		<!-- //header -->
 
 		<!-- 본문 컨테이너 -->
-		<div class="container">
+		<div class="container_cu">
 			<section class="fullpage SECTION_FULL_PAGE01">
 				
 				<!-- 메인 페이지 -->

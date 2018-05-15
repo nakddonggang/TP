@@ -39,20 +39,17 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 
 		<!-- 본문 컨테이너 -->
 		<div class="container">
+			
 			<section class="fullpage SECTION_FULL_PAGE01">
-
+			
 				<!-- 서브메뉴 -->
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
 				
-				<article class="mainmenu section SECTION">
-				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-				
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
-					<div class=""></div>
+					<article class="mainmenu section SECTION">
+					<jsp:include page="../include/topbar.jsp" />
+						<div class='join_form adminfo_join_form' >
 					<!-- 본문 공간 -->
 						<div class=board>
 						  <div class="view_cnt">
@@ -60,6 +57,7 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 								Total_<span><%=count%></span>
 							</p>
 						  </div>
+						  <div class="adm">			
 						  <ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
@@ -113,13 +111,15 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 									<input type="button" value="도서관리페이지" onclick="location.href='./AdminIndex.am'" class ="btn_type4 BTN_IF_LIST">
 								</li>
 							</ul>
-						  </div>
-						  			
-					<!-- // 본문 공간 -->
-				</article>
-			</section>
+						 </div>	
+					</div>
+				</div>
+			</article>
+
+		</section>
+		
 		</div>
-		<!-- //container -->
+		<!-- //본문 컨테이너 -->
 	</div>
 </body>
 </html>
