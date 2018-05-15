@@ -1,5 +1,4 @@
 function validateEncryptedForm() {
-	alert("start");
     var member_id = document.getElementById("member_id").value;
     var member_pass = document.getElementById("member_pass").value;
     if (!member_id || !member_pass) {
