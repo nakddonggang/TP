@@ -147,12 +147,12 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 							</p>
 							<div id="adm_select_box3">
 									<select name="sort"  id="book_sort">
-											<option value="" selected="selected">정렬</option>
-											<option value="./AdminBookSort.am?sort=book_subject">제목순</option>
-											<option value="./AdminBookSort.am?sort=book_author">저자순</option>
-											<option value="./AdminBookSort.am?sort=book_number">인기순</option>
-											<option value="./AdminBookSort.am?sort=book_pubDate">신작순</option>
-											<option value="./AdminBookSort.am?sort=book_date">입고순</option>
+											<option value=""  <%if(sort.equals("")){%>selected<%}%>>정렬</option>
+											<option value="./AdminBookSort.am?sort=book_subject" <%if(sort.equals("book_subject")) {%>selected<%}%>>제목순</option>
+											<option value="./AdminBookSort.am?sort=book_author" <%if(sort.equals("book_author")) {%>selected<%}%>>저자순</option>
+											<option value="./AdminBookSort.am?sort=book_number" <%if(sort.equals("book_number")) {%>selected<%}%>>인기순</option>
+											<option value="./AdminBookSort.am?sort=book_pubDate" <%if(sort.equals("book_pubDate")) {%>selected<%}%>>신작순</option>
+											<option value="./AdminBookSort.am?sort=book_date" <%if(sort.equals("book_date")) {%>selected<%}%>>입고순</option>
 									</select>
 							</div>		
 						<ul class="brd_txt_lst">
