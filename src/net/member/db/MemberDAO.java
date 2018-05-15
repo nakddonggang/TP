@@ -57,6 +57,11 @@ public class MemberDAO {
 		return mDTO;
 	}
 	
+	// 유저 중복 체크
+	public int MemberIdCheck(String member_id) {
+		return sqlsession.selectOne("getCheckId", member_id);
+	}
+	
 	//	맴버 탈퇴
 	public void DeleteMember(String member_id) {
 		sqlsession.delete("deleteMember" , member_id);
