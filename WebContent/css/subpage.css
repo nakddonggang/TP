@@ -41,7 +41,7 @@
 
 .write_form {margin:40px 0;}
 .write_form form {margin-bottom:50px;}
-.write_form .row {overflow:hidden; border-top:2px solid #464646;}
+.write_form .row {overflow:hidden; border-top:2px solid #464646; }
 .write_form .row li.half {float:left; width:50%;}
 .write_form .row_sub {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
 .write_form .row_sub > li {display:table-cell;vertical-align:middle;padding:10px;width: 100%;}
@@ -187,7 +187,7 @@ input.adm_btn_search {width: 10%; float:left; margin-right:5px; width:35px; heig
  
 /* start 한진석 작업 (table) */
 .view_lst .con_lst > ul.no_scroll .col_dlos {width:60%; padding:0 15px;}
-.write_form .row_sub .nofloat1{ width:200px; height:30px; background:#f6f6f6; border:0;}
+.write_form .rowadmin {overflow:hidden; border-top:2px solid #464646; border-bottom:2px solid #464646;}
 /* end 한진석 작업 (table) */
 
 /* start 윤창훈 작업(Curation List) */
