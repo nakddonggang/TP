@@ -45,15 +45,14 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 				<!-- 메인 페이지 -->
 					<div class="content">
 				
-					
-					<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 					<div class='join_form adminfo_join_form' >
 					<h3>도서 정보 수정하기</h3>
-					<form action="./AdminBookReWriteAction.am" method="post" enctype="multipart/form-data">
+					<form action="./AdminBookReWriteAction.am" method="post">
+						<input type="hidden" name="book_number" value="<%=bookList.getBook_number()%>">
 						<ul class="row">
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>고유번호 : <%=bookList.getBook_number()%></span></li>
+										<li class="title"><span>고유번호 : <%=bookList.getBook_number()%> </span></li>
 										<li class="inp_form"><img src="./upload/<%=bookList.getBook_file()%>" width="110" height="130"></li>
 								</ul>
 							</li>
@@ -78,7 +77,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>발행일</span></li>
-										<li class="inp_form"><input type="text" name="book_pubDate"  value="<%=date.format(bookList.getBook_pubDate())%>"></li>
+										<li class="inp_form"><input type="text" name="book_pubDate"  placeholder="yyyy-MM-dd 형식으로 입력해주세요"></li>
 								</ul>
 							</li>
 							<li>
@@ -106,12 +105,8 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 								</ul>
 							</li>
 							<li>
-								<ul class="row_sub">
-										<li class="title"><span>책 사진</span></li>
-										<li class="inp_form"><input type="file" name="book_file" value="<%=date.format(bookList.getBook_date())%>"></li>
-								</ul>
 							</li>
-						</ul>
+							</ul>
 							
 				<div class="btn_btm_center">
 				<ul>
