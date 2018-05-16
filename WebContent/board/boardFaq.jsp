@@ -86,7 +86,7 @@
  								%>
 									<div class="con_lst DIV_CON_LST">
 										<ul>
-											<li class="col_rc"><a href="#"><%=bDTO.getFaq_num()%></a></li>
+											<li class="col_rcFAQ"><a href="#"><%=bDTO.getFaq_num()%></a></li>
 											<li class="col_type"><a href="#"><p><%=bDTO.getFaq_type()%></p></a></li>
 											<li class="col_title"><a href="#"><p><%=bDTO.getFaq_subject()%></p></a></li>
 										</ul>

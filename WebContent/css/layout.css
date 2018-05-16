@@ -134,5 +134,5 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 	.SECTION_FULL_PAGE01 .arrow_wrap {top:52% !important;}
 	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-prev {left:20px !important; width:30px !important; height:30px !important; background-size:30px 30px !important;}
 	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-next {right:20px !important; width:30px !important; height:30px !important; background-size:30px 30px !important;}
-	
+	.content{width: 100%; margin: 0px;}
 }

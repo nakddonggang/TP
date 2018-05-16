@@ -96,8 +96,8 @@
 									%>
 										<div class="con_lst DIV_CON_LST">
 											<ul>
-												<li class="col_type"><a href="#"><p><%=bDTO.getNotice_type() %></p></a></li>
-												<li class="col_title"><a href="#"><p><%=bDTO.getNotice_subject() %></p></a></li>
+												<li class="col_typeNo"><a href="#"><p><%=bDTO.getNotice_type() %></p></a></li>
+												<li class="col_titleNo"><a href="#"><p><%=bDTO.getNotice_subject() %></p></a></li>
 												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getNotice_date()) %></span></li>
 											</ul>
 											
@@ -108,7 +108,7 @@
 												}
 												%>
 												<p><%=notice_content %></p>	
-												<div class="file"><span>첨부파일</span><ul><a href="#" class="down"><%=file %></a></ul></div>
+												<div class="file"><span class="No">첨부파일</span><ul><a href="#" class="down"><%=file %></a></ul></div>
 									<%
 										if ("admin".equals(member_id)) {
 											%><div class="btn_btm_board">
