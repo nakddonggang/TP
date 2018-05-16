@@ -122,10 +122,9 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 				</select>
 				<input type="text" id="search3" name="search3" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
 		</div>
-		
 		<div id="admin_select_box2">
-			<p>&nbsp;발행일
-				<select name="pubDate">
+			<p>&nbsp;발행일</p>
+				<select name="pubDate" id="admin_select2">
 					<option value="all">전체</option>
 					<option value="1">최근 1년</option>
 					<option value="2">최근 2년</option>
@@ -133,11 +132,11 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 					<option value="10">최근 10년</option>
 					<option value="20">최근 20년</option>
 				</select>
-			</p>
 		</div>
-		
+		<div id="admin_sort_submit">
 			<input type="submit" class="adm_btn_type4" value="상세검색">
 			<input type="reset" class="adm_btn_type5" value="입력 초기화">		
+		</div>
 		</fieldset>
 </form>
 								
@@ -161,15 +160,15 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 							<li class="view_lst">
 							<div class="con_lst">
 							<ul class="no_scroll title_t">
-								<li class="adm_col_rc">고유번호</li>
+								<li class="adm_col_rc">번호</li>
 								<li class="adm_col_type">사진</li>
 								<li class="adm_col_subs">제목</li>
 								<li class="adm_col_date">저자</li>
-								<li class="adm_col_date">출판사</li>
-								<li class="adm_col_rc">도서상태</li>
+								<li class="adm_col_type">출판사</li>
 								<li class="adm_col_rc">반납상태</li>
-								<li class="adm_col_type">예약일자</li>
-								<li class="adm_col_rc">예약현황</li>
+								<li class="adm_col_rc">예약상태</li>
+								<li class="adm_col_rc">예약일자</li>
+								<li class="adm_col_rc">책상태</li>
 							</ul>
 							</div>
 						<%
@@ -184,14 +183,14 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 						<div class="con_lst">
 							<ul class="no_scroll" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksortLists.getBook_number()%>'">
 								<li class="adm_col_rc" id="adm_book_high"><%=booksortLists.getBook_number()%></li>
-								<li class="adm_col_type" id="adm_book_high"><img src="./upload/<%=booksortLists.getBook_file()%>" width="70px" height="60px"></li>
+								<li class="adm_col_type" id="adm_book_high"><img src="./upload/<%=booksortLists.getBook_file()%>" width="70px" height="80px"></li>
 								<li class="adm_col_subs" id="adm_book_high"><%=booksortLists.getBook_subject()%></li>
 								<li class="adm_col_date" id="adm_book_high"><%=booksortLists.getBook_author()%></li>
-								<li class="adm_col_date" id="adm_book_high"><%=booksortLists.getBook_publisher()%></li>
-								<li class="adm_col_rc" id="adm_book_high"><%=booksortLists.getDbook_state()%></li>
+								<li class="adm_col_type" id="adm_book_high"><%=booksortLists.getBook_publisher()%></li>
 								<li class="adm_col_rc" id="adm_book_high"><%=booksortLists.getBbook_bstate()%></li>
-								<li class="adm_col_type" id="adm_book_high"><%=booksortLists.getRbook_date()%></li>
 								<li class="adm_col_rc" id="adm_book_high"><%=booksortLists.getRbook_check()%></li>
+								<li class="adm_col_rc" id="adm_book_high"><%=booksortLists.getRbook_date()%></li>
+								<li class="adm_col_rc" id="adm_book_high"><%=booksortLists.getDbook_state()%></li>
 							</ul>
 						</div><%}
 						}%>
