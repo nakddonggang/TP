@@ -29,6 +29,11 @@ public class AdminFacilSuggAddAction implements Action{
 		
 		AdminDAO adao = new AdminDAO();
 		result = adao.insertSeat(fDTO);
+		if(result == 1) {
+			System.out.println("성공");
+		} else {
+			System.out.println("실패");
+		}
 		
 		
 		response.setContentType("text/html;charset=utf-8");
