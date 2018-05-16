@@ -35,7 +35,7 @@ public class BookFrontController extends HttpServlet{
 					try {
 						forward = action.execute(request, response);
 					} catch (Exception e) {e.printStackTrace();}			
-				}else if(command.equals("/BookPopular.bk")){
+				} else if(command.equals("/BookPopular.bk")){
 					action = new BookPopular();
 					try{
 						forward = action.execute(request, response);
@@ -49,13 +49,25 @@ public class BookFrontController extends HttpServlet{
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-				}else if(command.equals("/BookSearch.bk")){
+				} else if(command.equals("/BookIndex.bk")){
+					action = new BookIndex();
+					try{
+						forward = action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
+				} else if(command.equals("/BookSearch.bk")){
 					action = new BookSearch();
 					try{
 						forward = action.execute(request, response);
 					}catch(Exception e){
 						e.printStackTrace();
 					}
+				}  else if (command.equals("/BookSort.bk")){
+					action = new ServeBookAction();
+					try{
+						forward = action.execute(request, response);
+					}catch(Exception e){e.printStackTrace();}
 				} else if (command.equals("/ServeBook.bk")){
 					forward = new ActionForward();
 					forward.setPath("./service/serveBook.jsp");
@@ -65,7 +77,8 @@ public class BookFrontController extends HttpServlet{
 						try{
 							forward = action.execute(request, response);
 						}catch(Exception e){e.printStackTrace();}
-					}
+						
+				}
 				
 		
 		if (forward!=null){
