@@ -37,6 +37,23 @@ $(window).on('load', function() {
 		modal: true,
 	});
 	
+	// 진석 수정중
+	$("#addFacilDialog").dialog({ 
+		autoOpen: false, 
+		width: 400, 
+		modal: true, 
+	});
+	
+	//시설추가 다이얼로그 오픈 버튼
+	$("#add").click(function() {
+		$("#addFacilDialog").dialog("open");
+	});
+	
+	$("#BTN_CLOSE").click(function() {
+		$("#loginDialog").dialog("close");
+	});
+	// 진석 수정끝
+	
 	//시설 세부정보 iframe 주소줄 변경기능
 	$(".btn-open-facil").click(function() {
 		var facil_add = $(this).attr("rel");
@@ -102,3 +119,7 @@ $(function() {
 		parent.$('.tab_content', parent.document).attr('src', listPage);
 	});
 });
+
+
+
+

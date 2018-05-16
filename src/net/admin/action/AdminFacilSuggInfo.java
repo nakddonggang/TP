@@ -45,10 +45,14 @@ public class AdminFacilSuggInfo implements Action {
 		List<FacilityDTO> facilList = adao.getFacilList(facil_num,startRow, pageSize);
 		
 		
+		List<FacilityDTO> facilAddList = adao.getFacilAddList();
+		
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("facilList", facilList);
+		request.setAttribute("facilAddList", facilAddList);
      	request.setAttribute("facil_use", facil_use);
      	request.setAttribute("facil_num", facil_num);
+     	
 		ActionForward forward = new ActionForward();
 		forward.setPath("./admin/admFacilSuggInfo.jsp");
 		forward.setRedirect(false);

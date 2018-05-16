@@ -16,6 +16,16 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#category1').change(function(){
+			var category1 = $("#category1 > option:selected").val();	
+			if(category1!=""){
+				$(location).attr('href', category1);
+			} else { }
+		});
+	});
+</script>
 </head>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -47,27 +57,27 @@ request.setCharacterEncoding("UTF-8");
 									<li>
 										<ul class="row_sub">
 											<li class="title">Facility Position</li>
-											<li class="inp_form"><select name="category1">
-												<option onclick="location.href='./AdminFacilSugg.am'">좌석선택</option>
+											<li class="inp_form"><select name="category1" id="category1">
+												<option value="" selected="selected">좌석선택</option>
 												<%
 												for(int i=1; i<8; i++){%>
-												<option onclick="location.href='./AdminFacilSuggInfo.am?facil_num=A<%=i%>'">A<%=i%></option>
+												<option value="./AdminFacilSuggInfo.am?facil_num=A<%=i%>">A<%=i%></option>
 												<%}%>
 												<%
 												for(int i=1; i<8; i++){%>
-												<option onclick="location.href='./AdminFacilSuggInfo.am?facil_num=B<%=i%>'">B<%=i%></option>
+												<option value="./AdminFacilSuggInfo.am?facil_num=B<%=i%>">B<%=i%></option>
 												<%}%>
 												<%
 												for(int i=1; i<8; i++){%>
-												<option onclick="location.href='./AdminFacilSuggInfo.am?facil_num=C<%=i%>'">C<%=i%></option>
+												<option value="./AdminFacilSuggInfo.am?facil_num=C<%=i%>">C<%=i%></option>
 												<%}%>
 												<%
 												for(int i=1; i<8; i++){%>
-												<option onclick="location.href='./AdminFacilSuggInfo.am?facil_num=D<%=i%>'">D<%=i%></option>
+												<option value="./AdminFacilSuggInfo.am?facil_num=D<%=i%>">D<%=i%></option>
 												<%}%>
 												<%
 												for(int i=1; i<5; i++){%>
-												<option onclick="location.href='./AdminFacilSuggInfo.am?facil_num=E<%=i%>am?='">E<%=i%></option>
+												<option value="./AdminFacilSuggInfo.am?facil_num=E<%=i%>">E<%=i%></option>
 												<%}%>			
 											</select></li>
 										</ul>
