@@ -22,6 +22,12 @@ public class MemberDTO {
 	//	Basket table
 	int book_number;				 //		책 고유번호		int(5)	FK							책 고유번호
 	int basket_number;				 //	바구니 예약 번호		int(5)	NOT NULL				책바구니 리스트 순서 번호
+	String book_subject;			//	표제					varchar(100)						책 제목
+	String book_author;				//	저자					char(40)								책 저자
+	String book_publisher;			//	발행처				char(20)								출판사
+	String book_isbn;				//	국제표준번호		int(18)								국제표준번호 ISBN
+	Date book_pubDate;				//	발행일				date									책 발행일
+	String book_file;				// 	책 사진 넣기			file
 	
 	//	good_Member table
 	int borrow_count;				 //	대출 횟수				int(5)								해당 회원의 책 대출 횟수
@@ -123,5 +129,41 @@ public class MemberDTO {
 	}
 	public void setGm_check(String gm_check) {
 		this.gm_check = gm_check;
+	}
+	public String getBook_subject() {
+		return book_subject;
+	}
+	public void setBook_subject(String book_subject) {
+		this.book_subject = book_subject;
+	}
+	public String getBook_author() {
+		return book_author;
+	}
+	public void setBook_author(String book_author) {
+		this.book_author = book_author;
+	}
+	public String getBook_isbn() {
+		return book_isbn;
+	}
+	public void setBook_isbn(String book_isbn) {
+		this.book_isbn = book_isbn;
+	}
+	public Date getBook_pubDate() {
+		return book_pubDate;
+	}
+	public void setBook_pubDate(Date book_pubDate) {
+		this.book_pubDate = book_pubDate;
+	}
+	public String getBook_publisher() {
+		return book_publisher;
+	}
+	public void setBook_publisher(String book_publisher) {
+		this.book_publisher = book_publisher;
+	}
+	public String getBook_file() {
+		return book_file;
+	}
+	public void setBook_file(String book_file) {
+		this.book_file = book_file;
 	}
 }

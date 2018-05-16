@@ -1,6 +1,7 @@
 package net.member.db;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -91,6 +92,15 @@ public class MemberDAO {
 		List<MemberDTO> bList = new ArrayList<MemberDTO>();
 		bList = sqlsession.selectList("MemberBasketList", member_id);
 		return bList;
+	}
+	// 도서바구니 선택항목 삭제
+	public void deleteBasket(List list){
+		for(int i=0; i<list.size();i++){
+			System.out.println(list.get(i));
+		}
+		HashMap map = new HashMap<>();
+		map.put("deleteList", list);
+		sqlsession.delete("deleteBasket",map);
 	}
 	
 	

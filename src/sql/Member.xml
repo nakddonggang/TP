@@ -45,6 +45,15 @@
 		on m.member_id = b.member_id
 		left join book bk
 		on b.book_number = bk.book_number
-		where m.member_id=#{member_id}
-	</select>	
+		where m.member_id=#{member_id} order by b.basket_number desc
+	</select>
+	
+	<delete id="deleteBasket" parameterType="hashmap">
+		delete from basket 
+		<where>
+		<foreach item="index" collection="deleteList" separator="or">
+			basket_number=#{index}
+		</foreach>
+		</where>
+	</delete>
 </mapper>

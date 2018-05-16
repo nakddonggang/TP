@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.member.db.MemberDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="net.member.action.MemberBasketList"%>
@@ -18,6 +19,13 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#delBtn').click(function(){
+		$('#basketForm').attr("action","./MemberBasketDelete.me");
+	});
+});
+</script>
 <body>
 <%
 	List MemberBasketList = (List)request.getAttribute("bList");
@@ -45,28 +53,36 @@
 						<div class=board>
 						
 						<h1>책 바구니</h1>
+						<form action="" method="post" id="basketForm">
 						
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
 							<div class="con_lst">
 								<ul class="no_scroll title_t">
-									<li class="col_num">책 번호</li>
-									<li class="col_id">예약번호</li>
-									<li class="col_title">대출신청/삭제</li>
+									<li class="col_num"></li>
+									<li class="adm_col_date">사진</li>
+									<li class="adm_col_subs">제목</li>
+									<li class="adm_col_date">저자</li>
+									<li class="adm_col_date">출판사</li>
+									<li class="col_date">발행일</li>
 								</ul>
 							</div>
 							<%
-							if(MemberBasketList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
+							if(MemberBasketList==null){	%><ul class="no_scroll"><li class="col_title"><p>게시글이 없습니다</p></li></ul><%	}
 							else{
+								SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 								for(int i=0; i<MemberBasketList.size(); i++){
 									MemberDTO mDTO = (MemberDTO)MemberBasketList.get(i);
 									%>
 									<div class="con_lst">
 										<ul class="no_scroll">
-											<li class="col_num"><p><%=mDTO.getBook_number() %></p></li>
-											<li class="col_num"><p><%=mDTO.getBasket_number() %></p></li>
-											<li class="col_title"><p>대출신청/삭제</p></li>
+											<li class="col_num"><input type="checkbox" name="checkbox" value="<%=mDTO.getBasket_number() %>"></li>
+											<li class="adm_col_date"><img src="./upload/<%=mDTO.getBook_file()%>" width="70" height="80"></li>
+											<li class="adm_col_subs"><p><%=mDTO.getBook_subject() %></p></li>
+											<li class="adm_col_date"><p><%=mDTO.getBook_author() %></p></li>
+											<li class="adm_col_date"><p><%=mDTO.getBook_publisher() %></p></li>
+											<li class="col_date"><p><%=date.format(mDTO.getBook_pubDate()) %></p></li>		
 										</ul>
 									</div>
 								<%
@@ -76,10 +92,16 @@
 							</li>
 						</ul>
 
-						<div>
-							<input type="button" value="선택한 도서 예약하기"> 
-							<input type="button" value="삭제하기">
+						<div class="btn_btm_board">
+							<ul>
+								<li class="btn_con_right">
+									<input type="submit" value="예약하기" class="btn_type4" id="resBtn"> 
+									<input type="submit" value="삭제하기" class="btn_type4" id="delBtn">
+								</li>
+							</ul>
 						</div>
+						
+						</form>
 
 					</div>
 				</div>

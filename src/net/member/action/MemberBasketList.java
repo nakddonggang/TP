@@ -21,6 +21,11 @@ public class MemberBasketList implements Action{
 		
 		HttpSession session =request.getSession();
 		String member_id =(String)session.getAttribute("member_id");
+		if(member_id==null){
+			forward.setPath("./MemberLogin.me");
+			forward.setRedirect(true);
+			return forward;
+		}
 		
 		MemberDAO mDAO = new MemberDAO();		
 		List<MemberDTO> bList=mDAO.MemberBasketList(member_id);	
