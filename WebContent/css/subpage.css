@@ -167,24 +167,41 @@ p.sub_txt {margin: 15px 0 30px 0;}
 .btn_btm_center ul li.adm_btn_cancle {padding-right:0}
 #adm_brd_txt_lst li > .con_lst > ul > li {display:block; height:70px; line-height:70px; text-align:center;}
 #adm_brd_txt_lst { border: 2px solid black; width:100%;}
-#adm_field { border: 2px solid black;	padding: 20px; width: 99%; margin: 2px auto; }
+#adm_field { border: 2px solid black;	padding: 20px; width: 99%; margin: 2px auto; position: relative;}
 #adm_field > legend { font-size: 18px;}
-#admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; position: relative; height : 40px; width:500px;}
-#admin_select_box #admin_select1 {width:15%; border : none; float : left; height:34px; line-height: 34px; margin : 0 5px; }
-#admin_select_box #admin_select2 { width: 18%; float:left; border : none; height:32px; line-height: 32px; margin:0 5px; padding: 0 4px;}
-#admin_select_box2 { border: 1px solid #FAE0D4; margin: 0 7px 7px 7px; padding : 1px 2px 2px 2px; position: relative; height : 40px; width: 18%; float: left;}
-#admin_select_box2 p {height:38px; line-height: 38px; }
-#admin_select_box2 select { border: none; height:35px; line-height: 35px; margin : 0; float: left; position: absolute; right: 10px;}
+#admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; height : 40px; width:500px;}
+#admin_select_box #admin_select1 {width:70px; border : none; float : left; height:34px; line-height: 34px; margin : 0 5px; }
+#admin_select_box #admin_select2 { width: 70px; float:right; border : none; height:32px; line-height: 32px; margin:0 5px; padding: 0 4px;}
+#admin_select_box2 { border: 1px solid #FAE0D4; margin: 0 7px 7px 7px; padding : 1px 2px 2px 2px; height : 40px; width: 150px; position: relative;}
+#admin_select_box2 p {height:38px; line-height: 38px; width: 30px; float: left; position: absolute; left:2px; }
+#admin_select_box2 select { border: none; height:35px; line-height: 35px; margin : 0; float: left; position: absolute; right: 2px;}
 input.adm_inp_search {float:left; width:50%; height:34px; border:0; line-height: 34px;}
 input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; height:34px; border:0; line-height: 34px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
 #adm_select_box3 { border:none; display:inline-block; position: absolute; top:10px; right:15px;}
 /* end of 상세검색 하는 부분 */
-.adm_btn_type4 {display:inline; width:9%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 190px; text-align: center;}
-.adm_btn_type5 {display:inline; width:9%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 200px; text-align: center;}
+.adm_btn_type4 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 190px; text-align: center;}
+.adm_btn_type5 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 200px; text-align: center;}
 
 .join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px}
 
 .adm_h_1{ font-size: 17px;}
+
+/*통합검색 페이지 제일 작게 했을 떄 검색창이 망가져서 미디어쿼리 사용함*/
+@media (max-width:767px){
+	#admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; height : 40px; width:85%;}
+#admin_select_box #admin_select1 {width:20%; border : none; float : left; height:34px; line-height: 34px; margin : 0 4px; }
+#admin_select_box #admin_select2 { width: 20%; float:right; border : none; height:32px; line-height: 32px; margin:0 4px; padding: 0 4px;}
+input.adm_inp_search {float:left; width:40%; height:34px; border:0; line-height: 34px;}
+input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; border:0; line-height: 34px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
+
+#admin_select_box2 { border: 1px solid #FAE0D4; margin: 0 7px 7px 7px; padding : 1px 2px 2px 2px; height : 40px; width: 30%; position: relative;}
+#admin_select_box2 p {height:38px; line-height: 38px; width: 30%; float: left; position: absolute; left:2px; }
+#admin_select_box2 select { border: none; height:35px; line-height: 35px; margin : 0; float: left; position: absolute; right: 2px; width: 50%;}
+#admin_sort_submit { margin: 0 0 0 20%; height:40px; width : 70%; position: relative;}
+#admin_sort_submit .adm_btn_type4 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:17%;  text-align: center;}
+#admin_sort_submit .adm_btn_type5 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:47%; text-align: center; }
+
+}
 /* End 김영지 작업 Admin */
  
 /* start 한진석 작업 (table) */

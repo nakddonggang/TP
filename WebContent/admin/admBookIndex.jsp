@@ -122,7 +122,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				<input type="text" id="search3" name="search3" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
 		</div>
 		<div id="admin_select_box2">
-			<p>&nbsp;발행일
+			<p>&nbsp;발행일</p>
 				<select name="pubDate" id="admin_select2">
 					<option value="all">전체</option>
 					<option value="1">최근 1년</option>
@@ -131,11 +131,11 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					<option value="10">최근 10년</option>
 					<option value="20">최근 20년</option>
 				</select>
-			</p>
 		</div>
-		
+		<div id="admin_sort_submit">
 			<input type="submit" class="adm_btn_type4" value="상세검색">
 			<input type="reset" class="adm_btn_type5" value="입력 초기화">		
+		</div>
 		</fieldset>
 </form>
 					
