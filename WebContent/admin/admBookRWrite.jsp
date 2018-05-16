@@ -19,33 +19,12 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
-<script type="text/javascript">
-function bbook(){
-	var bbook = confirm("대출예약을 하시겠습니까?");
-	if(bbook==true){
-		document.fr.action="";
-		document.fr.submit();
-	} else{
-		return;
-	}
-}
-function basket(){
-	var basket = confirm("책바구니에 담겠습니까?");
-	if(basket==true){
-		document.fr.action="";
-		document.fr.submit();
-	} else{
-		return;
-	}	
-}
-</script>
 </head>
 <body>
 <%
 int book_number = Integer.parseInt(request.getParameter("book_number"));
 String pageNum = request.getParameter("pageNum");
 BookDTO bookList = (BookDTO)request.getAttribute("bookList");
-String dbook_reason= (String)request.getAttribute("dbook_reason");
 %>
 	<div class="wrapper">
 
@@ -69,7 +48,8 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 					
 					<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 					<div class='join_form adminfo_join_form' >
-					<h3>도서 상세보기</h3>
+					<h3>도서 정보 수정하기</h3>
+					<form action="./AdminBookReWriteAction.am" method="post" enctype="multipart/form-data">
 						<ul class="row">
 							<li>
 								<ul class="row_sub">
@@ -80,55 +60,55 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>표제</span></li>
-										<li class="inp_form"><%=bookList.getBook_subject()%></li>
+										<li class="inp_form"><input type="text" name="book_subject" value="<%=bookList.getBook_subject()%>"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>저자</span></li>
-										<li class="inp_form"><%=bookList.getBook_author()%></li>
+										<li class="inp_form"><input type="text" name="book_author" value="<%=bookList.getBook_author()%>"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>발행처</span></li>
-										<li class="inp_form"><%=bookList.getBook_publisher()%></li>
+										<li class="inp_form"><input type="text" name="book_publisher" value="<%=bookList.getBook_publisher()%>"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>발행일</span></li>
-										<li class="inp_form"><%=date.format(bookList.getBook_pubDate())%></li>
+										<li class="inp_form"><input type="text" name="book_pubDate"  value="<%=date.format(bookList.getBook_pubDate())%>"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>형태</span></li>
-										<li class="inp_form"><%=bookList.getBook_form()%></li>
+										<li class="inp_form"><input type="text" name="book_form" value="<%=bookList.getBook_form()%>"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>주기</span></li>
-										<li class="inp_form"><%=bookList.getBook_notation()%></li>
+										<li class="inp_form"><input type="text" name="book_notation" value="<%=bookList.getBook_notation()%>"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>국제표준번호</span></li>
-										<li class="inp_form"><%=bookList.getBook_isbn()%></li>
+										<li class="inp_form"><input type="text" name="book_isbn" value="<%=bookList.getBook_isbn()%>"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>분류기호</span></li>
-										<li class="inp_form"><%=bookList.getBook_classification()%></li>
+										<li class="inp_form"><input type="text" name="book_classification" value="<%=bookList.getBook_classification()%>"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>입고일</span></li>
-										<li class="inp_form"><%=date.format(bookList.getBook_date())%></li>
+										<li class="title"><span>책 사진</span></li>
+										<li class="inp_form"><input type="file" name="book_file" value="<%=date.format(bookList.getBook_date())%>"></li>
 								</ul>
 							</li>
 						</ul>
@@ -136,23 +116,15 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 				<div class="btn_btm_center">
 				<ul>
 					<li class="adm_btn_cancle">
-						<input type="button" value="책 정보 수정" onclick="location.href='./AdminBookReWrite.am?book_number=<%=bookList.getBook_number()%>'" class ="btn_type4 BTN_IF_LIST">
+						<input type="submit" value="수정하기"  class ="btn_type4 BTN_IF_LIST">
 					</li>
 					<li class="adm_btn__left">
-						<input type="button" value="목록보기" onclick="history.back()" class ="btn_type4 BTN_IF_LIST b">
-					</li>
-					<li class="adm_btn__left">
-						<form action="./AdminBookDLosWrite.am" method="post">
-						<input type="hidden" name="book_number" value="<%=bookList.getBook_number()%>"	>
-						<%if(dbook_reason == null){%> 
-						<input type="submit" value="손망실" class ="btn_type4 BTN_IF_LIST"><%
-						 }%>
-						</form>
+						<input type="reset" value="취소" class ="btn_type4 BTN_IF_LIST">
 					</li>
 				</ul>
 				
 				</div>
-				
+				</form>
 			</div>
 			</div>
 				</article>

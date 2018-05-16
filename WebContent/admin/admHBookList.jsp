@@ -50,6 +50,7 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 				<!-- 메인 페이지 -->
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
+					<div class="content">
 						<div class='join_form adminfo_join_form' >
 							<h2>희망도서 신청 목록</h2>
 							<p>
@@ -118,6 +119,7 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 				} // if count 괄호 %>		
 						</div>	
 					</div>
+				</div>
 				</div>
 			</article>
 

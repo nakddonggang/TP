@@ -72,6 +72,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				<!-- 메인 페이지 -->
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
+					<div class="content">
 						
 <form action="./AdminBookSearch.am" method="get" id="SearchForm">
 		<fieldset id="adm_field">
@@ -120,10 +121,9 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				</select>
 				<input type="text" id="search3" name="search3" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
 		</div>
-		
 		<div id="admin_select_box2">
 			<p>&nbsp;발행일
-				<select name="pubDate">
+				<select name="pubDate" id="admin_select2">
 					<option value="all">전체</option>
 					<option value="1">최근 1년</option>
 					<option value="2">최근 2년</option>
@@ -139,8 +139,8 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 		</fieldset>
 </form>
 					
-						<div class="adms">
-							<h1 style="font-size:18px; text-align:center;">&lt; 통합도서관리시스템 &gt;</h1>
+						<div class="adms" >
+							<h1 class="adm_h_1">&lt; 통합도서관리시스템 &gt;</h1>
 							<p>
 								Total_<span><%=count%></span>	
 							</p>	
@@ -162,15 +162,15 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<li class="view_lst">
 							<div class="con_lst">
 							<ul class="no_scroll title_t">
-								<li class="adm_col_rc">고유번호</li>
+								<li class="adm_col_rc">번호</li>
 								<li class="adm_col_type">사진</li>
 								<li class="adm_col_subs">제목</li>
 								<li class="adm_col_date">저자</li>
-								<li class="adm_col_date">출판사</li>
-								<li class="adm_col_rc">도서상태</li>
+								<li class="adm_col_type">출판사</li>
 								<li class="adm_col_rc">반납상태</li>
-								<li class="adm_col_type">예약일자</li>
-								<li class="adm_col_rc">예약현황</li>
+								<li class="adm_col_rc">예약상태</li>
+								<li class="adm_col_rc">예약일자</li>
+								<li class="adm_col_rc">책상태</li>
 							</ul>
 							</div>
 						<%
@@ -188,11 +188,11 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 								<li class="adm_col_type" id="adm_book_high"><img src="./upload/<%=bookLists.getBook_file()%>" width="70px" height="80px"></li>
 								<li class="adm_col_subs" id="adm_book_high"><%=bookLists.getBook_subject()%></li>
 								<li class="adm_col_date" id="adm_book_high"><%=bookLists.getBook_author()%></li>
-								<li class="adm_col_date" id="adm_book_high"><%=bookLists.getBook_publisher()%></li>
-								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getDbook_state()%></li>
+								<li class="adm_col_type" id="adm_book_high"><%=bookLists.getBook_publisher()%></li>
 								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getBbook_bstate()%></li>
-								<li class="adm_col_type" id="adm_book_high"><%=bookLists.getRbook_date()%></li>
 								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getRbook_check()%></li>
+								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getRbook_date()%></li>
+								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getDbook_state()%></li>
 							</ul>
 						</div><%}
 						}%>
@@ -229,6 +229,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					}
 				} // if count 괄호 %>		
 						</div>	
+					</div>
 					</div>
 			</article>
 

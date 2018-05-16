@@ -366,6 +366,13 @@
 	 	#{book_form}, #{book_notation}, #{book_isbn}, #{book_classification}, now(), #{book_file})
 	 </insert>
 	 
+	 <update id="admBookReWrite" parameterType="net.book.db.BookDTO">
+	 	update book set book_subject=#{book_subject}, book_author=#{book_author}, book_publisher= #{book_publisher},
+	 	book_pubDate=#{book_pubDate}, book_form=#{book_form}, book_notation=#{book_notation},
+	 	book_isbn=#{book_isbn}, book_classification=#{book_classification}, book_file=#{book_file}
+	 	where book_number=#{book_number}
+	 </update>
+	 
 	 <select id="getBookInfo"  parameterType="int" resultType="net.book.db.BookDTO">
 	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, b.book_pubDate, b.book_form, b.book_notation,
 	 	 b.book_isbn, b.book_classification, b.book_date, d.dbook_reason, d.dbook_state , b.book_file

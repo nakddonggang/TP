@@ -74,11 +74,11 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 			<!-- 메인 페이지 -->
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
+					<div class="content">
 						
 <form action="./AdminBookSearch.am" method="get" id="SearchForm">
 		<fieldset id="adm_field">
 			<legend>&nbsp;통합검색&nbsp;</legend>
-	
 		<div id="admin_select_box">
 				<select name="category1" id="admin_select1">
 					<option value="all" >전체</option>
@@ -142,7 +142,7 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 </form>
 					
 						<div class="adms">	
-							<h1 style="font-size:18px; text-align:center;">&lt;통합도서관리시스템&gt;</h1>
+							<h1 style="text-align:center;">&lt;통합도서관리시스템&gt;</h1>
 							<p>
 								Total_<span><%=count%></span>
 							</p>
@@ -228,6 +228,7 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 					}
 				} // if count 괄호 %>		
 						</div>	
+					</div>
 					</div>
 			</article>
 
