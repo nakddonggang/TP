@@ -50,7 +50,7 @@ $(window).on('load', function() {
 	});
 	
 	$("#BTN_CLOSE").click(function() {
-		$("#loginDialog").dialog("close");
+		$("#BTN_CLOSE1").dialog("close");
 	});
 	// 진석 수정끝
 	

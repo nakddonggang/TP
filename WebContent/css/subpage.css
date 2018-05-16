@@ -7,15 +7,15 @@
 .member_content .btn {    color: #fff;    background-color: #8e8e8e;    border:none;    outline:none;    width: calc(50% - 1.4px);    font-size: 1.6em;	cursor:pointer;	}
 .loginmodal {	width:100%;	}
 
-.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666;}
+.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
 .search_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
 .search_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
 .search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
 
 /* start 게시판 부분 */
-.board {position:relative;}
-.board .search_bx {top:-5px;}
-.view_cnt {position:relative; top:-5px; font-size:0.86em; font-family:"Noto_M"; color:#666;}
+.board {position:relative;              margin-top: 100px; padding: 0 30px;}
+.board .search_bx { top: -30px; margin-right: 30px;}
+.view_cnt {position:relative; top:-5px; font-size:0.86em; font-family:"Noto_M"; color:#666; }
 .brd_txt_lst {overflow:hidden; position:relative; margin-bottom:30px; border-top:2px solid #464646; border-bottom:1px solid #464646;}
 .brd_txt_lst li {float:left;}
 .brd_txt_lst > li {width:100%;}
@@ -136,7 +136,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .view_lst .con_lst > ul.no_scroll .col_con_avg {width:20%; padding:0 15px; float: right;}
 .view_lst .con_lst > ul.no_scroll .col_con_email {width:35%; padding:0 5px; float: right;}
 .view_lst .con_lst .con_detail_block {display:block; width:100%; height:100%; padding:20px; background:#f5f5f5;}
-p.sub_txt {margin: 15px 0 30px 0;}
+p.sub_txt {margin: 15px 0 30px 0; }
 /* end 윤창훈 작업(Q&A) */
 
 /* start 황해남 작업(Facility) */
@@ -221,3 +221,38 @@ strong#currentPage {font-weight: bold;}
 .prev {background: url("../resource/img/pagenate_btn_prev.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
 .next {background: url("../resource/img/pagenate_btn_next.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
 /* start 윤창훈 작업(page) */
+
+
+
+
+
+/*한진석 전체 css*/
+/* board css*/
+.text_top{margin: 100px 30px 0 30px;}
+h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
+.paginate{    text-align: center;}
+
+.dl_box{margin: 30px 0;}
+.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.14em; margin: 3px 0;}
+.dl_box dl dd{font-size: 1.02em; margin: 3px 0;}
+.clean{clear: both;}
+
+.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
+.search_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
+.search_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
+.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
+/* board css end*/
+@media (max-width:767px){
+	/* board css*/
+	.board .search_bx { top: -25px; margin-right: 20px;}
+	.search_bx { right:0; width:60%;}
+    .search_bx input.inp_search {width:100%;  paddind:0px; font-size:0.75em;  }
+    .search_bx input.btn_search {position:absolute; right:0;}
+    .board {    width: 100% !important;height: 100%!important; margin-top: 20px; padding: 0 20px;}
+	 h3 { top: 98px; margin-bottom: 20px; font-size: 1.5em;}
+	.brd_txt_lst li > .con_lst > ul > li {font-size: 0.85em; }
+	.brd_txt_lst li > .con_lst > ul > li.col_date{padding: 0px 10px 0px 0px;}
+	.text_top{margin: 30px 30px 0 30px; border: 1px solid red; }
+	/* board css end*/
+}
+
