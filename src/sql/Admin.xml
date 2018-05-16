@@ -367,9 +367,9 @@
 	 </insert>
 	 
 	 <update id="admBookReWrite" parameterType="net.book.db.BookDTO">
-	 	update book set book_subject=#{book_subject}, book_author=#{book_author}, book_publisher= #{book_publisher},
+	 	update book set book_subject=#{book_subject}, book_author=#{book_author}, book_publisher=#{book_publisher},
 	 	book_pubDate=#{book_pubDate}, book_form=#{book_form}, book_notation=#{book_notation},
-	 	book_isbn=#{book_isbn}, book_classification=#{book_classification}, book_file=#{book_file}
+	 	book_isbn=#{book_isbn}, book_classification=#{book_classification}
 	 	where book_number=#{book_number}
 	 </update>
 	 

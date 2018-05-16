@@ -23,15 +23,12 @@ public class AdminBookReWriteAction implements Action{
 		request.setCharacterEncoding("UTF-8");
 		
 		// file 객체
-		String realPath=request.getRealPath("/upload");
-		System.out.println("upload폴더 물리적 경로: "+realPath);		
-		int maxSize=5*1024*1024;
-		MultipartRequest multi=new MultipartRequest(request, realPath, maxSize,"utf-8",new DefaultFileRenamePolicy());
 		
 		// book_number 찾기
-		String book_number=request.getParameter("book_number");
+		int book_number=Integer.parseInt(request.getParameter("book_number"));
+		
 		// 발행일 받아오기
-		String book_pubDate = multi.getParameter("book_pubDate");
+		String book_pubDate = request.getParameter("book_pubDate");
 		System.out.println(book_pubDate);
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = (Date)format.parse(book_pubDate);
@@ -39,15 +36,15 @@ public class AdminBookReWriteAction implements Action{
 
 		// BookDTO 객체 생성 및 파라미터값 받기
 		BookDTO bookdto = new BookDTO();
-		bookdto.setBook_subject(multi.getParameter("book_subject"));
-		bookdto.setBook_author(multi.getParameter("book_author"));
+		bookdto.setBook_number(book_number);
+		bookdto.setBook_subject(request.getParameter("book_subject"));
+		bookdto.setBook_author(request.getParameter("book_author"));
 		bookdto.setBook_pubDate(date);
-		bookdto.setBook_publisher(multi.getParameter("book_publisher"));
-		bookdto.setBook_form(multi.getParameter("book_form"));
-		bookdto.setBook_notation(multi.getParameter("book_notation"));
-		bookdto.setBook_isbn(multi.getParameter("book_isbn"));
-		bookdto.setBook_classification(multi.getParameter("book_classification"));
-		bookdto.setBook_file(multi.getFilesystemName("book_file"));
+		bookdto.setBook_publisher(request.getParameter("book_publisher"));
+		bookdto.setBook_form(request.getParameter("book_form"));
+		bookdto.setBook_notation(request.getParameter("book_notation"));
+		bookdto.setBook_isbn(request.getParameter("book_isbn"));
+		bookdto.setBook_classification(request.getParameter("book_classification"));
 		
 		// AdminDAO 객체 생성 및 insert 메소드 불러오기
 			// if 문 result 값
