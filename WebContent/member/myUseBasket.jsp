@@ -24,11 +24,19 @@ $(document).ready(function(){
 	$('#delBtn').click(function(){
 		$('#basketForm').attr("action","./MemberBasketDelete.me");
 	});
+	
+	$('#allCheck').click(function(){
+		if($('#allCheck').prop("checked")){
+			$('input[type=checkbox]').prop("checked",true);
+		}else{
+			$('input[type=checkbox]').prop("checked",false);
+		}
+	});
 });
 </script>
 <body>
 <%
-	List MemberBasketList = (List)request.getAttribute("bList");
+	List<MemberDTO> MemberBasketList = (List<MemberDTO>)request.getAttribute("bList");
 %>
 	<!-- member/myUseBasket.jsp / MyUseIndex >> 책바구니 페이지 -->
 	<div class="wrapper">
@@ -60,7 +68,7 @@ $(document).ready(function(){
 							<li class="view_lst">
 							<div class="con_lst">
 								<ul class="no_scroll title_t">
-									<li class="col_num"></li>
+									<li class="col_num"><input type="checkbox" id="allCheck"></li>
 									<li class="adm_col_date">사진</li>
 									<li class="adm_col_subs">제목</li>
 									<li class="adm_col_date">저자</li>
@@ -69,7 +77,7 @@ $(document).ready(function(){
 								</ul>
 							</div>
 							<%
-							if(MemberBasketList==null){	%><ul class="no_scroll"><li class="col_title"><p>게시글이 없습니다</p></li></ul><%	}
+							if(MemberBasketList.size()==0){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
 							else{
 								SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 								for(int i=0; i<MemberBasketList.size(); i++){

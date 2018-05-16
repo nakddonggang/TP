@@ -30,7 +30,7 @@ public class MemberBasketList implements Action{
 		MemberDAO mDAO = new MemberDAO();		
 		List<MemberDTO> bList=mDAO.MemberBasketList(member_id);	
 		request.setAttribute("bList", bList);
-		
+
 		forward.setPath("./member/myUseBasket.jsp");
 	    forward.setRedirect(false);
 	    return forward;
