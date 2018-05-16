@@ -228,7 +228,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						<a href="./AdminIndex.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
 					}
 				} // if count 괄호 %>		
-						</div>	
+				</div>	
 					</div>
 					</div>
 			</article>
