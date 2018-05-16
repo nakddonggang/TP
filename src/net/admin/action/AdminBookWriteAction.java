@@ -23,7 +23,7 @@ public class AdminBookWriteAction implements Action{
 		request.setCharacterEncoding("UTF-8");
 		
 		// file 객체
-		String realPath=request.getRealPath("/upload");
+		String realPath=request.getRealPath("/upload/book");
 		System.out.println("upload폴더 물리적 경로: "+realPath);		
 		int maxSize=5*1024*1024;
 		MultipartRequest multi=new MultipartRequest(request, realPath, maxSize,"utf-8",new DefaultFileRenamePolicy());
