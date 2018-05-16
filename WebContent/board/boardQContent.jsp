@@ -49,6 +49,16 @@
 				<jsp:include page="../include/topbar.jsp" />
 					
 					<div class="content">
+					<div class="text_top">
+							<h3>Q&A</h3>
+							<div class="dl_box">
+								<dl>
+									<dt>Read It</dt>
+									<dd>게시 전 검색을 먼저 해주시고,</dd>
+									<dd>타인에 대한 욕설 및 비방글은 삼가주시기 바랍니다.</dd>
+								</dl>
+							</div>
+						</div>
 						<div class=board>
 						
 						<ul class="brd_txt_lst">
@@ -73,7 +83,7 @@
 										}
 										%>	
 										<li class="col_con_avg"><p>조회수-<%=bDTO.getQna_readcount() %></p></li>
-										<li class="col_con_avg"><p>등록일-<%=date.format(bDTO.getQna_date()) %></p></li>	
+										<li class="col_con_date"><p>등록일-<%=date.format(bDTO.getQna_date()) %></p></li>	
 									</ul>
 										
 									<div class="con_detail_block">
@@ -102,7 +112,7 @@
 									<%if(bDTO1!=null){
 										%>
 									<ul class="no_scroll">
-										<li class="col_con_id"><p>담당자-<%=bDTO1.getRep_name() %></p></li>
+										<li class="col_con_id1"><p>담당자-<%=bDTO1.getRep_name() %></p></li>
 										<li class="col_con_email"><p>담당자 연락처-<%=bDTO1.getRep_email() %></p></li>
 									</ul>
 									<div class="con_detail_block">
