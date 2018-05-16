@@ -28,9 +28,10 @@ public class MemberBasketAdd implements Action {
 			forward.setRedirect(true);
 			return forward;
 		}
-		
+		bDTO.setMember_id(member_id);
 		bDTO.setBasket_number(Integer.parseInt(request.getParameter("basket_number")));
 		bDTO.setBook_number(Integer.parseInt(request.getParameter("book_number")));
+		bDAO.insertBasket(bDTO);
 		
 		forward.setPath("./MemberBasketList.me");
 	    forward.setRedirect(true);

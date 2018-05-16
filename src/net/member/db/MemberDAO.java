@@ -82,11 +82,10 @@ public class MemberDAO {
 	}
 	
 	// 도서바구니 담기
-	public int insertBasket(MemberDTO ibDTO) {
-		int result;
-		result = sqlsession.insert("insertBasket", ibDTO);
-		return result;
+	public void insertBasket(MemberDTO bDTO) {
+		sqlsession.insert("insertBasket", bDTO);
 	}	
+	
 	// 도서바구니 리스트
 	public List<MemberDTO> MemberBasketList(String member_id){
 		List<MemberDTO> bList = new ArrayList<MemberDTO>();
@@ -95,9 +94,6 @@ public class MemberDAO {
 	}
 	// 도서바구니 선택항목 삭제
 	public void deleteBasket(List list){
-		for(int i=0; i<list.size();i++){
-			System.out.println(list.get(i));
-		}
 		HashMap map = new HashMap<>();
 		map.put("deleteList", list);
 		sqlsession.delete("deleteBasket",map);
