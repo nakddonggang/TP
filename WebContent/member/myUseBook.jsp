@@ -1,3 +1,7 @@
+<%@page import="java.util.List"%>
+<%@page import="net.book.db.BookDTO"%>
+<%@page import="net.member.action.MemberMyUseBookList"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +13,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- member/myUseBook.jsp / MyUseIndex >> 대출예약조회 페이지 -->
+<% 
+request.setCharacterEncoding("utf-8");
+List<BookDTO> bbList = (List<BookDTO>)request.getAttribute("bbList");
+ %>
+ <!-- member/myUseBook.jsp / MyUseIndex >> 대출예약조회 페이지 -->
 	<div id="wrap">
 		<div id="main_menu">
 			<jsp:include page="../include/header.jsp" />
@@ -27,12 +35,24 @@
 						<td>대출일자</td>
 						<td>반납할 일자</td>
 					</tr>
+					<%
+					if(bbList.size()==0){%><p>게시글이 없습니다</p><%	}
+					else{
+						SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+						for(int i=0; i<bbList.size(); i++){
+							BookDTO bDTO =(BookDTO)bbList.get(i);
+					%>					
 					<tr>
-						<td>책 번호</td>
-						<td>책 제목</td>
-						<td>대출일자</td>
-						<td>반납할 일자</td>
+						<td>책 번호<%=bDTO.getBook_number() %></td>
+						<td>책 제목<%=bDTO.getBook_subject() %></td>
+						<td>대출일자<%=bDTO.getBbook_bdate() %></td>
+						<td>반납할 일자<%=bDTO.getBbook_rdate() %></td>
 					</tr>
+					<%
+					}
+					}
+					%>
+					
 				</table>
 			</div>
 			<div>
