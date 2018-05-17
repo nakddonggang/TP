@@ -14,28 +14,28 @@ public class MemberBasketAdd implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-int num = Integer.parseInt(request.getParameter("num"));
+		int num = Integer.parseInt(request.getParameter("num"));
+		request.setCharacterEncoding("utf-8");
 		
 		MemberDAO bDAO = new MemberDAO();
 		MemberDTO bDTO = new MemberDTO();
 		HttpSession session = request.getSession();
 		ActionForward forward = new ActionForward();
 		
-		String id = (String)session.getAttribute("id");
-		if(id==null){
-			forward.setPath("./MemberBasketAdd.me");
+		String member_id = (String)session.getAttribute("member_id");
+		if(member_id==null){
+			forward.setPath("./MemberLogin.me");
 			forward.setRedirect(true);
 			return forward;
 		}
-		
+		bDTO.setMember_id(member_id);
 		bDTO.setBasket_number(Integer.parseInt(request.getParameter("basket_number")));
 		bDTO.setBook_number(Integer.parseInt(request.getParameter("book_number")));
-		
-		
+		bDAO.insertBasket(bDTO);
 		
 		forward.setPath("./MemberBasketList.me");
 	    forward.setRedirect(true);
+	    
 	    return forward;
 	}
-
 }

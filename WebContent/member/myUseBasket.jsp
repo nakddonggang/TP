@@ -1,8 +1,9 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.member.db.MemberDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="net.member.action.MemberBasketList"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,52 +11,115 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-</head>
+<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
+<script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/common.js"/>"></script>
+<script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#delBtn').click(function(){
+		$('#basketForm').attr("action","./MemberBasketDelete.me");
+	});
+	
+	$('#allCheck').click(function(){
+		if($('#allCheck').prop("checked")){
+			$('input[type=checkbox]').prop("checked",true);
+		}else{
+			$('input[type=checkbox]').prop("checked",false);
+		}
+	});
+});
+</script>
 <body>
+<%
+	List<MemberDTO> MemberBasketList = (List<MemberDTO>)request.getAttribute("bList");
+%>
 	<!-- member/myUseBasket.jsp / MyUseIndex >> 책바구니 페이지 -->
-	<div id="wrap">
-		<div id="main_menu">
-			<jsp:include page="../include/header.jsp" />
-<%-- 			<jsp:include page="../include/footer.jsp" /> --%>
+	<div class="wrapper">
+
+		<!-- header -->
+		<jsp:include page="../include/header.jsp" />
+		<!-- //header -->
+
+		<!-- 본문 컨테이너 -->
+		<div class="container">
+			<section class="fullpage SECTION_FULL_PAGE01">
+
+				<!-- 서브메뉴 -->
+				<jsp:include page="../include/submenu_main.jsp" />
+				<!-- //서브메뉴 -->
+				
+				<!-- 메인 페이지 -->
+				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
+					
+					<div class="content">
+						<div class=board>
+						
+						<h1>책 바구니</h1>
+						<form action="" method="post" id="basketForm">
+						
+						<ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="view_lst">
+							<div class="con_lst">
+								<ul class="no_scroll title_t">
+									<li class="col_num"><input type="checkbox" id="allCheck"></li>
+									<li class="adm_col_date">사진</li>
+									<li class="adm_col_subs">제목</li>
+									<li class="adm_col_date">저자</li>
+									<li class="adm_col_date">출판사</li>
+									<li class="col_date">발행일</li>
+								</ul>
+							</div>
+							<%
+							if(MemberBasketList.size()==0){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
+							else{
+								SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+								for(int i=0; i<MemberBasketList.size(); i++){
+									MemberDTO mDTO = (MemberDTO)MemberBasketList.get(i);
+									%>
+									<div class="con_lst">
+										<ul class="no_scroll">
+											<li class="col_num"><input type="checkbox" name="checkbox" value="<%=mDTO.getBasket_number() %>"></li>
+											<li class="adm_col_date"><img src="./upload/<%=mDTO.getBook_file()%>" width="70" height="80"></li>
+											<li class="adm_col_subs"><p><%=mDTO.getBook_subject() %></p></li>
+											<li class="adm_col_date"><p><%=mDTO.getBook_author() %></p></li>
+											<li class="adm_col_date"><p><%=mDTO.getBook_publisher() %></p></li>
+											<li class="col_date"><p><%=date.format(mDTO.getBook_pubDate()) %></p></li>		
+										</ul>
+									</div>
+								<%
+								}
+							}
+							%>
+							</li>
+						</ul>
+
+						<div class="btn_btm_board">
+							<ul>
+								<li class="btn_con_right">
+									<input type="submit" value="예약하기" class="btn_type4" id="resBtn"> 
+									<input type="submit" value="삭제하기" class="btn_type4" id="delBtn">
+								</li>
+							</ul>
+						</div>
+						
+						</form>
+
+					</div>
+				</div>
+
+				</article>
+				<!-- //메인 페이지-->
+				
+			</section>
 		</div>
-
-		<!-- 본문 시작되는 곳 -->
-		<article>
-			<h1>책 바구니</h1>
-			<table>
-				<tr>
-					<td>책 번호</td>
-					<td>예약번호</td>
-					<td>대출신청/삭제<input type="checkbox"></td>
-				</tr>
-				<%
-				List MemberBasketList=(List)request.getAttribute("MemberBasketList");
-				
-				for(int i=0; i<MemberBasketList.size(); i++){
-					MemberDTO bDTO = (MemberDTO)MemberBasketList.get(i);
-				}
-				%>
-				<tr>
-					<td><%=MemberDTO.book_number() %>책 번호</td>
-					<td><%=MemberDTO.basket_number() %>예약번호</td>
-					<td>대출신청/삭제<input type="checkbox"></td>
-				</tr>
-				
-				
-				
-<!-- 				<tr> -->
-<!-- 					<td>책 번호</td> -->
-<!-- 					<td>예약번호</td> -->
-<!-- 					<td>대출신청/삭제<input type="checkbox"></td> -->
-<!-- 				</tr> -->
-			</table>
-
-			<div>
-				<input type="button" value="선택한 도서 예약하기"> 
-				<input type="button" value="삭제하기">
-			</div>
-
-		</article>
+		<!-- //본문 컨테이너 -->
 	</div>
 </body>
 </html>
