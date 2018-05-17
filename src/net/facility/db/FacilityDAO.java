@@ -1,5 +1,6 @@
 package net.facility.db;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -60,12 +61,22 @@ public class FacilityDAO {
 		return check;
 	}
 	
-	//	History_facility 에 사용내역 저장
+	//	History_facility 에 사용시작내역 저장
 	public void insertHistory_facility(String facil_num , String member_id , String facil_use) {
 		map = new HashMap();
 		map.put("facil_num", facil_num);
 		map.put("member_id", member_id);
 		map.put("facil_use", facil_use);
 		sqlsession.insert("insertHistoryFacility", map);
+	}
+	
+	//	History_facility 에 사용종료내역 업데이트
+	public void updateHistory_facility(String facil_num , String facil_use , String facil_comment , String facil_stime) {
+		map = new HashMap();
+		map.put("facil_num" , facil_num);
+		map.put("facil_use" , facil_use);
+		map.put("facil_comment" , facil_comment);
+		map.put("facil_stime" , facil_stime);
+		sqlsession.update("updateHistoryFacility", map);
 	}
 }
