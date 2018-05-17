@@ -21,35 +21,24 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <!-- 수정덜함수정덜함 -->
 <style>
-#book_pic_div{display:block;}
-#book_cont_div{display:none;}
 
-.book_info_layer{ display: none;	position:absolute;
-top:0;	left:0;
-width:100%;	height:238px;
-background: url(../img/bg_book_hover.png) no-repeat; }
-
-.book_lst .book_info_layer > dt {height: 57px;	padding: 15px;
- background-color: #222;   color: #fff; }
-
-.book_lst .book_info_layer dd dl { padding: 15px 15px 0 15px;}
 </style>
 
 <script>
 	$(document).ready(function(){
 		$("#book_pic_hv").hover(function(){
-			$(this).css(
+			$(".book_info_layer").css('display', 'block');
 		});
-	});
-	$function(){
+	
 		$("#book_pic_btn").click(function(){
 			$("#book_pic_div").show();
 			$("#book_cont_div").hide();
-	});
-	$function(){
+		});
+	
 		$("#book_pic_btn").click(function(){
 			$("book_pic_div").hide();
 			$("book_cont_div").show();
+		});
 	});
 </script>
 <!-- 수정덜함수정덜함 -->
