@@ -69,10 +69,11 @@
 				<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
 					<!-- 메인 페이지 -->
+					<div class="content">
 
 
 					<div class='join_form adminfo_join_form'>
-						<h2>희망도서 신청</h2>
+						<h2 class="adm_h_1">희망도서 신청</h2>
 						<div class="adm">
 							<form action="./ServeBookAction.bk" method="post" id="serve_Book">
 								<input type="hidden" value="wait" name="hbook_check">
@@ -127,7 +128,7 @@
 						</div>
 
 					</div>
-
+				</div>
 				</article>
 				<!-- //메인 페이지-->
 

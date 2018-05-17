@@ -15,12 +15,71 @@ public class BookDAO {
 	public BookDAO() {
 		sqlsession = sessionf.openSession(true);
 	}
+	
+	// bookindex.jsp > 책 전체 count 개수 구하기
+	public int BookCount(){
+		int count;
+		count=sqlsession.selectOne("BookCount");
+		return count;
+	}	
+	
+	// bookindex.jsp > 책 리스트 뿌려주기
+	public List<BookDTO> BookList(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> bookList = sqlsession.selectList("BookList", map);
+		return bookList;
+	}
 
 	// 책 정보 눌렀을 때 상세정보 보여주기
 	public BookDTO getBookInfo(int book_number) {
 		BookDTO bookList = sqlsession.selectOne("book.getBookInfo", book_number);
 		return bookList;
 	}
+	
+// START 책정렬
+		// 제목 정렬
+		public List<BookDTO> BookSortSubject(int startRow, int pageSize){
+			HashMap map = new HashMap();
+			map.put("startRow", startRow-1);
+			map.put("pageSize", pageSize);
+			List<BookDTO> bookList = sqlsession.selectList("BookSortSubject", map);
+			return bookList;
+		}	
+		// 저자 정렬
+		public List<BookDTO> BookSortAuthor(int startRow, int pageSize){
+			HashMap map = new HashMap();
+			map.put("startRow", startRow-1);
+			map.put("pageSize", pageSize);
+			List<BookDTO> bookList = sqlsession.selectList("BookSortAuthor", map);
+			return bookList;
+		}	
+		// 인기순
+		public List<BookDTO> BookSortNumber(int startRow, int pageSize){
+			HashMap map = new HashMap();
+			map.put("startRow", startRow-1);
+			map.put("pageSize", pageSize);
+			List<BookDTO> bookList = sqlsession.selectList("BookSortNumber", map);
+			return bookList;
+		}	
+		// 신작순
+		public List<BookDTO> BookSortPubDate(int startRow, int pageSize){
+			HashMap map = new HashMap();
+			map.put("startRow", startRow-1);
+			map.put("pageSize", pageSize);
+			List<BookDTO> bookList = sqlsession.selectList("BookSortPubDate", map);
+			return bookList;
+		}	
+		// 입고순
+		public List<BookDTO> BookSortIO(int startRow, int pageSize){
+			HashMap map = new HashMap();
+			map.put("startRow", startRow-1);
+			map.put("pageSize", pageSize);
+			List<BookDTO> booksortList = sqlsession.selectList("BookSortIO", map);
+			return booksortList;
+		}	
+// END 책정렬
 
 	// 인기도서 리스트 출력
 	public List<BookDTO> popularList() {

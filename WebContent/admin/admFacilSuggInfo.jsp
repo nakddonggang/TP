@@ -20,9 +20,11 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#add').click(function() {
-			 var facil_num = $('#add1').val();
-		     window.open('./AdminFacilSuggAdd.am?facil_num='+facil_num,"","width = 300, height = 300");
+		$('#category1').change(function(){
+			var category1 = $("#category1 > option:selected").val();	
+			if(category1!=""){
+				$(location).attr('href', category1);
+			} else { }
 		});
 	});
 </script>
@@ -32,8 +34,28 @@ request.setCharacterEncoding("UTF-8");
 String facil_use = (String)request.getAttribute("facil_use");
 String facil_num = (String)request.getAttribute("facil_num");
 List<FacilityDTO> facilList = (List<FacilityDTO>)request.getAttribute("facilList");
+List<FacilityDTO> facilAddList = (List<FacilityDTO>)request.getAttribute("facilAddList");
 String pageNum = (String)request.getAttribute("pageNum");
 %>
+
+<script type="text/javascript">
+	$("#Facil_Add").click(function(){
+	var obj_mname = $('obj_mname').val();
+	var facil_num = $('#add1').val();
+		$.ajax({
+			url:'./AdminFacilSuggAddAction.am',
+			type:'POST',
+			data:{
+				'obj_mname':obj_mname,
+				'facil_num':facil_num
+			},
+			success:function(data) {
+				$("#ajax_facil").html(data);
+			}
+		});
+	});
+</script>
+
 <body>
 	<div class="wrapper">
 
@@ -62,28 +84,27 @@ String pageNum = (String)request.getAttribute("pageNum");
 									<li>
 										<ul class="row_sub">
 											<li class="title">Facility Position</li>
-											<li class="inp_form">
-												<select name="category">
-												<option onclick="location.href='./AdminFacilSugg.am'">좌석선택</option>
+											<li class="inp_form"><select name="category1" id="category1">
+												<option value="" selected="selected">좌석선택</option>
 												<%
 												for(int i=1; i<8; i++){%>
-												<option onclick="location.href='./AdminFacilSuggInfo.am?facil_num=A<%=i%>'">A<%=i%></option>
+												<option value="./AdminFacilSuggInfo.am?facil_num=A<%=i%>">A<%=i%></option>
 												<%}%>
 												<%
 												for(int i=1; i<8; i++){%>
-												<option onclick="location.href='./AdminFacilSuggInfo.am?facil_num=B<%=i%>'">B<%=i%></option>
+												<option value="./AdminFacilSuggInfo.am?facil_num=B<%=i%>">B<%=i%></option>
 												<%}%>
 												<%
 												for(int i=1; i<8; i++){%>
-												<option onclick="location.href='./AdminFacilSuggInfo.am?facil_num=C<%=i%>'">C<%=i%></option>
+												<option value="./AdminFacilSuggInfo.am?facil_num=C<%=i%>">C<%=i%></option>
 												<%}%>
 												<%
 												for(int i=1; i<8; i++){%>
-												<option onclick="location.href='./AdminFacilSuggInfo.am?facil_num=D<%=i%>'">D<%=i%></option>
+												<option value="./AdminFacilSuggInfo.am?facil_num=D<%=i%>">D<%=i%></option>
 												<%}%>
 												<%
 												for(int i=1; i<5; i++){%>
-												<option onclick="location.href='./AdminFacilSuggInfo.am?facil_num=E<%=i%>am?='">E<%=i%></option>
+												<option value="./AdminFacilSuggInfo.am?facil_num=E<%=i%>">E<%=i%></option>
 												<%}%>			
 											</select></li>
 										</ul>
@@ -123,7 +144,7 @@ String pageNum = (String)request.getAttribute("pageNum");
 												FacilityDTO	fDTO = facilList.get(i);
 												String obj_condition = fDTO.getObj_condition();
 											%>
-											<li class="inp_form">
+											<li class="inp_form" id="ajax_facil">
 											
 												<input type="text" name="obj_mname<%=i%>" value="<%=fDTO.getObj_mname()%>" readonly>
 												
@@ -168,5 +189,35 @@ String pageNum = (String)request.getAttribute("pageNum");
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+	<div id="addFacilDialog">
+		<div class='member_modal'>
+			<form action="./AdminFacilSuggAddAction.am?facil_num=<%=facil_num%>"
+				method="post" name="fr" id="facilAddForm">
+				<fieldset>
+					<div class="row_group">
+					<div class="info_txt"><p><span>시설물종류</span></p></div>
+						<select name="obj_mname" id="obj_mname">
+								<%
+									for (int i = 0; i < facilAddList.size(); i++) {
+									FacilityDTO fDTO = facilAddList.get(i);
+								%>
+					<option value="<%=fDTO.getObj_mname()%>"><%=fDTO.getObj_mname()%></option>
+					<%
+						}
+					%>
+				</select>
+			</div>
+			<div class="btn_btm_center btn_btm_modal">
+				<ul>
+					<li class="btn_cancle"><input type="submit" value="시설물 추가"
+						class="btn_type4" id="Facil_Add"></li>
+					<li><input type="button" value="닫기" class="btn_type4"
+						id="BTN_CLOSE"></li>
+				</ul>
+			</div>
+		</fieldset>
+	</form>
+</div>
+	</div> 
 </body>
 </html>

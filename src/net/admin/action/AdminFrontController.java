@@ -75,6 +75,16 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}	
+		} else if (command.equals("/AdminBookReWrite.am")){
+			action = new AdminBookReWrite();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}			
+		} else if (command.equals("/AdminBookReWriteAction.am")){
+			action = new AdminBookReWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}			
 		} else if (command.equals("/AdminBookSort.am")){
 			action = new AdminBookSort();
 			try {
