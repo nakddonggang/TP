@@ -59,4 +59,13 @@ public class FacilityDAO {
 		check = sqlsession.selectOne("selectFacilMember", member_id);
 		return check;
 	}
+	
+	//	History_facility 에 사용내역 저장
+	public void insertHistory_facility(String facil_num , String member_id , String facil_use) {
+		map = new HashMap();
+		map.put("facil_num", facil_num);
+		map.put("member_id", member_id);
+		map.put("facil_use", facil_use);
+		sqlsession.insert("insertHistoryFacility", map);
+	}
 }

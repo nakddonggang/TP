@@ -1,3 +1,4 @@
+<%@page import="java.util.Date"%>
 <%@page import="net.facility.db.FacilityDAO"%>
 <%@page import="net.member.db.MemberDTO"%>
 <%@page import="net.facility.db.FacilityDTO"%>
@@ -26,6 +27,7 @@
 	FacilityDTO fDTO = (FacilityDTO)request.getAttribute("fDTO");
 	FacilityDAO fDAO = new FacilityDAO();
 	String userCheck = fDTO.getMember_id();
+	Date start_time = fDTO.getFacil_stime();
 	if(userCheck == null) userCheck = "";
 	int check = fDAO.useMember(member_id);
 %>
@@ -69,7 +71,9 @@
 									<ul>
 										<li class="btn_cancle">
 											<input type="hidden" value="<%=fDTO.getFacil_use()%>" name = "facil_use">
-											<%
+											<%if(start_time != null) { %>
+											<input type="hidden" value="<%=fDTO.getFacil_stime() %>"name ="facil_stime">
+											<% }
 												if(member_id != null){
 													if(Integer.parseInt(fDTO.getFacil_use()) != 1 && check == 0) out.print("<input type='submit' value='사용하기' class='btn_type4'>");
 													else if(userCheck.equals(member_id)) out.print("<input type='button' value='반납' onclick=location.href='./FacilityUnUseAction.fy?facil_num=" + fDTO.getFacil_num() + "&facil_use=" + fDTO.getFacil_use() + "' class='btn_type4'>");

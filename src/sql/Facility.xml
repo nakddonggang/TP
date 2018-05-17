@@ -14,7 +14,7 @@
 	</update>
 	
 	<update id="UnupdateFacility" parameterType="hashmap">
-		update facility set facil_use = #{facil_use} , facil_stime = #{facil_stime}, member_id = null
+		update facility set facil_use = #{facil_use}, member_id = null , facil_stime = null
 		where facil_num = #{facil_num}
 	</update>
 	
@@ -25,5 +25,15 @@
 	<select id="selectFacilMember" parameterType="String" resultType="int">
 		select count(*) from facility where member_id = #{member_id}
 	</select>
+	
+	<insert id="insertHistoryFacility" parameterType="hashmap">
+		insert into history_facil(member_id , facil_num , facil_use , facil_stime) 
+		values (#{member_id} , #{facil_num} , #{facil_use} , now())
+	</insert>
+	
+	<update id="updateHistoryFacility" parameterType="hashmap">
+		update history_facil set 	facil_etime = now() , facil_use = #{facil_use} , facil_comment = #{facil_comment}
+		where facil_num = #{facil_num} and facil_stime = #{facil_stime}
+	</update>
 	
 </mapper>

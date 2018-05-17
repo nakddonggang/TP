@@ -1,5 +1,7 @@
 package net.facility.action;
 
+import java.util.Date;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,11 +16,13 @@ public class FacilityUnUseAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("FacilityUnUseAction execute()");
 		String facil_num = request.getParameter("facil_num");
+		String start_time = request.getParameter("start_time");
 		int check = 0;
 		System.out.println("check : " + check);
 		
 		FacilityDAO fDAO = new FacilityDAO();
 		FacilityDTO fDTO = new FacilityDTO();
+		
 		fDAO.UnUseFacility(facil_num, Integer.toString(check));
 		
 		ActionForward forward = new ActionForward();

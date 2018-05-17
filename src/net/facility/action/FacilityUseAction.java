@@ -26,6 +26,8 @@ public class FacilityUseAction implements Action {
 		
 		FacilityDAO fDAO = new FacilityDAO();
 		FacilityDTO fDTO = new FacilityDTO();
+		fDAO.insertHistory_facility(facil_num, member_id,  Integer.toString(check));
+		System.out.println("시설 사용 내역 저장완료");
 		fDAO.UseFacility(facil_num, member_id, Integer.toString(check));
 		
 		ActionForward forward = new ActionForward();
