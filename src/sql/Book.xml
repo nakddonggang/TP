@@ -3,10 +3,96 @@
 
 <mapper namespace="book">
 
+	<select id="BookCount" resultType="int">
+		 	select count(b.book_number) from book
+			left join dbook db
+			where db.dbook_reason is null;
+	 </select>
+	 	 
+	 <select id="BookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+			rb.rbook_date, rb.rbook_check, b.book_file
+			from book b
+			left join dbook db
+			on b.book_number=db.book_number
+			left join bbook bb
+			on b.book_number=bb.book_number
+			left join rbook rb
+			on b.book_number=rb.book_number
+			where db.dbook_reason is null;
+			order by b.book_number desc limit #{startRow}, #{pageSize} 
+	 </select>
+
 	<select id="getBookInfo" parameterType="int"
 		resultType="net.book.db.BookDTO">
 		select * from book where book_number=#{book_number}
 	</select>
+
+	 <select id="BookSortSubject" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		on b.book_number=rb.book_number
+		where db.dbook_state is null
+		order by b.book_subject asc limit #{startRow}, #{pageSize}	 
+	 </select>
+	 
+	 <select id="BookSortAuthor" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		where db.dbook_state is null
+		on b.book_number=rb.book_number order by b.book_author limit #{startRow}, #{pageSize}	 
+	 </select>
+
+	 <select id="BookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		where db.dbook_state is null
+		on b.book_number=rb.book_number order by bb.book_number desc limit #{startRow}, #{pageSize} 	 
+	 </select>
+
+	 <select id="BookSortPubDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		where db.dbook_state is null
+		on b.book_number=rb.book_number order by b.book_pubDate desc limit #{startRow}, #{pageSize} 	 
+	 </select>
+
+	 <select id="BookSortIO" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		rb.rbook_date, rb.rbook_check, b.book_file
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join rbook rb
+		where db.dbook_state is null
+		on b.book_number=rb.book_number order by b.book_date desc limit #{startRow}, #{pageSize} 	 
+	 </select>	 	 	
 
 	<select id="popularList" resultType="net.book.db.BookDTO">
 		select
