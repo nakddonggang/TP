@@ -19,30 +19,10 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
-<script type="text/javascript">
-function bbook(){
-	var bbook = confirm("대출예약을 하시겠습니까?");
-	if(bbook==true){
-		document.fr.action="";
-		document.fr.submit();
-	} else{
-		return;
-	}
-}
-function basket(){
-	var basket = confirm("책바구니에 담겠습니까?");
-	if(basket==true){
-		document.fr.action="";
-		document.fr.submit();
-	} else{
-		return;
-	}	
-}
-</script>
 </head>
 <body>
 <%
-int book_number = ((Integer)request.getAttribute("book_number")).intValue();
+int book_number = Integer.parseInt(request.getParameter("book_number"));
 String pageNum = request.getParameter("pageNum");
 BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 %>
@@ -65,7 +45,6 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 				<!-- 메인 페이지 -->
 				<div class="content">
 				
-				<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 					<div class='join_form adminfo_join_form' >
 			
 					<h3>책 정보보기</h3>
@@ -74,7 +53,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 								<ul class="row_sub">
 
 							<li class="title"><span>고유번호 : <%=bookList.getBook_number()%></span></li>
-						   <li class="inp_form"><img src="./upload/<%=bookList.getBook_file()%>" width="110" height="130"></li>
+						   <li class="inp_form"><img src="./upload/book/<%=bookList.getBook_file()%>" width="110" height="130"></li>
 									</ul>
 							</li>
 							<li>
@@ -99,7 +78,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 								<ul class="row_sub">
 										
 						    <li class="title"><span>발행일 </span></li>
-							<li class="inp_form"><%=date.format(bookList.getBook_pubDate())%></li>
+							<li class="inp_form"><%=bookList.getBook_pubDate()%></li>
 							  </ul>
 							</li>
 							<li>
@@ -129,23 +108,13 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 							<li>
 								<ul class="row_sub">	
 							<li class="title"><span>입고일</span></li>
-							<li class="inp_form"><%=date.format(bookList.getBook_date())%></li>	
+							<li class="inp_form"><%=bookList.getBook_date()%></li>	
 					
 							</ul>
 							</li>
 						</ul>
 						
-					<div class="btn_btm_center">
-				   <ul>
-					<li class="btn_cancle">
-							<!-- book/bookInfo.jsp 에 필요한 기능 -->
-						<input type="button" value="대출예약" onclick="location.href='javascript:bbook()'" class ="btn_type4 BTN_IF_LIST">
-					</li><li>
-				        <input type="button" value="책바구니" onclick="location.href='javascript:basket()'" class ="btn_type4 BTN_IF_LIST">
-					  </li>
-					</ul>
-					  
-					</div>
+
 					
 					</div>
 					</div>

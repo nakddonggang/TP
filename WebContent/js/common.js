@@ -101,6 +101,14 @@ $(function() {
         };
     });
     
+    
+    // 통합검색 슬라이드
+	$(document).ready(function(){
+	    $(".book_btn_type3").click(function(){
+	        $(".book_media_bye").slideToggle("slow");
+	    });
+	});
+    
 	//탭메뉴 기능 구현
 	$("ul.tabs li").click(function() {
 		$("ul.tabs li").removeClass("active").css("color", "#333");

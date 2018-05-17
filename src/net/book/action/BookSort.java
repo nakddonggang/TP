@@ -90,7 +90,7 @@ public class BookSort implements Action {
 		request.setAttribute("endPage", endPage);				
 	
 		ActionForward forward = new ActionForward();
-		forward.setPath("./admin/bookSort.jsp");
+		forward.setPath("./book/bookSort.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

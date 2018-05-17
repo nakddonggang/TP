@@ -24,9 +24,17 @@
 			order by b.book_number desc limit #{startRow}, #{pageSize} 
 	 </select>
 
-	<select id="getBookInfo" parameterType="int"
-		resultType="net.book.db.BookDTO">
-		select * from book where book_number=#{book_number}
+	<select id="getBookInfo" parameterType="int" resultType="net.book.db.BookDTO">
+		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+			rb.rbook_date, rb.rbook_check, b.book_file
+			from book b
+			left join dbook db
+			on b.book_number=db.book_number
+			left join bbook bb
+			on b.book_number=bb.book_number
+			left join rbook rb
+			on b.book_number=rb.book_number
+			where b.book_number=#{book_number}
 	</select>
 
 	 <select id="BookSortSubject" parameterType="hashmap" resultType="net.book.db.BookDTO">
