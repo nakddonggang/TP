@@ -40,6 +40,10 @@ public class MainFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("guide/guideStatis.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/ServiceQues.fp")){
+			forward = new ActionForward();
+			forward.setPath("service/serveQues.jsp");
+			forward.setRedirect(false);
 		}
 		
 		if(forward != null){
