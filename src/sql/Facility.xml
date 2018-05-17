@@ -36,4 +36,5 @@
 		where facil_num = #{facil_num} and facil_stime = #{facil_stime}
 	</update>
 	
+	
 </mapper>
