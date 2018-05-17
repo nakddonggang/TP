@@ -7,15 +7,18 @@
 .member_content .btn {    color: #fff;    background-color: #8e8e8e;    border:none;    outline:none;    width: calc(50% - 1.4px);    font-size: 1.6em;	cursor:pointer;	}
 .loginmodal {	width:100%;	}
 
-.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666;}
+.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
 .search_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
 .search_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
 .search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
 
 /* start 게시판 부분 */
-.board {position:relative;}
-.board .search_bx {top:-5px;}
-.view_cnt {position:relative; top:-5px; font-size:0.86em; font-family:"Noto_M"; color:#666;}
+
+
+/* 기존 board Start*/
+.board {position:relative;              margin-top: 100px; padding: 0 30px;}
+.board .search_bx { top: -30px; margin-right: 30px;}
+.view_cnt {position:relative; top:-5px; font-size:0.86em; font-family:"Noto_M"; color:#666; }
 .brd_txt_lst {overflow:hidden; position:relative; margin-bottom:30px; border-top:2px solid #464646; border-bottom:1px solid #464646;}
 .brd_txt_lst li {float:left;}
 .brd_txt_lst > li {width:100%;}
@@ -27,6 +30,14 @@
 .brd_txt_lst li > .con_lst > ul > li.col_date {width:20%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.col_date .tit_date {display:none;}
 .brd_txt_lst li > .con_lst > ul > li.col_rc {width:10%; padding:0 20px;}
+
+.brd_txt_lst li > .con_lst > ul > li.col_typeNo {width:15%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.col_titleNo{width:50%; padding:0 20px;}
+/* 기존 board End*/
+
+
+
+
 
 .view_lst .con_lst > ul {overflow:hidden; background:url("../resource/img/ico_lst_down.png") right 20px center; background-repeat:no-repeat; cursor:pointer; border-bottom:1px solid #e4e4e4;}
 .view_lst .con_lst > ul.no_scroll{background: none;} /* 화살표 없는 리스트UL */
@@ -113,6 +124,8 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .join_form .row_sub > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
 .join_form .row_sub > li p {float:left; margin-left:10px; color:#999; letter-spacing:-0.08em; line-height:30px;}
 .join_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;}
+
+
 /* start 박용철 작업(Q&A) */
 .join_form .row_sub > li input[type="text"].mb_mail {width:100px;}
 .join_form .row_sub > li input[type="text"].mb_mail{margin-right:px}
@@ -124,20 +137,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .join_form .row_sub > li select.phone_frist {float:left}
 /* end 박용철 작업(Q&A) */
 
-/* start 윤창훈 작업(Q&A) */
-.view_lst .con_lst > ul.no_scroll .col_num {width:10%; padding:0 15px;}
-.view_lst .con_lst > ul.no_scroll .col_id {width:15%; padding:0 15px;}
-.view_lst .con_lst > ul.no_scroll .col_title {width:38%; padding:0 15px;}
-.view_lst .con_lst > ul.no_scroll .col_date {width:15%; padding:0 15px;}
-.view_lst .con_lst > ul.no_scroll .col_rc {width:10%; padding:0 15px;}
-.view_lst .con_lst > ul.no_scroll .col_check {width:10%; padding:0 15px;}
-.view_lst .con_lst > ul.no_scroll .col_con_title {width:100%; padding:0 15px;}
-.view_lst .con_lst > ul.no_scroll .col_con_id {width:20%; padding:0 5px;}
-.view_lst .con_lst > ul.no_scroll .col_con_avg {width:20%; padding:0 15px; float: right;}
-.view_lst .con_lst > ul.no_scroll .col_con_email {width:35%; padding:0 5px; float: right;}
-.view_lst .con_lst .con_detail_block {display:block; width:100%; height:100%; padding:20px; background:#f5f5f5;}
-p.sub_txt {margin: 15px 0 30px 0;}
-/* end 윤창훈 작업(Q&A) */
+
 
 /* start 황해남 작업(Facility) */
 .seat{ display:inline-block; width: 100%; height:50px; margin:5px;}
@@ -209,6 +209,14 @@ input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; bord
 .write_form .rowadmin {overflow:hidden; border-top:2px solid #464646; border-bottom:2px solid #464646;}
 /* end 한진석 작업 (table) */
 
+
+/* start 윤창훈 작업(Notice List) */
+.view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%;}
+/* end 윤창훈 작업(Notice List) */
+
+
+
+
 /* start 윤창훈 작업(Curation List) */
 ul.cu_brd_txt_lst {overflow:hidden; position:relative; margin-bottom:30px; border-top:2px solid #464646; border-bottom:1px solid #464646;}
 ul.cu_brd_txt_lst > li.view_lst {float: left; width:100%;}
@@ -222,7 +230,28 @@ ul.cu_brd_txt_lst > li.view_lst {float: left; width:100%;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.tit_date {display:none;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.date {margin-right:30px;}
 /* end 윤창훈 작업(Curation List) */
-
+/* Notice start*/
+.brd_txt_lst li > .con_lst > ul > li.col_dateNo {width:20%; padding:0 20px;}
+/* Notice End*/
+/* start 윤창훈 작업(Q&A) */
+.view_lst .con_lst > ul.no_scroll .col_num {width:10%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .col_id {width:15%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .col_title {width:40%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .col_date {width:15%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .col_rc {width:10%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .col_check {width:10%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .col_con_title {width:100%; padding:0 15px;}
+.view_lst .con_lst > ul.no_scroll .col_con_id {width:20%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .col_con_avg {width:20%; padding:0 15px; float: right;}
+.view_lst .con_lst > ul.no_scroll .col_con_date {width:20%; padding:0 30px 0 15px; margin-right:10px; float:right;}
+.view_lst .con_lst > ul.no_scroll .col_con_email {width:35%; padding:0 5px; float: right;}
+.view_lst .con_lst .con_detail_block {display:block; width:100%; height:100%; padding:20px; background:#f5f5f5;}
+.view_lst .con_lst > ul.no_scroll .col_con_id1 {width:20%; padding:0 10px;}
+p.sub_txt {margin: 15px 0 30px 0; }
+/* end 윤창훈 작업(Q&A) */
+/* start 김예린 작업(FAQ) */
+.brd_txt_lst li > .con_lst > ul > li.col_rcFAQ {width:10%; padding:0 20px;}
+/* end 김예린 작업(FAQ) */
 /* start 김예린 작업(Curation Content) */
 .view_lst .con_lst > ul.no_scroll .cu_col_title {display:block; width:38%; padding:0px 15px; float: left;}
 .view_lst .con_lst > ul.no_scroll .cu_col_date {display:block; width:15%; padding:0 15px; float: right; margin-right: 20px;}
@@ -238,3 +267,72 @@ strong#currentPage {font-weight: bold;}
 .prev {background: url("../resource/img/pagenate_btn_prev.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
 .next {background: url("../resource/img/pagenate_btn_next.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
 /* start 윤창훈 작업(page) */
+
+
+
+
+
+/*한진석 전체 css*/
+/* board css start*/
+	/* text css start*/
+	.text_top{margin: 100px 30px 0 30px; }
+	h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
+	.paginate{    text-align: center;}
+
+	.dl_box{margin: 30px 0;}
+	.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.14em; margin: 3px 0;}
+	.dl_box dl dd{font-size: 1.02em; margin: 3px 0;}
+	
+	.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
+	.search_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
+	.search_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
+	.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
+	/* text css start*/
+/* board css end*/
+
+
+
+
+
+@media (max-width:767px){
+/* board css*/
+	/* text css start*/
+	.board .search_bx { top: -25px; margin-right: 20px;}
+	.search_bx { right:0; width:60%;}
+    .search_bx input.inp_search {width:100%;  paddind:0px; font-size:0.75em;  }
+   	.search_bx input.btn_search {position:absolute; right:0;}
+   	.board {    width: 100% !important;height: 100%!important; margin-top: 20px; padding: 0 20px;}
+	 h3 { top: 98px; margin-bottom: 20px; font-size: 1.5em;}
+	.brd_txt_lst li > .con_lst > ul > li {font-size: 0.85em; }
+	.brd_txt_lst li > .con_lst > ul > li.col_date{padding: 0px 10px 0px 0px;}
+	.text_top{margin: 30px 20px 0 20px;  }
+	/* text css start*/
+		
+	/* board qna start*/
+	.view_lst .con_lst > ul.no_scroll .col_num {width:15%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .col_id {width:20%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .col_title {width:40%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .col_date {display:none;}
+	.view_lst .con_lst > ul.no_scroll .col_rc {display: none;}
+	.view_lst .con_lst > ul.no_scroll .col_check {width:25%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .col_con_avg {display: none;}
+	.view_lst .con_lst > ul.no_scroll .col_con_id {width:40%;}
+	.view_lst .con_lst > ul.no_scroll .col_con_date {width:40%;}
+	.view_lst .con_lst > ul.no_scroll .col_con_id1 {width:100%;}
+	.view_lst .con_lst > ul.no_scroll .col_con_email {width:100%;  float:left;}
+	/* board qna end */
+	/* board faq start*/
+	.brd_txt_lst li > .con_lst > ul > li.col_rcFAQ {display: none;}
+	.brd_txt_lst li > .con_lst > ul > li.col_type {width:30%; padding:0 20px;}
+	.brd_txt_lst li > .con_lst > ul > li.col_title {width:60%; padding:0 20px;}
+	/* board faq end*/
+	/* board No start*/
+		.brd_txt_lst li > .con_lst > ul > li.col_typeNo {width:15%; padding:0 20px;}
+		.brd_txt_lst li > .con_lst > ul > li.col_titleNo{width:50%; padding:0 20px;}
+		.view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%; padding-right: 50px;}
+	/* board No end*/
+	
+	
+	/* board css end*/
+}
+

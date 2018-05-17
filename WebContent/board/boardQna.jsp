@@ -64,22 +64,28 @@ $(function(){
 				<jsp:include page="../include/topbar.jsp" />
 					
 					<div class="content">
+						<div class="text_top">
+							<h3>Q&A</h3>
+							<div class="dl_box">
+								<dl>
+									<dt>Read It</dt>
+									<dd>게시 전 검색을 먼저 해주시고,</dd>
+									<dd>타인에 대한 욕설 및 비방글은 삼가주시기 바랍니다.</dd>
+								</dl>
+							</div>
+						</div>
+						
 						<div class=board>
-						
-						<h1>Q&A</h1>
-						
+				
+						<div class="view_cnt">
+							<p>Total_<span><%=count %></span></p>
+						</div>
 						<div class="search_bx">
 							<form action="./BoardQnaSearch.qn" method="post">
 								<input type="text" name="search" placeholder="문의사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
 						</div>
 						
-						<div class="view_cnt">
-							<p>Total_<span><%=count %></span></p>
-						</div>
-						<p class="sub_txt">
-							게시 전 검색을 먼저 해주시고, 타인에 대한 욕설 및 비방글은 삼가주시기 바랍니다.
-						</p>
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
@@ -123,6 +129,7 @@ $(function(){
 									<%	}	%>
 							</li>
 						</ul>
+						<div class="paginate">
 						<%if(member_id != null){
 							%><input type="button" value="글쓰기" class="btn_type1" onclick="location.href='./BoardQnaWrite.qn'"><%
 						}%>
@@ -137,6 +144,7 @@ $(function(){
 						if(endPage < pageCount){ %><a href="BoardQnaList.qn?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><%	}
 
 						%>
+						</div>
 					</div>
 				</div>
 

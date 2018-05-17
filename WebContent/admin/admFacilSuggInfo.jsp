@@ -20,6 +20,27 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		$("#Facil_Add12").click(function(){
+			var obj_mname = $('#obj_mname').val();
+			var facil_num = $('#add1').val();
+				$.ajax({
+					url:'./AdminFacilSuggAddAction.am',
+					type:'POST',
+					data:{
+						'obj_mname':obj_mname,
+						'facil_num':facil_num
+					},
+					success:function(data) {
+						//$("#ajax_facil").html(data);
+						if(data == '1'){
+							$("#addFacilDialog").dialog("close");
+							//$("#ajax_facil").append(data);
+							location.reload();
+						}
+					}
+				});
+		});
+		
 		$('#category1').change(function(){
 			var category1 = $("#category1 > option:selected").val();	
 			if(category1!=""){
@@ -37,24 +58,6 @@ List<FacilityDTO> facilList = (List<FacilityDTO>)request.getAttribute("facilList
 List<FacilityDTO> facilAddList = (List<FacilityDTO>)request.getAttribute("facilAddList");
 String pageNum = (String)request.getAttribute("pageNum");
 %>
-
-<script type="text/javascript">
-	$("#Facil_Add").click(function(){
-	var obj_mname = $('obj_mname').val();
-	var facil_num = $('#add1').val();
-		$.ajax({
-			url:'./AdminFacilSuggAddAction.am',
-			type:'POST',
-			data:{
-				'obj_mname':obj_mname,
-				'facil_num':facil_num
-			},
-			success:function(data) {
-				$("#ajax_facil").html(data);
-			}
-		});
-	});
-</script>
 
 <body>
 	<div class="wrapper">
@@ -115,25 +118,13 @@ String pageNum = (String)request.getAttribute("pageNum");
 											<li class="title">시설상태</li>
 												<li class="inp_form">
 														<%if(facil_use.equals("0")){ %>
-															<select name="facil_use">
-															<option value="0">상태양호(이용가능)</option>
-															<option value="1">상태양호(이용불가)</option>
-															<option value="2">사용불가능</option>
-															</select>
-															<input type="text" value="미사용" readonly>
+															<input type="text" value="이용가능" readonly>
+															<input type="button" value="사용불가" >
 															<%}else if(facil_use.equals("1")){%>
-															<select name="facil_use">
-															<option value="1">상태양호(이용불가)</option>
-															<option value="0">상태양호(이용가능)</option>
-															<option value="2">사용불가능</option>
-															</select>
-															<input type="text"  value="사용중" readonly>
+															<input type="text"  value="이용중" readonly>
 															<%}else if(facil_use.equals("2")){ %>
-															<select name="facil_use">
-															<option value="2" >사용불가능</option>
-															<option value="0">상태양호(이용가능)</option>
-															<option value="1">상태양호(이용불가)</option>
-															</select>
+															<input type="text"  value="사용불가" readonly>
+															<input type="button" value="사용가능">
 															<%} %>
 										</ul>
 									</li>
@@ -191,8 +182,7 @@ String pageNum = (String)request.getAttribute("pageNum");
 	</div>
 	<div id="addFacilDialog">
 		<div class='member_modal'>
-			<form action="./AdminFacilSuggAddAction.am?facil_num=<%=facil_num%>"
-				method="post" name="fr" id="facilAddForm">
+<%-- 			<form action="./AdminFacilSuggAddAction.am?facil_num=<%=facil_num%>" method="post" name="fr" id="facilAddForm"> --%>
 				<fieldset>
 					<div class="row_group">
 					<div class="info_txt"><p><span>시설물종류</span></p></div>
@@ -207,16 +197,14 @@ String pageNum = (String)request.getAttribute("pageNum");
 					%>
 				</select>
 			</div>
-			<div class="btn_btm_center btn_btm_modal">
+			<div class="btn_btm_center btn_btm_modal" id="BTN_CLOSE1">
 				<ul>
-					<li class="btn_cancle"><input type="submit" value="시설물 추가"
-						class="btn_type4" id="Facil_Add"></li>
-					<li><input type="button" value="닫기" class="btn_type4"
-						id="BTN_CLOSE"></li>
+					<li class="btn_cancle"><input type="button" value="시설물 추가" class="btn_type4" id="Facil_Add12"></li>
+					<li><input type="button" value="닫기" class="btn_type4" id="BTN_CLOSE1"></li>
 				</ul>
 			</div>
 		</fieldset>
-	</form>
+<!-- 	</form> -->
 </div>
 	</div> 
 </body>

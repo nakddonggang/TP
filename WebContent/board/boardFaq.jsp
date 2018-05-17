@@ -54,12 +54,19 @@
 
 					<div class="content">
 						<div class=board>
-							<h1>FAQ</h1>
+							<h3>자주 하는 질문</h3>
+							<div class="dl_box">
+							<dl>
+							<dt>Read It</dt>
+							<dd>도서관 이용에 관한 궁금한 점은 "FAQ"에서 먼저 확인하시고</dd>
+							<dd>추가로 문의할 내용은 "Q&A"에서 작성하시기 바랍니다</dd>
+							</dl>
+							</div>
+				
+
 							<div class="view_cnt">
 								<p>Total_<span><%=count%></span></p>
 							</div>
-							<p class="sub_txt">도서관 이용에 관한 궁금한 점은 "FAQ"에서 먼저 확인하시고, 추가로 문의할 내용은 "Q&A"에서 작성하시기 바랍니다</p>
-
 							<ul class="brd_txt_lst">
 								<!-- 글목록 -->
 								<li class="view_lst">
@@ -79,7 +86,7 @@
  								%>
 									<div class="con_lst DIV_CON_LST">
 										<ul>
-											<li class="col_rc"><a href="#"><%=bDTO.getFaq_num()%></a></li>
+											<li class="col_rcFAQ"><a href="#"><%=bDTO.getFaq_num()%></a></li>
 											<li class="col_type"><a href="#"><p><%=bDTO.getFaq_type()%></p></a></li>
 											<li class="col_title"><a href="#"><p><%=bDTO.getFaq_subject()%></p></a></li>
 										</ul>
@@ -122,6 +129,7 @@
 								<%
 								}
 								%>
+								<div class="paginate">
 							<%
 								if (pageCount < endPage) endPage = pageCount;
 								if (startPage > pageBlock) {
@@ -147,6 +155,7 @@
 								<%
 								}
 								%>
+								</div>
 						</div>
 					</div>
 

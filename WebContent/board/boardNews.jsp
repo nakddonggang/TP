@@ -52,10 +52,18 @@
 				<jsp:include page="../include/topbar.jsp" />
 					
 					<div class="content">
+						<div class="text_top">
+							<h3>공지사항</h3>
+								<div class="dl_box">
+									<dl>
+									<dt>Read It</dt>
+									<dd>이용자분들께 신속히 알려드릴필요성이 있는 정보 및 자료를 제공해 드립니다</dd>
+								</dl>
+						</div>
+					</div>	
+					
+					
 						<div class=board>
-						
-						<h1>Notice</h1>
-						
 						<div class="search_bx">
 							<form action="./BoardNoticeSearch.no" method="post">
 								<input type="text" name="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
@@ -65,11 +73,16 @@
 						<div class="view_cnt">
 							<p>Total_<span><%=count %></span></p>
 						</div>
-						<p class="sub_txt">이용자분들께 신속히 알려드릴 필요성이 있는 정보 및 자료를 제공해 드립니다.</p>
+						
+						
 						
 						<ul class="brd_txt_lst">
+						
+						
+						
 							<!-- 글목록 -->
 							<li class="view_lst">
+							
 							   <%
 								if(noticeList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
 								else{
@@ -83,8 +96,8 @@
 									%>
 										<div class="con_lst DIV_CON_LST">
 											<ul>
-												<li class="col_type"><a href="#"><p><%=bDTO.getNotice_type() %></p></a></li>
-												<li class="col_title"><a href="#"><p><%=bDTO.getNotice_subject() %></p></a></li>
+												<li class="col_typeNo"><a href="#"><p><%=bDTO.getNotice_type() %></p></a></li>
+												<li class="col_titleNo"><a href="#"><p><%=bDTO.getNotice_subject() %></p></a></li>
 												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getNotice_date()) %></span></li>
 											</ul>
 											
@@ -95,7 +108,7 @@
 												}
 												%>
 												<p><%=notice_content %></p>	
-												<div class="file"><span>첨부파일</span><ul><a href="#" class="down"><%=file %></a></ul></div>
+												<div class="file"><span class="No">첨부파일</span><ul><a href="#" class="down"><%=file %></a></ul></div>
 									<%
 										if ("admin".equals(member_id)) {
 											%><div class="btn_btm_board">
@@ -122,7 +135,7 @@
 						
 	
 						
-	
+						<div class="paginate">
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 						
@@ -133,7 +146,13 @@
 						}
 						if(endPage < pageCount){	%><a href="BoardNoticeList.no?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
+						 </div>
+						 
+						 
+						 
+						 
 						</div>
+				
 					</div>
 
 				</article>

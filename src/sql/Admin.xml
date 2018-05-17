@@ -470,7 +470,7 @@
    	
    	<update id="updateFacilSugg" parameterType="net.facility.db.FacilityDTO">
 		update seat s join facility f on s.facil_num =f.facil_num
-		set f.facil_use=#{facil_use}, s.obj_condition=#{obj_condition} , s.obj_d_reason=#{obj_d_reason}
+		set  s.obj_condition=#{obj_condition} , s.obj_d_reason=#{obj_d_reason}
 		where f.facil_num=#{facil_num} and s.obj_mname=#{obj_mname};
 	</update>
 	
