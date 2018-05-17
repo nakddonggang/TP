@@ -10,7 +10,7 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li class="btn_newsletter"><a href="../book/bookSearch.jsp">(X)통합 검색</a></li>
+					<li class="btn_newsletter"><a href="./BookIndex.bk">통합 검색</a></li>
 					
 					<li><a href="#">도서관 서비스</a>
 						<ul class="DIV_SUB_MNU">
