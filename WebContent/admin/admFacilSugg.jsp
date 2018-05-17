@@ -51,7 +51,7 @@ request.setCharacterEncoding("UTF-8");
 				<div class="content">
 				
 					<div class="write_form">
-							<h1>시설관리</h1>
+							<h3>시설관리</h3>
 							<form action="./AdminFacilSuggUpdate.am"  method="post"  name="fr">
 								<ul class="rowadmin">
 									<li>

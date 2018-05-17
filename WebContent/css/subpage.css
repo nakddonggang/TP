@@ -113,7 +113,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .member_form form {width:375px; margin:30px auto 0;}
 .member_form form input[type="text"],
 .member_form form input[type="password"] {width:260px; height:40px; margin-bottom:5px; border:0; background:#f6f6f6;} 
-.join_form {margin:40px 0;}
+.join_form {margin:40px 20px;}
 .join_form form {margin-bottom:50px;}
 .join_form .row {overflow:hidden; border-top:2px solid #464646;}
 .join_form .row li.half {float:left; width:50%;}
@@ -416,7 +416,8 @@ strong#currentPage {font-weight: bold;}
 	/* board css end*/
 	
 	
-	
+/* facil css */
+
 	/* admin facil start */
 	.write_form .row_subfacil1 > li {display:table-cell;}
 	.write_form .row_subfacil1 > li input[type="button"] {margin-left: 0px;]}
@@ -427,5 +428,15 @@ strong#currentPage {font-weight: bold;}
 	.facilhide{display: none;}
 	.write_form .row_subfacil2 > li {width: 70%; display: inline-table;}
 	/* admin facil end */
+	
+/* member css */
+	/* member join start */
+	.join_form .row_sub > li input[type="button"] { margin-left:0px; }
+	.join_form .row_sub > li.title {    width: 56px; height: 15px; padding: 5px; text-align: center;}
+
 }
 
+@media (max-width:426px){
+		#selectEmail {margin-left: 115px;}
+
+}
