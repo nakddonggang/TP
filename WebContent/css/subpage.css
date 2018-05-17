@@ -126,7 +126,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .join_form .row_sub > li input[type="text"].mb_mail {width:145px;}
 .join_form .row_sub > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
 .join_form .row_sub > li p {float:left; margin-left:10px; color:#999; letter-spacing:-0.08em; line-height:30px;}
-.join_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;}
+.join_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;   display: inline-block;}
 
 
 

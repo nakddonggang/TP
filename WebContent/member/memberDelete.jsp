@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -37,30 +38,40 @@
 				<%
 					String member_id = (String)session.getAttribute("member_id");
 				%>
-					<div class='member_content'>
-						<form action="./MemberDeleteAction.me" method="post" name="">
-							<fieldset class="memberform">
-								<legend>회원탈퇴</legend>
-								<div class="row_group">
-									<div id="idDiv" class="join_row">
-										<span>
-											<label>아이디</label>
-											<input type="text" name="id" placeholder="아이디를 입력하세요" value="<%=member_id %>" readonly>
-										</span>
+				<div class='join_form'>
+					<h3>회원탈퇴</h3>
+					
+						<form action="./MemberDeleteAction.me" method="post" name="">	
+							<ul class="row">
+								<li>
+									<ul class="row_sub">
+										<li class="title">ID</li>
+										<li class="inp_form"><input type="text" name="id"   value="<%=member_id %>" readonly> </li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">Pass</li>
+										<li class="inp_form"><input type="password" name="pass" id = "member_pass" value=""></li>
+									</ul>
+								</li>
+								<li>
+									<div class="btn_btm_center">
+										<ul>
+											<li class="btn_cancle">
+												<input type="submit" value="회원" class ="btn_type4" id = "submit_button">
+											</li>
+											<li>
+												<input type="reset" value="취소" class ="btn_type4">
+											</li>
+										</ul>
 									</div>
-									<div id="idDiv" class="join_row">
-										<span>
-											<label>비밀번호 : </label>
-											<input type="password" name="pass"	placeholder="비밀번호를 입력하세요">
-										</span>
-									</div>
-								</div>
-							</fieldset>
-							<input type="submit"  value="회원탈퇴"  class ="btn">
-							<input	type="reset"  value="취소"  class ="btn">
+								</li>
+							</ul>
 						</form>
 					</div>
-				</div>
+			      </div>
 				<!-- //메인 페이지-->
 				</article>
 			</section>
