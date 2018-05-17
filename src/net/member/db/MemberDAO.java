@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import net.book.db.BookDTO;
 import net.facility.db.FacilityDTO;
 import util.myBatisSetting.sqlMapConfig;
 
@@ -98,6 +99,38 @@ public class MemberDAO {
 		map.put("deleteList", list);
 		sqlsession.delete("deleteBasket",map);
 	}
-	
+	// 도서바구니 예약버튼 클릭 시 해당 책 대출중인지 여부 확인
+	public List<BookDTO> selectBbook(List list){
+		HashMap map = new HashMap<>();
+		map.put("checkBbook", list);
+		List<BookDTO> book_state = sqlsession.selectList("selectBbook", map);
+		return book_state;
+	}
+	// rbook 테이블에 해당 책 예약대기순위 조회
+	public int rbookNumMax(int book_number){
+		int rbookNumMax = sqlsession.selectOne("rbookNumMax", book_number);
+		return rbookNumMax;
+	}
+	// rbook 테이블에 insert
+	public void insertRbook(int book_number, String member_id, String bbook_bstate, int rbook_num){
+		HashMap map = new HashMap<>();
+		map.put("book_number", book_number);
+		map.put("member_id", member_id);
+		map.put("bbook_bstate", bbook_bstate);
+		map.put("rbook_num", rbook_num);
+		sqlsession.insert("insertRbook",map);
+	}
+	// rbook 테이블 rbook_num=3인것들 찾아서 rbook_check='0'으로 수정
+	public void updateRbookCheck(){
+		sqlsession.update("updateRbookCheck");
+	}
+	// 해당 책 이미 예약했는지 체크
+	public int rbookCkMember(int book_number, String member_id){
+		HashMap map = new HashMap<>();
+		map.put("book_number", book_number);
+		map.put("member_id", member_id);
+		int result = sqlsession.selectOne("rbookCkMember", map);
+		return result;
+	}
 	
 }

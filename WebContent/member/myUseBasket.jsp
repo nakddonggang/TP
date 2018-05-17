@@ -21,6 +21,10 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$('#resBtn').click(function(){
+		$('#basketForm').attr("action","./MemberBasketResAction.me");
+	});
+	
 	$('#delBtn').click(function(){
 		$('#basketForm').attr("action","./MemberBasketDelete.me");
 	});

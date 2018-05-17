@@ -56,4 +56,33 @@
 		</foreach>
 		</where>
 	</delete>
+	
+	<select id="selectBbook" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select * from bbook
+		<where>
+		<foreach item="index" collection="checkBbook" separator="or">
+			book_number=#{index}
+		</foreach>
+		</where>
+	</select>
+	
+	<select id="rbookNumMax" parameterType="int" resultType="int">
+		select ifnull(max(rbook_num),0) from rbook where book_number=#{book_number}
+	</select>
+	
+	<insert id="insertRbook" parameterType="hashmap">
+		insert into rbook(book_number, member_id, rbook_num, rbook_date, rbook_check) 
+		values 
+		<if test="bbook_bstate != null">(#{book_number}, #{member_id}, #{rbook_num}+1, now(), '1')</if>
+		<if test="bbook_bstate != null and rbook_num==2">(#{book_number}, #{member_id}, #{rbook_num}+1, now(), '0')</if>
+		<if test="bbook_bstate == null">(#{book_number}, #{member_id}, #{rbook_num}+1, now(), '1')</if>
+	</insert>
+	
+	<update id="updateRbookCheck">
+		update rbook set rbook_check='0' where rbook_num=3
+	</update>
+	
+	<select id="rbookCkMember" parameterType="hashmap" resultType="int">
+		select ifnull(count(*),0) from rbook where book_number=#{book_number} and member_id=#{member_id}
+	</select>
 </mapper>

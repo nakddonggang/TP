@@ -143,6 +143,13 @@ public class MemberFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberBasketResAction.me")){
+			action = new MemberBasketResAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null){
