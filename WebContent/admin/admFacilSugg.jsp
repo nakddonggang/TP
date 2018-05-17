@@ -56,7 +56,7 @@ request.setCharacterEncoding("UTF-8");
 								<ul class="rowadmin">
 									<li>
 										<ul class="row_sub">
-											<li class="title">Facility Position</li>
+											<li class="title">시설 번호</li>
 											<li class="inp_form"><select name="category1" id="category1">
 												<option value="" selected="selected">좌석선택</option>
 												<%

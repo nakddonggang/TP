@@ -85,8 +85,8 @@ String pageNum = (String)request.getAttribute("pageNum");
 							<input type="hidden" value=<%=facilList.size()%> name="facilList_size">
 								<ul class="rowadmin">
 									<li>
-										<ul class="row_sub">
-											<li class="title">Facility Position</li>
+										<ul class="row_subfacil1">
+											<li class="title">시설 번호</li>
 											<li class="inp_form"><select name="category1" id="category1">
 												<option value="" selected="selected">좌석선택</option>
 												<%
@@ -113,7 +113,7 @@ String pageNum = (String)request.getAttribute("pageNum");
 										</ul>
 									</li>
 									<li>
-										<ul class="row_sub">
+										<ul class="row_subfacil1">
 										
 											<li class="title">시설상태</li>
 												<li class="inp_form">
@@ -129,32 +129,34 @@ String pageNum = (String)request.getAttribute("pageNum");
 										</ul>
 									</li>
 									<li>
-										<ul class="row_sub">
-											<li class="title">자리 내용</li>
+
+											
 											<%for(int i = 0; i<facilList.size(); i++){
 												FacilityDTO	fDTO = facilList.get(i);
 												String obj_condition = fDTO.getObj_condition();
 											%>
+											<ul class="row_subfacil2">
+											<li class="title">시설물<%=(i+1)%></li>
 											<li class="inp_form" id="ajax_facil">
 											
 												<input type="text" name="obj_mname<%=i%>" value="<%=fDTO.getObj_mname()%>" readonly>
 												
 												<%if(obj_condition.equals("0")){%>
-												<select name="obj_condition<%=i%>">
+												<p class="facil2_p"><select name="obj_condition<%=i%>">
 												 <option value="0">사용가능</option>
 												 <option value="1">사용불가능</option>
-												 </select>
+												 </select></p>
 												 <%}else{ %>
-												 <select name="obj_condition<%=i%>">
+												<p class="facil2_p"><select name="obj_condition<%=i%>">
 												 <option value="1">사용불가능</option>
 												 <option value="0">사용가능</option>
-												 </select>
+												 </select></p>
 												 <%}%>
 												 
-												<input type="text" name="obj_d_reason<%=i%>" class="nofloat1" value="<%=fDTO.getObj_d_reason()%>">
+												<input type="text" name="obj_d_reason<%=i%>" class="facilhide" value="<%=fDTO.getObj_d_reason()%>">
 											</li>
+											</ul>
 											<%}%>
-										</ul>	
 									</li>	
 										
 									
