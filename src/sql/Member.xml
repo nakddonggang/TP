@@ -56,4 +56,13 @@
 		</foreach>
 		</where>
 	</delete>
+	
+	<select id="MemberMyUseBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select* from bbook b
+		left join book bk
+		on b.book_number = bk.book_number
+		where member_id=#{member_id} order by bbook_bdate desc limit #{startRow}, #{pageSize};
+	</select>
+	
+	
 </mapper>

@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import net.book.db.BookDTO;
 import net.facility.db.FacilityDTO;
 import util.myBatisSetting.sqlMapConfig;
 
@@ -97,6 +98,16 @@ public class MemberDAO {
 		HashMap map = new HashMap<>();
 		map.put("deleteList", list);
 		sqlsession.delete("deleteBasket",map);
+	}
+	// 나의 대출도서현황
+	public List<BookDTO> MemberMyUseBookList(String member_id ,int startRow, int endSize){
+		HashMap map = new HashMap<>();
+		List<BookDTO> bbookList = new ArrayList<BookDTO>();
+		map.put("member_id", member_id);
+		map.put("startRow", startRow);
+		map.put("endSize", endSize);
+		bbookList = sqlsession.selectList("MemberMyUseBookList", map);
+		return bbookList;
 	}
 	
 	
