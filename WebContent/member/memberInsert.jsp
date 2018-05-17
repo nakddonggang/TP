@@ -51,7 +51,10 @@
 var idcheck = 0;
 
 	function checkId() {
-		var inputid = $("#member_id").val();
+		var inputid = $("#member_id").val();	
+		var idnum = inputid.search(/[0-9]/g);
+		var ideng = inputid.search(/[a-z]/ig);
+		
 		$.ajax({
 			url:'./MemberIdCheck.me',
 			type:'POST',
@@ -61,10 +64,29 @@ var idcheck = 0;
 			success:function(data) {
 				if(inputid == "" && data == '0') {
 					$("#member_id").css("background-color", "#FFCECE");
+					$("#submit_button").prop("disabled" , true);
+					$("#submit_button").css("background-color" , "#aaaaaa");
+					$("#idcheck_msg").html("사용불가능한 아이디입니다.");
+				} else if(idnum < 0 || ideng < 0) {
+					$("#member_id").css("background-color", "#FFCECE");
+					$("#submit_button").prop("disabled" , true);
+					$("#submit_button").css("background-color" , "#aaaaaa");
+					$("#idcheck_msg").html("아이디는 영어와 숫자만 입력가능합니다.");
+				} else if(inputid.length < 6 || inputid.length > 15) {
+					$("#member_id").css("background-color", "#FFCECE");
+					$("#submit_button").prop("disabled" , true);
+					$("#submit_button").css("background-color" , "#aaaaaa");
+					$("#idcheck_msg").html("아이디는 6 ~ 14자리 사이로 입력해주세요.");
 				} else if(data == '0') {
 					 $("#member_id").css("background-color", "#B0F6AC");
+					 $("#submit_button").prop("disabled" , false);
+					 $("#submit_button").css("background-color" , "#464646");
+					 $("#idcheck_msg").html("사용가능한 아이디입니다.");
 				} else if(data == '1') {
 					$("#member_id").css("background-color", "#FFCECE");
+					$("#submit_button").prop("disabled" , true);
+					$("#submit_button").css("background-color" , "#aaaaaa");
+					$("#idcheck_msg").html("사용불가능한 아이디입니다.");
 				}
 				
 			}
@@ -102,26 +124,13 @@ $(document).ready(function() {
 		});
 
 	$("#submit_button").click(function() {
-		if ($("#member_id").val() == "") {
-            alert("아이디는 공백으로 입력할 수 없습니다.");
-            $("#member_id").focus();
-            return;
-        } 
 		
-		var id = document.getElementById("member_id").value;
 		var pass = document.getElementById("member_pass").value;
 		var name = document.getElementById("member_name").value;
 		var num = pass.search(/[0-9]/g);
 		var eng = pass.search(/[a-z]/ig);
 		var spe  = pass.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-		var err = 0;
-		var kor = 0;
-			for (var i=0; i<id.length; i++)  { 
-			    var chk = id.substring(i,i+1); 
-			    if(!chk.match(/[0-9]|[a-z]|[A-Z]/)) { 
-			        err = err + 1; 
-	    		} 
-			} // for - end
+		var kor = 0;  // for - end
 			
 			for (var i=0; i<name.length; i++) {
 				var chk = name.substring(i,i+1);
@@ -129,17 +138,6 @@ $(document).ready(function() {
 					kor = kor + 1;
 				}
 			} // for - end
-		if(err > 0) { 
-			alert("아이디는 숫자 및 영문만 입력가능합니다.");
-			$("#member_id").select();
-			return;
-		}
-			
-		if(id.length < 6 || id.length > 15) {
-			alert("아이디는 6 ~ 14 글자 사이로 입력해주세요.");
-			$("#member_id").select();
-			return;
-		}
 		
 		if(pass.length == 0) {
 			alert("비밀번호는 공백으로 입력할 수 없습니다.");
