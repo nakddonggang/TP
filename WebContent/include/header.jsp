@@ -10,13 +10,13 @@
 		<nav>
 			<div class="inner">
 				<ul>
-					<li class="btn_newsletter"><a href="../book/bookSearch.jsp">(X)통합 검색</a></li>
+					<li class="btn_newsletter"><a href="./BookIndex.bk">통합 검색</a></li>
 					
 					<li><a href="#">도서관 서비스</a>
 						<ul class="DIV_SUB_MNU">
 							<li><a href="./ServeBook.bk">희망도서 신청</a></li>
 							<li><a href="./Facility.fy">시설이용 신청</a></li>
-							<li><a href="./service/serveQues.jsp">(X)사서에게 물어보세요</a></li>
+							<li><a href="./ServiceQues.fp">사서에게 물어보세요</a></li>
 						</ul></li>
 						
 					<li><a href="#">게시판</a>

@@ -23,6 +23,28 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/login.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<style type="text/css">
+#websocketChat{  
+    border:5px solid grey;  
+    width:800px;  
+    margin:0 auto;  
+    padding:10px;  
+}  
+#chatLog{  
+    padding:5px;  
+    border:1px solid black;  
+}  
+#chatLog p {  
+    margin:0;  
+}  
+.event {  
+    color:#999;  
+}  
+.warning{  
+    font-weight:bold;  
+    color:#CCC;  
+}  
+</style>
 </head>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -101,12 +123,7 @@ List<BoardDTO> curationList = (List<BoardDTO>)request.getAttribute("curationList
 						%>
 					</table>
 					</div>  
-					
-					
-					
-					
-					<div class=""></div>
-					<div class=""></div>
+					<jsp:include page="../include/chat.jsp" />
 				</div>
 				<!-- //메인 페이지-->
 				</article>

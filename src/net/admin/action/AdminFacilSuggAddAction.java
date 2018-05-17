@@ -16,25 +16,29 @@ public class AdminFacilSuggAddAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
+		int result =0;
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String facil_num = request.getParameter("facil_num");
 		String obj_mname = request.getParameter("obj_mname");
-		System.out.println(obj_mname);
+		System.out.println("obj : "+obj_mname);
+		System.out.println("facil : "+facil_num);
 		FacilityDTO fDTO = new FacilityDTO();
 		fDTO.setFacil_num(facil_num);
 		fDTO.setObj_mname(obj_mname);
 		
 		AdminDAO adao = new AdminDAO();
-		adao.insertSeat(fDTO);
+		result = adao.insertSeat(fDTO);
+		if(result == 1) {
+			System.out.println("성공");
+		} else {
+			System.out.println("실패");
+		}
 		
 		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
-		out.print("<script>");
-		out.print("alert('시설물 추가완료');");
-		out.print("window.close()");
-		out.print("</script>");
+		out.print(result);
 		out.close();
 		return null;
 	}
