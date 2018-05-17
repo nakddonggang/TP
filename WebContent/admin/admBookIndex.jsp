@@ -185,7 +185,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						<div class="con_lst">
 							<ul class="no_scroll" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'">
 								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getBook_number()%></li>
-								<li class="adm_col_type" id="adm_book_high"><img src="./upload/<%=bookLists.getBook_file()%>" width="70px" height="80px"></li>
+								<li class="adm_col_type" id="adm_book_high"><img src="./upload/book/<%=bookLists.getBook_file()%>" width="70px" height="80px"></li>
 								<li class="adm_col_subs" id="adm_book_high"><%=bookLists.getBook_subject()%></li>
 								<li class="adm_col_date" id="adm_book_high"><%=bookLists.getBook_author()%></li>
 								<li class="adm_col_type" id="adm_book_high"><%=bookLists.getBook_publisher()%></li>
