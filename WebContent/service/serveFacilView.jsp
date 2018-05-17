@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="net.facility.db.FacilityDAO"%>
 <%@page import="net.member.db.MemberDTO"%>
@@ -26,8 +27,8 @@
 	String member_id = (String)session.getAttribute("member_id");
 	FacilityDTO fDTO = (FacilityDTO)request.getAttribute("fDTO");
 	FacilityDAO fDAO = new FacilityDAO();
+	SimpleDateFormat start_date = new SimpleDateFormat("yyyy-MM-dd/HH:mm:ss");
 	String userCheck = fDTO.getMember_id();
-	Date start_time = fDTO.getFacil_stime();
 	if(userCheck == null) userCheck = "";
 	int check = fDAO.useMember(member_id);
 %>
@@ -71,16 +72,17 @@
 									<ul>
 										<li class="btn_cancle">
 											<input type="hidden" value="<%=fDTO.getFacil_use()%>" name = "facil_use">
-											<%if(start_time != null) { %>
-											<input type="hidden" value="<%=fDTO.getFacil_stime() %>"name ="facil_stime">
-											<% }
+											<% 
 												if(member_id != null){
 													if(Integer.parseInt(fDTO.getFacil_use()) != 1 && check == 0) out.print("<input type='submit' value='사용하기' class='btn_type4'>");
-													else if(userCheck.equals(member_id)) out.print("<input type='button' value='반납' onclick=location.href='./FacilityUnUseAction.fy?facil_num=" + fDTO.getFacil_num() + "&facil_use=" + fDTO.getFacil_use() + "' class='btn_type4'>");
+													else if(userCheck.equals(member_id)) {
+														String time = start_date.format(fDTO.getFacil_stime());
+														out.print("<input type='button' value='반납' class ='btn_type4' onclick=location.href='./FacilityUnUseAction.fy?facil_num=" + fDTO.getFacil_num() + "&facil_use=" + fDTO.getFacil_use() + "&facil_stime=" + time + "'>");
+													}
 													else if(check == 1)	out.print("<span>사용중인 자리 반납 후 사용 가능 합니다.</span>");
 												} else out.print("<span>좌석 예약은 로그인 후 이용 가능합니다</span>");
 											%>	
-										</li>
+										</li> 
 										<li>
 											<input type="button" id="BTN_FACIL_CLOSE" class="btn_type4" value="닫기">
 										</li>
