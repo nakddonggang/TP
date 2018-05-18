@@ -237,7 +237,7 @@
 									<div class="con_lst">
 										<ul class="no_scroll">
 											<li class="adm_col_rc" id="adm_book_high"><input
-												type="checkbox" name="basket_check"  id="basket_check+<%=bookLists.getBook_number()%>"
+												type="checkbox" name="basket_check+<%=bookLists.getBook_number()%>"  id="basket_check"
 												value="<%=bookLists.getBook_number()%>" style="line-height: 70%; height: 70%;"></li>
 											<li class="adm_col_date" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>'"><img
@@ -253,9 +253,9 @@
 											<li class="adm_col_type"  id="adm_book_high">
 												<%if (bookLists.getBbook_bdate()==null){ %>
 													<!-- 며칠부터 며칠까지 대출중인지 -->
-													<input type="button" id="res_+<%=bookLists.getBook_number()%>" value="대출신청" style="border: none; background-color:#FAE0D4; margin: 47% 0;">
+													<form action="" id="bor_form"><input type="button" id="res_+<%=bookLists.getBook_number()%>" value="대출신청" style="border: none; background-color:#FAE0D4; margin: 47% 0;"></form>
 												<%} else {%>
-													<input type="button" id="bor_+<%=bookLists.getBook_number()%>" value="도서예약" style="border: none; background-color:#FAE0D4; margin: 47% 0;">
+													<form action="" id="res_form"><input type="button" id="bor_+<%=bookLists.getBook_number()%>" value="도서예약" style="border: none; background-color:#FAE0D4; margin: 47% 0;"></form>
 											<%}%>
 											</li>
 										</ul>
@@ -366,7 +366,7 @@ $(document).ready(function() {
 	$('#book_bas_b').click(function() {
 		var basket = confirm("책바구니에 담겠습니까?");
 		if (basket == true) {
-			var url = "./MemberBasketAdd.bk?member_id=" + member_id;
+			var url = "./MemberBasketAdd.bk?member_id="+member_id;
 			$(location).attr('href', url);
 			return false;
 		} else {
@@ -376,10 +376,10 @@ $(document).ready(function() {
 
 $(document).ready(function() {
 	var member_id = "<%=member_id%>";
-	$('#book_res_r').click(function() {
+	$('#res').click(function() {
 			var rbook = confirm("예약하시겠습니까?");
 			if (rbook == true) {
-				var url = "./MemberBasketAdd.bk?member_id=" + member_id;
+				var url = "./MemberBasketAdd.bk?member_id="+member_id;
 				$(location).attr('href', url);
 				return false;
 			} else {
@@ -392,7 +392,7 @@ $(document).ready(function() {
 	$('#book_bor_b').click(function() {
 			var bbook = confirm("대출예약을 하시겠습니까?");
 			if (bbook == true) {
-				var url = "./MemberBasketAdd.bk?member_id=" + member_id;
+				var url = "./MemberBasketAdd.bk?member_id="+member_id;
 				$(location).attr('href', url);
 				return false;
 			} else {
