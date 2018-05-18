@@ -64,6 +64,29 @@ $(window).on('load', function() {
 		parent.$("#facil_dialog").dialog("close");
 	});
 	
+	//메신저 다이얼로그 설정
+	$("#chat_dialog").dialog({ 
+		autoOpen: false, 
+		modal: false, 
+		resizeable : false,
+		position:{
+            my:"right bottom",
+            at:"right bottom",
+            of:".content" 
+            }
+	});
+	
+
+	//메신저 다이얼로그 오픈 버튼
+	$("#btn-open-chat").click(function() {
+		$("#chat_dialog").dialog("open");
+	});
+	
+	$("#BTN_CLOSE_CHAT").click(function() {
+		$("#chat_dialog").dialog("close");
+	});
+	
+	
 });
 
 $(function() {
@@ -145,6 +168,7 @@ $(document).ready(function() {
 				}
 				socket.onmessage = function(msg) {
 					messageArray = msg.data.split(': ');
+					
 					message('<p class="message">'+messageArray[0]+ ': ' + messageArray[1]);
 				}
 				socket.onclose = function() {
@@ -165,9 +189,11 @@ $(document).ready(function() {
 				$('#text').val("");
 			}
 
-			function message(msg) {	$('#chatLog').append(msg + '</p>');	}
+			function message(msg) {
+				$('#chatLog').append(msg + '</p>');
+				$('#chatview').scrollTop($('#chatview').prop('scrollHeight'));
+			}
 			$('#text').keypress(function(event) {	if (event.keyCode == '13') {	send();	}	});
-			$('#disconnect').click(function() {	socket.close();	});
 			$(window).on("beforeunload", function(){	socket.close();	});
 
 		}//End connect  
