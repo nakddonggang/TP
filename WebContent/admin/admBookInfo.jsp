@@ -74,7 +74,7 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>고유번호 : <%=bookList.getBook_number()%></span></li>
-										<li class="inp_form"><img src="./upload/<%=bookList.getBook_file()%>" width="110" height="130"></li>
+										<li class="inp_form"><img src="./upload/book/<%=bookList.getBook_file()%>" width="110" height="130"></li>
 								</ul>
 							</li>
 							<li>
