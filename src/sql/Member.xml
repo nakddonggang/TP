@@ -94,5 +94,9 @@
 	<select id="matchBookNum" parameterType="int" resultType="int">
 		select book_number from basket where basket_number=#{basket_number}
 	</select>
+	
+	<select id="basketMaxNum" resultType="int">
+		select ifnull(max(basket_number),0) from basket
+	</select>
 
 </mapper>

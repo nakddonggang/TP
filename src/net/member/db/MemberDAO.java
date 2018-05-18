@@ -83,8 +83,8 @@ public class MemberDAO {
 	}
 	
 	// 도서바구니 담기
-	public void insertBasket(MemberDTO bDTO) {
-		sqlsession.insert("insertBasket", bDTO);
+	public void insertBasket(MemberDTO mDTO) {
+		sqlsession.insert("insertBasket", mDTO);
 	}	
 	
 	// 도서바구니 리스트
@@ -150,6 +150,11 @@ public class MemberDAO {
 	public int matchBookNum(int basket_number){
 		int book_number = sqlsession.selectOne("matchBookNum", basket_number);
 		return book_number;
+	}
+	// 바구니 최대번호 조회
+	public int basketMaxNum(){
+		int basket_number = sqlsession.selectOne("basketMaxNum");
+		return basket_number;
 	}
 	
 }
