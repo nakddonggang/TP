@@ -23,8 +23,7 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
+	$(document).ready(function() {
 
 				$('#SearchForm').submit(
 						function() {
@@ -59,10 +58,12 @@
 						$("dl", this).removeClass("bil_on");
 					});
 				});
-
-				$('#book_pic_div').css('display', 'none');
-				$('#book_cont_div').css('display', 'block');
 			});
+
+	$(document).ready(function() {
+		$('#book_pic_div').css('display', 'none');
+		$('#book_cont_div').css('display', 'block');
+	});
 
 	$(document).ready(function() {
 		$('#book_pic_btn').click(function() {
@@ -78,29 +79,10 @@
 		});
 	});
 </script>
-<script type="text/javascript">
-	function bbook() {
-		var bbook = confirm("대출예약을 하시겠습니까?");
-		if (bbook == true) {
-			document.fr.action = "";
-			document.fr.submit();
-		} else {
-			return;
-		}
-	}
-	function basket() {
-		var basket = confirm("책바구니에 담겠습니까?");
-		if (basket == true) {
-			document.fr.action = "";
-			document.fr.submit();
-		} else {
-			return;
-		}
-	}
-</script>
 </head>
 <body>
 	<%
+		String member_id = (String)session.getAttribute("member_id");
 		request.setCharacterEncoding("utf-8");
 		//count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
 		int count = ((Integer) request.getAttribute("count")).intValue();
@@ -242,7 +224,8 @@
 											<li class="adm_col_subs">제목</li>
 											<li class="adm_col_date">저자</li>
 											<li class="adm_col_date">출판사</li>
-											<li class="col_rc">반납/예약</li>
+											<li class="adm_col_type">대출현황</li>
+											<li class="adm_col_type">대출/예약 신청</li>
 										</ul>
 									</div> <%
  	if (count == 0) {
@@ -250,14 +233,13 @@
 										<li class="col_tit"><p>책 목록이 없습니다</p></li>
 									</ul> <%
  	} else {
- 		for (BookDTO bookLists : bookList) {
- %>
+ 		for (BookDTO bookLists : bookList) { %>
 									<div class="con_lst">
 										<ul class="no_scroll">
 											<li class="adm_col_rc" id="adm_book_high"><input
-												type="checkbox" name="book_number"
-												value="<%=bookLists.getBook_number()%>"></li>
-											<li class="col_type" id="adm_book_high"
+												type="checkbox" name="basket_check"  id="basket_check+<%=bookLists.getBook_number()%>"
+												value="<%=bookLists.getBook_number()%>" style="line-height: 70%; height: 70%;"></li>
+											<li class="adm_col_date" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>'"><img
 												src="./upload/book/<%=bookLists.getBook_file()%>"
 												width="70px" height="80px"></li>
@@ -267,29 +249,37 @@
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_author()%></li>
 											<li class="adm_col_date" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_publisher()%></li>
-											<li class="col_rc" id="adm_book_high"><%=bookLists.getBbook_bstate()%></li>
+											<li class="adm_col_type"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBbook_bstate()%></li>
+											<li class="adm_col_type"  id="adm_book_high">
+												<%if (bookLists.getBbook_bdate()==null){ %>
+													<!-- 며칠부터 며칠까지 대출중인지 -->
+													<input type="button" id="res_+<%=bookLists.getBook_number()%>" value="대출신청" style="border: none; background-color:#FAE0D4; margin: 47% 0;">
+												<%} else {%>
+													<input type="button" id="bor_+<%=bookLists.getBook_number()%>" value="도서예약" style="border: none; background-color:#FAE0D4; margin: 47% 0;">
+											<%}%>
+											</li>
 										</ul>
-									</div> <%
- 	}
- 	}
- %>
+									</div>
+									<%}
+ 								}%>
 								</li>
 							</ul>
 							<!-- ★게시판으로 보여지는 통합검색 -->
 
 							<!-- ★갤러리로 보여지는 통합검색 -->
-							<ul class="brd_txt_lst" id="book_pic_div">
-								<li class="view_lst">
+							<ul class="book_lst" id="book_pic_div">
+								<li>
 									<%
 										if (count == 0) {
 									%>
-									<ul>
-										<li class="col_tit"><p>책 목록이 없습니다</p></li>
-									</ul> <%
- 	} else {
- 		for (BookDTO bookLists : bookList) {
- %>
-									<ul>
+									<dl class="book_info_layer">
+										<dt>책 목록이 없습니다</dt>
+										<dd></dd>
+									</dl>
+									</li> <%
+									 	} else {
+									 		for (BookDTO bookLists : bookList) {
+									 %>
 										<li><a
 											href="./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>">
 												<img src="./upload/book/<%=bookLists.getBook_file()%>">
@@ -312,26 +302,21 @@
 														<dd><%=bookLists.getBbook_bstate()%></dd>
 													</dl>
 												</dd>
-											</dl></li>
-									</ul> <%
- 	}
- 	}
- %>
-								</li>
+											</dl>
+											</li><%}
+ 										}%>
 							</ul>
 							<!-- ★갤러리로 보여지는 통합검색 -->
+							
+							<%if(member_id!=null){ %>
 							<div class="btn_btm_center">
 								<ul>
-									<li class="btn_cancle">
-										<!-- book/bookInfo.jsp 에 필요한 기능 --> <input type="button"
-										value="대출예약" onclick="location.href='javascript:bbook()'"
-										class="btn_type4 BTN_IF_LIST">
-									</li>
-									<li><input type="button" value="책바구니"
-										onclick="location.href='javascript:basket()'"
+									<li><input type="button" value="책바구니" id="book_bas_b"
 										class="btn_type4 BTN_IF_LIST"></li>
 								</ul>
 							</div>
+							<%}%>
+							
 							<!-- 버튼 css 부분 -->
 							<div class="btn_btm_center">
 								<%
@@ -373,5 +358,47 @@
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+	
+<script type="text/javascript">
+
+$(document).ready(function() {
+	var member_id = "<%=member_id%>";
+	$('#book_bas_b').click(function() {
+		var basket = confirm("책바구니에 담겠습니까?");
+		if (basket == true) {
+			var url = "./MemberBasketAdd.bk?member_id=" + member_id;
+			$(location).attr('href', url);
+			return false;
+		} else {
+			return false; }
+	});
+});		
+
+$(document).ready(function() {
+	var member_id = "<%=member_id%>";
+	$('#book_res_r').click(function() {
+			var rbook = confirm("예약하시겠습니까?");
+			if (rbook == true) {
+				var url = "./MemberBasketAdd.bk?member_id=" + member_id;
+				$(location).attr('href', url);
+				return false;
+			} else {
+				return false; }
+	});
+});
+
+$(document).ready(function() {
+	var member_id = "<%=member_id%>";
+	$('#book_bor_b').click(function() {
+			var bbook = confirm("대출예약을 하시겠습니까?");
+			if (bbook == true) {
+				var url = "./MemberBasketAdd.bk?member_id=" + member_id;
+				$(location).attr('href', url);
+				return false;
+			} else {
+				return false; }
+	});
+});
+</script>
 </body>
 </html>
