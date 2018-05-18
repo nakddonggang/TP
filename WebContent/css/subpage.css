@@ -33,11 +33,6 @@
 
 .brd_txt_lst li > .con_lst > ul > li.col_typeNo {width:15%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.col_titleNo{width:50%; padding:0 20px;}
-/* 기존 board End*/
-
-
-
-
 
 .view_lst .con_lst > ul {overflow:hidden; background:url("../resource/img/ico_lst_down.png") right 20px center; background-repeat:no-repeat; cursor:pointer; border-bottom:1px solid #e4e4e4;}
 .view_lst .con_lst > ul.no_scroll{background: none;} /* 화살표 없는 리스트UL */
@@ -50,7 +45,7 @@
 .view_lst .con_lst .con_detail .file ul {overflow:hidden; width:90%; margin-left:-4px;}
 .view_lst .con_lst .con_detail .file ul li {float:left; width:auto; padding:0 5px;}
 
-.write_form {margin:40px 0;}
+.write_form {margin:40px 20px;}
 .write_form form {margin-bottom:50px;}
 .write_form .row {overflow:hidden; border-top:2px solid #464646; }
 .write_form .row li.half {float:left; width:50%;}
@@ -77,6 +72,14 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .tab_container iframe {width: 100%;height: 100%;border: none;}
 
 /* end 게시판 부분 */
+
+
+
+
+
+
+
+
 .btn_type1 {position:absolute; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; font-size:1.14em;}
 .btn_type2 {position:absolute; right:0; bottom:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#71847a;}
 .btn_type3 {position:absolute; top:30px; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
@@ -110,7 +113,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .member_form form {width:375px; margin:30px auto 0;}
 .member_form form input[type="text"],
 .member_form form input[type="password"] {width:260px; height:40px; margin-bottom:5px; border:0; background:#f6f6f6;} 
-.join_form {margin:40px 0;}
+.join_form {margin:40px 20px;}
 .join_form form {margin-bottom:50px;}
 .join_form .row {overflow:hidden; border-top:2px solid #464646;}
 .join_form .row li.half {float:left; width:50%;}
@@ -123,7 +126,19 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .join_form .row_sub > li input[type="text"].mb_mail {width:145px;}
 .join_form .row_sub > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
 .join_form .row_sub > li p {float:left; margin-left:10px; color:#999; letter-spacing:-0.08em; line-height:30px;}
-.join_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;}
+.join_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;   display: inline-block;}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* start 박용철 작업(Q&A) */
@@ -150,7 +165,11 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 #facil_dialog > iframe {    border:none;    width:100%;    height:100%;}	
 /* end 황해남 작업(Facility) */
 
+
+
 /* START 김영지 작업 Admin */
+
+
 .btn_btm_center .adm_btn__left { text-align: left;}
 /* .adminfo_join_form {padding: 5px;} */
 .brd_txt_lst li > .con_lst > ul > li.adm_col_rc {width:6%; padding:0 20px;}
@@ -181,14 +200,12 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 /* end of 상세검색 하는 부분 */
 .adm_btn_type4 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 190px; text-align: center;}
 .adm_btn_type5 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 200px; text-align: center;}
-
 .join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px}
-
 .adm_h_1{ font-size: 17px;}
 
 /*통합검색 페이지 제일 작게 했을 떄 검색창이 망가져서 미디어쿼리 사용함*/
 @media (max-width:767px){
-	#admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; height : 40px; width:85%;}
+#admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; height : 40px; width:85%;}
 #admin_select_box #admin_select1 {width:20%; border : none; float : left; height:34px; line-height: 34px; margin : 0 4px; }
 #admin_select_box #admin_select2 { width: 20%; float:right; border : none; height:32px; line-height: 32px; margin:0 4px; padding: 0 4px;}
 input.adm_inp_search {float:left; width:40%; height:34px; border:0; line-height: 34px;}
@@ -200,9 +217,60 @@ input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; bord
 #admin_sort_submit { margin: 0 0 0 20%; height:40px; width : 70%; position: relative;}
 #admin_sort_submit .adm_btn_type4 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:17%;  text-align: center;}
 #admin_sort_submit .adm_btn_type5 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:47%; text-align: center; }
-
 }
 /* End 김영지 작업 Admin */
+
+
+/* START 김영지 BookIndex.jsp 상세검색 css */
+#book_divv {position: relative;}
+#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:20%; background-color: white;}
+#book_field { border: 2px solid black; padding: 20px; width: 96%; margin: 5px auto; }
+#book_select_box{border:1px solid #FAE0D4; width: 100%; height: 35px; margin-bottom: 3px;}
+#book_select1 {border: none; height:33px; width:20%;}
+#book_select2 {border:none; height: 33px;  width:20%;}
+input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
+input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
+#book_date_box {  border: 1px solid #FAE0D4; width: 100%; height: 35px; margin-bottom: 3px;}
+#book_date_box > p { float: left; height: 33px; line-height: 33px; margin-left:10px; width: 8%; }
+#book_date_box #book_date { height: 33px; line-height: 33px; margin-left: 50px; }
+#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
+.book_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
+.book_btn_type4 { height: 30px; line-height: 26px; width: 80px; background:#464646; cursor:pointer; color:#fff; text-align: center; border: 0; }
+.book_btn_type5 { height: 30px; line-height: 26px; width: 100px; background:#464646; cursor:pointer; color:#fff; text-align: center; border: 0; }
+
+@media (min-width:768px){
+	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:5px; background-color: white; }
+	#book_divv { position: relative; }
+}
+@media screen and (max-width: 767px) {
+	#book_divv { margin-top: 30px;}
+	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:50px; background-color: white;}
+	#book_select_box{border:1px solid #FAE0D4; width: 100%; height: 35px; margin-bottom: 3px;}
+	#book_select1 {border: none; height:33px; width:18%;}
+	#book_select2 {border:none; height: 33px;  width:18%;}
+	input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
+	input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
+	.book_media_bye { display: none; }
+	.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
+}
+/* END 김영지 BookIndex.jsp 상세검색 css*/
+
+/* START 김영지 책 갤러리 형식으로 보기 css */
+.book_lst {overflow: hidden; width: 981px; margin: 0 auto; }
+.book_lst li { position: relative; float: left; width: 151px; height: 238px;  margin-right: 15px; padding-bottom: 26px; }
+.book_lst li a {color: #666; text-decoration: none; }
+.book_lst li a span {overflow: hidden; display: inline-block; width: 151px; text-overflow: ellipsis; white-space: nowrap; }
+.book_info_layer{ display: none;	position:absolute; top:0; left:0; width:100%; height:238px; background: url(../book/bg_book_hover.png) no-repeat; }
+.book_lst .book_info_layer > dt {height: 57px;	padding: 15px; background-color: #222;   color: #fff; }
+.book_lst .book_info_layer > dt > span {overflow: hidden; display: inline-block;  height: 56px; line-height: 14px; word-break: break-all; }
+.book_lst .book_info_layer dd dl { padding: 15px 15px 0 15px;}
+.book_lst .book_info_layer dd dt { float: left; width: 47px; height: auto;  margin-right: 6px;  line-height: normal;  font-size: 11px  color: #a5a5a5;
+    background: url(../book/bar_book_info.gif) 100% 3px no-repeat; }
+.book_lst .book_info_layer dd dd {overflow: hidden;  margin-bottom: 9px;  font-size: 11px;  text-overflow: ellipsis;  white-space: nowrap;  color: #fff; }
+.book_lst .book_info_layer.bil_on{display:block;cursor:pointer;}
+/* END 김영지 책 갤러리 형식으로 보기 css */
+
+
  
 /* start 한진석 작업 (table) */
 .view_lst .con_lst > ul.no_scroll .col_dlos {width:60%; padding:0 15px;}
@@ -210,12 +278,11 @@ input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; bord
 /* end 한진석 작업 (table) */
 
 
+
+
 /* start 윤창훈 작업(Notice List) */
 .view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%;}
 /* end 윤창훈 작업(Notice List) */
-
-
-
 
 /* start 윤창훈 작업(Curation List) */
 ul.cu_brd_txt_lst {overflow:hidden; position:relative; margin-bottom:30px; border-top:2px solid #464646; border-bottom:1px solid #464646;}
@@ -230,9 +297,13 @@ ul.cu_brd_txt_lst > li.view_lst {float: left; width:100%;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.tit_date {display:none;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.date {margin-right:30px;}
 /* end 윤창훈 작업(Curation List) */
+
+
 /* Notice start*/
 .brd_txt_lst li > .con_lst > ul > li.col_dateNo {width:20%; padding:0 20px;}
 /* Notice End*/
+
+
 /* start 윤창훈 작업(Q&A) */
 .view_lst .con_lst > ul.no_scroll .col_num {width:10%; padding:0 10px;}
 .view_lst .con_lst > ul.no_scroll .col_id {width:15%; padding:0 10px;}
@@ -249,9 +320,11 @@ ul.cu_brd_txt_lst > li.view_lst {float: left; width:100%;}
 .view_lst .con_lst > ul.no_scroll .col_con_id1 {width:20%; padding:0 10px;}
 p.sub_txt {margin: 15px 0 30px 0; }
 /* end 윤창훈 작업(Q&A) */
+
 /* start 김예린 작업(FAQ) */
 .brd_txt_lst li > .con_lst > ul > li.col_rcFAQ {width:10%; padding:0 20px;}
 /* end 김예린 작업(FAQ) */
+
 /* start 김예린 작업(Curation Content) */
 .view_lst .con_lst > ul.no_scroll .cu_col_title {display:block; width:38%; padding:0px 15px; float: left;}
 .view_lst .con_lst > ul.no_scroll .cu_col_date {display:block; width:15%; padding:0 15px; float: right; margin-right: 20px;}
@@ -267,6 +340,9 @@ strong#currentPage {font-weight: bold;}
 .prev {background: url("../resource/img/pagenate_btn_prev.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
 .next {background: url("../resource/img/pagenate_btn_next.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
 /* start 윤창훈 작업(page) */
+
+
+
 
 
 
@@ -289,6 +365,51 @@ strong#currentPage {font-weight: bold;}
 	.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
 	/* text css start*/
 /* board css end*/
+
+
+
+
+
+
+
+
+/* admin facil start */
+.write_form .row_subfacil2 > li {display:inline-flex;vertical-align:middle;padding:10px;width: 75%;}
+.write_form .row_subfacil2 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.write_form .row_subfacil2 > li.title {width: 120px;min-width: 120px;height:50px;padding:15px 20px;background:#f6f6f6;font-family:"Noto_M";letter-spacing:-0.08em;}
+.write_form .row_subfacil2 > li input[type="text"] {float:left; width:180px; height:30px; background:#f6f6f6; border:0;}
+.write_form .row_subfacil2 > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
+.write_form .row_subfacil2 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.write_form .row_subfacil1 > li {display:inline-flex;vertical-align:middle;padding:10px;width: 75%;}
+.write_form .row_subfacil1 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.write_form .row_subfacil1 > li.title {width: 120px;min-width: 120px;height:50px;padding:15px 20px;background:#f6f6f6;font-family:"Noto_M";letter-spacing:-0.08em;}
+.write_form .row_subfacil1 > li input[type="text"] {float:left; width:180px; height:30px; background:#f6f6f6; border:0; margin-right: 10px;}
+.write_form .row_subfacil1 > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
+.write_form .row_subfacil1 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.facil2_p {margin:0 10px; }
+/* admin facil end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -331,8 +452,32 @@ strong#currentPage {font-weight: bold;}
 		.brd_txt_lst li > .con_lst > ul > li.col_titleNo{width:50%; padding:0 20px;}
 		.view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%; padding-right: 50px;}
 	/* board No end*/
-	
-	
+	.write_form .row_suba > li {display:table-cell;vertical-align:middle;padding:10px;width: 100%;}
+	.write_form .row_suba {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
 	/* board css end*/
+	
+	
+/* facil css */
+
+	/* admin facil start */
+	.write_form .row_subfacil1 > li {display:table-cell;}
+	.write_form .row_subfacil1 > li input[type="button"] {margin-left: 0px;]}
+	.write_form .row_subfacil1 > li.title {width: 80px ;min-width: 80px; height:30px; padding:5px 10px 5px 15px;}
+	.write_form .row_subfacil1 > li input[type="text"] {width:100px; }
+	.write_form .row_subfacil2 > li.title {width: 80px; min-width: 80px; height:30px;   padding: 14px 15px;}
+	.write_form .row_subfacil2 > li input[type="text"] {width:70px; margin-right: 10px; }
+	.facilhide{display: none;}
+	.write_form .row_subfacil2 > li {width: 70%; display: inline-table;}
+	/* admin facil end */
+	
+/* member css */
+	/* member join start */
+	.join_form .row_sub > li input[type="button"] { margin-left:0px; }
+	.join_form .row_sub > li.title {    width: 56px; height: 15px; padding: 5px; text-align: center;}
+
 }
 
+@media (max-width:426px){
+		#selectEmail {margin-left: 115px;}
+
+}

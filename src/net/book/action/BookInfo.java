@@ -14,14 +14,13 @@ public class BookInfo implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		//int book_number = Integer.parseInt(request.getParameter("book_number"));
-		int book_number = 1;
+		int book_number = Integer.parseInt(request.getParameter("book_number"));
 		//String pageNum = request.getParameter("pageNum");
 
 		BookDAO bdao=new BookDAO();
 		
 		BookDTO bookList =bdao.getBookInfo(book_number);
 		
-		request.setAttribute("book_number", book_number);
 		request.setAttribute("bookList", bookList);
 
 		ActionForward forward=new ActionForward();
