@@ -89,11 +89,9 @@ $(document).ready(function(){
 								for(int i=0; i<MemberBasketList.size(); i++){
 									MemberDTO mDTO = (MemberDTO)MemberBasketList.get(i);
 									String bbook_bstate, rbook_check = "";
-									out.print(bbookList.get(i));
-									out.print(rbookList.get(i));
-									if("1".equals(bbookList.get(i))){ bbook_bstate = "대출중";}
+									if("1".equals(bbookList.get(i).toString())){ bbook_bstate = "대출중";}
 									else{ bbook_bstate = "대출가능";}
-									if("3".equals(rbookList.get(i))){ rbook_check = "예약불가";}
+									if("3".equals(rbookList.get(i).toString())){ rbook_check = "예약불가";}
 									else{ rbook_check = "예약가능";}
 									%>
 									<div class="con_lst">

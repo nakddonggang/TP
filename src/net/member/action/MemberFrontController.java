@@ -136,8 +136,7 @@ public class MemberFrontController extends HttpServlet{
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-		}/*
-		else if(command.equals("/MemberBasketDelete.me")){
+		}else if(command.equals("/MemberBasketDelete.me")){
 			action = new MemberBasketDelete();
 			try{
 				forward = action.execute(request, response);
@@ -158,7 +157,7 @@ public class MemberFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}*/
+		}
 		
 		if(forward != null){
 			if(forward.isRedirect()){
