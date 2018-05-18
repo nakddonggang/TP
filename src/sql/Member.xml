@@ -45,11 +45,7 @@
 		on m.member_id = b.member_id
 		left join book bk
 		on b.book_number = bk.book_number
-		left join bbook bb
-		on bk.book_number = bb.book_number
-		left join rbook rb
-		on bb.book_number = rb.book_number
-		where m.member_id=#{member_id} and b.basket_number is not null order by b.basket_number desc
+		where b.member_id=#{member_id} and b.basket_number is not null order by b.basket_number desc
 	</select>
 	
 	<delete id="deleteBasket" parameterType="hashmap">
@@ -61,13 +57,8 @@
 		</where>
 	</delete>
 	
-	<select id="selectBbook" parameterType="hashmap" resultType="net.book.db.BookDTO">
-		select * from bbook
-		<where>
-		<foreach item="index" collection="checkBbook" separator="or">
-			book_number=#{index}
-		</foreach>
-		</where>
+	<select id="selectBbook" parameterType="hashmap" resultType="int">
+		select ifnull(count(*),0) from bbook where book_number=#{book_number}
 	</select>
 	
 	<select id="rbookNumMax" parameterType="int" resultType="int">
@@ -77,9 +68,8 @@
 	<insert id="insertRbook" parameterType="hashmap">
 		insert into rbook(book_number, member_id, rbook_num, rbook_date, rbook_check) 
 		values 
-		<if test="bbook_bstate != null">(#{book_number}, #{member_id}, #{rbook_num}+1, now(), '1')</if>
-		<if test="bbook_bstate != null and rbook_num==2">(#{book_number}, #{member_id}, #{rbook_num}+1, now(), '0')</if>
-		<if test="bbook_bstate == null">(#{book_number}, #{member_id}, #{rbook_num}+1, now(), '1')</if>
+		<if test="rbook_num lt 2">(#{book_number}, #{member_id}, #{rbook_num}+1, now(), '1')</if>
+		<if test="rbook_num == 2">(#{book_number}, #{member_id}, #{rbook_num}+1, now(), '0')</if>
 	</insert>
 	
 	<update id="updateRbookCheck">
@@ -97,5 +87,12 @@
 		where member_id=#{member_id} order by bbook_bdate desc limit #{startRow}, #{pageSize};
 	</select>
 	
+	<delete id="deleteRes" parameterType="hashmap">
+		delete from basket where book_number=#{book_number} and member_id=#{member_id}
+	</delete>
+	
+	<select id="matchBookNum" parameterType="int" resultType="int">
+		select book_number from basket where basket_number=#{basket_number}
+	</select>
 
 </mapper>

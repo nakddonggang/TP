@@ -42,6 +42,8 @@ $(document).ready(function(){
 <%
 	String alert = (String)request.getAttribute("alert");
 	List<MemberDTO> MemberBasketList = (List<MemberDTO>)request.getAttribute("bList");
+	List bbookList = (List)request.getAttribute("bbook_bstate");
+	List rbookList = (List)request.getAttribute("rbook_check");
 %>
 	<!-- member/myUseBasket.jsp / MyUseIndex >> 책바구니 페이지 -->
 	<div class="wrapper">
@@ -87,9 +89,11 @@ $(document).ready(function(){
 								for(int i=0; i<MemberBasketList.size(); i++){
 									MemberDTO mDTO = (MemberDTO)MemberBasketList.get(i);
 									String bbook_bstate, rbook_check = "";
-									if("0".equals(mDTO.getBbook_bstate())){	bbook_bstate = "대출중";}
+									out.print(bbookList.get(i));
+									out.print(rbookList.get(i));
+									if("1".equals(bbookList.get(i))){ bbook_bstate = "대출중";}
 									else{ bbook_bstate = "대출가능";}
-									if("0".equals(mDTO.getRbook_check())){ rbook_check = "예약불가";}
+									if("3".equals(rbookList.get(i))){ rbook_check = "예약불가";}
 									else{ rbook_check = "예약가능";}
 									%>
 									<div class="con_lst">
@@ -134,10 +138,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	var msg = "<%=alert %>";
 	if(msg=="1"){
-		alert("이미 예약했거나 예약이 꽉 찬 도서입니다.");
-	}
-	if(msg=="2"){
-		alert("이미 예약한 도서입니다.");
+		alert("이미 예약했거나 예약이 꽉 찬 도서가 포함됐습니다.");
 	}
 });
 </script>
