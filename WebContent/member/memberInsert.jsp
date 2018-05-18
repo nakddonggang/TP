@@ -246,9 +246,10 @@ $(document).ready(function() {
 				<!-- 메인 페이지 -->
 					<div class="content">
 					
-					<h3>회원가입</h3>
+					
 					
 					<div class='join_form'>
+					<h3>회원가입</h3>
 						<form action="MemberJoinAction.me"  method="post"  name="fr"  id = "fr">
 							<ul class="row">
 								<li>

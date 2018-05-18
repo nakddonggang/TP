@@ -33,11 +33,6 @@
 
 .brd_txt_lst li > .con_lst > ul > li.col_typeNo {width:15%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.col_titleNo{width:50%; padding:0 20px;}
-/* 기존 board End*/
-
-
-
-
 
 .view_lst .con_lst > ul {overflow:hidden; background:url("../resource/img/ico_lst_down.png") right 20px center; background-repeat:no-repeat; cursor:pointer; border-bottom:1px solid #e4e4e4;}
 .view_lst .con_lst > ul.no_scroll{background: none;} /* 화살표 없는 리스트UL */
@@ -50,7 +45,7 @@
 .view_lst .con_lst .con_detail .file ul {overflow:hidden; width:90%; margin-left:-4px;}
 .view_lst .con_lst .con_detail .file ul li {float:left; width:auto; padding:0 5px;}
 
-.write_form {margin:40px 0;}
+.write_form {margin:40px 20px;}
 .write_form form {margin-bottom:50px;}
 .write_form .row {overflow:hidden; border-top:2px solid #464646; }
 .write_form .row li.half {float:left; width:50%;}
@@ -77,6 +72,14 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .tab_container iframe {width: 100%;height: 100%;border: none;}
 
 /* end 게시판 부분 */
+
+
+
+
+
+
+
+
 .btn_type1 {position:absolute; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; font-size:1.14em;}
 .btn_type2 {position:absolute; right:0; bottom:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#71847a;}
 .btn_type3 {position:absolute; top:30px; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
@@ -110,7 +113,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .member_form form {width:375px; margin:30px auto 0;}
 .member_form form input[type="text"],
 .member_form form input[type="password"] {width:260px; height:40px; margin-bottom:5px; border:0; background:#f6f6f6;} 
-.join_form {margin:40px 0;}
+.join_form {margin:40px 20px;}
 .join_form form {margin-bottom:50px;}
 .join_form .row {overflow:hidden; border-top:2px solid #464646;}
 .join_form .row li.half {float:left; width:50%;}
@@ -123,7 +126,19 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .join_form .row_sub > li input[type="text"].mb_mail {width:145px;}
 .join_form .row_sub > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
 .join_form .row_sub > li p {float:left; margin-left:10px; color:#999; letter-spacing:-0.08em; line-height:30px;}
-.join_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;}
+.join_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;   display: inline-block;}
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* start 박용철 작업(Q&A) */
@@ -150,7 +165,11 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 #facil_dialog > iframe {    border:none;    width:100%;    height:100%;}	
 /* end 황해남 작업(Facility) */
 
+
+
 /* START 김영지 작업 Admin */
+
+
 .btn_btm_center .adm_btn__left { text-align: left;}
 /* .adminfo_join_form {padding: 5px;} */
 .brd_txt_lst li > .con_lst > ul > li.adm_col_rc {width:6%; padding:0 20px;}
@@ -203,6 +222,14 @@ input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; bord
 
 }
 /* End 김영지 작업 Admin */
+
+
+
+
+
+
+
+
  
 /* start 한진석 작업 (table) */
 .view_lst .con_lst > ul.no_scroll .col_dlos {width:60%; padding:0 15px;}
@@ -210,12 +237,11 @@ input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; bord
 /* end 한진석 작업 (table) */
 
 
+
+
 /* start 윤창훈 작업(Notice List) */
 .view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%;}
 /* end 윤창훈 작업(Notice List) */
-
-
-
 
 /* start 윤창훈 작업(Curation List) */
 ul.cu_brd_txt_lst {overflow:hidden; position:relative; margin-bottom:30px; border-top:2px solid #464646; border-bottom:1px solid #464646;}
@@ -230,9 +256,13 @@ ul.cu_brd_txt_lst > li.view_lst {float: left; width:100%;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.tit_date {display:none;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.date {margin-right:30px;}
 /* end 윤창훈 작업(Curation List) */
+
+
 /* Notice start*/
 .brd_txt_lst li > .con_lst > ul > li.col_dateNo {width:20%; padding:0 20px;}
 /* Notice End*/
+
+
 /* start 윤창훈 작업(Q&A) */
 .view_lst .con_lst > ul.no_scroll .col_num {width:10%; padding:0 10px;}
 .view_lst .con_lst > ul.no_scroll .col_id {width:15%; padding:0 10px;}
@@ -249,9 +279,11 @@ ul.cu_brd_txt_lst > li.view_lst {float: left; width:100%;}
 .view_lst .con_lst > ul.no_scroll .col_con_id1 {width:20%; padding:0 10px;}
 p.sub_txt {margin: 15px 0 30px 0; }
 /* end 윤창훈 작업(Q&A) */
+
 /* start 김예린 작업(FAQ) */
 .brd_txt_lst li > .con_lst > ul > li.col_rcFAQ {width:10%; padding:0 20px;}
 /* end 김예린 작업(FAQ) */
+
 /* start 김예린 작업(Curation Content) */
 .view_lst .con_lst > ul.no_scroll .cu_col_title {display:block; width:38%; padding:0px 15px; float: left;}
 .view_lst .con_lst > ul.no_scroll .cu_col_date {display:block; width:15%; padding:0 15px; float: right; margin-right: 20px;}
@@ -267,6 +299,9 @@ strong#currentPage {font-weight: bold;}
 .prev {background: url("../resource/img/pagenate_btn_prev.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
 .next {background: url("../resource/img/pagenate_btn_next.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
 /* start 윤창훈 작업(page) */
+
+
+
 
 
 
@@ -289,6 +324,51 @@ strong#currentPage {font-weight: bold;}
 	.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
 	/* text css start*/
 /* board css end*/
+
+
+
+
+
+
+
+
+/* admin facil start */
+.write_form .row_subfacil2 > li {display:inline-flex;vertical-align:middle;padding:10px;width: 75%;}
+.write_form .row_subfacil2 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.write_form .row_subfacil2 > li.title {width: 120px;min-width: 120px;height:50px;padding:15px 20px;background:#f6f6f6;font-family:"Noto_M";letter-spacing:-0.08em;}
+.write_form .row_subfacil2 > li input[type="text"] {float:left; width:180px; height:30px; background:#f6f6f6; border:0;}
+.write_form .row_subfacil2 > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
+.write_form .row_subfacil2 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.write_form .row_subfacil1 > li {display:inline-flex;vertical-align:middle;padding:10px;width: 75%;}
+.write_form .row_subfacil1 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.write_form .row_subfacil1 > li.title {width: 120px;min-width: 120px;height:50px;padding:15px 20px;background:#f6f6f6;font-family:"Noto_M";letter-spacing:-0.08em;}
+.write_form .row_subfacil1 > li input[type="text"] {float:left; width:180px; height:30px; background:#f6f6f6; border:0; margin-right: 10px;}
+.write_form .row_subfacil1 > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
+.write_form .row_subfacil1 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.facil2_p {margin:0 10px; }
+/* admin facil end */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -331,8 +411,32 @@ strong#currentPage {font-weight: bold;}
 		.brd_txt_lst li > .con_lst > ul > li.col_titleNo{width:50%; padding:0 20px;}
 		.view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%; padding-right: 50px;}
 	/* board No end*/
-	
-	
+	.write_form .row_suba > li {display:table-cell;vertical-align:middle;padding:10px;width: 100%;}
+	.write_form .row_suba {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
 	/* board css end*/
+	
+	
+/* facil css */
+
+	/* admin facil start */
+	.write_form .row_subfacil1 > li {display:table-cell;}
+	.write_form .row_subfacil1 > li input[type="button"] {margin-left: 0px;]}
+	.write_form .row_subfacil1 > li.title {width: 80px ;min-width: 80px; height:30px; padding:5px 10px 5px 15px;}
+	.write_form .row_subfacil1 > li input[type="text"] {width:100px; }
+	.write_form .row_subfacil2 > li.title {width: 80px; min-width: 80px; height:30px;   padding: 14px 15px;}
+	.write_form .row_subfacil2 > li input[type="text"] {width:70px; margin-right: 10px; }
+	.facilhide{display: none;}
+	.write_form .row_subfacil2 > li {width: 70%; display: inline-table;}
+	/* admin facil end */
+	
+/* member css */
+	/* member join start */
+	.join_form .row_sub > li input[type="button"] { margin-left:0px; }
+	.join_form .row_sub > li.title {    width: 56px; height: 15px; padding: 5px; text-align: center;}
+
 }
 
+@media (max-width:426px){
+		#selectEmail {margin-left: 115px;}
+
+}
