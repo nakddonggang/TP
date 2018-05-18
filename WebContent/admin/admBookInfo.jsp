@@ -20,24 +20,6 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-function bbook(){
-	var bbook = confirm("대출예약을 하시겠습니까?");
-	if(bbook==true){
-		document.fr.action="";
-		document.fr.submit();
-	} else{
-		return;
-	}
-}
-function basket(){
-	var basket = confirm("책바구니에 담겠습니까?");
-	if(basket==true){
-		document.fr.action="";
-		document.fr.submit();
-	} else{
-		return;
-	}	
-}
 </script>
 </head>
 <body>

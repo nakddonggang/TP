@@ -8,7 +8,7 @@
 	 </select>
 	 	 
 	 <select id="getBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, rb.rbook_num, bb.bbook_bdate
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
