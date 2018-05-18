@@ -135,6 +135,152 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 
 
+/*한진석 전체 css*/
+/* board css start*/
+	/* text css start*/
+	.text_top{margin: 100px 30px 0 30px; }
+	h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
+	.paginate{    text-align: center;}
+
+	.dl_box{margin: 30px 0;}
+	.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.14em; margin: 3px 0;}
+	.dl_box dl dd{font-size: 1.02em; margin: 3px 0;}
+	
+	.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
+	.search_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
+	.search_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
+	.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
+	/* text css start*/
+/* board css end*/
+
+
+/* admin facil start */
+.write_form .row_subfacil2 > li {display:inline-flex;vertical-align:middle;padding:10px;width: 75%;}
+.write_form .row_subfacil2 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.write_form .row_subfacil2 > li.title {width: 120px;min-width: 120px;height:50px;padding:15px 20px;background:#f6f6f6;font-family:"Noto_M";letter-spacing:-0.08em;}
+.write_form .row_subfacil2 > li input[type="text"] {float:left; width:180px; height:30px; background:#f6f6f6; border:0;}
+.write_form .row_subfacil2 > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
+.write_form .row_subfacil2 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.write_form .row_subfacil1 > li {display:inline-flex;vertical-align:middle;padding:10px;width: 75%;}
+.write_form .row_subfacil1 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.write_form .row_subfacil1 > li.title {width: 120px;min-width: 120px;height:50px;padding:15px 20px;background:#f6f6f6;font-family:"Noto_M";letter-spacing:-0.08em;}
+.write_form .row_subfacil1 > li input[type="text"] {float:left; width:180px; height:30px; background:#f6f6f6; border:0; margin-right: 10px;}
+.write_form .row_subfacil1 > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
+.write_form .row_subfacil1 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.facil2_p {margin:0 10px; }
+/* admin facil end */
+
+
+/* admin css*/
+/* admin book */
+.join_form .row_subIO {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.join_form .row_subIO > li {display:table-cell; vertical-align:middle; padding:10px;}
+.join_form .row_subIO > li.title {width:150px; height:50px; padding:15px 20px; background:#f6f6f6; font-family:"Noto_M"; letter-spacing:-0.08em;}
+.join_form .row_subIO > li input[type="text"],
+.join_form .row_subIO > li input[type="password"] {float:left; width:200px; height:30px; background:#f6f6f6; border:0;}
+.join_form .row_subIO > li input[type="checkbox"] {top:6px;}
+.join_form .row_subIO > li input[type="text"].mb_mail {width:145px;}
+.join_form .row_subIO > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
+.join_form .row_subIO > li p {float:left; margin-left:10px; color:#999; letter-spacing:-0.08em; line-height:30px;}
+.join_form .row_subIO > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;   display: inline-block;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_rch {width:15%; padding:0 15px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_nameh {width:10%; padding:0 15px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_typeh {width:10%; padding:0 15px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_dateh {width:20%; padding:0 15px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_col_exh{width:30%; padding:0 15px;}
+/* admin book */
+/* admin css*/
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:767px){
+/* board css*/
+	/* text css start*/
+	.board .search_bx { top: -25px; margin-right: 20px;}
+	.search_bx { right:0; width:60%;}
+    .search_bx input.inp_search {width:100%;  paddind:0px; font-size:0.75em;  }
+   	.search_bx input.btn_search {position:absolute; right:0;}
+   	.board {    width: 100% !important;height: 100%!important; margin-top: 20px; padding: 0 20px;}
+	 h3 { top: 98px; margin-bottom: 20px; font-size: 1.5em;}
+	.brd_txt_lst li > .con_lst > ul > li {font-size: 0.85em; }
+	.brd_txt_lst li > .con_lst > ul > li.col_date{padding: 0px 10px 0px 0px;}
+	.text_top{margin: 30px 20px 0 20px;  }
+	/* text css start*/
+		
+	/* board qna start*/
+	.view_lst .con_lst > ul.no_scroll .col_num {width:15%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .col_id {width:20%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .col_title {width:40%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .col_date {display:none;}
+	.view_lst .con_lst > ul.no_scroll .col_rc {display: none;}
+	.view_lst .con_lst > ul.no_scroll .col_check {width:25%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .col_con_avg {display: none;}
+	.view_lst .con_lst > ul.no_scroll .col_con_id {width:40%;}
+	.view_lst .con_lst > ul.no_scroll .col_con_date {width:40%;}
+	.view_lst .con_lst > ul.no_scroll .col_con_id1 {width:100%;}
+	.view_lst .con_lst > ul.no_scroll .col_con_email {width:100%;  float:left;}
+	/* board qna end */
+	/* board faq start*/
+	.brd_txt_lst li > .con_lst > ul > li.col_rcFAQ {display: none;}
+	.brd_txt_lst li > .con_lst > ul > li.col_type {width:30%; padding:0 20px;}
+	.brd_txt_lst li > .con_lst > ul > li.col_title {width:60%; padding:0 20px;}
+	/* board faq end*/
+	/* board No start*/
+		.brd_txt_lst li > .con_lst > ul > li.col_typeNo {width:15%; padding:0 20px;}
+		.brd_txt_lst li > .con_lst > ul > li.col_titleNo{width:50%; padding:0 20px;}
+		.view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%; padding-right: 50px;}
+	/* board No end*/
+	.write_form .row_suba > li {display:table-cell;vertical-align:middle;padding:10px;width: 100%;}
+	.write_form .row_suba {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+	/* board css end*/
+	
+	
+/* facil css */
+
+	/* admin facil start */
+	.write_form .row_subfacil1 > li {display:table-cell;}
+	.write_form .row_subfacil1 > li input[type="button"] {margin-left: 0px;]}
+	.write_form .row_subfacil1 > li.title {width: 80px ;min-width: 80px; height:30px; padding:5px 10px 5px 15px;}
+	.write_form .row_subfacil1 > li input[type="text"] {width:100px; }
+	.write_form .row_subfacil2 > li.title {width: 80px; min-width: 80px; height:30px;   padding: 14px 15px;}
+	.write_form .row_subfacil2 > li input[type="text"] {width:70px; margin-right: 10px; }
+	.facilhide{display: none;}
+	.write_form .row_subfacil2 > li {width: 70%; display: inline-table;}
+	/* admin facil end */
+	
+/* member css */
+	/* member join start */
+	.join_form .row_sub > li input[type="button"] { margin-left:0px; }
+	.join_form .row_sub > li.title {width: 56px;  min-width: 60px; height: 15px; padding: 5px; text-align: center;}
+	.join_form .row_sub > li textarea { float:left;width: 100%; resize: none; background:#f6f6f6; border:0; font-family: "Noto_M";}
+	/* member join end */
+	
+/* admin css */
+	.join_form .row_subIO > li.title { width: 95px; height: 50px;padding: 5px 10px;background: #f6f6f6; font-family: "Noto_M";letter-spacing: -0.08em;text-align: center;}
+	.IOcss {width: 200px}
+	.brd_txt_lst li > .con_lst > ul > li.adm_col_rch {width:25%; padding:0 10px;}
+	.brd_txt_lst li > .con_lst > ul > li.adm_col_nameh {width:20%; padding:0 10px;}
+	.brd_txt_lst li > .con_lst > ul > li.adm_col_typeh {display: none;}
+	.brd_txt_lst li > .con_lst > ul > li.adm_col_dateh {width:30%; padding:0 10px;}
+	.brd_txt_lst li > .con_lst > ul > li.adm_col_exh {display: none;}
+}
+
+@media (max-width:426px){
+		#selectEmail {margin-left: 115px;}
+
+}
+
+
+
+
 
 
 
@@ -271,13 +417,10 @@ input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-hei
 /* END 김영지 책 갤러리 형식으로 보기 css */
 
 
- 
 /* start 한진석 작업 (table) */
 .view_lst .con_lst > ul.no_scroll .col_dlos {width:60%; padding:0 15px;}
 .write_form .rowadmin {overflow:hidden; border-top:2px solid #464646; border-bottom:2px solid #464646;}
 /* end 한진석 작업 (table) */
-
-
 
 
 /* start 윤창훈 작업(Notice List) */
@@ -341,143 +484,3 @@ strong#currentPage {font-weight: bold;}
 .next {background: url("../resource/img/pagenate_btn_next.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
 /* start 윤창훈 작업(page) */
 
-
-
-
-
-
-
-
-/*한진석 전체 css*/
-/* board css start*/
-	/* text css start*/
-	.text_top{margin: 100px 30px 0 30px; }
-	h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
-	.paginate{    text-align: center;}
-
-	.dl_box{margin: 30px 0;}
-	.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.14em; margin: 3px 0;}
-	.dl_box dl dd{font-size: 1.02em; margin: 3px 0;}
-	
-	.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
-	.search_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
-	.search_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
-	.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
-	/* text css start*/
-/* board css end*/
-
-
-
-
-
-
-
-
-/* admin facil start */
-.write_form .row_subfacil2 > li {display:inline-flex;vertical-align:middle;padding:10px;width: 75%;}
-.write_form .row_subfacil2 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
-.write_form .row_subfacil2 > li.title {width: 120px;min-width: 120px;height:50px;padding:15px 20px;background:#f6f6f6;font-family:"Noto_M";letter-spacing:-0.08em;}
-.write_form .row_subfacil2 > li input[type="text"] {float:left; width:180px; height:30px; background:#f6f6f6; border:0;}
-.write_form .row_subfacil2 > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
-.write_form .row_subfacil2 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
-.write_form .row_subfacil1 > li {display:inline-flex;vertical-align:middle;padding:10px;width: 75%;}
-.write_form .row_subfacil1 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
-.write_form .row_subfacil1 > li.title {width: 120px;min-width: 120px;height:50px;padding:15px 20px;background:#f6f6f6;font-family:"Noto_M";letter-spacing:-0.08em;}
-.write_form .row_subfacil1 > li input[type="text"] {float:left; width:180px; height:30px; background:#f6f6f6; border:0; margin-right: 10px;}
-.write_form .row_subfacil1 > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
-.write_form .row_subfacil1 {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
-.facil2_p {margin:0 10px; }
-/* admin facil end */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media (max-width:767px){
-/* board css*/
-	/* text css start*/
-	.board .search_bx { top: -25px; margin-right: 20px;}
-	.search_bx { right:0; width:60%;}
-    .search_bx input.inp_search {width:100%;  paddind:0px; font-size:0.75em;  }
-   	.search_bx input.btn_search {position:absolute; right:0;}
-   	.board {    width: 100% !important;height: 100%!important; margin-top: 20px; padding: 0 20px;}
-	 h3 { top: 98px; margin-bottom: 20px; font-size: 1.5em;}
-	.brd_txt_lst li > .con_lst > ul > li {font-size: 0.85em; }
-	.brd_txt_lst li > .con_lst > ul > li.col_date{padding: 0px 10px 0px 0px;}
-	.text_top{margin: 30px 20px 0 20px;  }
-	/* text css start*/
-		
-	/* board qna start*/
-	.view_lst .con_lst > ul.no_scroll .col_num {width:15%; padding:0 10px;}
-	.view_lst .con_lst > ul.no_scroll .col_id {width:20%; padding:0 10px;}
-	.view_lst .con_lst > ul.no_scroll .col_title {width:40%; padding:0 10px;}
-	.view_lst .con_lst > ul.no_scroll .col_date {display:none;}
-	.view_lst .con_lst > ul.no_scroll .col_rc {display: none;}
-	.view_lst .con_lst > ul.no_scroll .col_check {width:25%; padding:0 10px;}
-	.view_lst .con_lst > ul.no_scroll .col_con_avg {display: none;}
-	.view_lst .con_lst > ul.no_scroll .col_con_id {width:40%;}
-	.view_lst .con_lst > ul.no_scroll .col_con_date {width:40%;}
-	.view_lst .con_lst > ul.no_scroll .col_con_id1 {width:100%;}
-	.view_lst .con_lst > ul.no_scroll .col_con_email {width:100%;  float:left;}
-	/* board qna end */
-	/* board faq start*/
-	.brd_txt_lst li > .con_lst > ul > li.col_rcFAQ {display: none;}
-	.brd_txt_lst li > .con_lst > ul > li.col_type {width:30%; padding:0 20px;}
-	.brd_txt_lst li > .con_lst > ul > li.col_title {width:60%; padding:0 20px;}
-	/* board faq end*/
-	/* board No start*/
-		.brd_txt_lst li > .con_lst > ul > li.col_typeNo {width:15%; padding:0 20px;}
-		.brd_txt_lst li > .con_lst > ul > li.col_titleNo{width:50%; padding:0 20px;}
-		.view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%; padding-right: 50px;}
-	/* board No end*/
-	.write_form .row_suba > li {display:table-cell;vertical-align:middle;padding:10px;width: 100%;}
-	.write_form .row_suba {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
-	/* board css end*/
-	
-	
-/* facil css */
-
-	/* admin facil start */
-	.write_form .row_subfacil1 > li {display:table-cell;}
-	.write_form .row_subfacil1 > li input[type="button"] {margin-left: 0px;]}
-	.write_form .row_subfacil1 > li.title {width: 80px ;min-width: 80px; height:30px; padding:5px 10px 5px 15px;}
-	.write_form .row_subfacil1 > li input[type="text"] {width:100px; }
-	.write_form .row_subfacil2 > li.title {width: 80px; min-width: 80px; height:30px;   padding: 14px 15px;}
-	.write_form .row_subfacil2 > li input[type="text"] {width:70px; margin-right: 10px; }
-	.facilhide{display: none;}
-	.write_form .row_subfacil2 > li {width: 70%; display: inline-table;}
-	/* admin facil end */
-	
-/* member css */
-	/* member join start */
-	.join_form .row_sub > li input[type="button"] { margin-left:0px; }
-	.join_form .row_sub > li.title {    width: 56px; height: 15px; padding: 5px; text-align: center;}
-
-}
-
-@media (max-width:426px){
-		#selectEmail {margin-left: 115px;}
-
-}

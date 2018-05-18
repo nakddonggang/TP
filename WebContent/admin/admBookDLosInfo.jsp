@@ -46,8 +46,9 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 					<div class=""></div>
 					<div class=""></div>
 					<!-- 본문 공간 -->
-					<h2 class="adm_h_1">손망실 책 상세정보</h2>
+					
 					<div class='join_form'>
+					<h3>손망실 책 상세정보</h3>
 						<ul class="row">
 							<li>
 								<ul class="row_sub">
