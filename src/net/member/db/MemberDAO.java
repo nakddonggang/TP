@@ -1,6 +1,7 @@
 package net.member.db;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -155,6 +156,12 @@ public class MemberDAO {
 	public int basketMaxNum(){
 		int basket_number = sqlsession.selectOne("basketMaxNum");
 		return basket_number;
+	}
+	
+	public List<BookDTO> myUseRBookList(String member_id){
+		List<BookDTO> rbookList = new ArrayList<BookDTO>();
+		rbookList = sqlsession.selectList("myUseRBookList",member_id);
+		return rbookList;		
 	}
 	
 }

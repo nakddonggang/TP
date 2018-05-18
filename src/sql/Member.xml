@@ -98,5 +98,12 @@
 	<select id="basketMaxNum" resultType="int">
 		select ifnull(max(basket_number),0) from basket
 	</select>
+	
+	<select id="myUseRBookList" parameterType="string" resultType="net.book.db.BookDTO">
+		select* from rbook r
+		left join book bk
+		on r.rbook_number = bk.book_number
+		where member_id=#{member_id} order by rbook_date desc
+	</select>
 
 </mapper>
