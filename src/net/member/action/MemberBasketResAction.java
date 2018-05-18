@@ -39,29 +39,30 @@ public class MemberBasketResAction implements Action{
 		MemberDAO mDAO = new MemberDAO();
 		book_state = mDAO.selectBbook(list);	// 해당 책 bbook테이블에 조회대출중인지 여부 
 		
-		int rbook_num;	// 해당책 최대 rbook_num 담아둘 변수
-		int rbookCkMember;	// 동일한 책에 동일한 이용자가 다시 예약 못하도록 검사할때 결과 담아둘 변수
-		
 		if(book_state.size() != 0){		// bbook테이블 조회결과가 있을 경우(대출중인 경우)
 			for(int i=0; i<book_state.size(); i++){		// 선택한 항목개수만큼 반복
 				BookDTO bkDTO = book_state.get(i);
-				rbook_num = mDAO.rbookNumMax(bkDTO.getBook_number());	// 선택한 책 번호의 최대 rbook_num 조회해 저장
-				rbookCkMember = mDAO.rbookCkMember(bkDTO.getBook_number(), member_id);
+				int rbook_num = mDAO.rbookNumMax(bkDTO.getBook_number());	// 선택한 책 번호의 최대 rbook_num 조회해 저장
+				int rbookCkMember = mDAO.rbookCkMember(bkDTO.getBook_number(), member_id);
 				if(rbook_num<3 && rbookCkMember==0){	// 예약대기자가 3명이 되지 않고 아직 예약하지 않았을 경우
 					mDAO.insertRbook(bkDTO.getBook_number(), member_id, bkDTO.getBbook_bstate(), rbook_num);	// 예약테이블에 insert
 				}else{	// 예약대기자가 3명 이상일 경우, 이미 예약한 경우 예약 불가
-				//예약 불가능
+					forward.setPath("./MemberBasketList.me?alert=1");
+					forward.setRedirect(true);
+					return forward;
 				}		
 			}
 		}else{	// 선택한 책이 대출가능한 상태면(bbook 테이블에서 조회되지 않는 경우)
 			for(int i=0; i<list.size(); i++){		// 선택한 항목개수만큼 반복
-				int book_number = (int)list.get(i);
-				rbook_num = mDAO.rbookNumMax(book_number);	// 선택한 책 번호의 최대 rbook_num 조회해 저장
-				rbookCkMember = mDAO.rbookCkMember(book_number, member_id);
+				int book_number = Integer.parseInt(checkbox[i]);
+				int rbook_num = mDAO.rbookNumMax(book_number);	// 선택한 책 번호의 최대 rbook_num 조회해 저장
+				int rbookCkMember = mDAO.rbookCkMember(book_number, member_id);
 				if(rbookCkMember == 0){	
 					mDAO.insertRbook(book_number, member_id, null, rbook_num);	// 예약테이블에 insert
 				}else{	// 이미 예약한 책이니 예약 불가
-					
+					forward.setPath("./MemberBasketList.me?alert=2");
+					forward.setRedirect(true);
+					return forward;
 				}
 			}
 		}

@@ -45,6 +45,10 @@
 		on m.member_id = b.member_id
 		left join book bk
 		on b.book_number = bk.book_number
+		left join bbook bb
+		on bk.book_number = bb.book_number
+		left join rbook rb
+		on bb.book_number = rb.book_number
 		where m.member_id=#{member_id} and b.basket_number is not null order by b.basket_number desc
 	</select>
 	

@@ -18,6 +18,7 @@ public class MemberBasketList implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		request.setCharacterEncoding("utf-8");
+		String alert = request.getParameter("alert");
 		
 		HttpSession session =request.getSession();
 		String member_id =(String)session.getAttribute("member_id");
@@ -30,6 +31,10 @@ public class MemberBasketList implements Action{
 		MemberDAO mDAO = new MemberDAO();		
 		List<MemberDTO> bList=mDAO.MemberBasketList(member_id);	
 		request.setAttribute("bList", bList);
+		
+		if(alert != null){
+			request.setAttribute("alert", alert);
+		}
 
 		forward.setPath("./member/myUseBasket.jsp");
 	    forward.setRedirect(false);
