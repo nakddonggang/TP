@@ -35,7 +35,7 @@ public class MemberBasketAdd implements Action {
 		mDTO.setBook_number(Integer.parseInt(request.getParameter("book_number")));
 		mDAO.insertBasket(mDTO);
 		
-		forward.setPath("./MemberBasketList.me");
+		forward.setPath("./BookIndex.bk");
 	    forward.setRedirect(true);
 	    
 	    return forward;
