@@ -33,6 +33,10 @@ public class MemberDTO {
 	int borrow_count;				 //	대출 횟수				int(5)								해당 회원의 책 대출 횟수
 	String gm_check;					 //	우수회원 체크			char(2)	check in ('0','1')	우수회원인지 여부
 	
+	// bbook, rbook 상태
+	String bbook_bstate;			//	반납상태			char(2)	check in ('0','1')		반납됐는지 여부(대출중/반납됨)
+	String rbook_check;				//	예약가능현황		char(2)	check in ('0','1')		예약가능한지 여부(불가/가능)
+	
 	//getter, setter 구현
 	public String getMember_id() {
 		return member_id;
@@ -165,5 +169,17 @@ public class MemberDTO {
 	}
 	public void setBook_file(String book_file) {
 		this.book_file = book_file;
+	}
+	public String getBbook_bstate() {
+		return bbook_bstate;
+	}
+	public void setBbook_bstate(String bbook_bstate) {
+		this.bbook_bstate = bbook_bstate;
+	}
+	public String getRbook_check() {
+		return rbook_check;
+	}
+	public void setRbook_check(String rbook_check) {
+		this.rbook_check = rbook_check;
 	}
 }

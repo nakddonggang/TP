@@ -21,6 +21,10 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$('#resBtn').click(function(){
+		$('#basketForm').attr("action","./MemberBasketResAction.me");
+	});
+	
 	$('#delBtn').click(function(){
 		$('#basketForm').attr("action","./MemberBasketDelete.me");
 	});
@@ -36,6 +40,7 @@ $(document).ready(function(){
 </script>
 <body>
 <%
+	String alert = (String)request.getAttribute("alert");
 	List<MemberDTO> MemberBasketList = (List<MemberDTO>)request.getAttribute("bList");
 %>
 	<!-- member/myUseBasket.jsp / MyUseIndex >> 책바구니 페이지 -->
@@ -72,16 +77,20 @@ $(document).ready(function(){
 									<li class="adm_col_date">사진</li>
 									<li class="adm_col_subs">제목</li>
 									<li class="adm_col_date">저자</li>
-									<li class="adm_col_date">출판사</li>
-									<li class="col_date">발행일</li>
+									<li class="adm_col_date">대출상태</li>
+									<li class="col_date">예약상태</li>
 								</ul>
 							</div>
 							<%
 							if(MemberBasketList.size()==0){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
 							else{
-								SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 								for(int i=0; i<MemberBasketList.size(); i++){
 									MemberDTO mDTO = (MemberDTO)MemberBasketList.get(i);
+									String bbook_bstate, rbook_check = "";
+									if("0".equals(mDTO.getBbook_bstate())){	bbook_bstate = "대출중";}
+									else{ bbook_bstate = "대출가능";}
+									if("0".equals(mDTO.getRbook_check())){ rbook_check = "예약불가";}
+									else{ rbook_check = "예약가능";}
 									%>
 									<div class="con_lst">
 										<ul class="no_scroll">
@@ -89,8 +98,8 @@ $(document).ready(function(){
 											<li class="adm_col_date"><img src="./upload/<%=mDTO.getBook_file()%>" width="70" height="80"></li>
 											<li class="adm_col_subs"><p><%=mDTO.getBook_subject() %></p></li>
 											<li class="adm_col_date"><p><%=mDTO.getBook_author() %></p></li>
-											<li class="adm_col_date"><p><%=mDTO.getBook_publisher() %></p></li>
-											<li class="col_date"><p><%=date.format(mDTO.getBook_pubDate()) %></p></li>		
+											<li class="adm_col_date"><p><%=bbook_bstate %></p></li>
+											<li class="adm_col_date"><p><%=rbook_check %></p></li>
 										</ul>
 									</div>
 								<%
@@ -121,5 +130,16 @@ $(document).ready(function(){
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	var msg = "<%=alert %>";
+	if(msg=="1"){
+		alert("이미 예약했거나 예약이 꽉 찬 도서입니다.");
+	}
+	if(msg=="2"){
+		alert("이미 예약한 도서입니다.");
+	}
+});
+</script>
 </body>
 </html>
