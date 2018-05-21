@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="net.book.db.BookDTO"%>
+<%@page import="net.member.db.MemberDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -33,6 +37,12 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 					<div class="content">
+					<%
+						String member_id = (String)session.getAttribute("member_id");
+						if(member_id == null) {
+							response.sendRedirect("./MemberLogin.me");
+						}
+					%>
 					<!-- myUseBasket.jsp : 책바구니 -->
 						<h2>책 바구니</h2>
 						<input type="button" value="상세보기"
@@ -50,7 +60,9 @@
 							</tr>
 						</table>
 					</div>
-	
+					<%
+					List<BookDTO> bList = (List<BookDTO>)request.getAttribute("bList");
+					%>
 					<div>
 						<!-- myUseBook.jsp : 도서 대출 목록 -->
 						<h2>대출중인 도서 목록</h2>
@@ -63,12 +75,19 @@
 								<td>대출일자</td>
 								<td>반납할 일자</td>
 							</tr>
+							<%
+							SimpleDateFormat bbook_bdate = new SimpleDateFormat("yyyy-MM-dd");
+							for(BookDTO bDTO :  bList) {
+							%>
 							<tr>
-								<td>책 번호</td>
-								<td>책 제목</td>
-								<td>대출일자</td>
+								<td><%=bDTO.getBook_number() %></td>
+								<td><%=bDTO.getBook_subject() %></td>
+								<td><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></td>
 								<td>반납할 일자</td>
 							</tr>
+							<%
+							}
+							%>
 						</table>
 					</div>
 

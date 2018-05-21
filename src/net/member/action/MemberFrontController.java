@@ -159,6 +159,14 @@ public class MemberFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}*/
+		else if(command.equals("/MemberUseIndex.me")) {
+			action = new MemberUseIndex();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 		if(forward != null){
 			if(forward.isRedirect()){
