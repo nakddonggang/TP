@@ -172,7 +172,7 @@ public class MemberFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}else if(command.equals("/MemberMyUseRBookList.me")){
-			action = new MemberMyUseBookList();
+			action = new MemberMyUseRBookList();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {
