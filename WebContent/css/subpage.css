@@ -204,6 +204,16 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .view_lst .con_lst > ul.no_scroll .col_con_rid {width:20%; padding:0 10px;}
 .view_lst .con_lst > ul.no_scroll .col_con_rnum {width:20%; padding:0 10px;}
 /* admin rbook */
+
+/* admin Nmember */
+.brd_txt_lst li > .con_lst > ul > li.col_typen {width:15%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.col_daten{width:20%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.col_calln{width:20%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.col_dateb{width:20%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.col_callb{width:20%; padding:0 20px;}
+.brd_txt_lst li > .con_lst > ul > li.col_typeb {width:15%; padding:0 20px;}
+.join_form .row_sub > li.title_adm {width:150px; height:50px; padding:15px 20px; background:#f6f6f6; font-family:"Noto_M"; letter-spacing:-0.08em;}
+/* admin Nmember */
 		/* admin css*/
 
 
@@ -478,6 +488,17 @@ strong#currentPage {font-weight: bold;}
 	.view_lst .con_lst > ul.no_scroll .col_con_rid {width:27%; padding:0 5px;}
 	.view_lst .con_lst > ul.no_scroll .col_con_rnum {width:17%; padding:0 5px;}
 	/* admin rbook */
+	
+	/* admin Nmember */
+	.brd_txt_lst li > .con_lst > ul > li.col_typen {width:25%; padding:0 20px;}
+	.brd_txt_lst li > .con_lst > ul > li.col_daten{width:25%; padding:0 10px;}
+	.brd_txt_lst li > .con_lst > ul > li.col_calln{display: none;}
+	.brd_txt_lst li > .con_lst > ul > li.col_callb{display: none;}
+	.brd_txt_lst li > .con_lst > ul > li.col_typeb {width:20%; padding:0 10px;}
+	.brd_txt_lst li > .con_lst > ul > li.col_dateb{width:20%; padding:0 10px;}
+	.join_form .row_sub > li.title_adm {width: 73px;  min-width: 73px; height: 15px; padding: 5px; text-align: center;}
+	/* admin Nmember */
+	
 }
 
 @media (max-width:426px){
