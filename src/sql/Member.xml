@@ -113,9 +113,9 @@
 		delete from rbook where rbook_num=0
 	</delete>
 	
-	<insert id="insertBbook" parameterType="net.book.db.bookDTO">
+	<insert id="insertBbook" parameterType="net.book.db.BookDTO">
 		insert into bbook(book_number, bbook_bdate, bbook_rdate, member_id, bbook_bstate) 
-		values (book_number=#{book_number}, now(), date_add(now(), interval 10 day), member_id=#{member_id}, '0'})
+		values (book_number=#{book_number}, now(), date_add(now(), interval 10 day), member_id=#{member_id}, '0')
 	</insert>
 
 	<select id="myUseRBookList" parameterType="string" resultType="net.book.db.BookDTO">
