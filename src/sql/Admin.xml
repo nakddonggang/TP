@@ -8,15 +8,17 @@
 	 </select>
 	 	 
 	 <select id="getBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check, b.book_file
+	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, 
+	 	ifnull(rb.rbook_check, 0) rbook_check, b.book_file
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
 		left join bbook bb
 		on b.book_number=bb.book_number
-		left join rbook rb
-		on b.book_number=rb.book_number order by b.book_number desc limit #{startRow}, #{pageSize} 
+		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
+		on b.book_number=rb.book_number 
+		order by b.book_number desc 
+		limit #{startRow}, #{pageSize} 
 	 </select>
 	 
 	 <select id="getBookSearchAllCount" resultType="int" parameterType="hashmap">
@@ -362,7 +364,7 @@
 	 <insert id="insertBook" parameterType="net.book.db.BookDTO">
 	 	insert into book (book_number, book_subject, book_author, book_publisher, book_pubDate, 
 	 	book_form, book_notation, book_isbn, book_classification, book_date, book_file)
-	 	values (#{book_number}, #{book_subject}, #{book_author}, #{book_publisher}, #{book_pubDate}, 
+	 	values ((select * from (select count(*) from book) count)+1, #{book_subject}, #{book_author}, #{book_publisher}, #{book_pubDate}, 
 	 	#{book_form}, #{book_notation}, #{book_isbn}, #{book_classification}, now(), #{book_file})
 	 </insert>
 	 
