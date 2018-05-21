@@ -1,6 +1,7 @@
 package net.member.db;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -172,5 +173,11 @@ public class MemberDAO {
 	public void deleteBbook(int book_number){
 		sqlsession.delete("deleteBbook", book_number);
 	}
-
+	
+	public List<BookDTO> myUseRBookList(String member_id){
+		List<BookDTO> rbookList = new ArrayList<BookDTO>();
+		rbookList = sqlsession.selectList("myUseRBookList",member_id);
+		return rbookList;		
+	}
+	
 }
