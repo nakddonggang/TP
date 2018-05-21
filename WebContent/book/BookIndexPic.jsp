@@ -64,18 +64,13 @@
 		$('#book_pic_div').css('display', 'block');
 		$('#book_cont_div').css('display', 'none');
 	});
-
+	
 	$(document).ready(function() {
-		$('#book_pic_btn').click(function() {
-			$('#book_pic_div').css('display', 'block');
-			$('#book_cont_div').css('display', 'none');
-		});
-	});
-
-	$(document).ready(function() {
-		$('#book_cont_btn').click(function() {
-			$('#book_pic_div').css('display', 'none');
-			$('#book_cont_div').css('display', 'block');
+		$('#basket_Fr').submit(function(){
+			var con = confirm("책바구니에 담으시겠습니까?");
+			if (con==true){
+				$("#basket_Fr").submit;
+			} else { return false; }
 		});
 	});
 </script>
@@ -113,7 +108,7 @@
 								<div class="box_thm">
 									<div class="box_thm01 DIV_BOX_THM01" id="book_divv">
 										<div id="for_book_div">
-											<form action="./AdminBookSearch.am" method="get"
+											<form action="./BookSearchPic.bk" method="get"
 												id="SearchForm">
 												<fieldset id="book_field">
 													<legend>&nbsp;통합검색&nbsp;</legend>
@@ -190,7 +185,8 @@
 					</div>
 				</article>
 				<!-- //서브메뉴 -->
-
+				
+				<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
@@ -205,15 +201,16 @@
 							<div id="adm_select_box3">
 								<select name="sort" id="book_sort">
 									<option value="" selected="selected">정렬</option>
-									<option value="./BookSort.bk?sort=book_subject">제목순</option>
-									<option value="./BookSort.bk?sort=book_author">저자순</option>
-									<option value="./BookSort.bk?sort=book_number">인기순</option>
-									<option value="./BookSort.bk?sort=book_pubDate">신작순</option>
-									<option value="./BookSort.bk?sort=book_date">입고순</option>
+									<option value="./BookSortPic.bk?sort=book_subject">제목순</option>
+									<option value="./BookSortPic.bk?sort=book_author">저자순</option>
+									<option value="./BookSortPic.bk?sort=book_number">인기순</option>
+									<option value="./BookSortPic.bk?sort=book_pubDate">신작순</option>
+									<option value="./BookSortPic.bk?sort=book_date">입고순</option>
 								</select>
 							</div>
 
 							<!-- ★게시판으로 보여지는 통합검색 -->
+						<form action="./MemberBasketAdd.me" method="post" id="basket_Fr">
 							<ul class="brd_txt_lst" id="book_cont_div">
 								<!-- 글목록 -->
 								<li class="view_lst">
@@ -221,12 +218,12 @@
 										<ul class="no_scroll title_t">
 											<li class="adm_col_rc">목록</li>
 											<li class="adm_col_date">사진</li>
-											<li class="adm_col_subs">제목</li>
-											<li class="adm_col_date">저자</li>
+											<li class="adm_col_sub">제목</li>
+											<li class="adm_col_type">저자</li>
 											<li class="adm_col_date">출판사</li>
-											<li class="adm_col_type">대출현황</li>
+											<li class="adm_col_date">대출현황</li>
 											<%if(member_id!=null){ %>
-											<li class="adm_col_type">대출/예약 신청</li><%}%>
+											<li class="adm_col_rc">대출/예약 신청</li><%}%>
 										</ul>
 									</div> <%
  	if (count == 0) {
@@ -239,24 +236,30 @@
 	%>
 									<div class="con_lst">
 										<ul class="no_scroll">
-											<li class="adm_col_rc" id="adm_book_high"><input
-												type="checkbox" name="basket_check"  id="basket_check<%=bookdto.getBook_number()%>"
-												value="<%=bookdto.getBook_number()%>" style="line-height: 70%; height: 70%;"></li>
+											<li class="adm_col_rrc" id="adm_book_high"><input
+												type="checkbox" name="basket_check"  class="bncheck" 
+												value="<%=bookdto.getBook_number()%>" ></li>
 											<li class="adm_col_date" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'"><img
 												src="./upload/book/<%=bookdto.getBook_file()%>"
 												width="70px" height="80px"></li>
-											<li class="adm_col_subs" id="adm_book_high"
+											<li class="adm_col_sub" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'"><%=bookdto.getBook_subject()%></li>
-											<li class="adm_col_date" id="adm_book_high"
+											<li class="adm_col_type" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'"><%=bookdto.getBook_author()%></li>
 											<li class="adm_col_date" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'"><%=bookdto.getBook_publisher()%></li>
-											<li class="adm_col_type"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'"><%=bookdto.getBbook_bstate()%></li>
+											<li class="adm_col_date"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'">
+											<%if (bookdto.getBbook_bstate()=="0"){ %> 대출가능 <% }
+											else { 
+												if (bookdto.getBbook_bdate()!=null){%>
+												<%=date.format(bookdto.getBbook_bdate())%>~<%}
+												else{%> 대출불가<%}%> 
+											<%}%>
+											</li>
 											<%if(member_id!=null){ %>
 											<li class="adm_col_type"  id="adm_book_high">
-												<%if (bookdto.getBbook_bdate()==null){ %>
-													<!-- 며칠부터 며칠까지 대출중인지 -->
+												<%if (bookdto.getBbook_bstate()=="1"){ %>
 													<input type="button" rel="<%=bookdto.getBook_number()%>" class="bbutton" value="대출신청" style="border: none; background-color:#FAE0D4; margin: 47% 0;">
 												<%} else {%>
 												<input type="button" rel="<%=bookdto.getBook_number()%>" class="rbutton" value="대출예약" style="border: none; background-color:#FAE0D4; margin: 47% 0;">
@@ -287,8 +290,7 @@
 										<li><a
 											href="./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>">
 												<img src="./upload/book/<%=bookLists.getBook_file()%>" class="book_lst_img">
-												<span><%=bookLists.getBook_subject()%></span>
-										</a>
+												<span id="bk_li_subs"><%=bookLists.getBook_subject()%></span>
 											<dl class="book_info_layer">
 												<dt>
 													<span><%=bookLists.getBook_subject()%></span>
@@ -296,7 +298,8 @@
 												<dd>
 													<dl>
 														<dt>저자</dt>
-														<dd><%=bookLists.getBook_author()%></dd>
+														<dd><%=bookLists.getBook_author()%>
+														</dd>
 														<dt>출판사</dt>
 														<dd><%=bookLists.getBook_publisher()%></dd>
 														<dt>출판년도</dt>
@@ -306,19 +309,21 @@
 													</dl>
 												</dd>
 											</dl>
+											</a>
 											</li><%}
  										}%>
 							</ul>
 							<!-- ★갤러리로 보여지는 통합검색 -->
-							
+
 							<%if(member_id!=null){ %>
 							<div class="btn_btm_center">
 								<ul>
-									<li><input type="button" value="책바구니" id="book_bas_b"
+									<li><input type="submit" value="책바구니" id="basket_Fr_btn"
 										class="btn_type4 BTN_IF_LIST"></li>
 								</ul>
 							</div>
 							<%}%>
+						</form>
 							
 							<!-- 버튼 css 부분 -->
 							<div class="btn_btm_center">
@@ -327,28 +332,28 @@
 									if (count != 0) {
 										// 이전페이지 // if (startPage와 pageBlock을 비교)
 										if (startPage > pageBlock) {
-								%><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+								%><a href="./BookIndexPic.bk?pageNum=<%=startPage - pageBlock%>">[이전]</a>
 								<%
 									}
 										// 1~10		11~20		21~30
 										for (int i = startPage; i <= endPage; i++) {
 								%>
-								<a href="./BookIndex.bk?pageNum=<%=i%>">[<%=i%>]
+								<a href="./BookIndexPic.bk?pageNum=<%=i%>">[<%=i%>]
 								</a>
 								<%
 									}
 										// 다음 // if (endPage와 pageCount를 비교)
 										if (endPage < pageCount) {
 								%>
-								<a href="./BookIndex.bk?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+								<a href="./BookIndexPic.bk?pageNum=<%=startPage + pageBlock%>">[다음]</a>
 								<%
 									}
 									} // if count 괄호
 								%>
 
 								<!-- 시험용 버튼 -->
-								<input type="button" value="갤러리" id="book_pic_btn"><input
-									type="button" value="게시판" id="book_cont_btn">
+								<input type="button" value="갤러리" id="book_pic_btn" onclick="location.href='./BookIndexPic.bk'"><input
+									type="button" value="게시판" id="book_cont_btn" onclick="location.href='./BookIndex.bk'">
 							</div>
 
 
@@ -387,19 +392,6 @@
 					} else {}
 			});
 		});
-
-	$(document).ready(function() {
-		var member_id = "<%=member_id%>";
-		$('#book_bas_b').click(function() {
-			var basket = confirm("책바구니에 담겠습니까?");
-			if (basket == true) {
-				 $('#book_bas_b').submit();
-				return false;
-			} else {
-				return false; }
-		});
-	});		
-
 
 </script>
 </body>

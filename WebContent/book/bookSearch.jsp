@@ -74,14 +74,32 @@
 			$('#book_cont_div').css('display', 'block');
 		});
 	});
+	
+	$(document).ready(function() {
+		$('#basket_Fr').submit(function(){
+			var con = confirm("책바구니에 담으시겠습니까?");
+			if (con==true){
+				$("#basket_Fr").submit;
+			} else { return false; }
+		});
+	});	
 </script>
 
 </head>
 <body>
 <%
+String member_id = (String)session.getAttribute("member_id");
 request.setCharacterEncoding("utf-8");
 //count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
-String search = (String)request.getAttribute("search");
+String search1 = (String)request.getAttribute("search1");
+String search2 = (String)request.getAttribute("search2");
+String search3 = (String)request.getAttribute("search3");
+String category1 = (String)request.getAttribute("category1");
+String category2 = (String)request.getAttribute("category2");
+String category3 = (String)request.getAttribute("category3");
+String opt1 = (String)request.getAttribute("opt1");
+String opt2 = (String)request.getAttribute("opt2");
+String pubDate = (String)request.getAttribute("pubDate");
 int count = ((Integer)request.getAttribute("count")).intValue();
 String pageNum = (String)request.getAttribute("pageNum");
 int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
@@ -110,7 +128,7 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 								<div class="box_thm">
 									<div class="box_thm01 DIV_BOX_THM01" id="book_divv">
 										<div id="for_book_div">
-											<form action="./AdminBookSearch.am" method="get"
+											<form action="./BookSearch.bk" method="get"
 												id="SearchForm">
 												<fieldset id="book_field">
 													<legend>&nbsp;통합검색&nbsp;</legend>
@@ -188,6 +206,7 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 				</article>
 				<!-- //서브메뉴 -->
 				
+				<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 				<!-- 메인 페이지 -->
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
@@ -200,34 +219,31 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 							</p>	
 							
 							<div id="adm_select_box3">
-									<select name="sort" id="book_sort">
-											<option value="" selected="selected">정렬</option>
-											<option value="./BookSort.bk?sort=book_subject">제목순</option>
-											<option value="./BookSort.bk?sort=book_author">저자순</option>
-											<option value="./BookSort.bk?sort=book_number">인기순</option>
-											<option value="./BookSort.bk?sort=book_pubDate">신작순</option>
-											<option value="./BookSort.bk?sort=book_date">입고순</option>
-									</select>
+								<select name="sort" id="book_sort">
+									<option value="" selected="selected">정렬</option>
+									<option value="./BookSort.bk?sort=book_subject">제목순</option>
+									<option value="./BookSort.bk?sort=book_author">저자순</option>
+									<option value="./BookSort.bk?sort=book_number">인기순</option>
+									<option value="./BookSort.bk?sort=book_pubDate">신작순</option>
+									<option value="./BookSort.bk?sort=book_date">입고순</option>
+								</select>
 							</div>
-							
-<!-- 시험용 버튼 -->
-							<input type="button" value="갤러리" id="book_pic_btn"><input
-								type="button" value="게시판" id="book_cont_btn">
 
 							<!-- ★게시판으로 보여지는 통합검색 -->
+						<form action="./MemberBasketAdd.me" method="post" id="basket_Fr">
 							<ul class="brd_txt_lst" id="book_cont_div">
 								<!-- 글목록 -->
 								<li class="view_lst">
 									<div class="con_lst">
 										<ul class="no_scroll title_t">
-											<li class="adm_col_rc">번호</li>
-											<li class="adm_col_type">사진</li>
-											<li class="adm_col_subs">제목</li>
-											<li class="adm_col_date">저자</li>
-											<li class="adm_col_type">출판사</li>
-											<li class="adm_col_rc">반납상태</li>
-											<li class="adm_col_rc">예약상태</li>
-											<li class="adm_col_rc">예약일자</li>
+											<li class="adm_col_rrc">목록</li>
+											<li class="adm_col_date">사진</li>
+											<li class="adm_col_sub">제목</li>
+											<li class="adm_col_type">저자</li>
+											<li class="adm_col_date">출판사</li>
+											<li class="adm_col_date">대출현황</li>
+											<%if(member_id!=null){ %>
+											<li class="adm_col_rc">대출/예약 신청</li><%}%>
 										</ul>
 									</div> <%
  	if (count == 0) {
@@ -238,70 +254,94 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
  		for (BookDTO booksearchLists : booksearchList) {
  %>
 									<div class="con_lst">
-										<ul class="no_scroll"
-											onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'">
-											<li class="adm_col_rc" id="adm_book_high"><%=booksearchLists.getBook_number()%></li>
-											<li class="adm_col_type" id="adm_book_high"><img
+										<ul class="no_scroll">
+											<li class="adm_col_rrc" id="adm_book_high"><input
+												type="checkbox" name="basket_check"  class="bncheck" 
+												value="<%=booksearchLists.getBook_number()%>" ></li>
+											<li class="adm_col_date" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><img
 												src="./upload/book/<%=booksearchLists.getBook_file()%>"
 												width="70px" height="80px"></li>
-											<li class="adm_col_subs" id="adm_book_high"><%=booksearchLists.getBook_subject()%></li>
-											<li class="adm_col_date" id="adm_book_high"><%=booksearchLists.getBook_author()%></li>
-											<li class="adm_col_type" id="adm_book_high"><%=booksearchLists.getBook_publisher()%></li>
-											<li class="adm_col_rc" id="adm_book_high"><%=booksearchLists.getBbook_bstate()%></li>
-											<li class="adm_col_rc" id="adm_book_high"><%=booksearchLists.getRbook_check()%></li>
-											<li class="adm_col_rc" id="adm_book_high"><%=booksearchLists.getRbook_date()%></li>
+											<li class="adm_col_sub" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_subject()%></li>
+											<li class="adm_col_type" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_author()%></li>
+											<li class="adm_col_date" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_publisher()%></li>
+											<li class="adm_col_date"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'">
+											<%if (booksearchLists.getBbook_bstate()=="0"){ %> 대출가능 <% }
+											else { 
+												if (booksearchLists.getBbook_bdate()!=null){%>
+												<%=date.format(booksearchLists.getBbook_bdate())%>~<%}
+												else{%> 대출불가<%}%> 
+											<%}%>
+											</li>
+											<%if(member_id!=null){ %>
+											<li class="adm_col_type"  id="adm_book_high">
+												<%if (booksearchLists.getBbook_bstate()=="1"){ %>
+													<input type="button" rel="<%=booksearchLists.getBook_number()%>" class="bbutton" value="대출신청">
+												<%} else {%>
+												<input type="button" rel="<%=booksearchLists.getBook_number()%>" class="rbutton" value="대출예약">
+											<%}%>
+											</li><%}%>
 										</ul>
-									</div> <%
- 	}
- 	}
- %>
+									</div>
+									<%}
+ 								}%>
 								</li>
 							</ul>
 							<!-- ★게시판으로 보여지는 통합검색 -->
 
 							<!-- ★갤러리로 보여지는 통합검색 -->
-							<ul class="brd_txt_lst" id="book_pic_div">
-								<li class="view_lst">
+							<ul class="book_lst" id="book_pic_div">
+								<li>
 									<%
 										if (count == 0) {
 									%>
-									<ul>
-										<li class="col_tit"><p>책 목록이 없습니다</p></li>
-									</ul> <%
- 	} else {
+									<dl class="book_info_layer">
+										<dt>책 목록이 없습니다</dt>
+										<dd></dd>
+									</dl>
+									</li> <%
+									 	} else {
  		for (BookDTO booksearchLists : booksearchList) {
  %>
-									<ul>
-										<li><a
-											href="./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>">
-												<img src="./upload/book/<%=booksearchLists.getBook_file()%>">
-												<span><%=booksearchLists.getBook_subject()%></span>
-										</a>
-											<dl class="book_info_layer">
-												<dt>
-													<span><%=booksearchLists.getBook_subject()%></span>
-												</dt>
-												<dd>
-													<dl>
-														<dt>저자</dt>
-														<dd><%=booksearchLists.getBook_author()%>>
-														</dd>
-														<dt>출판사</dt>
-														<dd><%=booksearchLists.getBook_publisher()%></dd>
-														<dt>출판년도</dt>
-														<dd><%=booksearchLists.getBook_pubDate()%></dd>
-														<dt>반납상태</dt>
-														<dd><%=booksearchLists.getBbook_bstate()%></dd>
-													</dl>
-												</dd>
-											</dl></li>
-									</ul> <%
- 	}
- 	}
- %>
-								</li>
-							</ul>
+				<li><a
+					href="./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>">
+						<img src="./upload/book/<%=booksearchLists.getBook_file()%>" class="book_lst_img">
+						<span id="bk_li_subs"><%=booksearchLists.getBook_subject()%></span>
+					<dl class="book_info_layer">
+						<dt>
+							<span><%=booksearchLists.getBook_subject()%></span>
+						</dt>
+						<dd>
+							<dl>
+								<dt>저자</dt>
+								<dd><%=booksearchLists.getBook_author()%>>
+								</dd>
+								<dt>출판사</dt>
+								<dd><%=booksearchLists.getBook_publisher()%></dd>
+								<dt>출판년도</dt>
+								<dd><%=booksearchLists.getBook_pubDate()%></dd>
+								<dt>반납상태</dt>
+								<dd><%=booksearchLists.getBbook_bstate()%></dd>
+							</dl>
+						</dd>
+					</dl>
+					</li>
+				</a><%}
+				}%>
+	</ul>
 							<!-- ★갤러리로 보여지는 통합검색 -->
+							<%if(member_id!=null){ %>
+							<div class="btn_btm_center">
+								<ul>
+									<li><input type="submit" value="책바구니" id="basket_Fr_btn"
+										class="btn_type4 BTN_IF_LIST"></li>
+								</ul>
+							</div>
+							<%}%>
+						</form>
 								
 				<!-- 버튼 css 부분 -->	
 				<div class="btn_btm_center" >			
@@ -309,17 +349,22 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 				if (count != 0) {
 					// 이전페이지 // if (startPage와 pageBlock을 비교)
 					if (startPage > pageBlock) {
-						%><a href="./BookSearch.bk?pageNum=<%=startPage - pageBlock%>&search=<%=search%>">[이전]</a><%
+						%><a href="./BookSearch.bk?pageNum=<%=startPage - pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>">[이전]</a><%
 					}
 					// 1~10		11~20		21~30
 					for (int i = startPage; i <= endPage; i++) {%>
-					<a href="./BookSearch.bk?pageNum=<%=i%>&search=<%=search%>">[<%=i%>]</a><%		
+					<a href="./BookSearch.bk?pageNum=<%=i%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>">[<%=i%>]</a><%		
 					}
 					// 다음 // if (endPage와 pageCount를 비교)
 					if (endPage<pageCount){%>
-						<a href="./BookSearch.bk?pageNum=<%=startPage+pageBlock%>&search=<%=search%>">[다음]</a><%
+						<a href="./BookSearch.bk?pageNum=<%=startPage + pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>">[다음]</a><%
 					}
-				} // if count 괄호 %>		
+				} // if count 괄호 %>	
+
+								<!-- 시험용 버튼 -->
+								<input type="button" value="갤러리" id="book_pic_btn" onclick="location.href='./BookSearchPic.bk'"><input
+									type="button" value="게시판" id="book_cont_btn" onclick="location.href='./BookSearch.bk'">
+							</div>	
 				</div>	
 				
 				</div>

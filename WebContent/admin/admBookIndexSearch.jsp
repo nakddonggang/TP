@@ -47,6 +47,12 @@ request.setCharacterEncoding("utf-8");
 String search1 = (String)request.getAttribute("search1");
 String search2 = (String)request.getAttribute("search2");
 String search3 = (String)request.getAttribute("search3");
+String category1 = (String)request.getAttribute("category1");
+String category2 = (String)request.getAttribute("category2");
+String category3 = (String)request.getAttribute("category3");
+String opt1 = (String)request.getAttribute("opt1");
+String opt2 = (String)request.getAttribute("opt2");
+String pubDate = (String)request.getAttribute("pubDate");
 int count = ((Integer)request.getAttribute("count")).intValue();
 String pageNum = (String)request.getAttribute("pageNum");
 int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
@@ -76,7 +82,7 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
 						
-<form action="./AdminBookSearch.am" method="get" id="SearchForm">
+<form action="./AdminBookSearch.am" method="post" id="SearchForm">
 		<fieldset id="adm_field">
 			<legend>&nbsp;통합검색&nbsp;</legend>
 	
@@ -216,15 +222,15 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 				if (count != 0) {
 					// 이전페이지 // if (startPage와 pageBlock을 비교)
 					if (startPage > pageBlock) {
-						%><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
+						%><a href="./AdminBookSearch.am?pageNum=<%=startPage - pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>">[이전]</a><%
 					}
 					// 1~10		11~20		21~30
 					for (int i = startPage; i <= endPage; i++) {%>
-					<a href="./AdminHBookList.am?pageNum=<%=i%>">[<%=i%>]</a><%		
+					<a href="./AdminBookSearch.am?pageNum=<%=i%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>">[<%=i%>]</a><%		
 					}
 					// 다음 // if (endPage와 pageCount를 비교)
 					if (endPage<pageCount){%>
-						<a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
+						<a href="./AdminBookSearch.am?pageNum=<%=startPage+pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>">[다음]</a><%
 					}
 				} // if count 괄호 %>		
 						</div>	
