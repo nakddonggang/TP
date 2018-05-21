@@ -62,9 +62,9 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 							<li class="view_lst">
 							<div class="con_lst">
 							<ul class="no_scroll title_t">
-								<li class="col_con_id">고유번호</li>
+								<li class="col_dlos_id">고유번호</li>
 								<li class="col_dlos">사유</li>
-								<li class="col_con_id">도서상태</li>
+								<li class="col_dlos_id">도서상태</li>
 							</ul>
 							</div>
 						<%
@@ -81,9 +81,9 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 						<div class="con_lst">
 							<ul
 								onclick="location.href='./AdminBookDLosInfo.am?book_number=<%=dbookLists.getBook_number()%>&pageNum=<%=pageNum%>'"  class="no_scroll">
-								<li class="col_con_id"><a href="#"><p><%=dbookLists.getBook_number()%></p></a></li>
+								<li class="col_dlos_id"><a href="#"><p><%=dbookLists.getBook_number()%></p></a></li>
 								<li class="col_dlos"><a href="#"><p><%=dbookLists.getDbook_reason()%></p></a></li>
-								<li class="col_con_id"><a href="#"><%=dbookLists.getDbook_state()%></li>
+								<li class="col_dlos_id"><a href="#"><%=dbookLists.getDbook_state()%></li>
 							</ul>
 						</div>
 						<%}}%>
