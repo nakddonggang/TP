@@ -36,6 +36,14 @@ $(document).ready(function(){
 			$('input[type=checkbox]').prop("checked",false);
 		}
 	});
+	
+	$('#returnBtn').click(function(){
+		location.replace("./ReturnBook.me");
+	});
+	
+	$('#acceptBtn').click(function(){
+		location.replace("./AcceptResBook.me");
+	});
 });
 </script>
 <body>
@@ -114,6 +122,8 @@ $(document).ready(function(){
 						<div class="btn_btm_board">
 							<ul>
 								<li class="btn_con_right">
+									<input type="button" value="대출도서반납" class="btn_type4" id="returnBtn">
+									<input type="button" value="대출신청승인" class="btn_type4" id="acceptBtn">
 									<input type="submit" value="예약하기" class="btn_type4" id="resBtn"> 
 									<input type="submit" value="삭제하기" class="btn_type4" id="delBtn">
 								</li>

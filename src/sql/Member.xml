@@ -73,7 +73,9 @@
 	</insert>
 	
 	<update id="updateRbookCheck">
-		update rbook set rbook_check='0' where rbook_num=3
+		update rbook 
+		<if test="rbook_num = 3">set rbook_check='0' where rbook_num=3</if>
+		<if test="rbook_num lt 3">set rbook_check='1' where rbook_num lt 3</if>
 	</update>
 	
 	<select id="rbookCkMember" parameterType="hashmap" resultType="int">
@@ -98,5 +100,22 @@
 	<select id="basketMaxNum" resultType="int">
 		select ifnull(max(basket_number),0) from basket
 	</select>
+	
+	<delete id="deleteBbook" parameterType="int">
+		delete from bbook where book_number=#{book_number}
+	</delete>
+	
+	<update id="updateRbook" parameterType="int">
+		update rbook set rbook_num=rbook_num-1 where book_number=#{book_number}
+	</update>
+	
+	<delete id="deleteRbook">
+		delete from rbook where rbook_num=0
+	</delete>
+	
+	<insert id="insertBbook" parameterType="net.book.db.bookDTO">
+		insert into bbook(book_number, bbook_bdate, bbook_rdate, member_id, bbook_bstate) 
+		values (book_number=#{book_number}, now(), date_add(now(), interval 10 day), member_id=#{member_id}, '0'})
+	</insert>
 
 </mapper>

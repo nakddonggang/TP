@@ -117,7 +117,7 @@ public class MemberDAO {
 		map.put("rbook_num", rbook_num);
 		sqlsession.insert("insertRbook",map);
 	}
-	// rbook 테이블 rbook_num=3인것들 찾아서 rbook_check='0'으로 수정
+	// rbook 테이블 rbook_num=3인것들 찾아서 rbook_check='0'으로, rbook_num<3인것들은 rbook_check='1'로 수정
 	public void updateRbookCheck(){
 		sqlsession.update("updateRbookCheck");
 	}
@@ -156,5 +156,21 @@ public class MemberDAO {
 		int basket_number = sqlsession.selectOne("basketMaxNum");
 		return basket_number;
 	}
-	
+	// 관리자가 대출승인 눌렀을경우 예약대기순위 1씩 감소
+	public void updateRbook(int book_number){
+		sqlsession.update("updateRbook", book_number);
+	}
+	// 관리자가 대출승인 눌렀을경우 해당 도서 대출테이블에 insert
+	public void insertBbook(BookDTO bDTO){
+		sqlsession.insert("insertBbook", bDTO);
+	}
+	// 예약대기순위 0인 것은 대출된 것이므로 대기순위 0인 것 예약테이블에서 삭제
+	public void deleteRbook(){
+		sqlsession.delete("deleteRbook");
+	}
+	// 관리자가 대출도서반납 버튼 누르면 대출테이블에서 삭제
+	public void deleteBbook(int book_number){
+		sqlsession.delete("deleteBbook", book_number);
+	}
+
 }
