@@ -346,7 +346,7 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 /* end of 상세검색 하는 부분 */
 .adm_btn_type4 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 190px; text-align: center;}
 .adm_btn_type5 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 200px; text-align: center;}
-.join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px}
+.join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px;}
 .adm_h_1{ font-size: 17px;}
 
 /*통합검색 페이지 제일 작게 했을 떄 검색창이 망가져서 미디어쿼리 사용함*/
@@ -383,10 +383,12 @@ input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-hei
 .book_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
 .book_btn_type4 { height: 30px; line-height: 26px; width: 80px; background:#464646; cursor:pointer; color:#fff; text-align: center; border: 0; }
 .book_btn_type5 { height: 30px; line-height: 26px; width: 100px; background:#464646; cursor:pointer; color:#fff; text-align: center; border: 0; }
+.book_media_bye { display: block; }
 
 @media (min-width:768px){
 	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:5px; background-color: white; }
 	#book_divv { position: relative; }
+	.book_media_bye { display: block; }
 }
 @media screen and (max-width: 767px) {
 	#book_divv { margin-top: 30px;}
@@ -399,21 +401,26 @@ input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-hei
 	.book_media_bye { display: none; }
 	.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
 }
+@media screen and (min-width:768px){ .book_media_bye { display: block; } }
 /* END 김영지 BookIndex.jsp 상세검색 css*/
 
+#book_cont_btn, #book_pic_btn { float:right; margin-left: 5px;}
+
+
 /* START 김영지 책 갤러리 형식으로 보기 css */
-.book_lst {overflow: hidden; width: 981px; margin: 0 auto; }
-.book_lst li { position: relative; float: left; width: 151px; height: 238px;  margin-right: 15px; padding-bottom: 26px; }
+.book_lst {overflow: hidden; width: 90%; margin: 0 auto; position: relative; margin-top:10px;}
+.book_lst li { float: left; width: 21%; height: 235px; margin:0 9px 25px 9px; padding-bottom: 26px; border:1px solid red; position: relative;}
 .book_lst li a {color: #666; text-decoration: none; }
-.book_lst li a span {overflow: hidden; display: inline-block; width: 151px; text-overflow: ellipsis; white-space: nowrap; }
+.book_lst_img { width:99%; height: 232px;}
+/* .book_info_layer{ display: none; background: url(../book/bg_book_hover.png) no-repeat; } */
 .book_info_layer{ display: none;	position:absolute; top:0; left:0; width:100%; height:238px; background: url(../book/bg_book_hover.png) no-repeat; }
-.book_lst .book_info_layer > dt {height: 57px;	padding: 15px; background-color: #222;   color: #fff; }
+.book_lst .book_info_layer > dt {height: 57px;	padding: 15px; width:100%; background-color: #222;   color: #fff; }
 .book_lst .book_info_layer > dt > span {overflow: hidden; display: inline-block;  height: 56px; line-height: 14px; word-break: break-all; }
-.book_lst .book_info_layer dd dl { padding: 15px 15px 0 15px;}
-.book_lst .book_info_layer dd dt { float: left; width: 47px; height: auto;  margin-right: 6px;  line-height: normal;  font-size: 11px  color: #a5a5a5;
-    background: url(../book/bar_book_info.gif) 100% 3px no-repeat; }
+.book_lst li:HOVER dl { display: block; z-index: 1; width:100%;}
+.book_lst .book_info_layer dd dl { padding: 15px 15px 0 15px; width:100%;}
+.book_lst .book_info_layer dd dt { float: left; width: 47px; height: auto;  margin-right: 10px;  line-height: normal;  font-size: 11px  color: #a5a5a5; }
 .book_lst .book_info_layer dd dd {overflow: hidden;  margin-bottom: 9px;  font-size: 11px;  text-overflow: ellipsis;  white-space: nowrap;  color: #fff; }
-.book_lst .book_info_layer.bil_on{display:block;cursor:pointer;}
+
 /* END 김영지 책 갤러리 형식으로 보기 css */
 
 

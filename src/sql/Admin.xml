@@ -400,7 +400,10 @@
 	 </select>
 	 
 	 <select id="getRBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select * from rbook order by book_number desc limit #{startRow}, #{PageSize}
+	 	select * 
+	 	from rbook 
+	 	order by book_number desc 
+	 	limit #{startRow}, #{pageSize}
 	 </select>
 	 
 	 <select id="getHBookCount" resultType="int">

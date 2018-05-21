@@ -56,6 +56,13 @@ public class BookFrontController extends HttpServlet{
 					}catch(Exception e){
 						e.printStackTrace();
 					}
+				} else if(command.equals("/BookIndexPic.bk")){
+					action = new BookIndexPic();
+					try{
+						forward = action.execute(request, response);
+					}catch(Exception e){
+						e.printStackTrace();
+					}
 				} else if(command.equals("/BookSearch.bk")){
 					action = new BookSearch();
 					try{
@@ -64,7 +71,7 @@ public class BookFrontController extends HttpServlet{
 						e.printStackTrace();
 					}
 				}  else if (command.equals("/BookSort.bk")){
-					action = new ServeBookAction();
+					action = new BookSort();
 					try{
 						forward = action.execute(request, response);
 					}catch(Exception e){e.printStackTrace();}

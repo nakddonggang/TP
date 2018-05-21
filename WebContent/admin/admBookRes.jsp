@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="java.util.List"%>
@@ -63,6 +64,7 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 						  </div>
 						  <div class="adm">			
 						  <ul class="brd_txt_lst">
+						  <%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 							<!-- 글목록 -->
 							<li class="view_lst">
 							<div class="con_lst">
@@ -75,7 +77,7 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 							</ul>
 							</div>
 						<%
-							if (rbookList == null) {
+							if (count == 0) {
 						%><ul>
 							<li class="col_tit"><p>예약 목록이 없습니다</p></li>
 						</ul>
@@ -88,11 +90,11 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 						<div class="con_lst">
 							<ul
 								 onclick="location.href='./AdminBookInfo.am?book_number=<%=rbookLists.getBook_number()%>&pageNum=<%=pageNum%>'"  class="no_scroll">
-								<li class="col_con_id"><a href="#"><p><%=rbookLists.getBook_number() %></a></li>
-								<li class="col_con_id"><a href="#"><p><%=rbookLists.getMember_id()%></a></li>
-								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_num()%></li>
-								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_date()%></li>
-								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_check()%></li>
+								<li class="col_con_id"><a href="#"><%=rbookLists.getBook_number() %></a></li>
+								<li class="col_con_id"><a href="#"><%=rbookLists.getMember_id()%></a></li>
+								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_num()%></a></li>
+								<li class="col_con_id"><a href="#"><%=date.format(rbookLists.getRbook_date())%></a></li>
+								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_check()%></a></li>
 							</ul>
 						</div>
 						<%}}%>
