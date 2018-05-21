@@ -214,6 +214,10 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .brd_txt_lst li > .con_lst > ul > li.col_typeb {width:15%; padding:0 20px;}
 .join_form .row_sub > li.title_adm {width:150px; height:50px; padding:15px 20px; background:#f6f6f6; font-family:"Noto_M"; letter-spacing:-0.08em;}
 /* admin Nmember */
+
+/* admin book info */
+.join_form .row_sub > li.title_bif {width:150px; height:50px; padding:15px 20px; background:#f6f6f6; font-family:"Noto_M"; letter-spacing:-0.08em;}
+/* admin book info */
 		/* admin css*/
 
 
@@ -499,6 +503,9 @@ strong#currentPage {font-weight: bold;}
 	.join_form .row_sub > li.title_adm {width: 73px;  min-width: 73px; height: 15px; padding: 5px; text-align: center;}
 	/* admin Nmember */
 	
+	/* admin book info */
+	.join_form .row_sub > li.title_bif {width: 95px; min-width: 95px; padding: 0 10px; height: 20px;}
+	/* admin book info */
 }
 
 @media (max-width:426px){
