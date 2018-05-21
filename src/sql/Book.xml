@@ -25,7 +25,7 @@
 	 </select>
 
 	<select id="getBookInfo" parameterType="int" resultType="net.book.db.BookDTO">
-		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 			rb.rbook_date, rb.rbook_check, b.book_file
 			from book b
 			left join dbook db
@@ -38,21 +38,21 @@
 	</select>
 
 	 <select id="BookSortSubject" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
-		rb.rbook_date, rb.rbook_check, b.book_file
-		from book b
-		left join dbook db
-		on b.book_number=db.book_number
-		left join bbook bb
-		on b.book_number=bb.book_number
-		left join rbook rb
-		on b.book_number=rb.book_number
-		where db.dbook_state is null
-		order by b.book_subject asc limit #{startRow}, #{pageSize}	 
+		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
+			rb.rbook_date, rb.rbook_check, b.book_file
+			from book b
+			left join dbook db
+			on b.book_number=db.book_number
+			left join bbook bb
+			on b.book_number=bb.book_number
+			left join rbook rb
+			on b.book_number=rb.book_number
+			where db.dbook_state is null
+			order by b.book_subject asc limit #{startRow}, #{pageSize}	 
 	 </select>
 	 
 	 <select id="BookSortAuthor" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -66,7 +66,7 @@
 	 </select>
 
 	 <select id="BookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -76,11 +76,11 @@
 		left join rbook rb
 		on b.book_number=rb.book_number 
 		where db.dbook_state is null
-		order by bb.book_number desc limit #{startRow}, #{pageSize} 	 
+		order by b.book_number desc limit #{startRow}, #{pageSize} 	 
 	 </select>
 
 	 <select id="BookSortPubDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -94,7 +94,7 @@
 	 </select>
 
 	 <select id="BookSortIO" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -117,7 +117,7 @@
 	 </select>
 	 
 	 <select id="Bk_SearchAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -141,7 +141,7 @@
 	 </select>
 	 
 	 <select id="Bk_SearchList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -165,7 +165,7 @@
 	</select>
 
 	<select id="Bk_SearchTwoAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
-		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -190,7 +190,7 @@
 	 </select>	
 
 	<select id="Bk_SearchTwoList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -215,8 +215,8 @@
 		and db.dbook_reason is null
 	</select>
 
-	<select id="Bk_SearchThrAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
-		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+	<select id="Bk_SearchThrAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -243,7 +243,7 @@
 	 </select>	
 
 	<select id="Bk_SearchThrList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -269,7 +269,7 @@
 	 </select>
 	 
 	 <select id="Bk_DateSearchAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -294,7 +294,7 @@
 	 </select>
 	 
 	 <select id="Bk_DateSearchList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -320,7 +320,7 @@
 	</select>
 
 	<select id="Bk_DateSearchTwoAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
-		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -348,7 +348,7 @@
 	 </select>	
 
 	<select id="Bk_DateSearchTwoList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -375,8 +375,8 @@
 		and db.dbook_reason is null
 	</select>
 
-	<select id="Bk_DateSearchThrAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
-		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+	<select id="Bk_DateSearchThrAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
@@ -405,7 +405,7 @@
 	 </select>	
 
 	<select id="Bk_DateSearchThrList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate,
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
 		rb.rbook_date, rb.rbook_check, b.book_file
 		from book b
 		left join dbook db
