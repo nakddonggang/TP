@@ -19,16 +19,15 @@ public class MemberBasketDelete implements Action{
 		ActionForward forward = new ActionForward();
 		
 		String[] checkbox = request.getParameterValues("checkbox");
+		List list = new ArrayList<>();
+		
 		if(checkbox==null){
 			forward.setPath("./MemberBasketList.me");
 			forward.setRedirect(true);
 			return forward;
 		}
 		
-		List list = new ArrayList<>();
-		
 		for(int i=0; i<checkbox.length; i++){
-			System.out.println(checkbox[i]);
 			list.add(Integer.parseInt(checkbox[i])); 
 		}
 		
