@@ -51,9 +51,12 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
+						
 						<div class='join_form adminfo_join_form' >
 					<!-- 본문 공간 -->
 						<div class=board>
+						
+							<h3>예약관리 리스트</h3>
 						  <div class="view_cnt">
 						  	<p>
 								Total_<span><%=count%></span>
@@ -97,16 +100,19 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 						<%}}%>
 							</li>
 						</ul>
+						<div class="paginate">
 						<%if (count != 0) {//이전
 								if (startPage > pageBlock) {
-						%><a href="./AdminIndex.am?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+						%><a href="./AdminBookRes.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a>
 						<%}// 1~10 11~20 21~30
 							for (int i = startPage; i <= endPage; i++) {
-						%><a href="./AdminIndex.am?pageNum=<%=i%>"><%=i%></a>
+						%><a href="./AdminBookRes.am?pageNum=<%=i%>"> &nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a>
 						<%}//다음
 								if (endPage < pageCount) {
-						%><a href="./AdminIndex.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+						%><a href="./AdminBookRes.am?pageNum=<%=startPage + pageBlock%>" class="next"><span class="hide">다음 페이지</span></a></a>
 						<%}}%>
+						</div>
+				
 						</div>
 						  <div class="btn_btm_center">
 							<ul>

@@ -37,18 +37,21 @@ int book_number = Integer.parseInt(request.getParameter("book_number"));
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-					<div class="content">
-				
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
-					<div class=""></div>
+					
 					<!-- 본문 공간 -->
 					
 					<div class="content">
 					<div class="write_form">
-							<h1 class="adm_h_1">손망실 작성</h1>
-							<p class="sub_txt">분실되거나 손상된 책 정보를 입력해주세요.</p>
+							
+							<h3>손망실 작성</h3>
+							<div class="dl_box">
+								<dl>
+									<dt>Read It</dt>
+									<dd>게시 전 자세히 확인을 먼저 해주시고,</dd>
+									<dd>분실되거나 손상된 책의 정보를 정확히 입력해주세요.</dd>
+								</dl>
+							
+						</div>
 							<form action="./AdminBookDLosWriteAction.am"  method="post"  name="fr" >
 								<ul class="row">
 									<li>
