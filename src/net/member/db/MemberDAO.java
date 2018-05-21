@@ -180,4 +180,10 @@ public class MemberDAO {
 		return rbookList;		
 	}
 	
+	// 회원이 대여중인 책 총수량 검색구문
+	public int useBbookMemberCount(String member_id) {
+		int count = sqlsession.selectOne("useBbookMemberCount", member_id);
+		return count;
+	}
+	
 }

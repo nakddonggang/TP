@@ -39,9 +39,13 @@
 					<div class="content">
 					<%
 						String member_id = (String)session.getAttribute("member_id");
-						if(member_id == null) {
-							response.sendRedirect("./MemberLogin.me");
-						}
+						if(member_id == null) response.sendRedirect("./MemberLogin.me");
+						String pageNum = (String) request.getAttribute("pageNum");
+						int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
+						int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
+						int startPage = ((Integer) request.getAttribute("startPage")).intValue();
+						int endPage = ((Integer) request.getAttribute("endPage")).intValue();
+						int count = ((Integer) request.getAttribute("count")).intValue();
 					%>
 					<!-- myUseBasket.jsp : 책바구니 -->
 						<h2>책 바구니</h2>
@@ -76,6 +80,11 @@
 								<td>반납할 일자</td>
 							</tr>
 							<%
+							if(bList == null) {
+								%>
+								<tr><td>대여중인 도서가 없습니다.</td></tr>
+								<%
+							} else {
 							SimpleDateFormat bbook_bdate = new SimpleDateFormat("yyyy-MM-dd");
 							for(BookDTO bDTO :  bList) {
 							%>
@@ -87,8 +96,34 @@
 							</tr>
 							<%
 							}
+						}
 							%>
 						</table>
+						<%
+								if (pageCount < endPage) endPage = pageCount;
+								if (startPage > pageBlock) {
+							%><a
+								href="./MemberUseIndex.me?pageNum=<%=startPage - pageBlock%>"
+								class="prev"><span class="hide">이전 페이지</span></a>
+							<%
+								}
+
+								for (int p = startPage; p <= endPage; p++) {
+									if (p == Integer.parseInt(pageNum)) {
+										%>
+										&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<%
+ 									} else {
+ 										%>&nbsp;<a href="./MemberUseIndex.me?pageNum=<%=p%>"><%=p%></a>&nbsp;<%
+ 									}
+ 								}
+
+							 	if (endPage < pageCount) {
+ 									%><a
+									href="./MemberUseIndex.me?pageNum=<%=startPage + pageBlock%>"
+									class="next"><span class="hide">다음 페이지</span></a>
+								<%
+								}
+								%>
 					</div>
 
 					<div>
