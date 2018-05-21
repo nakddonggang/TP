@@ -265,10 +265,7 @@ $(document).ready(function() {
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'"><%=bookdto.getBook_publisher()%></li>
 											<li class="adm_col_date"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'">
 											<%if (bookdto.getBbook_bstate()=="0"){ %> 대출가능 <% }
-											else { 
-												if (bookdto.getBbook_bdate()!=null){%>
-												<%=date.format(bookdto.getBbook_bdate())%>~<%}
-												else{%> 대출불가<%}%> 
+											else { %><%=date.format(bookdto.getBbook_bdate())%>~<%=date.format(bookdto.getBbook_rdate())%>대출중
 											<%}%>
 											</li>
 											<%if(member_id!=null){ %>

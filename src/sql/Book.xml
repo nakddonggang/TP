@@ -11,7 +11,7 @@
 	 </select>
 	 	 
 	 <select id="BookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, bb.bbook_bstate, bb.bbook_bdate,
+		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state, ifnull(bb.bbook_bstate, 0), bb.bbook_bdate,
 			rb.rbook_date, rb.rbook_check, b.book_file
 			from book b
 			left join dbook db
