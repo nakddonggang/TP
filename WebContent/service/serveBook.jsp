@@ -73,7 +73,7 @@
 
 
 					<div class='join_form adminfo_join_form'>
-						<h2 class="adm_h_1">희망도서 신청</h2>
+						<h3>희망도서 신청</h3>
 						<div class="adm">
 							<form action="./ServeBookAction.bk" method="post" id="serve_Book">
 								<input type="hidden" value="wait" name="hbook_check">
@@ -81,35 +81,35 @@
 									<li>
 										<ul class="row_sub">
 											<li class="title"><span>아이디</span></li>
-											<li class="adm_inp_form"><input type="text"
+											<li class="adm_inp_formh"><input type="text"
 												name="member_id" value="1111" readonly></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title"><span>도서명</span></li>
-											<li class="adm_inp_form"><input type="text"
+											<li class="adm_inp_formh"><input type="text"
 												name="hbook_subject" id="serve_book_text1"></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title"><span>저자</span></li>
-											<li class="adm_inp_form"><input type="text"
+											<li class="adm_inp_formh"><input type="text"
 												name="hbook_author" id="serve_book_text2"></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title"><span>발행처</span></li>
-											<li class="adm_inp_form"><input type="text"
+											<li class="adm_inp_formh"><input type="text"
 												name="hbook_publisher" id="serve_book_text3"></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title"><span>희망도서 설명</span></li>
-											<li class="adm_inp_form"><textarea cols="35" rows="10"
+											<li class="adm_inp_formh"><textarea cols="35" rows="10"
 													name="hbook_explain" id="serve_book_text4"></textarea></li>
 										</ul>
 									</li>

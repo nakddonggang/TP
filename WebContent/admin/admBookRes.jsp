@@ -69,11 +69,11 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 							<li class="view_lst">
 							<div class="con_lst">
 							<ul class="no_scroll title_t">
-								<li class="col_con_id">고유번호</li>
-								<li class="col_con_id">아이디</li>
-								<li class="col_con_id">예약순서</li>
-								<li class="col_con_id">예약일자</li>
-								<li class="col_con_id">입고현황</li>
+								<li class="col_con_rnum">번호</li>
+								<li class="col_con_rnum">아이디</li>
+								<li class="col_con_rnum">예약순서</li>
+								<li class="col_con_rid">예약일</li>
+								<li class="col_con_rnum">입고현황</li>
 							</ul>
 							</div>
 						<%
@@ -90,11 +90,11 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 						<div class="con_lst">
 							<ul
 								 onclick="location.href='./AdminBookInfo.am?book_number=<%=rbookLists.getBook_number()%>&pageNum=<%=pageNum%>'"  class="no_scroll">
-								<li class="col_con_id"><a href="#"><%=rbookLists.getBook_number() %></a></li>
-								<li class="col_con_id"><a href="#"><%=rbookLists.getMember_id()%></a></li>
-								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_num()%></a></li>
-								<li class="col_con_id"><a href="#"><%=date.format(rbookLists.getRbook_date())%></a></li>
-								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_check()%></a></li>
+								<li class="col_con_rnum"><a href="#"><%=rbookLists.getBook_number() %></a></li>
+								<li class="col_con_rnum"><a href="#"><%=rbookLists.getMember_id()%></a></li>
+								<li class="col_con_rnum"><a href="#"><%=rbookLists.getRbook_num()%></a></li>
+								<li class="col_con_rid"><a href="#"><%=date.format(rbookLists.getRbook_date())%></a></li>
+								<li class="col_con_rnum"><a href="#"><%=rbookLists.getRbook_check()%></a></li>
 							</ul>
 						</div>
 						<%}}%>
