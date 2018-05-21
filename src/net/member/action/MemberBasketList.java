@@ -29,8 +29,18 @@ public class MemberBasketList implements Action{
 		}
 		
 		MemberDAO mDAO = new MemberDAO();		
-		List<MemberDTO> bList=mDAO.MemberBasketList(member_id);	
+		List<MemberDTO> bList=mDAO.MemberBasketList(member_id);
+		List bbook_bstate = new ArrayList<>();
+		List rbook_check = new ArrayList<>();
+		
+		for(int i=0; i<bList.size();i++){
+			MemberDTO mDTO = bList.get(i);
+			bbook_bstate.add(mDAO.selectBbook(mDTO.getBook_number()));
+			rbook_check.add(mDAO.rbookNumMax(mDTO.getBook_number()));
+		}
 		request.setAttribute("bList", bList);
+		request.setAttribute("bbook_bstate", bbook_bstate);
+		request.setAttribute("rbook_check", rbook_check);
 		
 		if(alert != null){
 			request.setAttribute("alert", alert);

@@ -51,7 +51,7 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
 						<div class='join_form adminfo_join_form' >
-						<h1 class="adm_h_1">손망실 책 관리</h1>
+						<h3>손망실 책 관리</h3>
 						  	<p>
 								Total_<span><%=count%></span>
 							</p>
@@ -89,16 +89,20 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 						<%}}%>
 							</li>
 						</ul>
+						
+						<div class="paginate">
 						<%if (count != 0) {//이전
 								if (startPage > pageBlock) {
-						%><a href="./AdminBookDLos.am?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+						%><a href="./AdminBookDLos.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a>
 						<%}// 1~10 11~20 21~30
 							for (int i = startPage; i <= endPage; i++) {
-						%><a href="./AdminBookDLos.am?pageNum=<%=i%>"><%=i%></a>
+						%><a href="./AdminBookDLos.am?pageNum=<%=i%>"> &nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a>
 						<%}//다음
 								if (endPage < pageCount) {
-						%><a href="./AdminBookDLos.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+						%><a href="./AdminBookDLos.am?pageNum=<%=startPage + pageBlock%>" class="next"><span class="hide">다음 페이지</span></a></a>
 						<%}}%>
+						</div>
+						
 						  <div class="btn_btm_center">
 							<ul>
 								<li class="btn_cancle">

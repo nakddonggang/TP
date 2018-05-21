@@ -1,6 +1,7 @@
 package net.member.db;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -83,8 +84,8 @@ public class MemberDAO {
 	}
 	
 	// 도서바구니 담기
-	public void insertBasket(MemberDTO bDTO) {
-		sqlsession.insert("insertBasket", bDTO);
+	public void insertBasket(MemberDTO mDTO) {
+		sqlsession.insert("insertBasket", mDTO);
 	}	
 	
 	// 도서바구니 리스트
@@ -100,11 +101,9 @@ public class MemberDAO {
 		sqlsession.delete("deleteBasket",map);
 	}
 	// 도서바구니 예약버튼 클릭 시 해당 책 대출중인지 여부 확인
-	public List<BookDTO> selectBbook(List list){
-		HashMap map = new HashMap<>();
-		map.put("checkBbook", list);
-		List<BookDTO> book_state = sqlsession.selectList("selectBbook", map);
-		return book_state;
+	public int selectBbook(int book_number){
+		int bbook_check = sqlsession.selectOne("selectBbook", book_number);
+		return bbook_check;
 	}
 	// rbook 테이블에 해당 책 예약대기순위 조회
 	public int rbookNumMax(int book_number){
@@ -112,15 +111,14 @@ public class MemberDAO {
 		return rbookNumMax;
 	}
 	// rbook 테이블에 insert
-	public void insertRbook(int book_number, String member_id, String bbook_bstate, int rbook_num){
+	public void insertRbook(int book_number, String member_id, int rbook_num){
 		HashMap map = new HashMap<>();
 		map.put("book_number", book_number);
 		map.put("member_id", member_id);
-		map.put("bbook_bstate", bbook_bstate);
 		map.put("rbook_num", rbook_num);
 		sqlsession.insert("insertRbook",map);
 	}
-	// rbook 테이블 rbook_num=3인것들 찾아서 rbook_check='0'으로 수정
+	// rbook 테이블 rbook_num=3인것들 찾아서 rbook_check='0'으로, rbook_num<3인것들은 rbook_check='1'로 수정
 	public void updateRbookCheck(){
 		sqlsession.update("updateRbookCheck");
 	}
@@ -142,6 +140,44 @@ public class MemberDAO {
 		bbookList = sqlsession.selectList("MemberMyUseBookList", map);
 		return bbookList;
 	}
+	// 예약완료된 도서 바구니에서 삭제
+	public void deleteRes(int book_number, String member_id){
+		HashMap map = new HashMap<>();
+		map.put("book_number", book_number);
+		map.put("member_id", member_id);
+		sqlsession.delete("deleteRes", map);
+	}
+	// basket_number에 해당하는 책번호 불러오기
+	public int matchBookNum(int basket_number){
+		int book_number = sqlsession.selectOne("matchBookNum", basket_number);
+		return book_number;
+	}
+	// 바구니 최대번호 조회
+	public int basketMaxNum(){
+		int basket_number = sqlsession.selectOne("basketMaxNum");
+		return basket_number;
+	}
+	// 관리자가 대출승인 눌렀을경우 예약대기순위 1씩 감소
+	public void updateRbook(int book_number){
+		sqlsession.update("updateRbook", book_number);
+	}
+	// 관리자가 대출승인 눌렀을경우 해당 도서 대출테이블에 insert
+	public void insertBbook(BookDTO bDTO){
+		sqlsession.insert("insertBbook", bDTO);
+	}
+	// 예약대기순위 0인 것은 대출된 것이므로 대기순위 0인 것 예약테이블에서 삭제
+	public void deleteRbook(){
+		sqlsession.delete("deleteRbook");
+	}
+	// 관리자가 대출도서반납 버튼 누르면 대출테이블에서 삭제
+	public void deleteBbook(int book_number){
+		sqlsession.delete("deleteBbook", book_number);
+	}
 	
+	public List<BookDTO> myUseRBookList(String member_id){
+		List<BookDTO> rbookList = new ArrayList<BookDTO>();
+		rbookList = sqlsession.selectList("myUseRBookList",member_id);
+		return rbookList;		
+	}
 	
 }

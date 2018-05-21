@@ -52,7 +52,7 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
 						<div class='join_form adminfo_join_form' >
-							<h2>희망도서 신청 목록</h2>
+							<h3>희망도서 신청 목록</h3>
 							<p>
 								Total_<span><%=count%></span>
 							</p>
@@ -62,13 +62,12 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 							<li class="view_lst">
 							<div class="con_lst">
 							<ul class="no_scroll title_t">
-								<li class="adm_col_rc">아이디</li>
-								<li class="adm_col_date">도서명</li>
-								<li class="adm_col_type">저자</li>
-								<li class="adm_col_type">처리상태</li>
-								<li class="adm_col_type">발행처</li>
-								<li class="adm_col_rc">국제표준번호</li>
-								<li class="adm_col_ex">희망도서 설명</li>
+								<li class="adm_col_rch">아이디</li>
+								<li class="adm_col_dateh">도서명</li>
+								<li class="adm_col_nameh">저자</li>
+								<li class="adm_col_rch">처리상태</li>
+								<li class="adm_col_typeh">발행처</li>
+								<li class="adm_col_exh">국제표준번호</li>
 							</ul>
 							</div>
 						<%
@@ -82,42 +81,46 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 						%>
 						<div class="con_lst">
 							<ul class="no_scroll" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'">
-								<li class="adm_col_rc"><%=hbookLists.getMember_id()%></li>
-								<li class="adm_col_date"><%=hbookLists.getHbook_subject()%></li>
-								<li class="adm_col_type"><%=hbookLists.getHbook_author()%></li>
-								<li class="adm_col_type"><%=hbookLists.getHbook_check()%></li>
-								<li class="adm_col_type"><%=hbookLists.getHbook_publisher()%></li>
-								<li class="adm_col_rc"><%=hbookLists.getHbook_isbn()%></li>
-								<li class="adm_col_ex"><%=hbookLists.getHbook_explain()%></li>
+								<li class="adm_col_rch"><%=hbookLists.getMember_id()%></li>
+								<li class="adm_col_dateh"><%=hbookLists.getHbook_subject()%></li>
+								<li class="adm_col_nameh"><%=hbookLists.getHbook_author()%></li>
+								<li class="adm_col_rch"><%=hbookLists.getHbook_check()%></li>
+								<li class="adm_col_typeh"><%=hbookLists.getHbook_publisher()%></li>
+								<li class="adm_col_exh"><%=hbookLists.getHbook_isbn()%></li>
 							</ul>
 						</div><%}
 						}%>
 							</li>
 						</ul>
 								
-				<div class="btn_btm_center">
-				<ul>
-					<li class="btn_cancle">
-						<input type="button" value="HOME" onclick="location.href='./AdminIndex.am'" class ="btn_type4 BTN_IF_LIST">
-					</li>
-				</ul>
 				
+				<div class="paginate">
 				<% // count = 전체 글의 개수
 				if (count != 0) {
 					// 이전페이지 // if (startPage와 pageBlock을 비교)
 					if (startPage > pageBlock) {
-						%><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>">[이전]</a><%
+						%><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%
 					}
 					// 1~10		11~20		21~30
 					for (int i = startPage; i <= endPage; i++) {%>
-					<a href="./AdminHBookList.am?pageNum=<%=i%>">[<%=i%>]</a><%		
+					<a href="./AdminHBookList.am?pageNum=<%=i%>">&nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a><%		
 					}
 					// 다음 // if (endPage와 pageCount를 비교)
 					if (endPage<pageCount){%>
-						<a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>">[다음]</a><%
+						<a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%
 					}
 				} // if count 괄호 %>		
-						</div>	
+					</div>
+				<div class="btn_btm_center">
+				<ul>
+					<li class="btn_cancle">
+						<input type="button" value="도서관리페이지" onclick="location.href='./AdminIndex.am'" class ="btn_type4 BTN_IF_LIST">
+					</li>
+				</ul>
+				</div>
+			
+				
+					
 					</div>
 				</div>
 				</div>
