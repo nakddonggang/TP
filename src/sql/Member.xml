@@ -131,5 +131,17 @@
 		select count(*) from bbook
 		where member_id = #{member_id}
 	</select>
+	
+	<select id="ReservationBookMemberCount" parameterType="string" resultType="int">
+		select count(*) from rbook
+		where member_id = #{member_id}
+	</select>
+	
+	<select id="ReservationBookMemberList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_subject , r.rbook_date , r.rbook_check , r.rbook_num from rbook r
+		join book b
+		on r.book_number = b.book_number
+		where member_id = #{member_id} limit #{startRow}, #{endSize};
+	</select>
 
 </mapper>
