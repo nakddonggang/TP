@@ -210,7 +210,7 @@
 							</div>
 
 							<!-- ★게시판으로 보여지는 통합검색 -->
-						<form action="./AdminIndex.am" method="post" id="basket_Fr">
+						<form action="./MemberBasketAdd.me" method="post" id="basket_Fr">
 							<ul class="brd_txt_lst" id="book_cont_div">
 								<!-- 글목록 -->
 								<li class="view_lst">
