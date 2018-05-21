@@ -3,7 +3,7 @@
 .seatLayout > ul {    clear:both;}
 .seatLayout > ul > li {    float:left;    width: 50px;}
 
-.member_content {    width:70%;    margin: 0 auto;	}
+.member_content {    width:100%;    margin: 0 auto;	}
 .member_content .btn {    color: #fff;    background-color: #8e8e8e;    border:none;    outline:none;    width: calc(50% - 1.4px);    font-size: 1.6em;	cursor:pointer;	}
 .loginmodal {	width:100%;	}
 
