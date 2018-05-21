@@ -411,9 +411,6 @@ public class AdminDAO {
 	public int insertBook(BookDTO bookdto){
 		int result;
 		// book_number 값 증가시켜주기
-		int book_number = sqlsession.selectOne("getBookNum");
-		book_number+=1;
-		bookdto.setBook_number(book_number);
 		result = sqlsession.insert("insertBook", bookdto);
 		return result;
 	}
