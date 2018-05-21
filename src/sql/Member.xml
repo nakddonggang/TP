@@ -73,9 +73,11 @@
 	</insert>
 	
 	<update id="updateRbookCheck">
-		update rbook 
-		<if test="rbook_num = 3">set rbook_check='0' where rbook_num=3</if>
-		<if test="rbook_num lt 3">set rbook_check='1' where rbook_num lt 3</if>
+		update rbook set rbook_check='0' where rbook_num=3
+	</update>
+	
+	<update id="updateRbookCheck2">
+		update rbook set rbook_check='1' where rbook_num <![CDATA[< 3 ]]>
 	</update>
 	
 	<select id="rbookCkMember" parameterType="hashmap" resultType="int">
@@ -115,7 +117,7 @@
 	
 	<insert id="insertBbook" parameterType="net.book.db.BookDTO">
 		insert into bbook(book_number, bbook_bdate, bbook_rdate, member_id, bbook_bstate) 
-		values (book_number=#{book_number}, now(), date_add(now(), interval 10 day), member_id=#{member_id}, '0')
+		values (#{book_number}, now(), date_add(now(), interval 10 day), #{member_id}, '0')
 	</insert>
 
 	<select id="myUseRBookList" parameterType="string" resultType="net.book.db.BookDTO">
