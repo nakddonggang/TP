@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="java.util.List"%>
@@ -50,9 +51,12 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
+						
 						<div class='join_form adminfo_join_form' >
 					<!-- 본문 공간 -->
 						<div class=board>
+						
+							<h3>예약관리 리스트</h3>
 						  <div class="view_cnt">
 						  	<p>
 								Total_<span><%=count%></span>
@@ -60,6 +64,7 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 						  </div>
 						  <div class="adm">			
 						  <ul class="brd_txt_lst">
+						  <%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 							<!-- 글목록 -->
 							<li class="view_lst">
 							<div class="con_lst">
@@ -72,7 +77,7 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 							</ul>
 							</div>
 						<%
-							if (rbookList == null) {
+							if (count == 0) {
 						%><ul>
 							<li class="col_tit"><p>예약 목록이 없습니다</p></li>
 						</ul>
@@ -85,26 +90,29 @@ List<BookDTO> rbookList = (List<BookDTO>)request.getAttribute("rbookList");
 						<div class="con_lst">
 							<ul
 								 onclick="location.href='./AdminBookInfo.am?book_number=<%=rbookLists.getBook_number()%>&pageNum=<%=pageNum%>'"  class="no_scroll">
-								<li class="col_con_id"><a href="#"><p><%=rbookLists.getBook_number() %></a></li>
-								<li class="col_con_id"><a href="#"><p><%=rbookLists.getMember_id()%></a></li>
-								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_num()%></li>
-								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_date()%></li>
-								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_check()%></li>
+								<li class="col_con_id"><a href="#"><%=rbookLists.getBook_number() %></a></li>
+								<li class="col_con_id"><a href="#"><%=rbookLists.getMember_id()%></a></li>
+								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_num()%></a></li>
+								<li class="col_con_id"><a href="#"><%=date.format(rbookLists.getRbook_date())%></a></li>
+								<li class="col_con_id"><a href="#"><%=rbookLists.getRbook_check()%></a></li>
 							</ul>
 						</div>
 						<%}}%>
 							</li>
 						</ul>
+						<div class="paginate">
 						<%if (count != 0) {//이전
 								if (startPage > pageBlock) {
-						%><a href="./AdminIndex.am?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+						%><a href="./AdminBookRes.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a>
 						<%}// 1~10 11~20 21~30
 							for (int i = startPage; i <= endPage; i++) {
-						%><a href="./AdminIndex.am?pageNum=<%=i%>"><%=i%></a>
+						%><a href="./AdminBookRes.am?pageNum=<%=i%>"> &nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a>
 						<%}//다음
 								if (endPage < pageCount) {
-						%><a href="./AdminIndex.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+						%><a href="./AdminBookRes.am?pageNum=<%=startPage + pageBlock%>" class="next"><span class="hide">다음 페이지</span></a></a>
 						<%}}%>
+						</div>
+				
 						</div>
 						  <div class="btn_btm_center">
 							<ul>

@@ -28,7 +28,8 @@ public class BookDTO {
 	//	<rbook table>						
 	int rbook_num;					//	예약순서			int(2)									회원의 해당 책 예약 우선순위
 	Date rbook_date;		//	예약일자			date									회원이 예약한 날짜
-	String rbook_check;				//	입고현황			char(2)	check in ('0','1')		예약된 책 도서관에 있는지 여부(없음/있음)
+	String rbook_check;		//	입고현황			char(2)	check in ('0','1')		예약된 책 도서관에 있는지 여부(없음/있음)
+	Date rbook_bdate;
 	
 	//	<hbook table>						
 	String hbook_subject;			//	도서명				varchar(100)						희망도서명
@@ -46,6 +47,12 @@ public class BookDTO {
 	
 	public int getBook_number() {
 		return book_number;
+	}
+	public Date getRbook_bdate() {
+		return rbook_bdate;
+	}
+	public void setRbook_bdate(Date rbook_bdate) {
+		this.rbook_bdate = rbook_bdate;
 	}
 	public String getBook_file() {
 		return book_file;
