@@ -75,13 +75,13 @@ String bl_check =(String)request.getAttribute("bl_check");
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title_adm"><span>Name</span></li>
+										<li class="title_adm"><span>Phone</span></li>
 										<li class="inp_form"><input type="text" name="member_phone" value="<%=mDTO.getMember_phone()%>" readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title_adm"><span>E-Mail</span></li>
+										<li class="title_adm"><span>Date</span></li>
 										<li class="inp_form"><input type="text" name="member_date" value="<%=mDTO.getMember_date()%>" readonly></li>
 								</ul>
 							</li>
