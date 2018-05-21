@@ -41,28 +41,73 @@
 						String member_id = (String)session.getAttribute("member_id");
 						if(member_id == null) response.sendRedirect("./MemberLogin.me");
 						String pageNum = (String) request.getAttribute("pageNum");
+						String pageNum2 = (String) request.getAttribute("pageNum2");
 						int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
+						int pageCount2 = ((Integer) request.getAttribute("pageCount2")).intValue();
 						int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 						int startPage = ((Integer) request.getAttribute("startPage")).intValue();
+						int startPage2 = ((Integer) request.getAttribute("startPage2")).intValue();
 						int endPage = ((Integer) request.getAttribute("endPage")).intValue();
+						int endPage2 = ((Integer) request.getAttribute("endPage2")).intValue();
 						int count = ((Integer) request.getAttribute("count")).intValue();
+						int count2 = ((Integer) request.getAttribute("count2")).intValue();
 					%>
 					<!-- myUseBasket.jsp : 책바구니 -->
-						<h2>책 바구니</h2>
-						<input type="button" value="상세보기"
-							onclick="location.href='myUseBasket.jsp'">
+						<h2>예약중인 도서목록</h2>
+						
 						<table>
 							<tr>
-								<td>책 번호</td>
+								<td>책 제목</td>
 								<td>예약번호</td>
+								<td>예약신청날짜</td>
 								<td>대출신청/삭제<input type="checkbox"></td>
 							</tr>
-							<tr>
-								<td>책 번호</td>
-								<td>예약번호</td>
-								<td>대출신청/삭제<input type="checkbox"></td>
-							</tr>
+							<%
+							List<BookDTO> bList2 = (List<BookDTO>)request.getAttribute("bList2");
+							if(bList2==null) {
+								%>
+								<tr><td>예약중인 도서가 없습니다.</td></tr>
+								<%
+							} else {
+								SimpleDateFormat rbook_rdate = new SimpleDateFormat("yyyy-MM-dd");
+								for(BookDTO bDTO : bList2) {
+									%>
+										<tr onclick = "loaction.href = '#'">
+											<td><%=bDTO.getBook_subject() %></td>
+											<td><%=bDTO.getRbook_num() %></td>
+											<td><%=rbook_rdate.format(bDTO.getRbook_date()) %></td>
+											<td>대출신청/삭제<input type="checkbox"></td>
+										</tr>
+									<%
+								}
+							}
+							%>
 						</table>
+					<%
+								if (pageCount2 < endPage2) endPage2 = pageCount2;
+								if (startPage2 > pageBlock) {
+							%><a
+								href="./MemberUseIndex.me?pageNum2=<%=startPage2 - pageBlock%>"
+								class="prev"><span class="hide">이전 페이지</span></a>
+							<%
+								}
+
+								for (int p = startPage2; p <= endPage2; p++) {
+									if (p == Integer.parseInt(pageNum2)) {
+										%>
+										&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<%
+ 									} else {
+ 										%>&nbsp;<a href="./MemberUseIndex.me?pageNum2=<%=p%>"><%=p%></a>&nbsp;<%
+ 									}
+ 								}
+
+							 	if (endPage2 < pageCount2) {
+ 									%><a
+									href="./MemberUseIndex.me?pageNum2=<%=startPage2 + pageBlock%>"
+									class="next"><span class="hide">다음 페이지</span></a>
+								<%
+								}
+								%>
 					</div>
 					<%
 					List<BookDTO> bList = (List<BookDTO>)request.getAttribute("bList");
@@ -70,11 +115,8 @@
 					<div>
 						<!-- myUseBook.jsp : 도서 대출 목록 -->
 						<h2>대출중인 도서 목록</h2>
-						<input type="button" value="상세보기"
-							onclick="location.href='myUseBook.jsp'">
 						<table>
 							<tr>
-								<td>책 번호</td>
 								<td>책 제목</td>
 								<td>대출일자</td>
 								<td>반납할 일자</td>
@@ -88,8 +130,7 @@
 							SimpleDateFormat bbook_bdate = new SimpleDateFormat("yyyy-MM-dd");
 							for(BookDTO bDTO :  bList) {
 							%>
-							<tr>
-								<td><%=bDTO.getBook_number() %></td>
+							<tr onclick="location.href = '#'">
 								<td><%=bDTO.getBook_subject() %></td>
 								<td><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></td>
 								<td>반납할 일자</td>
@@ -126,21 +167,6 @@
 								%>
 					</div>
 
-					<div>
-						<!-- myUseFacility.jsp : 시설 이용 현황 -->
-						<h2>시설 이용 목록</h2>
-						<input type="button" value="상세보기"
-							onclick="location.href='myUseFacility.jsp'">
-						<table>
-							<tr>
-								<td>자리번호</td>
-								<td>시작시간</td>
-								<td>종료시간</td>
-								<td>자리유형</td>
-							</tr>
-						<!-- 	for문 자리 -->
-						</table>
-					</div>
 				</article>
 				
 			</section>
