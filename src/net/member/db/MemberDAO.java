@@ -118,9 +118,13 @@ public class MemberDAO {
 		map.put("rbook_num", rbook_num);
 		sqlsession.insert("insertRbook",map);
 	}
-	// rbook 테이블 rbook_num=3인것들 찾아서 rbook_check='0'으로, rbook_num<3인것들은 rbook_check='1'로 수정
+	// rbook 테이블 rbook_num=3인것들 찾아서 rbook_check='0'으로 수정
 	public void updateRbookCheck(){
 		sqlsession.update("updateRbookCheck");
+	}
+	// rbook_num<3인것들은 rbook_check='1'로 수정
+	public void updateRbookCheck2(){
+		sqlsession.update("updateRbookCheck2");
 	}
 	// 해당 책 이미 예약했는지 체크
 	public int rbookCkMember(int book_number, String member_id){
