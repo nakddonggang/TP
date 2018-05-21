@@ -61,8 +61,8 @@
 			});
 
 	$(document).ready(function() {
-		$('#book_pic_div').css('display', 'none');
-		$('#book_cont_div').css('display', 'block');
+		$('#book_pic_div').css('display', 'block');
+		$('#book_cont_div').css('display', 'none');
 	});
 
 	$(document).ready(function() {
@@ -272,10 +272,10 @@
 
 							<!-- ★갤러리로 보여지는 통합검색 -->
 							<ul class="book_lst" id="book_pic_div">
-								<li>
 									<%
 										if (count == 0) {
 									%>
+									<li>
 									<dl class="book_info_layer">
 										<dt>책 목록이 없습니다</dt>
 										<dd></dd>
@@ -286,7 +286,7 @@
 									 %>
 										<li><a
 											href="./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>">
-												<img src="./upload/book/<%=bookLists.getBook_file()%>">
+												<img src="./upload/book/<%=bookLists.getBook_file()%>" class="book_lst_img">
 												<span><%=bookLists.getBook_subject()%></span>
 										</a>
 											<dl class="book_info_layer">
@@ -296,8 +296,7 @@
 												<dd>
 													<dl>
 														<dt>저자</dt>
-														<dd><%=bookLists.getBook_author()%>>
-														</dd>
+														<dd><%=bookLists.getBook_author()%></dd>
 														<dt>출판사</dt>
 														<dd><%=bookLists.getBook_publisher()%></dd>
 														<dt>출판년도</dt>
@@ -348,7 +347,7 @@
 								%>
 
 								<!-- 시험용 버튼 -->
-								<input type="button" value="갤러리" id="book_pic_btn" onclick="location.href='./BookIndexPic.bk'"><input
+								<input type="button" value="갤러리" id="book_pic_btn"><input
 									type="button" value="게시판" id="book_cont_btn">
 							</div>
 

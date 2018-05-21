@@ -17,8 +17,8 @@ public class MemberBasketAdd implements Action {
 		int num = Integer.parseInt(request.getParameter("num"));
 		request.setCharacterEncoding("utf-8");
 		
-		MemberDAO bDAO = new MemberDAO();
-		MemberDTO bDTO = new MemberDTO();
+		MemberDAO mDAO = new MemberDAO();
+		MemberDTO mDTO = new MemberDTO();
 		HttpSession session = request.getSession();
 		ActionForward forward = new ActionForward();
 		
@@ -28,12 +28,14 @@ public class MemberBasketAdd implements Action {
 			forward.setRedirect(true);
 			return forward;
 		}
-		bDTO.setMember_id(member_id);
-		bDTO.setBasket_number(Integer.parseInt(request.getParameter("basket_number")));
-		bDTO.setBook_number(Integer.parseInt(request.getParameter("book_number")));
-		bDAO.insertBasket(bDTO);
 		
-		forward.setPath("./MemberBasketList.me");
+		int basket_number = mDAO.basketMaxNum()+1;
+		mDTO.setMember_id(member_id);
+		mDTO.setBasket_number(basket_number);
+		mDTO.setBook_number(Integer.parseInt(request.getParameter("book_number")));
+		mDAO.insertBasket(mDTO);
+		
+		forward.setPath("./BookIndex.bk");
 	    forward.setRedirect(true);
 	    
 	    return forward;

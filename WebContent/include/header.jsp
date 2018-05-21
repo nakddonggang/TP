@@ -29,8 +29,9 @@
 					<li><a href="#">내 서재</a>
 						<ul class="DIV_SUB_MNU">
 							<li><a href="./MemberUseIndex.me">이용현황</a></li>
-							<li></li>
-						</ul></li>
+							<li><a href="./MemberBasketList.me">책바구니</a></li>
+						</ul>
+					</li>
 						
 					<li><a href="#">도서관 안내</a>
 						<ul class="DIV_SUB_MNU">
