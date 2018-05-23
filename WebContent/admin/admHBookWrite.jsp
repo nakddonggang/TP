@@ -42,7 +42,7 @@ BookDTO bookdto = (BookDTO)request.getAttribute("bookdto");
 				
 
 					<div class='join_form adminfo_join_form' >
-					<h2>희망도서 정보</h2>
+					<h3>희망도서 정보</h3>
 					<div class="adm">
 					<form action="./AdminHBookWriteAction.am" method="post">
 						<ul class="row">

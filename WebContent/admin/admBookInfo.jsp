@@ -55,61 +55,61 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 						<ul class="row">
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>고유번호 : <%=bookList.getBook_number()%></span></li>
+										<li class="title_bif"><span>고유번호 : <%=bookList.getBook_number()%></span></li>
 										<li class="inp_form"><img src="./upload/book/<%=bookList.getBook_file()%>" width="110" height="130"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>표제</span></li>
+										<li class="title_bif"><span>표제</span></li>
 										<li class="inp_form"><%=bookList.getBook_subject()%></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>저자</span></li>
+										<li class="title_bif"><span>저자</span></li>
 										<li class="inp_form"><%=bookList.getBook_author()%></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>발행처</span></li>
+										<li class="title_bif"><span>발행처</span></li>
 										<li class="inp_form"><%=bookList.getBook_publisher()%></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>발행일</span></li>
+										<li class="title_bif"><span>발행일</span></li>
 										<li class="inp_form"><%=date.format(bookList.getBook_pubDate())%></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>형태</span></li>
+										<li class="title_bif"><span>형태</span></li>
 										<li class="inp_form"><%=bookList.getBook_form()%></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>주기</span></li>
+										<li class="title_bif"><span>주기</span></li>
 										<li class="inp_form"><%=bookList.getBook_notation()%></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>국제표준번호</span></li>
+										<li class="title_bif"><span>국제표준번호</span></li>
 										<li class="inp_form"><%=bookList.getBook_isbn()%></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>분류기호</span></li>
+										<li class="title_bif"><span>분류기호</span></li>
 										<li class="inp_form"><%=bookList.getBook_classification()%></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>입고일</span></li>
+										<li class="title_bif"><span>입고일</span></li>
 										<li class="inp_form"><%=date.format(bookList.getBook_date())%></li>
 								</ul>
 							</li>

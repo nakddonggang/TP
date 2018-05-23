@@ -41,6 +41,7 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 				<!-- 메인 페이지 -->
 					<article class="mainmenu section SECTION">
 						<div class=board>
+						<h3>우수회원 리스트</h3>
 						<div class="view_cnt">
 							<p>
 								Total_<span><%=count%></span>
@@ -53,11 +54,11 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 							<li class="view_lst">
 							<div class="con_lst">
 							<ul class="no_scroll title_t">
-								<li class="col_date">아이디</li>
-								<li class="col_date">비밀번호</li>
-								<li class="col_date">이름</li>
-								<li class="col_date">전화번호</li>
-								<li class="col_date">대출 횟수</li>
+								<li class="col_daten">아이디</li>
+								<li class="col_daten">비밀번호</li>
+								<li class="col_daten">이름</li>
+								<li class="col_calln">전화번호</li>
+								<li class="col_daten">대출 횟수</li>
 							</ul>
 							</div>
 						<%
@@ -75,26 +76,28 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 						<div class="con_lst">
 							<ul
 								onclick="location.href='./AdminMemberInfo.am?member_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>&pageType=<%=pageType %>'"  class="no_scroll">
-								<li class="col_date"><a href="#"><p><%=mt.getMember_id()%></p></a></li>
-								<li class="col_date"><a href="#"><p><%=mt.getMember_pass()%></p></a></li>
-								<li class="col_date"><a href="#"><%=mt.getMember_name()%></li>
-								<li class="col_date"><a href="#"><%=mt.getMember_phone()%></a></li>
-								<li class="col_date"><a href="#"><%=mt.getBorrow_count()%></a></li>
+								<li class="col_daten"><a href="#"><p><%=mt.getMember_id()%></p></a></li>
+								<li class="col_daten"><a href="#"><p><%=mt.getMember_pass()%></p></a></li>
+								<li class="col_daten"><a href="#"><%=mt.getMember_name()%></li>
+								<li class="col_calln"><a href="#"><%=mt.getMember_phone()%></a></li>
+								<li class="col_daten"><a href="#"><%=mt.getBorrow_count()%></a></li>
 							</ul>
 						</div>
 						<%}}}%>
 							</li>
 						</ul>
+						<div class="paginate">
 						<%if (count != 0) {//이전
 								if (startPage > pageBlock) {
-						%><a href="./AdminMemberGood.am?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+						%><a href="./AdminMemberGood.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a>
 						<%}// 1~10 11~20 21~30
 							for (int i = startPage; i <= endPage; i++) {
-						%><a href="./AdminMemberGood.am?pageNum=<%=i%>"><%=i%></a>
+						%><a href="./AdminMemberGood.am?pageNum=<%=i%>"> &nbsp;<strong id="currentPage" title="현재 페이지"><%=i %></strong> &nbsp;</a>
 						<%}//다음
 								if (endPage < pageCount) {
-						%><a href="./AdminMemberGood.am?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+						%><a href="./AdminMemberGood.am?pageNum=<%=startPage + pageBlock%>"class="next"><span class="hide">다음 페이지</span></a>
 						<%}}%>
+						</div>
 						</div>
 
 					</article>

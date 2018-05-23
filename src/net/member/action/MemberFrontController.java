@@ -157,6 +157,13 @@ public class MemberFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		}else if(command.equals("/MemberUseIndex.me")) {
+				action = new MemberUseIndex();
+				try {
+					forward = action.execute(request, response);
+				} catch(Exception e) {
+					e.printStackTrace();
+				}
 		}else if(command.equals("/ReturnBook.me")){		// 기능확인을 위한 임시주소(나중에 관리자컨트롤러로 가야할듯)
 			action = new ReturnBook();
 			try{
