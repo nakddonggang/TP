@@ -32,55 +32,56 @@ String bl_check =(String)request.getAttribute("bl_check");
 
 			<section class="fullpage SECTION_FULL_PAGE01">
 				<article class="mainmenu section SECTION">
-					<h3>사용자 정보보기</h3>
+					
 				
 					<div class='join_form'>
+						<h3>사용자 정보보기</h3>
 						<ul class="row">
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>User ID</span></li>
+										<li class="title_adm"><span>User ID</span></li>
 										<li class="inp_form"><input type="text" name="member_id" value="<%=mDTO.getMember_id()%>" readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>Password</span></li>
+										<li class="title_adm"><span>Password</span></li>
 										<li class="inp_form"><input type="text" name="member_pass"  value="<%=mDTO.getMember_pass()%>"  readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>Name</span></li>
+										<li class="title_adm"><span>Name</span></li>
 										<li class="inp_form"><input type="text" name="member_name" value="<%=mDTO.getMember_name()%>" readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>E-Mail</span></li>
+										<li class="title_adm"><span>E-Mail</span></li>
 										<li class="inp_form"><input type="text" name="member_email" value="<%=mDTO.getMember_email()%>" readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>Post</span></li>
+										<li class="title_adm"><span>Post</span></li>
 										<li class="inp_form"><input type="text" name="member_post"  value="<%=mDTO.getMember_post()%>" readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>Address</span></li>
+										<li class="title_adm"><span>Address</span></li>
 										<li class="inp_form"><input type="text" name="member_address"  value="<%=mDTO.getMember_address1()%><%=mDTO.getMember_address2()%> " readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>Name</span></li>
+										<li class="title_adm"><span>Phone</span></li>
 										<li class="inp_form"><input type="text" name="member_phone" value="<%=mDTO.getMember_phone()%>" readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>E-Mail</span></li>
+										<li class="title_adm"><span>Date</span></li>
 										<li class="inp_form"><input type="text" name="member_date" value="<%=mDTO.getMember_date()%>" readonly></li>
 								</ul>
 							</li>
@@ -91,7 +92,7 @@ String bl_check =(String)request.getAttribute("bl_check");
 						<ul class="row">
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>회원등급</span></li>
+										<li class="title_adm"><span>회원등급</span></li>
 										<%
 										if(gm_check.equals("0")&&bl_check.equals("0")){
 										%><li class="inp_form"><input type="text" name="level" value="일반회원" readonly></li><%
@@ -104,19 +105,19 @@ String bl_check =(String)request.getAttribute("bl_check");
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>대출횟수</span></li>
+										<li class="title_adm"><span>대출횟수</span></li>
 										<li class="inp_form"><input type="text" name="borrow_count"  value="<%=mDTO.getBorrow_count()%>"  readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>연체횟수</span></li>
+										<li class="title_adm"><span>연체횟수</span></li>
 										<li class="inp_form"><input type="text" name="bl_count" value="<%=mDTO.getBl_count()%>" readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
-										<li class="title"><span>연체총일수</span></li>
+										<li class="title_adm"><span>연체총일수</span></li>
 										<li class="inp_form"><input type="text" name="bl_date" value="<%=mDTO.getBl_date()%>" readonly></li>
 								</ul>
 							</li>

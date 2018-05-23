@@ -83,6 +83,7 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 							<ul class="no_scroll" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'">
 								<li class="adm_col_rch"><%=hbookLists.getMember_id()%></li>
 								<li class="adm_col_dateh"><%=hbookLists.getHbook_subject()%></li>
+								
 								<li class="adm_col_nameh"><%=hbookLists.getHbook_author()%></li>
 								<li class="adm_col_rch"><%=hbookLists.getHbook_check()%></li>
 								<li class="adm_col_typeh"><%=hbookLists.getHbook_publisher()%></li>
