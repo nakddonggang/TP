@@ -167,8 +167,8 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 								<li class="adm_col_subs">제목</li>
 								<li class="adm_col_date">저자</li>
 								<li class="adm_col_type">출판사</li>
-								<li class="adm_col_rc">대출현황</li>
-								<li class="adm_col_rc">예약상태</li>
+								<li class="adm_col_type">대출현황</li>
+								<li class="adm_col_type">예약상태</li>
 <!-- 								<li class="adm_col_rc">예약일자</li> -->
 								<li class="adm_col_rc">책상태</li>
 							</ul>
@@ -189,8 +189,8 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 								<li class="adm_col_subs" id="adm_book_high"><%=bookLists.getBook_subject()%></li>
 								<li class="adm_col_date" id="adm_book_high"><%=bookLists.getBook_author()%></li>
 								<li class="adm_col_type" id="adm_book_high"><%=bookLists.getBook_publisher()%></li>
-								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getBbook_bstate()%></li>
-								<li class="adm_col_rc" id="adm_book_high">
+								<li class="adm_col_type" id="adm_book_high"><%=bookLists.getBbook_bstate()%></li>
+								<li class="adm_col_type" id="adm_book_high">
 								<%
 									if(Integer.parseInt(bookLists.getRbook_check())>=3)	out.print("예약 불가");
 									else out.print("예약 가능");
