@@ -22,8 +22,10 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<!-- 수정덜함수정덜함 -->
 <script type="text/javascript">
-	$(document).ready(function() {
+	$(document).ready(
+			function() {
 
 				$('#SearchForm').submit(
 						function() {
@@ -58,49 +60,49 @@
 						$("dl", this).removeClass("bil_on");
 					});
 				});
+
+				$('#book_pic_div').css('display', 'block');
+				$('#book_cont_div').css('display', 'none');
 			});
 
 	$(document).ready(function() {
-		$('#book_pic_div').css('display', 'none');
-		$('#book_cont_div').css('display', 'block');
+		$('#book_pic_btn').click(function() {
+			$('#book_pic_div').css('display', 'block');
+			$('#book_cont_div').css('display', 'none');
+		});
+	});
+
+	$(document).ready(function() {
+		$('#book_cont_btn').click(function() {
+			$('#book_pic_div').css('display', 'none');
+			$('#book_cont_div').css('display', 'block');
+		});
 	});
 	
-$(document).ready(function() {
-	$('#basket_Fr').submit(function(){
-		var con = confirm("책바구니에 담으시겠습니까?");
-		if (con==true){
-			$("#basket_Fr").submit;
-		} else { return false; }
-	});
-});
-// 	$(document).ready(function() {
-// 		$('#book_pic_btn').click(function() {
-// 			$('#book_pic_div').css('display', 'block');
-// 			$('#book_cont_div').css('display', 'none');
-// 		});
-// 	});
-
-// 	$(document).ready(function() {
-// 		$('#book_cont_btn').click(function() {
-// 			$('#book_pic_div').css('display', 'none');
-// 			$('#book_cont_div').css('display', 'block');
-// 		});
-// 	});
-
+	$(document).ready(function() {
+		$('#basket_Fr').submit(function(){
+			var con = confirm("책바구니에 담으시겠습니까?");
+			if (con==true){
+				$("#basket_Fr").submit;
+			} else { return false; }
+		});
+	});	
 </script>
+
 </head>
 <body>
 	<%
 		String member_id = (String)session.getAttribute("member_id");
 		request.setCharacterEncoding("utf-8");
 		//count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
+		String sort = (String) request.getAttribute("sort");
 		int count = ((Integer) request.getAttribute("count")).intValue();
 		String pageNum = (String) request.getAttribute("pageNum");
 		int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
 		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
-		List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("bookList");
+		List<BookDTO> booksortList = (List<BookDTO>) request.getAttribute("booksortList");
 	%>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
@@ -122,7 +124,7 @@ $(document).ready(function() {
 								<div class="box_thm">
 									<div class="box_thm01 DIV_BOX_THM01" id="book_divv">
 										<div id="for_book_div">
-											<form action="./BookSearch.bk" method="get"
+											<form action="./BookSearchPic.bk" method="get"
 												id="SearchForm">
 												<fieldset id="book_field">
 													<legend>&nbsp;통합검색&nbsp;</legend>
@@ -214,12 +216,17 @@ $(document).ready(function() {
 
 							<div id="adm_select_box3">
 								<select name="sort" id="book_sort">
-									<option value="" selected="selected">정렬</option>
-									<option value="./BookSort.bk?sort=book_subject">제목순</option>
-									<option value="./BookSort.bk?sort=book_author">저자순</option>
-									<option value="./BookSort.bk?sort=book_number">인기순</option>
-									<option value="./BookSort.bk?sort=book_pubDate">신작순</option>
-									<option value="./BookSort.bk?sort=book_date">입고순</option>
+									<option value="" <%if (sort.equals("")) {%> selected <%}%>>정렬</option>
+									<option value="./BookSortPic.bk?sort=book_subject"
+										<%if (sort.equals("book_subject")) {%> selected <%}%>>제목순</option>
+									<option value="./BookSortPic.bk?sort=book_author"
+										<%if (sort.equals("book_author")) {%> selected <%}%>>저자순</option>
+									<option value="./BookSortPic.bk?sort=book_number"
+										<%if (sort.equals("book_number")) {%> selected <%}%>>인기순</option>
+									<option value="./BookSortPic.bk?sort=book_pubDate"
+										<%if (sort.equals("book_pubDate")) {%> selected <%}%>>신작순</option>
+									<option value="./BookSortPic.bk?sort=book_date"
+										<%if (sort.equals("book_date")) {%> selected <%}%>>입고순</option>
 								</select>
 							</div>
 
@@ -230,7 +237,7 @@ $(document).ready(function() {
 								<li class="view_lst">
 									<div class="con_lst">
 										<ul class="no_scroll title_t">
-											<li class="adm_col_rrc">목록</li>
+											<li class="adm_col_rc">목록</li>
 											<li class="adm_col_date">사진</li>
 											<li class="adm_col_sub">제목</li>
 											<li class="adm_col_type">저자</li>
@@ -245,8 +252,8 @@ $(document).ready(function() {
 										<li class="col_tit"><p>책 목록이 없습니다</p></li>
 									</ul> <%
  	} else {
- 		for (int i=0; i<bookList.size(); i++) {
- 			BookDTO bookdto = (BookDTO)bookList.get(i);
+ 		for (int i=0; i<booksortList.size(); i++) {
+ 			BookDTO bookdto = (BookDTO)booksortList.get(i);
 	%>
 									<div class="con_lst">
 										<ul class="no_scroll">
@@ -287,46 +294,46 @@ $(document).ready(function() {
 
 							<!-- ★갤러리로 보여지는 통합검색 -->
 							<ul class="book_lst" id="book_pic_div">
-								<li>
 									<%
 										if (count == 0) {
 									%>
+									<li>
 									<dl class="book_info_layer">
 										<dt>책 목록이 없습니다</dt>
 										<dd></dd>
 									</dl>
 									</li> <%
 									 	} else {
-									 		for (BookDTO bookLists : bookList) {
+									 		for (BookDTO booksortLists : booksortList) {
 									 %>
 										<li><a
-											href="./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>">
-												<img src="./upload/book/<%=bookLists.getBook_file()%>" class="book_lst_img">
-												<span id="bk_li_subs"><%=bookLists.getBook_subject()%></span>
+											href="./BookInfo.bk?book_number=<%=booksortLists.getBook_number()%>">
+												<img src="./upload/book/<%=booksortLists.getBook_file()%>" class="book_lst_img">
+												<span id="bk_li_subs"><%=booksortLists.getBook_subject()%></span>
 											<dl class="book_info_layer">
 												<dt>
-													<span><%=bookLists.getBook_subject()%></span>
+													<span><%=booksortLists.getBook_subject()%></span>
 												</dt>
 												<dd>
 													<dl>
 														<dt>저자</dt>
-														<dd><%=bookLists.getBook_author()%>>
+														<dd><%=booksortLists.getBook_author()%>
 														</dd>
 														<dt>출판사</dt>
-														<dd><%=bookLists.getBook_publisher()%></dd>
+														<dd><%=booksortLists.getBook_publisher()%></dd>
 														<dt>출판년도</dt>
-														<dd><%=bookLists.getBook_pubDate()%></dd>
+														<dd><%=booksortLists.getBook_pubDate()%></dd>
 														<dt>반납상태</dt>
-														<dd><%=bookLists.getBbook_bstate()%></dd>
+														<dd><%=booksortLists.getBbook_bstate()%></dd>
 													</dl>
 												</dd>
 											</dl>
-											</li>
-										</a><%}
+											</a>
+											</li><%}
  										}%>
 							</ul>
 							<!-- ★갤러리로 보여지는 통합검색 -->
-							
+
 							<%if(member_id!=null){ %>
 							<div class="btn_btm_center">
 								<ul>
@@ -335,8 +342,8 @@ $(document).ready(function() {
 								</ul>
 							</div>
 							<%}%>
-						</form>	
-						
+						</form>
+							
 							<!-- 버튼 css 부분 -->
 							<div class="btn_btm_center">
 								<%
@@ -344,20 +351,23 @@ $(document).ready(function() {
 									if (count != 0) {
 										// 이전페이지 // if (startPage와 pageBlock을 비교)
 										if (startPage > pageBlock) {
-								%><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>">[이전]</a>
+								%><a
+									href="./BookSortPic.bk?sort=<%=sort%>&pageNum=<%=startPage - pageBlock%>">[이전]</a>
 								<%
 									}
 										// 1~10		11~20		21~30
 										for (int i = startPage; i <= endPage; i++) {
 								%>
-								<a href="./BookIndex.bk?pageNum=<%=i%>">[<%=i%>]
+								<a
+									href="./BookSortPic.bk?sort=<%=sort%>&pageNum=<%=i%>">[<%=i%>]
 								</a>
 								<%
 									}
 										// 다음 // if (endPage와 pageCount를 비교)
 										if (endPage < pageCount) {
 								%>
-								<a href="./BookIndex.bk?pageNum=<%=startPage + pageBlock%>">[다음]</a>
+								<a
+									href="./BookSortPic.bk?sort=<%=sort%>&pageNum=<%=startPage + pageBlock%>">[다음]</a>
 								<%
 									}
 									} // if count 괄호

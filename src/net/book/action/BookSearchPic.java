@@ -1,18 +1,16 @@
 package net.book.action;
 
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.admin.db.AdminDAO;
 import net.book.db.BookDAO;
 import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class BookSearch implements Action{
+public class BookSearchPic implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -127,7 +125,7 @@ public class BookSearch implements Action{
 		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 2;		
+		int pageSize = 12;		
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
@@ -254,7 +252,7 @@ public class BookSearch implements Action{
 		request.setAttribute("endPage", endPage);					
 				
 				ActionForward forward = new ActionForward();
-				forward.setPath("./book/bookSearch.jsp");
+				forward.setPath("./book/bookSearchPic.jsp");
 				forward.setRedirect(false);
 				return forward;
 	}

@@ -241,6 +241,12 @@ public class AdminBookSearch implements Action{
 		request.setAttribute("search1", search1);
 		request.setAttribute("search2", search2);
 		request.setAttribute("search3", search3);
+		request.setAttribute("category1", category1);
+		request.setAttribute("category2", category2);
+		request.setAttribute("category3", category3);
+		request.setAttribute("opt1", opt1);
+		request.setAttribute("opt2", opt2);
+		request.setAttribute("pubDate", pubDate);
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("booksearchList", booksearchList);
 		request.setAttribute("pageCount", pageCount);

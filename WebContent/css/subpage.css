@@ -318,6 +318,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 .btn_btm_center .adm_btn__left { text-align: left;}
 /* .adminfo_join_form {padding: 5px;} */
+.brd_txt_lst li > .con_lst > ul > li.adm_col_rrc {width:3%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_rc {width:6%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_type {width:10%; padding:0 20px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_date {width:15%; padding:0 20px;}
@@ -348,6 +349,8 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 .adm_btn_type5 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 200px; text-align: center;}
 .join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px;}
 .adm_h_1{ font-size: 17px;}
+.bbutton, .rbutton {border: none; background-color: #FAE0D4; }
+.bncheck {line-height: 70%; height: 70%;}
 
 /*통합검색 페이지 제일 작게 했을 떄 검색창이 망가져서 미디어쿼리 사용함*/
 @media (max-width:767px){
@@ -408,16 +411,17 @@ input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-hei
 
 
 /* START 김영지 책 갤러리 형식으로 보기 css */
-.book_lst {overflow: hidden; width: 90%; margin: 0 auto; position: relative; margin-top:10px;}
-.book_lst li { float: left; width: 21%; height: 235px; margin:0 9px 25px 9px; padding-bottom: 26px; border:1px solid red; position: relative;}
+.book_lst {overflow: hidden; width: 90%; margin: 0 auto; position: relative; margin-top:10px; }
+.book_lst li { float: left; width: 20%; height: 230px; margin:0 9px 25px 9px; padding-bottom: 26px; position: relative;}
 .book_lst li a {color: #666; text-decoration: none; }
-.book_lst_img { width:99%; height: 232px;}
+.book_lst_img { width:99%; height: 230px;}
+#bk_li_subs { display: block; width: 99%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; margin-top: 2px;}
 /* .book_info_layer{ display: none; background: url(../book/bg_book_hover.png) no-repeat; } */
-.book_info_layer{ display: none;	position:absolute; top:0; left:0; width:100%; height:238px; background: url(../book/bg_book_hover.png) no-repeat; }
-.book_lst .book_info_layer > dt {height: 57px;	padding: 15px; width:100%; background-color: #222;   color: #fff; }
-.book_lst .book_info_layer > dt > span {overflow: hidden; display: inline-block;  height: 56px; line-height: 14px; word-break: break-all; }
-.book_lst li:HOVER dl { display: block; z-index: 1; width:100%;}
-.book_lst .book_info_layer dd dl { padding: 15px 15px 0 15px; width:100%;}
+.book_info_layer{ display: none;	position:absolute; top:0; left:0; width:97%; height:232px; background: url(../book/bg_book_hover.png) repeat;}
+.book_lst .book_info_layer > dt {height: 47px;	padding: 15px; width:99%; background-color: #222;  color: #fff; }
+.book_lst .book_info_layer > dt > span {overflow: hidden; display: inline-block;  height: 56px; line-height: 14px; word-break: break-all; text-overflow: ellipsis;  white-space: nowrap; width: 100%;}
+.book_lst li:HOVER .book_info_layer { display: block; z-index: 1; width:100%; }
+.book_lst .book_info_layer dd dl { padding: 15px 15px 0 15px; width:100%; box-sizing : border-box; }
 .book_lst .book_info_layer dd dt { float: left; width: 47px; height: auto;  margin-right: 10px;  line-height: normal;  font-size: 11px  color: #a5a5a5; }
 .book_lst .book_info_layer dd dd {overflow: hidden;  margin-bottom: 9px;  font-size: 11px;  text-overflow: ellipsis;  white-space: nowrap;  color: #fff; }
 
