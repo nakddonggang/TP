@@ -45,6 +45,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 				<!-- 메인 페이지 -->
 				<div class="content">
 				
+					<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 					<div class='join_form adminfo_join_form' >
 			
 					<h3>책 정보보기</h3>
@@ -78,7 +79,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 								<ul class="row_sub">
 										
 						    <li class="title"><span>발행일 </span></li>
-							<li class="inp_form"><%=bookList.getBook_pubDate()%></li>
+							<li class="inp_form"><%=date.format(bookList.getBook_pubDate())%></li>
 							  </ul>
 							</li>
 							<li>
@@ -108,11 +109,19 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 							<li>
 								<ul class="row_sub">	
 							<li class="title"><span>입고일</span></li>
-							<li class="inp_form"><%=bookList.getBook_date()%></li>	
+							<li class="inp_form"><%=date.format(bookList.getBook_date())%></li>	
 					
 							</ul>
 							</li>
 						</ul>
+							
+				<div class="btn_btm_center">
+				<ul>
+					<li class="adm_btn_cancle">
+						<input type="button" value="목록보기" onclick="history.back()" class ="btn_type4 BTN_IF_LIST b">
+					</li>
+				</ul>
+				</div>
 						
 
 					

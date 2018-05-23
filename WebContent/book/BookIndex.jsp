@@ -368,7 +368,7 @@ $(document).ready(function() {
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$(".bbuton").click(function(){
+			$(".bbutton").click(function(){
 					var book_number = $(this).attr("rel");
 					var bbook = confirm("대출신청을 하시겠습니까?");
 						if (bbook == true) {
