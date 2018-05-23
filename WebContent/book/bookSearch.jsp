@@ -269,19 +269,17 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 											<li class="adm_col_date" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_publisher()%></li>
 											<li class="adm_col_date"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'">
-											<%if (booksearchLists.getBbook_bstate()=="0"){ %> 대출가능 <% }
-											else { 
-												if (booksearchLists.getBbook_bdate()!=null){%>
-												<%=date.format(booksearchLists.getBbook_bdate())%>~<%}
-												else{%> 대출불가<%}%> 
+											<%if (Integer.parseInt(booksearchLists.getBbook_bstate())==0){ %> 대출가능 <% }
+											else { %><%=date.format(booksearchLists)%>~<%=date.format(booksearchLists.getBbook_rdate())%> 대출중
 											<%}%>
 											</li>
 											<%if(member_id!=null){ %>
 											<li class="adm_col_type"  id="adm_book_high">
-												<%if (booksearchLists.getBbook_bstate()=="1"){ %>
+												<%if (Integer.parseInt(booksearchLists.getBbook_bstate())==0){ %>
 													<input type="button" rel="<%=booksearchLists.getBook_number()%>" class="bbutton" value="대출신청">
-												<%} else {%>
-												<input type="button" rel="<%=booksearchLists.getBook_number()%>" class="rbutton" value="대출예약">
+												<%} else {
+													if (Integer.parseInt(booksearchLists.getRbook_check())>=3) out.print("예약불가");
+													else %> <input type="button" rel="<%=booksearchLists.getBook_number()%>" class="rbutton" value="대출예약">
 											<%}%>
 											</li><%}%>
 										</ul>
