@@ -88,7 +88,7 @@
 		select* from bbook b
 		left join book bk
 		on b.book_number = bk.book_number
-		where member_id=#{member_id} order by bbook_bdate desc limit #{startRow}, #{pageSize};
+		where member_id=#{member_id} order by bbook_bdate desc limit #{startRow}, #{endSize};
 	</select>
 	
 	<delete id="deleteRes" parameterType="hashmap">
@@ -125,6 +125,23 @@
 		left join book bk
 		on r.rbook_number = bk.book_number
 		where member_id=#{member_id} order by rbook_date desc
+	</select>
+	
+	<select id="useBbookMemberCount" parameterType="string" resultType="int">
+		select count(*) from bbook
+		where member_id = #{member_id}
+	</select>
+	
+	<select id="ReservationBookMemberCount" parameterType="string" resultType="int">
+		select count(*) from rbook
+		where member_id = #{member_id}
+	</select>
+	
+	<select id="ReservationBookMemberList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_subject , r.rbook_date , r.rbook_check , r.rbook_num from rbook r
+		join book b
+		on r.book_number = b.book_number
+		where member_id = #{member_id} limit #{startRow}, #{endSize};
 	</select>
 
 </mapper>

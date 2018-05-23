@@ -184,4 +184,27 @@ public class MemberDAO {
 		return rbookList;		
 	}
 	
+	// 회원이 대여중인 책 총수량 검색구문
+	public int useBbookMemberCount(String member_id) {
+		int count = sqlsession.selectOne("useBbookMemberCount", member_id);
+		return count;
+	}
+	
+	// 회원이 예약중인 책 총수량 검색구문
+	public int ReservationBookMemberCount(String member_id) {
+		int count = sqlsession.selectOne("ReservationBookMemberCount", member_id);
+		return count;
+	}
+	
+	// 회원이 예약중인 도서 목록 보여주는 구문
+	public List<BookDTO> ReservationBookMemberList(String member_id,int startRow, int endSize) {
+		List<BookDTO> bList = new ArrayList<BookDTO>();
+		HashMap map = new HashMap<>();
+		map.put("member_id", member_id);
+		map.put("startRow", startRow);
+		map.put("endSize", endSize);
+		bList = sqlsession.selectList("ReservationBookMemberList",map);
+		return bList;
+	}
+	
 }

@@ -19,3 +19,4 @@
 </div>
 <div id="chat_dialog"><jsp:include page="../include/chat.jsp" /></div>
 <div><a id="btn-open-chat" href="#"></a></div>
+
