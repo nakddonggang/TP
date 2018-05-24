@@ -123,8 +123,8 @@
 	<select id="myUseRBookList" parameterType="string" resultType="net.book.db.BookDTO">
 		select* from rbook r
 		left join book bk
-		on r.rbook_number = bk.book_number
-		where member_id=#{member_id} order by rbook_date desc
+		on r.book_number = bk.book_number
+		where member_id=#{member_id} order by r.rbook_date desc
 	</select>
 	
 	<select id="useBbookMemberCount" parameterType="string" resultType="int">

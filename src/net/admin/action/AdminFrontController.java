@@ -166,6 +166,13 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) { e.printStackTrace();}
+		}else if(command.equals("/AdminFacilUseButton.am")) {
+			action = new AdminFacilUseButton();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		// 여기까지 Facility 구간
 		

@@ -34,6 +34,7 @@ public class UsersMessage implements Message{
 	/**
 	 * 연결되어있는 사용자들
 	 */
+	
 	private Set<String> users = null;
 
 	public UsersMessage(Set<String> users) {

@@ -193,12 +193,15 @@
 					<div class="content">
 
 						<div class="adms">
-							<h1 class="adm_h_1">&lt; 혜윰나래 도서관 통합검색 &gt;</h1>
+							<h3>&lt; 혜윰나래 도서관 통합검색 &gt;</h3>
 							<p>
 								Total_<span><%=count%></span>
 							</p>
 
 							<div id="adm_select_box3">
+							 <!-- 시험용 버튼 -->
+								<input type="button" value="갤러리" id="book_pic_btn" onclick="location.href='./BookIndexPic.bk'">
+								<input type="button" value="게시판" id="book_cont_btn" onclick="location.href='./BookIndex.bk'">
 								<select name="sort" id="book_sort">
 									<option value="" selected="selected">정렬</option>
 									<option value="./BookSortPic.bk?sort=book_subject">제목순</option>
@@ -324,35 +327,22 @@
 						</form>
 							
 							<!-- 버튼 css 부분 -->
-							<div class="btn_btm_center">
-								<%
-									// count = 전체 글의 개수
-									if (count != 0) {
-										// 이전페이지 // if (startPage와 pageBlock을 비교)
-										if (startPage > pageBlock) {
-								%><a href="./BookIndexPic.bk?pageNum=<%=startPage - pageBlock%>">[이전]</a>
-								<%
-									}
-										// 1~10		11~20		21~30
-										for (int i = startPage; i <= endPage; i++) {
-								%>
-								<a href="./BookIndexPic.bk?pageNum=<%=i%>">[<%=i%>]
-								</a>
-								<%
-									}
-										// 다음 // if (endPage와 pageCount를 비교)
-										if (endPage < pageCount) {
-								%>
-								<a href="./BookIndexPic.bk?pageNum=<%=startPage + pageBlock%>">[다음]</a>
-								<%
-									}
-									} // if count 괄호
-								%>
-
-								<!-- 시험용 버튼 -->
-								<input type="button" value="갤러리" id="book_pic_btn" onclick="location.href='./BookIndexPic.bk'"><input
-									type="button" value="게시판" id="book_cont_btn" onclick="location.href='./BookIndex.bk'">
-							</div>
+							
+							<div class="paginate">
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						
+						if(startPage > pageBlock)	{ %><a href="./BookIndexPic.bk?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href=./BookIndexPic.bk?pageNum=<%=p%>><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./BookIndexPic.bk?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						 </div>
+							
+								
+		
 
 
 						</div>
