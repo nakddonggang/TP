@@ -25,7 +25,7 @@ public class MemberMyUseRBookList implements Action{
 		
 		rbList=mDAO.myUseRBookList(member_id);
 		
-		forward.setPath("./myUseRBookList.jsp");
+		forward.setPath("./member/myUseRBookList.jsp");
 		forward.setRedirect(false);
 		request.setAttribute("rbList", rbList);
 		return forward;
