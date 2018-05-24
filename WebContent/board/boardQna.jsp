@@ -135,7 +135,9 @@ $(function(){
 						}%>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
-					
+						%>
+						<a href="BoardQnaList.qn?pageNum=1">첫 페이지</a>
+						<%
 						if(startPage > pageBlock)	{ %><a href="BoardQnaList.qn?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지" id="currentPage"><%=p %></strong> &nbsp;<%}
@@ -144,6 +146,7 @@ $(function(){
 						if(endPage < pageCount){ %><a href="BoardQnaList.qn?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><%	}
 
 						%>
+						<a href="BoardQnaList.qn?pageNum=<%=pageCount %>">끝페이지</a>
 						</div>
 					</div>
 				</div>
