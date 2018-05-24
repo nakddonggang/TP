@@ -336,7 +336,7 @@ $(document).ready(function() {
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 						
-						if(startPage > pageBlock)	{ %><a href=""./BookIndex.bk?pageNum=<%=startPage - pageBlock%>"" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						if(startPage > pageBlock)	{ %><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
 							else {%> &nbsp;<a href=./BookIndex.bk?pageNum=<%=p%>><%=p %></a> &nbsp;<%}
