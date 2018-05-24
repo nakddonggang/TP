@@ -570,4 +570,14 @@ public class AdminDAO {
 		result=sqlsession.insert("insertSeat", fDTO);
 		return result;
 	}
+	
+	//ajaxUseFacilButton 구문
+	public int ajaxFacil_useUpdateButton(String facil_use , String facil_num) {
+		int result = 0;
+		HashMap map = new HashMap();
+		map.put("facil_use", facil_use);
+		map.put("facil_num",facil_num);
+		result =  sqlsession.update("ajaxFacilUseButton", map);
+		return result;
+	}
 }

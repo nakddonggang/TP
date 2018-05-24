@@ -510,4 +510,9 @@
 	 	insert into seat (facil_num, obj_mname)
 	 	values (#{facil_num}, #{obj_mname})
 	 </insert>
+	 
+	 <update id="ajaxFacilUseButton" parameterType="hashmap">
+	 	update facility set facil_use=#{facil_use}
+	 	where facil_num=#{facil_num}
+	 </update>
  </mapper>
