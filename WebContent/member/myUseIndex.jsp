@@ -39,7 +39,6 @@
 					<div class="content">
 					<%
 						String member_id = (String)session.getAttribute("member_id");
-						if(member_id == null) response.sendRedirect("./MemberLogin.me");
 						String pageNum = (String) request.getAttribute("pageNum");
 						String pageNum2 = (String) request.getAttribute("pageNum2");
 						int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
