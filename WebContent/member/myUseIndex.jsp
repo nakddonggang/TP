@@ -129,7 +129,7 @@
 							<ul onclick="location.href = '#'">
 								<li><%=bDTO.getBook_subject() %></li>
 								<li><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
-								<li>반납할 일자</li>
+								<li><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
 							</ul>
 							<%
 							}
