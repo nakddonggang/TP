@@ -54,8 +54,10 @@ List<BookDTO> rbList = (List<BookDTO>)request.getAttribute("rbList");
 								<li class="view_lst">
 								<div class="con_lst">
 									<ul class="no_scroll title_t">
-										<li class="adm_col_date">책 번호</li>
-										<li class="adm_col_date">책 제목</li>
+										<li class="adm_col_date">번호</li>
+										<li class="adm_col_date">사진</li>
+										<li class="adm_col_date">제목</li>
+										<li class="adm_col_date">저자</li>
 										<li class="adm_col_date">예약일자</li>
 									</ul>
 								</div>
@@ -70,7 +72,9 @@ List<BookDTO> rbList = (List<BookDTO>)request.getAttribute("rbList");
 								<div class="con_lst">
 									<ul class="no_scroll">
 										<li class="adm_col_date"><%=bDTO.getBook_number() %></li>
+										<li class="adm_col_date"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
 										<li class="adm_col_date"><%=bDTO.getBook_subject() %></li>
+										<li class="adm_col_date"><%=bDTO.getBook_author() %></li>
 										<li class="adm_col_date"><%=date.format(bDTO.getRbook_date()) %></li>
 									</ul>
 								</div>
