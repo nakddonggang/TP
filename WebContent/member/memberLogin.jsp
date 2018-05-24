@@ -44,15 +44,30 @@
 				<!-- 메인 페이지 -->
 					<div class="content">
 						<div class='member_content'>
-							<fieldset>
-								<div class="row_group">
-									<div class="info_txt"><p><span>아이디</span><input type="text" name="member_id" id="member_id"></p></div>
-									<div class="info_txt"><p><span>비밀번호</span><input type="password" name="member_pass" id="member_pass"></p></div>
-									<input type="hidden" id="rsaPublicKeyModulus" value="<%=publicKeyModulus%>" />
-					           		<input type="hidden" id="rsaPublicKeyExponent" value="<%=publicKeyExponent%>" />
-					           		
-								</div>
-								<form action="./MemberLoginAction.me" method="post" name="securedLoginForm" id="securedLoginForm" onsubmit="return validateEncryptedForm()">
+						<div class="login_form">
+						<h3>Login</h3>
+							
+								<ul class="row">
+								<li>
+									<ul class="row_sub">
+										<li class="title"><span>ID</span></li>
+										<li class="inp_form"><input type="text" name="member_id"  id = "member_id" ></li>
+									</ul>
+								</li>
+								
+								<li>
+									<ul class="row_sub">
+										<li class="title">Password</li>
+										<li class="inp_form"><input type="text" name="member_pass" id = "member_pass" ></li>
+									</ul>
+								</li>
+								<li><input type="hidden" id="rsaPublicKeyModulus" value="<%=publicKeyModulus%>" /></li>
+					            <li><input type="hidden" id="rsaPublicKeyExponent" value="<%=publicKeyExponent%>" /></li>
+								</ul>
+						
+						</div>
+						
+						<form action="./MemberLoginAction.me" method="post" name="securedLoginForm" id="securedLoginForm" onsubmit="return validateEncryptedForm()">
 									<div class="btn_btm_center btn_btm_modal">
 										<input type="hidden" name="securedUsername" id="securedUsername" value="" />
 										<input type="hidden" name="securedPassword" id="securedPassword" value="" />
@@ -61,8 +76,7 @@
 											<li><input type="button" value="닫기" class ="btn_type4" id="BTN_CLOSE"></li>
 										</ul>
 									</div>
-								</form>	
-							</fieldset>
+						</form>	
 						</div>
 					</div>
 				<!-- //메인 페이지-->
