@@ -67,25 +67,12 @@
 	
 $(document).ready(function() {
 	$('#basket_Fr').submit(function(){
-		var con = confirm("책바구니에 담으시겠습니까?");
-		if (con==true){
-			$("#basket_Fr").submit;
-		} else { return false; }
+			var con = confirm("책바구니에 담으시겠습니까?");
+			if (con==true){
+				$("#basket_Fr").submit;
+			} else { return false; }
 	});
 });
-// 	$(document).ready(function() {
-// 		$('#book_pic_btn').click(function() {
-// 			$('#book_pic_div').css('display', 'block');
-// 			$('#book_cont_div').css('display', 'none');
-// 		});
-// 	});
-
-// 	$(document).ready(function() {
-// 		$('#book_cont_btn').click(function() {
-// 			$('#book_pic_div').css('display', 'none');
-// 			$('#book_cont_div').css('display', 'block');
-// 		});
-// 	});
 
 </script>
 </head>
@@ -240,7 +227,7 @@ $(document).ready(function() {
 											<li class="adm_col_sub">제목</li>
 											<li class="adm_col_type">저자</li>
 											<li class="adm_col_date">출판사</li>
-											<li class="adm_col_date">대출현황</li>
+											<li class="adm_col_sub">대출현황</li>
 											<%if(member_id!=null){ %>
 											<li class="adm_col_rc">대출/예약 신청</li><%}%>
 										</ul>
@@ -268,13 +255,13 @@ $(document).ready(function() {
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'"><%=bookdto.getBook_author()%></li>
 											<li class="adm_col_date" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'"><%=bookdto.getBook_publisher()%></li>
-											<li class="adm_col_date"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'">
+											<li class="adm_col_sub"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=bookdto.getBook_number()%>'">
 											<%if (Integer.parseInt(bookdto.getBbook_bstate())==0){ %> 대출가능 <% }
 											else { %><%=date.format(bookdto.getBbook_bdate())%>~<%=date.format(bookdto.getBbook_rdate())%> 대출중
 											<%}%>
 											</li>
 											<%if(member_id!=null){ %>
-											<li class="adm_col_type"  id="adm_book_high">
+											<li class="adm_col_rc"  id="adm_book_high">
 												<%if (Integer.parseInt(bookdto.getBbook_bstate())==0){ %>
 													<input type="button" rel="<%=bookdto.getBook_number()%>" class="bbutton" value="대출신청">
 												<%} else {
@@ -371,15 +358,13 @@ $(document).ready(function() {
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$(".bbutton").click(function() {
-				var book_number = $(this).attr("rel");
-				var bbook = confirm("대출신청을 하시겠습니까?");
-				if (bbook == true) {
-					var url = book_number;
-					$(location).attr('href', './MemberBasketAdd.me?book_number' + url);
-					return false;
-				} else {
-				}
+			$(".bbutton").click(function(){
+					var book_number = $(this).attr("rel");
+					var bbook = confirm("대출신청을 하시겠습니까?");
+						if (bbook == true) {
+							var url = book_number;
+							$(location).attr('href', './MemberBasketAdd.me?book_number='+url);
+						} else { return false; }
 			});
 		});
 		
@@ -389,9 +374,8 @@ $(document).ready(function() {
 					var rbook = confirm("대출예약 하시겠습니까?");
 					if (rbook == true) {
 						var url = book_number;
-						$(location).attr('href', './MemberBasketResAction.me?book_number' + url);
-						return false;
-					} else {}
+						$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
+					} else { return false; }
 			});
 		});
 

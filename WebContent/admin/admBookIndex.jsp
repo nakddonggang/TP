@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="java.util.List"%>
@@ -156,7 +157,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 											<option value="./AdminBookSort.am?sort=book_date">입고순</option>
 									</select>
 							</div>
-			
+					<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
@@ -167,8 +168,8 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 								<li class="adm_col_subs">제목</li>
 								<li class="adm_col_date">저자</li>
 								<li class="adm_col_type">출판사</li>
-								<li class="adm_col_rc">대출현황</li>
-								<li class="adm_col_rc">예약상태</li>
+								<li class="adm_col_type">대출현황</li>
+								<li class="adm_col_type">예약상태</li>
 <!-- 								<li class="adm_col_rc">예약일자</li> -->
 								<li class="adm_col_rc">책상태</li>
 							</ul>
@@ -183,21 +184,28 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 								for (BookDTO bookLists  : bookList){
 						%>
 						<div class="con_lst">
-							<ul class="no_scroll" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'">
-								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getBook_number()%></li>
-								<li class="adm_col_type" id="adm_book_high"><img src="./upload/book/<%=bookLists.getBook_file()%>" width="70px" height="80px"></li>
-								<li class="adm_col_subs" id="adm_book_high"><%=bookLists.getBook_subject()%></li>
-								<li class="adm_col_date" id="adm_book_high"><%=bookLists.getBook_author()%></li>
-								<li class="adm_col_type" id="adm_book_high"><%=bookLists.getBook_publisher()%></li>
-								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getBbook_bstate()%></li>
-								<li class="adm_col_rc" id="adm_book_high">
+							<ul class="no_scroll">
+								<li class="adm_col_rc" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_number()%></li>
+								<li class="adm_col_type" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><img src="./upload/book/<%=bookLists.getBook_file()%>" width="70px" height="80px"></li>
+								<li class="adm_col_subs" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_subject()%></li>
+								<li class="adm_col_date" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_author()%></li>
+								<li class="adm_col_type" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_publisher()%></li>
+								<li class="adm_col_type"  id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'">
+											<%if (Integer.parseInt(bookLists.getBbook_bstate())==0){ %> 대출가능 <% }
+											else { %><%=date.format(bookLists.getBbook_bdate())%>~<%=date.format(bookLists.getBbook_rdate())%> 대출중
+											<%}%>
+								</li>
+								<li class="adm_col_type" id="adm_book_high">
 								<%
 									if(Integer.parseInt(bookLists.getRbook_check())>=3)	out.print("예약 불가");
 									else out.print("예약 가능");
 								%>
 								</li>
 <%-- 								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getRbook_date()%></li> --%>
-								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getDbook_state()%></li>
+								<li class="adm_col_rc" id="adm_book_high">
+									<%if (Integer.parseInt(bookLists.getDbook_state())==0) %> 상태양호 <%
+									else { %> <%=bookLists.getDbook_state()%> <%}%>
+								</li>
 							</ul>
 						</div><%}
 						}%>

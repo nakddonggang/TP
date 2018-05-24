@@ -55,34 +55,32 @@
 					<!-- myUseBasket.jsp : 책바구니 -->
 						<h2>예약중인 도서목록</h2>
 						
-						<table>
-							<tr>
-								<td>책 제목</td>
-								<td>예약번호</td>
-								<td>예약신청날짜</td>
-								<td>대출신청/삭제<input type="checkbox"></td>
-							</tr>
+							<ul>
+								<li>책 제목</li>
+								<li>예약번호</li>
+								<li>예약신청날짜</li>
+								<li>대출신청/삭제<input type="checkbox"></li>
+							</ul>
 							<%
 							List<BookDTO> bList2 = (List<BookDTO>)request.getAttribute("bList2");
 							if(bList2==null) {
 								%>
-								<tr><td>예약중인 도서가 없습니다.</td></tr>
+								<ul><li>예약중인 도서가 없습니다.</li></ul>
 								<%
 							} else {
 								SimpleDateFormat rbook_rdate = new SimpleDateFormat("yyyy-MM-dd");
 								for(BookDTO bDTO : bList2) {
 									%>
-										<tr onclick = "loaction.href = '#'">
-											<td><%=bDTO.getBook_subject() %></td>
-											<td><%=bDTO.getRbook_num() %></td>
-											<td><%=rbook_rdate.format(bDTO.getRbook_date()) %></td>
-											<td>대출신청/삭제<input type="checkbox"></td>
-										</tr>
+										<ul onclick = "loaction.href = './myUseRBookList.jsp'">
+											<li><%=bDTO.getBook_subject() %></li>
+											<li><%=bDTO.getRbook_num() %></li>
+											<li><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
+											<li>대출신청/삭제<input type="checkbox"></li>
+										</ul>
 									<%
 								}
 							}
 							%>
-						</table>
 					<%
 								if (pageCount2 < endPage2) endPage2 = pageCount2;
 								if (startPage2 > pageBlock) {
@@ -115,31 +113,29 @@
 					<div>
 						<!-- myUseBook.jsp : 도서 대출 목록 -->
 						<h2>대출중인 도서 목록</h2>
-						<table>
-							<tr>
-								<td>책 제목</td>
-								<td>대출일자</td>
-								<td>반납할 일자</td>
-							</tr>
+							<ul>
+								<li>책 제목</li>
+								<li>대출일자</li>
+								<li>반납할 일자</li>
+							</ul>
 							<%
 							if(bList == null) {
 								%>
-								<tr><td>대여중인 도서가 없습니다.</td></tr>
+								<ul><li>대여중인 도서가 없습니다.</li></ul>
 								<%
 							} else {
 							SimpleDateFormat bbook_bdate = new SimpleDateFormat("yyyy-MM-dd");
 							for(BookDTO bDTO :  bList) {
 							%>
-							<tr onclick="location.href = '#'">
-								<td><%=bDTO.getBook_subject() %></td>
-								<td><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></td>
-								<td>반납할 일자</td>
-							</tr>
+							<ul onclick="location.href = '#'">
+								<li><%=bDTO.getBook_subject() %></li>
+								<li><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
+								<li>반납할 일자</li>
+							</ul>
 							<%
 							}
 						}
 							%>
-						</table>
 						<%
 								if (pageCount < endPage) endPage = pageCount;
 								if (startPage > pageBlock) {
