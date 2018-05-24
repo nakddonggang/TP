@@ -10,9 +10,7 @@
 .search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
 .search_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
 .search_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
-.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
-
-/* start 게시판 부분 */
+.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center; }
 
 
 /* 기존 board Start*/
@@ -288,15 +286,15 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 #admin_select_box2 select { border: none; height:35px; line-height: 35px; margin : 0; float: left; position: absolute; right: 2px;}
 input.adm_inp_search {float:left; width:50%; height:34px; border:0; line-height: 34px;}
 input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; height:34px; border:0; line-height: 34px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
-#adm_select_box3 { border:none; display:inline-block; position: absolute; top:10px; right:15px;}
+#adm_select_box3 { border:none; display:inline-block; position: absolute; top:70px; right:15px;}
 /* end of 상세검색 하는 부분 */
 .adm_btn_type4 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 190px; text-align: center;}
 .adm_btn_type5 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 200px; text-align: center;}
 .join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px;}
 .join_form .row_sub > li textarea { float: left;width: 100%; resize: none; background: #f6f6f6; border: 0; font-family: "Noto_M";}
 .adm_h_1{ font-size: 17px;}
-.bbutton, .rbutton {border: none; background-color: #FAE0D4; }
-.bncheck {line-height: 70%; height: 70%;}
+.bbutton, .rbutton {border: none; background-color: #FAE0D4;     margin-top: 30px;}
+.bncheck {line-height: 70%; height: 90%;}
 
 
 
@@ -321,7 +319,7 @@ input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-hei
 
 /* END 김영지 BookIndex.jsp 상세검색 css*/
 
-#book_cont_btn, #book_pic_btn { float:right; margin-left: 5px;}
+#book_cont_btn, #book_pic_btn { float:right; margin-left: 5px ; margin-left: 5px; display: block; width: 50px;height: 30px;color: #fff !important;border: 0;text-align: center; background: #464646; color: #fff; cursor: pointer;}
 
 
 /* START 김영지 책 갤러리 형식으로 보기 css */
@@ -521,7 +519,7 @@ strong#currentPage {font-weight: bold;}
 
 /* 영지 미디어 쿼리 css */
 
-@media (min-width:768px){
+@media (max-width:768px){
 	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:5px; background-color: white; }
 	#book_divv { position: relative; }
 	.book_media_bye { display: block; }
