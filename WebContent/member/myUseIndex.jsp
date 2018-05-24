@@ -71,7 +71,7 @@
 								SimpleDateFormat rbook_rdate = new SimpleDateFormat("yyyy-MM-dd");
 								for(BookDTO bDTO : bList2) {
 									%>
-										<ul onclick = "loaction.href = '#'">
+										<ul onclick = "loaction.href = './myUseRBookList.jsp'">
 											<li><%=bDTO.getBook_subject() %></li>
 											<li><%=bDTO.getRbook_num() %></li>
 											<li><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>

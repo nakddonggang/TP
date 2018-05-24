@@ -21,7 +21,7 @@ public class MemberBasketAdd implements Action {
 		ActionForward forward = new ActionForward();
 
 		String member_id = (String)session.getAttribute("member_id");
-		String[] checkbox = request.getParameterValues("checkbox");
+		String[] checkbox = request.getParameterValues("basket_check");
 		MemberDAO mDAO = new MemberDAO();
 		MemberDTO mDTO = new MemberDTO();
 		
