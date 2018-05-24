@@ -20,6 +20,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/login.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+
 </head>
 <body>
 <%
@@ -49,16 +50,16 @@
 							
 								<ul class="row">
 								<li>
-									<ul class="row_sub">
-										<li class="title"><span>ID</span></li>
+									<ul class="row_sub" id="id">
+										<li class="title" ><span>ID</span></li>
 										<li class="inp_form"><input type="text" name="member_id"  id = "member_id" ></li>
 									</ul>
 								</li>
 								
 								<li>
-									<ul class="row_sub">
+									<ul class="row_sub" id="pass">
 										<li class="title">Password</li>
-										<li class="inp_form"><input type="text" name="member_pass" id = "member_pass" ></li>
+										<li class="inp_form"><input type="password" name="member_pass" id = "member_pass" ></li>
 									</ul>
 								</li>
 								<li><input type="hidden" id="rsaPublicKeyModulus" value="<%=publicKeyModulus%>" /></li>
