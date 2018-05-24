@@ -4,6 +4,7 @@
 <%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
+<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet"	type="text/css">
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
+<script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
+<script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
+<script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/common.js"/>"></script>
+<script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
 <% 
@@ -28,12 +37,14 @@ List<BookDTO> rbList = (List<BookDTO>)request.getAttribute("rbList");
 		<article>
 			<div>
 				<h1>예약중인 도서 목록</h1>
-				<table>
-					<tr>
-						<td>책 번호</td>
-						<td>책 제목</td>
-						<td>예약일자</td>
-					</tr>
+				<ul>
+					<li>
+						<ul>
+						<li>책 번호</li>
+						<li>책 제목</li>
+						<li>예약일자</li>
+						</ul>
+					
 					<%
 					if(rbList.size()==0){%><p>예약중인 도서가 없습니다.</p><%	}
 					else{
@@ -41,17 +52,18 @@ List<BookDTO> rbList = (List<BookDTO>)request.getAttribute("rbList");
 						for(int i=0; i<rbList.size(); i++){
 							BookDTO bDTO =(BookDTO)rbList.get(i);
 					%>					
-					<tr>
-						<td>책 번호<%=bDTO.getBook_number() %></td>
-						<td>책 제목<%=bDTO.getBook_subject() %></td>
-						<td>예약일자<%=bDTO.getBbook_bdate() %></td>
-					</tr>
+					<ul>
+						<li>책 번호<%=bDTO.getBook_number() %></li>
+						<li>책 제목<%=bDTO.getBook_subject() %></li>
+						<li>예약일자<%=bDTO.getRbook_date() %></li>
+					</ul>
 					<%
 					}
 					}
 					%>
 					
-				</table>
+				</li>
+				</ul>
 			</div>
 			
 
