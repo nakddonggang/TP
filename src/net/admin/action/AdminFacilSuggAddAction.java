@@ -35,7 +35,6 @@ public class AdminFacilSuggAddAction implements Action{
 			System.out.println("실패");
 		}
 		
-		
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(result);

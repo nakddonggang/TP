@@ -17,11 +17,14 @@ public class MemberUseIndex implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberUseIndex execute()");
+		ActionForward forward = new ActionForward();
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		String member_id = (String)session.getAttribute("member_id");
 		if(member_id == null) {
-			response.sendRedirect("./MemberLogin.me");
+			forward.setPath("./MemberLogin.me");
+			forward.setRedirect(true);
+			return forward;
 		}
 		
 		int pageSize = 5;	//한 화면에 보여줄 글 개수 설정
@@ -69,7 +72,6 @@ public class MemberUseIndex implements Action {
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("endPage2", endPage2);
 		
-		ActionForward forward = new ActionForward();
 		forward.setPath("./member/myUseIndex.jsp");
 		forward.setRedirect(false);
 		

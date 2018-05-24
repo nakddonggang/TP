@@ -39,7 +39,6 @@
 					<div class="content">
 					<%
 						String member_id = (String)session.getAttribute("member_id");
-						if(member_id == null) response.sendRedirect("./MemberLogin.me");
 						String pageNum = (String) request.getAttribute("pageNum");
 						String pageNum2 = (String) request.getAttribute("pageNum2");
 						int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
@@ -130,7 +129,7 @@
 							<ul onclick="location.href = '#'">
 								<li><%=bDTO.getBook_subject() %></li>
 								<li><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
-								<li>반납할 일자</li>
+								<li><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
 							</ul>
 							<%
 							}
