@@ -31,7 +31,12 @@ int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 
 List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList");
 %>
-
+	<%
+		String member_id = (String) session.getAttribute("member_id");
+		if (member_id != null || !(member_id.equals("admin"))) {
+			response.sendRedirect("./Main.fp");
+		}
+	%>
 
 <body class="if_board">
 	<div class="wrapper">

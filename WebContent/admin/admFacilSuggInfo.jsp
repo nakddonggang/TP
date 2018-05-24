@@ -50,6 +50,14 @@
 	});
 </script>
 </head>
+
+<body>
+	<%
+		String member_id = (String) session.getAttribute("member_id");
+		if (member_id != null || !(member_id.equals("admin"))) {
+			response.sendRedirect("./Main.fp");
+		}
+	%>
 <%
 request.setCharacterEncoding("UTF-8");
 String facil_use = (String)request.getAttribute("facil_use");
@@ -58,8 +66,6 @@ List<FacilityDTO> facilList = (List<FacilityDTO>)request.getAttribute("facilList
 List<FacilityDTO> facilAddList = (List<FacilityDTO>)request.getAttribute("facilAddList");
 String pageNum = (String)request.getAttribute("pageNum");
 %>
-
-<body>
 	<div class="wrapper">
 
 		<!-- header -->

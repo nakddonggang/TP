@@ -82,7 +82,7 @@
 										<ul class="row_sub">
 											<li class="title"><span>아이디</span></li>
 											<li class="adm_inp_formh"><input type="text"
-												name="member_id" value="1111" readonly></li>
+												name="member_id" value="<%=member_id %>" readonly></li>
 										</ul>
 									</li>
 									<li>

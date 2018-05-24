@@ -21,6 +21,12 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
+	<%
+		String member_id = (String) session.getAttribute("member_id");
+		if (member_id != null || !(member_id.equals("admin"))) {
+			response.sendRedirect("./Main.fp");
+		}
+	%>
 <%
 request.setCharacterEncoding("utf-8");
 //count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
