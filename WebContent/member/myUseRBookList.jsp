@@ -27,47 +27,69 @@ request.setCharacterEncoding("utf-8");
 List<BookDTO> rbList = (List<BookDTO>)request.getAttribute("rbList");
  %>
  <!-- member/myUseBook.jsp / MyUseIndex >> 대출예약조회 페이지 -->
-	<div id="wrap">
-		<div id="main_menu">
-			<jsp:include page="../include/header.jsp" />
-<%-- 			<jsp:include page="../include/footer.jsp" /> --%>
-		</div>
+	<div class="wrapper">
 
-		<!-- 본문 시작되는 곳 -->
-		<article>
-			<div>
-				<h1>예약중인 도서 목록</h1>
-				<ul>
-					<li>
-						<ul>
-						<li>책 번호</li>
-						<li>책 제목</li>
-						<li>예약일자</li>
+		<!-- header -->
+		<jsp:include page="../include/header.jsp" />
+		<!-- //header -->
+
+		<!-- 본문 컨테이너 -->
+		<div class="container">
+			<section class="fullpage SECTION_FULL_PAGE01">
+
+				<!-- 서브메뉴 -->
+				<jsp:include page="../include/submenu_main.jsp" />
+				<!-- //서브메뉴 -->
+				
+				<!-- 메인 페이지 -->
+				<article class="mainmenu section SECTION">
+				<jsp:include page="../include/topbar.jsp" />
+					
+					<div class="content">
+						<div class=board>
+						
+							<h1>예약중인 도서 목록</h1>
+							<ul class="brd_txt_lst">
+								<!-- 글목록 -->
+								<li class="view_lst">
+								<div class="con_lst">
+									<ul class="no_scroll title_t">
+										<li class="adm_col_date">책 번호</li>
+										<li class="adm_col_date">책 제목</li>
+										<li class="adm_col_date">예약일자</li>
+									</ul>
+								</div>
+					
+								<%
+								if(rbList.size()==0){%><ul><li class="col_tit"><p>예약중인 도서가 없습니다.</p></li></ul><%	}
+								else{
+									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+									for(int i=0; i<rbList.size(); i++){
+										BookDTO bDTO =(BookDTO)rbList.get(i);
+										%>					
+								<div class="con_lst">
+									<ul class="no_scroll">
+										<li class="adm_col_date"><%=bDTO.getBook_number() %></li>
+										<li class="adm_col_date"><%=bDTO.getBook_subject() %></li>
+										<li class="adm_col_date"><%=date.format(bDTO.getRbook_date()) %></li>
+									</ul>
+								</div>
+										<%
+									}
+								}
+								%>
+					
+							</li>
 						</ul>
-					
-					<%
-					if(rbList.size()==0){%><p>예약중인 도서가 없습니다.</p><%	}
-					else{
-						SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
-						for(int i=0; i<rbList.size(); i++){
-							BookDTO bDTO =(BookDTO)rbList.get(i);
-					%>					
-					<ul>
-						<li>책 번호<%=bDTO.getBook_number() %></li>
-						<li>책 제목<%=bDTO.getBook_subject() %></li>
-						<li>예약일자<%=bDTO.getRbook_date() %></li>
-					</ul>
-					<%
-					}
-					}
-					%>
-					
-				</li>
-				</ul>
-			</div>
-			
+					</div>
+				</div>
 
-		</article>
+				</article>
+				<!-- //메인 페이지-->
+				
+			</section>
+		</div>
+		<!-- //본문 컨테이너 -->
 	</div>
 </body>
 </html>
