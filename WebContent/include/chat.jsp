@@ -67,17 +67,14 @@
 		webSocket.onerror = function(message) { processError(message); };
 		
 		socketchat.onopen = function(){
-			alert(username);
-			socketchat.send(
-				JSON.stringify({
-					"username" : username 
-				})
-			);
+			socketchat.send(JSON.stringify({
+				"message" : username ,
+				"room" : username
+			}));
 			$('#sendBtn').attr("disabled", false);	
 		};
 		socketchat.onmessage = function(message) { chatmessage(message); };
 		socketchat.onerror = function(message) { chaterror(message); };
-				
 	});
 	
 	
@@ -124,16 +121,14 @@
 	
 	function chatmessage(message) {
 		var jsonData = JSON.parse(message.data);
-		alert("jsonData: " + jsonData.messageType + "," + jsonData.name +  "," + jsonData.message + "," + jsonData.users  );
+// 		alert("jsonData: " + jsonData.messageType + "," + jsonData.name +  "," + jsonData.message + "," + jsonData.users  );
 		if (jsonData.messageType == "ChatMessage") {
-			alert("ChatMessage");
 			message = jsonData.name + " : "+ jsonData.message + '\n';
 			displaybubble(jsonData);
 		} else if (jsonData.messageType == "UsersMessage") {
-			alert("UsersMessage");
 			var other = "";
 			for(var i=0; i<jsonData.users.length; i++) {
-				if (chatuser!=jsonData.users[i]) {
+				if (chatuser==jsonData.users[i]) {
 					$('#users').append(jsonData.users[i]+"님과 대화중입니다.");
 					other = jsonData.users[i];
 					first = "false";
@@ -148,12 +143,17 @@
 	
 
 	function chatsend(message) {
-		socketchat.send(JSON.stringify({ 'message' : message , 'room' : chatuser}));
+		if(admincheck){
+			socketchat.send(JSON.stringify({ 'message' : message , 'room' : chatuser }));
+		}
+		else {
+			socketchat.send(JSON.stringify({ 'message' : message , 'room' : username }));
+		}
 	}
 	
 	function displaybubble(data) {
 		//message = jsonData.name + " : "+ jsonData.message + '\n';
-		if (data.name == chatuser) {
+		if (data.name == username) {
 			$('#chatLog').append(data.name+"(me)<br/><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
 	      	    
 		} else {
@@ -204,9 +204,9 @@
 			socketchat = new WebSocket(urlchat);
 			
 			socketchat.onopen = function(){
-				alert(username);
 				socketchat.send(JSON.stringify({
-					"username" : username 
+					"message" : username ,
+					"room" : chatuser
 				}));
 				$('#sendBtn').attr("disabled", false);	
 			};
