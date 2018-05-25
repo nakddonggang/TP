@@ -213,7 +213,6 @@
 							</div>
 
 							<!-- ★게시판으로 보여지는 통합검색 -->
-						<form action="./MemberBasketAdd.me" method="post" id="basket_Fr">
 							<ul class="brd_txt_lst" id="book_cont_div">
 								<!-- 글목록 -->
 								<li class="view_lst">
@@ -315,16 +314,6 @@
  										}%>
 							</ul>
 							<!-- ★갤러리로 보여지는 통합검색 -->
-
-							<%if(member_id!=null){ %>
-							<div class="btn_btm_center">
-								<ul>
-									<li><input type="submit" value="책바구니" id="basket_Fr_btn"
-										class="btn_type4 BTN_IF_LIST"></li>
-								</ul>
-							</div>
-							<%}%>
-						</form>
 							
 							<!-- 버튼 css 부분 -->
 							

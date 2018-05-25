@@ -33,8 +33,8 @@ request.setCharacterEncoding("UTF-8");
 %>
 <body>
 	<%
-		String member_id = (String) session.getAttribute("member_id");
-		if (member_id != null || !(member_id.equals("admin"))) {
+		String member_id = (String)session.getAttribute("member_id");
+		if ((member_id == null) || !(member_id.equals("admin"))) {
 			response.sendRedirect("./Main.fp");
 		}
 	%>

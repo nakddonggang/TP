@@ -43,7 +43,7 @@
 <body>
 	<%
 		String member_id = (String) session.getAttribute("member_id");
-		if (member_id != null) {
+		if (member_id == null) {
 	%>
 	<script type="text/javascript">
 		alert("로그인 한 후 사용하세요");

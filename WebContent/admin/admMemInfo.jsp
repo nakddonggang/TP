@@ -27,7 +27,7 @@ String gm_check =(String)request.getAttribute("gm_check");
 String bl_check =(String)request.getAttribute("bl_check");
 %>
 	<%
-		if (member_id != null || !(member_id.equals("admin"))) {
+		if ((member_id == null) || !(member_id.equals("admin"))) {
 			response.sendRedirect("./Main.fp");
 		}
 	%>

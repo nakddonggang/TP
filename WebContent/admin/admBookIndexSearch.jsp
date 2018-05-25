@@ -42,8 +42,8 @@
 </head>
 <body>
 	<%
-		String member_id = (String) session.getAttribute("member_id");
-		if (member_id != null || !(member_id.equals("admin"))) {
+		String member_id = (String)session.getAttribute("member_id");
+		if ((member_id == null) || !(member_id.equals("admin"))) {
 			response.sendRedirect("./Main.fp");
 		}
 	%>
@@ -207,7 +207,7 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 								%>
 								</li>
 								<li class="adm_col_rc" id="adm_book_high">
-									<%if (booksearchLists.getDbook_state()=="0") %> 상태양호 <%
+									<%if (booksearchLists.getDbook_state().equals("0")) %> 상태양호 <%
 									else { %> <%=booksearchLists.getDbook_state()%> <%}%>
 								</li>
 							</ul>
