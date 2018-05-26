@@ -442,6 +442,10 @@ public class AdminDAO {
 		return result;
 	}
 	
+	public void update_bookNumber(int book_number){
+		sqlsession.update("update_bookNumber", book_number);
+	}
+	
 	// 손망실 책 전체 리스트 개수 구하기
 	public int getDBookCount(){
 		int count;
