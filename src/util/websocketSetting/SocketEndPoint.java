@@ -23,8 +23,7 @@ public class SocketEndPoint {
 	@OnOpen
 	public void handleOpen(Session userSession, @PathParam("room") final String room) throws IOException, EncodeException {
 		System.out.println("chatEndpoint handleOpen();");
-		System.out.println(room);
-		userSession.getUserProperties().put("room", room);
+//		userSession.getUserProperties().put("room", room);
 		chatroomUsers.add(userSession);
 	}
 
