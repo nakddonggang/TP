@@ -48,6 +48,7 @@ public class FileDownloadAction implements Action{
                     response.setHeader("Content-Disposition", "attachment; filename=" + filename + ";");
                 }
                 response.setHeader("Content-Length", String.valueOf(filesize));
+                response.setHeader("Content-Disposition", "attachment; filename=" + URLEncoder.encode(filename, "utf-8") + ";");
                 response.setHeader("Content-Transfer-Encoding", "binary;");
                 response.setHeader("Pragma", "no-cache");
                 response.setHeader("Cache-Control", "private");

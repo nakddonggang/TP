@@ -40,7 +40,7 @@ public class BoardNoticeWriteAction implements Action {
 		bDTO.setNotice_type(multi.getParameter("notice_type"));
 		bDTO.setNotice_subject(multi.getParameter("notice_subject"));
 		bDTO.setNotice_content(multi.getParameter("notice_content"));
-		bDTO.setNotice_file(multi.getFilesystemName("notice_file"));
+		bDTO.setNotice_file(multi.getFilesystemName("notice_attachments")+","+multi.getFilesystemName("notice_image"));
 		bDTO.setNotice_date(new Date(System.currentTimeMillis()));
 		bDTO.setNotice_readcount(0);
 		
