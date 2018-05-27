@@ -127,11 +127,6 @@
 							</li>
 						</ul>
 						
-						<%		
-						if ("admin".equals(member_id)) {
-						%>
-						<input type="button"  class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
-						<%  }  %>
 						
 	
 						
@@ -139,7 +134,7 @@
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 						%>
-						<a href="BoardNoticeList.no?pageNum=1">첫 페이지</a>
+						<a href="BoardNoticeList.no?pageNum=1">[처음]</a>
 						<%
 						if(startPage > pageBlock)	{ %><a href="BoardNoticeList.no?pageNum=<%=startPage-pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
@@ -148,11 +143,16 @@
 						}
 						if(endPage < pageCount){	%><a href="BoardNoticeList.no?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="BoardNoticeList.no?pageNum=<%=pageCount %>">끝페이지</a>
+						<a href="BoardNoticeList.no?pageNum=<%=pageCount %>">[끝]</a>
 						 </div>
 						 
-						 
-						 
+						 <div class="btn_btm_center">
+						 <%		
+						if ("admin".equals(member_id)) {
+						%>
+						<input type="button"  class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
+						<%  }  %>
+						 </div>
 						 
 						</div>
 				

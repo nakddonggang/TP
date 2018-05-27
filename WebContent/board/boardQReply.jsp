@@ -63,7 +63,7 @@ String pageNum = request.getParameter("pageNum");
 				<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
 						<div class="write_form">
-							<h1>답변하기</h1>
+							<h3>답변하기</h3>
 							<form action="./BoardReplyAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>"  method="post"  name="fr" id="rWriteForm">
 								<ul class="row">
 									<li>
