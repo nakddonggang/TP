@@ -156,7 +156,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 	/* text css start*/
 	.text_top{margin: 70px 30px 0 30px; }
 	h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
-	h3{display: block;  margin-bottom: 30px; font-size: 2.0em; font-family: "Noto_B";}
+	h4{display: block;  margin-bottom: 30px; font-size: 2.0em; font-family: "Noto_B";}
 	.paginate{    text-align: center;}
 	.dl_box{margin: 30px 0;}
 	.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.5em; margin: 3px 0;}
@@ -239,7 +239,14 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 /* member css*/
 
+/* busket css */
+.brd_txt_lst li > .con_lst > ul > li.buk_c {width:5%; padding:13px 10px 10px 10px;}
+.brd_txt_lst li > .con_lst > ul > li.buk_p {width:20%; padding:0 10px;}
+.brd_txt_lst li > .con_lst > ul > li.buk_t {width:30%; padding:0 10px;}
+.brd_txt_lst li > .con_lst > ul > li.buk_n {width:15%; padding:0 10px;}
 
+
+/* busket css */
 
 
 
@@ -545,6 +552,18 @@ strong#currentPage {font-weight: bold;}
 	.book_info_layer{ height:290px; }
 	
 	/* book css */
+	
+	
+	/* busket css */
+	.brd_txt_lst li > .con_lst > ul > li.buk_p {display: none;}
+	.brd_txt_lst li > .con_lst > ul > li.buk_t {width:35%; padding:0 5px;}
+	.brd_txt_lst li > .con_lst > ul > li.buk_n {width:19%; padding:0 5px;}
+	
+	
+	
+	
+	
+	
 }
 
 @media (max-width:426px){
