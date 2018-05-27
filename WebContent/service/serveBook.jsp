@@ -71,9 +71,25 @@
 					<!-- 메인 페이지 -->
 					<div class="content">
 
-
+					<div class="text_top">
+							<h3>희망도서 신청</h3>
+							<div class="dl_box">
+								<dl>
+									<dt>이용안내</dt>
+									<dd>희망도서신청은 도서관에 원하는 자료가 없을 경우,</dd>
+									<dd>이용자가 직접 원하는 자료를 신청할 수 있는 서비스 입니다.</dd>
+									<dd>판타지, 무협, 로맨스(하이틴), SF 등 오락성 도서는 자제하고,</dd>
+									<dd>학술적, 문학적 가치가 있는 도서 위주로 신청하여 주시기 바랍니다.</dd>
+									<br>
+									<dt>주의 사항</dt>
+									<dd>신청도서는 상황에 따라 구입이 제한될 수 있으니 이점 양지하시기 바랍니다.</dd>
+								</dl>
+							</div>
+						</div>
+					
+					
 					<div class='join_form adminfo_join_form'>
-						<h3>희망도서 신청</h3>
+						
 						<div class="adm">
 							<form action="./ServeBookAction.bk" method="post" id="serve_Book">
 								<input type="hidden" value="wait" name="hbook_check">
