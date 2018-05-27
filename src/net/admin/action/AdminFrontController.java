@@ -167,7 +167,7 @@ public class AdminFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch(Exception e) { e.printStackTrace();}
 		}else if(command.equals("/AdminFacilUseButton.am")) {
-			action = new AdminFacilUseButton();
+//			action = new AdminFacilUseButton();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {

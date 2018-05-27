@@ -333,16 +333,18 @@ $(document).ready(function() {
 						
 						
 						<div class="paginate">
+						
+						<a href="./BookIndex.bk?pageNum=<%=1%>"><span>&lt;&lt;&nbsp;</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
-						
 						if(startPage > pageBlock)	{ %><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
 							else {%> &nbsp;<a href=./BookIndex.bk?pageNum=<%=p%>><%=p %></a> &nbsp;<%}
 						}
-						if(endPage < pageCount){	%><a href="/BookIndex.bk?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						if(endPage < pageCount){	%><a href="./BookIndex.bk?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
+						<a href="./BookIndex.bk?pageNum=<%=pageCount%>"><span>&nbsp;&gt;&gt;</span></a>
 						 </div>
 						
 

@@ -43,6 +43,12 @@
 
 </head>
 <body>
+	<%
+		String member_id = (String)session.getAttribute("member_id");
+		if ((member_id == null) || !(member_id.equals("admin"))) {
+			response.sendRedirect("./Main.fp");
+		}
+	%>
 <%
 request.setCharacterEncoding("utf-8");
 //count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
@@ -203,7 +209,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 								</li>
 <%-- 								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getRbook_date()%></li> --%>
 								<li class="adm_col_rc" id="adm_book_high">
-									<%if (Integer.parseInt(bookLists.getDbook_state())==0) %> 상태양호 <%
+									<%if (bookLists.getDbook_state().equals("0")) %> 상태양호 <%
 									else { %> <%=bookLists.getDbook_state()%> <%}%>
 								</li>
 							</ul>

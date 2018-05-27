@@ -41,6 +41,12 @@
 </script>
 </head>
 <body>
+	<%
+		String member_id = (String)session.getAttribute("member_id");
+		if ((member_id == null) || !(member_id.equals("admin"))) {
+			response.sendRedirect("./Main.fp");
+		}
+	%>
 <%
 request.setCharacterEncoding("utf-8");
 //count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
@@ -200,7 +206,10 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 									else out.print("예약 가능");
 								%>
 								</li>
-								<li class="adm_col_rc" id="adm_book_high"><%=booksearchLists.getDbook_state()%></li>
+								<li class="adm_col_rc" id="adm_book_high">
+									<%if (booksearchLists.getDbook_state().equals("0")) %> 상태양호 <%
+									else { %> <%=booksearchLists.getDbook_state()%> <%}%>
+								</li>
 							</ul>
 						</div><%}
 						}%>

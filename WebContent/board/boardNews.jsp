@@ -103,8 +103,12 @@
 											
 											<div class="con_detail DIV_CON_DETAIL">
 												<%if(bDTO.getNotice_file()!=null){
-													file = bDTO.getNotice_file();
-													%><p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p><%
+													if(bDTO.getNotice_file().split(",")[0].equals("null")) file="";
+													else file = bDTO.getNotice_file().split(",")[0];
+											
+													if(bDTO.getNotice_file().split(",").length>1){
+														%><p><img src="./upload/<%=bDTO.getNotice_file().split(",")[1]%>" width="100" height="100"></p><%
+													}
 												}
 												%>
 												<p><%=notice_content %></p>	

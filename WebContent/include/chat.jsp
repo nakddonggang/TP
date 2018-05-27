@@ -35,7 +35,9 @@
 	var socketchat = null;
 	var chatuser = null;
 	var username = "${member_id}"
+	
 	$(document).ready(function() {
+		
 		var url = 'ws://' + window.location.host + '${pageContext.request.contextPath}/userlist';
 		if(admincheck){	$("#joinchat").css("display","none");	
 			webSocket = connection(url);
@@ -56,30 +58,29 @@
 				socketchat = new WebSocket(urlchat);
 			}
 		}
-		
-		//다른 사용자 선택 시, 선택한 사용자 값을 서버에 전달
-		
 	
 		var connectionType;
-		
 		webSocket.onopen = function(){ processOpen(); };
 		webSocket.onmessage = function(message) { processMessage(message); };
 		webSocket.onerror = function(message) { processError(message); };
-		
-		socketchat.onopen = function(){
-			alert(username);
-			socketchat.send(
-				JSON.stringify({
-					"username" : username 
-				})
-			);
-			$('#sendBtn').attr("disabled", false);	
+		socketchat.onopen = function(){	
+			socketchat.send(JSON.stringify({ "message" : username , "room" : username }));
+			$('#sendBtn').attr("disabled", false);
+			var chatlog = sessionStorage.getItem('chatlog'+username);
+            $("#chatLog").html(chatlog);
+            sessionStorage.clear();
 		};
 		socketchat.onmessage = function(message) { chatmessage(message); };
 		socketchat.onerror = function(message) { chaterror(message); };
-				
+		socketchat.onclose = function() {
+			var chatlog=$("#chatLog").html();
+            sessionStorage.setItem('chatlog' + username, chatlog);
+            $("#chatLog").empty();
+			
+		}
+		
+		
 	});
-	
 	
 	function connection(url) {
 		var webSocket = null;
@@ -88,6 +89,42 @@
 		else {	Console.log('Error: WebSocket is not supported by this browser.');	return null;	}
 		return webSocket;
 	}
+	
+	$('#sendBtn').click(function() {
+		chatsend(textMessage.value);
+		textMessage.value = "";
+	});
+	
+	$('#textMessage').keypress(function(e) {
+		if(e.which==13) {
+			chatsend(textMessage.value);
+			textMessage.value = "";
+		}
+	});
+	
+	$('#leaveBtn').click(function() {
+		socketchat.close();
+	});
+	
+	function trClick(selectedTr) {
+		if (selectedTr.id != null) {
+			connectionType = "chatConnection";
+			chatuser = selectedTr.id;
+			var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + chatuser;
+			socketchat = new WebSocket(urlchat);
+			
+			socketchat.onopen = function(){
+				socketchat.send(JSON.stringify({
+					"message" : username ,
+					"room" : chatuser
+				}));
+			};
+			socketchat.onmessage = function(message) { chatmessage(message); };
+			socketchat.onerror = function(message) { chaterror(message); };
+		}
+	}
+	
+	
 	
 	function processOpen() {
 		connectionType = "firstConnection";
@@ -117,23 +154,16 @@
 		}
 	}
 	
-	function processError(message) {
-		/* messagesTextArea.value += "error...\n"; */
-	}
-	
-	
 	function chatmessage(message) {
 		var jsonData = JSON.parse(message.data);
 		alert("jsonData: " + jsonData.messageType + "," + jsonData.name +  "," + jsonData.message + "," + jsonData.users  );
 		if (jsonData.messageType == "ChatMessage") {
-			alert("ChatMessage");
 			message = jsonData.name + " : "+ jsonData.message + '\n';
 			displaybubble(jsonData);
 		} else if (jsonData.messageType == "UsersMessage") {
-			alert("UsersMessage");
 			var other = "";
 			for(var i=0; i<jsonData.users.length; i++) {
-				if (chatuser!=jsonData.users[i]) {
+				if (chatuser==jsonData.users[i]) {
 					$('#users').append(jsonData.users[i]+"님과 대화중입니다.");
 					other = jsonData.users[i];
 					first = "false";
@@ -145,40 +175,24 @@
 			} 
 		}
 	}
-	
 
 	function chatsend(message) {
-		socketchat.send(JSON.stringify({ 'message' : message , 'room' : chatuser}));
+		if(admincheck){
+			socketchat.send(JSON.stringify({ 'message' : message , 'room' : chatuser }));
+		} else {
+			socketchat.send(JSON.stringify({ 'message' : message , 'room' : username }));
+		}
 	}
 	
 	function displaybubble(data) {
 		//message = jsonData.name + " : "+ jsonData.message + '\n';
-		if (data.name == chatuser) {
+		if (data.name == username) {
 			$('#chatLog').append(data.name+"(me)<br/><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
 	      	    
 		} else {
 		    $('#chatLog').append(data.name+"<br/><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
 		}
 	}
-
-	function chaterror(message) {
-	}
-	
-	$('#sendBtn').click(function() {
-		chatsend(textMessage.value);
-		textMessage.value = "";
-	});
-	
-	$('#textMessage').keypress(function(e) {
-		if(e.which==13) {
-			chatsend(textMessage.value);
-			textMessage.value = "";
-		}
-	});
-	
-	$('#leaveBtn').click(function() {
-		socketchat.close();
-	});
 	
 	function displayUsers(userList) {
 		var username;
@@ -190,28 +204,8 @@
 				username = userList[i];
 			}
 			$.newTr = $("<tr id="+userList[i]+" onclick='trClick(this)'><td>"+username+"</td></tr>");
-			//append
 			$("#users").last().append($.newTr);
 			
-		}
-	}
-	
-	function trClick(selectedTr) {
-		if (selectedTr.id != null) {
-			connectionType = "chatConnection";
-			chatuser = selectedTr.id;
-			var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + chatuser;
-			socketchat = new WebSocket(urlchat);
-			
-			socketchat.onopen = function(){
-				alert(username);
-				socketchat.send(JSON.stringify({
-					"username" : username 
-				}));
-				$('#sendBtn').attr("disabled", false);	
-			};
-			socketchat.onmessage = function(message) { chatmessage(message); };
-			socketchat.onerror = function(message) { chaterror(message); };
 		}
 	}
  /* end 웹소켓 채팅 구현 */
