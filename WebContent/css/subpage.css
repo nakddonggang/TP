@@ -52,7 +52,7 @@
 .write_form .row_sub > li.title {width: 120px;min-width: 120px;height:50px;padding:15px 20px;background:#f6f6f6;font-family:"Noto_M";letter-spacing:-0.08em;}
 .write_form .row_sub > li input[type="text"] {float:left; width:200px; height:30px; background:#f6f6f6; border:0;}
 .write_form .row_sub > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
-.write_form .row_sub > li textarea { float:left;width: 100%; resize: none; background:#f6f6f6; border:0;}
+.write_form .row_sub > li textarea { float:left;width: 100%; resize: none; background:#f6f6f6; border:0;  font-family:"Noto_M";}
 .write_form .row_sub > li p {float:left; margin-left:10px; color:#999; letter-spacing:-0.08em; line-height:30px;}
 .write_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;}
 
@@ -144,20 +144,31 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 /*한진석 전체 css*/
 /* board css start*/
-	/* text css start*/
-	.text_top{margin: 100px 30px 0 30px; }
-	h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
-	.paginate{    text-align: center;}
 
-	.dl_box{margin: 30px 0;}
-	.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.14em; margin: 3px 0;}
-	.dl_box dl dd{font-size: 1.02em; margin: 3px 0;}
-	
 	.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
 	.search_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
 	.search_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
 	.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
 	/* text css start*/
+	
+	
+	
+	/* text css start*/
+	.text_top{margin: 70px 30px 0 30px; }
+	h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
+	h4{display: block;  margin-bottom: 30px; font-size: 2.0em; font-family: "Noto_B";}
+	.paginate{    text-align: center;}
+	.dl_box{margin: 30px 0;}
+	.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.5em; margin: 3px 0;}
+	.dl_box dl dd{font-size: 1.2em; margin: 3px 0;}
+	
+	.dl_boxg{margin: 30px 0;}
+	.dl_boxg dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.8em; margin: 3px 0;}
+	.dl_boxg dl dd{font-size: 1.5em; margin: 3px 0;}
+	.bold {color: #E88C74;}
+	
+
+	
 /* board css end*/
 
 
@@ -227,11 +238,20 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 /* admin book info */
 		/* admin css*/
 
+/* member css*/
+.view_lst .con_lst > ul.no_scroll .col_mem_r {width:25%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .col_mem_b {width:33%; padding:0 10px;}
+
+/* member css*/
+
+/* busket css */
+.brd_txt_lst li > .con_lst > ul > li.buk_c {width:5%; padding:13px 10px 10px 10px;}
+.brd_txt_lst li > .con_lst > ul > li.buk_p {width:20%; padding:0 10px;}
+.brd_txt_lst li > .con_lst > ul > li.buk_t {width:30%; padding:0 10px;}
+.brd_txt_lst li > .con_lst > ul > li.buk_n {width:15%; padding:0 10px;}
 
 
-
-
-
+/* busket css */
 
 
 
@@ -448,6 +468,7 @@ strong#currentPage {font-weight: bold;}
    	.search_bx input.btn_search {position:absolute; right:0;}
    	.board {    width: 100% !important;height: 100%!important; margin-top: 20px; padding: 0 20px;}
 	 h3 { top: 98px; margin-bottom: 20px; font-size: 1.5em;}
+	 h4 { top: 98px; margin-bottom: 20px; font-size: 1.4em;}
 	.brd_txt_lst li > .con_lst > ul > li {font-size: 0.85em; }
 	.brd_txt_lst li > .con_lst > ul > li.col_date{padding: 0px 10px 0px 0px;}
 	.text_top{margin: 30px 20px 0 20px;  }
@@ -537,6 +558,18 @@ strong#currentPage {font-weight: bold;}
 	.book_info_layer{ height:290px; }
 	
 	/* book css */
+	
+	
+	/* busket css */
+	.brd_txt_lst li > .con_lst > ul > li.buk_p {display: none;}
+	.brd_txt_lst li > .con_lst > ul > li.buk_t {width:35%; padding:0 5px;}
+	.brd_txt_lst li > .con_lst > ul > li.buk_n {width:19%; padding:0 5px;}
+	
+	
+	
+	
+	
+	
 }
 
 @media (max-width:426px){

@@ -39,131 +39,92 @@
 					<div class="content">
 					<%
 						String member_id = (String)session.getAttribute("member_id");
-						String pageNum = (String) request.getAttribute("pageNum");
-						String pageNum2 = (String) request.getAttribute("pageNum2");
-						int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
-						int pageCount2 = ((Integer) request.getAttribute("pageCount2")).intValue();
-						int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
-						int startPage = ((Integer) request.getAttribute("startPage")).intValue();
-						int startPage2 = ((Integer) request.getAttribute("startPage2")).intValue();
-						int endPage = ((Integer) request.getAttribute("endPage")).intValue();
-						int endPage2 = ((Integer) request.getAttribute("endPage2")).intValue();
-						int count = ((Integer) request.getAttribute("count")).intValue();
-						int count2 = ((Integer) request.getAttribute("count2")).intValue();
 					%>
+					
+					
+					<div class=board>
 					<!-- myUseBasket.jsp : 책바구니 -->
-						<h2>예약중인 도서목록</h2>
-						
-							<ul>
-								<li>책 제목</li>
-								<li>예약번호</li>
-								<li>예약신청날짜</li>
-								<li>대출신청/삭제<input type="checkbox"></li>
-							</ul>
+						<h4>예약중인 도서목록</h4><input type = "button" value = "상세보기" onclick = "location.href = '#'">			
+							<ul class="brd_txt_lst">
+							<li class="view_lst">
+								<div class="con_lst">
+								<ul class="no_scroll title_t">
+									<li class="col_mem_r">책 제목</li>
+									<li class="col_mem_r">예약번호</li>
+									<li class="col_mem_r">예약신청날짜</li>
+									<li class="col_mem_r">대출신청/삭제<input type="checkbox"></li>
+								</ul>
+								</div>							
+							
 							<%
 							List<BookDTO> bList2 = (List<BookDTO>)request.getAttribute("bList2");
 							if(bList2==null) {
 								%>
-								<ul><li>예약중인 도서가 없습니다.</li></ul>
+								<ul><li class="col_tit"><p>예약중인 도서가 없습니다.</p></li></ul>
 								<%
 							} else {
 								SimpleDateFormat rbook_rdate = new SimpleDateFormat("yyyy-MM-dd");
 								for(BookDTO bDTO : bList2) {
 									%>
-										<ul onclick = "loaction.href = './myUseRBookList.jsp'">
-											<li><%=bDTO.getBook_subject() %></li>
-											<li><%=bDTO.getRbook_num() %></li>
-											<li><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
-											<li>대출신청/삭제<input type="checkbox"></li>
+									<div class="con_lst">
+										<ul class="no_scroll" onclick = "loaction.href = './myUseRBookList.jsp'">
+											<li class="col_mem_r"><%=bDTO.getBook_subject() %></li>
+											<li class="col_mem_r"><%=bDTO.getRbook_num() %></li>
+											<li class="col_mem_r"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
+											<li class="col_mem_r">대출신청/삭제<input type="checkbox"></li>
 										</ul>
+									</div>
 									<%
 								}
 							}
 							%>
-					<%
-								if (pageCount2 < endPage2) endPage2 = pageCount2;
-								if (startPage2 > pageBlock) {
-							%><a
-								href="./MemberUseIndex.me?pageNum2=<%=startPage2 - pageBlock%>"
-								class="prev"><span class="hide">이전 페이지</span></a>
-							<%
-								}
-
-								for (int p = startPage2; p <= endPage2; p++) {
-									if (p == Integer.parseInt(pageNum2)) {
-										%>
-										&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<%
- 									} else {
- 										%>&nbsp;<a href="./MemberUseIndex.me?pageNum2=<%=p%>"><%=p%></a>&nbsp;<%
- 									}
- 								}
-
-							 	if (endPage2 < pageCount2) {
- 									%><a
-									href="./MemberUseIndex.me?pageNum2=<%=startPage2 + pageBlock%>"
-									class="next"><span class="hide">다음 페이지</span></a>
-								<%
-								}
-								%>
+							</li>
+							</ul>
 					</div>
+				
+					
+		
+		
 					<%
 					List<BookDTO> bList = (List<BookDTO>)request.getAttribute("bList");
 					%>
-					<div>
+					<div class=board>
 						<!-- myUseBook.jsp : 도서 대출 목록 -->
-						<h2>대출중인 도서 목록</h2>
-							<ul>
-								<li>책 제목</li>
-								<li>대출일자</li>
-								<li>반납할 일자</li>
+						<h4>대출중인 도서 목록</h4><input type = "button" value ="역대대출내역보기" onclick = "location.href ='#'">
+							<ul class="brd_txt_lst">
+							<li class="view_lst">
+							<div class="con_lst">
+								<ul class="no_scroll title_t">
+								<li class="col_mem_b">책 제목</li>
+								<li class="col_mem_b">대출일자</li>
+								<li class="col_mem_b">반납할 일자</li>
 							</ul>
+							</div>
 							<%
 							if(bList == null) {
 								%>
-								<ul><li>대여중인 도서가 없습니다.</li></ul>
+								<ul><li class="col_tit"><p>대여중인 도서가 없습니다.</p></li></ul>
 								<%
 							} else {
 							SimpleDateFormat bbook_bdate = new SimpleDateFormat("yyyy-MM-dd");
 							for(BookDTO bDTO :  bList) {
 							%>
-							<ul onclick="location.href = '#'">
-								<li><%=bDTO.getBook_subject() %></li>
-								<li><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
-								<li><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
+							<div class="con_lst">
+							<ul class="no_scroll" onclick="location.href = '#'">
+								<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
+								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
+								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
 							</ul>
+							</div>
 							<%
 							}
 						}
 							%>
-						<%
-								if (pageCount < endPage) endPage = pageCount;
-								if (startPage > pageBlock) {
-							%><a
-								href="./MemberUseIndex.me?pageNum=<%=startPage - pageBlock%>"
-								class="prev"><span class="hide">이전 페이지</span></a>
-							<%
-								}
-
-								for (int p = startPage; p <= endPage; p++) {
-									if (p == Integer.parseInt(pageNum)) {
-										%>
-										&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<%
- 									} else {
- 										%>&nbsp;<a href="./MemberUseIndex.me?pageNum=<%=p%>"><%=p%></a>&nbsp;<%
- 									}
- 								}
-
-							 	if (endPage < pageCount) {
- 									%><a
-									href="./MemberUseIndex.me?pageNum=<%=startPage + pageBlock%>"
-									class="next"><span class="hide">다음 페이지</span></a>
-								<%
-								}
-								%>
+							</li>
+						</ul>
+						 </div>
 					</div>
-
 				</article>
-				
 			</section>
 		</div>
 		<!-- //본문 컨테이너 -->

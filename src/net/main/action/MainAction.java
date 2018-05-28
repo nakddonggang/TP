@@ -2,8 +2,10 @@ package net.main.action;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
@@ -17,8 +19,24 @@ public class MainAction implements Action{
 		// TODO Auto-generated method stub
 		System.out.println("MainAction execute()");
 		request.setCharacterEncoding("utf-8");
+		HttpSession session = request.getSession();
 		ActionForward forward = new ActionForward();
 		
+		Cookie[] cookie = request.getCookies();
+		String member_id = "";
+		
+		if(cookie != null){
+			for(int i=0; i<cookie.length; i++){
+				System.out.println("cookie["+i+"]"+cookie[i].getValue());
+				System.out.println(cookie[i].getName());
+				System.out.println(cookie[i].getMaxAge());
+				
+				if(cookie[i].getName().startsWith("auto")){
+					member_id = cookie[i].getValue();
+					session.setAttribute("member_id", member_id);			
+				}
+			}
+		}
 		
 		///////////////////////공지사항 불러오는 값 /////////////////////////////
 		BoardDAO bDAO = new BoardDAO();

@@ -66,7 +66,7 @@ String member_id = (String)session.getAttribute("member_id");
 				<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
 						<div class="write_form">
-							<h1>Qna 글수정</h1>
+							<h3>Qna 글수정</h3>
 							<form action="./BoardQnaUpdateAction.qn?num=<%=bDTO.getQna_num() %>&pageNum=<%=pageNum %>" method="post"  name="fr" id="qUpdateForm">
 								<ul class="row">
 									<li>
