@@ -173,6 +173,13 @@ public class AdminFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/AdminAllFacilityUserInfo.am")) {
+			action = new AdminAllFacilityUserInfo();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		}
 		// 여기까지 Facility 구간
 		
