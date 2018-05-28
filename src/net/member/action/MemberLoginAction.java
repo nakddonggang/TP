@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.security.PrivateKey;
 
 import javax.crypto.Cipher;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -26,10 +27,12 @@ public class MemberLoginAction implements Action {
 		
         String securedUsername = request.getParameter("securedUsername");
         String securedPassword = request.getParameter("securedPassword");
+        String autoLogin = request.getParameter("autoLogin");
         
         MemberDAO mDAO = new MemberDAO();
         ActionForward forward = new ActionForward();
         HttpSession session = request.getSession();
+        Cookie cookie = null;
         PrivateKey privateKey = (PrivateKey) session.getAttribute("__rsaPrivateKey__");
         session.removeAttribute("__rsaPrivateKey__"); // 키의 재사용을 막는다. 항상 새로운 키를 받도록 강제.
 
@@ -41,6 +44,7 @@ public class MemberLoginAction implements Action {
             String member_pass = decryptRsa(privateKey, securedPassword);
             
             int check = mDAO.selectUserChk(member_id, member_pass);
+            int cookie_time = 60*60*24*7;	// 쿠키 유지시간 7일
     		
     		System.out.println(check);
     		
@@ -64,12 +68,23 @@ public class MemberLoginAction implements Action {
     			return null;
     		}
     		
+    		if(autoLogin != null && autoLogin.equals("checked")){
+    			cookie = new Cookie("autoMember_id",member_id);
+    			cookie.setMaxAge(cookie_time);
+    			cookie.setPath("/");
+    		}else{
+    			cookie = new Cookie("autoMember_id", null);
+    			cookie.setMaxAge(0);
+    			cookie.setPath("/");
+    		}
+    		response.addCookie(cookie);
     		session.setAttribute("member_id", member_id);
-            
+            System.out.println("member_id : "+member_id);
             
         } catch (Exception ex) {
             ex.printStackTrace();
         }
+        
         forward.setRedirect(true);
     	forward.setPath("Main.fp");
     	return forward;

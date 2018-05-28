@@ -73,6 +73,9 @@
 										<input type="hidden" name="securedUsername" id="securedUsername" value="" />
 										<input type="hidden" name="securedPassword" id="securedPassword" value="" />
 										<ul>
+											<li><input type="checkbox" name="autoLogin" value="checked">자동 로그인</li>
+										</ul>
+										<ul>
 											<li class="btn_cancle"><input type="submit" value="로그인" class ="btn_type4"></li>
 											<li><input type="button" value="닫기" class ="btn_type4" id="BTN_CLOSE"></li>
 										</ul>
