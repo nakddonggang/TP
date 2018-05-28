@@ -207,4 +207,10 @@ public class MemberDAO {
 		return bList;
 	}
 	
+	// 반납기간 2일이하인 책 체크
+	 public int memberBbookCheck(String member_id){
+		 int result = sqlsession.selectOne("memberBbookCheck", member_id);
+		 return result;
+	 }
+	
 }

@@ -24,17 +24,48 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/login.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<style type="text/css">
+#count {position: relative; top:10px; right: 10px;}
+</style>
 </head>
 <%
 request.setCharacterEncoding("UTF-8");
 String pageNum =  (String)request.getAttribute("pageNum");
 List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
 List<BoardDTO> curationList = (List<BoardDTO>)request.getAttribute("curationList");
-
 List<BookDTO> popularList = (List<BookDTO>)request.getAttribute("popularList");
-
+String member_id = (String)session.getAttribute("member_id");
 %>
 <body>
+<script type="text/javascript">
+$(document).ready(function(){
+	var member_id = "<%=member_id %>";
+	$.ajax({
+		url:"./MemberBbookCheck.me",
+		type:'POST',
+		data:{'member_id':member_id},
+		success:function(result){
+			if(result != "0"){
+				$('#alarm').click(function(){
+					$('#dialog').html('2일 이내 반납해야할 책 '+result+'권입니다.');
+					$('#dialog').dialog({
+						width:450,
+						height:180,
+						show:'slide',
+						hide:'slide',
+						buttons:[{
+							text:"확인",
+							click: function(){
+								$(this).dialog("close");
+							}
+						}]
+					});
+				});
+			}
+		}
+	});
+});
+</script>
 	<div class="wrapper">
 
 		<!-- header -->
@@ -52,6 +83,7 @@ List<BookDTO> popularList = (List<BookDTO>)request.getAttribute("popularList");
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
+<<<<<<< HEAD
 				
 		<!-- 	인기도서	 -->
 				<div class="">
@@ -66,6 +98,14 @@ List<BookDTO> popularList = (List<BookDTO>)request.getAttribute("popularList");
 								<li>발행일 : <%=bkDTO.getBook_pubDate() %></li>
 							</ol>
 							<br>
+=======
+					
+					<!-- 공지사항 -->
+					<div class="">
+						<ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="view_lst">
+>>>>>>> dc6ead9550b079a31b45114bca8d532110cf9160
 							<%
 						}
 					%>		
