@@ -39,24 +39,12 @@
 					<div class="content">
 					<%
 						String member_id = (String)session.getAttribute("member_id");
-						String pageNum = (String) request.getAttribute("pageNum");
-						String pageNum2 = (String) request.getAttribute("pageNum2");
-						int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
-						int pageCount2 = ((Integer) request.getAttribute("pageCount2")).intValue();
-						int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
-						int startPage = ((Integer) request.getAttribute("startPage")).intValue();
-						int startPage2 = ((Integer) request.getAttribute("startPage2")).intValue();
-						int endPage = ((Integer) request.getAttribute("endPage")).intValue();
-						int endPage2 = ((Integer) request.getAttribute("endPage2")).intValue();
-						int count = ((Integer) request.getAttribute("count")).intValue();
-						int count2 = ((Integer) request.getAttribute("count2")).intValue();
 					%>
 					
 					
 					<div class=board>
 					<!-- myUseBasket.jsp : 책바구니 -->
-						<h4>예약중인 도서목록</h4>
-						
+						<h4>예약중인 도서목록</h4><input type = "button" value = "상세보기" onclick = "location.href = '#'">			
 							<ul class="brd_txt_lst">
 							<li class="view_lst">
 								<div class="con_lst">
@@ -92,7 +80,6 @@
 							%>
 							</li>
 							</ul>
-				
 					</div>
 				
 					
@@ -103,7 +90,7 @@
 					%>
 					<div class=board>
 						<!-- myUseBook.jsp : 도서 대출 목록 -->
-						<h4>대출중인 도서 목록</h4>
+						<h4>대출중인 도서 목록</h4><input type = "button" value ="역대대출내역보기" onclick = "location.href ='#'">
 							<ul class="brd_txt_lst">
 							<li class="view_lst">
 							<div class="con_lst">
@@ -133,14 +120,11 @@
 							}
 						}
 							%>
-						</li>
+							</li>
 						</ul>
-				 </div>
-				 
-				 
-				</div>
+						 </div>
+					</div>
 				</article>
-				
 			</section>
 		</div>
 		<!-- //본문 컨테이너 -->
