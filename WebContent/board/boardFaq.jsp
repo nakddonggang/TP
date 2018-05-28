@@ -122,13 +122,7 @@
  								%>
 								</li>
 							</ul>
-								<%
-								if ("admin".equals(member_id)) {
-								%>
-								<input type="button" class="btn_type1" value="글쓰기"	onclick="location.href='./BoardFaqWrite.fa'">
-								<%
-								}
-								%>
+								
 								<div class="paginate">
 							<%
 								if (pageCount < endPage) endPage = pageCount;
@@ -152,6 +146,15 @@
  									%><a
 									href="./BoardFaqList.fa?pageNum=<%=startPage + pageBlock%>"
 									class="next"><span class="hide">다음 페이지</span></a>
+								<%
+								}
+								%>
+								</div>
+								 <div class="btn_btm_center">
+								<%
+								if ("admin".equals(member_id)) {
+								%>
+								<input type="button" class="btn_type1" value="글쓰기"	onclick="location.href='./BoardFaqWrite.fa'">
 								<%
 								}
 								%>

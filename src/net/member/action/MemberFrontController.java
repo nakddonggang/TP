@@ -36,8 +36,13 @@ public class MemberFrontController extends HttpServlet{
 		
 		if(command.equals("/MemberJoin.me")) {
 			forward = new ActionForward();
-			forward.setPath("./member/memberInsert.jsp");
-			forward.setRedirect(false);
+			try {
+				rsaKeygen(request, response);
+				forward.setPath("./member/memberInsert.jsp");
+				forward.setRedirect(false);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}
 		} else if(command.equals("/MemberIdCheck.me")) {
 			action = new MemberIdCheck();
 			try {
@@ -75,13 +80,6 @@ public class MemberFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			} // try_catch end
-		}else if(command.equals("/MemberUpdate.me")) {
-			action = new MemberUpdate();
-			try {
-				forward = action.execute(request, response);
-			} catch(Exception e) {
-				e.printStackTrace();
-			} // try_catch end
 		} else if(command.equals("/MemberDelete.me")) {
 			forward = new ActionForward();
 			forward.setPath("./member/memberDelete.jsp");
@@ -96,6 +94,7 @@ public class MemberFrontController extends HttpServlet{
 		} else if(command.equals("/MemberUpdate.me")) {
 			action = new MemberUpdate();
 			try {
+				rsaKeygen(request, response);
 				forward = action.execute(request, response);
 			}catch(Exception e) {
 				e.printStackTrace();

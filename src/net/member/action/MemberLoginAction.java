@@ -3,7 +3,6 @@ package net.member.action;
 import java.io.PrintWriter;
 import java.security.PrivateKey;
 
-import javax.crypto.Cipher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,16 +18,12 @@ public class MemberLoginAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberLoginAction execute()");
 		request.setCharacterEncoding("UTF-8");
-/*
-		
-		
-		
-*/
 		
         String securedUsername = request.getParameter("securedUsername");
         String securedPassword = request.getParameter("securedPassword");
         String autoLogin = request.getParameter("autoLogin");
         
+        DescryptRSA dRSA = new DescryptRSA();
         MemberDAO mDAO = new MemberDAO();
         ActionForward forward = new ActionForward();
         HttpSession session = request.getSession();
@@ -40,8 +35,8 @@ public class MemberLoginAction implements Action {
             throw new RuntimeException("암호화 비밀키 정보를 찾을 수 없습니다.");
         }
         try {
-            String member_id = decryptRsa(privateKey, securedUsername);
-            String member_pass = decryptRsa(privateKey, securedPassword);
+            String member_id = dRSA.DecryptRsa(privateKey, securedUsername);
+            String member_pass = dRSA.DecryptRsa(privateKey, securedPassword);
             
             int check = mDAO.selectUserChk(member_id, member_pass);
             int cookie_time = 60*60*24*7;	// 쿠키 유지시간 7일
@@ -88,29 +83,6 @@ public class MemberLoginAction implements Action {
         forward.setRedirect(true);
     	forward.setPath("Main.fp");
     	return forward;
-    }
-
-    private String decryptRsa(PrivateKey privateKey, String securedValue) throws Exception {
-        System.out.println("will decrypt : " + securedValue);
-        Cipher cipher = Cipher.getInstance("RSA");
-        byte[] encryptedBytes = hexToByteArray(securedValue);
-        cipher.init(Cipher.DECRYPT_MODE, privateKey);
-        byte[] decryptedBytes = cipher.doFinal(encryptedBytes);
-        String decryptedValue = new String(decryptedBytes, "utf-8"); // 문자 인코딩 주의.
-        return decryptedValue;
-    }
-
-    public static byte[] hexToByteArray(String hex) {
-        if (hex == null || hex.length() % 2 != 0) {
-            return new byte[]{};
-        }
-
-        byte[] bytes = new byte[hex.length() / 2];
-        for (int i = 0; i < hex.length(); i += 2) {
-            byte value = (byte)Integer.parseInt(hex.substring(i, i + 2), 16);
-            bytes[(int) Math.floor(i / 2)] = value;
-        }
-        return bytes;
     }
 }
 
