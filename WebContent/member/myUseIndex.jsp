@@ -39,20 +39,9 @@
 					<div class="content">
 					<%
 						String member_id = (String)session.getAttribute("member_id");
-						String pageNum = (String) request.getAttribute("pageNum");
-						String pageNum2 = (String) request.getAttribute("pageNum2");
-						int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
-						int pageCount2 = ((Integer) request.getAttribute("pageCount2")).intValue();
-						int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
-						int startPage = ((Integer) request.getAttribute("startPage")).intValue();
-						int startPage2 = ((Integer) request.getAttribute("startPage2")).intValue();
-						int endPage = ((Integer) request.getAttribute("endPage")).intValue();
-						int endPage2 = ((Integer) request.getAttribute("endPage2")).intValue();
-						int count = ((Integer) request.getAttribute("count")).intValue();
-						int count2 = ((Integer) request.getAttribute("count2")).intValue();
 					%>
 					<!-- myUseBasket.jsp : 책바구니 -->
-						<h2>예약중인 도서목록</h2>
+						<h2>예약중인 도서목록</h2><input type = "button" value = "상세보기" onclick = "location.href = '#'">
 						
 							<ul>
 								<li>책 제목</li>
@@ -80,38 +69,13 @@
 								}
 							}
 							%>
-					<%
-								if (pageCount2 < endPage2) endPage2 = pageCount2;
-								if (startPage2 > pageBlock) {
-							%><a
-								href="./MemberUseIndex.me?pageNum2=<%=startPage2 - pageBlock%>"
-								class="prev"><span class="hide">이전 페이지</span></a>
-							<%
-								}
-
-								for (int p = startPage2; p <= endPage2; p++) {
-									if (p == Integer.parseInt(pageNum2)) {
-										%>
-										&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<%
- 									} else {
- 										%>&nbsp;<a href="./MemberUseIndex.me?pageNum2=<%=p%>"><%=p%></a>&nbsp;<%
- 									}
- 								}
-
-							 	if (endPage2 < pageCount2) {
- 									%><a
-									href="./MemberUseIndex.me?pageNum2=<%=startPage2 + pageBlock%>"
-									class="next"><span class="hide">다음 페이지</span></a>
-								<%
-								}
-								%>
 					</div>
 					<%
 					List<BookDTO> bList = (List<BookDTO>)request.getAttribute("bList");
 					%>
 					<div>
 						<!-- myUseBook.jsp : 도서 대출 목록 -->
-						<h2>대출중인 도서 목록</h2>
+						<h2>대출중인 도서 목록</h2><input type = "button" value ="역대대출내역보기" onclick = "location.href ='#'">
 							<ul>
 								<li>책 제목</li>
 								<li>대출일자</li>
@@ -135,31 +99,6 @@
 							}
 						}
 							%>
-						<%
-								if (pageCount < endPage) endPage = pageCount;
-								if (startPage > pageBlock) {
-							%><a
-								href="./MemberUseIndex.me?pageNum=<%=startPage - pageBlock%>"
-								class="prev"><span class="hide">이전 페이지</span></a>
-							<%
-								}
-
-								for (int p = startPage; p <= endPage; p++) {
-									if (p == Integer.parseInt(pageNum)) {
-										%>
-										&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<%
- 									} else {
- 										%>&nbsp;<a href="./MemberUseIndex.me?pageNum=<%=p%>"><%=p%></a>&nbsp;<%
- 									}
- 								}
-
-							 	if (endPage < pageCount) {
- 									%><a
-									href="./MemberUseIndex.me?pageNum=<%=startPage + pageBlock%>"
-									class="next"><span class="hide">다음 페이지</span></a>
-								<%
-								}
-								%>
 					</div>
 
 				</article>
