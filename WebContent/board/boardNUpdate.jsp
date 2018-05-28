@@ -71,7 +71,7 @@ String pageNum = request.getParameter("pageNum");
 					<div class="content">
 					
 					<div class="write_form">
-					 <h1>Notice 수정하기</h1>
+					 <h3>Notice 수정하기</h3>
 					 <form action="./BoardNoticeUpdateAction.no?notice_num=<%=bDTO.getNotice_num() %>&pageNum=<%=pageNum %>"  method="post" id="nUpdateForm" name="fr" enctype="multipart/form-data">
 				          <ul class="row">
 						   <li>

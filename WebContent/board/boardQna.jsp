@@ -130,13 +130,11 @@ $(function(){
 							</li>
 						</ul>
 						<div class="paginate">
-						<%if(member_id != null){
-							%><input type="button" value="글쓰기" class="btn_type1" onclick="location.href='./BoardQnaWrite.qn'"><%
-						}%>
+						
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 						%>
-						<a href="BoardQnaList.qn?pageNum=1">첫 페이지</a>
+						<a href="BoardQnaList.qn?pageNum=1">[처음]</a>
 						<%
 						if(startPage > pageBlock)	{ %><a href="BoardQnaList.qn?pageNum=<%=startPage-pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
@@ -146,8 +144,16 @@ $(function(){
 						if(endPage < pageCount){ %><a href="BoardQnaList.qn?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><%	}
 
 						%>
-						<a href="BoardQnaList.qn?pageNum=<%=pageCount %>">끝페이지</a>
+						<a href="BoardQnaList.qn?pageNum=<%=pageCount %>">[끝]</a>
 						</div>
+						
+						 <div class="btn_btm_center">
+								
+								<%if(member_id != null){
+									%><input type="button" value="글쓰기" class="btn_type1" onclick="location.href='./BoardQnaWrite.qn'"><%
+								}%>
+							
+								</div>
 					</div>
 				</div>
 

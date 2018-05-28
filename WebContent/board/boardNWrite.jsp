@@ -61,7 +61,7 @@ $(document).ready(function(){
 					<div class="content">
 					
 						<div class="write_form">
-							<h1>Notice 글쓰기</h1>
+							<h3>Notice 글쓰기</h3>
 							<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" id="nWriteForm" enctype="multipart/form-data">
 								<ul class="row">
 									<li>

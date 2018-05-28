@@ -75,7 +75,7 @@ $(document).ready(function(){
 					<div class="content">
 						<div class=board>
 						
-						<h1>책 바구니</h1>
+						<h3>책 바구니</h3>
 						<form action="" method="post" id="basketForm">
 						
 						<ul class="brd_txt_lst">
@@ -83,12 +83,12 @@ $(document).ready(function(){
 							<li class="view_lst">
 							<div class="con_lst">
 								<ul class="no_scroll title_t">
-									<li class="col_num"><input type="checkbox" id="allCheck"></li>
-									<li class="adm_col_date">사진</li>
-									<li class="adm_col_subs">제목</li>
-									<li class="adm_col_date">저자</li>
-									<li class="adm_col_date">대출상태</li>
-									<li class="col_date">예약상태</li>
+									<li class="buk_c"><input type="checkbox" id="allCheck"></li>
+									<li class="buk_p">사진</li>
+									<li class="buk_t">제목</li>
+									<li class="buk_n">저자</li>
+									<li class="buk_n">대출상태</li>
+									<li class="buk_n">예약상태</li>
 								</ul>
 							</div>
 							<%
@@ -104,12 +104,12 @@ $(document).ready(function(){
 									%>
 									<div class="con_lst">
 										<ul class="no_scroll">
-											<li class="col_num"><input type="checkbox" name="checkbox" value="<%=mDTO.getBasket_number() %>"></li>
-											<li class="adm_col_date"><img src="./upload/<%=mDTO.getBook_file()%>" width="70" height="80"></li>
-											<li class="adm_col_subs"><p><%=mDTO.getBook_subject() %></p></li>
-											<li class="adm_col_date"><p><%=mDTO.getBook_author() %></p></li>
-											<li class="adm_col_date"><p><%=bbook_bstate %></p></li>
-											<li class="adm_col_date"><p><%=rbook_check %></p></li>
+											<li class="buk_c"><input type="checkbox" name="checkbox" value="<%=mDTO.getBasket_number() %>"></li>
+											<li class="buk_p"><img src="./upload/<%=mDTO.getBook_file()%>" width="70" height="80"></li>
+											<li class="buk_t"><p><%=mDTO.getBook_subject() %></p></li>
+											<li class="buk_n"><p><%=mDTO.getBook_author() %></p></li>
+											<li class="buk_n"><p><%=bbook_bstate %></p></li>
+											<li class="buk_n"><p><%=rbook_check %></p></li>
 										</ul>
 									</div>
 								<%
@@ -118,16 +118,17 @@ $(document).ready(function(){
 							%>
 							</li>
 						</ul>
-
-						<div class="btn_btm_board">
-							<ul>
-								<li class="btn_con_right">
-									<input type="button" value="대출도서반납" class="btn_type4" id="returnBtn">
-									<input type="button" value="대출신청승인" class="btn_type4" id="acceptBtn">
-									<input type="submit" value="예약하기" class="btn_type4" id="resBtn"> 
-									<input type="submit" value="삭제하기" class="btn_type4" id="delBtn">
-								</li>
-							</ul>
+						
+						<div class="btn_btm_center">	
+						<ul>
+						<li class="adm_btn_cancle">
+									<input type="submit" value="예약하기" class="btn_type4 BTN_IF_LIST" id="resBtn"> 
+						</li>
+						<li class="adm_btn_cancle">
+									<input type="submit" value="삭제하기" class="btn_type4 BTN_IF_LIST" id="delBtn">
+						</li>
+						</ul>
+						
 						</div>
 						
 						</form>
