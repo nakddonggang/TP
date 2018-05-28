@@ -1,3 +1,4 @@
+<%@page import="net.book.db.BookDTO"%>
 <%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
@@ -29,6 +30,9 @@ request.setCharacterEncoding("UTF-8");
 String pageNum =  (String)request.getAttribute("pageNum");
 List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
 List<BoardDTO> curationList = (List<BoardDTO>)request.getAttribute("curationList");
+
+List<BookDTO> popularList = (List<BookDTO>)request.getAttribute("popularList");
+
 %>
 <body>
 	<div class="wrapper">
@@ -49,34 +53,32 @@ List<BoardDTO> curationList = (List<BoardDTO>)request.getAttribute("curationList
 				<!-- 메인 페이지 -->
 				<div class="content">
 				
-					<!-- 공지사항 -->
-					<div class="">
-						<ul class="brd_txt_lst">
-							<!-- 글목록 -->
-							<li class="view_lst">
+		<!-- 	인기도서	 -->
+				<div class="">
+					<%
+						for(int i=0; i<popularList.size(); i++){
+							BookDTO bkDTO = popularList.get(i);
+							%>
+							<ol>
+								<li>제목 : <%=bkDTO.getBook_subject() %></li>
+								<li>저자 : <%=bkDTO.getBook_author() %></li>
+								<li>발행처 : <%=bkDTO.getBook_publisher() %></li>
+								<li>발행일 : <%=bkDTO.getBook_pubDate() %></li>
+							</ol>
+							<br>
 							<%
-								if(noticeList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
-								else{
-									for(int i=0; i<noticeList.size(); i++){
-										BoardDTO bDTO = noticeList.get(i);	//제너릭 사용해서 형변환 할 필요없음
-									%>
-										<div class="con_lst DIV_CON_LST">
-											<ul>
-												<li class="col_type"><a href="#"><p><%=bDTO.getNotice_type() %></p></a></li>
-												<li class="col_title"><a href="#"><p><%=bDTO.getNotice_subject() %></p></a></li>
-												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=bDTO.getNotice_date() %></span></li>
-												<li class="col_rc"><a href="#"><%=bDTO.getNotice_readcount() %></a></li>
-											</ul>
-											
-											<div class="con_detail DIV_CON_DETAIL">
-												<p><%=bDTO.getNotice_content() %></p>		
-											</div>
-										</div>
-									<%	}	%>
-								<%	}	%>
-							</li>
-						</ul>
-					</div>
+						}
+					%>		
+				</div>
+					
+ 			<!--  통계   -->
+					
+					
+					
+					
+					
+					
+					
 					
 					
 					<!-- 큐레이션 -->
@@ -100,7 +102,37 @@ List<BoardDTO> curationList = (List<BoardDTO>)request.getAttribute("curationList
 						}
 						%>
 					</table>
-					</div>  
+					</div> 
+					
+		<!-- 	공지사항		 -->
+					<div class="">
+						<div class="brd_txt_lst">
+							<!-- 글목록 -->
+							<div class="view_lst">
+							<%
+								if(noticeList==null){	%><ul><div class="col_tit"><p>게시글이 없습니다</p></div></ul><%	}
+								else{
+									for(int i=0; i<noticeList.size(); i++){
+										BoardDTO bDTO = noticeList.get(i);	//제너릭 사용해서 형변환 할 필요없음
+									%>
+										<div class="con_lst DIV_CON_LST">
+											<div>
+												<div class="col_type"><a href="#"><p><%=bDTO.getNotice_type() %></p></a></div>
+												<div class="col_title"><a href="#"><p><%=bDTO.getNotice_subject() %></p></a></div>
+												<div class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=bDTO.getNotice_date() %></span></div>
+												<div class="col_rc"><a href="#"><%=bDTO.getNotice_readcount() %></a></div>
+											</div>
+											
+											<div class="con_detail DIV_CON_DETAIL">
+												<p><%=bDTO.getNotice_content() %></p>		
+											</div>
+										</div>
+									<%	}	%>
+								<%	}	%>
+							</div>
+						</div>
+					</div>
+					 
 				</div>
 				<!-- //메인 페이지-->
 				</article>
