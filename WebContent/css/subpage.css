@@ -329,17 +329,18 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 
 
 /* START 김영지 BookIndex.jsp 상세검색 css */
-#book_divv {position: relative;}
-#for_book_div {width:96%; z-index:1; position: absolute; top:30%; left:2%;}
+#book_divv {position: relative; width:100%; height:100vh; background-color: #252525;}
+#for_book_div {width:96%; z-index:1; position: absolute; top:30%; left:2%; }
 /* #for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:20%; background-color: white;} */
-#book_field { border:none; padding: 20px; width: 96%; margin: 5px auto; background-color: #464646; color:white;}
-#book_field >h1 {margin: 0 0 5px 0;}
-#book_select_box{border:1px solid #FAE0D4; width: 100%; height: 35px; margin-bottom: 3px; box-sizing : border-box;}
+.DIV_CON_LST { width : 100%;}
+#book_field { border:none; padding: 20px; width: 96%; margin: 10px auto; background-color: #464646; color:white; box-sizing : border-box;}
+#book_field >h1 {margin:0 10px 15px 10px; text-align: center;}
+#book_select_box{width: 100%; height: 35px; margin-bottom: 3px; box-sizing : border-box;}
 #book_select1 {border: none; height:33px; width:20%;}
 #book_select2 {border:none; height: 33px;  width:20%;}
 input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
 input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
-#book_date_box {  border: 1px solid #FAE0D4; width: 100%; height: 35px; margin-bottom: 3px;}
+#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
 #book_date_box > p { float: left; height: 33px; line-height: 33px; margin-left:10px; width: 8%; }
 #book_date_box #book_date { height: 33px; line-height: 33px; margin-left: 50px; }
 #book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
@@ -349,7 +350,7 @@ input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-hei
 .book_media_bye { display: block; }
 /* END 김영지 BookIndex.jsp 상세검색 css*/
 
-#book_cont_btn, #book_pic_btn { float:right; margin-left: 5px ; margin-left: 5px; display: block; width: 50px;height: 30px;color: #fff !important;border: 0;text-align: center; background: #464646; color: #fff; cursor: pointer;}
+#book_cont_btn, #book_pic_btn { float:right; margin-left: 5px ; margin-top: 8px; display: block; width: 50px;height: 30px;color: #fff !important;border: 0;text-align: center; background: #464646; color: #fff; cursor: pointer;}
 
 
 /* START 김영지 책 갤러리 형식으로 보기 css */
@@ -588,16 +589,26 @@ strong#currentPage {font-weight: bold;}
 
 /* 영지 미디어 쿼리 css */
 
-@media (min-width:768px){
-	#for_book_div { width: 96%; position: absolute; left:2%; top:0;  }
-	#book_divv { position: relative; }
-	.book_media_bye { display: block; }
+@media screen and (min-width:768px) {
+	#book_divv {position: relative; width:100%; height:100vh; background-color: #252525;}
+	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:50px;}
+	#book_select_box{border:1px solid #FAE0D4; width: 100%; height: 35px; margin-bottom: 3px; display: inline-block;}
+	#book_select1 {border: none; height:33px; width:18%;}
+	#book_select2 {border:none; height: 33px;  width:18%;}
+	input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
+	input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
+	.book_media_bye { display: none; }
+	.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
+	
+/* 	#for_book_div { width: 96%; height : 20%; position: absolute; left:2%; top:0;  } */
+/* 	#book_divv { position: relative; } */
+/* 	.book_media_bye { display: none; } */
 	
 }
 @media screen and (max-width: 767px) {
-	#book_divv { margin-top: 30px;}
-	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:50px; background-color: white;}
-	#book_select_box{border:1px solid #FAE0D4; width: 100%; height: 35px; margin-bottom: 3px;}
+#book_divv {position: relative; width:100%; height:100vh; background-color: #252525;}
+	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:50px;}
+	#book_select_box{border:1px solid #FAE0D4; width: 100%; height: 35px; margin-bottom: 3px; display: inline-block;}
 	#book_select1 {border: none; height:33px; width:18%;}
 	#book_select2 {border:none; height: 33px;  width:18%;}
 	input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
@@ -605,7 +616,11 @@ strong#currentPage {font-weight: bold;}
 	.book_media_bye { display: none; }
 	.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
 }
-@media screen and (min-width:768px){ .book_media_bye { display: block; } }
+
+@media screen and (max-width:1025px){
+ 	.book_media_bye { display: block; }
+}
+
 /*통합검색 페이지 제일 작게 했을 떄 검색창이 망가져서 미디어쿼리 사용함*/
 @media (max-width:767px){
 #admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; height : 40px; width:85%;}

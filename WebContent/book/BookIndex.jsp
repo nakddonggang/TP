@@ -128,7 +128,7 @@ $(document).ready(function(){
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div class="box_thm01 DIV_BOX_THM01" id="book_divv">
+									<div id="book_divv" >
 									</div>
 								</div>
 							</div>
