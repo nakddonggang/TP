@@ -434,7 +434,7 @@
 	 <select id="getHBookCount" resultType="int">
 	 	select count(*) from hbook
 	 </select>
- 
+ 	
  	 <select id="getHBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 	 	select member_id,hbook_subject,hbook_author,hbook_check,hbook_publisher,ifnull(hbook_isbn, 0) hbook_isbn, hbook_explain
 	 	from hbook order by member_id desc limit #{startRow},#{pageSize}
@@ -510,4 +510,9 @@
 	 	insert into seat (facil_num, obj_mname)
 	 	values (#{facil_num}, #{obj_mname})
 	 </insert>
+	 
+	 <update id="ajaxFacilUseButton" parameterType="hashmap">
+	 	update facility set facil_use=#{facil_use}
+	 	where facil_num=#{facil_num}
+	 </update>
  </mapper>

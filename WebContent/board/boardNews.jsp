@@ -103,8 +103,12 @@
 											
 											<div class="con_detail DIV_CON_DETAIL">
 												<%if(bDTO.getNotice_file()!=null){
-													file = bDTO.getNotice_file();
-													%><p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p><%
+													if(bDTO.getNotice_file().split(",")[0].equals("null")) file="";
+													else file = bDTO.getNotice_file().split(",")[0];
+											
+													if(bDTO.getNotice_file().split(",").length>1){
+														%><p><img src="./upload/<%=bDTO.getNotice_file().split(",")[1]%>" width="100" height="100"></p><%
+													}
 												}
 												%>
 												<p><%=notice_content %></p>	
@@ -127,18 +131,15 @@
 							</li>
 						</ul>
 						
-						<%		
-						if ("admin".equals(member_id)) {
-						%>
-						<input type="button"  class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
-						<%  }  %>
 						
 	
 						
 						<div class="paginate">
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
-						
+						%>
+						<a href="BoardNoticeList.no?pageNum=1">[처음]</a>
+						<%
 						if(startPage > pageBlock)	{ %><a href="BoardNoticeList.no?pageNum=<%=startPage-pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
@@ -146,10 +147,16 @@
 						}
 						if(endPage < pageCount){	%><a href="BoardNoticeList.no?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
+						<a href="BoardNoticeList.no?pageNum=<%=pageCount %>">[끝]</a>
 						 </div>
 						 
-						 
-						 
+						 <div class="btn_btm_center">
+						 <%		
+						if ("admin".equals(member_id)) {
+						%>
+						<input type="button"  class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
+						<%  }  %>
+						 </div>
 						 
 						</div>
 				

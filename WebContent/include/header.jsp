@@ -39,7 +39,8 @@
 							<li><a href="./GuideMap.fp">찾아오시는 길</a></li>
 							<li><a href="./GuideStatis.fp">(X)도서관 통계</a></li>
 						</ul></li>
-					
+				<% String member_id = (String) session.getAttribute("member_id");
+				if ((member_id != null) && (member_id.equals("admin"))) {%>	
 					<li><a href="#">관리자 페이지</a>
 						<ul class="DIV_SUB_MNU">
 							<li><a href="./AdminIndex.am">도서통합관리</a></li>
@@ -48,6 +49,7 @@
 							<li><a href="./AdminFacilSugg.am">시설관리</a></li>
 							<li><a href="#">(X)시설이용내역</a></li>
 						</ul></li>
+					<%}%>
 				</ul>
 			</div>
 		</nav>

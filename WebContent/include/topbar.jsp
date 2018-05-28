@@ -6,9 +6,12 @@
 				<%
 					if (session.getAttribute("member_id") != null) {
 						String member_id = (String) session.getAttribute("member_id");
-						out.print("<span id='member_id'>" + member_id + "</span>님이 로그인하셨습니다");
-						%> | <a href="./MemberLogout.me">LOGOUT</a> | <a href="./MemberInfo.me">ACCOUNT</a><%
-					}else{	%><a href="./MemberLogin.me"><!-- id="btn-open-login" -->LOGIN</a> | <a href="./MemberJoin.me">JOIN</a><%	}
+						%><img src="./resource/img/user2.png" width="7%" height="7%"><%
+						out.print("<span id='member_id'>" + member_id + "</span>");
+						%> | <a href="./MemberLogout.me"><img src="./resource/img/logout.png" width="5%" height="5%"></a>
+						 | <a href="./MemberInfo.me"><img src="./resource/img/account.png" width="5%" height="5%"></a><%
+					}else{	%><a href="./MemberLogin.me"><!-- id="btn-open-login" --><img src="./resource/img/login.png" width="5%" height="5%"></a>
+					 | <a href="./MemberJoin.me"><img src="./resource/img/join.png" width="5%" height="5%"></a><%	}
 				%>
 			</div>
 			<%-- <div id="loginDialog">
@@ -16,7 +19,8 @@
 			</div> --%>
 		</li>
 	</ul>
+<!-- </div> -->
 </div>
-<%-- <div id="chat_dialog"><jsp:include page="../include/chat.jsp" /></div> --%>
-<!-- <div><a id="btn-open-chat" href="#"></a></div> -->
+<div id="chat_dialog"><jsp:include page="../include/chat.jsp"/></div>
+<div><a id="btn-open-chat" href="#"></a></div>
 

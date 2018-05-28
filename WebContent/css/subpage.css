@@ -10,9 +10,7 @@
 .search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
 .search_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
 .search_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
-.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
-
-/* start 게시판 부분 */
+.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center; }
 
 
 /* 기존 board Start*/
@@ -54,7 +52,7 @@
 .write_form .row_sub > li.title {width: 120px;min-width: 120px;height:50px;padding:15px 20px;background:#f6f6f6;font-family:"Noto_M";letter-spacing:-0.08em;}
 .write_form .row_sub > li input[type="text"] {float:left; width:200px; height:30px; background:#f6f6f6; border:0;}
 .write_form .row_sub > li input[type="button"] {float:left; width:110px; height:30px; margin-left:10px; line-height:30px; text-align:center; background:#464646; color:#fff; border:0; letter-spacing:-0.08em;}
-.write_form .row_sub > li textarea { float:left;width: 100%; resize: none; background:#f6f6f6; border:0;}
+.write_form .row_sub > li textarea { float:left;width: 100%; resize: none; background:#f6f6f6; border:0;  font-family:"Noto_M";}
 .write_form .row_sub > li p {float:left; margin-left:10px; color:#999; letter-spacing:-0.08em; line-height:30px;}
 .write_form .row_sub > li.inp_form span {margin-right:30px; line-height:30px; text-align:center;}
 
@@ -104,6 +102,15 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .login .top_tit h3 {margin-bottom:15px;}
 .login .top_tit p {font-size:1.14em;}
 .login article {margin:70px 0;}
+.login_form{margin: 100px auto 0 auto ; width: 500px;}
+.login_form form {margin-bottom:50px;}
+.login_form .row {overflow:hidden; border-top:2px solid #464646;}
+.login_form .row li.half {float:left; width:50%;}
+.login_form .row_sub {overflow:hidden; width:100%; border-bottom:1px solid #dbdbdb;}
+.login_form .row_sub > li {display:table-cell; vertical-align:middle; padding:10px;}
+.login_form .row_sub > li.title {width:150px; height:50px; padding:15px 20px; background:#f6f6f6; font-family:"Noto_M"; letter-spacing:-0.08em;}
+.login_form .row_sub > li input[type="text"],
+.login_form .row_sub > li input[type="password"] {float:left; width:200px; height:30px; background:#f6f6f6; border:0;}
 .member {padding:0 20px !important;}
 .member h3 {padding-left:0 !important;}
 .member_form {display:block; width:522px; margin:0 auto;}
@@ -137,20 +144,31 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 /*한진석 전체 css*/
 /* board css start*/
-	/* text css start*/
-	.text_top{margin: 100px 30px 0 30px; }
-	h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
-	.paginate{    text-align: center;}
 
-	.dl_box{margin: 30px 0;}
-	.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.14em; margin: 3px 0;}
-	.dl_box dl dd{font-size: 1.02em; margin: 3px 0;}
-	
 	.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
 	.search_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
 	.search_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
 	.search_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
 	/* text css start*/
+	
+	
+	
+	/* text css start*/
+	.text_top{margin: 70px 30px 0 30px; }
+	h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
+	h4{display: block;  margin-bottom: 30px; font-size: 2.0em; font-family: "Noto_B";}
+	.paginate{    text-align: center;}
+	.dl_box{margin: 30px 0;}
+	.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.5em; margin: 3px 0;}
+	.dl_box dl dd{font-size: 1.2em; margin: 3px 0;}
+	
+	.dl_boxg{margin: 30px 0;}
+	.dl_boxg dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.8em; margin: 3px 0;}
+	.dl_boxg dl dd{font-size: 1.5em; margin: 3px 0;}
+	.bold {color: #E88C74;}
+	
+
+	
 /* board css end*/
 
 
@@ -220,11 +238,20 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 /* admin book info */
 		/* admin css*/
 
+/* member css*/
+.view_lst .con_lst > ul.no_scroll .col_mem_r {width:25%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .col_mem_b {width:33%; padding:0 10px;}
+
+/* member css*/
+
+/* busket css */
+.brd_txt_lst li > .con_lst > ul > li.buk_c {width:5%; padding:13px 10px 10px 10px;}
+.brd_txt_lst li > .con_lst > ul > li.buk_p {width:20%; padding:0 10px;}
+.brd_txt_lst li > .con_lst > ul > li.buk_t {width:30%; padding:0 10px;}
+.brd_txt_lst li > .con_lst > ul > li.buk_n {width:15%; padding:0 10px;}
 
 
-
-
-
+/* busket css */
 
 
 
@@ -288,15 +315,15 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 #admin_select_box2 select { border: none; height:35px; line-height: 35px; margin : 0; float: left; position: absolute; right: 2px;}
 input.adm_inp_search {float:left; width:50%; height:34px; border:0; line-height: 34px;}
 input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; height:34px; border:0; line-height: 34px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
-#adm_select_box3 { border:none; display:inline-block; position: absolute; top:10px; right:15px;}
+#adm_select_box3 { border:none; display:inline-block; position: absolute; top:70px; right:15px;}
 /* end of 상세검색 하는 부분 */
 .adm_btn_type4 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 190px; text-align: center;}
 .adm_btn_type5 {display:inline; width:130px; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; color:#fff; cursor:pointer; position: relative; top: 3px; left: 200px; text-align: center;}
 .join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px;}
 .join_form .row_sub > li textarea { float: left;width: 100%; resize: none; background: #f6f6f6; border: 0; font-family: "Noto_M";}
 .adm_h_1{ font-size: 17px;}
-.bbutton, .rbutton {border: none; background-color: #FAE0D4; }
-.bncheck {line-height: 70%; height: 70%;}
+.bbutton, .rbutton {border: none; background-color: #FAE0D4;     margin-top: 30px;}
+.bncheck {line-height: 70%; height: 90%;}
 
 
 
@@ -321,17 +348,17 @@ input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-hei
 
 /* END 김영지 BookIndex.jsp 상세검색 css*/
 
-#book_cont_btn, #book_pic_btn { float:right; margin-left: 5px;}
+#book_cont_btn, #book_pic_btn { float:right; margin-left: 5px ; margin-left: 5px; display: block; width: 50px;height: 30px;color: #fff !important;border: 0;text-align: center; background: #464646; color: #fff; cursor: pointer;}
 
 
 /* START 김영지 책 갤러리 형식으로 보기 css */
 .book_lst {overflow: hidden; width: 90%; margin: 0 auto; position: relative; margin-top:10px; }
-.book_lst li { float: left; width: 20%; height: 230px; margin:0 9px 25px 9px; padding-bottom: 26px; position: relative;}
+.book_lst li { float: left; width: 24%; height: 280px; margin: 10px 3px 10px 3px; padding-bottom: 26px; position: relative;}
 .book_lst li a {color: #666; text-decoration: none; }
-.book_lst_img { width:99%; height: 230px;}
+.book_lst_img { width:99%; height: 270px;}
 #bk_li_subs { display: block; width: 99%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; margin-top: 2px;}
 /* .book_info_layer{ display: none; background: url(../book/bg_book_hover.png) no-repeat; } */
-.book_info_layer{ display: none;	position:absolute; top:0; left:0; width:97%; height:232px; background: url(../book/bg_book_hover.png) repeat;}
+.book_info_layer{ display: none;	position:absolute; top:0; left:0; width:97%; height:270px; background: url(../book/bg_book_hover.png) repeat;}
 .book_lst .book_info_layer > dt {height: 47px;	padding: 15px; width:99%; background-color: #222;  color: #fff; }
 .book_lst .book_info_layer > dt > span {overflow: hidden; display: inline-block;  height: 56px; line-height: 14px; word-break: break-all; text-overflow: ellipsis;  white-space: nowrap; width: 100%;}
 .book_lst li:HOVER .book_info_layer { display: block; z-index: 1; width:100%; }
@@ -416,11 +443,22 @@ strong#currentPage {font-weight: bold;}
 /* 미디어쿼리 작업부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
 
-
+@media(max-width:1025px){
+	.book_lst li {     width: 48%;height: 400px; margin: 12px 5px 12px 5px;}
+	.book_lst_img { width:99%; height: 390px;}
+	.book_info_layer{ height:390px; }
+}
 
 
 
 @media (max-width:767px){
+/*login css */
+.login_form{margin: 50px auto 0 auto ; width: 300px;}
+.login_form .row_sub > li.title {width:97px; min-width: 97px;}
+.login_form .row_sub > li input[type="text"],
+.login_form .row_sub > li input[type="password"] {width:180px; }
+
+
 /* board css*/
 	/* text css start*/
 	.board .search_bx { top: -25px; margin-right: 20px;}
@@ -429,6 +467,7 @@ strong#currentPage {font-weight: bold;}
    	.search_bx input.btn_search {position:absolute; right:0;}
    	.board {    width: 100% !important;height: 100%!important; margin-top: 20px; padding: 0 20px;}
 	 h3 { top: 98px; margin-bottom: 20px; font-size: 1.5em;}
+	 h4 { top: 98px; margin-bottom: 20px; font-size: 1.4em;}
 	.brd_txt_lst li > .con_lst > ul > li {font-size: 0.85em; }
 	.brd_txt_lst li > .con_lst > ul > li.col_date{padding: 0px 10px 0px 0px;}
 	.text_top{margin: 30px 20px 0 20px;  }
@@ -510,21 +549,49 @@ strong#currentPage {font-weight: bold;}
 	/* admin book info */
 	.join_form .row_sub > li.title_bif {width: 95px; min-width: 95px; padding: 0 10px; height: 20px;}
 	/* admin book info */
+	
+	/* book css */
+	  /* book img css */
+	.book_lst li {width: 70%;height: 300px; margin: 40px 30px 20px 50px;}
+	.book_lst_img { width:99%; height: 290px;}
+	.book_info_layer{ height:290px; }
+	
+	/* book css */
+	
+	
+	/* busket css */
+	.brd_txt_lst li > .con_lst > ul > li.buk_p {display: none;}
+	.brd_txt_lst li > .con_lst > ul > li.buk_t {width:35%; padding:0 5px;}
+	.brd_txt_lst li > .con_lst > ul > li.buk_n {width:19%; padding:0 5px;}
+	
+	
+	
+	
+	
+	
 }
 
 @media (max-width:426px){
 		#selectEmail {margin-left: 115px;}
-
+		
 }
+
+
+
+
+
+		
+
 
 
 
 /* 영지 미디어 쿼리 css */
 
-@media (min-width:768px){
+@media (max-width:768px){
 	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:5px; background-color: white; }
 	#book_divv { position: relative; }
 	.book_media_bye { display: block; }
+	
 }
 @media screen and (max-width: 767px) {
 	#book_divv { margin-top: 30px;}

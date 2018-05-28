@@ -61,7 +61,7 @@ $(document).ready(function(){
 					<div class="content">
 					
 						<div class="write_form">
-							<h1>Notice 글쓰기</h1>
+							<h3>Notice 글쓰기</h3>
 							<form action="./BoardNoticeWriteAction.no"  method="post"  name="fr" id="nWriteForm" enctype="multipart/form-data">
 								<ul class="row">
 									<li>
@@ -84,13 +84,27 @@ $(document).ready(function(){
 									</li>
 									<li>
 										<ul class="row_sub">
-											<li class="title">FILE</li>
+											<li class="title">ATTACH</li>
 											<li class="inp_form">
 											<!-- start 파일 입력부분 -->
-												<input type="text" id="fileName" class="file_input_textbox" readonly="readonly">
+												<input type="text" id="fileName1" class="file_input_textbox" readonly="readonly">
 												<div class="file_input_div">
 													<input type="button" value="파일 찾기" class="file_input_button btn_type4">
-													<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" name="notice_file">
+													<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName1').value = this.value" name="notice_attachments">
+												</div>
+											<!-- end 파일 입력부분 -->
+											</li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+											<li class="title">IMAGE</li>
+											<li class="inp_form">
+											<!-- start 파일 입력부분 -->
+												<input type="text" id="fileName2" class="file_input_textbox" readonly="readonly">
+												<div class="file_input_div">
+													<input type="button" value="파일 찾기" class="file_input_button btn_type4">
+													<input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName2').value = this.value" name="notice_image">
 												</div>
 											<!-- end 파일 입력부분 -->
 											</li>

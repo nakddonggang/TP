@@ -442,6 +442,10 @@ public class AdminDAO {
 		return result;
 	}
 	
+	public void update_bookNumber(int book_number){
+		sqlsession.update("update_bookNumber", book_number);
+	}
+	
 	// 손망실 책 전체 리스트 개수 구하기
 	public int getDBookCount(){
 		int count;
@@ -568,6 +572,16 @@ public class AdminDAO {
 	public int insertSeat(FacilityDTO fDTO){
 		int result;
 		result=sqlsession.insert("insertSeat", fDTO);
+		return result;
+	}
+	
+	//ajaxUseFacilButton 구문
+	public int ajaxFacil_useUpdateButton(String facil_use , String facil_num) {
+		int result = 0;
+		HashMap map = new HashMap();
+		map.put("facil_use", facil_use);
+		map.put("facil_num",facil_num);
+		result =  sqlsession.update("ajaxFacilUseButton", map);
 		return result;
 	}
 }

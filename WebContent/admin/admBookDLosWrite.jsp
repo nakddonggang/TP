@@ -17,6 +17,12 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
+	<%
+		String member_id = (String)session.getAttribute("member_id");
+		if ((member_id == null) || !(member_id.equals("admin"))) {
+			response.sendRedirect("./Main.fp");
+		}
+	%>
 <%
 int book_number = Integer.parseInt(request.getParameter("book_number"));
 %>

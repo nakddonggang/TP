@@ -11,13 +11,14 @@ import javax.websocket.EndpointConfig;
 public class SocketEncoder implements Encoder.Text<Message>{
 
 	@Override
-	public void destroy() {	}
+	public void destroy() {}
 
 	@Override
-	public void init(EndpointConfig arg0) {	}
+	public void init(EndpointConfig arg0) {}
 	
 	@Override
 	public String encode(Message message) throws EncodeException {
+		System.out.println("encode start: " + message);
 		String result = null;
 		if (message instanceof ChatMessage) {
 			 ChatMessage chatMessage = (ChatMessage) message;

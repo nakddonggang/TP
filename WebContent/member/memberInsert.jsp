@@ -13,6 +13,10 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rng.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -45,6 +49,76 @@
                 document.getElementById('member_address2').focus();
             }
         }).open();
+    }
+    
+    function validateEncryptedInsertForm() {
+
+        var member_id = $("#member_id").val(); alert("member_id: " + member_id);
+        var member_pass = $("#member_pass").val();
+        var member_name = $("#member_name").val();
+        var member_post = $("#member_post").val();
+        var member_address1 = $("#member_address1").val();
+        var member_address2 = $("#member_address2").val();
+        var member_phone1 = $(".phone_frist option:selected").val();
+        var member_phone2 = $("#member_phone1").val();
+        var member_phone3 = $("#member_phone2").val();
+        var member_email1 = $("#str_email01").val();
+        var member_email2 = $("#str_email02").val();
+        
+        try {
+            var rsaPublicKeyModulus = $("#rsaPublicKeyModulus").val();
+            var rsaPublicKeyExponent = $("#rsaPublicKeyExponent").val();
+            submitEncryptedInsertForm(member_id, member_pass, member_name, member_post, member_address1, member_address2, member_phone1, member_phone2, member_phone3, member_email1, member_email2, rsaPublicKeyModulus, rsaPublicKeyExponent);
+        } catch(err) {
+            alert(err);
+        }
+        return false;
+    }
+
+    function submitEncryptedInsertForm(member_id, member_pass, member_name, member_post, member_address1, member_address2, member_phone1, member_phone2, member_phone3, member_email1, member_email2, rsaPublicKeyModulus, rsaPublicKeyExponent) {
+    	var rsa = new RSAKey();
+        rsa.setPublic(rsaPublicKeyModulus, rsaPublicKeyExponent);
+
+        // 사용자ID와 비밀번호를 RSA로 암호화한다.
+        var securedId = rsa.encrypt(member_id); alert("securedId: " + securedId);
+        var securedPass = rsa.encrypt(member_pass);
+        var securedName = rsa.encrypt(member_name);
+        var securedPost = rsa.encrypt(member_post);
+        var securedAddress1 = rsa.encrypt(member_address1);
+        var securedAddress2 = rsa.encrypt(member_address2);
+        var securedPhone1 = rsa.encrypt(member_phone1);
+        var securedPhone2 = rsa.encrypt(member_phone2);
+        var securedPhone3 = rsa.encrypt(member_phone3);
+        var securedEmail1 = rsa.encrypt(member_email1);
+        var securedEmail2 = rsa.encrypt(member_email2);
+
+        // POST 로그인 폼에 값을 설정하고 발행(submit) 한다.
+        var securedInsertForm = document.getElementById("securedInsertForm");
+        securedInsertForm.securedId.value = securedId;
+        securedInsertForm.securedPass.value = securedPass;
+        securedInsertForm.securedName.value = securedName;
+        securedInsertForm.securedPost.value = securedPost;
+        securedInsertForm.securedAddress1.value = securedAddress1;
+        securedInsertForm.securedAddress2.value = securedAddress2;
+        securedInsertForm.securedPhone1.value = securedPhone1;
+        securedInsertForm.securedPhone2.value = securedPhone2;
+        securedInsertForm.securedPhone3.value = securedPhone3;
+        securedInsertForm.securedEmail1.value = securedEmail1;
+        securedInsertForm.securedEmail2.value = securedEmail2;
+        
+        alert("securedId: " + securedInsertForm.securedId.value);
+        alert("securedPass: " + securedInsertForm.securedPass.value);
+        alert("securedName: " + securedInsertForm.securedName.value);
+        alert("securedPost: " + securedInsertForm.securedPost.value);
+        alert("securedAddress1: " + securedInsertForm.securedAddress1.value);
+        alert("securedAddress2: " + securedInsertForm.securedAddress2.value);
+        alert("securedPhone1: " + securedInsertForm.securedPhone1.value);
+        alert("securedPhone2: " + securedInsertForm.securedPhone2.value);
+        alert("securedPhone3: " + securedInsertForm.securedPhone3.value);
+        alert("securedEmail1: " + securedInsertForm.securedEmail1.value);
+        alert("securedEmail2: " + securedInsertForm.securedEmail2.value);
+        
+        securedInsertForm.submit();
     }
 </script>
 <script type="text/javascript">
@@ -228,6 +302,10 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
+<%
+	String publicKeyModulus = (String) request.getAttribute("publicKeyModulus");
+	String publicKeyExponent = (String) request.getAttribute("publicKeyExponent");
+%>
 	<div class="wrapper">
 
 		<!-- header -->
@@ -245,12 +323,8 @@ $(document).ready(function() {
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 					<div class="content">
-					
-					
-					
 					<div class='join_form'>
-					<h3>회원가입</h3>
-						<form action="MemberJoinAction.me"  method="post"  name="fr"  id = "fr">
+						<h3>회원가입</h3>
 							<ul class="row">
 								<li>
 									<ul class="row_sub">
@@ -314,25 +388,31 @@ $(document).ready(function() {
 										</select></li>
 									</ul>
 								</li>
-								<li>
-									<div class="btn_btm_center">
-										<ul>
-											<li class="btn_cancle">
-												<input type="button" value="회원가입" class ="btn_type4" id = "submit_button">
-											</li>
-											<li>
-												<input type="reset" value="취소" class ="btn_type4">
-											</li>
-										</ul>
-									</div>
-								</li>
+								<li><input type="hidden" id="rsaPublicKeyModulus" value="<%=publicKeyModulus%>" /></li>
+					            <li><input type="hidden" id="rsaPublicKeyExponent" value="<%=publicKeyExponent%>" /></li>
 							</ul>
-						</form>
-						
-						
+							<form action="./MemberJoinAction.me" method="post" name="securedInsertForm" id="securedInsertForm" onsubmit="return validateEncryptedInsertForm()">
+								<div class="btn_btm_center btn_btm_modal">
+									<input type="hidden" name="securedId" id="securedId" value="" />
+									<input type="hidden" name="securedPass" id="securedPass" value="" />
+									<input type="hidden" name="securedName" id="securedName" value="" />
+									<input type="hidden" name="securedPost" id="securedPost" value="" />
+									<input type="hidden" name="securedAddress1" id="securedAddress1" value="" />
+									<input type="hidden" name="securedAddress2" id="securedAddress2" value="" />									
+									<input type="hidden" name="securedPhone1" id="securedPhone1" value="" />
+									<input type="hidden" name="securedPhone2" id="securedPhone2" value="" />
+									<input type="hidden" name="securedPhone3" id="securedPhone3" value="" />
+									<input type="hidden" name="securedEmail1" id="securedEmail1" value="" />
+									<input type="hidden" name="securedEmail2" id="securedEmail2" value="" />	
+									<ul>
+										<li class="btn_cancle"><input type="submit" value="회원가입" class ="btn_type4"></li>
+										<li><input type="button" value="닫기" class ="btn_type4" id="BTN_CLOSE"></li>
+									</ul>
+								</div>
+							</form>
 						</div>
 					</div>
-		<!-- //메인 페이지-->
+				<!-- //메인 페이지-->
 				</article>
 			</section>
 		</div>

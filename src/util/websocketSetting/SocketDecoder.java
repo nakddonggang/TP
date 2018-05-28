@@ -18,6 +18,7 @@ public class SocketDecoder implements Decoder.Text<Message> {
 	
 	@Override
 	public Message decode(String message) throws DecodeException {
+		System.out.println("decode start: " + message);
 		ChatMessage chatMessage = new ChatMessage();
 
 		JsonObject jsonObject = Json
