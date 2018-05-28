@@ -56,23 +56,6 @@ public class BookFrontController extends HttpServlet{
 					}catch(Exception e){
 						e.printStackTrace();
 					}
-				} else if(command.equals("/BookSearchPic.bk")){
-					action = new BookSearchPic();
-					try{
-						forward = action.execute(request, response);
-					}catch(Exception e){ e.printStackTrace(); }
-				}  else if(command.equals("/BookSortPic.bk")){
-					action = new BookSortPic();
-					try{
-						forward = action.execute(request, response);
-					}catch(Exception e){ e.printStackTrace(); }
-				} else if(command.equals("/BookIndexPic.bk")){
-					action = new BookIndexPic();
-					try{
-						forward = action.execute(request, response);
-					}catch(Exception e){
-						e.printStackTrace();
-					}
 				} else if(command.equals("/BookSearch.bk")){
 					action = new BookSearch();
 					try{
