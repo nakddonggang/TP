@@ -143,5 +143,12 @@
 		on r.book_number = b.book_number
 		where member_id = #{member_id} limit #{startRow}, #{endSize};
 	</select>
-
+	
+	<!-- 예린 -->
+	 <select id="myUseBorrowBookList" parameterType="string" resultType="net.book.db.BookDTO">
+		select bb.book_number , b.book_subject , bb.bbook_bdate , bb.bbook_rdate from bbook bb
+		join book b
+		on bb.book_number = b.book_number
+		where member_id = #{member_id}
+	</select>
 </mapper>

@@ -207,4 +207,12 @@ public class MemberDAO {
 		return bList;
 	}
 	
+	//회원이 대출중인 도서 목록 보여주는 구문
+	public List<BookDTO> myUseBorrowBookList(String member_id) {
+		List<BookDTO> bbList = new ArrayList<BookDTO>();
+
+		bbList = sqlsession.selectList("myUseBorrowBookList",member_id);
+		return bbList;
+	}
+	
 }

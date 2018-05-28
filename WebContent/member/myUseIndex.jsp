@@ -112,7 +112,7 @@
 					%>
 					<div>
 						<!-- myUseBook.jsp : 도서 대출 목록 -->
-						<h2>대출중인 도서 목록</h2>
+						<h2>대출중인 도서 목록</h2><input type="button" value="상세보기" onclick="location.href = './MemberMyUseBorrowBookList.me'">
 							<ul>
 								<li>책 제목</li>
 								<li>대출일자</li>
@@ -127,7 +127,7 @@
 							SimpleDateFormat bbook_bdate = new SimpleDateFormat("yyyy-MM-dd");
 							for(BookDTO bDTO :  bList) {
 							%>
-							<ul onclick="location.href = '#'">
+							<ul onclick="location.href = './MemberMyUseBorrowBookList.me'">
 								<li><%=bDTO.getBook_subject() %></li>
 								<li><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
 								<li>반납할 일자</li>
