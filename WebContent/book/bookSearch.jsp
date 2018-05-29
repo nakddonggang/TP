@@ -118,12 +118,12 @@ if(view==null) view = "0";
 %>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
-		
+
 		<!-- header -->
 		<jsp:include page="../include/header.jsp" />
 		<!-- //header -->
-	
-	<!-- 본문 컨테이너 -->
+
+		<!-- 본문 컨테이너 -->
 		<div class="container">
 
 			<section class="fullpage SECTION_FULL_PAGE01">
@@ -134,12 +134,17 @@ if(view==null) view = "0";
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div class="box_thm01 DIV_BOX_THM01" id="book_divv">
-										<div id="for_book_div">
-											<form action="./BookSearch.bk" method="get"
+									<div id="book_divv" >
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="for_book_div">
+											<form action="" method="get" name="searchFr"
 												id="SearchForm">
-												<fieldset id="book_field">
-													<legend>&nbsp;통합검색&nbsp;</legend>
+												<div id="book_field">
+													<h1>통합검색</h1>
 													<div class="DIV_CON_LST">
 														<div id="book_select_box">
 															<select name="category1" id="book_select1">
@@ -186,8 +191,8 @@ if(view==null) view = "0";
 																	type="button" value="검색" class="book_btn_search">
 															</div>
 
-															<div id="book_date_box">
-																<p>발행일</p>
+															<div id="book_date_box" >
+																<p>&nbsp;&nbsp;발행일</p>
 																<select name="pubDate" id="book_date">
 																	<option value="all">전체</option>
 																	<option value="1">최근 1년</option>
@@ -203,14 +208,9 @@ if(view==null) view = "0";
 															<input type="reset" class="book_btn_type5" value="입력 초기화">
 														</div>
 													</div>
-												</fieldset>
+												</div>
 											</form>
 										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</article>
 				<!-- //서브메뉴 -->
 				
