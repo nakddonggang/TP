@@ -44,6 +44,7 @@ $(document).ready(function(){
 		data:{'member_id':member_id},
 		success:function(result){
 			if(result != "0"){
+				$('#badge').html('N');
 				$('#alarm').click(function(){
 					$('#dialog').html('2일 이내 반납해야할 책 '+result+'권입니다.');
 					$('#dialog').dialog({

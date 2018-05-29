@@ -113,14 +113,23 @@
 			var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + chatuser;
 			socketchat = new WebSocket(urlchat);
 			
-			socketchat.onopen = function(){
-				socketchat.send(JSON.stringify({
-					"message" : username ,
-					"room" : chatuser
-				}));
+			socketchat.onopen = function(){	
+				socketchat.send(JSON.stringify({ "message" : username , "room" : chatuser }));
+				$('#sendBtn').attr("disabled", false);
+				var chatlog = sessionStorage.getItem('chatlog'+chatuser);
+				alert(chatlog);
+	            $("#chatLog").html(chatlog);
+	            sessionStorage.clear();
 			};
 			socketchat.onmessage = function(message) { chatmessage(message); };
 			socketchat.onerror = function(message) { chaterror(message); };
+			socketchat.onclose = function() {
+				var chatlog=$("#chatLog").html();
+				alert(chatlog);
+	            sessionStorage.setItem('chatlog' + chatuser, chatlog);
+	            $("#chatLog").empty();
+				
+			}
 		}
 	}
 	

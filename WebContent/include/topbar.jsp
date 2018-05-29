@@ -6,7 +6,7 @@
 				<%
 					if (session.getAttribute("member_id") != null) {
 						String member_id = (String) session.getAttribute("member_id");
-						%><a href="#"><span>N</span><img src="./resource/img/user2.png" width="7%" height="7%" id="alarm"></a><%
+						%><a href="#"><span id="badge"></span><img src="./resource/img/user2.png" width="7%" height="7%" id="alarm"></a><%
 						out.print("<span id='member_id'>" + member_id + "</span>");
 						%> | <a href="./MemberLogout.me"><img src="./resource/img/logout.png" width="5%" height="5%"></a>
 						 | <a href="./MemberInfo.me"><img src="./resource/img/account.png" width="5%" height="5%"></a><%
