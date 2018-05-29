@@ -36,20 +36,20 @@
 		<section class="fullpage SECTION_FULL_PAGE01">
 		<!-- 메인 페이지 -->
 			<article class="mainmenu section SECTION">
-				<div class="facil_view">
-					<h3>자리 세부정보</h3>
+				<div class="join_form">
+								<h3>자리 세부정보</h3>
 					<form action="./FacilityUseAction.fy?facil_num=<%=fDTO.getFacil_num() %>" method="post" name = "facilviewform">
 						<ul>
-							<li>
-								<ul>
-									<li>자리번호 : </li>
-									<li><%=fDTO.getFacil_num() %></li>
+							<li class="row">
+								<ul class="row_sub">
+									<li class="title">자리번호 </li>
+									<li class="inp_form"><%=fDTO.getFacil_num() %></li>
 								</ul>
 							</li>
 							<li>
-								<ul>	
-									<li>자리유형 : </li>
-									<li><%	
+								<ul class="row_sub">	
+									<li class="title">자리유형 </li>
+									<li ><%	
 										switch(fDTO.getFacil_type()) {
 											case "media": out.println("미디어");	break;
 											case "desk": out.println("칸막이");	break;
@@ -59,9 +59,9 @@
 								</ul>
 							</li>
 							<li>
-								<ul>
-									<li>사용유무 : <li>
-									<li><%
+								<ul class="row_sub">
+									<li class="title">사용유무 <li>
+									<li class="inp_form"><%
 											if(Integer.parseInt(fDTO.getFacil_use()) != 1)	out.println("사용가능");
 											else out.println("사용중");
 									%></li>
@@ -91,6 +91,7 @@
 							</li>
 						</ul>
 					</form>
+					
 				</div>
 			</article>
 		</section>
