@@ -108,7 +108,7 @@ $(document).ready(function(){
 		List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("bookList");
 		
 		String view = request.getParameter("view");
-		if(view==null) view ="0";
+		if(view==null) view ="1";
 	%>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
@@ -185,8 +185,8 @@ $(document).ready(function(){
 																	type="button" value="검색" class="book_btn_search">
 															</div>
 
-															<div id="book_date_box">
-																<p>발행일</p>
+															<div id="book_date_box" >
+																<p>&nbsp;&nbsp;발행일</p>
 																<select name="pubDate" id="book_date">
 																	<option value="all">전체</option>
 																	<option value="1">최근 1년</option>
