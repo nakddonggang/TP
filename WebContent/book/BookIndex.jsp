@@ -24,7 +24,27 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		var book_img=<%=request.getParameter("view")%>;
+		if (book_img==null){	book_img="1";		} 
+		if (book_img==0){
+			$('#book_pic_div').show();
+			$('#book_cont_div').hide();
+		} else if (book_img==1){
+			$('#book_pic_div').hide();
+			$('#book_cont_div').show();
+		}
+		
+		$('#adm_select_box3 > :input').click(function(){
+			book_img=$(this).index();
+				if (book_img==0){
+					$('#book_pic_div').show();
+					$('#book_cont_div').hide();
+				} else if (book_img==1){
+					$('#book_pic_div').hide();
+					$('#book_cont_div').show();
+				}
+		});
+		
 				$('#SearchForm').submit(
 						function() {
 							if ($('#search1').val() == ""
@@ -35,7 +55,7 @@
 								return false;
 							} else {
 							}
-						});
+					});
 
 				$('#book_sort').change(function() {
 					var sort = $("#book_sort > option:selected").val();
@@ -59,11 +79,6 @@
 					});
 				});
 			});
-
-	$(document).ready(function() {
-		$('#book_pic_div').css('display', 'none');
-		$('#book_cont_div').css('display', 'block');
-	});
 	
 $(document).ready(function() {
 	$('#basket_Fr').submit(function(){
@@ -74,6 +89,9 @@ $(document).ready(function() {
 	});
 });
 
+$(document).ready(function(){
+	
+});
 </script>
 </head>
 <body>
@@ -88,6 +106,9 @@ $(document).ready(function() {
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 		List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("bookList");
+		
+		String view = request.getParameter("view");
+		if(view==null) view ="1";
 	%>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
@@ -107,12 +128,17 @@ $(document).ready(function() {
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div class="box_thm01 DIV_BOX_THM01" id="book_divv">
-										<div id="for_book_div">
+									<div id="book_divv" >
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="for_book_div">
 											<form action="./BookSearch.bk" method="get"
 												id="SearchForm">
-												<fieldset id="book_field">
-													<legend>&nbsp;통합검색&nbsp;</legend>
+												<div id="book_field">
+													<h1>통합검색</h1>
 													<div class="DIV_CON_LST">
 														<div id="book_select_box">
 															<select name="category1" id="book_select1">
@@ -159,8 +185,8 @@ $(document).ready(function() {
 																	type="button" value="검색" class="book_btn_search">
 															</div>
 
-															<div id="book_date_box">
-																<p>발행일</p>
+															<div id="book_date_box" >
+																<p>&nbsp;&nbsp;발행일</p>
 																<select name="pubDate" id="book_date">
 																	<option value="all">전체</option>
 																	<option value="1">최근 1년</option>
@@ -176,14 +202,9 @@ $(document).ready(function() {
 															<input type="reset" class="book_btn_type5" value="입력 초기화">
 														</div>
 													</div>
-												</fieldset>
+												</div>
 											</form>
 										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</article>
 				<!-- //서브메뉴 -->
 				
@@ -198,20 +219,18 @@ $(document).ready(function() {
 							<p>
 								Total_<span><%=count%></span>
 							</p>
-									
-							
 							
 							<div id="adm_select_box3">
 								<!-- 시험용 버튼 -->
-								<input type="button" value="갤러리" id="book_pic_btn" onclick="location.href='./BookIndexPic.bk'">
-								<input type="button" value="게시판" id="book_cont_btn" onclick="location.href='./BookIndex.bk'">
+								<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
+								<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
 								<select name="sort" id="book_sort">
 									<option value="" selected="selected">정렬</option>
-									<option value="./BookSort.bk?sort=book_subject">제목순</option>
-									<option value="./BookSort.bk?sort=book_author">저자순</option>
-									<option value="./BookSort.bk?sort=book_number">인기순</option>
-									<option value="./BookSort.bk?sort=book_pubDate">신작순</option>
-									<option value="./BookSort.bk?sort=book_date">입고순</option>
+									<option value="./BookSort.bk?view=<%=view%>&sort=book_subject">제목순</option>
+									<option value="./BookSort.bk?view=<%=view%>&sort=book_author">저자순</option>
+									<option value="./BookSort.bk?view=<%=view%>&sort=book_number">인기순</option>
+									<option value="./BookSort.bk?view=<%=view%>&sort=book_pubDate">신작순</option>
+									<option value="./BookSort.bk?view=<%=view%>&sort=book_date">입고순</option>
 								</select>
 							</div>
 
@@ -334,17 +353,17 @@ $(document).ready(function() {
 						
 						<div class="paginate">
 						
-						<a href="./BookIndex.bk?pageNum=<%=1%>"><span>&lt;&lt;&nbsp;</span></a>
+						<a href="./BookIndex.bk?pageNum=1&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
-						if(startPage > pageBlock)	{ %><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						if(startPage > pageBlock)	{ %><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href=./BookIndex.bk?pageNum=<%=p%>><%=p %></a> &nbsp;<%}
+							else {%> &nbsp;<a href="./BookIndex.bk?pageNum=<%=p%>&view=<%=view%>"><%=p %></a> &nbsp;<%}
 						}
-						if(endPage < pageCount){	%><a href="./BookIndex.bk?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						if(endPage < pageCount){	%><a href="./BookIndex.bk?pageNum=<%=startPage+pageBlock%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="./BookIndex.bk?pageNum=<%=pageCount%>"><span>&nbsp;&gt;&gt;</span></a>
+						<a href="./BookIndex.bk?pageNum=<%=pageCount%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
 						 </div>
 						
 

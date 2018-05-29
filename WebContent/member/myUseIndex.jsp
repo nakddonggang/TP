@@ -44,15 +44,17 @@
 					
 					<div class=board>
 					<!-- myUseBasket.jsp : 책바구니 -->
-						<h4>예약중인 도서목록</h4><input type = "button" value = "상세보기" onclick = "location.href = '#'">			
+						<h4>예약중인 도서목록</h4>
+						
+							
 							<ul class="brd_txt_lst">
 							<li class="view_lst">
 								<div class="con_lst">
 								<ul class="no_scroll title_t">
-									<li class="col_mem_r">책 제목</li>
-									<li class="col_mem_r">예약번호</li>
-									<li class="col_mem_r">예약신청날짜</li>
-									<li class="col_mem_r">대출신청/삭제<input type="checkbox"></li>
+									<li class="col_mem_b">책 제목</li>
+									<li class="col_mem_b">예약번호</li>
+									<li class="col_mem_b">예약신청날짜</li>
+									
 								</ul>
 								</div>							
 							
@@ -68,10 +70,10 @@
 									%>
 									<div class="con_lst">
 										<ul class="no_scroll" onclick = "loaction.href = './myUseRBookList.jsp'">
-											<li class="col_mem_r"><%=bDTO.getBook_subject() %></li>
-											<li class="col_mem_r"><%=bDTO.getRbook_num() %></li>
-											<li class="col_mem_r"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
-											<li class="col_mem_r">대출신청/삭제<input type="checkbox"></li>
+											<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
+											<li class="col_mem_b"><%=bDTO.getRbook_num() %></li>
+											<li class="col_mem_b"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
+											
 										</ul>
 									</div>
 									<%
@@ -80,6 +82,10 @@
 							%>
 							</li>
 							</ul>
+							
+							<div class="btn_btm_center">
+								<input type="submit" value="상세보기" class="btn_type3" onclick="location.href='#'">
+							</div>
 					</div>
 				
 					
@@ -90,7 +96,7 @@
 					%>
 					<div class=board>
 						<!-- myUseBook.jsp : 도서 대출 목록 -->
-						<h4>대출중인 도서 목록</h4><input type = "button" value ="역대대출내역보기" onclick = "location.href ='#'">
+						<h4>대출중인 도서 목록</h4>
 							<ul class="brd_txt_lst">
 							<li class="view_lst">
 							<div class="con_lst">
@@ -122,6 +128,10 @@
 							%>
 							</li>
 						</ul>
+						
+						<div class="btn_btm_center">							
+										<input type = "button" value ="대출내역보기"  class="btn_type3" onclick = "location.href ='#'">
+								</div>
 						 </div>
 					</div>
 				</article>
