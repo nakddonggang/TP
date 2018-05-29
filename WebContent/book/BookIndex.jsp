@@ -93,6 +93,49 @@ $(document).ready(function(){
 	
 });
 </script>
+<script type="text/javascript">
+
+	var category1 = document.searchFr.category1.value
+	var search1 = document.searchFr.search1.value
+	var opt1 = document.searchFr.opt1.value
+	var category2 = document.searchFr.category2.value
+	var opt2 = document.searchFr.opt2.value
+	var category3 = document.searchFr.category3.value
+	var search3 = document.searchFr.search3.value
+	var pubDate = document.searchFr.pubDate.value
+
+	$(document).ready(function(){
+		$(".book_btn_type4").click(function(){
+			var formdata = $("#SearchForm").serialize() ;
+			$.ajax({
+				type : 'GET',
+				url : './BookSearch',
+				data : {category1: category1, search1: search1, opt1: opt1, category2: category2, opt2: opt2, category3: category3, search3: search3, pubDate: pubDate},
+				dataType : 'json',
+				sucess : function(result){
+					
+				}
+			});
+		});
+	});
+	
+	$(document).reqdy(function(){
+		$('#book_sort').change(function() {
+			var sort = $("#book_sort > option:selected").val();
+			if (sort != "") {
+				$.ajax({
+					type : 'GET',
+					url : 'BookSortServlet',
+					date : {sort:sort},
+					dataType : 'json',
+					sucess : function(result){
+					
+					}
+				});
+			} else { }
+		});
+	});
+</script>
 </head>
 <body>
 	<%
@@ -135,7 +178,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div id="for_book_div">
-											<form action="./BookSearch.bk" method="get"
+											<form action="" method="get" name="searchFr"
 												id="SearchForm">
 												<div id="book_field">
 													<h1>통합검색</h1>
