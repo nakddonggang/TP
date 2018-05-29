@@ -37,36 +37,6 @@ List<BookDTO> popularList = (List<BookDTO>)request.getAttribute("popularList");
 String member_id = (String)session.getAttribute("member_id");
 %>
 <body>
-<script type="text/javascript">
-$(document).ready(function(){
-	var member_id = "<%=member_id %>";
-	$.ajax({
-		url:"./MemberBbookCheck.me",
-		type:'POST',
-		data:{'member_id':member_id},
-		success:function(result){
-			if(result != "0"){
-				$('#badge').html('N');
-				$('#alarm').click(function(){
-					$('#dialog').html('2일 이내 반납해야할 책 '+result+'권입니다.');
-					$('#dialog').dialog({
-						width:450,
-						height:180,
-						show:'slide',
-						hide:'slide',
-						buttons:[{
-							text:"확인",
-							click: function(){
-								$(this).dialog("close");
-							}
-						}]
-					});
-				});
-			}
-		}
-	});
-});
-</script>
 	<div class="wrapper">
 
 		<!-- header -->
