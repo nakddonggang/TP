@@ -143,5 +143,9 @@
 		on r.book_number = b.book_number
 		where member_id = #{member_id} limit #{startRow}, #{endSize};
 	</select>
+	
+	<select id="memberBbookCheck" parameterType="String" resultType="int">
+		select ifnull(count(*),0) from bbook where member_id=#{member_id} and datediff(bbook_rdate,now())<![CDATA[<= 2 ]]>
+	</select>
 
 </mapper>
