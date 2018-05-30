@@ -357,17 +357,17 @@ $(document).ready(function(){
 							<!-- 버튼 css 부분 -->
 							<div class="paginate">
 						
-						<a href="./BookSort.bk?pageNum=1&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
+						<a href="./BookSort.bk?sort=<%=sort%>&pageNum=1&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
-						if(startPage > pageBlock)	{ %><a href="./BookSort.bk?pageNum=<%=startPage - pageBlock%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						if(startPage > pageBlock)	{ %><a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=startPage - pageBlock%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="./BookSort.bk?pageNum=<%=p%>&view=<%=view%>"><%=p %></a> &nbsp;<%}
+							else {%> &nbsp;<a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=p%>&view=<%=view%>"><%=p %></a> &nbsp;<%}
 						}
-						if(endPage < pageCount){	%><a href="./BookSort.bk?pageNum=<%=startPage+pageBlock%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						if(endPage < pageCount){	%><a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=startPage+pageBlock%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="./BookSort.bk?pageNum=<%=pageCount%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
+						<a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=pageCount%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
 						 </div>
 
 
