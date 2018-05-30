@@ -88,6 +88,14 @@ public class MemberDAO {
 		sqlsession.insert("insertBasket", mDTO);
 	}	
 	
+	// 이미 바구니에 있는지 여부 체크
+	public int basketCheck(int book_number, String member_id){
+		HashMap map = new HashMap();
+		map.put("book_number", book_number);
+		map.put("member_id", member_id);
+		return sqlsession.selectOne("basketCheck", map);
+	}
+	
 	// 도서바구니 리스트
 	public List<MemberDTO> MemberBasketList(String member_id){
 		List<MemberDTO> bList = new ArrayList<MemberDTO>();
@@ -105,6 +113,11 @@ public class MemberDAO {
 		int bbook_check = sqlsession.selectOne("selectBbook", book_number);
 		return bbook_check;
 	}
+	// 누가 대출중인지
+	public String selectBbookId(int book_number){
+		String member_id = sqlsession.selectOne("selectBbookId", book_number);
+		return member_id;
+	}
 	// rbook 테이블에 해당 책 예약대기순위 조회
 	public int rbookNumMax(int book_number){
 		int rbookNumMax = sqlsession.selectOne("rbookNumMax", book_number);
@@ -119,8 +132,8 @@ public class MemberDAO {
 		sqlsession.insert("insertRbook",map);
 	}
 	// rbook 테이블 rbook_num=3인것들 찾아서 rbook_check='0'으로 수정
-	public void updateRbookCheck(){
-		sqlsession.update("updateRbookCheck");
+	public void updateRbookCheck(int book_number){
+		sqlsession.update("updateRbookCheck", book_number);
 	}
 	// rbook_num<3인것들은 rbook_check='1'로 수정
 	public void updateRbookCheck2(){

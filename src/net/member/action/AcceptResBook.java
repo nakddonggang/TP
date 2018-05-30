@@ -30,7 +30,7 @@ public class AcceptResBook implements Action{
 		mDAO.insertBbook(bDTO);				// 대출테이블에 insert
 		mDAO.updateRbook(book_number);		// 예약대기순위 1 감소
 		mDAO.deleteRbook();					// 예약대기순위 0인것 예약테이블에서 삭제
-		mDAO.updateRbookCheck();
+		mDAO.updateRbookCheck(book_number);
 		mDAO.updateRbookCheck2();
 		
 		forward.setPath("./MemberBasketList.me");
