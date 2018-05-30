@@ -33,7 +33,7 @@ $(window).on('load', function() {
 	$("#facil_dialog").dialog({ 
 		autoOpen: false, 
 		width: 400, 
-		height: 500,
+		height: 320,
 		modal: true,
 	});
 	

@@ -33,7 +33,6 @@
 		where m.member_id=#{member_id}
 	</select>
 	
-	
 	<insert id="insertBasket" parameterType="net.member.db.MemberDTO">
 		insert into basket(member_id, book_number, basket_number)
 		values (#{member_id}, #{book_number}, #{basket_number})
@@ -152,7 +151,7 @@
 		where member_id = #{member_id} limit #{startRow}, #{endSize};
 	</select>
 	
-	<select id="memberBbookCheck" parameterType="String" resultType="int">
+	<select id="memberBbookCheck" parameterType="string" resultType="int">
 		select ifnull(count(*),0) from bbook where member_id=#{member_id} and datediff(bbook_rdate,now())<![CDATA[<= 2 ]]>
 	</select>
 
