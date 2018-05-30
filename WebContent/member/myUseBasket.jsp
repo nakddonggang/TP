@@ -147,7 +147,7 @@ $(document).ready(function(){
 $(document).ready(function(){
 	var msg = "<%=alert %>";
 	if(msg=="1"){
-		alert("이미 예약했거나 예약이 꽉 찬 도서가 포함됐습니다.");
+		alert("이미 대출,예약했거나 예약이 꽉 찬 도서가 포함됐습니다.");
 	}
 });
 </script>

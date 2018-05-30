@@ -515,4 +515,14 @@
 	 	update facility set facil_use=#{facil_use}
 	 	where facil_num=#{facil_num}
 	 </update>
+	 
+	 <select id="AdminAllFacilityCount" resultType="int">
+	 	select count(*) from history_facil
+	 </select>
+	 
+	 <select id="AdminAllFaciliyList" parameterType="hashmap" resultType="net.facility.db.FacilityDTO">
+	 	select * from history_facil
+	 	order by facil_stime desc
+	 	limit #{startRow},#{pageSize}
+	 </select>
  </mapper>

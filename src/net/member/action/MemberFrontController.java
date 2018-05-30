@@ -184,22 +184,14 @@ public class MemberFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-		}else if(command.equals("/MemberMyUseBorrowBookList.me")){
-			action = new MemberMyUseBorrowBookList();
-			try {
+		}else if(command.equals("/MemberBbookCheck.me")){
+			action = new MemberBbookCheck();
+			try{
 				forward = action.execute(request, response);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-		}else if(command.equals("/MyBorrowBookDetail.me")){
-			action = new MyBorrowBookDetail();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {
+			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}
-		
 		
 		if(forward != null){
 			if(forward.isRedirect()){

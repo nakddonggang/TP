@@ -101,22 +101,24 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 								
 				
 				<div class="paginate">
-				<% // count = 전체 글의 개수
-				if (count != 0) {
-					// 이전페이지 // if (startPage와 pageBlock을 비교)
-					if (startPage > pageBlock) {
-						%><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%
-					}
-					// 1~10		11~20		21~30
-					for (int i = startPage; i <= endPage; i++) {%>
-					<a href="./AdminHBookList.am?pageNum=<%=i%>">&nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a><%		
-					}
-					// 다음 // if (endPage와 pageCount를 비교)
-					if (endPage<pageCount){%>
-						<a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%
-					}
-				} // if count 괄호 %>		
-					</div>
+						 
+							<% // count = 전체 글의 개수
+							if (count != 0) {
+							// 이전페이지 // if (startPage와 pageBlock을 비교)
+							if (startPage > pageBlock) {
+							%><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%
+							}
+							// 1~10		11~20		21~30
+							for (int i = startPage; i <= endPage; i++) {%>
+								<a href="./AdminHBookList.am?pageNum=<%=i%>">&nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a><%		
+							}
+								// 다음 // if (endPage와 pageCount를 비교)
+							if (endPage<pageCount){%>
+								<a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%
+								}
+							} // if count 괄호 %>		
+						</div>
+						
 				<div class="btn_btm_center">
 				<ul>
 					<li class="btn_cancle">

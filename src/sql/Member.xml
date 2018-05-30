@@ -39,6 +39,10 @@
 		values (#{member_id}, #{book_number}, #{basket_number})
 	</insert>
 	
+	<select id="basketCheck" parameterType="hashmap" resultType="int">
+		select ifnull(count(*),0) from basket where book_number=#{book_number} and member_id=#{member_id}
+	</select>
+	
 	<select id="MemberBasketList" parameterType="String" resultType="net.member.db.MemberDTO">
 		select * from member m
 		left join basket b
@@ -61,6 +65,10 @@
 		select ifnull(count(*),0) from bbook where book_number=#{book_number}
 	</select>
 	
+	<select id="selectBbookId" parameterType="int" resultType="String">
+		select member_id from bbook where book_number=#{book_number}
+	</select>
+	
 	<select id="rbookNumMax" parameterType="int" resultType="int">
 		select ifnull(max(rbook_num),0) from rbook where book_number=#{book_number}
 	</select>
@@ -72,12 +80,12 @@
 		<if test="rbook_num == 2">(#{book_number}, #{member_id}, #{rbook_num}+1, now(), '0')</if>
 	</insert>
 	
-	<update id="updateRbookCheck">
-		update rbook set rbook_check='0' where rbook_num=3
+	<update id="updateRbookCheck" parameterType="int">
+		update rbook set rbook_check='0' where book_number=#{book_number}
 	</update>
 	
 	<update id="updateRbookCheck2">
-		update rbook set rbook_check='1' where rbook_num <![CDATA[< 3 ]]>
+		update rbook set rbook_check='1' where book_number=any(select r.book_number from rbook r where r.rbook_num <![CDATA[< 3]]>)
 	</update>
 	
 	<select id="rbookCkMember" parameterType="hashmap" resultType="int">
@@ -144,11 +152,8 @@
 		where member_id = #{member_id} limit #{startRow}, #{endSize};
 	</select>
 	
-	<!-- 예린 -->
-	 <select id="myUseBorrowBookList" parameterType="string" resultType="net.book.db.BookDTO">
-		select bb.book_number , b.book_subject , bb.bbook_bdate , bb.bbook_rdate from bbook bb
-		join book b
-		on bb.book_number = b.book_number
-		where member_id = #{member_id}
+	<select id="memberBbookCheck" parameterType="String" resultType="int">
+		select ifnull(count(*),0) from bbook where member_id=#{member_id} and datediff(bbook_rdate,now())<![CDATA[<= 2 ]]>
 	</select>
+
 </mapper>

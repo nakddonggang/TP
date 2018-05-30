@@ -23,69 +23,75 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-	$(document).ready(
-			function() {
-
-				$('#SearchForm').submit(
-						function() {
-							if ($('#search1').val() == ""
-									&& $('#search2').val() == ""
-									&& $('#search3').val() == "") {
-								alert("검색어를 입력해주세요");
-								$('#search1').focus();
-								return false;
-							} else {
-							}
-						});
-
-				$('#book_sort').change(function() {
-					var sort = $("#book_sort > option:selected").val();
-					if (sort != "") {
-						$(location).attr('href', sort);
-					} else {
-					}
-				});
-
-				$('#book_pic_hv').hover(function() {
-					$('.book_lst > li').mouseenter(function() {
-						$("dl", this).addClass("bil_on");
-					}).mouseleave(function() {
-						$("dl", this).removeClass("bil_on");
-					});
-
-					$('.book_lst > li').focusin(function() {
-						$("dl", this).addClass("bil_on");
-					}).focusout(function() {
-						$("dl", this).removeClass("bil_on");
-					});
-				});
-
-				$('#book_pic_div').css('display', 'none');
-				$('#book_cont_div').css('display', 'block');
-			});
-
-	$(document).ready(function() {
-		$('#book_pic_btn').click(function() {
-			$('#book_pic_div').css('display', 'block');
-			$('#book_cont_div').css('display', 'none');
-		});
-	});
-
-	$(document).ready(function() {
-		$('#book_cont_btn').click(function() {
-			$('#book_pic_div').css('display', 'none');
-			$('#book_cont_div').css('display', 'block');
-		});
+$(document).ready(function() {
+	var book_img=<%=request.getParameter("view")%>;
+	if (book_img==null){	book_img="1";		} 
+	if (book_img==0){
+		$('#book_pic_div').show();
+		$('#book_cont_div').hide();
+	} else if (book_img==1){
+		$('#book_pic_div').hide();
+		$('#book_cont_div').show();
+	}
+	
+	$('#adm_select_box3 > :input').click(function(){
+		book_img=$(this).index();
+			if (book_img==0){
+				$('#book_pic_div').show();
+				$('#book_cont_div').hide();
+			} else if (book_img==1){
+				$('#book_pic_div').hide();
+				$('#book_cont_div').show();
+			}
 	});
 	
-	$(document).ready(function() {
-		$('#basket_Fr').submit(function(){
-			var con = confirm("책바구니에 담으시겠습니까?");
-			if (con==true){
-				$("#basket_Fr").submit;
-			} else { return false; }
+			$('#SearchForm').submit(
+					function() {
+						if ($('#search1').val() == ""
+								&& $('#search2').val() == ""
+								&& $('#search3').val() == "") {
+							alert("검색어를 입력해주세요");
+							$('#search1').focus();
+							return false;
+						} else {
+						}
+				});
+
+			$('#book_sort').change(function() {
+				var sort = $("#book_sort > option:selected").val();
+				if (sort != "") {
+					$(location).attr('href', sort);
+				} else {
+				}
+			});
+
+			$('#book_pic_hv').hover(function() {
+				$('.book_lst > li').mouseenter(function() {
+					$("dl", this).addClass("bil_on");
+				}).mouseleave(function() {
+					$("dl", this).removeClass("bil_on");
+				});
+
+				$('.book_lst > li').focusin(function() {
+					$("dl", this).addClass("bil_on");
+				}).focusout(function() {
+					$("dl", this).removeClass("bil_on");
+				});
+			});
 		});
-	});	
+
+$(document).ready(function() {
+$('#basket_Fr').submit(function(){
+		var con = confirm("책바구니에 담으시겠습니까?");
+		if (con==true){
+			$("#basket_Fr").submit;
+		} else { return false; }
+});
+});
+
+$(document).ready(function(){
+
+});
 </script>
 
 </head>
@@ -102,6 +108,9 @@
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 		List<BookDTO> booksortList = (List<BookDTO>) request.getAttribute("booksortList");
+		
+		String view = request.getParameter("view");
+		if(view==null) view = "1";
 	%>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
@@ -121,12 +130,17 @@
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div class="box_thm01 DIV_BOX_THM01" id="book_divv">
-										<div id="for_book_div">
-											<form action="./BookSort.bk" method="get"
+									<div id="book_divv" >
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="for_book_div">
+											<form action="" method="get" name="searchFr"
 												id="SearchForm">
-												<fieldset id="book_field">
-													<legend>&nbsp;통합검색&nbsp;</legend>
+												<div id="book_field">
+													<h1>통합검색</h1>
 													<div class="DIV_CON_LST">
 														<div id="book_select_box">
 															<select name="category1" id="book_select1">
@@ -173,8 +187,8 @@
 																	type="button" value="검색" class="book_btn_search">
 															</div>
 
-															<div id="book_date_box">
-																<p>발행일</p>
+															<div id="book_date_box" >
+																<p>&nbsp;&nbsp;발행일</p>
 																<select name="pubDate" id="book_date">
 																	<option value="all">전체</option>
 																	<option value="1">최근 1년</option>
@@ -190,14 +204,9 @@
 															<input type="reset" class="book_btn_type5" value="입력 초기화">
 														</div>
 													</div>
-												</fieldset>
+												</div>
 											</form>
 										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 				</article>
 				<!-- //서브메뉴 -->
 
@@ -208,23 +217,25 @@
 					<div class="content">
 
 						<div class="adms">
-							<h1 class="adm_h_1">&lt; 혜윰나래 도서관 통합검색 &gt;</h1>
+							<h3>&lt; 혜윰나래 도서관 통합검색 &gt;</h3>
 							<p>
 								Total_<span><%=count%></span>
 							</p>
 
 							<div id="adm_select_box3">
+								<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
+								<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
 								<select name="sort" id="book_sort">
 									<option value="" <%if (sort.equals("")) {%> selected <%}%>>정렬</option>
-									<option value="./BookSort.bk?sort=book_subject"
+									<option value="./BookSort.bk?view=<%=view%>&sort=book_subject"
 										<%if (sort.equals("book_subject")) {%> selected <%}%>>제목순</option>
-									<option value="./BookSort.bk?sort=book_author"
+									<option value="./BookSort.bk?view=<%=view%>&sort=book_author"
 										<%if (sort.equals("book_author")) {%> selected <%}%>>저자순</option>
-									<option value="./BookSort.bk?sort=book_number"
+									<option value="./BookSort.bk?view=<%=view%>&sort=book_number"
 										<%if (sort.equals("book_number")) {%> selected <%}%>>인기순</option>
-									<option value="./BookSort.bk?sort=book_pubDate"
+									<option value="./BookSort.bk?view=<%=view%>&sort=book_pubDate"
 										<%if (sort.equals("book_pubDate")) {%> selected <%}%>>신작순</option>
-									<option value="./BookSort.bk?sort=book_date"
+									<option value="./BookSort.bk?view=<%=view%>&sort=book_date"
 										<%if (sort.equals("book_date")) {%> selected <%}%>>입고순</option>
 								</select>
 							</div>
@@ -344,38 +355,20 @@
 						</form>
 
 							<!-- 버튼 css 부분 -->
-							<div class="btn_btm_center">
-								<%
-									// count = 전체 글의 개수
-									if (count != 0) {
-										// 이전페이지 // if (startPage와 pageBlock을 비교)
-										if (startPage > pageBlock) {
-								%><a
-									href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=startPage - pageBlock%>">[이전]</a>
-								<%
-									}
-										// 1~10		11~20		21~30
-										for (int i = startPage; i <= endPage; i++) {
-								%>
-								<a
-									href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=i%>">[<%=i%>]
-								</a>
-								<%
-									}
-										// 다음 // if (endPage와 pageCount를 비교)
-										if (endPage < pageCount) {
-								%>
-								<a
-									href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=startPage + pageBlock%>">[다음]</a>
-								<%
-									}
-									} // if count 괄호
-								%>
-
-								<!-- 시험용 버튼 -->
-								<input type="button" value="갤러리" id="book_pic_btn" onclick="location.href='./BookIndexPic.bk'"><input
-									type="button" value="게시판" id="book_cont_btn" onclick="location.href='./BookIndex.bk'">
-							</div>
+							<div class="paginate">
+						
+						<a href="./BookSort.bk?pageNum=1&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./BookSort.bk?pageNum=<%=startPage - pageBlock%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./BookSort.bk?pageNum=<%=p%>&view=<%=view%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./BookSort.bk?pageNum=<%=startPage+pageBlock%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./BookSort.bk?pageNum=<%=pageCount%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
+						 </div>
 
 
 						</div>

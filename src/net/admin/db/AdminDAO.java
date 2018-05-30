@@ -584,4 +584,19 @@ public class AdminDAO {
 		result =  sqlsession.update("ajaxFacilUseButton", map);
 		return result;
 	}
+	
+	//AdminAllFacilityUserInfo  총갯수 구문
+	public int AdminAllFacilityCount() {
+		int count = sqlsession.selectOne("AdminAllFacilityCount");
+		return count;
+	}
+	
+	//AdminAllFacilityList 구문
+	public List<FacilityDTO> AdminAllFaciliyList(int startRow, int pageSize) {
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<FacilityDTO> AllFacilityList = sqlsession.selectList("AdminAllFaciliyList", map);
+		return AllFacilityList;
+	}
 }
