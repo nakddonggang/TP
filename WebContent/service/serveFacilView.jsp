@@ -60,7 +60,7 @@
 							</li>
 							<li>
 								<ul class="row_sub">
-									<li class="title">사용유무 <li>
+									<li class="title">사용유무 </li>
 									<li class="inp_form"><%
 											if(Integer.parseInt(fDTO.getFacil_use()) != 1)	out.println("사용가능");
 											else out.println("사용중");
