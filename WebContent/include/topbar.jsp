@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="top_bar">
 	<ul>
 		<li>
@@ -22,7 +21,6 @@
 			</div> --%>
 		</li>
 	</ul>
-<!-- </div> -->
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -36,7 +34,7 @@ $(document).ready(function(){
 		data:{'member_id':member_id},
 		success:function(result){
 			if(result != "0"){
-				$('#badge').html('★');		
+				$('#badge').html('★');
 				$('#alarm').click(function(){
 					$.toast('<h6>2일 이내 반납해야할 책 '+result+'권입니다.</h6>',{
 						sticky: true,
