@@ -24,8 +24,8 @@
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	$.toast.config.align = 'right';
-    $.toast.config.width = 400;
+    $.toast.config.align = 'center';
+    $.toast.config.width = 300;
     
 	var member_id = "${member_id}";
 	$.ajax({
@@ -36,10 +36,11 @@ $(document).ready(function(){
 			if(result != "0"){
 				$('#badge').html('★');
 				$('#alarm').click(function(){
-					$.toast('<h6>2일 이내 반납해야할 책 '+result+'권입니다.</h6>',{
-						sticky: true,
-						type: 'danger'
-					});
+                    $.toast('<h6>2일 이내 반납해야할 책 '+result+'권입니다.</h6>',{
+                        sticky: true,
+                        type: 'danger'
+                    });
+
 				});
 			}
 		}
