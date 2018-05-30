@@ -19,6 +19,34 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#search").autocomplete({
+        source : function( request, response ) {
+	           $.ajax({
+                   type: 'POST',
+	               url: './BoardNoticeAjax.no',
+	               dataType: 'json',
+	               data: { 'search' : request.term },
+	               success: function(data) {
+	                   //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
+	                   response(
+	                       $.map(data, function(item) {
+	                           return {
+	                               label: item.notice_subject,
+	                               value: item.notice_subject
+	                           }
+	                       })
+	                   );
+	               }
+	         });
+        },
+    //조회를 위한 최소글자수
+        minLength: 2,
+        select:function(event,ui){}
+    });
+});
+</script>
 </head>
 <body>
 	<%
@@ -66,7 +94,7 @@
 						<div class=board>
 						<div class="search_bx">
 							<form action="./BoardNoticeSearch.no" method="post">
-								<input type="text" name="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
+								<input type="text" name="search" id="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
 						</div>
 						
