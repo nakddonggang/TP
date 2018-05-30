@@ -67,8 +67,10 @@ $(window).on('load', function() {
 	//메신저 다이얼로그 설정
 	$("#chat_dialog").dialog({ 
 		autoOpen: false, 
-		modal: false, 
-		resizeable : false,
+		modal: false,
+		width: 600, 
+		height: 500, 
+		resizeable : true,
 		position:{
             my:"right bottom",
             at:"right bottom",
