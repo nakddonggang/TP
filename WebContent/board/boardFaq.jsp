@@ -66,12 +66,12 @@
 
 							<div class="view_cnt">
 								<p>Total_<span><%=count%></span></p>
-<!-- 								<select name="search" id="faq_select"> -->
-<!-- 									<option value="all">전체</option> -->
-<!-- 									<option value="book">대출/반납/예약</option> -->
-<!-- 									<option value="buy">자료구입</option> -->
-<!-- 									<option value="library">도서관 이용</option> -->
-<!-- 								</select> -->
+								<select name="search" id="faq_select">
+									<option value="all">전체</option>
+									<option value="book">대출/반납/예약</option>
+									<option value="buy">자료구입</option>
+									<option value="library">도서관 이용</option>
+								</select>
 							</div>
 							<ul class="brd_txt_lst">
 								<!-- 글목록 -->
