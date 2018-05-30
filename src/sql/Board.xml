@@ -186,5 +186,9 @@
 		<if test='table != null and table.equals("curation")'>curation set cur_readcount = cur_readcount+1 where cur_num=</if>
 		#{num}
 	</update>
+	
+	<select id="selectList" parameterType="String" resultType="net.board.db.BoardDTO">
+		select * from notice where notice_subject like #{search}
+	</select>
 
 </mapper>

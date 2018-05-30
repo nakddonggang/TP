@@ -260,4 +260,8 @@ public class BoardDAO {
 		map.put("num", num);
 		sqlsession.update("updateReadcount", map);
 	}
+	//test
+	public List<BoardDTO> selectList(String search){
+		return sqlsession.selectList("selectList",search);
+	}
 }

@@ -12,6 +12,9 @@
 <title>Insert title here</title>
 <link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
@@ -19,16 +22,23 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-$(function(){
-	var data=[
-		{value:"1차 테스트",label:"1차 테스트"},
-		{value:"2차 테스트",label:"2차 테스트"},
-		{value:"6차 테스트",label:"6차 테스트"},
-	];
-	$('.inp_search').autocomplete({
-		source : data,
-		minLength : 1
-	});
+// $(function(){
+// 	var data=[
+// 		{value:"6차 테스트"},
+// 		{value:"1차 테스트"},
+// 		{value:"삭제 테스트"},
+// 	];
+// 	$('.inp_search').autocomplete({
+// 		source : data,
+// 		select: function (event, ui) { alert(ui.item.id); },
+// 		minLength : 0
+// 	});
+// });
+
+</script>
+<script>
+$('.inp_search').autocomplete({
+	source : ["삭제 테스트", "6차 테스트", "1차 테스트"],
 });
 </script>
 </head>
@@ -82,7 +92,8 @@ $(function(){
 						</div>
 						<div class="search_bx">
 							<form action="./BoardQnaSearch.qn" method="post">
-								<input type="text" name="search" placeholder="문의사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
+								<label for="search"></label>
+								<input type="text" id="search" name="search" placeholder="문의사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
 						</div>
 						
