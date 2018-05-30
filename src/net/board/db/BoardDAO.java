@@ -261,7 +261,10 @@ public class BoardDAO {
 		sqlsession.update("updateReadcount", map);
 	}
 	//test
-	public List<BoardDTO> selectList(String search){
-		return sqlsession.selectList("selectList",search);
+	public List<BoardDTO> selectList(String table, String search){
+		HashMap map = new HashMap();
+		map.put("table", table);
+		map.put("search", search);
+		return sqlsession.selectList("selectList",map);
 	}
 }

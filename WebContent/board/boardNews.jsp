@@ -21,7 +21,6 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var search = $('#search').val();
 	$("#search").autocomplete({
         source : function( request, response ) {
 	           $.ajax({
@@ -30,10 +29,9 @@ $(document).ready(function(){
 	               dataType: 'json',
 	               data: { 'search' : request.term },
 	               success: function(data) {
-	            	   alert("~~~~~~~");
 	                   //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
 	                   response(
-	                       $.map(data.arr, function(item) {
+	                       $.map(data, function(item) {
 	                           return {
 	                               label: item.notice_subject,
 	                               value: item.notice_subject

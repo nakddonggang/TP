@@ -10,7 +10,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
@@ -22,23 +22,31 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-// $(function(){
-// 	var data=[
-// 		{value:"6차 테스트"},
-// 		{value:"1차 테스트"},
-// 		{value:"삭제 테스트"},
-// 	];
-// 	$('.inp_search').autocomplete({
-// 		source : data,
-// 		select: function (event, ui) { alert(ui.item.id); },
-// 		minLength : 0
-// 	});
-// });
-
-</script>
-<script>
-$('.inp_search').autocomplete({
-	source : ["삭제 테스트", "6차 테스트", "1차 테스트"],
+$(document).ready(function(){
+	$("#search").autocomplete({
+        source : function( request, response ) {
+	           $.ajax({
+                   type: 'POST',
+	               url: './BoardQnaAjax.qn',
+	               dataType: 'json',
+	               data: { 'search' : request.term },
+	               success: function(data) {
+	                   //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
+	                   response(
+	                       $.map(data, function(item) {
+	                           return {
+	                               label: item.qna_subject,
+	                               value: item.qna_subject
+	                           }
+	                       })
+	                   );
+	               }
+	         });
+        },
+    //조회를 위한 최소글자수
+        minLength: 2,
+        select:function(event,ui){}
+    });
 });
 </script>
 </head>
@@ -92,7 +100,6 @@ $('.inp_search').autocomplete({
 						</div>
 						<div class="search_bx">
 							<form action="./BoardQnaSearch.qn" method="post">
-								<label for="search"></label>
 								<input type="text" id="search" name="search" placeholder="문의사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
 						</div>
@@ -170,7 +177,7 @@ $('.inp_search').autocomplete({
 
 				</article>
 				<!-- //메인 페이지-->
-				
+
 			</section>
 		</div>
 		<!-- //본문 컨테이너 -->

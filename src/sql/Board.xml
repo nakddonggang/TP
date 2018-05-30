@@ -187,8 +187,11 @@
 		#{num}
 	</update>
 	
-	<select id="selectList" parameterType="String" resultType="net.board.db.BoardDTO">
-		select * from notice where notice_subject like #{search}
+	<select id="selectList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from 
+		<if test='table.equals("notice")'>notice where notice_subject</if>
+		<if test='table.equals("qna")'>qna where qna_subject</if>
+		 like #{search}
 	</select>
 
 </mapper>
