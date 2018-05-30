@@ -36,7 +36,32 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-					<div class="seatLayout">
+				<div class="text_top">
+							<h3>열람실 자리 신청</h3>
+							<div class="dl_box">
+								<dl>
+									<dt>이용안내</dt>
+									<dd><span class="bold">평일 :</span> 09:00 ~ 24:00</dd>
+									<dd><span class="bold">주말 , 공휴일 :</span> 10:00 ~ 21:00</dd>
+									<dd><span class="bold">휴관일 :</span> 매월 첫 번째 세 번째 월요일, 공휴일</dd>
+									<br>
+									<dt>유의사항</dt>
+									<dd>열람실 내에서의 핸드폰은 진동으로 하고 사용을 삼가 합시다 </dd>
+									<dd>모든 음식물과 음료수 등 반입 금지</dd>
+									<dd><span class="bold">1인 1자리</span>만 이용 할 것</dd>
+									<dd>실내 정숙 및 질서를 유지 합시다</dd>
+									<dd>분실에 유의하고 귀중품을 잘 보관 합시다</dd>
+									<dd>분실에 대하여는 일괄 책임을 지지 않습니다</dd>
+									<br>
+									<dt>주의 사항</dt>
+									<dd>초록색: 사용가능 / 빨강색: 사용중  / 검은색 : 이용불가</dd>
+								</dl>
+							</div>
+						</div>
+					<fieldset class="seatLayout">
+					<legend class="seatlegend">[출입문]</legend>
+					
+						
 						<ul>
 					<%
 					List<FacilityDTO> Facilitylist = (List<FacilityDTO>)request.getAttribute("Facilitylist");
@@ -49,6 +74,9 @@
 									"</div>" + 
 								"</a>" + 
 							"</li>");
+						if(fDTO.getFacil_num().substring(1, 2).equals("4")) {
+							out.print("<li><div class='abc'></div></li>");
+					}
 						if(fDTO.getFacil_num().substring(1, 2).equals("7")) {
 								out.print("</ul><ul>");
 						}
@@ -58,7 +86,8 @@
 					<div id="facil_dialog">
 						<iframe src=''>이 브라우저는 iframe을 지원하지 않습니다</iframe>
 					</div>
-					</div>
+				
+					</fieldset>
 				</div>
 				<!-- //메인 페이지-->
 				</article>
