@@ -73,7 +73,14 @@
 								<li class="col_mem_b"><%=fDTO.getFacil_num() %></li>
 								<li class="col_mem_b"><%=fDTO.getMember_id() %></li>
 								<li class="col_mem_b"><%=facility_date.format(fDTO.getFacil_stime()) %></li>
-								<li class="col_mem_b"><%=facility_date.format(fDTO.getFacil_etime()) %></li>
+								<li class="col_mem_b">
+								<%if((fDTO.getFacil_etime())!=null) {
+									out.print(facility_date.format(fDTO.getFacil_etime()));
+								} else {
+									out.print("현재 이용중인 자리입니다.");
+								}
+									%></li>
+
 							</ul>
 							</div>
 							<%
