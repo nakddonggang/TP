@@ -130,14 +130,14 @@ $(document).ready(function(){
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div class="box_thm01 DIV_BOX_THM01" id="book_divv">
+									<div id="book_divv" >
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div id="for_book_div">
-											<form action="./BookSearch.bk" method="get"
+											<form action="" method="get" name="searchFr"
 												id="SearchForm">
 												<div id="book_field">
 													<h1>통합검색</h1>
@@ -187,8 +187,8 @@ $(document).ready(function(){
 																	type="button" value="검색" class="book_btn_search">
 															</div>
 
-															<div id="book_date_box">
-																<p>발행일</p>
+															<div id="book_date_box" >
+																<p>&nbsp;&nbsp;발행일</p>
 																<select name="pubDate" id="book_date">
 																	<option value="all">전체</option>
 																	<option value="1">최근 1년</option>
