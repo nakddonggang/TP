@@ -76,6 +76,13 @@ public class NoticeFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		}else if(command.equals("/BoardNoticeAjax.no")){
+			action = new BoardNoticeAjax();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null){
