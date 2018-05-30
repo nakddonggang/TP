@@ -7,31 +7,42 @@
 		}
 	%>
 		<div id="userview">
-			<form name="usersForm">
+			<form name="usersForm" id="usersForm">
 				<input type="hidden" id="roomId" name="roomId"/>
 				<input type="hidden" id="username" name="username"/>
 				<table id="users" name="users">
 				   	<tr><th>Web Messenger Users</th></tr>
 				   	<tr><td>There is no one to chat</td></tr>
+				   	<div id="nowChat"></div>
 			   </table>
 			</form>
 		</div>
 		<div id="joinchat">
-			<input type="button" value="대화 참여" id="memberJoinChat">
+			<%
+				if(session.getAttribute("member_id")!=null){
+					%><input type="button" value="대화 참여" id="memberJoinChat"><%
+				} else {
+					%><span>로그인 후 이용 가능합니다</span><%
+				}
+			%>
+			
 		</div>
 		<div id="chatview">
 			<div id="chatLog"></div>
 		</div>
-		<input id="textMessage" type="text" style="width: 300px" />
-		<input type="button" id="sendBtn" name="sendBtn" value="Send"/>
-		<input type="button" id="BTN_CLOSE_CHAT" name="leaveBtn" value="Leave"/>
+		<div id="inputview">
+			<input id="textMessage" type="text" />
+			<input type="button" id="sendBtn" name="sendBtn" value="전송"/>
+			<input type="button" id="BTN_CLOSE_CHAT" name="leaveBtn" value="닫기"/>
+		</div>
 	</div>						
 <script>
 /* start 웹소켓 채팅 구현 */
 //chat 팝업창을 여러개 띄우기 위함
  var webSocket = null; 
  var admincheck = "${admincheck}";
- var chatstart = "${chatstart}";
+ var chatstart = sessionStorage.getItem('chatstart');
+ alert(chatstart);
  var socketchat = null;
  var chatuser = null;
  var username = "${member_id}"
@@ -39,25 +50,45 @@
  $(document).ready(function() {
     
     var url = 'ws://' + window.location.host + '${pageContext.request.contextPath}/userlist';
-    if(admincheck){   $("#joinchat").css("display","none");   
-       webSocket = connection(url);
+    
+    if(username=""){
+		$("#joinchat").css("display",""); 
+		$("#userview").css("display","none"); 
+		$("#chatview").css("display","none"); 
+		$("#inputview").css("display","none"); 
+    }else {
+    	if(admincheck){   
+    		$("#joinchat").css("display","none");
+    		$("#chatview").css("width","");
+    		webSocket = connection(url);
+    		sessionStorage.setItem('chatstart', true);
+        }
+        if(admincheck=="") {
+        	$("#userview").css("display","none");
+        	$("#chatview").css("width","100%");
+           if(chatstart==null){
+    			$("#joinchat").css("display",""); 
+    			$("#userview").css("display","none"); 
+    			$("#chatview").css("display","none"); 
+    			$("#inputview").css("display","none"); 
+    			$("#memberJoinChat").click(function(){
+    				sessionStorage.setItem('chatstart', true);
+    				webSocket = connection(url);
+    				var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + username;
+    				socketchat = new WebSocket(urlchat);
+    				$("#joinchat").css("display","none");
+    				$("#chatview").css("display",""); 
+    				$("#inputview").css("display","");
+    			});
+           } else if(chatstart) {
+              $("#joinchat").css("display","none");
+              webSocket = connection(url);
+              var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + username;
+              socketchat = new WebSocket(urlchat);
+           }
+        }
     }
-    if(admincheck=="") {$("#userview").css("display","none");   
-       if(chatstart==""){
-          $("#memberJoinChat").click(function(){
-             webSocket = connection(url);
-             var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + username;
-             socketchat = new WebSocket(urlchat);
-             $("#joinchat").css("display","none");   
-             <% session.setAttribute("chatstart", true); %>
-          })
-       } else if(chatstart) {
-          $("#joinchat").css("display","none");
-          webSocket = connection(url);
-          var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + username;
-          socketchat = new WebSocket(urlchat);
-       }
-    }
+    
  
     var connectionType;
     webSocket.onopen = function(){ processOpen(); };
@@ -101,10 +132,7 @@
        textMessage.value = "";
     }
  });
- 
- $('#leaveBtn').click(function() {
-    socketchat.close();
- });
+
  
  function trClick(selectedTr) {
     if (selectedTr.id != null) {
@@ -132,8 +160,6 @@
        }
     }
  }
- 
- 
  
  function processOpen() {
     connectionType = "firstConnection";
@@ -173,7 +199,8 @@
        var other = "";
        for(var i=0; i<jsonData.users.length; i++) {
           if (chatuser==jsonData.users[i]) {
-             $('#users').append(jsonData.users[i]+"님과 대화중입니다.");
+        	 $('#nowChat').empty();
+             $('#nowChat').append("<span>" + jsonData.users[i]+"님과 대화중입니다.</span>");
              other = jsonData.users[i];
              first = "false";
           }
@@ -196,10 +223,10 @@
  function displaybubble(data) {
     //message = jsonData.name + " : "+ jsonData.message + '\n';
     if (data.name == username) {
-       $('#chatLog').append(data.name+"(me)<br/><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
+       $('#chatLog').append("<div class='username right'>"+data.name+"</div><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
               
     } else {
-        $('#chatLog').append(data.name+"<br/><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
+        $('#chatLog').append("<div class='username left'>" + data.name+"</div><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
     }
  }
  
@@ -217,5 +244,9 @@
        
     }
  }
+ 
+ $(window).on("beforeunload", function(){
+	 socketchat.close();
+ });
 /* end 웹소켓 채팅 구현 */
 </script>
