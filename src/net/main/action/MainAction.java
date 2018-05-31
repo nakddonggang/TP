@@ -9,6 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
+import net.book.db.BookDAO;
+import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
@@ -82,15 +84,25 @@ public class MainAction implements Action{
 		}
 		
 		// count, pageNum, noticeList, pageCount 저장
-			
-				request.setAttribute("pageNum", pageNum);
-				request.setAttribute("noticeList", noticeList);
-				request.setAttribute("curationList", curationList);
 		
-				forward.setPath("./main/main.jsp");
-				forward.setRedirect(false);
-				
-				return forward;
+		//////////////////////인기도서 불러오는 값 /////////////////////////////
+		BookDAO bkDAO = new BookDAO();
+		List<BookDTO> popularList = null;
+		if(bkDAO.popularList().size()!=0){
+			popularList = bkDAO.popularList();
+		}
+		
+		System.out.println("popularList: " + bkDAO.popularList().size());
+		
+		request.setAttribute("popularList", popularList);
+		request.setAttribute("pageNum", pageNum);
+		request.setAttribute("noticeList", noticeList);
+		request.setAttribute("curationList", curationList);
+	
+		forward.setPath("./main/main.jsp");
+		forward.setRedirect(false);
+		
+		return forward;
 	}
 	
 }

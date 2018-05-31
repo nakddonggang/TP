@@ -10,12 +10,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rng.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
@@ -118,6 +124,7 @@ String pageNum = (String)request.getAttribute("pageNum");
 				
 					<div class="write_form">
 							<h3>시설관리</h3>
+							<h4><span class="bold"><%=facil_num%></span> 자리정보</h4>
 							<form action="./AdminFacilSuggUpdate.am"  method="post"  name="fr">
 							<input type="hidden" value=<%=facil_num%> name="facil_num" id="add1">
 							<input type="hidden" value=<%=facilList.size()%> name="facilList_size">

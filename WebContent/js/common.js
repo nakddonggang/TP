@@ -88,6 +88,7 @@ $(window).on('load', function() {
 		$("#chat_dialog").dialog("close");
 	});
 	
+		
 	
 });
 
