@@ -10,22 +10,21 @@
 						out.print("<span id='member_id'>" + member_id + "</span>");
 						%> | <a href="./MemberLogout.me"><img src="./resource/img/logout.png" width="5%" height="5%"></a>
 						 | <a href="./MemberInfo.me"><img src="./resource/img/account.png" width="5%" height="5%"></a><%
-					}else{	%><a href="./MemberLogin.me"><!-- id="btn-open-login" --><img src="./resource/img/login.png" width="5%" height="5%"></a>
+					}else{	%><a href="#" id="btn-open-login"><img src="./resource/img/login.png" width="5%" height="5%"></a>
 					 | <a href="./MemberJoin.me"><img src="./resource/img/join.png" width="5%" height="5%"></a><%	}
 				%>
 				<div id="dialog" title="알림"></div>
 			</div>
-			
-			<%-- <div id="loginDialog">
+			<div id="loginDialog">
 				<jsp:include page="../include/login.jsp" />
-			</div> --%>
+			</div>
 		</li>
 	</ul>
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-	$.toast.config.align = 'right';
-    $.toast.config.width = 400;
+    $.toast.config.align = 'center';
+    $.toast.config.width = 300;
     
 	var member_id = "${member_id}";
 	$.ajax({
@@ -36,10 +35,11 @@ $(document).ready(function(){
 			if(result != "0"){
 				$('#badge').html('★');
 				$('#alarm').click(function(){
-					$.toast('<h6>2일 이내 반납해야할 책 '+result+'권입니다.</h6>',{
-						sticky: true,
-						type: 'danger'
-					});
+                    $.toast('<h6>2일 이내 반납해야할 책 '+result+'권입니다.</h6>',{
+                        sticky: true,
+                        type: 'danger'
+                    });
+
 				});
 			}
 		}

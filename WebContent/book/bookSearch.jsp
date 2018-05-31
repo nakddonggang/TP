@@ -114,7 +114,7 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchList");
 
 String view = request.getParameter("view");
-if(view==null) view = "0";
+if(view==null) view = "1";
 %>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
@@ -141,7 +141,7 @@ if(view==null) view = "0";
 						</div>
 					</div>
 					<div id="for_book_div">
-											<form action="" method="get" name="searchFr"
+											<form action="BookSearch.bk" method="get" name="searchFr"
 												id="SearchForm">
 												<div id="book_field">
 													<h1>통합검색</h1>

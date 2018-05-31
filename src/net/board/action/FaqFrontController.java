@@ -64,7 +64,13 @@ public class FaqFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-			
+		}else if(command.equals("/BoardFaqAjax.fa")){
+			action = new BoardFaqAjax();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		
 		if(forward != null){
