@@ -31,20 +31,26 @@ $(document).ready(function(){
 			data:{'selected':selected},
 			dataType:'json',
 			success:function(result){
-				var arr = result;
-				if(arr!=null){
-					$.each(arr, function(i,data){
-						var test = "<ul><li class='col_rcFAQ'><a href='#'>"+data.faq_num+"</a></li><li class='col_type'><a href='#'><p>"
-						+data.faq_type+"</p></a></li><li class='col_title'><a href='#'><p>"+data.faq_subject+"</p></a></li></ul>";
+				alert(result);
+				if(result!=null){
+					$.each($.parseJSON(result), function(i, data){
+						alert(data.faq_num);
+						var faq_num = obj.faq_num;
+						var faq_type = obj.faq_type;
+						var faq_subject = obj.faq_subject;
+						var faq_content = obj.faq_content;
+						var faq_file = obj.faq_file;
+						alert(faq_content);
+						
+						var test = "<ul><li class='col_rcFAQ'><a href='#'>"+faq_num+"</a></li><li class='col_type'><a href='#'><p>"
+						+faq_type+"</p></a></li><li class='col_title'><a href='#'><p>"+faq_subject+"</p></a></li></ul>";
 						$('.con_lst').append(test);
 						
-						var file="";
-						if(data.faq_file != null){
-							file = data.faq_file;
-							var test2 = "<p><img src='./upload/"+file+"' width='100' height='100'></p>";
+						if(faq_file != null){
+							var test2 = "<p><img src='./upload/"+faq_file+"' width='100' height='100'></p>";
 							$('.con_detail').append(test2);
 						}
-						var test3 = "<p>"+data.faq_content+"</p><div class='file'><span>첨부파일</span><ul>"+file+"</ul></div>"
+						var test3 = "<p>"+faq_content+"</p><div class='file'><span>첨부파일</span><ul>"+faq_file+"</ul></div>"
 						$('.con_detail').append(test3);
 					});
 				}else{
