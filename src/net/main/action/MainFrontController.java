@@ -44,8 +44,14 @@ public class MainFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("service/serveQues.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/chatlogSave.fp")){
+			action = new ChatlogSaveAction();
+			try {
+				forward = action.execute(request, response);		
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
-		
 		if(forward != null){
 			if(forward.isRedirect()){
 				response.sendRedirect(forward.getPath());
