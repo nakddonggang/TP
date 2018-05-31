@@ -57,25 +57,38 @@ String member_id = (String)session.getAttribute("member_id");
 				<div class="content">
 				
 			<!-- 	인기도서	 -->
-<!-- 				<div class=""> -->
-<%-- 					<% --%>
-<!-- // 						for(int i=0; i<popularList.size(); i++){ -->
-<!-- // 							BookDTO bkDTO = popularList.get(i); -->
-<%-- 							%> --%>
-<!-- 							<ol> -->
-<%-- 								<li>제목 : <%=bkDTO.getBook_subject() %></li> --%>
-<%-- 								<li>저자 : <%=bkDTO.getBook_author() %></li> --%>
-<%-- 								<li>발행처 : <%=bkDTO.getBook_publisher() %></li> --%>
-<%-- 								<li>발행일 : <%=bkDTO.getBook_pubDate() %></li> --%>
-<!-- 							</ol> -->
-<!-- 							<br> -->
-
-<%-- 							<% --%>
-<!-- // 						} -->
-<%-- 					%>		 --%>
-<!-- 				</div> -->
+				<div class="">
+					<%
+					if(popularList==null){
+						%><ul><li>게시물이 없습니다.</li></ul><%
+					}else{
+						for(int i=0; i<popularList.size(); i++){ 
+						BookDTO bkDTO = popularList.get(i);
+						%><ul>
+							<li>제목 : <%=bkDTO.getBook_subject() %></li>
+							<li>저자 : <%=bkDTO.getBook_author() %></li>
+							<li>발행처 : <%=bkDTO.getBook_publisher() %></li>
+							<li>발행일 : <%=bkDTO.getBook_pubDate() %></li>
+						</ul><%
+						}
+					}%>		
+				</div>
 					
  			<!--  통계   -->
+ 			
+ 			<script>
+			Morris.Bar({
+				element: 'bar-example',
+				data: [
+					{ y: '2015', a: 100, b: 90 },
+					{ y: '2014', a: 75, b: 65 },
+					{ y: '2013', a: 50, b: 40 }
+				],
+				xkey: 'y',
+				ykeys: ['a', 'b'],
+				labels: ['A data', 'B data']
+			});
+			</script>
 		
 			<!-- 큐레이션 -->
 					<div class="">
