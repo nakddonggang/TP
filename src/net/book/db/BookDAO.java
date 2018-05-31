@@ -38,48 +38,15 @@ public class BookDAO {
 		return bookList;
 	}
 	
-// START 책정렬
-		// 제목 정렬
-		public List<BookDTO> BookSortSubject(int startRow, int pageSize){
+// 책정렬
+		public List<BookDTO> BookSorts(String bookSR, String adsc){
 			HashMap map = new HashMap();
-			map.put("startRow", startRow-1);
-			map.put("pageSize", pageSize);
-			List<BookDTO> bookList = sqlsession.selectList("BookSortSubject", map);
+			map.put("bookSR", bookSR);
+			map.put("adsc", adsc);
+			List<BookDTO> bookList = sqlsession.selectList("BookSorts", map);
 			return bookList;
 		}	
-		// 저자 정렬
-		public List<BookDTO> BookSortAuthor(int startRow, int pageSize){
-			HashMap map = new HashMap();
-			map.put("startRow", startRow-1);
-			map.put("pageSize", pageSize);
-			List<BookDTO> bookList = sqlsession.selectList("BookSortAuthor", map);
-			return bookList;
-		}	
-		// 인기순
-		public List<BookDTO> BookSortNumber(int startRow, int pageSize){
-			HashMap map = new HashMap();
-			map.put("startRow", startRow-1);
-			map.put("pageSize", pageSize);
-			List<BookDTO> bookList = sqlsession.selectList("BookSortNumber", map);
-			return bookList;
-		}	
-		// 신작순
-		public List<BookDTO> BookSortPubDate(int startRow, int pageSize){
-			HashMap map = new HashMap();
-			map.put("startRow", startRow-1);
-			map.put("pageSize", pageSize);
-			List<BookDTO> bookList = sqlsession.selectList("BookSortPubDate", map);
-			return bookList;
-		}	
-		// 입고순
-		public List<BookDTO> BookSortIO(int startRow, int pageSize){
-			HashMap map = new HashMap();
-			map.put("startRow", startRow-1);
-			map.put("pageSize", pageSize);
-			List<BookDTO> booksortList = sqlsession.selectList("BookSortIO", map);
-			return booksortList;
-		}	
-// END 책정렬
+// 책정렬
 		
 // START 상세검색
 		// 검색결과로 나온 책 전체 개수 구하기
