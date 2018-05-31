@@ -124,6 +124,7 @@ String pageNum = (String)request.getAttribute("pageNum");
 				
 					<div class="write_form">
 							<h3>시설관리</h3>
+							<h4><span class="bold"><%=facil_num%></span> 자리정보</h4>
 							<form action="./AdminFacilSuggUpdate.am"  method="post"  name="fr">
 							<input type="hidden" value=<%=facil_num%> name="facil_num" id="add1">
 							<input type="hidden" value=<%=facilList.size()%> name="facilList_size">
