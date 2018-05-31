@@ -5,7 +5,9 @@ import java.util.List;
 
 import javax.json.Json;
 import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
 import javax.json.JsonValue;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,6 +53,7 @@ public class BoardFaqAjax implements Action{
 						.add("faq_subject", bDTO.getFaq_subject())
 						.add("faq_content", bDTO.getFaq_content())
 						.add("faq_file", JsonValue.NULL).build();
+				result += json.toString();
 			}else{
 				json = Json.createObjectBuilder()
 					     .add("faq_num", bDTO.getFaq_num())
@@ -58,12 +61,11 @@ public class BoardFaqAjax implements Action{
 					     .add("faq_subject", bDTO.getFaq_subject())
 					     .add("faq_content", bDTO.getFaq_content())
 					     .add("faq_file", bDTO.getFaq_file()).build();
+				result += json.toString();
 			}
 			System.out.println(json);
-			result += json.toString();
 			if(i != list.size()-1)	result += ",";
 		}
-		System.out.println(result);
 		arr = Json.createArrayBuilder().add(result).build();
 		System.out.println(arr);
 		response.setContentType("text/html; charset=utf-8");
