@@ -12,14 +12,62 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet"	type="text/css">
+<link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rng.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var selected = "";
+	function selectBox(){
+		selected = $('#faq_select').val();
+		$.ajax({
+			url:"./BoardFaqAjax.fa",
+			type:'POST',
+			data:{'selected':selected},
+			dataType:'json',
+			success:function(result){
+				var arr = result;
+				if(arr!=null){
+					$.each(arr, function(i,data){
+						var test = "<ul><li class='col_rcFAQ'><a href='#'>"+data.faq_num+"</a></li><li class='col_type'><a href='#'><p>"
+						+data.faq_type+"</p></a></li><li class='col_title'><a href='#'><p>"+data.faq_subject+"</p></a></li></ul>";
+						$('.con_lst').append(test);
+						
+						var file="";
+						if(data.faq_file != null){
+							file = data.faq_file;
+							var test2 = "<p><img src='./upload/"+file+"' width='100' height='100'></p>";
+							$('.con_detail').append(test2);
+						}
+						var test3 = "<p>"+data.faq_content+"</p><div class='file'><span>첨부파일</span><ul>"+file+"</ul></div>"
+						$('.con_detail').append(test3);
+					});
+				}else{
+					var test4 = "<ul><li class='col_tit'><p>게시글이 없습니다.</p></li></ul>";
+					$('.view_lst').append(test4);
+				}
+			}
+		});
+	}
+	selectBox();
+	$("#faq_select").change(function() {
+		$('.con_lst').empty();
+		$('.con_detail').empty();
+		selectBox();
+	});
+});
+</script>
 </head>
 <body>
 	<%
@@ -66,12 +114,12 @@
 
 							<div class="view_cnt">
 								<p>Total_<span><%=count%></span></p>
-<!-- 								<select name="search" id="faq_select"> -->
-<!-- 									<option value="all">전체</option> -->
-<!-- 									<option value="book">대출/반납/예약</option> -->
-<!-- 									<option value="buy">자료구입</option> -->
-<!-- 									<option value="library">도서관 이용</option> -->
-<!-- 								</select> -->
+								<select name="choice" id="faq_select">
+									<option value="all">전체</option>
+									<option value="buy">자료구입</option>
+									<option value="book">대출/반납/예약</option>
+									<option value="library">도서관 이용</option>
+								</select>
 							</div>
 							<ul class="brd_txt_lst">
 								<!-- 글목록 -->
@@ -82,88 +130,88 @@
 									<li class="col_tit"><p>게시글이 없습니다</p></li>
 								</ul>
 								<%
- 								} else {
- 									for (int i = 0; i < faqList.size(); i++) {
- 										BoardDTO bDTO = faqList.get(i); //제너릭 사용해서 형변환 할 필요없음
- 										String faq_content = bDTO.getFaq_content();
-										faq_content = faq_content.replaceAll("\r\n", "<br>");
-										faq_content = faq_content.replaceAll("\u0020", "&nbsp;");
- 										String file = "";
- 								%>
+								}%><!-- else { -->
+<!-- //  									for (int i = 0; i < faqList.size(); i++) { -->
+<!-- //  										BoardDTO bDTO = faqList.get(i); //제너릭 사용해서 형변환 할 필요없음 -->
+<!-- //  										String faq_content = bDTO.getFaq_content(); -->
+<!-- // 										faq_content = faq_content.replaceAll("\r\n", "<br>"); -->
+<!-- // 										faq_content = faq_content.replaceAll("\u0020", "&nbsp;"); -->
+<!-- //  										String file = ""; -->
+<%--  								%> --%>
 									<div class="con_lst DIV_CON_LST">
-										<ul>
-											<li class="col_rcFAQ"><a href="#"><%=bDTO.getFaq_num()%></a></li>
-											<li class="col_type"><a href="#"><p><%=bDTO.getFaq_type()%></p></a></li>
-											<li class="col_title"><a href="#"><p><%=bDTO.getFaq_subject()%></p></a></li>
-										</ul>
+<!-- 										<ul> -->
+<%-- 											<li class="col_rcFAQ"><a href="#"><%=bDTO.getFaq_num()%></a></li> --%>
+<%-- 											<li class="col_type"><a href="#"><p><%=bDTO.getFaq_type()%></p></a></li> --%>
+<%-- 											<li class="col_title"><a href="#"><p><%=bDTO.getFaq_subject()%></p></a></li> --%>
+<!-- 										</ul> -->
 
 										<div class="con_detail DIV_CON_DETAIL">
-											<%if(bDTO.getFaq_file()!=null){
-												file = bDTO.getFaq_file();
-												%><p><img src="./upload/<%=bDTO.getFaq_file()%>" width="100" height="100"></p><%
-											}
-											%>
-											<p><%=bDTO.getFaq_content()%></p>
-											<div class="file"><span>첨부파일</span><ul><%=file %></ul></div>
-											<%
-												if ("admin".equals(member_id)) {
-											%><div class="btn_btm_board">
-												<ul>
-													<li class="btn_con_right">
-														<input type="button" class="btn_type4" value="글수정"
-														onclick="location.href='./BoardFaqUpdate.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'">
-														<input type="button" class="btn_type4 deleteBoard" value="글삭제"
-														onclick="location.href='./BoardFaqDelete.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'">
-													</li>
-												</ul>
-											</div>
-											<%
-												}
-											%>
+<%-- 											<%if(bDTO.getFaq_file()!=null){ --%>
+<!-- // 												file = bDTO.getFaq_file(); -->
+<%-- 												%><p><img src="./upload/<%=bDTO.getFaq_file()%>" width="100" height="100"></p><% --%>
+<!-- // 											} -->
+<%-- 											%> --%>
+<%-- 											<p><%=bDTO.getFaq_content()%></p> --%>
+<%-- 											<div class="file"><span>첨부파일</span><ul><%=file %></ul></div> --%>
+<%-- 											<% --%>
+<!-- // 												if ("admin".equals(member_id)) { -->
+<%-- 											%><div class="btn_btm_board"> --%>
+<!-- 												<ul> -->
+<!-- 													<li class="btn_con_right"> -->
+<!-- 														<input type="button" class="btn_type4" value="글수정" -->
+<%-- 														onclick="location.href='./BoardFaqUpdate.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'"> --%>
+<!-- 														<input type="button" class="btn_type4 deleteBoard" value="글삭제" -->
+<%-- 														onclick="location.href='./BoardFaqDelete.fa?faq_num=<%=bDTO.getFaq_num()%>&pageNum=<%=pageNum%>'"> --%>
+<!-- 													</li> -->
+<!-- 												</ul> -->
+<!-- 											</div> -->
+<%-- 											<% --%>
+<!-- // 												} -->
+<%-- 											%> --%>
 										</div>
 									</div>
-									<%
- 									}
-							 	}
- 								%>
+<%-- 									<% --%>
+<!-- //  									} -->
+<!-- // 							 	} -->
+<%--  								%> --%>
 								</li>
 							</ul>
 								
 								<div class="paginate">
-							<%
-								if (pageCount < endPage) endPage = pageCount;
-								if (startPage > pageBlock) {
-							%><a
-								href="./BoardFaqList.fa?pageNum=<%=startPage - pageBlock%>"
-								class="prev"><span class="hide">이전 페이지</span></a>
-							<%
-								}
+<%-- 							<% --%>
+<!-- // 								if (pageCount < endPage) endPage = pageCount; -->
+<!-- // 								if (startPage > pageBlock) { -->
+<%-- 							%><a --%>
+<%-- 								href="./BoardFaqList.fa?pageNum=<%=startPage - pageBlock%>" --%>
+<!-- 								class="prev"><span class="hide">이전 페이지</span></a> -->
+<%-- 							<% --%>
+<!-- // 								} -->
 
-								for (int p = startPage; p <= endPage; p++) {
-									if (p == Integer.parseInt(pageNum)) {
-										%>
-										&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<%
- 									} else {
- 										%>&nbsp;<a href="./BoardFaqList.fa?pageNum=<%=p%>"><%=p%></a>&nbsp;<%
- 									}
- 								}
+<!-- // 								for (int p = startPage; p <= endPage; p++) { -->
+<!-- // 									if (p == Integer.parseInt(pageNum)) { -->
+<%-- 										%> --%>
+<%-- 										&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<% --%>
+<!-- //  									} else { -->
+<%--  										%>&nbsp;<a href="./BoardFaqList.fa?pageNum=<%=p%>"><%=p%></a>&nbsp;<% --%>
+<!-- //  									} -->
+<!-- //  								} -->
 
-							 	if (endPage < pageCount) {
- 									%><a
-									href="./BoardFaqList.fa?pageNum=<%=startPage + pageBlock%>"
-									class="next"><span class="hide">다음 페이지</span></a>
-								<%
-								}
-								%>
+<!-- // 							 	if (endPage < pageCount) { -->
+<%--  									%><a --%>
+<%-- 									href="./BoardFaqList.fa?pageNum=<%=startPage + pageBlock%>" --%>
+<!-- 									class="next"><span class="hide">다음 페이지</span></a> -->
+<%-- 								<% --%>
+<!-- // 								} -->
+<%-- 								%> --%>
 								</div>
 								 <div class="btn_btm_center">
-								<%
-								if ("admin".equals(member_id)) {
-								%>
-								<input type="button" class="btn_type1" value="글쓰기"	onclick="location.href='./BoardFaqWrite.fa'">
-								<%
-								}
-								%>
+<%-- 								<% --%>
+<!-- // 								if ("admin".equals(member_id)) { -->
+<%-- 								%> --%>
+<!-- 								<input type="button" class="btn_type1" value="글쓰기"	onclick="location.href='./BoardFaqWrite.fa'"> -->
+<%-- 								<% --%>
+<!-- // 								} -->
+<%-- 								%> --%>
 								</div>
 						</div>
 					</div>
@@ -175,18 +223,18 @@
 		<!-- //본문 컨테이너 -->
 	</div>
 <script type="text/javascript">
-$(document).ready(function(){
-	var pageNum = "<%=pageNum %>";
+// $(document).ready(function(){
+<%-- 	var pageNum = "<%=pageNum %>"; --%>
 	
-	$('.deleteBoard').each(function(index){
-		$(this).attr('id','delete'+index);
-		$('#delete'+index).click(function(){
-			var result = confirm('정말 삭제하시겠습니까?');
-			if(result){}
-			else{location.replace("./BoardFaqList.fa?pageNum="+pageNum);	}
-		});
-	});
-});
+// 	$('.deleteBoard').each(function(index){
+// 		$(this).attr('id','delete'+index);
+// 		$('#delete'+index).click(function(){
+// 			var result = confirm('정말 삭제하시겠습니까?');
+// 			if(result){}
+// 			else{location.replace("./BoardFaqList.fa?pageNum="+pageNum);	}
+// 		});
+// 	});
+// });
 </script>
 </body>
 </html>

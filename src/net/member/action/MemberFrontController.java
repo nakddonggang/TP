@@ -1,6 +1,7 @@
 package net.member.action;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
@@ -8,6 +9,8 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPublicKeySpec;
 
+import javax.json.Json;
+import javax.json.JsonObject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -66,6 +69,22 @@ public class MemberFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("./member/memberLogin.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/ModalLogin.me")) {
+			try {
+				rsaKeygen(request, response);
+				String publicKeyModulus = (String)request.getAttribute("publicKeyModulus");
+			 	String publicKeyExponent = (String)request.getAttribute("publicKeyExponent");
+			 	JsonObject obj = Json.createObjectBuilder()
+			 			.add("publicKeyModulus", publicKeyModulus)
+			 			.add("publicKeyExponent", publicKeyExponent)
+						 .build();
+			 	PrintWriter out = response.getWriter();
+				out.print(obj);
+				out.flush();
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}else if(command.equals("/MemberLoginAction.me")) {
 			action = new MemberLoginAction();
 			try {

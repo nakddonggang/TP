@@ -1,10 +1,12 @@
 package net.member.action;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.book.db.BookDTO;
 import net.member.db.MemberDAO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
@@ -19,7 +21,6 @@ public class MemberBbookCheck implements Action{
 		System.out.println("member_id : "+member_id);
 		MemberDAO mDAO = new MemberDAO();
 		int check = mDAO.memberBbookCheck(member_id);
-		System.out.println("count : "+check);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(check);

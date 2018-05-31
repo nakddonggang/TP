@@ -186,5 +186,21 @@
 		<if test='table != null and table.equals("curation")'>curation set cur_readcount = cur_readcount+1 where cur_num=</if>
 		#{num}
 	</update>
+	
+	<select id="selectList" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from 
+		<if test='table.equals("notice")'>notice where notice_subject</if>
+		<if test='table.equals("qna")'>qna where qna_subject</if>
+		 like #{search}
+	</select>
+	
+	<select id="selectFaqType" parameterType="hashmap" resultType="net.board.db.BoardDTO">
+		select * from faq
+		<choose>
+			<when test="faq_type.equals('all')"></when>
+			<otherwise>where faq_type=#{faq_type}</otherwise>
+		</choose>
+		order by faq_num desc
+	</select>
 
 </mapper>

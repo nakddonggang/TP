@@ -11,14 +11,48 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rng.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#search").autocomplete({
+        source : function( request, response ) {
+	           $.ajax({
+                   type: 'POST',
+	               url: './BoardNoticeAjax.no',
+	               dataType: 'json',
+	               data: { 'search' : request.term },
+	               success: function(data) {
+	                   //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
+	                   response(
+	                       $.map(data, function(item) {
+	                           return {
+	                               label: item.notice_subject,
+	                               value: item.notice_subject
+	                           }
+	                       })
+	                   );
+	               }
+	         });
+        },
+    //조회를 위한 최소글자수
+        minLength: 2,
+        select:function(event,ui){}
+    });
+});
+</script>
 </head>
 <body>
 	<%
@@ -56,17 +90,17 @@
 							<h3>공지사항</h3>
 								<div class="dl_box">
 									<dl>
-									<dt>Read It</dt>
-									<dd>이용자분들께 신속히 알려드릴필요성이 있는 정보 및 자료를 제공해 드립니다</dd>
-								</dl>
-						</div>
-					</div>	
+										<dt>Read It</dt>
+										<dd>이용자분들께 신속히 알려드릴필요성이 있는 정보 및 자료를 제공해 드립니다</dd>
+									</dl>
+								</div>
+						</div>	
 					
 					
 						<div class=board>
 						<div class="search_bx">
 							<form action="./BoardNoticeSearch.no" method="post">
-								<input type="text" name="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
+								<input type="text" name="search" id="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
 						</div>
 						
@@ -76,7 +110,7 @@
 						
 						
 						
-						<ul class="brd_txt_lst">
+						<u=l class="brd_txt_lst">
 						
 						
 						

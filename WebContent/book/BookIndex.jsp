@@ -12,14 +12,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet"
-	type="text/css">
-<link href="<c:url value="/css/import.css"/>" rel="stylesheet"
-	type="text/css">
+<link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rng.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
@@ -56,7 +60,7 @@
 							} else {
 							}
 					});
-
+				
 				$('#book_sort').change(function() {
 					var sort = $("#book_sort > option:selected").val();
 					if (sort != "") {
@@ -105,35 +109,7 @@ $(document).ready(function(){
 	var pubDate = document.searchFr.pubDate.value
 
 	$(document).ready(function(){
-		$(".book_btn_type4").click(function(){
-			var formdata = $("#SearchForm").serialize() ;
-			$.ajax({
-				type : 'GET',
-				url : './BookSearch',
-				data : {category1: category1, search1: search1, opt1: opt1, category2: category2, opt2: opt2, category3: category3, search3: search3, pubDate: pubDate},
-				dataType : 'json',
-				sucess : function(result){
-					
-				}
-			});
-		});
-	});
-	
-	$(document).reqdy(function(){
-		$('#book_sort').change(function() {
-			var sort = $("#book_sort > option:selected").val();
-			if (sort != "") {
-				$.ajax({
-					type : 'GET',
-					url : 'BookSortServlet',
-					date : {sort:sort},
-					dataType : 'json',
-					sucess : function(result){
-					
-					}
-				});
-			} else { }
-		});
+		
 	});
 </script>
 </head>
@@ -179,7 +155,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div id="for_book_div">
-											<form action="" method="get" name="searchFr"
+											<form action="BookSearch.bk" method="get" name="searchFr"
 												id="SearchForm">
 												<div id="book_field">
 													<h1>통합검색</h1>
@@ -242,7 +218,7 @@ $(document).ready(function(){
 															</div>
 														</div>
 														<div id="book_sort_submit">
-															<input type="submit" class="book_btn_type4" value="상세검색">
+															<input type="submit" class="book_btn_type4" value="상세검색" >
 															<input type="reset" class="book_btn_type5" value="입력 초기화">
 														</div>
 													</div>

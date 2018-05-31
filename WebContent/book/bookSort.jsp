@@ -12,14 +12,18 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
-<link href="<c:url value="/css/jquery.fullpage"/>" rel="stylesheet"
-	type="text/css">
-<link href="<c:url value="/css/import.css"/>" rel="stylesheet"
-	type="text/css">
+<link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
+<link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rng.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
@@ -357,17 +361,17 @@ $(document).ready(function(){
 							<!-- 버튼 css 부분 -->
 							<div class="paginate">
 						
-						<a href="./BookSort.bk?pageNum=1&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
+						<a href="./BookSort.bk?sort=<%=sort%>&pageNum=1&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
-						if(startPage > pageBlock)	{ %><a href="./BookSort.bk?pageNum=<%=startPage - pageBlock%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						if(startPage > pageBlock)	{ %><a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=startPage - pageBlock%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="./BookSort.bk?pageNum=<%=p%>&view=<%=view%>"><%=p %></a> &nbsp;<%}
+							else {%> &nbsp;<a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=p%>&view=<%=view%>"><%=p %></a> &nbsp;<%}
 						}
-						if(endPage < pageCount){	%><a href="./BookSort.bk?pageNum=<%=startPage+pageBlock%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						if(endPage < pageCount){	%><a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=startPage+pageBlock%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="./BookSort.bk?pageNum=<%=pageCount%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
+						<a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=pageCount%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
 						 </div>
 
 

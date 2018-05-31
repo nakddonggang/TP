@@ -25,7 +25,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .member_modal .info_txt {display:table; width:300px; height:80px; padding:0 30px; margin:15px auto 0; border:1px solid #e5e5e5; letter-spacing:-0.08em; background:#fff;}
 .member_modal .info_txt p {display:table-cell; vertical-align:middle; text-align:center;}
 .member_modal .info_txt p span {display:inline-block; color:#000; font-family:"Noto_M";}
-.member_modal form {width:300px;}
+.member_modal form {width:350px;}
 .member_modal form input[type="text"],
 .member_modal form input[type="password"] {width:290px; height:40px; margin-bottom:5px; border:0; background:#f6f6f6;} 
 
@@ -54,37 +54,49 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm02 {width:100%; height:100vh; background:url("http://img.designsoft.co.kr/WisdomForest/Main/main_slider_02.jpg") center; background-repeat:no-repeat; background-size:cover;}
 .SECTION_FULL_PAGE01 .slide_con .box_thm .box_thm03 {width:100%; height:100vh; background:url("http://img.designsoft.co.kr/WisdomForest/Main/main_slider_03.jpg") center; background-repeat:no-repeat; background-size:cover;}
 
-.ui-widget.ui-widget-content { border: none; border-radius:0; }
-.ui-dialog-titlebar {	display:none;	}
-.ui-dialog .ui-dialog-buttonpane { display: none;}
 
+.ui-widget.ui-widget-content {border:none; border-radius:0; background:#fff;}
+.ui-draggable .ui-dialog-titlebar {border: none; border-radius: 0;}
+.ui-dialog .ui-dialog-buttonpane { display: none;}
+.ui-dialog .ui-dialog-titlebar-close {/*타이틀바 오른쪽 종료버튼*/}
 .top_bar {  margin: 0; padding: 0;  list-style: none; width: 100%;	 height: 40px;	}
 .top_bar  ul > li {  display: inline-block;	float:right; margin: 10px 20px 8px 20px; }
 
 /*	start 채팅 css 작업	*/
 
-#chat_dialog {position: fixed;bottom:0;right:0; z-index:999;}
-#chat_dialog > #websocketChat {	border:5px solid grey;	background-color:  #fff;
-	width:800px; height: 500px; margin:0 auto;	padding:10px;}
-#chat_dialog > #websocketChat > #chatview {float:left; width: 75%;height: 440px; overflow-y: scroll;}
-#chat_dialog > #websocketChat > #userview {float:left; width: 25%;height: 440px; overflow-y:  scroll;}
-#chat_dialog > #websocketChat > #chatview > #chatLog{padding:5px;/* border:1px solid black; */}  
-#chat_dialog > #websocketChat > #chatview > #chatLog p {      margin:0;  }
-#btn-open-chat {background-image: url("../resource/img/icon_chat.png");background-repeat:  round;display: inline-block;width: 50px;height: 50px;position:  fixed;bottom: 0;right: 0;}
+#chat_dialog {z-index:999; padding: 0;}
+#chat_dialog > #websocketChat {/* border:5px solid grey; */margin:0 auto;background: #fff;padding:10px;height:  100%;}
+#chat_dialog > #websocketChat > #chatview {width: 70%;overflow-y: scroll;height: calc(100% - 30px);}
+#chat_dialog > #websocketChat > #userview {float:left;width: 30%;overflow-y:  scroll;height: calc(100% - 30px);}
+#chat_dialog > #websocketChat > #inputview {height: 30px;}
+#chat_dialog > #websocketChat > #chatview > #chatLog{padding:5px;}  
+#chat_dialog > #websocketChat > #chatview > #chatLog p {word-wrap:  break-word;text-align: left;}
+#btn-open-chat {background-image: url("../resource/img/icon_chat.png");background-repeat:  round;display: inline-block;width: 50px;height: 50px; position:  fixed;bottom: 0;right: 0;}
 #chat_dialog>#websocketChat input[type="button"]{padding: 5px; width:60px;border-radius: 3px;	border: 1px solid #ccc;	}
 #chat_dialog>#websocketChat input:focus {	border: 1px solid #fafafa;	box-shadow: 0px 0px 5px #007eff;}
 #chat_dialog>#websocketChat input#textMessage{display:inline-block; width:calc(100% - 130px); }
 #chat_dialog>#websocketChat .username {width:min-content;}
 #chat_dialog>#websocketChat .username.right{	margin: 5px 15px 5px auto;}
 #chat_dialog>#websocketChat .username.left{	margin: 5px auto 5px 15px;}
-#chat_dialog>#websocketChat .bubble {	background-color: #F2F2F2;	border-radius: 5px;	border: 1px solid #bbb;	display: block;	padding: 10px 18px;	margin: 1em 18px 1em auto;
-	position: relative;	right: 0;	width: min-content;	vertical-align: top;}
+#chat_dialog>#websocketChat .bubble {
+	background-color: #F2F2F2;
+	border-radius: 5px;
+	max-width:  350px;
+	border: 1px solid #bbb;
+	display: block;
+	padding: 10px 18px;
+	margin: 1em 18px 1em auto;
+	position: relative;
+	right: 0;
+	width: min-content;
+	vertical-align: top;
+	}
 #chat_dialog>#websocketChat .tail {	position: absolute;	height: 18px;	width: 18px;	overflow: hidden;}
 #chat_dialog>#websocketChat .tail:before {	border: 1px solid #bbb;	background-color: #F2F2F2;	content: "\00a0";	display: block;	position: absolute;	top: 0px;	height: 12px;	width: 12px;}
 #chat_dialog>#websocketChat .bubble.left {	text-align: left;	margin: 1em auto 1em 18px;}
 #chat_dialog>#websocketChat .bubble.left .tail {	top: 12px;	left: -18px;}
 #chat_dialog>#websocketChat .bubble.left .tail:before {	left: 12px;	-webkit-transform: skewX(-45deg);	-moz-transform: skewX(-45deg);	-o-transform: skewX(-45deg);}
-#chat_dialog>#websocketChat .bubble.right {	text-align: right;}
+#chat_dialog>#websocketChat .bubble.right {text-align: right;}
 #chat_dialog>#websocketChat .bubble.right .tail {	top: 12px;	right: -18px;}
 #chat_dialog>#websocketChat .bubble.right .tail:before {	right: 12px;	-webkit-transform: skewX(45deg);	-moz-transform: skewX(45deg);	-o-transform: skewX(45deg);}
 

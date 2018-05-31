@@ -260,4 +260,19 @@ public class BoardDAO {
 		map.put("num", num);
 		sqlsession.update("updateReadcount", map);
 	}
+	//검색어에 해당하는 제목 조회
+	public List<BoardDTO> selectList(String table, String search){
+		HashMap map = new HashMap();
+		map.put("table", table);
+		map.put("search", search);
+		return sqlsession.selectList("selectList",map);
+	}
+	//test
+	public List<BoardDTO> selectFaqType(String faq_type){
+		HashMap map = new HashMap();
+		map.put("faq_type", faq_type);
+//		map.put("startRow", startRow)
+		List<BoardDTO> list = sqlsession.selectList("selectFaqType", map);
+		return list;
+	}
 }
