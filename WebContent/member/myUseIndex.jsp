@@ -90,7 +90,7 @@
 							</ul>
 							
 							<div class="btn_btm_center">
-								<input type="submit" value="상세보기" class="btn_type3" onclick="location.href='#'">
+								<input type="submit" value="상세보기" class="btn_type5" onclick="location.href='#'">
 							</div>
 					</div>
 				
@@ -136,7 +136,7 @@
 						</ul>
 						
 						<div class="btn_btm_center">							
-										<input type = "button" value ="대출내역보기"  class="btn_type3" onclick = "location.href ='#'">
+										<input type = "button" value ="대출내역보기"  class="btn_type5" onclick = "location.href ='#'">
 								</div>
 						 </div>
 					</div>
