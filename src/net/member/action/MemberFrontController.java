@@ -170,8 +170,8 @@ public class MemberFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/AcceptResBook.me")){		// 기능확인을 위한 임시주소(나중에 관리자컨트롤러로 가야할듯)
-			action = new AcceptResBook();
+		}else if(command.equals("/BorrowBookAction.me")){		// 책 대출 버튼제어 
+			action = new BorrowBookAction();
 			try{
 				forward = action.execute(request, response);
 			}catch(Exception e){

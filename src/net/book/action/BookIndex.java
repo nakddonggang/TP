@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.admin.db.AdminDAO;
 import net.book.db.BookDAO;
@@ -17,7 +18,7 @@ public class BookIndex implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
-		
+		HttpSession session = request.getSession();
 		// AdminDAO 객체생성 및 total 책의 개수 가져오기
 		BookDAO bdao = new BookDAO();
 		int count = bdao.BookCount();
@@ -39,6 +40,13 @@ public class BookIndex implements Action{
 		// 페이지 마지막행 구하기
 			// 1page - 10 / 2page - 20 / 3page - 30
 		int endRow = pageSize*currentPage;
+		
+		String member_id = (String)session.getAttribute("member_id");
+		int BorrowCheck = bdao.userBorrowBookCheck(member_id);
+		if(member_id != null) {
+			BorrowCheck = bdao.userBorrowBookCheck(member_id);
+		}
+		System.out.println("borrowcheck : " +BorrowCheck);
 		
 		// 입출력
 		response.setContentType("text/html; charset=UTF-8");
@@ -72,7 +80,8 @@ public class BookIndex implements Action{
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
-		request.setAttribute("endPage", endPage);		
+		request.setAttribute("endPage", endPage);
+		request.setAttribute("BorrowCheck", BorrowCheck);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./book/BookIndex.jsp");

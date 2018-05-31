@@ -125,8 +125,17 @@
 	
 	<insert id="insertBbook" parameterType="net.book.db.BookDTO">
 		insert into bbook(book_number, bbook_bdate, bbook_rdate, member_id, bbook_bstate) 
-		values (#{book_number}, now(), date_add(now(), interval 10 day), #{member_id}, '0')
+		values (#{book_number}, now(), date_add(now(), interval 10 day), #{member_id}, '1')
 	</insert>
+	
+	<insert id="insertHistoryBorrowBook" parameterType="net.book.db.BookDTO">
+		insert into history_bbook(book_number, bbook_bdate, bbook_rdate, member_id) 
+		values (#{book_number}, now(), date_add(now(), interval 10 day), #{member_id})
+	</insert>
+	
+	<select id="MyBorrowBookCount" parameterType="string" resultType="int">
+		select count(*) from history_bbook where member_id=#{member_id}
+	</select>
 
 	<select id="myUseRBookList" parameterType="string" resultType="net.book.db.BookDTO">
 		select* from rbook r

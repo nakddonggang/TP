@@ -475,5 +475,9 @@
 		insert into hbook(member_id, hbook_subject, hbook_author, hbook_publisher, hbook_explain, hbook_check)
 		values(#{member_id}, #{hbook_subject}, #{hbook_author}, #{hbook_publisher}, #{hbook_explain}, #{hbook_check})
 	</insert>
+	
+	<select id="MyBorrowBookCheck" parameterType="hashmap" resultType="int">
+		select count(*) from bbook where member_id=#{member_id}
+	</select>
 
 </mapper>
