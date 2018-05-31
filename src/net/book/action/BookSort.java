@@ -6,6 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import net.admin.db.AdminDAO;
 import net.book.db.BookDAO;
 import net.book.db.BookDTO;
@@ -29,7 +32,7 @@ public class BookSort implements Action {
 		int count = bdao.BookCount();
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 9;		
+		int pageSize = 8;		
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
@@ -50,22 +53,6 @@ public class BookSort implements Action {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		// 책 뿌려주는 메소드 생성
-		List<BookDTO> booksortList = null;
-		if(count!=0){
-			if(sort.equals("book_subject")){
-				booksortList=bdao.BookSortSubject(startRow, pageSize);
-			} else if (sort.equals("book_author")){
-				booksortList=bdao.BookSortAuthor(startRow, pageSize);
-			} else if (sort.equals("book_number")){
-				booksortList=bdao.BookSortNumber(startRow, pageSize);
-			} else if (sort.equals("book_pubDate")){
-				booksortList=bdao.BookSortPubDate(startRow, pageSize);
-			} else if (sort.equals("book_date")){
-				booksortList=bdao.BookSortIO(startRow, pageSize);
-			} else{out.println("null");}
-		} else { out.println("null");}
-		
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);
 		// 한 화면에 보여줄 페이지수 설정
@@ -79,18 +66,18 @@ public class BookSort implements Action {
 			endPage=pageCount;
 		}	
 		
-		// count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
+//		 count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
 		request.setAttribute("count", count);
 		request.setAttribute("sort", sort);
 		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("booksortList", booksortList);
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);				
 	
+		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./book/bookSort.jsp");
+		forward.setPath("./book/BookIndex.jsp");
 		forward.setRedirect(false);
 		return forward;
 	}

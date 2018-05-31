@@ -147,7 +147,7 @@ if(view==null) view = "1";
 						</div>
 					</div>
 					<div id="for_book_div">
-											<form action="BookSearch.bk" method="get" name="searchFr"
+											<form action="./BookSearch.bk" method="get" name="searchFr"
 												id="SearchForm">
 												<div id="book_field">
 													<h1>통합검색</h1>
