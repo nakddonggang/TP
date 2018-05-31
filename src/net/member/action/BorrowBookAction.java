@@ -22,13 +22,18 @@ public class BorrowBookAction implements Action{
 		
 		HttpSession session = request.getSession();
 		String member_id = (String)session.getAttribute("member_id");
+		int bbookMaxNumber = 0;
 		int book_number = Integer.parseInt(request.getParameter("book_number"));
 		
 		MemberDAO mDAO = new MemberDAO();
 		BookDTO bDTO = new BookDTO();
+		int check = mDAO.userBorrowBookCount(member_id);
+		bbookMaxNumber = mDAO.HistoryMaxNumber()+1;
 		bDTO.setMember_id(member_id);
 		bDTO.setBook_number(book_number);
-		int check = mDAO.userBorrowBookCount(member_id);
+		bDTO.setBbook_number(bbookMaxNumber);
+		System.out.println("int bbookMaxNumber : "+bbookMaxNumber);
+		
 		System.out.println("check = "+check);
 		if(check >= 5) {
 			response.setContentType("text/html;charset=utf-8");

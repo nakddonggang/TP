@@ -359,7 +359,7 @@ $(document).ready(function(){
 												<%if (Integer.parseInt(bookdto.getBbook_bstate())==0){ %>
 													<input type="button" rel="<%=bookdto.getBook_number()%>" class="bbutton" value="대출신청" id="borrowBook">
 												<%} else {
-													if (BorrowCheck > 0) out.print("<input type = 'button' value = '반납하기' class = 'bbutton'>");
+													if (BorrowCheck > 0) out.print("<input type = 'button' value = '반납하기' class = 'bbutton' id = 'returnBook' rel ='"+ bookdto.getBook_number()+"'>");
 													else %> <input type="button" rel="<%=bookdto.getBook_number()%>" class="rbutton" value="대출예약">
 											<%}%>
 											</li><%}%>
@@ -454,14 +454,24 @@ $(document).ready(function(){
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$(".bbutton").click(function(){
+			$("#borrowBook").click(function(){
 					var book_number = $(this).attr("rel");
-					var bbook = confirm("대출신청을 하시겠습니까?");
+					var bbook = confirm("대출을 하시겠습니까?");
 						if (bbook == true) {
 							var url = book_number;
 							$(location).attr('href', './BorrowBookAction.me?book_number='+url);
 						} else { return false; }
 			});
+			
+			$("#returnBook").click(function(){
+				var book_number = $(this).attr("rel");
+				var returnbook = confirm("반납을 하시겠습니까?")
+				if(returnbook) {
+					var url = book_number;
+					$(location).attr('href' , './ReturnBookAction.me?book_number='+url);
+				} else { return false; }
+			});
+			
 		});
 		
 		$(document).ready(function() {
