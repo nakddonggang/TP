@@ -25,7 +25,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .member_modal .info_txt {display:table; width:300px; height:80px; padding:0 30px; margin:15px auto 0; border:1px solid #e5e5e5; letter-spacing:-0.08em; background:#fff;}
 .member_modal .info_txt p {display:table-cell; vertical-align:middle; text-align:center;}
 .member_modal .info_txt p span {display:inline-block; color:#000; font-family:"Noto_M";}
-.member_modal form {width:300px;}
+.member_modal form {width:350px;}
 .member_modal form input[type="text"],
 .member_modal form input[type="password"] {width:290px; height:40px; margin-bottom:5px; border:0; background:#f6f6f6;} 
 

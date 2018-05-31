@@ -191,10 +191,10 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<ul class="no_scroll">
 								<li class="adm_num" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_number()%></li>
 								<li class="adm_pic" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><img src="./upload/book/<%=bookLists.getBook_file()%>" width="70px" height="80px"></li>
-								<li class="adm_subs" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_subject()%></li>
+								<li class="adm_subs2" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_subject()%></li>
 								<li class="adm_name" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_author()%></li>
 								<li class="adm_ten" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_publisher()%></li>
-								<li class="adm_ten"><input type="button" id="<%=i %>" value="상세 정보" class ="bbutton info" ></li>
+								<li class="adm_ten"><input type="button" id="<%=i %>" value="보기" class ="bbutton info" ></li>
 							</ul>
 							
 							
@@ -210,7 +210,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 											<%}%></li>
 										</ul>
 									</li>
-									<li class="row">
+									<li>
 										<ul class="row_sub">
 										<li class="title">예약상태</li>
 										<li class="inp_form"><%
@@ -219,7 +219,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 								%></li>
 										</ul>
 									</li>
-									<li class="row">
+									<li>
 										<ul class="row_sub">
 										<li class="title">책상태</li>
 										<li class="inp_form"><%if (bookLists.getDbook_state().equals("0")) %> 상태양호 <%
