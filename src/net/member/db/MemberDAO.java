@@ -225,5 +225,15 @@ public class MemberDAO {
 		 int result = sqlsession.selectOne("memberBbookCheck", member_id);
 		 return result;
 	 }
+	 
+	 // 대출 할때 자동으로 전체저장테이블에 저장 구문 
+	 public void HistoryInsertBorrowBook(BookDTO bDTO) {
+		 sqlsession.insert("insertHistoryBorrowBook", bDTO);
+	 }
+	 
+	 // 유저가 대출한 책 권수 조회 구문
+	 public int userBorrowBookCount(String member_id) {
+		 return sqlsession.selectOne("MyBorrowBookCount", member_id);
+	 }
 	
 }

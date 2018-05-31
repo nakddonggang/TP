@@ -1,4 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<script type="text/javascript">
+var publicKeyModulus = null;
+var publicKeyExponent = null;
+
+$(document).ready(function(){
+	$.ajax({
+		url:"./ModalLogin.me",
+		type:'get',
+		dataType:'json',
+		success : function(data) {
+			publicKeyModulus=data.publicKeyModulus;
+			publicKeyExponent=data.publicKeyExponent;
+		}
+	});
+});
+	function validateEncryptedLoginForm() {
+	    var member_id = document.getElementById("member_id").value;
+	    var member_pass = document.getElementById("member_pass").value;
+	
+	    try {
+	        var rsaPublicKeyModulus = publicKeyModulus;
+	        var rsaPublicKeyExponent = publicKeyExponent;
+	        submitEncryptedLoginForm(member_id, member_pass, rsaPublicKeyModulus, rsaPublicKeyExponent);
+	    } catch(err) {
+	        alert(err);
+	    }
+	    return false;
+	}
+	
+	function submitEncryptedLoginForm(member_id, member_pass, rsaPublicKeyModulus, rsaPpublicKeyExponent) {
+	    var rsa = new RSAKey();
+	    rsa.setPublic(rsaPublicKeyModulus, rsaPpublicKeyExponent);
+	    // 사용자ID와 비밀번호를 RSA로 암호화한다.
+	    var securedUsername = rsa.encrypt(member_id);
+	    var securedPassword = rsa.encrypt(member_pass);
+	    // POST 로그인 폼에 값을 설정하고 발행(submit) 한다.
+	    var securedLoginForm = document.getElementById("securedLoginForm");
+	    $("#securedUsername").attr("value", securedUsername);
+	    $("#securedPassword").attr("value", securedPassword);
+	    securedLoginForm.submit();
+	}
+
+</script>
 <div class='member_modal'>
 	<div class="login_form">
 		<h3>Login</h3>
@@ -16,8 +59,6 @@
 					<li class="inp_form"><input type="password" name="member_pass" id = "member_pass" ></li>
 				</ul>
 			</li>
-			<li><input type="hidden" id="rsaPublicKeyModulus" value="" /></li>
-	        <li><input type="hidden" id="rsaPublicKeyExponent" value="" /></li>
 		</ul>
 	</div>
 	<form action="./MemberLoginAction.me" method="post" name="securedLoginForm" id="securedLoginForm" onsubmit="return validateEncryptedLoginForm()">
@@ -33,49 +74,4 @@
 			</ul>
 		</div>
 	</form>
-<script type="text/javascript">
-$(document).ready(function(){
-	$.ajax({
-		url:"./ModalLogin.me",
-		type:'get',
-		dataType:'json',
-		success : function(data) {
-			var publicKeyModulus=data.publicKeyModulus;
-			var publicKeyExponent=data.publicKeyExponent;
-			$('#rsaPublicKeyModulus').attr("value", publicKeyModulus);
-			$('#rsaPublicKeyExponent').attr("value", publicKeyExponent);
-		}
-	});
-});
-
-function validateEncryptedLoginForm() {
-    var member_id = document.getElementById("member_id").value;
-    var member_pass = document.getElementById("member_pass").value;
-
-    try {
-        var rsaPublicKeyModulus = document.getElementById("rsaPublicKeyModulus").value;
-        var rsaPublicKeyExponent = document.getElementById("rsaPublicKeyExponent").value;
-        submitEncryptedLoginForm(member_id, member_pass, rsaPublicKeyModulus, rsaPublicKeyExponent);
-    } catch(err) {
-        alert(err);
-    }
-    return false;
-}
-
-function submitEncryptedLoginForm(member_id, member_pass, rsaPublicKeyModulus, rsaPpublicKeyExponent) {
-    var rsa = new RSAKey();
-    rsa.setPublic(rsaPublicKeyModulus, rsaPpublicKeyExponent);
-
-    // 사용자ID와 비밀번호를 RSA로 암호화한다.
-    var securedUsername = rsa.encrypt(member_id);
-    var securedPassword = rsa.encrypt(member_pass);
-
-    // POST 로그인 폼에 값을 설정하고 발행(submit) 한다.
-    var securedLoginForm = document.getElementById("securedLoginForm");
-    securedLoginForm.securedUsername.value = securedUsername;
-    securedLoginForm.securedPassword.value = securedPassword;
-    securedLoginForm.submit();
-}
-
-</script>
 </div>
