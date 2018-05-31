@@ -12,6 +12,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Insert title here</title>
 <link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
@@ -21,13 +22,9 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rng.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
-<link rel="stylesheet" type="text/css" href="<c:url value="/css/jquery.toast.min.css"/>" />
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
-<style type="text/css">
-#count {position: relative; top:10px; right: 10px;}
-</style>
 </head>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -57,25 +54,38 @@ String member_id = (String)session.getAttribute("member_id");
 				<div class="content">
 				
 			<!-- 	인기도서	 -->
-<!-- 				<div class=""> -->
-<%-- 					<% --%>
-<!-- // 						for(int i=0; i<popularList.size(); i++){ -->
-<!-- // 							BookDTO bkDTO = popularList.get(i); -->
-<%-- 							%> --%>
-<!-- 							<ol> -->
-<%-- 								<li>제목 : <%=bkDTO.getBook_subject() %></li> --%>
-<%-- 								<li>저자 : <%=bkDTO.getBook_author() %></li> --%>
-<%-- 								<li>발행처 : <%=bkDTO.getBook_publisher() %></li> --%>
-<%-- 								<li>발행일 : <%=bkDTO.getBook_pubDate() %></li> --%>
-<!-- 							</ol> -->
-<!-- 							<br> -->
-
-<%-- 							<% --%>
-<!-- // 						} -->
-<%-- 					%>		 --%>
-<!-- 				</div> -->
+				<div class="">
+					<%
+					if(popularList==null){
+						%><ul><li>게시물이 없습니다.</li></ul><%
+					}else{
+						for(int i=0; i<popularList.size(); i++){ 
+						BookDTO bkDTO = popularList.get(i);
+						%><ul>
+							<li>제목 : <%=bkDTO.getBook_subject() %></li>
+							<li>저자 : <%=bkDTO.getBook_author() %></li>
+							<li>발행처 : <%=bkDTO.getBook_publisher() %></li>
+							<li>발행일 : <%=bkDTO.getBook_pubDate() %></li>
+						</ul><%
+						}
+					}%>		
+				</div>
 					
  			<!--  통계   -->
+ 			
+ 			<script>
+			Morris.Bar({
+				element: 'bar-example',
+				data: [
+					{ y: '2015', a: 100, b: 90 },
+					{ y: '2014', a: 75, b: 65 },
+					{ y: '2013', a: 50, b: 40 }
+				],
+				xkey: 'y',
+				ykeys: ['a', 'b'],
+				labels: ['A data', 'B data']
+			});
+			</script>
 		
 			<!-- 큐레이션 -->
 					<div class="">
