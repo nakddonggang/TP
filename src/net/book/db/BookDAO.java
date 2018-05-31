@@ -445,4 +445,14 @@ public class BookDAO {
 		result = sqlsession.insert("insertHBook", bookdto);
 		return result;
 	}
+	
+	// BookIndex 에서 user아이뒤로 빌린책 조회
+	public int userBorrowBookCheck(String member_id) {
+		System.out.println("userBorrowBookCheck()");
+		System.out.println("member_id : " + member_id);
+		int result;
+		result = sqlsession.selectOne("MyBorrowBookCheck", member_id);
+		System.out.println("userBorrowBookCheck : "+result);
+		return result;
+	}
 }

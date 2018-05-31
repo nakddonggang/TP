@@ -124,6 +124,7 @@ $(document).ready(function(){
 		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
+		int BorrowCheck = ((Integer) request.getAttribute("BorrowCheck")).intValue();
 		List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("bookList");
 		
 		String view = request.getParameter("view");
@@ -301,9 +302,9 @@ $(document).ready(function(){
 											<%if(member_id!=null){ %>
 											<li class="adm_col_rc"  id="adm_book_high">
 												<%if (Integer.parseInt(bookdto.getBbook_bstate())==0){ %>
-													<input type="button" rel="<%=bookdto.getBook_number()%>" class="bbutton" value="대출신청">
+													<input type="button" rel="<%=bookdto.getBook_number()%>" class="bbutton" value="대출신청" id="borrowBook">
 												<%} else {
-													if (Integer.parseInt(bookdto.getRbook_check())>=3) out.print("예약불가");
+													if (BorrowCheck > 0) out.print("<input type = 'button' value = '반납하기' class = 'bbutton'>");
 													else %> <input type="button" rel="<%=bookdto.getBook_number()%>" class="rbutton" value="대출예약">
 											<%}%>
 											</li><%}%>
@@ -403,7 +404,7 @@ $(document).ready(function(){
 					var bbook = confirm("대출신청을 하시겠습니까?");
 						if (bbook == true) {
 							var url = book_number;
-							$(location).attr('href', './MemberBasketAdd.me?book_number='+url);
+							$(location).attr('href', './BorrowBookAction.me?book_number='+url);
 						} else { return false; }
 			});
 		});
