@@ -90,11 +90,11 @@ $(document).ready(function(){
 							<h3>공지사항</h3>
 								<div class="dl_box">
 									<dl>
-									<dt>Read It</dt>
-									<dd>이용자분들께 신속히 알려드릴필요성이 있는 정보 및 자료를 제공해 드립니다</dd>
-								</dl>
-						</div>
-					</div>	
+										<dt>Read It</dt>
+										<dd>이용자분들께 신속히 알려드릴필요성이 있는 정보 및 자료를 제공해 드립니다</dd>
+									</dl>
+								</div>
+						</div>	
 					
 					
 						<div class=board>
@@ -110,7 +110,7 @@ $(document).ready(function(){
 						
 						
 						
-						<ul class="brd_txt_lst">
+						<u=l class="brd_txt_lst">
 						
 						
 						
