@@ -33,7 +33,7 @@
 		<div id="inputview">
 			<input id="textMessage" type="text" />
 			<input type="button" id="sendBtn" name="sendBtn" value="전송"/>
-			<input type="button" id="BTN_CLOSE_CHAT" name="leaveBtn" value="닫기"/>
+			<input type="button" id="leaveBtn" name="leaveBtn" value="대화종료"/>
 		</div>
 	</div>						
 <script>
@@ -91,6 +91,7 @@
     			           $("#chatLog").html(chatlog);
     			           sessionStorage.removeItem('chatlog' + username);
     			       }
+    			       $('#chatview').scrollTop($('#chatview')[0].scrollHeight);
     			    };
     			    socketchat.onmessage = function(message) { chatmessage(message); };
     			    socketchat.onerror = function(message) { chaterror(message); };
@@ -106,7 +107,6 @@
         	  $("#inputview").css("display","");
               webSocket = connection(url);
               var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + username;
-              alert(username);
               socketchat = new WebSocket(urlchat);
            }
         }
@@ -125,6 +125,7 @@
            $("#chatLog").html(chatlog);
            sessionStorage.removeItem('chatlog' + username);
        }
+       $('#chatview').scrollTop($('#chatview')[0].scrollHeight);
     };
     socketchat.onmessage = function(message) { chatmessage(message); };
     socketchat.onerror = function(message) { chaterror(message); };
@@ -147,16 +148,43 @@
  }
  
  $('#sendBtn').click(function() {
-    chatsend(textMessage.value);
-    textMessage.value = "";
+	if(textMessage.value==""){		
+		$('#textMessage').focus();
+	}else {
+		chatsend(textMessage.value);
+	    textMessage.value = "";
+	}
  });
  
  $('#textMessage').keypress(function(e) {
     if(e.which==13) {
-       chatsend(textMessage.value);
-       textMessage.value = "";
+    	if(textMessage.value==""){		
+    		$('#textMessage').focus();
+    	}else {
+    		chatsend(textMessage.value);
+    	    textMessage.value = "";
+    	}
     }
  });
+ 
+$('#leaveBtn').click(function() {
+	if(admincheck==""){
+		webSocket.close();
+		socketchat.close();
+		sessionStorage.clear();
+		$("#chatLog").empty();
+	} else {
+		var chatlog=$("#chatLog").html();
+		$.ajax({
+			url:"./chatlogSave.fp",
+			type:'POST',
+			data:{'chatlog':chatlog, 'chatuser':chatuser},
+			success:function(result){
+				alert("chatlog 저장완료")
+			}
+		});
+	}
+});
 
  
  function trClick(selectedTr) {
@@ -164,6 +192,9 @@
 		socketchat.close();
 	}
     if (selectedTr.id != null) {
+    	var chatlog=$("#chatLog").html();
+		sessionStorage.setItem('chatlog' + chatuser, chatlog);
+		$("#chatLog").empty();
 		connectionType = "chatConnection";
 		chatuser = selectedTr.id;
 		$('.userlist > td').attr("class", "");
@@ -179,14 +210,10 @@
 				$("#chatLog").html(chatlog);
 				sessionStorage.removeItem('chatlog' + chatuser);
 			}
+			$('#chatview').scrollTop($('#chatview')[0].scrollHeight);
 		};
 		socketchat.onmessage = function(message) { chatmessage(message); };
 		socketchat.onerror = function(message) { chaterror(message); };
-		socketchat.onclose = function() {
-			var chatlog=$("#chatLog").html();
-			sessionStorage.setItem('chatlog' + chatuser, chatlog);
-			$("#chatLog").empty();
-		}
 	}
 }
  
@@ -252,10 +279,10 @@
  function displaybubble(data) {
     //message = jsonData.name + " : "+ jsonData.message + '\n';
     if (data.name == username) {
-       $('#chatLog').append("<div class='username right'>"+data.name+"</div><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
+       $('#chatLog').append("<div class='username right'>"+data.name+"</div><div class='bubble right'><span class='tail'>&nbsp;</span><p>"+data.message +"</p></div>");
               
     } else {
-        $('#chatLog').append("<div class='username left'>" + data.name+"</div><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
+        $('#chatLog').append("<div class='username left'>" + data.name+"</div><div class='bubble left'><span class='tail'>&nbsp;</span><p>"+data.message +"</p></div>");
     }
     $('#chatview').scrollTop($('#chatview')[0].scrollHeight);
  }
@@ -277,6 +304,17 @@
  
  $(window).on("beforeunload", function(){
 	 socketchat.close();
+	 
+	 socketchat.onclose = function() {
+	       var chatlog=$("#chatLog").html();
+	       if(admincheck==""){
+	          sessionStorage.setItem('chatlog' + username, chatlog);
+	       } else {
+	    	  sessionStorage.setItem('chatlog' + chatuser, chatlog);
+	       }
+	          $("#chatLog").empty();
+	       
+	    }
  });
 /* end 웹소켓 채팅 구현 */
 </script>

@@ -56,6 +56,14 @@
 							} else {
 							}
 					});
+				
+				$('#book_sort').change(function() {
+					var sort = $("#book_sort > option:selected").val();
+					if (sort != "") {
+						$(location).attr('href', sort);
+					} else {
+					}
+				});
 
 				$('#book_pic_hv').hover(function() {
 					$('.book_lst > li').mouseenter(function() {
@@ -97,32 +105,6 @@ $(document).ready(function(){
 	var pubDate = document.searchFr.pubDate.value
 
 	$(document).ready(function(){
-
-// 		$(".book_btn_type4").click(function(){
-// 			var formdata = $("#SearchForm").serialize() ;
-// 			$.ajax({
-// 				type : 'GET',
-// 				url : './BookSearch',
-// 				data : {'category1': category1, 'search1': search1, 'opt1': opt1, 'category2': category2, 'opt2': opt2, 'category3': category3, 'search3': search3, 'pubDate': pubDate},
-// 				dataType : 'json',
-// 				sucess : function(result){
-					
-// 				}
-// 			});
-// 		});
-		
-// 		$('#book_sort').change(function() {
-// 			var sort = $("#book_sort > option:selected").val();
-// 				$.ajax({
-// 					type : 'POST',
-// 					url : './BookSortEX.bk',
-// 					data : {'sort' : request.term},
-// 					dataType : 'json',
-// 					success : function(data){
-// 						// 서버에서 json 데이터 response 후 목록에 뿌려주기 위함
-// 					}
-// 				});
-// 		});
 		
 	});
 </script>
@@ -168,7 +150,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<div id="for_book_div">
-											<form action="" method="get" name="searchFr"
+											<form action="BookSearch.bk" method="get" name="searchFr"
 												id="SearchForm">
 												<div id="book_field">
 													<h1>통합검색</h1>
@@ -231,7 +213,7 @@ $(document).ready(function(){
 															</div>
 														</div>
 														<div id="book_sort_submit">
-															<input type="button" class="book_btn_type4" value="상세검색" >
+															<input type="submit" class="book_btn_type4" value="상세검색" >
 															<input type="reset" class="book_btn_type5" value="입력 초기화">
 														</div>
 													</div>
