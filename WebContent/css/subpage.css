@@ -211,11 +211,11 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_dateh {width:20%; padding:0 15px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_col_exh{width:30%; padding:0 15px;}
 
-.brd_txt_lst li > .con_lst > ul > li.adm_num {width:5%; padding:0 10px;}
-.brd_txt_lst li > .con_lst > ul > li.adm_pic {width:10%; padding:0 10px;}
-.brd_txt_lst li > .con_lst > ul > li.adm_subs {width:32%; padding:0 10px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_num {width:10%; padding:0 10px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_pic {width:10%;}
+.brd_txt_lst li > .con_lst > ul > li.adm_subs {width:35%; padding:0 10px;}
 .brd_txt_lst li > .con_lst > ul > li.adm_name {width:15%; padding:0 10px;}
-.brd_txt_lst li > .con_lst > ul > li.adm_ten {width:10%; padding:0 10px;}
+.brd_txt_lst li > .con_lst > ul > li.adm_ten {width:15%; padding:0 10px;}
 /* admin book */
 /* admin hbook */
 .join_form .row_sub > li.adm_inp_formh input[type="text"] {width:250px; text-indent:10px;}
@@ -570,6 +570,15 @@ strong#currentPage {font-weight: bold;}
 	/* admin book info */
 	.join_form .row_sub > li.title_bif {width: 95px; min-width: 95px; padding: 0 10px; height: 20px;}
 	/* admin book info */
+	
+	/* admin book index */
+	.brd_txt_lst li > .con_lst > ul > li.adm_num {width:10%; padding:0 10px;}
+	.brd_txt_lst li > .con_lst > ul > li.adm_pic {display: none;}
+	.brd_txt_lst li > .con_lst > ul > li.adm_subs {width:35%; padding:0 10px;}
+	.brd_txt_lst li > .con_lst > ul > li.adm_name {width:15%; padding:0 10px;}
+	.brd_txt_lst li > .con_lst > ul > li.adm_ten {width:15%; padding:0 10px;}
+	#adm_book_high{height: 0px; line-height: 0px;}
+	.bbutton{margin-top: 15px;}
 	
 	/* book css */
 	  /* book img css */

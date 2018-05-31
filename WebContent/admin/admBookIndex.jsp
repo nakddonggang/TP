@@ -147,7 +147,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 </form>
 					
 						<div class="adms" >
-							<h1 class="adm_h_1">&lt; 통합도서관리시스템 &gt;</h1>
+							<h4>&lt; 통합도서관리시스템 &gt;</h4>
 							<p>
 								Total_<span><%=count%></span>	
 							</p>	
@@ -169,12 +169,12 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<li class="view_lst">
 							<div class="con_lst">
 							<ul class="no_scroll title_t">
-								<li class="adm_col_rc">번호</li>
-								<li class="adm_col_type">사진</li>
-								<li class="adm_col_subs">제목</li>
-								<li class="adm_col_date">저자</li>
-								<li class="adm_col_type">출판사</li>
-								<li class="adm_col_type">확인</li>
+								<li class="adm_num">번호</li>
+								<li class="adm_pic">사진</li>
+								<li class="adm_subs">제목</li>
+								<li class="adm_name">저자</li>
+								<li class="adm_ten">출판사</li>
+								<li class="adm_ten">상세정보</li>
 							</ul>
 							</div>
 						<%
@@ -189,12 +189,12 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						%>
 						<div class="con_lst">
 							<ul class="no_scroll">
-								<li class="adm_col_rc" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_number()%></li>
-								<li class="adm_col_type" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><img src="./upload/book/<%=bookLists.getBook_file()%>" width="70px" height="80px"></li>
-								<li class="adm_col_subs" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_subject()%></li>
-								<li class="adm_col_date" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_author()%></li>
-								<li class="adm_col_type" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_publisher()%></li>
-								<li class="adm_col_type"><input type="button" id="<%=i %>" value="상세 정보" class ="btn_type4 info" ></li>
+								<li class="adm_num" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_number()%></li>
+								<li class="adm_pic" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><img src="./upload/book/<%=bookLists.getBook_file()%>" width="70px" height="80px"></li>
+								<li class="adm_subs" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_subject()%></li>
+								<li class="adm_name" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_author()%></li>
+								<li class="adm_ten" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_publisher()%></li>
+								<li class="adm_ten"><input type="button" id="<%=i %>" value="상세 정보" class ="bbutton info" ></li>
 							</ul>
 							
 							
@@ -230,7 +230,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 								<div class="btn_btm_center" >
 									<ul>
 										<li class="adm_btn_cancle">
-										<input type="button" value="입고하기" id="<%=i %>" class ="btn_type4 BTN_CLOSE">
+										<input type="button" value="나가기" id="<%=i %>" class ="btn_type4 BTN_CLOSE">
 										</li>
 									</ul>
 								</div>
