@@ -174,10 +174,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 								<li class="adm_col_subs">제목</li>
 								<li class="adm_col_date">저자</li>
 								<li class="adm_col_type">출판사</li>
-								<li class="adm_col_type">대출현황</li>
-								<li class="adm_col_type">예약상태</li>
-<!-- 								<li class="adm_col_rc">예약일자</li> -->
-								<li class="adm_col_rc">책상태</li>
+								<li class="adm_col_type">확인</li>
 							</ul>
 							</div>
 						<%
@@ -187,7 +184,8 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						</ul>
 						<%
 							} else {
-								for (BookDTO bookLists  : bookList){
+								for (int i=0; i<bookList.size(); i++){
+									BookDTO bookLists = bookList.get(i);
 						%>
 						<div class="con_lst">
 							<ul class="no_scroll">
@@ -196,28 +194,56 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 								<li class="adm_col_subs" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_subject()%></li>
 								<li class="adm_col_date" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_author()%></li>
 								<li class="adm_col_type" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_publisher()%></li>
-								<li class="adm_col_type"  id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=bookLists.getBook_number()%>'">
-											<%if (Integer.parseInt(bookLists.getBbook_bstate())==0){ %> 대출가능 <% }
+								<li class="adm_col_type"><input type="button" id="<%=i %>" value="상세 정보" class ="btn_type4 info" ></li>
+							</ul>
+							
+							
+							<div id="Borrow<%=i%>">
+								<div class="join_form">
+								<h3>시설관리</h3>
+								<ul>
+									<li class="row">
+										<ul class="row_sub">
+										<li class="title">대출현황</li>
+										<li class="inp_form"><%if (Integer.parseInt(bookLists.getBbook_bstate())==0){ %> 대출가능 <% }
 											else { %><%=date.format(bookLists.getBbook_bdate())%>~<%=date.format(bookLists.getBbook_rdate())%> 대출중
-											<%}%>
-								</li>
-								<li class="adm_col_type" id="adm_book_high">
-								<%
+											<%}%></li>
+										</ul>
+									</li>
+									<li class="row">
+										<ul class="row_sub">
+										<li class="title">예약상태</li>
+										<li class="inp_form"><%
 									if(Integer.parseInt(bookLists.getRbook_check())>=3)	out.print("예약 불가");
 									else out.print("예약 가능");
-								%>
-								</li>
-<%-- 								<li class="adm_col_rc" id="adm_book_high"><%=bookLists.getRbook_date()%></li> --%>
-								<li class="adm_col_rc" id="adm_book_high">
-									<%if (bookLists.getDbook_state().equals("0")) %> 상태양호 <%
-									else { %> <%=bookLists.getDbook_state()%> <%}%>
-								</li>
-							</ul>
+								%></li>
+										</ul>
+									</li>
+									<li class="row">
+										<ul class="row_sub">
+										<li class="title">책상태</li>
+										<li class="inp_form"><%if (bookLists.getDbook_state().equals("0")) %> 상태양호 <%
+									else { %> <%=bookLists.getDbook_state()%> <%}%></li>
+										</ul>
+									</li>
+								</ul>
+								<div class="btn_btm_center" >
+									<ul>
+										<li class="adm_btn_cancle">
+										<input type="button" value="입고하기" id="<%=i %>" class ="btn_type4 BTN_CLOSE">
+										</li>
+									</ul>
+								</div>
+							</div>
+							</div>
+							
+							
+							
 						</div><%}
 						}%>
 							</li>
 						</ul>
-								
+				
 				<!-- 버튼 css 부분 -->	
 				<div class="btn_btm_center" >
 					<ul>
@@ -257,5 +283,27 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+<script type="text/javascript">
+$(window).on('load', function() {
+	var bookListSize = "${bookList.size()}";
+	//admin 대출,예약,책상태 
+	for(var i=0;i<bookListSize;i++){
+		$('#Borrow' + i).dialog({ 
+			autoOpen: false, 
+			width: 400, 
+			modal: true, 
+		});
+	}
+	$(".info").click(function() {
+		var listvalue = $(this).attr("id");
+		$('#Borrow' + listvalue).dialog("open");
+	});
+	
+	$(".BTN_CLOSE").click(function() {
+		var listvalue = $(this).attr("id");
+		$('#Borrow' + listvalue).dialog("close");
+	});
+});
+</script>	
 </body>
 </html>

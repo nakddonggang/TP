@@ -48,15 +48,15 @@
 					int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 					List<FacilityDTO> fDTO_List = (List<FacilityDTO>)request.getAttribute("fDTO_List");
 					%>
-						<h4>대출중인 도서 목록</h4>
+						<h3>사용중인 시설 목록</h3>
 							<ul class="brd_txt_lst">
 							<li class="view_lst">
 							<div class="con_lst">
 								<ul class="no_scroll title_t">
-								<li class="col_mem_b">시설번호</li>
-								<li class="col_mem_b">사용자</li>
-								<li class="col_mem_b">사용시작시간</li>
-								<li class="col_mem_b">사용끝낸시간</li>
+								<li class="col_mem_r">시설번호</li>
+								<li class="col_mem_r">사용자</li>
+								<li class="col_mem_r">사용시작시간</li>
+								<li class="col_mem_r">사용끝낸시간</li>
 							</ul>
 							</div>
 							<%
@@ -70,14 +70,14 @@
 							%>
 							<div class="con_lst">
 							<ul class="no_scroll" >
-								<li class="col_mem_b"><%=fDTO.getFacil_num() %></li>
-								<li class="col_mem_b"><%=fDTO.getMember_id() %></li>
-								<li class="col_mem_b"><%=facility_date.format(fDTO.getFacil_stime()) %></li>
-								<li class="col_mem_b">
+								<li class="col_mem_r"><%=fDTO.getFacil_num() %></li>
+								<li class="col_mem_r"><%=fDTO.getMember_id() %></li>
+								<li class="col_mem_r"><%=facility_date.format(fDTO.getFacil_stime()) %></li>
+								<li class="col_mem_r">
 								<%if((fDTO.getFacil_etime())!=null) {
 									out.print(facility_date.format(fDTO.getFacil_etime()));
 								} else {
-									out.print("현재 이용중인 자리입니다.");
+									out.print("이용중");
 								}
 									%></li>
 
