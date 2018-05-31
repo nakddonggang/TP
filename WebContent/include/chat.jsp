@@ -33,33 +33,33 @@
 		<div id="inputview">
 			<input id="textMessage" type="text" />
 			<input type="button" id="sendBtn" name="sendBtn" value="전송"/>
-			<input type="button" id="BTN_CLOSE_CHAT" name="leaveBtn" value="닫기"/>
+			<input type="button" id="leaveBtn" name="leaveBtn" value="대화종료"/>
 		</div>
 	</div>						
 <script>
 /* start 웹소켓 채팅 구현 */
-//chat 팝업창을 여러개 띄우기 위함
  var webSocket = null; 
  var admincheck = "${admincheck}";
  var chatstart = sessionStorage.getItem('chatstart');
- alert(chatstart);
  var socketchat = null;
  var chatuser = null;
- var username = "${member_id}"
+ var username = "${member_id}";
  
  $(document).ready(function() {
     
     var url = 'ws://' + window.location.host + '${pageContext.request.contextPath}/userlist';
     
-    if(username=""){
+    if(username==""){
 		$("#joinchat").css("display",""); 
 		$("#userview").css("display","none"); 
-		$("#chatview").css("display","none"); 
-		$("#inputview").css("display","none"); 
-    }else {
-    	if(admincheck){   
+		$("#chatview").css("display","none");
+		$("#inputview").css("display","none");
+    } 
+    else {
+    	if(admincheck){
     		$("#joinchat").css("display","none");
     		$("#chatview").css("width","");
+    		$("#inputview").css("display","");
     		webSocket = connection(url);
     		sessionStorage.setItem('chatstart', true);
         }
@@ -70,18 +70,41 @@
     			$("#joinchat").css("display",""); 
     			$("#userview").css("display","none"); 
     			$("#chatview").css("display","none"); 
-    			$("#inputview").css("display","none"); 
+    			
     			$("#memberJoinChat").click(function(){
-    				sessionStorage.setItem('chatstart', true);
     				webSocket = connection(url);
     				var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + username;
     				socketchat = new WebSocket(urlchat);
     				$("#joinchat").css("display","none");
     				$("#chatview").css("display",""); 
     				$("#inputview").css("display","");
+    				sessionStorage.setItem('chatstart', true);
+    				
+    				webSocket.onopen = function(){ processOpen(); };
+    			    webSocket.onmessage = function(message) { processMessage(message); };
+    			    webSocket.onerror = function(message) { processError(message); };
+    			    socketchat.onopen = function(){   
+    			       socketchat.send(JSON.stringify({ "message" : username , "room" : username }));
+    			       $('#sendBtn').attr("disabled", false);
+    			       if(sessionStorage.getItem('chatlog' + username)!=null){
+    			    	   var chatlog = sessionStorage.getItem('chatlog' + username);
+    			           $("#chatLog").html(chatlog);
+    			           sessionStorage.removeItem('chatlog' + username);
+    			       }
+    			       $('#chatview').scrollTop($('#chatview')[0].scrollHeight);
+    			    };
+    			    socketchat.onmessage = function(message) { chatmessage(message); };
+    			    socketchat.onerror = function(message) { chaterror(message); };
+    			    socketchat.onclose = function() {
+    			       var chatlog=$("#chatLog").html();
+    			          sessionStorage.setItem('chatlog' + username, chatlog);
+    			          $("#chatLog").empty();
+    			       
+    			    }
     			});
-           } else if(chatstart) {
-              $("#joinchat").css("display","none");
+           } else {
+        	  $("#joinchat").css("display","none");
+        	  $("#inputview").css("display","");
               webSocket = connection(url);
               var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + username;
               socketchat = new WebSocket(urlchat);
@@ -97,9 +120,12 @@
     socketchat.onopen = function(){   
        socketchat.send(JSON.stringify({ "message" : username , "room" : username }));
        $('#sendBtn').attr("disabled", false);
-       var chatlog = sessionStorage.getItem('chatlog'+username);
-          $("#chatLog").html(chatlog);
-          sessionStorage.clear();
+       if(sessionStorage.getItem('chatlog' + username)!=null){
+    	   var chatlog = sessionStorage.getItem('chatlog' + username);
+           $("#chatLog").html(chatlog);
+           sessionStorage.removeItem('chatlog' + username);
+       }
+       $('#chatview').scrollTop($('#chatview')[0].scrollHeight);
     };
     socketchat.onmessage = function(message) { chatmessage(message); };
     socketchat.onerror = function(message) { chaterror(message); };
@@ -122,44 +148,74 @@
  }
  
  $('#sendBtn').click(function() {
-    chatsend(textMessage.value);
-    textMessage.value = "";
+	if(textMessage.value==""){		
+		$('#textMessage').focus();
+	}else {
+		chatsend(textMessage.value);
+	    textMessage.value = "";
+	}
  });
  
  $('#textMessage').keypress(function(e) {
     if(e.which==13) {
-       chatsend(textMessage.value);
-       textMessage.value = "";
+    	if(textMessage.value==""){		
+    		$('#textMessage').focus();
+    	}else {
+    		chatsend(textMessage.value);
+    	    textMessage.value = "";
+    	}
     }
  });
+ 
+$('#leaveBtn').click(function() {
+	if(admincheck==""){
+		webSocket.close();
+		socketchat.close();
+		sessionStorage.clear();
+		$("#chatLog").empty();
+	} else {
+		var chatlog=$("#chatLog").html();
+		$.ajax({
+			url:"./chatlogSave.fp",
+			type:'POST',
+			data:{'chatlog':chatlog, 'chatuser':chatuser},
+			success:function(result){
+				alert("chatlog 저장완료")
+			}
+		});
+	}
+});
 
  
  function trClick(selectedTr) {
+	if(socketchat!=null){
+		socketchat.close();
+	}
     if (selectedTr.id != null) {
-       connectionType = "chatConnection";
-       chatuser = selectedTr.id;
-       var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + chatuser;
-       socketchat = new WebSocket(urlchat);
-       
-       socketchat.onopen = function(){   
-          socketchat.send(JSON.stringify({ "message" : username , "room" : chatuser }));
-          $('#sendBtn').attr("disabled", false);
-          var chatlog = sessionStorage.getItem('chatlog'+chatuser);
-          alert(chatlog);
-             $("#chatLog").html(chatlog);
-             sessionStorage.clear();
-       };
-       socketchat.onmessage = function(message) { chatmessage(message); };
-       socketchat.onerror = function(message) { chaterror(message); };
-       socketchat.onclose = function() {
-          var chatlog=$("#chatLog").html();
-          alert(chatlog);
-             sessionStorage.setItem('chatlog' + chatuser, chatlog);
-             $("#chatLog").empty();
-          
-       }
-    }
- }
+    	var chatlog=$("#chatLog").html();
+		sessionStorage.setItem('chatlog' + chatuser, chatlog);
+		$("#chatLog").empty();
+		connectionType = "chatConnection";
+		chatuser = selectedTr.id;
+		$('.userlist > td').attr("class", "");
+		$('#' + chatuser + ' > td').attr("class", "selected");
+		var urlchat = 'ws://' + window.location.host + '${pageContext.request.contextPath}/chat/' + chatuser;
+		socketchat = new WebSocket(urlchat);
+		
+		socketchat.onopen = function(){   
+			socketchat.send(JSON.stringify({ "message" : username , "room" : chatuser }));
+			$('#sendBtn').attr("disabled", false);
+			if(sessionStorage.getItem('chatlog' + chatuser)!= null){
+				var chatlog = sessionStorage.getItem('chatlog' + chatuser);
+				$("#chatLog").html(chatlog);
+				sessionStorage.removeItem('chatlog' + chatuser);
+			}
+			$('#chatview').scrollTop($('#chatview')[0].scrollHeight);
+		};
+		socketchat.onmessage = function(message) { chatmessage(message); };
+		socketchat.onerror = function(message) { chaterror(message); };
+	}
+}
  
  function processOpen() {
     connectionType = "firstConnection";
@@ -191,7 +247,7 @@
  
  function chatmessage(message) {
     var jsonData = JSON.parse(message.data);
-    alert("jsonData: " + jsonData.messageType + "," + jsonData.name +  "," + jsonData.message + "," + jsonData.users  );
+//     alert("jsonData: " + jsonData.messageType + "," + jsonData.name +  "," + jsonData.message + "," + jsonData.users  );
     if (jsonData.messageType == "ChatMessage") {
        message = jsonData.name + " : "+ jsonData.message + '\n';
        displaybubble(jsonData);
@@ -223,11 +279,12 @@
  function displaybubble(data) {
     //message = jsonData.name + " : "+ jsonData.message + '\n';
     if (data.name == username) {
-       $('#chatLog').append("<div class='username right'>"+data.name+"</div><div class='bubble right'><span class='tail'>&nbsp;</span>"+data.message +"</div>");
+       $('#chatLog').append("<div class='username right'>"+data.name+"</div><div class='bubble right'><span class='tail'>&nbsp;</span><p>"+data.message +"</p></div>");
               
     } else {
-        $('#chatLog').append("<div class='username left'>" + data.name+"</div><div class='bubble left'><span class='tail'>&nbsp;</span>"+data.message+"</div>");
+        $('#chatLog').append("<div class='username left'>" + data.name+"</div><div class='bubble left'><span class='tail'>&nbsp;</span><p>"+data.message +"</p></div>");
     }
+    $('#chatview').scrollTop($('#chatview')[0].scrollHeight);
  }
  
  function displayUsers(userList) {
@@ -239,7 +296,7 @@
        } else{
           username = userList[i];
        }
-       $.newTr = $("<tr id="+userList[i]+" onclick='trClick(this)'><td>"+username+"</td></tr>");
+       $.newTr = $("<tr id="+userList[i]+" class='userlist' onclick='trClick(this)'><td class=''>"+username+"</td></tr>");
        $("#users").last().append($.newTr);
        
     }
@@ -247,6 +304,17 @@
  
  $(window).on("beforeunload", function(){
 	 socketchat.close();
+	 
+	 socketchat.onclose = function() {
+	       var chatlog=$("#chatLog").html();
+	       if(admincheck==""){
+	          sessionStorage.setItem('chatlog' + username, chatlog);
+	       } else {
+	    	  sessionStorage.setItem('chatlog' + chatuser, chatlog);
+	       }
+	          $("#chatLog").empty();
+	       
+	    }
  });
 /* end 웹소켓 채팅 구현 */
 </script>

@@ -21,9 +21,10 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rng.js"></script>
-<script type="text/javascript" src="<%=request.getContextPath()%>/js/login.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<link rel="stylesheet" type="text/css" href="<c:url value="/css/jquery.toast.min.css"/>" />
+<script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <style type="text/css">
 #count {position: relative; top:10px; right: 10px;}
 </style>
