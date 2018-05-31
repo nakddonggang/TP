@@ -200,7 +200,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							
 							<div id="Borrow<%=i%>">
 								<div class="join_form">
-								<h3>시설관리</h3>
+								<h3>책관리</h3>
 								<ul>
 									<li class="row">
 										<ul class="row_sub">
@@ -257,6 +257,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 							<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'" class ="btn_type4 BTN_IF_LIST">
 						</li>
 					</ul>
+				
 				
 				<% // count = 전체 글의 개수
 				if (count != 0) {

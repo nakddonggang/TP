@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="java.util.List"%>
@@ -154,7 +155,7 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 </form>
 					
 						<div class="adms">	
-							<h1 style="text-align:center;">&lt;통합도서관리시스템&gt;</h1>
+							<h4>&lt;통합도서관리시스템&gt;</h4>
 							<p>
 								Total_<span><%=count%></span>
 							</p>
@@ -167,20 +168,19 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 											<option value="./AdminBookSort.am?sort=book_pubDate">신작순</option>
 											<option value="./AdminBookSort.am?sort=book_date">입고순</option>
 									</select>
-							</div>		
+							</div>	
+							<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>	
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
 							<div class="con_lst">
 							<ul class="no_scroll title_t">
-								<li class="adm_col_rc">번호</li>
-								<li class="adm_col_type">사진</li>
-								<li class="adm_col_subs">제목</li>
-								<li class="adm_col_date">저자</li>
-								<li class="adm_col_type">출판사</li>
-								<li class="adm_col_rc">대출현황</li>
-								<li class="adm_col_rc">예약상태</li>
-								<li class="adm_col_rc">책상태</li>
+								<li class="adm_num">번호</li>
+								<li class="adm_pic">사진</li>
+								<li class="adm_subs">제목</li>
+								<li class="adm_name">저자</li>
+								<li class="adm_ten">출판사</li>
+								<li class="adm_ten">상세정보</li>
 							</ul>
 							</div>
 						<%
@@ -190,27 +190,58 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 						</ul>
 						<%
 							} else {
-								for (BookDTO booksearchLists : booksearchList){
+								for (int i=0; i<booksearchList.size(); i++){
+									BookDTO booksearchLists = booksearchList.get(i);
 						%>
 						<div class="con_lst">
 							<ul class="no_scroll" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'">
-								<li class="adm_col_rc" id="adm_book_high"><%=booksearchLists.getBook_number()%></li>
-								<li class="adm_col_type" id="adm_book_high"><img src="./upload/<%=booksearchLists.getBook_file()%>" width="70px" height="80px"></li>
-								<li class="adm_col_subs" id="adm_book_high"><%=booksearchLists.getBook_subject()%></li>
-								<li class="adm_col_date" id="adm_book_high"><%=booksearchLists.getBook_author()%></li>
-								<li class="adm_col_type" id="adm_book_high"><%=booksearchLists.getBook_publisher()%></li>
-								<li class="adm_col_rc" id="adm_book_high"><%=booksearchLists.getBbook_bstate()%></li>
-								<li class="adm_col_rc" id="adm_book_high">
-								<%
+								<li class="adm_num" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_number()%></li>
+								<li class="adm_pic" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><img src="./upload/book/<%=booksearchLists.getBook_file()%>" width="70px" height="80px"></li>
+								<li class="adm_subs2" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_subject()%></li>
+								<li class="adm_name" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_author()%></li>
+								<li class="adm_ten" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_publisher()%></li>
+								<li class="adm_ten"><input type="button" id="<%=i %>" value="보기" class ="bbutton info" ></li>
+							</ul>
+							
+							<div id="Borrow<%=i%>">
+								<div class="join_form">
+								<h3>시설관리</h3>
+								<ul>
+									<li class="row">
+										<ul class="row_sub">
+										<li class="title">대출현황</li>
+										<li class="inp_form"><%if (Integer.parseInt(booksearchLists.getBbook_bstate())==0){ %> 대출가능 <% }
+											else { %><%=date.format(booksearchLists.getBbook_bdate())%>~<%=date.format(booksearchLists.getBbook_rdate())%> 대출중
+											<%}%></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+										<li class="title">예약상태</li>
+										<li class="inp_form"><%
 									if(Integer.parseInt(booksearchLists.getRbook_check())>=3)	out.print("예약 불가");
 									else out.print("예약 가능");
-								%>
-								</li>
-								<li class="adm_col_rc" id="adm_book_high">
-									<%if (booksearchLists.getDbook_state().equals("0")) %> 상태양호 <%
-									else { %> <%=booksearchLists.getDbook_state()%> <%}%>
-								</li>
-							</ul>
+								%></li>
+										</ul>
+									</li>
+									<li>
+										<ul class="row_sub">
+										<li class="title">책상태</li>
+										<li class="inp_form"><%if (booksearchLists.getDbook_state().equals("0")) %> 상태양호 <%
+									else { %> <%=booksearchLists.getDbook_state()%> <%}%></li>
+										</ul>
+									</li>
+								</ul>
+								<div class="btn_btm_center" >
+									<ul>
+										<li class="adm_btn_cancle">
+										<input type="button" value="나가기" id="<%=i %>" class ="btn_type4 BTN_CLOSE">
+										</li>
+									</ul>
+								</div>
+							</div>
+							</div>
+							
 						</div><%}
 						}%>
 							</li>
@@ -229,6 +260,12 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 							<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'" class ="btn_type4 BTN_IF_LIST">
 						</li>
 					</ul>
+				
+				
+				
+			
+				
+				
 				
 				<% // count = 전체 글의 개수
 				if (count != 0) {
@@ -255,5 +292,27 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+	<script type="text/javascript">
+$(window).on('load', function() {
+	var bookListSize = "${booksearchList.size()}";
+	//admin 대출,예약,책상태 
+	for(var i=0;i<bookListSize;i++){
+		$('#Borrow' + i).dialog({ 
+			autoOpen: false, 
+			width: 400, 
+			modal: true, 
+		});
+	}
+	$(".info").click(function() {
+		var listvalue = $(this).attr("id");
+		$('#Borrow' + listvalue).dialog("open");
+	});
+	
+	$(".BTN_CLOSE").click(function() {
+		var listvalue = $(this).attr("id");
+		$('#Borrow' + listvalue).dialog("close");
+	});
+});
+</script>	
 </body>
 </html>
