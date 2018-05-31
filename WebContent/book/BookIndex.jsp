@@ -61,13 +61,13 @@
 							}
 					});
 				
-				$('#book_sort').change(function() {
-					var sort = $("#book_sort > option:selected").val();
-					if (sort != "") {
-						$(location).attr('href', sort);
-					} else {
-					}
-				});
+// 				$('#book_sort').change(function() {
+// 					var sort = $("#book_sort > option:selected").val();
+// 					if (sort != "") {
+// 						$(location).attr('href', sort);
+// 					} else {
+// 					}
+// 				});
 
 				$('#book_pic_hv').hover(function() {
 					$('.book_lst > li').mouseenter(function() {
@@ -107,10 +107,65 @@ $(document).ready(function(){
 	var category3 = document.searchFr.category3.value
 	var search3 = document.searchFr.search3.value
 	var pubDate = document.searchFr.pubDate.value
+	
+	function andaendago(param){
+		var $target = $("select[name='sort']");
 
-	$(document).ready(function(){
-		
-	});
+// 	$(document).ready(function(){
+// 		var selected="";
+// 		function selectBox(){
+// 			selected = $('#book_sort').val();
+			$.ajax({
+				url:"./BoardSortAjax.bk",
+				type:'POST',
+				data:{sort : param},
+				dataType:'json',
+				success:function(result){
+					var arr = result;
+					if (arr!=null){
+						$.each(arr, function(i,data){
+							var test = "<div class='con_lst'><ul class='no_scroll'><li class='adm_col_rrc' id='adm_book_high'><input type='checkbox' name='basket_check'  class='bncheck' value="
+							+data.book_number+" ></li><li class='adm_col_date' id='adm_book_high'><imgsrc='./upload/book/"
+							+date.book_file+"' width='70px' height='80px'></li><li class='adm_col_sub' id='adm_book_high'>"
+							+date.book_subject+"</li><li class='adm_col_type' id='adm_book_high'>"
+							+date.book_author+"</li><li class='adm_col_date' id='adm_book_high'>"
+							+date.book_publisher+"</li><li class='adm_col_sub' id='adm_book_high'>";
+							$('.con_lst').append(test);
+						});
+					} else {
+						var test1 = "<ul><li class='col_tit'><p>책 목록이 없습니다</p></li></ul>";
+						$('.view_lst').append(test1);
+					}
+				}
+		});
+	}
+// 	var request = new XMLHttpRequest();
+// 	function searchFunction(){
+// 		request.open("Post", "./BookSortServlet?category1="+encodeURIComponent(category1)+"&search1="+encodeURIComponent(search1)+"&opt1="+encodeURIComponent(opt1)+
+// 				"&category2"+encodeURIComponent(category2)+"&opt2"+encodeURIComponent(opt2)+"&category3"+encodeURIComponent(category3)+
+// 				"&search3"+encodeURIComponent(search3)+"&pubDate"+encodeURIComponent(pubDate), true);
+// 		request.onreadystatechange=searchProcess;
+// 		request.send(null);
+// 	}
+// 	function searchProcess(){
+// 		// 출력하려는 부분 변수 생성
+// 		var table=document.getElementById("ajaxTable");
+// 		table.innerHTML="";
+// 		if(request.readyState == 4 && request.status == 200) {
+// 			var object = eval('('+request.reponseText+')');
+// 			var result = object.result;
+// 			for(var i=0; i<result.length; i++){
+// 				var row = table.insertRow(0);
+// 				for(var j=0; j<result[i].length; j++){
+// 					var cell = row.insertCell(j);
+// 					cell.innerHTML = result[i][j].value;
+// 				}
+// 			}
+// 		}
+// 		window.onload = function(){
+// 			searchFunction();
+// 		}
+// 	}
 </script>
 </head>
 <body>
@@ -124,6 +179,7 @@ $(document).ready(function(){
 		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
+		int BorrowCheck = ((Integer) request.getAttribute("BorrowCheck")).intValue();
 		List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("bookList");
 		
 		String view = request.getParameter("view");
@@ -217,7 +273,7 @@ $(document).ready(function(){
 															</div>
 														</div>
 														<div id="book_sort_submit">
-															<input type="submit" class="book_btn_type4" value="상세검색" >
+															<input type="button" class="book_btn_type4" onclick="searchFunction();" value="상세검색" >
 															<input type="reset" class="book_btn_type5" value="입력 초기화">
 														</div>
 													</div>
@@ -243,13 +299,13 @@ $(document).ready(function(){
 								<!-- 시험용 버튼 -->
 								<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
 								<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
-								<select name="sort" id="book_sort">
-									<option value="" selected="selected">정렬</option>
-									<option value="./BookSort.bk?view=<%=view%>&sort=book_subject">제목순</option>
-									<option value="./BookSort.bk?view=<%=view%>&sort=book_author">저자순</option>
-									<option value="./BookSort.bk?view=<%=view%>&sort=book_number">인기순</option>
-									<option value="./BookSort.bk?view=<%=view%>&sort=book_pubDate">신작순</option>
-									<option value="./BookSort.bk?view=<%=view%>&sort=book_date">입고순</option>
+								<select name="sort" id="book_sort" onchange="andaendago(this.value);">
+									<option value="book_number" selected="selected">정렬</option>
+									<option value="book_subject">제목순</option>
+									<option value="book_author">저자순</option>
+									<option value="book_number">인기순</option>
+									<option value="book_pubDate">신작순</option>
+									<option value="book_date">입고순</option>
 								</select>
 							</div>
 
@@ -301,9 +357,9 @@ $(document).ready(function(){
 											<%if(member_id!=null){ %>
 											<li class="adm_col_rc"  id="adm_book_high">
 												<%if (Integer.parseInt(bookdto.getBbook_bstate())==0){ %>
-													<input type="button" rel="<%=bookdto.getBook_number()%>" class="bbutton" value="대출신청">
+													<input type="button" rel="<%=bookdto.getBook_number()%>" class="bbutton" value="대출신청" id="borrowBook">
 												<%} else {
-													if (Integer.parseInt(bookdto.getRbook_check())>=3) out.print("예약불가");
+													if (BorrowCheck > 0) out.print("<input type = 'button' value = '반납하기' class = 'bbutton'>");
 													else %> <input type="button" rel="<%=bookdto.getBook_number()%>" class="rbutton" value="대출예약">
 											<%}%>
 											</li><%}%>
@@ -403,7 +459,7 @@ $(document).ready(function(){
 					var bbook = confirm("대출신청을 하시겠습니까?");
 						if (bbook == true) {
 							var url = book_number;
-							$(location).attr('href', './MemberBasketAdd.me?book_number='+url);
+							$(location).attr('href', './BorrowBookAction.me?book_number='+url);
 						} else { return false; }
 			});
 		});

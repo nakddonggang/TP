@@ -35,7 +35,7 @@
 	 	where b.book_number=#{book_number}
 	</select>
 
-	 <select id="BookSortSubject" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 <select id="BookSorts" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state,
 		 	ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
 			ifnull(rb.rbook_check, 0) rbook_check, b.book_file
@@ -47,69 +47,9 @@
 			left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 			on b.book_number=rb.book_number
 			where db.dbook_state is null
-			order by b.book_subject asc limit #{startRow}, #{pageSize}	 
-	 </select>
-	 
-	 <select id="BookSortAuthor" parameterType="hashmap" resultType="net.book.db.BookDTO">
-		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state,
-		 	ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-			ifnull(rb.rbook_check, 0) rbook_check, b.book_file
-			from book b
-			left join dbook db
-			on b.book_number=db.book_number
-			left join bbook bb
-			on b.book_number=bb.book_number
-			left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
-			on b.book_number=rb.book_number
-		where db.dbook_state is null
-		order by b.book_author limit #{startRow}, #{pageSize}	 
+			order by b.${bookSR} ${adsc}
 	 </select>
 
-	 <select id="BookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
-		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state,
-		 	ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-			ifnull(rb.rbook_check, 0) rbook_check, b.book_file
-			from book b
-			left join dbook db
-			on b.book_number=db.book_number
-			left join bbook bb
-			on b.book_number=bb.book_number
-			left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
-			on b.book_number=rb.book_number
-		where db.dbook_state is null
-		order by b.book_number desc limit #{startRow}, #{pageSize} 	 
-	 </select>
-
-	 <select id="BookSortPubDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
-		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state,
-		 	ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-			ifnull(rb.rbook_check, 0) rbook_check, b.book_file
-			from book b
-			left join dbook db
-			on b.book_number=db.book_number
-			left join bbook bb
-			on b.book_number=bb.book_number
-			left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
-			on b.book_number=rb.book_number
-		where db.dbook_state is null 
-		order by b.book_pubDate desc limit #{startRow}, #{pageSize} 	 
-	 </select>
-
-	 <select id="BookSortIO" parameterType="hashmap" resultType="net.book.db.BookDTO">
-		 	select b.book_number, b.book_subject, b.book_author, b.book_publisher, db.dbook_state,
-		 	ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-			ifnull(rb.rbook_check, 0) rbook_check, b.book_file
-			from book b
-			left join dbook db
-			on b.book_number=db.book_number
-			left join bbook bb
-			on b.book_number=bb.book_number
-			left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
-			on b.book_number=rb.book_number
-		where db.dbook_state is null 
-		order by b.book_date desc limit #{startRow}, #{pageSize} 	 
-	 </select>
-	 
 	 <select id="Bk_SearchAllCount" resultType="int" parameterType="hashmap">
 	 	select count(b.book_number) from book b
 		left join dbook db
@@ -475,5 +415,9 @@
 		insert into hbook(member_id, hbook_subject, hbook_author, hbook_publisher, hbook_explain, hbook_check)
 		values(#{member_id}, #{hbook_subject}, #{hbook_author}, #{hbook_publisher}, #{hbook_explain}, #{hbook_check})
 	</insert>
+	
+	<select id="MyBorrowBookCheck" parameterType="hashmap" resultType="int">
+		select count(*) from bbook where member_id=#{member_id}
+	</select>
 
 </mapper>
