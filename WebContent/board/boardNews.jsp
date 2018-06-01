@@ -28,24 +28,28 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#search").autocomplete({
-        source : function( request, response ) {
+        source : function(request){
 	           $.ajax({
                    type: 'POST',
 	               url: './BoardNoticeAjax.no',
 	               dataType: 'json',
 	               data: { 'search' : request.term },
 	               success: function(data) {
-	                   //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
-	                   response(
-	                       $.map(data, function(item) {
-	                           return {
-	                               label: item.notice_subject,
-	                               value: item.notice_subject
-	                           }
-	                       })
-	                   );
-	               }
-	         });
+	            	   alert(data);
+	            	   var notice_subject = JSON.parse("["+data[0].notice_subject+"]");
+	            	   alert(notice_subject);
+
+	            	   var jsonData = JSON.parse("["+data+"]");
+	            	   alert(jsonData);
+       				   
+       				   
+       				   for(var i=0; i<jsonData.length; i++){
+           				   jsonData[i].notice_subject;
+       				   }
+       				   alert(auto);
+       				   return auto;
+					}
+	       	});
         },
     //조회를 위한 최소글자수
         minLength: 2,
@@ -103,14 +107,14 @@ $(document).ready(function(){
 								<input type="text" name="search" id="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
 						</div>
-						
+
 						<div class="view_cnt">
 							<p>Total_<span><%=count %></span></p>
 						</div>
 						
 						
 						
-						<u=l class="brd_txt_lst">
+						<ul class="brd_txt_lst">
 						
 						
 						
@@ -205,7 +209,7 @@ $(document).ready(function(){
 	</div>
 <script type="text/javascript">
 $(document).ready(function(){
-	var pageNum = "<%=pageNum %>";
+	var pageNum = "${pageNum}";
 	
 	$('.deleteBoard').each(function(index){
 		$(this).attr('id','delete'+index);

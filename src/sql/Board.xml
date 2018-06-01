@@ -202,5 +202,15 @@
 		</choose>
 		order by faq_num desc
 	</select>
+	
+	<select id="countFaqType" parameterType="hashmap" resultType="int">
+		select ifnull(count(*),0) from faq
+		<choose>
+			<when test="faq_type.equals('대출/반납/예약')">where faq_type=#{faq_type}</when>
+			<when test="faq_type.equals('자료구입')">where faq_type=#{faq_type}</when>
+			<when test="faq_type.equals('도서관 이용')">where faq_type=#{faq_type}</when>
+			<otherwise></otherwise>
+		</choose>
+	</select>
 
 </mapper>

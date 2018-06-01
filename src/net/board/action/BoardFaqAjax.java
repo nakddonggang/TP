@@ -39,7 +39,8 @@ public class BoardFaqAjax implements Action{
 
 		BoardDAO bDAO = new BoardDAO();
 		List<BoardDTO> list = bDAO.selectFaqType(faq_type);
-		System.out.println(list.size());
+		int count = bDAO.countFaqType(faq_type);
+		
 		JsonArray arr = null;
 		JsonObject json = null;
 		String result = "";
@@ -66,7 +67,11 @@ public class BoardFaqAjax implements Action{
 			System.out.println(json);
 			if(i != list.size()-1)	result += ",";
 		}
-		arr = Json.createArrayBuilder().add(result).build();
+		if(list.size()==0){
+			arr = Json.createArrayBuilder().add("{\"count\":"+count+"}").build();
+		}else{
+			arr = Json.createArrayBuilder().add(result).add("{\"count\":"+count+"}").build();
+		}
 		System.out.println(arr);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
