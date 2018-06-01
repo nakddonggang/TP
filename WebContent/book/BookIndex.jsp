@@ -94,6 +94,9 @@ $(document).ready(function() {
 });
 </script>
 <script type="text/javascript">
+
+// 책 정렬 Ajax
+
 	var category1 = document.searchFr.category1.value
 	var search1 = document.searchFr.search1.value
 	var opt1 = document.searchFr.opt1.value
@@ -102,7 +105,48 @@ $(document).ready(function() {
 	var category3 = document.searchFr.category3.value
 	var search3 = document.searchFr.search3.value
 	var pubDate = document.searchFr.pubDate.value
-	
+
+// $(document).ready(function() {
+// 	$('#book_sort').change(function() {
+// 		var sort = $("#book_sort > option:selected").val();
+		
+// 		// 요청
+// 		var xhr = new XMLHttpRequest(); // Ajax 요청 생성
+// 		xhr.open("GET", "./BookSortAjax.bk", true);
+// 		xhr.send('sort=sort');
+		
+// 		// 응답
+// 		xhr.onload=function(){ // 브라우저가 서버로부터 응답 받으면 onload 이벤트 발생
+// 			if (xhr.statur==200){ // 서버의 응답이 정상인지 확인하기
+// 				responseObject = JSON.parse(xhr.responseText); // json을 가져와 js 객체로 변경
+				
+// 				var newcontent ='';
+// 				for (var i=0; i<responseObject.events.length; i++){
+// 					newContent += '<div class="event">';
+// 		            newContent += '<img src"' + responseObject.events[i].location + '"';
+// 				}
+// 				document.getElementById('content').innerHTML = newContent;
+// 			}
+// 		};
+// 		xhr.open('GET', 'data/data.json', true); //요청 준비
+// 		xhr.send(null); //요청 전송
+		
+// 		$.ajax({
+// 			url:"./BookSortAjax.bk",
+// 			type:'POST',
+// 			data: sort,
+// 			success:function(date){
+				
+// 			},
+// 			error:function(){
+				
+// 			}
+			
+// 		});
+		
+// 	});
+// });	
+
 	function andaendago(param){
 		var $target = $("select[name='sort']");
 		
@@ -113,6 +157,7 @@ $(document).ready(function() {
 				dataType:'json',
 				success:function(result){
 
+					var jsonData = JSON.parse("["+result+"]")
 					var arr = result;
 					if (arr!=null){
 						$.each(arr, function(i,data){
