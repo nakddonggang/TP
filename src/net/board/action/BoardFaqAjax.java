@@ -3,11 +3,14 @@ package net.board.action;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonArrayBuilder;
+import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
@@ -33,21 +36,38 @@ public class BoardFaqAjax implements Action{
 			faq_type = "도서관 이용";
 		}
 		System.out.println("ajax page "+faq_type);
-		
-		JSONArray arr = new JSONArray();
+
 		BoardDAO bDAO = new BoardDAO();
 		List<BoardDTO> list = bDAO.selectFaqType(faq_type);
 		System.out.println(list.size());
+		JsonArray arr = null;
+		JsonObject json = null;
+		String result = "";
+		
 		for(int i=0; i<list.size(); i++){
 			BoardDTO bDTO = list.get(i);
-			JSONObject obj = new JSONObject();
-			obj.put("faq_num", bDTO.getFaq_num());
-			obj.put("faq_type", bDTO.getFaq_type());
-			obj.put("faq_subject", bDTO.getFaq_subject());
-			obj.put("faq_content", bDTO.getFaq_content());
-			obj.put("faq_file", bDTO.getFaq_file());
-			arr.add(obj);
+			if(bDTO.getFaq_file() == null){
+				json = Json.createObjectBuilder()
+						.add("faq_num", bDTO.getFaq_num())
+						.add("faq_type", bDTO.getFaq_type())
+						.add("faq_subject", bDTO.getFaq_subject())
+						.add("faq_content", bDTO.getFaq_content())
+						.add("faq_file", JsonValue.NULL).build();
+				result += json.toString();
+			}else{
+				json = Json.createObjectBuilder()
+					     .add("faq_num", bDTO.getFaq_num())
+					     .add("faq_type", bDTO.getFaq_type())
+					     .add("faq_subject", bDTO.getFaq_subject())
+					     .add("faq_content", bDTO.getFaq_content())
+					     .add("faq_file", bDTO.getFaq_file()).build();
+				result += json.toString();
+			}
+			System.out.println(json);
+			if(i != list.size()-1)	result += ",";
 		}
+		arr = Json.createArrayBuilder().add(result).build();
+		System.out.println(arr);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(arr);
