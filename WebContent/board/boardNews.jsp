@@ -36,8 +36,8 @@ $(document).ready(function(){
 	               data: { 'search' : request.term },
 	               success: function(data) {
 	            	   alert(data);
-	            	   var notice_subject = JSON.parse("["+data[0].notice_subject+"]");
-	            	   alert(notice_subject);
+	            	   var result = JSON.parse("["+data+"]");
+	            	   alert(result[0].notice_subject);
 
 	            	   var jsonData = JSON.parse("["+data+"]");
 	            	   alert(jsonData);
