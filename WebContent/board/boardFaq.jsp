@@ -38,47 +38,50 @@ $(document).ready(function(){
 			dataType:'json',
 			success:function(result){
 				var jsonData = JSON.parse("["+result+"]");
+				var count = 0;
+
 				if(jsonData.length != 0){
-					for(var i=0; i<jsonData.length; i++){
-						function updateMove(){
-							var pageNum = "${pageNum}";
-							location.href="./BoardFaqUpdate.fa?faq_num="+jsonData[i].faq_num+"&pageNum="+pageNum;
-						}
-						function deleteMove(){
-							var pageNum = "${pageNum}";
-							location.href="./BoardFaqDelete.fa?faq_num="+jsonData[i].faq_num+"&pageNum="+pageNum;
-						}
-						
+					count = jsonData[jsonData.length-1].count
+				}
+				$('#count').html(count);
+				
+				if(jsonData.length > 1){
+					for(var i=0; i<jsonData.length-1; i++){
+						var file = "";
 						var faq_content = jsonData[i].faq_content;
 						faq_content = faq_content.replace(/\r\n/, "<br>");
 						faq_content = faq_content.replace(/\u0020/, "&nbsp;");
 						
 						var test = "<div class='con_lst DIV_CON_LST'><ul><li class='col_rcFAQ'><a href='#'>"+jsonData[i].faq_num+"</a></li><li class='col_type'><a href='#'><p>"
 						+jsonData[i].faq_type+"</p></a></li><li class='col_title'><a href='#'><p>"+jsonData[i].faq_subject
-						+"</p></a></li></ul><div class='con_detail DIV_CON_DETAIL'>";
+						+"</p></a></li></ul><div class='con_detail DIV_CON_DETAIL' id='con_detail"+i+"'>";
 						$('.view_lst').append(test);
 						
 						if(jsonData[i].faq_file != null){
+							file = jsonData[i].faq_file;
 							var test2 = "<p><img src='./upload/"+jsonData[i].faq_file+"' width='100' height='100'></p>";
-							$('.con_detail').append(test2);
-						}else{
-							var test3 = "<p>"+faq_content+"</p><div class='file'><span>첨부파일</span><ul>"+jsonData[i].faq_file+"</ul></div>"
-							$('.con_detail').append(test3);
-							
-							if("admin"=="${member_id}"){
-								var test5 = "<div class='btn_btm_board'>"+
-											"<ul>"+
-												+"<li class='btn_con_right'>"
-													+"<input type='button' class='btn_type4' value='글수정' onclick=updateMove()>"
-													+"<input type='button' class='btn_type4 deleteBoard' value='글삭제' onclick=deleteMove()>"
-												+"</li>"
-											+"</ul>"
-											+"</div>"
-								$('.con_detail').append(test5);
-							}
-							$('.con_detail').append("</div></div>");
+							$('#con_detail'+i).append(test2);
 						}
+						var test3 = "<p>"+faq_content+"</p><div class='file'><span>첨부파일</span><ul>"+file+"</ul></div>"
+						$('#con_detail'+i).append(test3);
 						
+						if("admin"=="${member_id}"){
+							var test5 = "<div class='btn_btm_board'>"+
+										"<ul>"
+											+"<li class='btn_con_right'>"
+												+"<input type='button' class='btn_type4' value='글수정' onclick='./BoardFaqUpdate.fa?faq_num=${jsonData[i].faq_num}&pageNum=${pageNum}'>"
+												+"<input type='button' class='btn_type4 deleteBoard' value='글삭제' onclick='deleteMove();'>"
+											+"</li>"
+										+"</ul>"
+										+"</div>"
+							$('#con_detail'+i).append(test5);
+						}
+						$('#con_detail'+i).append("</div></div>");
+						
+						function deleteMove(){
+							var pageNum = "${pageNum}";
+							location.href="./BoardFaqDelete.fa?faq_num="+jsonData[i].faq_num+"&pageNum="+pageNum;
+						}
 					}
 				}else{
 					var test4 = "<ul><li class='col_tit'><p>게시글이 없습니다.</p></li></ul>";
@@ -90,14 +93,29 @@ $(document).ready(function(){
 					var test6 = "<input type='button' class='btn_type1' value='글쓰기' onclick='writeMove();'>";
 					$('.btn_btm_center').append(test6);
 				}
+				$("div.DIV_CON_LST > ul").click(function ()
+					    {
+					        if ($(this).hasClass('active'))
+					        {
+					            $(this).removeClass('active');
+					            $(this).siblings("div.DIV_CON_DETAIL").stop(true, false).slideUp("fast");
+					        }
+					        else
+					        {
+					            $("div.DIV_CON_DETAIL").slideUp("fast");
+					            $("div.DIV_CON_LST > ul").removeClass("active");
+					            $(this).siblings("div.DIV_CON_DETAIL").stop(true, false).slideDown("fast");
+					            $(this).addClass('active');
+					        };
+					    });
+				
 			}
 		});
 	}
 	selectBox();
 	$("#faq_select").change(function() {
-		$('.con_lst').empty();
-		$('.con_detail').empty();
-		$('.view_lst').children('ul').empty();
+		$('.view_lst').empty();
+		$('#count').html();
 		selectBox();
 	});
 	
@@ -147,7 +165,7 @@ $(document).ready(function(){
 							</div>
 				
 							<div class="view_cnt">
-								<p>Total_<span><%=count%></span></p>
+								<p>Total_<span id="count"><%=count%></span></p>
 								<select name="choice" id="faq_select">
 									<option value="all">전체</option>
 									<option value="buy">자료구입</option>
@@ -158,14 +176,13 @@ $(document).ready(function(){
 							<ul class="brd_txt_lst">
 								<!-- 글목록 -->
 								<li class="view_lst">
-									
-									
-										
-										
-									
+			
 								</li>
 							</ul>
-								
+							<script type="text/javascript">
+							
+							</script>
+
 								<div class="paginate">
 <%-- 							<% --%>
 <!-- // 								if (pageCount < endPage) endPage = pageCount; -->
@@ -209,17 +226,21 @@ $(document).ready(function(){
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
-<!-- // $(document).ready(function(){ -->
-<%-- <%-- 	var pageNum = "<%=pageNum %>"; --%>
+<script type="text/javascript">
+$(function(){
+ 	var pageNum = "${pageNum}";
 	
-<!-- // 	$('.deleteBoard').each(function(index){ -->
-<!-- // 		$(this).attr('id','delete'+index); -->
-<!-- // 		$('#delete'+index).click(function(){ -->
-<!-- // 			var result = confirm('정말 삭제하시겠습니까?'); -->
-<!-- // 			if(result){} -->
-<!-- // 			else{location.replace("./BoardFaqList.fa?pageNum="+pageNum);	} -->
-<!-- // 		}); -->
-<!-- // 	}); -->
-<!-- // }); -->
+ 	$('.deleteBoard').each(function(index){
+ 		$(this).attr('id','delete'+index);
+ 		$('#delete'+index).click(function(){
+			var result = confirm('정말 삭제하시겠습니까?');
+ 			if(result){}
+ 			else{location.replace("./BoardFaqList.fa?pageNum="+pageNum);}
+		});
+	});
+
+});
+</script>
+
 </body>
 </html>

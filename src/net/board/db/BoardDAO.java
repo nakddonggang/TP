@@ -267,12 +267,17 @@ public class BoardDAO {
 		map.put("search", search);
 		return sqlsession.selectList("selectList",map);
 	}
-	//test
+	//Ajax test
 	public List<BoardDTO> selectFaqType(String faq_type){
 		HashMap map = new HashMap();
 		map.put("faq_type", faq_type);
-//		map.put("startRow", startRow)
 		List<BoardDTO> list = sqlsession.selectList("selectFaqType", map);
 		return list;
+	}
+	//Ajax test
+	public int countFaqType(String faq_type){
+		HashMap map = new HashMap();
+		map.put("faq_type", faq_type);
+		return sqlsession.selectOne("countFaqType", map);
 	}
 }
