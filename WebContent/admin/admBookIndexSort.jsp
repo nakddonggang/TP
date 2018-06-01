@@ -260,23 +260,24 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 							<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'" class ="btn_type4 BTN_IF_LIST">
 						</li>
 					</ul>
-				
-				<% // count = 전체 글의 개수
-				if (count != 0) {
-					// 이전페이지 // if (startPage와 pageBlock을 비교)
-					if (startPage > pageBlock) {
-						%><a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=<%=startPage - pageBlock%>">[이전]</a><%
-					}
-					// 1~10		11~20		21~30
-					for (int i = startPage; i <= endPage; i++) {%>
-					<a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=<%=i%>">[<%=i%>]</a><%		
-					}
-					// 다음 // if (endPage와 pageCount를 비교)
-					if (endPage<pageCount){%>
-						<a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=<%=startPage+pageBlock%>">[다음]</a><%
-					}
-				} // if count 괄호 %>		
 						</div>	
+				
+			<!-- 버튼 css 부분 -->
+					<div class="paginate">
+						
+						<a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=1"><span>&lt;&lt;&nbsp;</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=pageCount%>"><span>&nbsp;&gt;&gt;</span></a>
+						 </div>
+				
 					</div>
 					</div>
 			</article>

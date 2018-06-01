@@ -77,8 +77,8 @@ public class BookFrontController extends HttpServlet{
 						try{
 							forward = action.execute(request, response);
 						}catch(Exception e){e.printStackTrace();}
-				}else if (command.equals("/BoardSortAjax.bk")){
-					action = new BoardSortAjax();
+				}else if (command.equals("/BookSortAjax.bk")){
+					action = new BookSortAjax();
 					try{
 						forward = action.execute(request, response);
 					}catch(Exception e){e.printStackTrace();}
