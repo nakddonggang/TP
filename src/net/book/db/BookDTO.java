@@ -24,7 +24,8 @@ public class BookDTO {
 	Date bbook_bdate;		//	대출일자			date									책 빌려간 날짜
 	Date bbook_rdate;		//	반납일자			date									책 반납한 날짜
 	String bbook_bstate;			//	반납상태			char(2)	check in ('0','1')		반납됐는지 여부(대출중/반납됨)
-													
+	int bbook_number;
+	
 	//	<rbook table>						
 	int rbook_num;					//	예약순서			int(2)									회원의 해당 책 예약 우선순위
 	Date rbook_date;		//	예약일자			date									회원이 예약한 날짜
@@ -207,5 +208,12 @@ public class BookDTO {
 	public void setHbook_explain(String hbook_explain) {
 		this.hbook_explain = hbook_explain;
 	}
+	public int getBbook_number() {
+		return bbook_number;
+	}
+	public void setBbook_number(int bbook_number) {
+		this.bbook_number = bbook_number;
+	}
+	
 	
 }

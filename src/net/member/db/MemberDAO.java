@@ -235,5 +235,20 @@ public class MemberDAO {
 	 public int userBorrowBookCount(String member_id) {
 		 return sqlsession.selectOne("MyBorrowBookCount", member_id);
 	 }
+	 
+	 // 책반납
+	 public void ReturnBorrowBook(int book_number) {
+		 sqlsession.delete("ReturnBorrowBook", book_number);
+	 }
+	 
+	 // 히스토리 알북 업데이트
+	 public void ReturnHistoryBorrowBook(int book_number) {
+		 sqlsession.update("ReturnHistoryBorrowBook", book_number);
+	 }
+	 
+	 // 히스토리 알북 책 번호
+	 public int HistoryMaxNumber() {
+		 return sqlsession.selectOne("HistoryBorrowMaxBookNumber");
+	 }
 	
 }
