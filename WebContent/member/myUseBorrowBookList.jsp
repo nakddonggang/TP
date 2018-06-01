@@ -19,12 +19,11 @@
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
-<script type="text/javascript">
-</script>
 </head>
 <body>
 <%
 List<BookDTO> bbList = (List<BookDTO>)request.getAttribute("bbList");
+int count = ((Integer) request.getAttribute("count")).intValue();
 %>
 	<div class="wrapper">
 
@@ -56,27 +55,24 @@ List<BookDTO> bbList = (List<BookDTO>)request.getAttribute("bbList");
 								<li>반납할 일자</li>
 							</ul>
 							<%
-							if(bbList == null) {
-								%>
-								<ul><li>대여중인 도서가 없습니다.</li></ul>
-								<%
-							} else {
-							SimpleDateFormat bbook_bdate = new SimpleDateFormat("yyyy-MM-dd");
-							SimpleDateFormat bbook_rdate = new SimpleDateFormat("yyyy-MM-dd");
-							for(BookDTO bDTO :  bbList) {
-							%>
-							<ul onclick="location.href = 'MyBorrowBookDetail.me'">
-							    <li><%=bDTO.getBook_number() %></li>
-								<li><%=bDTO.getBook_subject() %></li>
-								<li><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
-								<li><%=bbook_rdate.format(bDTO.getBbook_rdate()) %></li>
-							</ul>
-							<%
-							}
-						}
+							SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
+								if(bbList == null) {
+									out.println("<ul><li>없음</li></ul>");
+								} else {
+									for(BookDTO bDTO : bbList) {
+										%>
+											<ul>
+												<li><%=bDTO.getBook_number() %></li>
+												<li><%=bDTO.getBook_subject() %></li>
+												<li><%=date.format(bDTO.getBbook_bdate()) %></li>
+												<li><%=date.format(bDTO.getBbook_rdate()) %></li>
+											</ul>
+										<%
+									}
+								}
 							%>
 					
-					</div>
+						</div>
 			
 			     </div>
 				</article>

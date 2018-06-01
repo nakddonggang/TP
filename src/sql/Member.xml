@@ -163,5 +163,15 @@
 	<select id="memberBbookCheck" parameterType="string" resultType="int">
 		select ifnull(count(*),0) from bbook where member_id=#{member_id} and datediff(bbook_rdate,now())<![CDATA[<= 2 ]]>
 	</select>
+	
+	
+	<select id="BorrowBookCountList" resultType="int" parameterType="string">
+	   select count(*) from history_bbook where member_id=#{member_id}
+	</select>
+	
+	<select id="myUseBorrowBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select * from history_bbook where member_id=#{member_id}
+		limit #{startRow},#{pageSize}
+	</select>
 
 </mapper>

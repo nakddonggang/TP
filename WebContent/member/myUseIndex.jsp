@@ -45,6 +45,7 @@
 					<div class="content">
 					<%
 						String member_id = (String)session.getAttribute("member_id");
+	
 					%>
 					
 					
@@ -136,7 +137,7 @@
 						</ul>
 						
 						<div class="btn_btm_center">							
-										<input type = "button" value ="대출내역보기"  class="btn_type5" onclick = "location.href ='#'">
+										<input type = "button" value ="대출내역보기"  class="btn_type5" onclick = "location.href ='./MemberMyUseBorrowBookList.me'">
 								</div>
 						 </div>
 					</div>

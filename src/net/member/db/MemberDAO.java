@@ -1,7 +1,6 @@
 package net.member.db;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -235,5 +234,18 @@ public class MemberDAO {
 	 public int userBorrowBookCount(String member_id) {
 		 return sqlsession.selectOne("MyBorrowBookCount", member_id);
 	 }
+	 
+	 public int BorrowBookCountList(String member_id) {
+		 return sqlsession.selectOne("BorrowBookCountList",member_id);
+	 }
+	 
+	 public List<BookDTO> myUseBorrowBookList(int startRow, int pageSize , String member_id){
+	       HashMap map = new HashMap();
+	       map.put("startRow", startRow);
+	       map.put("pageSize", pageSize);
+	       map.put("member_id", member_id);
+	       List<BookDTO> bbList = sqlsession.selectList("myUseBorrowBookList", map);
+	       return bbList;
+	    }
 	
 }

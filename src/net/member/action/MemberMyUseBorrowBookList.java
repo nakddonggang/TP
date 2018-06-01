@@ -19,17 +19,30 @@ public class MemberMyUseBorrowBookList implements Action{
 		HttpSession session = request.getSession();
 		String member_id=(String)session.getAttribute("member_id");
 		
+		
+		
+		String pageNum=request.getParameter("pageNum");
+	    if(pageNum==null) {pageNum="1";}
+	    
+	    int pageSize = 10;
+	    
+		int startRow = (Integer.parseInt(pageNum)-1)*pageSize+1;
+		
 		ActionForward forward = new ActionForward();
 		request.setCharacterEncoding("utf-8");
 		
 	
 		MemberDAO mDAO = new MemberDAO();
-		
-		
+		int count = mDAO.BorrowBookCountList(member_id);
 		List<BookDTO> bbList = null;
+		if(count != 0){
+			bbList=mDAO.myUseBorrowBookList(startRow, pageSize , member_id);
+		}
 		
-		bbList=mDAO.myUseBorrowBookList(member_id);
 		
+		request.setAttribute("pageSize", pageSize);
+		request.setAttribute("startRow", startRow);
+		request.setAttribute("count", count);
 		request.setAttribute("bbList", bbList);
 		forward.setPath("./member/myUseBorrowBookList.jsp");
 		forward.setRedirect(false);
