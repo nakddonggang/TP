@@ -1,45 +1,54 @@
 package net.book.action;
 
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
-import javax.json.Json;
-import javax.json.JsonArrayBuilder;
-import javax.json.JsonBuilderFactory;
-import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import net.board.db.BoardDTO;
 import net.book.db.BookDAO;
 import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class BoardSortAjax implements Action{
+public class BookSortAjax  implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		// 한글처리
 		request.setCharacterEncoding("UTF-8");
+		
+		// String sort 파라미터값 가져오기
 		String sort = request.getParameter("sort");
-		System.out.println(sort);
+		System.out.println("정렬해야할 값"+sort);
+		
+		// 오름차순, 내림차순 결정하기
 		String adsc="";
 		if (sort.equals("book_subject")||sort.equals("book_author")||sort.equals("book_date")) adsc="asc";
 		else if (sort.equals("book_number")||sort.equals("book_number")||sort.equals("book_pubDate")) adsc="desc";
 		System.out.println(adsc);
-
+		
+		// AdminDAO adao 객체 생성 및 count 메소드 호출
+		BookDAO bdao = new BookDAO();
+		int count = bdao.BookCount();
+		
+		// 입출력
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		// Json 님 부르기
 		JSONArray arr = new JSONArray();
 		
-		BookDAO bdao = new BookDAO();
-		List<BookDTO> list = bdao.BookSorts(sort, adsc);
-//		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-
+		// 책 뿌려주는 메소드 생성
+		List<BookDTO> list = null;
+		if (count!=0) bdao.BookSorts(sort, adsc);
+		List<BookDTO> booksortList = null;
+		
 		for(int i=0; i<list.size(); i++){
-
 			BookDTO bdto = list.get(i);
 			JSONObject obj = new JSONObject();
 			obj.put("book_number", bdto.getBook_number());
@@ -53,16 +62,14 @@ public class BoardSortAjax implements Action{
 			obj.put("rbook_check", bdto.getRbook_check());
 			obj.put("book_file", bdto.getBook_file());
 			arr.add(obj);
-			System.out.println(arr);
 		}
+		System.out.println(arr);
 		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
 		out.println(arr);
 		out.flush();
 		out.close();
-		
+
 		return null;
-		
 	}
 	
 }

@@ -320,7 +320,7 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.book_subject asc limit #{startRow}, #{pageSize}	 
+		order by b.book_subject limit #{startRow}, #{pageSize}	 
 	 </select>
 	 
 	 <select id="getBookSortAuthor" parameterType="hashmap" resultType="net.book.db.BookDTO">

@@ -266,29 +266,24 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 							<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'" class ="btn_type4 BTN_IF_LIST">
 						</li>
 					</ul>
-				
-				
-				
-			
-				
-				
-				
-				<% // count = 전체 글의 개수
-				if (count != 0) {
-					// 이전페이지 // if (startPage와 pageBlock을 비교)
-					if (startPage > pageBlock) {
-						%><a href="./AdminBookSearch.am?pageNum=<%=startPage - pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>">[이전]</a><%
-					}
-					// 1~10		11~20		21~30
-					for (int i = startPage; i <= endPage; i++) {%>
-					<a href="./AdminBookSearch.am?pageNum=<%=i%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>">[<%=i%>]</a><%		
-					}
-					// 다음 // if (endPage와 pageCount를 비교)
-					if (endPage<pageCount){%>
-						<a href="./AdminBookSearch.am?pageNum=<%=startPage+pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>">[다음]</a><%
-					}
-				} // if count 괄호 %>		
 						</div>	
+				
+				<!-- 버튼 css 부분 -->	
+						<div class="paginate">
+						
+						<a href="./AdminBookSearch.am?pageNum=1&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>"><span>&lt;&lt;&nbsp;</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./AdminBookSearch.am?pageNum=<%=startPage - pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./AdminBookSearch.am?pageNum=<%=p%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./AdminBookSearch.am?pageNum=<%=startPage+pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./AdminBookSearch.am?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>"><span>&nbsp;&gt;&gt;</span></a>
+						 </div>
+				
 					</div>
 					</div>
 			</article>
