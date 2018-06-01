@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import net.admin.db.AdminDAO;
 import net.book.db.BookDAO;
@@ -50,6 +51,14 @@ public class BookSearch implements Action{
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		BookDAO bdao = new BookDAO();
 		int count = 0;
+
+		HttpSession session = request.getSession();
+		String member_id = (String)session.getAttribute("member_id");
+		int BorrowCheck;
+		if(member_id != null) {
+			BorrowCheck = bdao.userBorrowBookCheck(member_id);
+		} else { BorrowCheck=0;}
+		
 		
 		// pubDate에 값이 없을 때
 		if (pubDate.equals("all")) {
@@ -251,7 +260,8 @@ public class BookSearch implements Action{
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
-		request.setAttribute("endPage", endPage);					
+		request.setAttribute("endPage", endPage);			
+		request.setAttribute("BorrowCheck", BorrowCheck);		
 				
 				ActionForward forward = new ActionForward();
 				forward.setPath("./book/bookSearch.jsp");

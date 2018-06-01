@@ -42,10 +42,10 @@ public class BookIndex implements Action{
 		int endRow = pageSize*currentPage;
 		
 		String member_id = (String)session.getAttribute("member_id");
-		int BorrowCheck = bdao.userBorrowBookCheck(member_id);
+		int BorrowCheck;
 		if(member_id != null) {
 			BorrowCheck = bdao.userBorrowBookCheck(member_id);
-		}
+		} else { BorrowCheck=0;}
 		System.out.println("borrowcheck : " +BorrowCheck);
 		
 		// 입출력

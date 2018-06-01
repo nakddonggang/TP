@@ -111,6 +111,7 @@ $(document).ready(function(){
 		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
+		int BorrowCheck = ((Integer) request.getAttribute("BorrowCheck")).intValue();
 		List<BookDTO> booksortList = (List<BookDTO>) request.getAttribute("booksortList");
 		
 		String view = request.getParameter("view");
@@ -288,13 +289,13 @@ $(document).ready(function(){
 											else { %><%=date.format(booksortLists.getBbook_bdate())%>~<%=date.format(booksortLists.getBbook_rdate())%> 대출중
 											<%}%>
 											</li>
-											<%if(member_id!=null){ %>
-											<li class="adm_col_type"  id="adm_book_high">
+										<%if(member_id!=null){ %>
+											<li class="adm_col_rc book_iff"  id="adm_book_high">
 												<%if (Integer.parseInt(booksortLists.getBbook_bstate())==0){ %>
-													<input type="button" rel="<%=booksortLists.getBook_number()%>" class="bbutton" value="대출신청">
+													<input type="button" rel="<%=booksortLists.getBook_number()%>" class="bbutton" value="대출신청" id="borrowBook">
 												<%} else {
-													if (Integer.parseInt(booksortLists.getRbook_check())>=3) out.print("예약불가");
-													else %> <input type="button" rel="<%=booksortLists.getBook_number()%>" class="rbutton" value="대출예약">
+													if (BorrowCheck > 0){%> <input type = 'button' rel="<%=booksortLists.getBook_number()%>" value = '반납하기'  class ='rebutton'>
+												<% } else {%> <input type="button" rel="<%=booksortLists.getBook_number()%>" class="rbutton" value="대출예약"> <%}%>
 											<%}%>
 											</li><%}%>
 										</ul>
@@ -385,32 +386,36 @@ $(document).ready(function(){
 		<!-- //본문 컨테이너 -->
 	</div>
 	
-	<script type="text/javascript">
-		$(document).ready(function() {
-			$(".bbutton").click(function() {
+<script type="text/javascript">
+	$(document).ready(function() {
+
+		// 대출 버튼 Jquery
+		$(".bbutton").click(function(){
 				var book_number = $(this).attr("rel");
 				var bbook = confirm("대출신청을 하시겠습니까?");
-				if (bbook == true) {
-					var url = book_number;
-					$(location).attr('href', './MemberBasketAdd.me?book_number' + url);
-					return false;
-				} else {
-				}
-			});
+					if (bbook == true) { var url = book_number;
+						$(location).attr('href', './BorrowBookAction.me?book_number='+url);
+					} else { return false; }
 		});
 		
-		$(document).ready(function() {
-			$('.rbutton').click(function() {
-				var book_number = $(this).attr("rel");
-					var rbook = confirm("대출예약 하시겠습니까?");
-					if (rbook == true) {
-						var url = book_number;
-						$(location).attr('href', './MemberBasketResAction.me?book_number' + url);
-						return false;
-					} else {}
-			});
+		// 예약 버튼 Jquery
+		$('.rbutton').click(function() {
+			var book_number = $(this).attr("rel");
+				var rbook = confirm("대출예약 하시겠습니까?");
+				if (rbook == true) { var url = book_number;
+					$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
+				} else { return false; }
 		});
-
+		
+		// 반납 버튼 Jquery
+		$('.rebutton').click(function() {
+			var book_number = $(this).attr("rel");
+				var rebook = confirm("책 반납을 하시겠습니까?");
+				if (rebook == true) { var url = book_number;
+					$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
+				} else { return false; }
+		});
+	});
 </script>
 </body>
 </html>
