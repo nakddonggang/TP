@@ -19,18 +19,18 @@ public class AdminMemberInfo implements Action{
 		request.setCharacterEncoding("utf-8");
 		ActionForward forward = new ActionForward();
 		
-		String member_id = request.getParameter("member_id");
+		String info_id = request.getParameter("info_id");
 		String pageNum = request.getParameter("pageNum");
 		
 		
-		if(member_id == null) {
+		if(info_id == null) {
 			forward.setPath("./MemberLogin.me");
 			forward.setRedirect(true);
 			return forward;
 		}
 		
 		AdminDAO adao = new AdminDAO();
-		MemberDTO mDTO = adao.getAdminMember(member_id);
+		MemberDTO mDTO = adao.getAdminMember(info_id);
 		String bl_check = mDTO.getBl_check();
 		String gm_check = mDTO.getGm_check();
 		request.setAttribute("mDTO", mDTO);

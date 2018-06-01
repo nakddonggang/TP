@@ -26,13 +26,19 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
-	<%
-		String member_id = (String)session.getAttribute("member_id");
-		if ((member_id == null) || !(member_id.equals("admin"))) {
-			response.sendRedirect("./Main.fp");
-		}
-	%>
+<%
+request.setCharacterEncoding("UTF-8");
+String member_id = (String)session.getAttribute("member_id");
+if ((member_id == null) || !(member_id.equals("admin"))) {	response.sendRedirect("./Main.fp");	}
+int count = ((Integer) request.getAttribute("count")).intValue();
+String pageNum = (String) request.getAttribute("pageNum");
+int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
+int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
+int startPage = ((Integer) request.getAttribute("startPage")).intValue();
+int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 
+List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList");
+%>
 	<div class="wrapper">
 		<!-- header -->
 		<jsp:include page="../include/header.jsp" />
@@ -49,14 +55,70 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-					<ul class="tabs">
-					    <li class="active" rel="tab1">회원목록</li>
-					    <li rel="tab2">우수회원</li>
-					    <li rel="tab3">블랙리스트</li>
-					</ul>
-					<div class="tab_container">
-						<iframe class="tab_content" src="./AdminMemberNormal.am">이 브라우저는 iframe을 지원하지 않습니다</iframe>
+					<h3>회원 목록 리스트</h3>
+					<div class="view_cnt">
+						<p>Total_<span><%=count%></span></p>
 					</div>
+					<div>
+						<input type="button" name="btn_all"		id="%" class="callAjax" value="전체보기">
+						<input type="button" name="btn_black"	id="1" class="callAjax" value="블랙리스트">
+						<input type="button" name="btn_good"	id="2" class="callAjax" value="우수화원">
+						<input type="button" name="btn_admin"	id="3" class="callAjax" value="관리자">
+					</div>
+					<ul class="brd_txt_lst">
+						<!-- 글목록 -->
+						<li class="view_lst">
+							<div class="con_lst">
+								<ul class="no_scroll title_t">
+									<li class="col_typen">아이디</li>
+									<li class="col_typen">비밀번호</li>
+									<li class="col_typen">이름</li>
+									<li class="col_calln">전화번호</li>
+									<li class="col_typen">회원등급</li>
+									<li class="col_calln">가입일</li>
+								</ul>
+							</div>
+							<div id="ajax_container">
+								<% if (memberList == null) {
+									%><ul>
+										<li class="col_tit"><p>회원이 없습니다</p></li>
+									</ul><%
+								} else {
+									for (int i = 0; i < memberList.size(); i++) {
+										MemberDTO mt = memberList.get(i); //제너릭 사용해서 형변환 할 필요없음
+										String gm_check = mt.getGm_check();
+										String bl_check = mt.getBl_check();
+										
+										%><div class="con_lst">
+											<ul onclick="location.href='./AdminMemberInfo.am?info_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>&pageType='"  class="no_scroll">
+												<li class="col_typen"><a href="#"><p><%=mt.getMember_id()%></p></a></li>
+												<li class="col_typen"><a href="#"><p><%=mt.getMember_pass()%></p></a></li>
+												<li class="col_typen"><a href="#"><%=mt.getMember_name()%></li>
+												<li class="col_calln"><a href="#"><%=mt.getMember_phone()%></a></li>
+												<li class="col_typen"><%
+													if 		(gm_check.equals("0") && bl_check.equals("0")) {	%>일반회원<%		} 
+													else if (gm_check.equals("1") && bl_check.equals("0")) {	%>우수회원<%		} 
+													else if (bl_check.equals("1") && gm_check.equals("0")) {	%>블랙리스트<%	} 
+													else {	%>일반회원<%	}
+												%></li>
+												<li class="col_calln"><%=mt.getMember_date()%></li>
+											</ul>
+										</div>
+										
+									<%}%>
+								<%}%>
+								<div class="paginate">
+									<%if (count != 0) {
+										//이전
+										if (startPage > pageBlock) {%><a href="./AdminMemberIndex.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%}// 1~10 11~20 21~30
+										for (int i = startPage; i <= endPage; i++) {%><a href="./AdminMemberIndex.am?pageNum=<%=i%>"> &nbsp;<strong id="currentPage" title="현재 페이지"><%=i %></strong>&nbsp;</a><%}
+										//다음
+										if (endPage < pageCount) {%><a href="./AdminMemberIndex.am?pageNum=<%=startPage + pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%}
+									}%>
+								</div>
+							</div>
+						</li>
+					</ul>
 				</div>
 				<!-- //메인 페이지-->
 				</article>
@@ -65,5 +127,32 @@
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+<script type="text/javascript">
+$(".callAjax").click(function(){
+	var member_level = $(this).attr("id");
+	$.ajax({
+		url:"./AdminMemberAjax.am",
+		type:'POST',
+		data:{'member_level':member_level},
+		success:function(result){
+			var count="${count}";
+			var pageNum="${pageNum}";
+			var pageCount="${pageCount}";
+			var pageBlock="${pageBlock}";
+			var startPage="${startPage}";
+			var endPage="${endPage}";
+			
+			var jsonData = JSON.parse(result.data);
+			for(var i=0; i<jsonData.users.length; i++) {
+		          if (chatuser==jsonData.users[i]) {
+		        	 $('#nowChat').empty();
+		             $('#nowChat').append("<span>" + jsonData.users[i]+"님과 대화중입니다.</span>");
+		             other = jsonData.users[i];
+		             first = "false";
+		          }
+		}
+	});
+});
+</script>
 </body>
 </html>

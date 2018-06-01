@@ -509,9 +509,9 @@ public class AdminDAO {
 		sqlsession.update("getHBookReWrite", bookdto);
 	}
 	
-	public int getMemberCount(){
+	public int getMemberCount(String member_level){
 		int count;
-		count = sqlsession.selectOne("getMemberCount");
+		count = sqlsession.selectOne("getMemberCount", member_level);
 		return count;
 	}
 	public int getBlackMemberCount(){
@@ -524,8 +524,9 @@ public class AdminDAO {
 		count = sqlsession.selectOne("getGoodMemberCount");
 		return count;
 	}
-	public List<MemberDTO> getMemberList(int startRow, int pageSize){
+	public List<MemberDTO> getMemberList(String member_level, int startRow, int pageSize){
 		HashMap map = new HashMap();
+		map.put("member_level", member_level);
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		List<MemberDTO> memberList = sqlsession.selectList("getMemberList",map);

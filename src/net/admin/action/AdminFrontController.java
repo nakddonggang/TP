@@ -106,31 +106,20 @@ public class AdminFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}				
 		} else if (command.equals("/AdminMemberIndex.am")){
-			forward = new ActionForward();
-			forward.setPath("./admin/admMemIndex.jsp");
-			forward.setRedirect(false);
+			action = new AdminMemberIndex();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
+		} else if (command.equals("/AdminMemberAjax.am")){
+			action = new AdminMemberAjax();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}
 		} else if (command.equals("/AdminMemberInfo.am")){
 			action = new AdminMemberInfo();
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}						
-		} else if (command.equals("/AdminMemberGood.am")){
-			action = new AdminMemberGood();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}						
-		}else if (command.equals("/AdminMemberBlack.am")){
-			action = new AdminMemberBlack();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}						
-		}else if (command.equals("/AdminMemberNormal.am")){
-			action = new AdminMemberNormal();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}
-			
-			//  여기서 부터는 Facility 구간
 		}else if(command.equals("/AdminFacilityInsert.am")) {
 			forward = new ActionForward();
 			forward.setPath("./admin/admFacilityInsert.jsp");
