@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -30,6 +31,14 @@ public class BookSort implements Action {
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		BookDAO bdao = new BookDAO();
 		int count = bdao.BookCount();
+
+		HttpSession session = request.getSession();
+		String member_id = (String)session.getAttribute("member_id");
+		int BorrowCheck;
+		if(member_id != null) {
+			BorrowCheck = bdao.userBorrowBookCheck(member_id);
+		} else { BorrowCheck=0;}
+		System.out.println("borrowcheck : " +BorrowCheck);
 		
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 8;		
@@ -73,8 +82,8 @@ public class BookSort implements Action {
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
-		request.setAttribute("endPage", endPage);				
-	
+		request.setAttribute("endPage", endPage);			
+		request.setAttribute("BorrowCheck", BorrowCheck);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./book/BookIndex.jsp");
