@@ -1,33 +1,20 @@
 package net.book.action;
 
 import java.io.PrintWriter;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.json.Json;
 import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-import javax.json.stream.JsonLocation;
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParser.Event;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.EncodeException;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import net.book.db.BookDAO;
 import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
-import util.websocketSetting.ChatMessage;
-import util.websocketSetting.Message;
-import util.websocketSetting.UsersMessage;
 
 public class BookSortAjax  implements Action {
 
@@ -125,11 +112,25 @@ public class BookSortAjax  implements Action {
 			
 			if(i != list.size()-1) result += ",";
 		} // result >> String에 넣어주는 역할
-		JsonArr = Json.createArrayBuilder().add(result).build(); // [ ] 생성
+		
+		// 배열을 제외한 나머지 값 추가로 JsonArray에 넣어주기
+		if (list.size() == 0) { Json.createArrayBuilder()
+			.add("{\"count\":"+count+"},")
+			.add("{\"sort\":"+sort+"},")
+			.add("{\"pageNum\":"+pageNum+"},")
+			.add("{\"pageCount\":"+pageCount+"},")
+			.add("{\"pageBlock\":"+pageBlock+"},")
+			.add("{\"startPage\":"+startPage+"},")
+			.add("{\"endPage\":"+endPage+"},")
+			.add("{\"BorrowCheck\":"+BorrowCheck+"},")
+			.build();
+		} // [ ] 생성
+		
 		System.out.println(JsonArr);
-		response.setContentType("text/html; charset=utf-8");
 		out = response.getWriter();
 		out.println(JsonArr);
+		out.flush();
+		out.close();
 		
 //		user.add("count", count);
 //		user.add("sort", sort);
