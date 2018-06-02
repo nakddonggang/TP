@@ -122,7 +122,18 @@ public class BookSortAjax  implements Action {
 			.add("{\"pageBlock\":"+pageBlock+"},")
 			.add("{\"startPage\":"+startPage+"},")
 			.add("{\"endPage\":"+endPage+"},")
-			.add("{\"BorrowCheck\":"+BorrowCheck+"},")
+			.add("{\"BorrowCheck\":"+BorrowCheck+"}")
+			.build();
+		} else { Json.createArrayBuilder()
+			.add(result)
+			.add("{\"count\":"+count+"},")
+			.add("{\"sort\":"+sort+"},")
+			.add("{\"pageNum\":"+pageNum+"},")
+			.add("{\"pageCount\":"+pageCount+"},")
+			.add("{\"pageBlock\":"+pageBlock+"},")
+			.add("{\"startPage\":"+startPage+"},")
+			.add("{\"endPage\":"+endPage+"},")
+			.add("{\"BorrowCheck\":"+BorrowCheck+"}")
 			.build();
 		} // [ ] 생성
 		
