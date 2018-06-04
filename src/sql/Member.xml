@@ -128,13 +128,25 @@
 	</insert>
 	
 	<insert id="insertHistoryBorrowBook" parameterType="net.book.db.BookDTO">
-		insert into history_bbook(book_number, bbook_bdate, bbook_rdate, member_id) 
-		values (#{book_number}, now(), date_add(now(), interval 10 day), #{member_id})
+		insert into history_bbook(book_number, bbook_bdate, bbook_rdate, member_id , bbook_number) 
+		values (#{book_number}, now(), date_add(now(), interval 10 day), #{member_id} , #{bbook_number})
 	</insert>
+	
+	<select id="HistoryBorrowMaxBookNumber" resultType="int">
+		select ifnull(max(bbook_number),0) from history_bbook
+	</select>
 	
 	<select id="MyBorrowBookCount" parameterType="string" resultType="int">
 		select count(*) from bbook where member_id=#{member_id}
 	</select>
+	
+	<delete id="ReturnBorrowBook" parameterType="int">
+		delete from bbook where book_number=#{book_number}
+	</delete>
+	
+	<update id="ReturnHistoryBorrowBook" parameterType="int">
+		update history_bbook set bbook_rdate = now() where book_number=#{book_number}
+	</update>
 
 	<select id="myUseRBookList" parameterType="string" resultType="net.book.db.BookDTO">
 		select* from rbook r

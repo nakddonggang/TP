@@ -134,23 +134,5 @@ $(function() {
 	        $(".book_media_bye").slideToggle("slow");
 	    });
 	});
-    
-	//탭메뉴 기능 구현
-	$("ul.tabs li").click(function() {
-		$("ul.tabs li").removeClass("active").css("color", "#333");
-		$(this).addClass("active").css("color", "darkred");
-		var tab1="./AdminMemberNormal.am";
-		var tab2="./AdminMemberGood.am";
-		var tab3="./AdminMemberBlack.am";
-		var activeTab = $(this).attr("rel");
-		if(activeTab == "tab1") {		$('.tab_content').attr('src', tab1);	}
-		else if(activeTab == "tab2") {	$('.tab_content').attr('src', tab2);	}
-		else if(activeTab == "tab3") {	$('.tab_content').attr('src', tab3);	}
-	});
-	
-	$(".BTN_IF_LIST").click(function() {
-		var listPage = $(this).attr("rel");
-		parent.$('.tab_content', parent.document).attr('src', listPage);
-	});
 });
 

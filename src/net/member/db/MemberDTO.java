@@ -13,6 +13,7 @@ public class MemberDTO {
 	String member_phone; 		//	전화번호				char(14)							회원 전화번호
 	String member_email; 			//	E-mail					varchar(320)					회원 E-mail
 	Date member_date;		// 가입일					date								회원 가입일
+	String member_level;
 	
 	//	BlackList table
 	int bl_count;						 //	연체 횟수				int(3)								해당 회원 연체 횟수
@@ -91,6 +92,12 @@ public class MemberDTO {
 	}
 	public void setMember_date(Date member_date) {
 		this.member_date = member_date;
+	}
+	public String getMember_level() {
+		return member_level;
+	}
+	public void setMember_level(String member_level) {
+		this.member_level = member_level;
 	}
 	public int getBl_count() {
 		return bl_count;

@@ -7,9 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
 import net.admin.db.AdminDAO;
 import net.book.db.BookDAO;
 import net.book.db.BookDTO;
@@ -27,6 +24,12 @@ public class BookSort implements Action {
 		// String sort 파라미터값 가져오기
 		String sort = request.getParameter("sort");
 		System.out.println("정렬해야할 값"+sort);
+		
+		// 오름차순, 내림차순 결정하기
+		String adsc="";
+		if (sort.equals("book_subject")||sort.equals("book_author")||sort.equals("book_date")) adsc="asc";
+		else if (sort.equals("book_number")||sort.equals("book_number")||sort.equals("book_pubDate")) adsc="desc";
+		System.out.println(adsc);
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		BookDAO bdao = new BookDAO();

@@ -33,17 +33,14 @@
 	});
 </script>
 </head>
+<body>
 <%
 request.setCharacterEncoding("UTF-8");
-
+String member_id = (String)session.getAttribute("member_id");
+if ((member_id == null) || !(member_id.equals("admin"))) {
+	response.sendRedirect("./Main.fp");
+}
 %>
-<body>
-	<%
-		String member_id = (String)session.getAttribute("member_id");
-		if ((member_id == null) || !(member_id.equals("admin"))) {
-			response.sendRedirect("./Main.fp");
-		}
-	%>
 	<div class="wrapper">
 
 		<!-- header -->

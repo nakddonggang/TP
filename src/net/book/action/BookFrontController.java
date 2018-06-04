@@ -82,7 +82,7 @@ public class BookFrontController extends HttpServlet{
 					try{
 						forward = action.execute(request, response);
 					}catch(Exception e){e.printStackTrace();}
-			}
+				}
 		
 		if (forward!=null){
 			if (forward.isRedirect())
