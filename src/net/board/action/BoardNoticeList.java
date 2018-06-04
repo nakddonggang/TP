@@ -22,7 +22,7 @@ public class BoardNoticeList implements Action{
 		BoardDAO bDAO = new BoardDAO();
 		int count = bDAO.getNoticeCount();		// 공지사항 글 개수 구해 count에 저장
 		
-		int pageSize = 2;	//한 화면에 보여줄 글 개수 설정
+		int pageSize = 3;	//한 화면에 보여줄 글 개수 설정
 		String pageNum = request.getParameter("pageNum");	// 페이지 번호(파라미터 "pageNum") 가져오기
 
 		if(pageNum == null){	//페이지 번호가 없으면 무조건 "1"페이지 설정

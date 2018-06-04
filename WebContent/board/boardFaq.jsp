@@ -32,21 +32,28 @@ $(document).ready(function(){
 	function selectBox(){
 		selected = $('#faq_select').val();
 		$.ajax({
-			url:"./BoardFaqAjax.fa",
+			url:"./BoardFaqAjax.fa?pageNum=${pageNum}",
 			type:'POST',
 			data:{'selected':selected},
 			dataType:'json',
 			success:function(result){
 				var jsonData = JSON.parse("["+result+"]");
 				var count = 0;
+				var pageNum = jsonData[jsonData.length-5].pageNum;
+				var pageCount = jsonData[jsonData.length-4].pageCount;
+				var pageBlock = jsonData[jsonData.length-3].pageBlock;
+				var startPage = jsonData[jsonData.length-2].startPage;
+				var endPage = jsonData[jsonData.length-1].endPage;
 
 				if(jsonData.length != 0){
-					count = jsonData[jsonData.length-1].count
+					count = jsonData[jsonData.length-6].count
 				}
+				
 				$('#count').html(count);
 				
-				if(jsonData.length > 1){
-					for(var i=0; i<jsonData.length-1; i++){
+				/***********	게시판 리스트	**************/
+				if(jsonData.length > 6){
+					for(var i=0; i<jsonData.length-6; i++){
 						var file = "";
 						var faq_content = jsonData[i].faq_content;
 						faq_content = faq_content.replace(/\r\n/, "<br>");
@@ -57,6 +64,7 @@ $(document).ready(function(){
 						+"</p></a></li></ul><div class='con_detail DIV_CON_DETAIL' id='con_detail"+i+"'>";
 						$('.view_lst').append(test);
 						
+						/***********	이미지 처리 부분		**************/
 						if(jsonData[i].faq_file != null){
 							file = jsonData[i].faq_file;
 							var test2 = "<p><img src='./upload/"+jsonData[i].faq_file+"' width='100' height='100'></p>";
@@ -65,34 +73,35 @@ $(document).ready(function(){
 						var test3 = "<p>"+faq_content+"</p><div class='file'><span>첨부파일</span><ul>"+file+"</ul></div>"
 						$('#con_detail'+i).append(test3);
 						
+						/***********	수정,삭제 버튼	**************/
 						if("admin"=="${member_id}"){
 							var test5 = "<div class='btn_btm_board'>"+
 										"<ul>"
 											+"<li class='btn_con_right'>"
-												+"<input type='button' class='btn_type4' value='글수정' onclick='./BoardFaqUpdate.fa?faq_num=${jsonData[i].faq_num}&pageNum=${pageNum}'>"
-												+"<input type='button' class='btn_type4 deleteBoard' value='글삭제' onclick='deleteMove();'>"
+												+"<input type='button' class='btn_type4' value='글수정' onclick='location.href=\"./BoardFaqUpdate.fa?faq_num="
+														+jsonData[i].faq_num+"&pageNum=${pageNum}\"\'>"
+												+"<input type='button' class='btn_type4 deleteBoard' value='글삭제' onclick='location.href=\"./BoardFaqDelete.fa?faq_num="
+														+jsonData[i].faq_num+"&pageNum=${pageNum}\"\'>"
 											+"</li>"
 										+"</ul>"
 										+"</div>"
 							$('#con_detail'+i).append(test5);
 						}
 						$('#con_detail'+i).append("</div></div>");
-						
-						function deleteMove(){
-							var pageNum = "${pageNum}";
-							location.href="./BoardFaqDelete.fa?faq_num="+jsonData[i].faq_num+"&pageNum="+pageNum;
-						}
 					}
-				}else{
+				}else{	// 게시글 없을 때
 					var test4 = "<ul><li class='col_tit'><p>게시글이 없습니다.</p></li></ul>";
 					$('.view_lst').append(test4);
 				}
-
+				
+				/***********	글쓰기 버튼 	**************/
 				if("admin"=="${member_id}"){
 					
 					var test6 = "<input type='button' class='btn_type1' value='글쓰기' onclick='writeMove();'>";
 					$('.btn_btm_center').append(test6);
 				}
+				
+				/***********	슬라이드 부분	**************/
 				$("div.DIV_CON_LST > ul").click(function ()
 					    {
 					        if ($(this).hasClass('active'))
@@ -108,13 +117,50 @@ $(document).ready(function(){
 					            $(this).addClass('active');
 					        };
 					    });
+				$(function(){
+				 	var pageNum = "${pageNum}";
+					
+				 	$('.deleteBoard').each(function(index){
+				 		$(this).attr('id','delete'+index);
+				 		$('#delete'+index).click(function(){
+							var result = confirm('정말 삭제하시겠습니까?');
+				 			if(result){}
+				 			else{location.replace("./BoardFaqList.fa?pageNum="+pageNum);}
+						});
+					});
+
+				});
 				
-			}
+				/***********	페이징 처리 부분		**************/
+				if(pageCount < endPage) endPage = pageCount;
+				if (startPage > pageBlock) {
+					var prev = "<a href='./BoardFaqList.fa?pageNum="+(startPage-pageBlock)+
+								"' class='prev'><span class='hide'>이전 페이지</span></a>";
+					$('.paginate').append(prev);
+				}
+				for (var p = startPage; p <= endPage; p++) {
+					if (p == parseInt(pageNum)) {
+						var current1 = "&nbsp;<strong title='현재 페이지' id='currentPage'>"+p+"</strong> &nbsp;"
+						$('.paginate').append(current1);
+					} else {
+						var current2 = "&nbsp;<a href='./BoardFaqList.fa?pageNum="+p+"'>"+p+"</a>&nbsp;"
+						$('.paginate').append(current2);
+					}
+				}
+
+				if (endPage < pageCount) {
+					var next = "<a href='./BoardFaqList.fa?pageNum="+(startPage+pageBlock)+
+								"' class='next'><span class='hide'>다음 페이지</span></a>";
+					$('.paginate').append(next);
+				}
+
+			}// success 끝
 		});
 	}
 	selectBox();
 	$("#faq_select").change(function() {
 		$('.view_lst').empty();
+		$('.paginate').empty();
 		$('#count').html();
 		selectBox();
 	});
@@ -184,32 +230,9 @@ $(document).ready(function(){
 							</script>
 
 								<div class="paginate">
-<%-- 							<% --%>
-<!-- // 								if (pageCount < endPage) endPage = pageCount; -->
-<!-- // 								if (startPage > pageBlock) { -->
-<%-- 							%><a --%>
-<%-- 								href="./BoardFaqList.fa?pageNum=<%=startPage - pageBlock%>" --%>
-<!-- 								class="prev"><span class="hide">이전 페이지</span></a> -->
-<%-- 							<% --%>
-<!-- // 								} -->
 
-<!-- // 								for (int p = startPage; p <= endPage; p++) { -->
-<!-- // 									if (p == Integer.parseInt(pageNum)) { -->
-<%-- 										%> --%>
-<%-- 										&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<% --%>
-<!-- //  									} else { -->
-<%--  										%>&nbsp;<a href="./BoardFaqList.fa?pageNum=<%=p%>"><%=p%></a>&nbsp;<% --%>
-<!-- //  									} -->
-<!-- //  								} -->
-
-<!-- // 							 	if (endPage < pageCount) { -->
-<%--  									%><a --%>
-<%-- 									href="./BoardFaqList.fa?pageNum=<%=startPage + pageBlock%>" --%>
-<!-- 									class="next"><span class="hide">다음 페이지</span></a> -->
-<%-- 								<% --%>
-<!-- // 								} -->
-<%-- 								%> --%>
 								</div>
+								
 								 <div class="btn_btm_center">
 								 <script type="text/javascript">
 								 	function writeMove(){
@@ -227,19 +250,7 @@ $(document).ready(function(){
 		<!-- //본문 컨테이너 -->
 	</div>
 <script type="text/javascript">
-$(function(){
- 	var pageNum = "${pageNum}";
-	
- 	$('.deleteBoard').each(function(index){
- 		$(this).attr('id','delete'+index);
- 		$('#delete'+index).click(function(){
-			var result = confirm('정말 삭제하시겠습니까?');
- 			if(result){}
- 			else{location.replace("./BoardFaqList.fa?pageNum="+pageNum);}
-		});
-	});
 
-});
 </script>
 
 </body>

@@ -200,7 +200,7 @@
 			<when test="faq_type.equals('all')"></when>
 			<otherwise>where faq_type=#{faq_type}</otherwise>
 		</choose>
-		order by faq_num desc
+		order by faq_num desc limit #{startRow}, #{pageSize}
 	</select>
 	
 	<select id="countFaqType" parameterType="hashmap" resultType="int">

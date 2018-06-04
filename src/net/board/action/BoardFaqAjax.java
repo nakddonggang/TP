@@ -26,6 +26,7 @@ public class BoardFaqAjax implements Action{
 		System.out.println(selected);
 		String faq_type = "";
 		
+		/****** 리스트 처리 ******/
 		if(selected.equals("all")){
 			faq_type = "all";
 		}else if(selected.equals("book")){
@@ -38,9 +39,28 @@ public class BoardFaqAjax implements Action{
 		System.out.println("ajax page "+faq_type);
 
 		BoardDAO bDAO = new BoardDAO();
-		List<BoardDTO> list = bDAO.selectFaqType(faq_type);
 		int count = bDAO.countFaqType(faq_type);
 		
+		/****** 페이징 처리 ******/
+		int pageSize=3;
+		String pageNum=request.getParameter("pageNum");
+		
+		if(pageNum==null) {pageNum="1";}
+		
+		int currentPage=Integer.parseInt(pageNum);
+		int startRow=(currentPage-1)*pageSize+1;
+		int endRow=currentPage*pageSize;
+		
+		int pageCount =count/pageSize+(count%pageSize==0? 0:1);
+		int pageBlock=10;
+		int startPage=((currentPage-1)/pageBlock)*pageBlock+1;
+		int endPage=startPage+pageBlock-1;
+		if(endPage>pageCount) {
+			endPage=pageCount;
+		}
+		List<BoardDTO> list = bDAO.selectFaqType(faq_type, startRow, pageSize);
+		
+		/****** JSON ******/
 		JsonArray arr = null;
 		JsonObject json = null;
 		String result = "";
@@ -68,9 +88,13 @@ public class BoardFaqAjax implements Action{
 			if(i != list.size()-1)	result += ",";
 		}
 		if(list.size()==0){
-			arr = Json.createArrayBuilder().add("{\"count\":"+count+"}").build();
+			arr = Json.createArrayBuilder().add("{\"count\":"+count+"}").add("{\"pageNum\":"+pageNum+"}")
+					.add("{\"pageCount\":"+pageCount+"}").add("{\"pageBlock\":"+pageBlock+"}").add("{\"startPage\":"+startPage+"}")
+					.add("{\"endPage\":"+endPage+"}").build();
 		}else{
-			arr = Json.createArrayBuilder().add(result).add("{\"count\":"+count+"}").build();
+			arr = Json.createArrayBuilder().add(result).add("{\"count\":"+count+"}").add("{\"pageNum\":"+pageNum+"}")
+					.add("{\"pageCount\":"+pageCount+"}").add("{\"pageBlock\":"+pageBlock+"}").add("{\"startPage\":"+startPage+"}")
+					.add("{\"endPage\":"+endPage+"}").build();
 		}
 		System.out.println(arr);
 		response.setContentType("text/html; charset=utf-8");

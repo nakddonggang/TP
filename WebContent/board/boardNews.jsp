@@ -28,32 +28,28 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#search").autocomplete({
-        source : function(request){
-	           $.ajax({
-                   type: 'POST',
-	               url: './BoardNoticeAjax.no',
-	               dataType: 'json',
-	               data: { 'search' : request.term },
-	               success: function(data) {
-	            	   alert(data);
-	            	   var result = JSON.parse("["+data+"]");
-	            	   alert(result[0].notice_subject);
-
-	            	   var jsonData = JSON.parse("["+data+"]");
-	            	   alert(jsonData);
-       				   
-       				   
-       				   for(var i=0; i<jsonData.length; i++){
-           				   jsonData[i].notice_subject;
-       				   }
-       				   alert(auto);
-       				   return auto;
-					}
-	       	});
-        },
+        source : function(request, response){
+					$.ajax({
+						type: 'POST',
+						url: './BoardNoticeAjax.no',
+						dataType: 'json',
+						data: { 'search' : request.term },
+						success: function(data) {
+							var jsonData = JSON.parse("["+data+"]");
+							response(
+								$.map(jsonData, function(item) {
+									return {
+										label: item.notice_subject,
+										value: item.notice_subject
+									}
+								})
+							);
+						}
+					});
+		},
     //조회를 위한 최소글자수
-        minLength: 2,
-        select:function(event,ui){}
+        minLength: 1,
+        select:function(event,ui){},
     });
 });
 </script>
