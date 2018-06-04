@@ -79,7 +79,7 @@ public class BookSortAjax  implements Action {
 		
 		JsonObject JsonObj = null;
 		JsonArray JsonArr = null;
-		String result="";
+		String books="";
 		  
 		for(int i=0; i<list.size(); i++){
 			BookDTO bdto = list.get(i);
@@ -94,7 +94,7 @@ public class BookSortAjax  implements Action {
 						.add("bbook_rdate",  JsonValue.NULL)
 						.add("rbook_check", bdto.getRbook_check())
 						.add("book_file", bdto.getBook_file()).build();
-				result += JsonObj.toString();
+				books += JsonObj.toString();
 			} else if (bdto.getBbook_bdate()==null){
 				JsonObj=Json.createObjectBuilder() // { } 생성
 						.add("book_number", bdto.getBook_number())
@@ -106,8 +106,8 @@ public class BookSortAjax  implements Action {
 						.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
 						.add("rbook_check", bdto.getRbook_check())
 						.add("book_file", bdto.getBook_file()).build();
-				result += JsonObj.toString();
-				System.out.println(result);
+				books += JsonObj.toString();
+				System.out.println(books);
 			} else if (bdto.getBbook_rdate()==null){
 				JsonObj=Json.createObjectBuilder() // { } 생성
 						.add("book_number", bdto.getBook_number())
@@ -119,8 +119,8 @@ public class BookSortAjax  implements Action {
 						.add("bbook_rdate", JsonValue.NULL)
 						.add("rbook_check", bdto.getRbook_check())
 						.add("book_file", bdto.getBook_file()).build();
-				result += JsonObj.toString();
-				System.out.println(result);
+				books += JsonObj.toString();
+				System.out.println(books);
 			} else {
 				JsonObj=Json.createObjectBuilder() // { } 생성
 						.add("book_number", bdto.getBook_number())
@@ -132,12 +132,12 @@ public class BookSortAjax  implements Action {
 						.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
 						.add("rbook_check", bdto.getRbook_check())
 						.add("book_file", bdto.getBook_file()).build();
-				result += JsonObj.toString();
-				System.out.println(result);
+				books += JsonObj.toString();
+				System.out.println(books);
 			}
 			
 			System.out.println(JsonObj);
-			if(i != list.size()-1) result += ",";
+			if(i != list.size()-1) books += ",";
 		} // result >> String에 넣어주는 역할
 
 		// 게시판 전체 페이지 수
@@ -168,7 +168,7 @@ public class BookSortAjax  implements Action {
 			.build();
 		} else { 
 			JsonArr=Json.createArrayBuilder()
-			.add(result)
+			.add(books)
 			.add("{\"count\":"+count+"}")
 			.add("{\"sort\":"+sort+"}")
 			.add("{\"pageNum\":"+pageNum+"}")
