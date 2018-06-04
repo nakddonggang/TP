@@ -30,6 +30,7 @@ public class BookSortAjax  implements Action {
 		System.out.println("정렬해야할 값"+sort);
 		
 		String view = request.getParameter("view");
+		if (view==null) view="1";
 		// 오름차순, 내림차순 결정하기
 		String adsc="";
 		if (sort.equals("book_subject")||sort.equals("book_author")||sort.equals("book_date")) adsc="asc";
@@ -66,7 +67,8 @@ public class BookSortAjax  implements Action {
 		// 페이지 마지막행 구하기
 			// 1page - 10 / 2page - 20 / 3page - 30
 		int endRow = pageSize*currentPage;
-		
+
+		System.out.println(pageSize+", "+pageNum+", "+currentPage+", "+startRow+", "+endRow);
 		// 입출력
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -88,7 +90,6 @@ public class BookSortAjax  implements Action {
 						.add("book_subject", bdto.getBook_subject())
 						.add("book_author", bdto.getBook_author())
 						.add("book_publisher", bdto.getBook_publisher())
-						.add("dbook_state", bdto.getDbook_state())
 						.add("bbook_bstate", bdto.getBbook_bstate())
 						.add("bbook_bdate", JsonValue.NULL)
 						.add("bbook_rdate",  JsonValue.NULL)
@@ -101,39 +102,39 @@ public class BookSortAjax  implements Action {
 						.add("book_subject", bdto.getBook_subject())
 						.add("book_author", bdto.getBook_author())
 						.add("book_publisher", bdto.getBook_publisher())
-						.add("dbook_state", bdto.getDbook_state())
 						.add("bbook_bstate", bdto.getBbook_bstate())
 						.add("bbook_bdate", JsonValue.NULL)
 						.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
 						.add("rbook_check", bdto.getRbook_check())
 						.add("book_file", bdto.getBook_file()).build();
 				result += JsonObj.toString();
+				System.out.println(result);
 			} else if (bdto.getBbook_rdate()==null){
 				JsonObj=Json.createObjectBuilder() // { } 생성
 						.add("book_number", bdto.getBook_number())
 						.add("book_subject", bdto.getBook_subject())
 						.add("book_author", bdto.getBook_author())
 						.add("book_publisher", bdto.getBook_publisher())
-						.add("dbook_state", bdto.getDbook_state())
 						.add("bbook_bstate", bdto.getBbook_bstate())
 						.add("bbook_bdate", date.format(bdto.getBbook_bdate()))
 						.add("bbook_rdate", JsonValue.NULL)
 						.add("rbook_check", bdto.getRbook_check())
 						.add("book_file", bdto.getBook_file()).build();
 				result += JsonObj.toString();
+				System.out.println(result);
 			} else {
 				JsonObj=Json.createObjectBuilder() // { } 생성
 						.add("book_number", bdto.getBook_number())
 						.add("book_subject", bdto.getBook_subject())
 						.add("book_author", bdto.getBook_author())
 						.add("book_publisher", bdto.getBook_publisher())
-						.add("dbook_state", bdto.getDbook_state())
 						.add("bbook_bstate", bdto.getBbook_bstate())
 						.add("bbook_bdate", date.format(bdto.getBbook_bdate()))
 						.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
 						.add("rbook_check", bdto.getRbook_check())
 						.add("book_file", bdto.getBook_file()).build();
 				result += JsonObj.toString();
+				System.out.println(result);
 			}
 			
 			System.out.println(JsonObj);
@@ -152,6 +153,7 @@ public class BookSortAjax  implements Action {
 		if (endPage>pageCount){
 			endPage=pageCount;
 		}	
+		System.out.println(pageCount+", "+pageBlock+", "+startPage+", "+endPage);
 		
 		// 배열을 제외한 나머지 값 추가로 JsonArray에 넣어주기
 		if (list.size() == 0) {
