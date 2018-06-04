@@ -28,7 +28,32 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	
+		
+		// 주소창에 Get방식으로 받아온 request값 스크립트에서 사용하기 위한 함수
+		function Request(valuename){
+			var rtnval;
+			var nowAddress = unescape(location.href);
+			var parameters = new Array();
+			parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+			for(var i = 0 ; i < parameters.length ; i++){
+				if(parameters[i].split("=")[0] == valuename){
+					rtnval = parameters[i].split("=")[1];
+					if(rtnval == undefined || rtnval == null){
+						rtnval = "";
+					}
+					return rtnval;
+				}
+			}
+		}
+		// direct값이 1이면 바구니에 정상적으로 들어간 것
+		var direct = Request("direct");
+		if(direct=="1"){
+			var directGo = confirm("책바구니로 이동하시겠습니까?");
+			if(directGo == true){
+				location.replace('./MemberBasketList.me');
+			}else{}
+		}else{}
+		
 		// 갤러리, 게시판 띄워주는 버튼
 		var book_img=<%=request.getParameter("view")%>;
 		if (book_img==null){ book_img="1"; }

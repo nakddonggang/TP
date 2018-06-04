@@ -43,13 +43,27 @@ $(document).ready(function(){
 		}
 	});
 	
-	$('#returnBtn').click(function(){
-		location.replace("./ReturnBook.me");
-	});
+	// 주소창에 Get방식으로 받아온 request값 스크립트에서 사용하기 위한 함수
+	function Request(valuename){
+		var rtnval;
+		var nowAddress = unescape(location.href);
+		var parameters = new Array();
+		parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+		for(var i = 0 ; i < parameters.length ; i++){
+			if(parameters[i].split("=")[0] == valuename){
+				rtnval = parameters[i].split("=")[1];
+				if(rtnval == undefined || rtnval == null){
+					rtnval = "";
+				}
+				return rtnval;
+			}
+		}
+	}
 	
-	$('#acceptBtn').click(function(){
-		location.replace("./AcceptResBook.me");
-	});
+	var msg = Request("alert");
+	if(msg=="1"){
+		alert("이미 대출,예약했거나 예약이 꽉 찬 도서가 포함됐습니다.");
+	}
 });
 </script>
 <body>
@@ -98,7 +112,7 @@ $(document).ready(function(){
 								</ul>
 							</div>
 							<%
-							if(MemberBasketList.size()==0){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
+							if(MemberBasketList.size()==0){	%><ul><li class="col_tit"><p>담아놓은 책이 없습니다</p></li></ul><%	}
 							else{
 								for(int i=0; i<MemberBasketList.size(); i++){
 									MemberDTO mDTO = (MemberDTO)MemberBasketList.get(i);
@@ -111,7 +125,7 @@ $(document).ready(function(){
 									<div class="con_lst">
 										<ul class="no_scroll">
 											<li class="buk_c"><input type="checkbox" name="checkbox" value="<%=mDTO.getBasket_number() %>"></li>
-											<li class="buk_p"><img src="./upload/<%=mDTO.getBook_file()%>" width="70" height="80"></li>
+											<li class="buk_p"><img src="./upload/book/<%=mDTO.getBook_file()%>" width="70" height="80"></li>
 											<li class="buk_t"><p><%=mDTO.getBook_subject() %></p></li>
 											<li class="buk_n"><p><%=mDTO.getBook_author() %></p></li>
 											<li class="buk_n"><p><%=bbook_bstate %></p></li>
@@ -149,13 +163,6 @@ $(document).ready(function(){
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
-<script type="text/javascript">
-$(document).ready(function(){
-	var msg = "<%=alert %>";
-	if(msg=="1"){
-		alert("이미 대출,예약했거나 예약이 꽉 찬 도서가 포함됐습니다.");
-	}
-});
-</script>
+
 </body>
 </html>

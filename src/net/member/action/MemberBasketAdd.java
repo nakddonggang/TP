@@ -50,8 +50,7 @@ public class MemberBasketAdd implements Action {
 				return null;
 			}
 		}
-		
-		forward.setPath("./BookIndex.bk");
+		forward.setPath("./BookIndex.bk?direct=1");
 	    forward.setRedirect(true);
 	    
 	    return forward;
