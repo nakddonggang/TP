@@ -133,7 +133,7 @@
 	</insert>
 	
 	<select id="MyBorrowBookCount" parameterType="string" resultType="int">
-		select count(*) from history_bbook where member_id=#{member_id}
+		select count(*) from bbook where member_id=#{member_id}
 	</select>
 
 	<select id="myUseRBookList" parameterType="string" resultType="net.book.db.BookDTO">

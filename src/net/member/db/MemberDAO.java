@@ -241,7 +241,7 @@ public class MemberDAO {
 	 
 	 public List<BookDTO> myUseBorrowBookList(int startRow, int pageSize , String member_id){
 	       HashMap map = new HashMap();
-	       map.put("startRow", startRow);
+	       map.put("startRow", startRow-1);
 	       map.put("pageSize", pageSize);
 	       map.put("member_id", member_id);
 	       List<BookDTO> bbList = sqlsession.selectList("myUseBorrowBookList", map);

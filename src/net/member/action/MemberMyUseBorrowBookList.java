@@ -21,10 +21,12 @@ public class MemberMyUseBorrowBookList implements Action{
 		
 		
 		
+		
 		String pageNum=request.getParameter("pageNum");
 	    if(pageNum==null) {pageNum="1";}
 	    
 	    int pageSize = 10;
+	    int pageBlock=5;
 	    
 		int startRow = (Integer.parseInt(pageNum)-1)*pageSize+1;
 		
@@ -38,12 +40,16 @@ public class MemberMyUseBorrowBookList implements Action{
 		if(count != 0){
 			bbList=mDAO.myUseBorrowBookList(startRow, pageSize , member_id);
 		}
-		
-		
+		int pageCount =count/pageSize+(count%pageSize==0? 0:1);
+		int startPage=((Integer.parseInt(pageNum)-1)/pageBlock)*pageBlock+1;
+		int endPage=startPage+pageBlock-1;
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("startRow", startRow);
 		request.setAttribute("count", count);
 		request.setAttribute("bbList", bbList);
+		request.setAttribute("pageCount", pageCount);
+		request.setAttribute("pageBlock", pageBlock);
+		request.setAttribute("endPage", endPage);
 		forward.setPath("./member/myUseBorrowBookList.jsp");
 		forward.setRedirect(false);
 		

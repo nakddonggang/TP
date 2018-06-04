@@ -1,3 +1,5 @@
+
+<%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
@@ -24,6 +26,18 @@
 <%
 List<BookDTO> bbList = (List<BookDTO>)request.getAttribute("bbList");
 int count = ((Integer) request.getAttribute("count")).intValue();
+
+request.setCharacterEncoding("UTF-8");
+
+
+String member_id = (String) session.getAttribute("member_id");
+String pageNum = (String) request.getAttribute("pageNum");
+int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
+int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
+int startPage = ((Integer) request.getAttribute("startPage")).intValue();
+int endPage = ((Integer) request.getAttribute("endPage")).intValue();
+
+String file ="";
 %>
 	<div class="wrapper">
 
@@ -71,6 +85,23 @@ int count = ((Integer) request.getAttribute("count")).intValue();
 									}
 								}
 							%>
+					
+				
+
+											<%-- <%
+												if (pageCount < endPage) endPage = pageCount;
+
+												if (startPage > pageBlock) { %><a href="MemberMyUseBorrowBookList.me?pageNum=<%=startPage - pageBlock%>"
+												class="prev"><span class="hide">이전 페이지</span></a>
+											<% }
+												for (int p = startPage; p <= endPage; p++) {
+													if (p == Integer.parseInt(pageNum)) {%>&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<% } 
+													else {%> &nbsp;<a href="MemberMyUseBorrowBookList.me?pageNum=<%=p%>"><%=p%></a> &nbsp;<% }
+												}
+												if (endPage < pageCount) {%><a href="MemberMyUseBorrowBookList.me?pageNum=<%=startPage + pageBlock%>"
+												class="next"><span class="hide">다음 페이지</span></a>
+											<% } %> --%>
+					
 					
 						</div>
 			
