@@ -24,20 +24,17 @@
 </head>
 <body>
 <%
+request.setCharacterEncoding("UTF-8");
 List<BookDTO> bbList = (List<BookDTO>)request.getAttribute("bbList");
 int count = ((Integer) request.getAttribute("count")).intValue();
-
-request.setCharacterEncoding("UTF-8");
-
-
 String member_id = (String) session.getAttribute("member_id");
 String pageNum = (String) request.getAttribute("pageNum");
+if(pageNum == null) pageNum = "1";
 int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
 int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 
-String file ="";
 %>
 	<div class="wrapper">
 
@@ -53,45 +50,65 @@ String file ="";
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
 				
+				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
-				<!-- 메인 페이지 -->
+				
 				<div class="content">
-			
+			            
+					<div class=board>
 					
-						<div>
+					<div class="text_top">
 						<!-- myUseBBookList.jsp : 도서 대출 목록 -->
-						<h2>대출중인 도서 목록</h2>
-							<ul>
-							    <li>책 번호</li>
-								<li>책 제목</li>
-								<li>대출일자</li>
-								<li>반납할 일자</li>
+						<h3>대출중인 도서 목록</h3>
+				    </div>
+						
+						
+						<ul class="brd_txt_lst">
+							<!-- 글목록 -->
+							<li class="view_lst">
+							<div class="con_lst">
+							<ul class="no_scroll title_t">
+							    <li class="col_num">책 번호</li>
+								<li class="col_title">책 제목</li>
+								<li class="col_date">대출일자</li>
+								<li class="col_date">반납할 일자</li>
 							</ul>
+							</div>
 							<%
 							SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 								if(bbList == null) {
-									out.println("<ul><li>없음</li></ul>");
+									%><ul><li class="col_tit"><p>대출도서목록이 없습니다</p></li></ul><%
 								} else {
 									for(BookDTO bDTO : bbList) {
 										%>
-											<ul>
-												<li><%=bDTO.getBook_number() %></li>
-												<li><%=bDTO.getBook_subject() %></li>
-												<li><%=date.format(bDTO.getBbook_bdate()) %></li>
-												<li><%=date.format(bDTO.getBbook_rdate()) %></li>
+										<div class="con_lst">
+										   <ul class="no_scroll" onclick="location.href='#'">
+										
+												<li class="col_num"><p><%=bDTO.getBook_number() %></p></li>
+												<li class="col_title"><p><%=bDTO.getBook_subject() %></p></li>
+												<li class="col_date"><span><%=date.format(bDTO.getBbook_bdate()) %></span></li>
+												<li class="col_date"><span><%=date.format(bDTO.getBbook_rdate()) %></span></li>
 											</ul>
+										
+										
+										
+										</div>
+										
 										<%
 									}
 								}
 							%>
-					
-				
+					      </li>
+				         </ul>
 
-											<%-- <%
-												if (pageCount < endPage) endPage = pageCount;
 
-												if (startPage > pageBlock) { %><a href="MemberMyUseBorrowBookList.me?pageNum=<%=startPage - pageBlock%>"
+                                      <div class="paginate">
+											<%
+												if (pageCount < endPage) endPage = pageCount;%>
+												<a href="MemberMyUseBorrowBookList.me?pageNum=1">[처음]</a>
+
+												<%if (startPage > pageBlock) { %><a href="MemberMyUseBorrowBookList.me?pageNum=<%=startPage - pageBlock%>"
 												class="prev"><span class="hide">이전 페이지</span></a>
 											<% }
 												for (int p = startPage; p <= endPage; p++) {
@@ -100,11 +117,13 @@ String file ="";
 												}
 												if (endPage < pageCount) {%><a href="MemberMyUseBorrowBookList.me?pageNum=<%=startPage + pageBlock%>"
 												class="next"><span class="hide">다음 페이지</span></a>
-											<% } %> --%>
+											<% } %>
+					                           <a href="MemberMyUseBorrowBookList.me?pageNum=<%=pageCount %>">[끝]</a>
+					                  </div>
 					
-					
-						</div>
-			
+						
+						
+			        </div>
 			     </div>
 				</article>
 				<!-- //메인 페이지-->

@@ -19,9 +19,6 @@ public class MemberMyUseBorrowBookList implements Action{
 		HttpSession session = request.getSession();
 		String member_id=(String)session.getAttribute("member_id");
 		
-		
-		
-		
 		String pageNum=request.getParameter("pageNum");
 	    if(pageNum==null) {pageNum="1";}
 	    
@@ -43,6 +40,7 @@ public class MemberMyUseBorrowBookList implements Action{
 		int pageCount =count/pageSize+(count%pageSize==0? 0:1);
 		int startPage=((Integer.parseInt(pageNum)-1)/pageBlock)*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
+		request.setAttribute("startPage", startPage);
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("startRow", startRow);
 		request.setAttribute("count", count);
