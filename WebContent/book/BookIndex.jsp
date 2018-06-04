@@ -97,7 +97,11 @@ $(document).ready(function() {
 
 // 책 정렬 Ajax
 $(document).ready(function(){
-	function selectBook(){
+	var sort = "";	
+	$('#book_sort').change(function(){
+		sort = $("#book_sort > option:selected").val();
+		$('.AjaxTest').empty(); // div 영역 비우기
+		
 // 		sort = $('#book_sort').val();
 			$.ajax({
 				url:"./BookSortAjax.bk",
@@ -140,7 +144,7 @@ $(document).ready(function(){
 										+data.book_file+"' width='70px' height='80px'></li><li class='adm_col_sub' id='adm_book_high'>"
 										+data.book_subject+"</li><li class='adm_col_type' id='adm_book_high'>"
 										+data.book_author+"</li><li class='adm_col_date' id='adm_book_high'>"
-										+data.book_publisher+"</li><li class='adm_col_sub' id='adm_book_high text5_ap'>"
+										+data.book_publisher+"</li><li class='adm_col_sub' id='adm_book_high text5_ap'>";
 										$('#text4_ap').append(text4);
 										
 										if (data.bbook_bstate==0) {
@@ -181,8 +185,7 @@ $(document).ready(function(){
 							}
 							
 							var view=<%=request.getParameter("view")%>;
-							var text10 = "</form><div class='paginate'><a href='./BookIndex.bk?"
-							+data.pageNum+"=1&view="+view+"><span>&lt;&lt;&nbsp;</span></a id='text11_ap'>";
+							var text10 = "</form><div class='paginate'><a href='./BookIndex.bk?"+data.pageNum+"=1&view="+view+"><span>&lt;&lt;&nbsp;</span></a id='text11_ap'>";
 							$('#text10_ap').append(text10);
 							
 							var pageCount=data.pageCount;
@@ -192,13 +195,11 @@ $(document).ready(function(){
 							var pageNum=data.pageNum;
 										
 							if(startPage>pageBlock) {
-								var text11="<a href='./BookIndex.bk?pageNum="
-								+startPage-pageBlock+"&view="
-								+view+" class='prev'><span class='hide'>이전 페이지</span></a id='text12_ap'>";
+								var text11="<a href='./BookIndex.bk?pageNum="+startPage-pageBlock+"&view="+view+" class='prev'><span class='hide'>이전 페이지</span></a id='text12_ap'>";
 								$('#text11_ap').append(text11);
 							}
 							
-							for (int i=startPage; i<=endPage; i++){
+							for (var i=startPage; i<=endPage; i++){
 								if (i==pageNum){
 									var text12="&nbsp;<strong id='currentPage' title='현재 페이지'>"+i+"</strong> &nbsp;";
 									$('#text12_ap').append(text12);
@@ -218,16 +219,7 @@ $(document).ready(function(){
 							
 				} // Ajax 데이터 값 받기 성공
 		}); // Ajax
-	} // function selectBook 함수
-	
-	selectBook();
-	$('#book_sort').change(function(){
-		var sort = "";	
-		sort = $("#book_sort > option:selected").val();
-		$('.AjaxTest').empty(); // div 영역 비우기
-		selectBox();
-	});
-	
+	}); // function selectBook 함수
 }); // document.ready
 </script>
 </head>
@@ -372,8 +364,135 @@ $(document).ready(function(){
 									<option value="book_date">입고순</option>
 								</select>
 							</div>
+							
 <div class="AjaxTest">
+							<!-- ★게시판으로 보여지는 통합검색 -->
+						<form action="./MemberBasketAdd.me" method="post" id="basket_Fr">
+							<ul class="brd_txt_lst" id="book_cont_div">
+								<!-- 글목록 -->
+								<li class="view_lst">
+									<div class="con_lst">
+										<ul class="no_scroll title_t">
+											<li class="adm_col_rrc">목록</li>
+											<li class="adm_col_date">사진</li>
+											<li class="adm_col_sub">제목</li>
+											<li class="adm_col_type">저자</li>
+											<li class="adm_col_date">출판사</li>
+											<li class="adm_col_date">대출현황</li>
+											<%if(member_id!=null){ %>
+											<li class="adm_col_rc">대출/예약 신청</li><%}%>
+										</ul>
+									</div> <%
+ 	if (count == 0) {
+ %><ul>
+										<li class="col_tit"><p>책 목록이 없습니다</p></li>
+									</ul> <%
+ 	} else {
+ 		for (BookDTO bookLists : bookList) {
+ %>
+									<div class="con_lst">
+										<ul class="no_scroll">
+											<li class="adm_col_rrc" id="adm_book_high"><input
+												type="checkbox" name="basket_check"  class="bncheck" 
+												value="<%=bookLists.getBook_number()%>" ></li>
+											<li class="adm_col_date" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>'"><img
+												src="./upload/book/<%=bookLists.getBook_file()%>"
+												width="70px" height="80px"></li>
+											<li class="adm_col_sub" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_subject()%></li>
+											<li class="adm_col_type" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_author()%></li>
+											<li class="adm_col_date" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>'"><%=bookLists.getBook_publisher()%></li>
+											<li class="adm_col_date"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>'">
+											<%if (Integer.parseInt(bookLists.getBbook_bstate())==0){ %> 대출가능 <% }
+											else { %><%=date.format(bookLists.getBbook_bdate())%>~<%=date.format(bookLists.getBbook_rdate())%> 대출중
+											<%}%>
+											</li>
+										<%if(member_id!=null){ %>
+											<li class="adm_col_rc book_iff"  id="adm_book_high">
+												<%if (Integer.parseInt(bookLists.getBbook_bstate())==0){ %>
+													<input type="button" rel="<%=bookLists.getBook_number()%>" class="bbutton" value="대출신청" id="borrowBook">
+												<%} else {
+													if (BorrowCheck > 0){%> <input type = 'button' rel="<%=bookLists.getBook_number()%>" value = '반납하기'  class ='rebutton'>
+												<% } else {%> <input type="button" rel="<%=bookLists.getBook_number()%>" class="rbutton" value="대출예약"> <%}%>
+											<%}%>
+											</li><%}%>
+										</ul>
+									</div>
+									<%}
+ 								}%>
+								</li>
+							</ul>
+							<!-- ★게시판으로 보여지는 통합검색 -->
 
+							<!-- ★갤러리로 보여지는 통합검색 -->
+<!-- 							<ul class="book_lst" id="book_pic_div"> -->
+<!-- 								<li> -->
+<%-- 									<% --%>
+<!-- // 										if (count == 0) { -->
+<%-- 									%> --%>
+<!-- 									<dl class="book_info_layer"> -->
+<!-- 										<dt>책 목록이 없습니다</dt> -->
+<!-- 										<dd></dd> -->
+<!-- 									</dl> -->
+<%-- 									</li> <% --%>
+<!-- // 									 	} else { -->
+<!-- //  		for (BookDTO bookLists : bookList) { -->
+<%--  %> --%>
+<!-- 				<li><a -->
+<%-- 					href="./BookInfo.bk?book_number=<%=bookLists.getBook_number()%>"> --%>
+<%-- 						<img src="./upload/book/<%=bookLists.getBook_file()%>" class="book_lst_img"> --%>
+<%-- 						<span id="bk_li_subs"><%=bookLists.getBook_subject()%></span> --%>
+<!-- 					<dl class="book_info_layer"> -->
+<!-- 						<dt> -->
+<%-- 							<span><%=bookLists.getBook_subject()%></span> --%>
+<!-- 						</dt> -->
+<!-- 						<dd> -->
+<!-- 							<dl> -->
+<!-- 								<dt>저자</dt> -->
+<%-- 								<dd><%=bookLists.getBook_author()%>> --%>
+<!-- 								</dd> -->
+<!-- 								<dt>출판사</dt> -->
+<%-- 								<dd><%=bookLists.getBook_publisher()%></dd> --%>
+<!-- 								<dt>출판년도</dt> -->
+<%-- 								<dd><%=bookLists.getBook_pubDate()%></dd> --%>
+<!-- 								<dt>반납상태</dt> -->
+<%-- 								<dd><%=bookLists.getBbook_bstate()%></dd> --%>
+<!-- 							</dl> -->
+<!-- 						</dd> -->
+<!-- 					</dl> -->
+<!-- 					</li> -->
+<%-- 				</a><%} --%>
+<%-- 				}%> --%>
+<!-- 	</ul> -->
+							<!-- ★갤러리로 보여지는 통합검색 -->
+							
+							<%if(member_id!=null){ %>
+							<div class="btn_btm_center">
+								<ul>
+									<li><input type="submit" value="책바구니" id="basket_Fr_btn"
+										class="btn_type4 BTN_IF_LIST"></li>
+								</ul>
+							</div>
+							<%}%>
+						</form>
+								
+				<!-- 버튼 css 부분 -->	
+				<div class="paginate">
+					<a href="./BookIndex.bk?pageNum=1&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
+					<% if(pageCount < endPage)	endPage = pageCount;
+					if(startPage > pageBlock)	{ %><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./BookIndex.bk?pageNum=<%=p%>&view=<%=view%>"><%=p %></a> &nbsp;<%}
+						}
+					if(endPage < pageCount){	%><a href="./BookIndex.bk?pageNum=<%=startPage+pageBlock%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
+					%>
+					<a href="./BookIndex.bk?pageNum=<%=pageCount%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
+			 </div>
+						
 </div>						 
 
 						</div>
