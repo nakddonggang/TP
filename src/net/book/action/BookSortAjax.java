@@ -10,7 +10,6 @@ import javax.json.JsonObject;
 import javax.json.JsonValue;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import net.book.db.BookDAO;
 import net.book.db.BookDTO;
@@ -42,13 +41,13 @@ public class BookSortAjax  implements Action {
 		int count = bdao.BookCount();
 		System.out.println(count);
 
-		HttpSession session = request.getSession();
-		String member_id = (String)session.getAttribute("member_id");
-		int BorrowCheck;
-		if(member_id != null) {
-			BorrowCheck = bdao.userBorrowBookCheck(member_id);
-		} else { BorrowCheck=0;}
-		System.out.println("borrowcheck : " +BorrowCheck);
+//		HttpSession session = request.getSession();
+//		String member_id = (String)session.getAttribute("member_id");
+//		int BorrowCheck;
+//		if(member_id != null) {
+//			BorrowCheck = bdao.userBorrowBookCheck(member_id);
+//		} else { BorrowCheck=0;}
+//		System.out.println("borrowcheck : " +BorrowCheck);
 
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 8;		
@@ -165,7 +164,7 @@ public class BookSortAjax  implements Action {
 			.add("{\"pageBlock\":"+pageBlock+"}")
 			.add("{\"startPage\":"+startPage+"}")
 			.add("{\"endPage\":"+endPage+"}")
-			.add("{\"BorrowCheck\":"+BorrowCheck+"}")
+			.add("{\"view\":"+view+"}")
 			.build();
 		} else { 
 			JsonArr=Json.createArrayBuilder()
@@ -177,7 +176,6 @@ public class BookSortAjax  implements Action {
 			.add("{\"pageBlock\":"+pageBlock+"}")
 			.add("{\"startPage\":"+startPage+"}")
 			.add("{\"endPage\":"+endPage+"}")
-			.add("{\"BorrowCheck\":"+BorrowCheck+"}")
 			.add("{\"view\":"+view+"}")
 			.build();
 		} // [ ] 생성
