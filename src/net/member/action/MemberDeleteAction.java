@@ -30,13 +30,13 @@ public class MemberDeleteAction implements Action {
 			mDAO.DeleteMember(id);
 			session.removeAttribute("member_id");
 			out.print("<script>");
-			out.print("alert('삭제되었습니다.');");
+			out.print("$.Alert('삭제되었습니다.');");
 			out.print("location.href='./MemberLogin.me';");
 			out.print("</script>");
 			out.close();
 		default :
 			out.print("<script>");
-			out.print("alert('비밀번호가 일치하지 않음');");
+			out.print("$.Alert('비밀번호가 일치하지 않음');");
 			out.print("location.href='./MemberDelete.me';");
 			out.print("</script>");
 			out.close();

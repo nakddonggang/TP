@@ -19,6 +19,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
@@ -80,7 +81,7 @@ $(document).ready(function() {
 		// 검색값이 없을 때 제어
 		$('#SearchForm').submit(function(){
 			if ($('#search1').val() == ""&& $('#search2').val() == ""&& $('#search3').val() == "") {
-				alert("검색어를 입력해주세요");
+				$.Alert("검색어를 입력해주세요");
 				$('#search1').focus();
 				return false;
 			} else { }
@@ -91,7 +92,7 @@ $(document).ready(function() {
 			$('#book_sort').change(function(){
 				sort = $("#book_sort > option:selected").val();
 				$('.AjaxTest').empty(); // div 영역 비우기
-				alert(sort);
+				$.Alert(sort);
 				
 					$.ajax({
 						url:"./BookSortAjax.bk",
@@ -99,9 +100,9 @@ $(document).ready(function() {
 						data:{'sort':sort},
 						dataType:'json',
 						success:function(result){
-							alert(result);
+							$.Alert(result);
 							var JSdata = JSON.parse("["+result+"]");
-							alert(JSdata);
+							$.Alert(JSdata);
 // 							var count=JSdata[JSdata.length-8].count;
 // 							var sort=JSdata[JSdata.length-7].sort;
 // 							var pageNum=JSdata[JSdata.length-6].pageNum;
@@ -197,7 +198,7 @@ $(document).ready(function() {
 // 									$('#text2_ap').append(text14);
 // 						}, // Ajax 데이터 값 받기 성공
 // 						error:function(request,status,error){
-// 					        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+// 					        $.Alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 
 					  	} // error 발생시
 				}); // Ajax

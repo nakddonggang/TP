@@ -82,7 +82,7 @@ public class MemberUpdateAction implements Action {
             ex.printStackTrace();
         }
 		out.print("<script>");
-		out.print("alert('수정되었습니다.');");
+		out.print("$.Alert('수정되었습니다.');");
 		out.print("location.href='./MemberInfo.me';");
 		out.print("</script>");
 		out.close();

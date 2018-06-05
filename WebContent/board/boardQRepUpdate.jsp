@@ -15,6 +15,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
@@ -31,17 +32,17 @@ $(document).ready(function(){
 	});
 	$('#rUpdateForm').submit(function(){
 		if($('#name').val()==""){
-			alert('답변자 소속부서 혹은 이름 입력하세요');
+			$.Alert('답변자 소속부서 혹은 이름 입력하세요');
 			$('#name').focus();
 			return false;
 		}
 		if($('#email').val()==""){
-			alert("답변자 EMAIL 입력하세요");
+			$.Alert("답변자 EMAIL 입력하세요");
 			$('#email').focus();
 			return false;
 		}
 		if($('#content').val()==""){
-			alert('답변내용 입력하세요');
+			$.Alert('답변내용 입력하세요');
 			$('#content').focus();
 			return false;
 		}

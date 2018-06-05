@@ -47,7 +47,7 @@ public class MemberLoginAction implements Action {
     			response.setContentType("text/html;charset=utf-8");
     			PrintWriter out = response.getWriter();
     			out.print("<script>");
-    			out.print("alert('비밀번호 틀림');");
+    			out.print("$.Alert('비밀번호 틀림');");
     			out.print("location.href='./MemberLogin.me';");
     			out.print("</script>");
     			out.close();
@@ -56,7 +56,7 @@ public class MemberLoginAction implements Action {
     			response.setContentType("text/html;charset=utf-8");
     			PrintWriter out = response.getWriter();
     			out.print("<script>");
-    			out.print("alert('아이디 틀림');");
+    			out.print("$.Alert('아이디 틀림');");
     			out.print("location.href='./MemberLogin.me';");
     			out.print("</script>");
     			out.close();
