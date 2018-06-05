@@ -526,4 +526,18 @@
 	 	order by facil_stime desc
 	 	limit #{startRow},#{pageSize}
 	 </select>
+	 
+	 <insert id="setTotalCount">
+		INSERT INTO VISIT (V_DATE) VALUES (now())
+	 </insert>
+	 
+	 <select id="getTotalCount">
+		SELECT COUNT(*) AS TotalCnt FROM VISIT
+	 </select>
+	 
+	 <select id="getTodayCount"> 
+	 	SELECT COUNT(*) AS TodayCnt FROM VISIT
+	 	WHERE V_DATE > curdate()
+	 </select>
+	 
  </mapper>

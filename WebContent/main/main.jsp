@@ -54,7 +54,7 @@ String member_id = (String)session.getAttribute("member_id");
 				<div class="content">
 				
 			<!-- 	인기도서	 -->
-				<div class="">
+				<div class="main_container">
 					<%
 					if(popularList==null){
 						%><ul><li>게시물이 없습니다.</li></ul><%
@@ -73,22 +73,9 @@ String member_id = (String)session.getAttribute("member_id");
 					
  			<!--  통계   -->
  			
- 			<script>
-			Morris.Bar({
-				element: 'bar-example',
-				data: [
-					{ y: '2015', a: 100, b: 90 },
-					{ y: '2014', a: 75, b: 65 },
-					{ y: '2013', a: 50, b: 40 }
-				],
-				xkey: 'y',
-				ykeys: ['a', 'b'],
-				labels: ['A data', 'B data']
-			});
-			</script>
 		
 			<!-- 큐레이션 -->
-					<div class="">
+					<div class="main_container">
 					<table border="1">
 						<tr><td>번호</td><td>종류</td><td>작성자</td><td>제목</td><td>내용</td><td>파일</td><td>조회수</td><td></td></tr>
 						<%
@@ -111,7 +98,7 @@ String member_id = (String)session.getAttribute("member_id");
 					</div> 
 					
 			<!-- 	공지사항		 -->
-					<div class="">
+					<div class="main_container">
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">

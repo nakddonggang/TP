@@ -28,6 +28,7 @@ public class MemberDeleteAction implements Action {
 		switch(check) {
 		case 1:
 			mDAO.DeleteMember(id);
+			session.removeAttribute("member_id");
 			out.print("<script>");
 			out.print("alert('삭제되었습니다.');");
 			out.print("location.href='./MemberLogin.me';");
@@ -40,7 +41,6 @@ public class MemberDeleteAction implements Action {
 			out.print("</script>");
 			out.close();
 		}
-		
 		return null;
 	}
 

@@ -4,6 +4,11 @@ header .logo a {display:block;}
 header .logo a img {width: 100%;}
 body {overflow-y:scroll !important;}
 body.if_board{overflow-y:hidden !important; margin-top: 10px}
+::-webkit-scrollbar { width: 0px; height: 0px; background: transparent;}
+.SECTION_FULL_PAGE01 .fp-tableCell {overflow-y:scroll}
+html{
+	background:#eeeeee;
+}
 
 /* 메뉴 설정 */
 nav {margin-top:100px;}
@@ -43,7 +48,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .submenu {height:100% !important; float:left; width:40%; }
 .mainmenu {float:left; width:60% !important;}
 .mainmenu_no_sub {float:left; width:100% !important;}
-.content {width: calc(100% - 60px);  margin:50px 30px 30px 30px; }
+.content {width: calc(100% - 40px);margin: 20px;background:  #ffffff;padding: 10px;}
 
 
 .SECTION_FULL_PAGE01 .slide_con {position:relative; width:100%;}

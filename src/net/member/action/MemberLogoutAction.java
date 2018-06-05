@@ -14,7 +14,7 @@ public class MemberLogoutAction implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
-		session.invalidate();
+		session.removeAttribute("member_id");
 		Cookie[] cookie = request.getCookies();
 		if(cookie != null){
 			for(int i=0; i<cookie.length; i++){
