@@ -39,10 +39,12 @@ public class BookDAO {
 	}
 	
 // 책정렬
-		public List<BookDTO> BookSorts(String bookSR, String adsc){
+		public List<BookDTO> BookSorts(String bookSR, String adsc, int startRow, int pageSize){
 			HashMap map = new HashMap();
 			map.put("bookSR", bookSR);
 			map.put("adsc", adsc);
+			map.put("startRow", startRow);
+			map.put("pageSize", pageSize);
 			List<BookDTO> bookList = sqlsession.selectList("BookSorts", map);
 			return bookList;
 		}	

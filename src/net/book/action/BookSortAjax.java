@@ -1,33 +1,20 @@
 package net.book.action;
 
 import java.io.PrintWriter;
-import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.json.Json;
 import javax.json.JsonArray;
-import javax.json.JsonArrayBuilder;
 import javax.json.JsonObject;
-import javax.json.JsonObjectBuilder;
-import javax.json.stream.JsonLocation;
-import javax.json.stream.JsonParser;
-import javax.json.stream.JsonParser.Event;
+import javax.json.JsonValue;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.websocket.EncodeException;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
 import net.book.db.BookDAO;
 import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
-import util.websocketSetting.ChatMessage;
-import util.websocketSetting.Message;
-import util.websocketSetting.UsersMessage;
 
 public class BookSortAjax  implements Action {
 
@@ -41,6 +28,8 @@ public class BookSortAjax  implements Action {
 		String sort = request.getParameter("sort");
 		System.out.println("정렬해야할 값"+sort);
 		
+		String view = request.getParameter("view");
+		if (view==null) view="1";
 		// 오름차순, 내림차순 결정하기
 		String adsc="";
 		if (sort.equals("book_subject")||sort.equals("book_author")||sort.equals("book_date")) adsc="asc";
@@ -50,14 +39,15 @@ public class BookSortAjax  implements Action {
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		BookDAO bdao = new BookDAO();
 		int count = bdao.BookCount();
+		System.out.println(count);
 
-		HttpSession session = request.getSession();
-		String member_id = (String)session.getAttribute("member_id");
-		int BorrowCheck;
-		if(member_id != null) {
-			BorrowCheck = bdao.userBorrowBookCheck(member_id);
-		} else { BorrowCheck=0;}
-		System.out.println("borrowcheck : " +BorrowCheck);
+//		HttpSession session = request.getSession();
+//		String member_id = (String)session.getAttribute("member_id");
+//		int BorrowCheck;
+//		if(member_id != null) {
+//			BorrowCheck = bdao.userBorrowBookCheck(member_id);
+//		} else { BorrowCheck=0;}
+//		System.out.println("borrowcheck : " +BorrowCheck);
 
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 8;		
@@ -76,11 +66,80 @@ public class BookSortAjax  implements Action {
 		// 페이지 마지막행 구하기
 			// 1page - 10 / 2page - 20 / 3page - 30
 		int endRow = pageSize*currentPage;
-		
+
+		System.out.println(pageSize+", "+pageNum+", "+currentPage+", "+startRow+", "+endRow);
 		// 입출력
-		response.setContentType("text/html; charset=UTF-8");
+		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
+		// 책 뿌려주는 메소드 생성
+		List<BookDTO> list = bdao.BookSorts(sort, adsc, startRow, pageSize);
+		
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		
+		JsonObject JsonObj = null;
+		JsonArray JsonArr = null;
+		String books="";
+		  
+		for(int i=0; i<list.size(); i++){
+			BookDTO bdto = list.get(i);
+			if ((bdto.getBbook_bdate()==null)&&(bdto.getBbook_rdate()==null)){
+				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_number", bdto.getBook_number())
+						.add("book_subject", bdto.getBook_subject())
+						.add("book_author", bdto.getBook_author())
+						.add("book_publisher", bdto.getBook_publisher())
+						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("bbook_bdate", JsonValue.NULL)
+						.add("bbook_rdate",  JsonValue.NULL)
+						.add("rbook_check", bdto.getRbook_check())
+						.add("book_file", bdto.getBook_file()).build();
+				books += JsonObj.toString();
+			} else if (bdto.getBbook_bdate()==null){
+				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_number", bdto.getBook_number())
+						.add("book_subject", bdto.getBook_subject())
+						.add("book_author", bdto.getBook_author())
+						.add("book_publisher", bdto.getBook_publisher())
+						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("bbook_bdate", JsonValue.NULL)
+						.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
+						.add("rbook_check", bdto.getRbook_check())
+						.add("book_file", bdto.getBook_file()).build();
+				books += JsonObj.toString();
+				System.out.println(books);
+			} else if (bdto.getBbook_rdate()==null){
+				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_number", bdto.getBook_number())
+						.add("book_subject", bdto.getBook_subject())
+						.add("book_author", bdto.getBook_author())
+						.add("book_publisher", bdto.getBook_publisher())
+						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("bbook_bdate", date.format(bdto.getBbook_bdate()))
+						.add("bbook_rdate", JsonValue.NULL)
+						.add("rbook_check", bdto.getRbook_check())
+						.add("book_file", bdto.getBook_file()).build();
+				books += JsonObj.toString();
+				System.out.println(books);
+			} else {
+				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_number", bdto.getBook_number())
+						.add("book_subject", bdto.getBook_subject())
+						.add("book_author", bdto.getBook_author())
+						.add("book_publisher", bdto.getBook_publisher())
+						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("bbook_bdate", date.format(bdto.getBbook_bdate()))
+						.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
+						.add("rbook_check", bdto.getRbook_check())
+						.add("book_file", bdto.getBook_file()).build();
+				books += JsonObj.toString();
+				System.out.println(books);
+			}
+			
+			System.out.println(JsonObj);
+			if(i != list.size()-1) books += ",";
+		} // result >> String에 넣어주는 역할
+
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);
 		// 한 화면에 보여줄 페이지수 설정
@@ -93,86 +152,38 @@ public class BookSortAjax  implements Action {
 		if (endPage>pageCount){
 			endPage=pageCount;
 		}	
+		System.out.println(pageCount+", "+pageBlock+", "+startPage+", "+endPage);
 		
-		// Json 님 부르기
-//		JSONArray arr = new JSONArray();
+		// 배열을 제외한 나머지 값 추가로 JsonArray에 넣어주기
+		if (list.size() == 0) {
+			JsonArr=Json.createArrayBuilder()
+			.add("{\"count\":"+count+"}")
+			.add("{\"sort\":"+sort+"}")
+			.add("{\"pageNum\":"+pageNum+"}")
+			.add("{\"pageCount\":"+pageCount+"}")
+			.add("{\"pageBlock\":"+pageBlock+"}")
+			.add("{\"startPage\":"+startPage+"}")
+			.add("{\"endPage\":"+endPage+"}")
+			.add("{\"view\":"+view+"}")
+			.build();
+		} else { 
+			JsonArr=Json.createArrayBuilder()
+			.add(books)
+			.add("{\"count\":"+count+"}")
+			.add("{\"sort\":"+sort+"}")
+			.add("{\"pageNum\":"+pageNum+"}")
+			.add("{\"pageCount\":"+pageCount+"}")
+			.add("{\"pageBlock\":"+pageBlock+"}")
+			.add("{\"startPage\":"+startPage+"}")
+			.add("{\"endPage\":"+endPage+"}")
+			.add("{\"view\":"+view+"}")
+			.build();
+		} // [ ] 생성
 		
-		// 책 뿌려주는 메소드 생성
-		List<BookDTO> list = null;
-		if (count!=0) bdao.BookSorts(sort, adsc);
-		List<BookDTO> booksortList = null;
-		
-		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
-		
-		String result="";
-		JsonObject JsonObj = null;
-		JsonArray JsonArr = null;
-		  
-		for(int i=0; i<list.size(); i++){
-			BookDTO bdto = list.get(i);
-			JsonObj=Json.createObjectBuilder() // { } 생성
-					.add("book_number", bdto.getBook_number())
-					.add("book_subject", bdto.getBook_subject())
-					.add("book_author", bdto.getBook_author())
-					.add("book_publisher", bdto.getBook_publisher())
-					.add("dbook_state", bdto.getDbook_state())
-					.add("bbook_bstate", bdto.getDbook_state())
-					.add("bbook_bdate", date.format(bdto.getBbook_bdate()))
-					.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
-					.add("rbook_check", bdto.getRbook_check())
-					.add("book_file", bdto.getBook_file()).build();
-			result += JsonObj.toString();
-			
-			if(i != list.size()-1) result += ",";
-		} // result >> String에 넣어주는 역할
-		JsonArr = Json.createArrayBuilder().add(result).build(); // [ ] 생성
 		System.out.println(JsonArr);
-		response.setContentType("text/html; charset=utf-8");
-		out = response.getWriter();
-		out.println(JsonArr);
-		
-//		user.add("count", count);
-//		user.add("sort", sort);
-//		user.add("pageNum", pageNum);
-//		user.add("pageCount", pageCount);
-//		user.add("pageBlock", pageBlock);
-//		user.add("startPage", startPage);
-//		user.add("endPage", endPage);	
-//		user.add("BorrowCheck", BorrowCheck);
-//		
-//		 user.build().toString();
-		  
-		
-//		for(int i=0; i<list.size(); i++){
-//			BookDTO bdto = list.get(i);
-//			JSONObject obj = new JSONObject();
-//			obj.put("book_number", bdto.getBook_number());
-//			obj.put("book_subject", bdto.getBook_subject());
-//			obj.put("book_author", bdto.getBook_author());
-//			obj.put("book_publisher", bdto.getBook_publisher());
-//			obj.put("dbook_state", bdto.getDbook_state());
-//			obj.put("bbook_bstate", bdto.getDbook_state());
-//			obj.put("bbook_bdate", bdto.getBbook_bdate());
-//			obj.put("bbook_rdate", bdto.getBbook_rdate());
-//			obj.put("rbook_check", bdto.getRbook_check());
-//			obj.put("book_file", bdto.getBook_file());
-//			arr.add(obj);
-//		}
-//		System.out.println(arr);
-//		response.setContentType("text/html; charset=utf-8");
-//		out.println(arr);
-//		out.flush();
-//		out.close();
-		
-//		 count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
-//		request.setAttribute("count", count);
-//		request.setAttribute("sort", sort);
-//		request.setAttribute("pageNum", pageNum);
-//		request.setAttribute("pageCount", pageCount);
-//		request.setAttribute("pageBlock", pageBlock);
-//		request.setAttribute("startPage", startPage);
-//		request.setAttribute("endPage", endPage);			
-//		request.setAttribute("BorrowCheck", BorrowCheck);
+		out.print(JsonArr);
+		out.flush();
+		out.close();
 		
 		return null;
 	}

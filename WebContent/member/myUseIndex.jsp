@@ -45,6 +45,7 @@
 					<div class="content">
 					<%
 						String member_id = (String)session.getAttribute("member_id");
+	
 					%>
 					
 					
@@ -122,7 +123,7 @@
 							for(BookDTO bDTO :  bList) {
 							%>
 							<div class="con_lst">
-							<ul class="no_scroll" onclick="location.href = '#'">
+							<ul class="no_scroll" onclick="location.href = 'MemberMyUseBorrowBookList.me'">
 								<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
 								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
 								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
@@ -136,7 +137,7 @@
 						</ul>
 						
 						<div class="btn_btm_center">							
-										<input type = "button" value ="대출내역보기"  class="btn_type5" onclick = "location.href ='#'">
+										<input type = "button" value ="대출내역보기"  class="btn_type5" onclick = "location.href ='./MemberMyUseBorrowBookList.me'">
 								</div>
 						 </div>
 					</div>

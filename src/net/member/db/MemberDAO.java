@@ -250,5 +250,19 @@ public class MemberDAO {
 	 public int HistoryMaxNumber() {
 		 return sqlsession.selectOne("HistoryBorrowMaxBookNumber");
 	 }
+	 
+	 public List<BookDTO> myUseBorrowBookList(int startRow , int pageSize , String member_id) {
+		 List<BookDTO> bbList = new ArrayList<BookDTO>();
+		 HashMap map = new HashMap<>();
+		 map.put("member_id", member_id);
+		 map.put("startRow", startRow);
+		 map.put("pageSize", pageSize);
+		 bbList = sqlsession.selectList("myUseBorrowBookList", map);
+		 return bbList;
+	 }
+	 
+	 public int BorrowBookCountList(String member_id) {
+		 return sqlsession.selectOne("BorrowBookCountList", member_id);
+	 }
 	
 }
