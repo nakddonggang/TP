@@ -21,7 +21,7 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rng.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
-<script src="<c:url value="/js/fullpage.js"/>"></script>
+<script src="<c:url value="/js/fullpage.js"/>"></script> 
 </head>
 <body>
 	<div class="wrapper">

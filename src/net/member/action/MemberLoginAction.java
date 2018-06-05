@@ -72,8 +72,14 @@ public class MemberLoginAction implements Action {
     			cookie.setMaxAge(0);
     			cookie.setPath("/");
     		}
+    		
+    		String member_level = mDAO.AdminCheck(member_id);
+    		boolean admincheck = false;
     		response.addCookie(cookie);
     		session.setAttribute("member_id", member_id);
+    		if(member_level.equals("3")) admincheck = true;
+    		else admincheck = false;
+    		session.setAttribute("admincheck", admincheck);
             System.out.println("member_id : "+member_id);
             
         } catch (Exception ex) {
