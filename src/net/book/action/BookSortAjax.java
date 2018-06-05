@@ -30,6 +30,7 @@ public class BookSortAjax  implements Action {
 		
 		String view = request.getParameter("view");
 		if (view==null) view="1";
+		
 		// 오름차순, 내림차순 결정하기
 		String adsc="";
 		if (sort.equals("book_subject")||sort.equals("book_author")||sort.equals("book_date")) adsc="asc";
@@ -164,7 +165,7 @@ public class BookSortAjax  implements Action {
 			.add("{\"pageBlock\":"+pageBlock+"}")
 			.add("{\"startPage\":"+startPage+"}")
 			.add("{\"endPage\":"+endPage+"}")
-			.add("{\"view\":"+view+"}")
+			.add("{\"view\":\""+view+"\"}")
 			.build();
 		} else { 
 			JsonArr=Json.createArrayBuilder()
