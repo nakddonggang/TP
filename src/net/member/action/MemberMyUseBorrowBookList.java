@@ -16,30 +16,28 @@ public class MemberMyUseBorrowBookList implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("MemberMyUseBorrowBookList execute()");
+		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
-		String member_id=(String)session.getAttribute("member_id");
+		MemberDAO mDAO = new MemberDAO();
+		ActionForward forward = new ActionForward();
 		
-		String pageNum=request.getParameter("pageNum");
-	    if(pageNum==null) {pageNum="1";}
+		String member_id=(String)session.getAttribute("member_id");
+		String pageNum=request.getParameter("pageNum"); if(pageNum==null) {pageNum="1";}
 	    
 	    int pageSize = 10;
 	    int pageBlock=5;
-	    
 		int startRow = (Integer.parseInt(pageNum)-1)*pageSize+1;
-		
-		ActionForward forward = new ActionForward();
-		request.setCharacterEncoding("utf-8");
-		
-	
-		MemberDAO mDAO = new MemberDAO();
 		int count = mDAO.BorrowBookCountList(member_id);
-		List<BookDTO> bbList = null;
-		if(count != 0){
-			bbList=mDAO.myUseBorrowBookList(startRow, pageSize , member_id);
-		}
 		int pageCount =count/pageSize+(count%pageSize==0? 0:1);
 		int startPage=((Integer.parseInt(pageNum)-1)/pageBlock)*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
+		
+		List<BookDTO> bbList = null;
+		
+		if(count != 0){
+			bbList=mDAO.myUseBorrowBookList(startRow, pageSize , member_id);
+		}
+		System.out.println("1111111111" + bbList.size());
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("startRow", startRow);
@@ -48,9 +46,9 @@ public class MemberMyUseBorrowBookList implements Action{
 		request.setAttribute("pageCount", pageCount);
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("endPage", endPage);
+		
 		forward.setPath("./member/myUseBorrowBookList.jsp");
 		forward.setRedirect(false);
-		
 		return forward;
 	}
 
