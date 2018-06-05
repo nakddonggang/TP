@@ -91,7 +91,7 @@
 							</ul>
 							
 							<div class="btn_btm_center">
-								<input type="submit" value="상세보기" class="btn_type5" onclick="location.href='#'">
+								<input type="submit" value="상세보기" class="btn_type5" onclick="location.href='./MemberMyUseRBookList.me'">
 							</div>
 					</div>
 				
