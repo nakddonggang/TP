@@ -24,9 +24,6 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
-<script src="//code.jquery.com/jquery-1.12.4.js"></script>
-<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	$("#search").autocomplete({
@@ -38,8 +35,9 @@ $(document).ready(function(){
 	               data: { 'search' : request.term },
 	               success: function(data) {
 	                   //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
+	                   var jsonData = JSON.parse("["+data+"]");
 	                   response(
-	                       $.map(data, function(item) {
+	                       $.map(jsonData, function(item) {
 	                           return {
 	                               label: item.qna_subject,
 	                               value: item.qna_subject
@@ -50,7 +48,7 @@ $(document).ready(function(){
 	         });
         },
     //조회를 위한 최소글자수
-        minLength: 2,
+        minLength: 1,
         select:function(event,ui){}
     });
 });

@@ -25,16 +25,32 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-$(function(){
-	var data=[
-		{value:"1차 테스트",label:"1차 테스트"},
-		{value:"2차 테스트",label:"2차 테스트"},
-		{value:"6차 테스트",label:"6차 테스트"},
-	];
-	$('.inp_search').autocomplete({
-		source : data,
-		minLength : 1
-	});
+$(document).ready(function(){
+	$("#search").autocomplete({
+        source : function( request, response ) {
+	           $.ajax({
+                   type: 'POST',
+	               url: './BoardQnaAjax.qn',
+	               dataType: 'json',
+	               data: { 'search' : request.term },
+	               success: function(data) {
+	                   //서버에서 json 데이터 response 후 목록에 뿌려주기 위함
+	                   var jsonData = JSON.parse("["+data+"]");
+	                   response(
+	                       $.map(jsonData, function(item) {
+	                           return {
+	                               label: item.qna_subject,
+	                               value: item.qna_subject
+	                           }
+	                       })
+	                   );
+	               }
+	         });
+        },
+    //조회를 위한 최소글자수
+        minLength: 1,
+        select:function(event,ui){}
+    });
 });
 </script>
 </head>
@@ -85,7 +101,7 @@ $(function(){
 						
 							<div class="search_bx">
 							<form action="./BoardQnaSearch.qn" method="post">
-								<input type="text" name="search" placeholder="문의사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
+								<input type="text" name="search" id="search" placeholder="문의사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
 							</div>
 						

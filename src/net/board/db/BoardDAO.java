@@ -268,9 +268,11 @@ public class BoardDAO {
 		return sqlsession.selectList("selectList",map);
 	}
 	//Ajax test
-	public List<BoardDTO> selectFaqType(String faq_type){
+	public List<BoardDTO> selectFaqType(String faq_type, int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("faq_type", faq_type);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
 		List<BoardDTO> list = sqlsession.selectList("selectFaqType", map);
 		return list;
 	}
