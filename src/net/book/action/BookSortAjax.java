@@ -158,7 +158,7 @@ public class BookSortAjax  implements Action {
 		if (list.size() == 0) {
 			JsonArr=Json.createArrayBuilder()
 			.add("{\"count\":"+count+"}")
-			.add("{\"sort\":"+sort+"}")
+			.add("{\"sort\":\""+sort+"\"}")
 			.add("{\"pageNum\":"+pageNum+"}")
 			.add("{\"pageCount\":"+pageCount+"}")
 			.add("{\"pageBlock\":"+pageBlock+"}")
@@ -170,13 +170,13 @@ public class BookSortAjax  implements Action {
 			JsonArr=Json.createArrayBuilder()
 			.add(books)
 			.add("{\"count\":"+count+"}")
-			.add("{\"sort\":"+sort+"}")
+			.add("{\"sort\":\""+sort+"\"}")
 			.add("{\"pageNum\":"+pageNum+"}")
 			.add("{\"pageCount\":"+pageCount+"}")
 			.add("{\"pageBlock\":"+pageBlock+"}")
 			.add("{\"startPage\":"+startPage+"}")
 			.add("{\"endPage\":"+endPage+"}")
-			.add("{\"view\":"+view+"}")
+			.add("{\"view\":\""+view+"\"}")
 			.build();
 		} // [ ] 생성
 		

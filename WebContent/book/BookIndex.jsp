@@ -101,15 +101,16 @@ $(document).ready(function() {
 						success:function(result){
 							alert(result);
 							var JSdata = JSON.parse("["+result+"]");
-							alert(JSdata);
-// 							var count=JSdata[JSdata.length-8].count;
-// 							var sort=JSdata[JSdata.length-7].sort;
-// 							var pageNum=JSdata[JSdata.length-6].pageNum;
-// 							var pageCount=JSdata[JSdata.length-5].pageCount;
-// 							var pageBlock=JSdata[JSdata.length-4].pageBlock;
-// 							var startPage=JSdata[JSdata.length-3].startPage;
-// 							var endPage=JSdata[JSdata.length-2].endPage;
-// 							var view=JSdata[JSdata.length-1].view;
+							var count=JSdata[JSdata.length-8].count;
+							var sort=JSdata[JSdata.length-7].sort;
+							var pageNum=JSdata[JSdata.length-6].pageNum;
+							var pageCount=JSdata[JSdata.length-5].pageCount;
+							var pageBlock=JSdata[JSdata.length-4].pageBlock;
+							var startPage=JSdata[JSdata.length-3].startPage;
+							var endPage=JSdata[JSdata.length-2].endPage;
+							var view=JSdata[JSdata.length-1].view;
+							alert(count+", "+sort+", "+pageNum+", "+pageCount+", "+pageBlock+
+									", "+startPage+", "+endPage+", "+view);
 
 							// content 내용 넣기
 // 									var text = "<form action='./MemberBasketAdd.me' method='post' id='basket_Fr'><ul class='brd_txt_lst' id='book_cont_div'><li class='view_lst'><div class='con_lst'><ul class='no_scroll title_t'><li class='adm_col_rrc'>목록</li><li class='adm_col_date'>사진</li><li class='adm_col_sub'>제목</li><li class='adm_col_type'>저자</li><li class='adm_col_date'>출판사</li><li class='adm_col_sub'>대출현황</li id='text2_ap'>";
