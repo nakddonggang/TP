@@ -34,7 +34,14 @@ List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
 List<BoardDTO> curationList = (List<BoardDTO>)request.getAttribute("curationList");
 List<BookDTO> popularList = (List<BookDTO>)request.getAttribute("popularList");
 String member_id = (String)session.getAttribute("member_id");
+if(member_id != null) {
+	boolean admincheck = (boolean)session.getAttribute("admincheck");
+} else {
+	session.removeAttribute("admincheck");
+}
 %>
+
+
 <body>
 	<div class="wrapper">
 

@@ -46,6 +46,23 @@ public class MemberDAO {
 		return check;
 	}
 	
+	// admin 체크 매소드
+	public String AdminCheck(String member_id) {
+		MemberDTO mDTO = new MemberDTO();
+		String member_level = "0";
+		mDTO = sqlsession.selectOne("selectMember", member_id);
+		String id = mDTO.getMember_id();
+		
+		System.out.println("mDTO.getMember_level : "+mDTO.getMember_level());
+		System.out.println("mDTO.getMember_id : "+mDTO.getMember_id());
+		
+		if(id != null) {
+			if(mDTO.getMember_level().equals("3")) member_level = "3";
+			else member_level = "0";
+		}
+		return member_level;
+	}
+	
 	//맴버 리스트 불러오기
 	public List<MemberDTO> selectMemberList(String member_id) {
 		List<MemberDTO> mList = new ArrayList<MemberDTO>();
