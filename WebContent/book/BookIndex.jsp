@@ -57,7 +57,7 @@ $(document).ready(function() {
 		}else{}
 		
 		// 갤러리, 게시판 띄워주는 버튼
-		var book_img=<%=request.getParameter("view")%>;
+		var book_img=<%=request.getAttribute("view")%>;
 		if (book_img==null){ book_img="1"; }
 		if (book_img==0){
 			$('#book_pic_div').show();
@@ -144,7 +144,7 @@ $(document).ready(function() {
 									}
 								}
 								
-								// direct값이 1이면 바구니에 정상적으로 들어간 것
+								// direct값이 1이면 바구니에 정상적으로 들어간 것  
 								var direct = Request("direct");
 								if(direct=="1"){
 									var directGo = confirm("책바구니로 이동하시겠습니까?");
@@ -166,7 +166,7 @@ $(document).ready(function() {
 // 								});
 								
 								// 갤러리, 게시판 띄워주는 버튼
-								var book_img=<%=request.getParameter("view")%>;
+								var book_img=<%=request.getAttribute("view")%>;
 								if (book_img==null){ book_img="1"; }
 								if (book_img==0){
 									$('#book_pic_div').show();
@@ -386,10 +386,7 @@ $(document).ready(function() {
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 		List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("bookList");
-		
-		String view = (String) request.getParameter("view");
-		if(view==null) view ="1";
-		
+		String view = (String) request.getAttribute("view");
 	%>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
