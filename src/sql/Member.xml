@@ -153,6 +153,7 @@
 		left join book bk
 		on r.book_number = bk.book_number
 		where member_id=#{member_id} order by r.rbook_date desc
+		limit #{startRow}, #{pageSize} 
 	</select>
 	
 	<select id="useBbookMemberCount" parameterType="string" resultType="int">
