@@ -56,9 +56,13 @@ $(document).ready(function() {
 			});
 		}else{}
 		
+
+		<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
+		<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
+		
 		// 갤러리, 게시판 띄워주는 버튼
 		var book_img=<%=request.getParameter("view")%>;
-		if (book_img==null){book_img="1";} 
+		if (book_img==null){book_img="0";} 
 		if (book_img==0){
 			$('#book_pic_div').show();
 			$('#book_cont_div').hide();
@@ -66,16 +70,18 @@ $(document).ready(function() {
 			$('#book_pic_div').hide();
 			$('#book_cont_div').show();
 		}
+
+		var view;
+		$('#book_pic_btn').click(function(){
+			$('#book_pic_div').show();
+			$('#book_cont_div').hide();
+			view=0;
+		});
 		
-		$('#adm_select_box3 > :input').click(function(){
-			book_img=$(this).index();
-				if (book_img==0){
-					$('#book_pic_div').show();
-					$('#book_cont_div').hide();
-				} else if (book_img==1){
-					$('#book_pic_div').hide();
-					$('#book_cont_div').show();
-				}
+		$('#book_cont_btn').click(function(){
+			$('#book_pic_div').hide();
+			$('#book_cont_div').show();
+			view=1;
 		});
 		
 		// 검색값이 없을 때 제어
@@ -112,7 +118,7 @@ $(document).ready(function() {
 				});
 			}
 		});
-
+		
 		// 책 정렬 Ajax
 			var sort = "";	
 			$('#book_sort').change(function(){
@@ -121,7 +127,7 @@ $(document).ready(function() {
 					$.ajax({
 						url:"./BookSortAjax.bk?pageNum=${pageNum}",
 						type:'POST',
-						data:{'sort':sort},
+						data:{'sort':sort, 'view':view},
 						dataType:'json',
 						success:function(result){
 							
@@ -165,7 +171,7 @@ $(document).ready(function() {
 								
 								// 갤러리, 게시판 띄워주는 버튼
 								var book_img=<%=request.getParameter("view")%>;
-								if (book_img==null){book_img="1";} 
+								if (book_img==null){book_img="0";} 
 								if (book_img==0){
 									$('#book_pic_div').show();
 									$('#book_cont_div').hide();
@@ -374,7 +380,7 @@ $(document).ready(function() {
 		List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("bookList");
 
 		String view = request.getParameter("view");
-		if(view==null) view = "1";
+		if(view==null) view = "0";
 	%>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
