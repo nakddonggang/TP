@@ -33,7 +33,8 @@ public class BookIndex implements Action{
 			pageNum="1";
 		
 		String view = request.getParameter("view");
-		if(view==null) view="1";
+		if (view==null) view="1";
+		System.out.println("view의 값 : "+view);
 		
 		// 10개씩 게시판 글을 분류했을 때,
 		int currentPage = Integer.parseInt(pageNum);

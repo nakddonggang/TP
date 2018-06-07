@@ -57,7 +57,7 @@ $(document).ready(function() {
 		}else{}
 		
 		// 갤러리, 게시판 띄워주는 버튼
-		var book_img=<%=request.getAttribute("view")%>;
+		var book_img="${view}";
 		if (book_img==null){ book_img="1"; }
 		if (book_img==0){
 			$('#book_pic_div').show();
@@ -83,7 +83,7 @@ $(document).ready(function() {
 			if ($('#search1').val() == ""&& $('#search2').val() == ""&& $('#search3').val() == "") {
 				$.Alert("검색어를 입력해주세요",function(){
 					$('#search1').focus();
-				}));
+				});
 				return false;
 			} else { }
 		});
@@ -107,8 +107,9 @@ $(document).ready(function() {
 				if (con==true) $("#basket_Fr").submit;
 				else return false;
 			} else {
-				alert ('책을 선택해주세요');
-				return false;
+				$.Alert("책을 선택해주세요",function(){
+					return false;
+				});
 			}
 		});
 
@@ -153,20 +154,8 @@ $(document).ready(function() {
 									}else{}
 								}else{}
 								
-								// 책바구니 이동 Jquery
-// 								$('#basket_Fr').submit(function(){
-// 									if ($('.bncheck').is(":checked") == true ){
-// 										var con = confirm("책바구니에 담으시겠습니까?");
-// 										if (con==true) $('#basket_Fr').submit;
-// 										else return false;
-// 									} else {
-// 										alert ('책을 선택해주세요');
-// 										return false;
-// 									}
-// 								});
-								
 								// 갤러리, 게시판 띄워주는 버튼
-								var book_img=<%=request.getAttribute("view")%>;
+								var book_img="${view}";
 								if (book_img==null){ book_img="1"; }
 								if (book_img==0){
 									$('#book_pic_div').show();
@@ -190,8 +179,9 @@ $(document).ready(function() {
 								// 검색값이 없을 때 제어
 								$('#SearchForm').submit(function(){
 									if ($('#search1').val() == ""&& $('#search2').val() == ""&& $('#search3').val() == "") {
-										alert("검색어를 입력해주세요");
-										$('#search1').focus();
+										$.Alert("검색어를 입력해주세요",function(){
+											$('#search1').focus();
+										});
 										return false;
 									} else { }
 								});
@@ -248,9 +238,10 @@ $(document).ready(function() {
 							var view=JSdata[JSdata.length-1].view;
 // 							alert(count+", "+sort+", "+pageNum+", "+pageCount+", "+pageBlock+
 // 									", "+startPage+", "+endPage+", "+view);
-							alert(view);
-							alert(pageNum);
-							var member_id=<%=session.getAttribute("member_id")%>
+							$.Alert(view,function(){ });
+// 							alert(view);
+// 							alert(pageNum);
+							var member_id="${member_id}";
 							
 							// content 내용 넣기
 									var text = "<form action='./MemberBasketAdd.me' method='post' id='basket_Fr'><ul class='brd_txt_lst' id='book_cont_div'><li class='view_lst' id='text3_ap'><div class='con_lst'><ul class='no_scroll title_t' id='text2_ap'><li class='adm_col_rrc'>목록</li><li class='adm_col_date'>사진</li><li class='adm_col_sub'>제목</li><li class='adm_col_type'>저자</li><li class='adm_col_date'>출판사</li><li class='adm_col_sub' id='text2_ap'>대출현황</li>";
@@ -313,22 +304,22 @@ $(document).ready(function() {
 // 										var pic2="<li><dl class='book_info_layer'><dt>책 목록이 없습니다</dt><dd></dd></dl></li> ";
 // 										$('#book_pic_div').append(pic2);
 // 									} else {
-// 										for(var i=0; i<JSdata.length-8; i++){
+// 										for(var j=0; j<JSdata.length-8; j++){
 // 											var pic2="<li><a href='./BookInfo.bk?book_number="
-// 											+JSdata[i]book_number()+"'><img src='./upload/book/"
-// 											+JSdata[i]book_file()+"' class='book_lst_img'><span id='bk_li_subs'>"
-// 											+JSdata[i]book_subject()+"</span><dl class='book_info_layer'><dt><span>"
-// 											+JSdata[i]book_subject()+"</span></dt><dd><dl><dt>저자</dt><dd>"
-// 											+JSdata[i]book_author()+"</dd><dt>출판사</dt><dd>"
-// 											+JSdata[i]book_publisher()+"</dd><dt>출판년도</dt><dd>"
-// 											+JSdata[i]book_pubDate()+"</dd><dt>반납상태</dt><dd>"
-// 											+JSdata[i]book_bstate()+"</dd></dl></dd></dl></a></li>";
+// 											+JSdata[j]book_number()+"'><img src='./upload/book/"
+// 											+JSdata[j]book_file()+"' class='book_lst_img'><span id='bk_li_subs'>"
+// 											+JSdata[j]book_subject()+"</span><dl class='book_info_layer'><dt><span>"
+// 											+JSdata[j]book_subject()+"</span></dt><dd><dl><dt>저자</dt><dd>"
+// 											+JSdata[j]book_author()+"</dd><dt>출판사</dt><dd>"
+// 											+JSdata[j]book_publisher()+"</dd><dt>출판년도</dt><dd>"
+// 											+JSdata[j]book_pubDate()+"</dd><dt>반납상태</dt><dd>"
+// 											+JSdata[j]book_bstate()+"</dd></dl></dd></dl></a></li>";
 // 											$('#book_pic_div').append(pic2);
 // 										}
 // 									}						
 // 									var pic3="</ul>";
 // 									$('.AjaxTest').append(pic3);
-									
+
 									if (member_id!=null){
 										var text9="<div class='btn_btm_center' id='text10'><ul><li><input type='submit' value='책바구니' id='basket_Fr_btn' class='btn_type4 BTN_IF_LIST'></li></ul></div>";
 										$('.AjaxTest').append(text9);
@@ -366,7 +357,7 @@ $(document).ready(function() {
 									
 						}, // Ajax 데이터 값 받기 성공
 						error:function(request,status,error){
-					        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+// 					        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 					  	} // error 발생시
 				}); // Ajax
 			}); // function selectBook 함수
@@ -380,12 +371,12 @@ $(document).ready(function() {
 		//count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
 		int count = ((Integer) request.getAttribute("count")).intValue();
 		String pageNum = (String) request.getAttribute("pageNum");
+		String view = (String) request.getAttribute("view");
 		int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
 		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 		List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("bookList");
-		String view = (String) request.getAttribute("view");
 	%>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
@@ -621,16 +612,16 @@ $(document).ready(function() {
 								
 				<!-- 버튼 css 부분 -->	
 				<div class="paginate">
-					<a href="./BookIndex.bk?pageNum=1&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
+					<a href="./BookIndex.bk?pageNum=1"><span>&lt;&lt;&nbsp;</span></a>
 					<% if(pageCount < endPage)	endPage = pageCount;
-					if(startPage > pageBlock)	{ %><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+					if(startPage > pageBlock)	{ %><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="./BookIndex.bk?pageNum=<%=p%>&view=<%=view%>"><%=p %></a> &nbsp;<%}
+							else {%> &nbsp;<a href="./BookIndex.bk?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
 						}
-					if(endPage < pageCount){	%><a href="./BookIndex.bk?pageNum=<%=startPage+pageBlock%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
+					if(endPage < pageCount){	%><a href="./BookIndex.bk?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 					%>
-					<a href="./BookIndex.bk?pageNum=<%=pageCount%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
+					<a href="./BookIndex.bk?pageNum=<%=pageCount%>"><span>&nbsp;&gt;&gt;</span></a>
 			 </div>
 						
 </div>						 

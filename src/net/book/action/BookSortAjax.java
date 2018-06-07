@@ -27,6 +27,7 @@ public class BookSortAjax  implements Action {
 		// String sort 파라미터값 가져오기
 		String sort = request.getParameter("sort");
 		System.out.println("정렬해야할 값"+sort);
+		if (sort==null) sort="book_number";
 		
 		String view = request.getParameter("view");
 		if (view==null) view="1";
