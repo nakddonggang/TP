@@ -57,8 +57,8 @@ $(document).ready(function() {
 		}else{}
 		
 		// 갤러리, 게시판 띄워주는 버튼
-		var book_img="${view}";
-		if (book_img==null){ book_img="1"; }
+		var book_img=<%=request.getParameter("view")%>;
+		if (book_img==null){book_img="1";} 
 		if (book_img==0){
 			$('#book_pic_div').show();
 			$('#book_cont_div').hide();
@@ -118,16 +118,15 @@ $(document).ready(function() {
 			$('#book_sort').change(function(){
 				sort = $("#book_sort > option:selected").val();
 				$('.AjaxTest').empty(); // div 영역 비우기
-
 					$.ajax({
-						url:"./BookSortAjax.bk?pageNum=${pageNum}&view=${view}",
+						url:"./BookSortAjax.bk?pageNum=${pageNum}",
 						type:'POST',
 						data:{'sort':sort},
 						dataType:'json',
 						success:function(result){
 							
 							$(document).ready(function() {
-								
+										
 								// 주소창에 Get방식으로 받아온 request값 스크립트에서 사용하기 위한 함수
 								function Request(valuename){
 									var rtnval;
@@ -154,9 +153,19 @@ $(document).ready(function() {
 									}else{}
 								}else{}
 								
+								// 검색값이 없을 때 제어
+								$('#SearchForm').submit(function(){
+									if ($('#search1').val() == ""&& $('#search2').val() == ""&& $('#search3').val() == "") {
+										$.Alert("검색어를 입력해주세요",function(){
+											$('#search1').focus();
+										});
+										return false;
+									} else { }
+								});
+								
 								// 갤러리, 게시판 띄워주는 버튼
-								var book_img="${view}";
-								if (book_img==null){ book_img="1"; }
+								var book_img=<%=request.getParameter("view")%>;
+								if (book_img==null){book_img="1";} 
 								if (book_img==0){
 									$('#book_pic_div').show();
 									$('#book_cont_div').hide();
@@ -174,16 +183,6 @@ $(document).ready(function() {
 											$('#book_pic_div').hide();
 											$('#book_cont_div').show();
 										}
-								});
-								
-								// 검색값이 없을 때 제어
-								$('#SearchForm').submit(function(){
-									if ($('#search1').val() == ""&& $('#search2').val() == ""&& $('#search3').val() == "") {
-										$.Alert("검색어를 입력해주세요",function(){
-											$('#search1').focus();
-										});
-										return false;
-									} else { }
 								});
 								
 								// 갤러리 형식 hover 효과주기
@@ -236,11 +235,8 @@ $(document).ready(function() {
 							var startPage=JSdata[JSdata.length-3].startPage;
 							var endPage=JSdata[JSdata.length-2].endPage;
 							var view=JSdata[JSdata.length-1].view;
-// 							alert(count+", "+sort+", "+pageNum+", "+pageCount+", "+pageBlock+
-// 									", "+startPage+", "+endPage+", "+view);
+							
 							$.Alert(view,function(){ });
-// 							alert(view);
-// 							alert(pageNum);
 							var member_id="${member_id}";
 							
 							// content 내용 넣기
@@ -297,28 +293,28 @@ $(document).ready(function() {
 									var text8="</li></ul>";
 									$('.AjaxTest').append(text7);
 									
-// 									var pic1="<ul class='book_lst' id='book_pic_div'>";
-// 									$('.AjaxTest').append(pic1);
+									var pic1="<ul class='book_lst' id='book_pic_div'>";
+									$('.AjaxTest').append(pic1);
 									
-// 									if(count==0){
-// 										var pic2="<li><dl class='book_info_layer'><dt>책 목록이 없습니다</dt><dd></dd></dl></li> ";
-// 										$('#book_pic_div').append(pic2);
-// 									} else {
-// 										for(var j=0; j<JSdata.length-8; j++){
-// 											var pic2="<li><a href='./BookInfo.bk?book_number="
-// 											+JSdata[j]book_number()+"'><img src='./upload/book/"
-// 											+JSdata[j]book_file()+"' class='book_lst_img'><span id='bk_li_subs'>"
-// 											+JSdata[j]book_subject()+"</span><dl class='book_info_layer'><dt><span>"
-// 											+JSdata[j]book_subject()+"</span></dt><dd><dl><dt>저자</dt><dd>"
-// 											+JSdata[j]book_author()+"</dd><dt>출판사</dt><dd>"
-// 											+JSdata[j]book_publisher()+"</dd><dt>출판년도</dt><dd>"
-// 											+JSdata[j]book_pubDate()+"</dd><dt>반납상태</dt><dd>"
-// 											+JSdata[j]book_bstate()+"</dd></dl></dd></dl></a></li>";
-// 											$('#book_pic_div').append(pic2);
-// 										}
-// 									}						
-// 									var pic3="</ul>";
-// 									$('.AjaxTest').append(pic3);
+									if(count==0){
+										var pic2="<li><dl class='book_info_layer'><dt>책 목록이 없습니다</dt><dd></dd></dl></li> ";
+										$('#book_pic_div').append(pic2);
+									} else {
+										for(var k=0; k<JSdata.length-8; k++){
+											var pic2="<li><a href='./BookInfo.bk?book_number="
+													+JSdata[k].book_number+"'><img src='./upload/book/"
+													+JSdata[k].book_file()+"' class='book_lst_img'><span id='bk_li_subs'>"
+													+JSdata[k].book_subject()+"</span><dl class='book_info_layer'><dt><span>"
+													+JSdata[k].book_subject()+"</span></dt><dd><dl><dt>저자</dt><dd>"
+													+JSdata[k].book_author()+"</dd><dt>출판사</dt><dd>"
+													+JSdata[k].book_publisher()+"</dd><dt>출판년도</dt><dd>"
+													+JSdata[k].book_pubDate()+"</dd><dt>반납상태</dt><dd>"
+													+JSdata[k].bbook_bdate()+"</dd></dl></dd></dl></a></li>";
+											$('#book_pic_div').append(pic2);
+										}
+									}						
+									var pic3="</ul>";
+									$('.AjaxTest').append(pic3);
 
 									if (member_id!=null){
 										var text9="<div class='btn_btm_center' id='text10'><ul><li><input type='submit' value='책바구니' id='basket_Fr_btn' class='btn_type4 BTN_IF_LIST'></li></ul></div>";
@@ -371,12 +367,14 @@ $(document).ready(function() {
 		//count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
 		int count = ((Integer) request.getAttribute("count")).intValue();
 		String pageNum = (String) request.getAttribute("pageNum");
-		String view = (String) request.getAttribute("view");
 		int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
 		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 		List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("bookList");
+
+		String view = request.getParameter("view");
+		if(view==null) view = "1";
 	%>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
@@ -612,16 +610,16 @@ $(document).ready(function() {
 								
 				<!-- 버튼 css 부분 -->	
 				<div class="paginate">
-					<a href="./BookIndex.bk?pageNum=1"><span>&lt;&lt;&nbsp;</span></a>
+					<a href="./BookIndex.bk?pageNum=1&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
 					<% if(pageCount < endPage)	endPage = pageCount;
-					if(startPage > pageBlock)	{ %><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+					if(startPage > pageBlock)	{ %><a href="./BookIndex.bk?pageNum=<%=startPage - pageBlock%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="./BookIndex.bk?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+							else {%> &nbsp;<a href="./BookIndex.bk?pageNum=<%=p%>&view=<%=view%>"><%=p %></a> &nbsp;<%}
 						}
-					if(endPage < pageCount){	%><a href="./BookIndex.bk?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+					if(endPage < pageCount){	%><a href="./BookIndex.bk?pageNum=<%=startPage+pageBlock%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
 					%>
-					<a href="./BookIndex.bk?pageNum=<%=pageCount%>"><span>&nbsp;&gt;&gt;</span></a>
+					<a href="./BookIndex.bk?pageNum=<%=pageCount%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
 			 </div>
 						
 </div>						 

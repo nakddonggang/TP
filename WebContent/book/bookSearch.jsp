@@ -34,6 +34,7 @@
 			$('#book_pic_div').show();
 			$('#book_cont_div').hide();
 		} else if (book_img==1){
+			
 			$('#book_pic_div').hide();
 			$('#book_cont_div').show();
 		}
@@ -290,17 +291,15 @@ if(view==null) view = "1";
 												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_publisher()%></li>
 											<li class="adm_col_date"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'">
 											<%if (Integer.parseInt(booksearchLists.getBbook_bstate())==0){ %> 대출가능 <% }
-											else { %><%=date.format(booksearchLists)%>~<%=date.format(booksearchLists.getBbook_rdate())%> 대출중
+											else { %><%=date.format(booksearchLists.getBbook_bdate())%>~<%=date.format(booksearchLists.getBbook_rdate())%> 대출중
 											<%}%>
 											</li>
 										<%if(member_id!=null){ %>
 											<li class="adm_col_rc book_iff"  id="adm_book_high">
 												<%if (Integer.parseInt(booksearchLists.getBbook_bstate())==0){ %>
 													<input type="button" rel="<%=booksearchLists.getBook_number()%>" class="bbutton" value="대출신청" id="borrowBook">
-												<%} else {
-													if (BorrowCheck > 0){%> <input type = 'button' rel="<%=booksearchLists.getBook_number()%>" value = '반납하기'  class ='rebutton'>
-												<% } else {%> <input type="button" rel="<%=booksearchLists.getBook_number()%>" class="rbutton" value="대출예약"> <%}%>
-											<%}%>
+												<%} else {%>
+													<input type="button" rel="<%=booksearchLists.getBook_number()%>" class="rbutton" value="대출예약"> <%}%>
 											</li><%}%>
 										</ul>
 									</div>
@@ -324,8 +323,7 @@ if(view==null) view = "1";
 									 	} else {
  		for (BookDTO booksearchLists : booksearchList) {
  %>
-				<li><a
-					href="./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>">
+				<li><a href="./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>">
 						<img src="./upload/book/<%=booksearchLists.getBook_file()%>" class="book_lst_img">
 						<span id="bk_li_subs"><%=booksearchLists.getBook_subject()%></span>
 					<dl class="book_info_layer">
@@ -335,7 +333,7 @@ if(view==null) view = "1";
 						<dd>
 							<dl>
 								<dt>저자</dt>
-								<dd><%=booksearchLists.getBook_author()%>>
+								<dd><%=booksearchLists.getBook_author()%>
 								</dd>
 								<dt>출판사</dt>
 								<dd><%=booksearchLists.getBook_publisher()%></dd>
@@ -346,8 +344,9 @@ if(view==null) view = "1";
 							</dl>
 						</dd>
 					</dl>
+					</a>
 					</li>
-				</a><%}
+				<%}
 				}%>
 	</ul>
 							<!-- ★갤러리로 보여지는 통합검색 -->

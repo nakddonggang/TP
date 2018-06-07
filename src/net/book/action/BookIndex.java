@@ -32,10 +32,6 @@ public class BookIndex implements Action{
 		if (pageNum==null)
 			pageNum="1";
 		
-		String view = request.getParameter("view");
-		if (view==null) view="1";
-		System.out.println("view의 값 : "+view);
-		
 		// 10개씩 게시판 글을 분류했을 때,
 		int currentPage = Integer.parseInt(pageNum);
 		// 첫 번째 페이지 첫행 구하기
@@ -86,7 +82,6 @@ public class BookIndex implements Action{
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		request.setAttribute("BorrowCheck", BorrowCheck);
-		request.setAttribute("view", view);
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./book/BookIndex.jsp");
