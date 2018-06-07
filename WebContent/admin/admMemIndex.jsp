@@ -17,6 +17,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
@@ -24,12 +25,16 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+if("${member_id}"!='admin') {
+	$.Alert("잘못된 접근입니다", function(){location.href='./MemberLogin.me';});
+}
+</script>
 </head>
 <body>
 <%
 request.setCharacterEncoding("UTF-8");
 String member_id = (String)session.getAttribute("member_id");
-if ((member_id == null) || !(member_id.equals("admin"))) {	response.sendRedirect("./Main.fp");	}
 int count = ((Integer) request.getAttribute("count")).intValue();
 String pageNum = (String) request.getAttribute("pageNum");
 int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
@@ -93,7 +98,7 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 											<ul onclick="location.href='./AdminMemberInfo.am?info_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>&pageType='"  class="no_scroll">
 												<li class="col_typen"><a href="#"><p><%=mt.getMember_id()%></p></a></li>
 												<li class="col_typen"><a href="#"><p><%=mt.getMember_pass()%></p></a></li>
-												<li class="col_typen"><a href="#"><%=mt.getMember_name()%></li>
+												<li class="col_typen"><%=mt.getMember_name()%></li>
 												<li class="col_calln"><a href="#"><%=mt.getMember_phone()%></a></li>
 												<li class="col_typen"><%
 													if 		(gm_check.equals("0") && bl_check.equals("0")) {	%>일반회원<%		} 
@@ -129,11 +134,13 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 	</div>
 <script type="text/javascript">
 $(".callAjax").click(function(){
+	$('#ajax_container').empty();
 	var member_level = $(this).attr("id");
 	$.ajax({
 		url:"./AdminMemberAjax.am",
 		type:'POST',
 		data:{'member_level':member_level},
+		dataType:'json',
 		success:function(result){
 			var count="${count}";
 			var pageNum="${pageNum}";
@@ -142,14 +149,36 @@ $(".callAjax").click(function(){
 			var startPage="${startPage}";
 			var endPage="${endPage}";
 			
-			var jsonData = JSON.parse(result.data);
-			for(var i=0; i<jsonData.users.length; i++) {
-		          if (chatuser==jsonData.users[i]) {
-		        	 $('#nowChat').empty();
-		             $('#nowChat').append("<span>" + jsonData.users[i]+"님과 대화중입니다.</span>");
-		             other = jsonData.users[i];
-		             first = "false";
-		          }
+			var jsonData = JSON.parse("["+result+"]");
+			console.log(jsonData[0].member_id);
+			for(var i=0; i<jsonData.length; i++){
+				var content = "<div class='con_lst'><ul onclick='location.href=\"./AdminMemberInfo.am?info_id="+jsonData[i].member_id
+						+"&pageNum="+pageNum+"\"' class='no_scroll'>"
+						+"<li class='col_typen'><p>"+jsonData[i].member_id+"</p></li>"
+						+"<li class='col_typen'><p>"+jsonData[i].member_pass+"</p></li>"
+						+"<li class='col_typen'>"+jsonData[i].member_name+"</li>"
+						+"<li class='col_calln'>"+jsonData[i].member_phone+"</li>"
+						+"<li class='col_typen'>";
+				if(jsonData[i].gm_check=="0" && jsonData[i].bl_check=="0"){ content += "일반회원</li>";}
+				else if(jsonData[i].gm_check=="1" && jsonData[i].bl_check=="0"){content += "우수회원</li>";}
+				else if(jsonData[i].bl_check=="1" && jsonData[i].gm_check=="0"){content += "블랙리스트</li>";}
+				else {content += "일반회원</li>";}
+						
+				content += "<li class='col_calln'>"+jsonData[i].member_date+"</li></ul></div>";
+				$('#ajax_container').append(content);
+			}
+			
+			
+			
+// 			var jsonData = JSON.parse(result.data);
+// 			for(var i=0; i<jsonData.users.length; i++) {
+// 		          if (chatuser==jsonData.users[i]) {
+// 		        	 $('#nowChat').empty();
+// 		             $('#nowChat').append("<span>" + jsonData.users[i]+"님과 대화중입니다.</span>");
+// 		             other = jsonData.users[i];
+// 		             first = "false";
+// 		          }
+// 			}
 		}
 	});
 });

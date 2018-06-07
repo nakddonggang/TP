@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.json.Json;
-import javax.json.JsonArrayBuilder;
+import javax.json.JsonArray;
 import javax.json.JsonObject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -48,10 +48,13 @@ public class AdminMemberAjax implements Action {
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);
 		
-		JsonArrayBuilder arr = Json.createArrayBuilder();
-		for(MemberDTO mDTO:memberList){
+		JsonArray arr = null;
+		JsonObject obj = null;
+		String result = "";
+		for(int i=0; i<memberList.size(); i++){
+			MemberDTO mDTO = memberList.get(i);
 			String member_date = transFormat.format(mDTO.getMember_date());
-			JsonObject obj = Json.createObjectBuilder()
+			obj = Json.createObjectBuilder()
 				.add("member_id", mDTO.getMember_id())
 				.add("member_pass", mDTO.getMember_pass())
 				.add("member_name", mDTO.getMember_name())
@@ -68,8 +71,11 @@ public class AdminMemberAjax implements Action {
 				.add("bl_date", mDTO.getBl_date())
 				.add("bl_check", mDTO.getBl_check())
 				.build();
-			arr.add(obj);
+			result += obj.toString();
+			if(i != memberList.size()-1)	result += ",";
 		}
+		arr = Json.createArrayBuilder().add(result).build();
+		System.out.println(arr);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(arr);

@@ -32,7 +32,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .member_modal .info_txt p span {display:inline-block; color:#000; font-family:"Noto_M";}
 .member_modal form {width:350px;}
 .member_modal form input[type="text"],
-.member_modal form input[type="password"] {width:290px; height:40px; margin-bottom:5px; border:0; background:#f6f6f6;} 
+.member_modal form input[type="password"] {width:290px; height:40px; margin-bottom:5px; border:0; background:#f6f6f6;}
 
 /* footer 설정 */
 .footer {position:absolute; bottom:20px; width:100%;}
@@ -48,7 +48,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .submenu {height:100% !important; float:left; width:40%; }
 .mainmenu {float:left; width:60% !important;}
 .mainmenu_no_sub {float:left; width:100% !important;}
-.content {width: calc(100% - 40px);margin: 20px;background:  #ffffff;padding: 10px;}
+.content { display: inline-block; width: calc(100% - 40px);margin: 20px;background:  #ffffff;padding: 10px;}
 
 
 .SECTION_FULL_PAGE01 .slide_con {position:relative; width:100%;}
@@ -62,7 +62,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 
 .ui-widget.ui-widget-content {border:none; border-radius:0; background:#fff;}
 .ui-draggable .ui-dialog-titlebar {border: none; border-radius: 0;}
-.ui-dialog .ui-dialog-buttonpane { display: none;}
+#alertBox .ui-dialog .ui-dialog-buttonpane { display: block;}
 .ui-dialog .ui-dialog-titlebar-close {/*타이틀바 오른쪽 종료버튼*/}
 .top_bar {  margin: 0; padding: 0;  list-style: none; width: 100%;	 height: 40px;	}
 .top_bar  ul > li {  display: inline-block;	float:right; margin: 10px 20px 8px 20px; }

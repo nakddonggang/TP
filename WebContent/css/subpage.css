@@ -146,6 +146,29 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 
 /*한진석 전체 css*/
+/* main css */
+.main_div{ overflow: hidden;background: #fff; display: inline-block; float: left;  width: 48%; height: 44vh;}
+.main_conpop{ margin: 0 10px 10px 0;}
+.main_concur{ margin: 0 0 10px 10px;}
+.main_connot{ margin: 0 10px 10px 0;}
+.main_concur ul li {height: 190px; padding: 20px; border-bottom: 1px solid #ebebeb;}
+.main_concur ul li .main_box_img {float: left;display: inline-block; width: 108px; height: 140px; }
+.main_concur ul li .main_box_img img{ width: 100%; height: 100%;}
+.main_concur ul li .main_box_tit{ float: left ; display: inline-block; width: 50%; max-width: 326px; min-width: 100px; padding-left: 10px; font-family:"Noto_M";}
+.main_concur ul li .main_box_tit .tit { font-size: 1.14em; line-height: 16px; padding-bottom: 10px; border-bottom: 1px solid #ebebeb; letter-spacing: -0.1em; font-family:"Noto_M";}
+.main_concur ul li .main_box_tit .disc { overflow: hidden; display: block; height: 84px; margin-top: 8px; line-height: 14px; letter-spacing: -0.1em; font-family:"Noto_M";}
+h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-family: "Noto_B"; padding-left: 20px; background: #fff; border-bottom: 1px solid #ebebeb; letter-spacing: -0.05em;}
+
+.main_connot {margin-bottom:0;}
+.main_connot ul li {display:block; overflow:hidden; height:63px; padding-left:30px; border-bottom:1px solid #ebebeb; background:url("http://img.pajubookcity.org/WisdomForest/Common/bul_brd.gif") left 18px center; background-repeat:no-repeat;}
+.main_connot ul li:last-child {border-bottom:0;}
+.main_connot ul li a {line-height:63px;}
+.main_connot ul li a p {display:inline-block; width:278px;}
+.main_connot ul li a span {display:block; float:right; width:88px; padding-right:20px; text-align:right;}
+
+
+
+
 /* board css start*/
 
 	.search_bx {position:absolute; top:65px; right:0; /*z-index:1;*/ border:1px solid #666; }
@@ -442,6 +465,23 @@ strong#currentPage {font-weight: bold;}
 
 
 @media (max-width:767px){
+/*main*/
+.main_concur {width: 320px; height: 330px;}
+.main_concur ul {padding:10px 20px;}
+.main_concur ul li {float:left; height:134px; padding:10px 0;}
+.main_concur ul li .main_box_img {width:inherit;}
+.main_concur ul li .main_box_img img {width:88px; height:114px;}
+.main_concur ul li .main_box_tit {width:160px; padding-left:10px;}
+.main_concur ul li .main_box_tit .tit {overflow:hidden; height:26px; line-height:inherit; font-size:1em;}
+.main_concur ul li .main_box_tit .disc {overflow:hidden; height:84px; font-size:0.93em;}
+
+.main_connot {width: 320px; height: 330px;}
+.main_connot ul li {height:58px;}
+.main_connot ul li a {display:block; width:100%; position:relative; line-height:58px;}
+.main_connot ul li a p {width:180px; font-size:0.86em;}
+.main_connot ul li a span {position:absolute; right:0; top:0; padding-right:20px; font-size:0.86em;}
+
+
 /*login css */
 .login_form{margin: 50px auto 0 auto ; width: 300px;}
 .login_form .row_sub > li.title {width:97px; min-width: 97px;}
@@ -509,7 +549,7 @@ strong#currentPage {font-weight: bold;}
 	.seatLayout > ul > li {float: left;width: 30px;}
 	.seat > a > div { background-color: #464646; display: table-cell;width: 30px; height: 30px;cursor: pointer;text-align: center;vertical-align: middle; border-radius: 10px;}
 	/* servefacil  end*/
-	
+	#obj_mname{margin-left: 120px;}
 	
 	
 	

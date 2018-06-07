@@ -19,6 +19,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
@@ -34,7 +35,6 @@ int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
 int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
 int startPage = ((Integer) request.getAttribute("startPage")).intValue();
 int endPage = ((Integer) request.getAttribute("endPage")).intValue();
-
 %>
 	<div class="wrapper">
 
@@ -68,12 +68,13 @@ int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 							<!-- 글목록 -->
 							<li class="view_lst">
 							<div class="con_lst">
-							<ul class="no_scroll title_t">
-							    <li class="col_num">책 번호</li>
-								<li class="col_title">책 제목</li>
-								<li class="col_date">대출일자</li>
-								<li class="col_date">반납할 일자</li>
-							</ul>
+								<ul class="no_scroll title_t">
+								    <li class="col_num">책 번호</li>
+								    <li class="adm_col_date">사진</li>
+									<li class="col_title">책 제목</li>
+									<li class="col_date">대출일자</li>
+									<li class="col_date">반납할 일자</li>
+								</ul>
 							</div>
 							<%
 							SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
@@ -84,17 +85,13 @@ int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 										%>
 										<div class="con_lst">
 										   <ul class="no_scroll" onclick="location.href='#'">
-										
 												<li class="col_num"><p><%=bDTO.getBook_number() %></p></li>
+												<li class="adm_col_date"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
 												<li class="col_title"><p><%=bDTO.getBook_subject() %></p></li>
 												<li class="col_date"><span><%=date.format(bDTO.getBbook_bdate()) %></span></li>
 												<li class="col_date"><span><%=date.format(bDTO.getBbook_rdate()) %></span></li>
 											</ul>
-										
-										
-										
 										</div>
-										
 										<%
 									}
 								}

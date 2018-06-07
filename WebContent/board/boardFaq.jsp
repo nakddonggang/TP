@@ -19,6 +19,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
@@ -123,7 +124,7 @@ $(document).ready(function(){
 				 	$('.deleteBoard').each(function(index){
 				 		$(this).attr('id','delete'+index);
 				 		$('#delete'+index).click(function(){
-							var result = confirm('정말 삭제하시겠습니까?');
+							var result = $.Confirm('정말 삭제하시겠습니까?');
 				 			if(result){}
 				 			else{location.replace("./BoardFaqList.fa?pageNum="+pageNum);}
 						});

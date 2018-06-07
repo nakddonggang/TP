@@ -23,7 +23,7 @@ $(document).ready(function(){
 	        var rsaPublicKeyExponent = publicKeyExponent;
 	        submitEncryptedLoginForm(member_id, member_pass, rsaPublicKeyModulus, rsaPublicKeyExponent);
 	    } catch(err) {
-	        alert(err);
+	        $.Alert(err, function(){});
 	    }
 	    return false;
 	}

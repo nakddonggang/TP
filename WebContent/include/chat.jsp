@@ -180,7 +180,7 @@ $('#leaveBtn').click(function() {
 			type:'POST',
 			data:{'chatlog':chatlog, 'chatuser':chatuser},
 			success:function(result){
-				alert("chatlog 저장완료")
+				$.Alert("chatlog 저장완료", function(){});
 			}
 		});
 	}
@@ -247,7 +247,7 @@ $('#leaveBtn').click(function() {
  
  function chatmessage(message) {
     var jsonData = JSON.parse(message.data);
-//     alert("jsonData: " + jsonData.messageType + "," + jsonData.name +  "," + jsonData.message + "," + jsonData.users  );
+//     $.Alert("jsonData: " + jsonData.messageType + "," + jsonData.name +  "," + jsonData.message + "," + jsonData.users, function(){});
     if (jsonData.messageType == "ChatMessage") {
        message = jsonData.name + " : "+ jsonData.message + '\n';
        displaybubble(jsonData);

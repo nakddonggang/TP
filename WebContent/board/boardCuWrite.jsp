@@ -14,6 +14,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
@@ -23,31 +24,39 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#cWriteForm').submit(function(){
-		if($('#type').val()==""){
-			alert('분류항목 입력하세요');
-			$('#type').focus();
-			return false;
-		}
-		if($('#name').val()==""){
-			alert('작성자 입력하세요');
-			$('#name').focus();
-			return false;
-		}
-		if($('#subject').val()==""){
-			alert('제목 입력하세요');
-			$('#subject').focus();
-			return false;
-		}
-		if($('#content').val()==""){
-			alert('내용 입력하세요');
-			$('#content').focus();
-			return false;
-		}
-		if($('#fileName').val()==""){
-			alert('이미지 첨부하세요');
-			return false;
-		}
+	$('#writeBoard').click(function(){
+		$.Confirm('작성하시겠습니까?', function(){
+			if($('#type').val()==""){
+				$.Alert("분류항목 입력하세요", function(){
+					$('#type').focus();
+				});
+				return false;
+			}
+			if($('#name').val()==""){
+				$.Alert("작성자 입력하세요", function(){
+					$('#name').focus();
+				});
+				return false;	
+			}
+			if($('#subject').val()==""){
+				$.Alert("제목 입력하세요", function(){
+					$('#subject').focus();
+				});
+				return false;
+			}
+			if($('#content').val()==""){
+				$.Alert("내용 입력하세요", function(){
+					$('#content').focus();
+				});
+				return false;	
+			}
+			if($('#fileName').val()==""){
+				$.Alert('이미지 첨부하세요', function(){
+				});
+				return false;
+			}
+			$('#cWriteForm').submit();
+		});
 	});
 });
 </script>
@@ -118,8 +127,12 @@ $(document).ready(function(){
 									<li>
 										<div class="btn_btm_center">
 											<ul>
-												<li class="btn_cancle"><input type="submit" value="글쓰기" class="btn_type4"></li>
-												<li><input type="reset" value="취소" class="btn_type4"></li>
+												<li class="btn_cancle">
+													<input type="button" value="글쓰기" class="btn_type4" id="writeBoard">
+												</li>
+												<li>
+													<input type="reset" value="취소" class="btn_type4">
+												</li>
 											</ul>
 										</div>
 									</li>
