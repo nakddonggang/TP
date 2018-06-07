@@ -18,6 +18,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
@@ -91,7 +92,7 @@
 							</ul>
 							
 							<div class="btn_btm_center">
-								<input type="submit" value="상세보기" class="btn_type5" onclick="location.href='#'">
+								<input type="submit" value="상세보기" class="btn_type5" onclick="location.href='./MemberMyUseRBookList.me'">
 							</div>
 					</div>
 				

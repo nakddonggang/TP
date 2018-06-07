@@ -35,6 +35,8 @@ public class BoardDAO {
        map.put("startRow", startRow-1);
        map.put("pageSize", pageSize);
        List<BoardDTO> faqList = sqlsession.selectList("getFaqList",map);
+       HashMap<String, String> abc = sqlsession.selectMap(arg0, arg1)
+    		   abc
        return faqList;
     }
     

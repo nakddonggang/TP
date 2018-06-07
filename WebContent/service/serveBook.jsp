@@ -15,6 +15,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
@@ -27,16 +28,16 @@
 
 		$('#serve_Book').submit(function() {
 			if ($('#serve_book_text1').val() == "") {
-				alert("작성내용을 모두 입력해 주세요");
+				$.Alert("작성내용을 모두 입력해 주세요", function(){});
 				return false;
 			} else if ($('#serve_book_text2').val() == "") {
-				alert("작성내용을 모두 입력해 주세요");
+				$.Alert("작성내용을 모두 입력해 주세요", function(){});
 				return false;
 			} else if ($('#serve_book_text3').val() == "") {
-				alert("작성내용을 모두 입력해 주세요");
+				$.Alert("작성내용을 모두 입력해 주세요", function(){});
 				return false;
 			} else if ($('#serve_book_text4').val() == "") {
-				alert("작성내용을 모두 입력해 주세요");
+				$.Alert("작성내용을 모두 입력해 주세요", function(){});
 				return false;
 			} else {
 			}
@@ -50,8 +51,9 @@
 		if (member_id == null) {
 	%>
 	<script type="text/javascript">
-		alert("로그인 한 후 사용하세요");
-		location.href = "./MemberLogin.me";
+		$.Alert("로그인 한 후 사용하세요", function(){
+			location.href = "./MemberLogin.me";
+		});
 	</script>
 	<%
 		}

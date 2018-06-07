@@ -15,6 +15,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
@@ -27,16 +28,16 @@ $(document).ready(function(){
 	var result;
 	
 	$('.updateBoard').click(function(){
-		result = confirm('수정하시겠습니까?');
+		result = $.Confirm('수정하시겠습니까?');
 	});
 	$('#qUpdateForm').submit(function(){
 		if($('#subject').val()==""){
-			alert('제목 입력하세요');
+			$.Alert('제목 입력하세요');
 			$('#subject').focus();
 			return false;
 		}
 		if($('#content').val()==""){
-			alert('내용 입력하세요');
+			$.Alert('내용 입력하세요');
 			$('#content').focus();
 			return false;
 		}

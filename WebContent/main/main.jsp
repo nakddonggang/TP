@@ -18,6 +18,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
@@ -33,7 +34,14 @@ List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
 List<BoardDTO> curationList = (List<BoardDTO>)request.getAttribute("curationList");
 List<BookDTO> popularList = (List<BookDTO>)request.getAttribute("popularList");
 String member_id = (String)session.getAttribute("member_id");
+if(member_id != null) {
+	boolean admincheck = (boolean)session.getAttribute("admincheck");
+} else {
+	session.removeAttribute("admincheck");
+}
 %>
+
+
 <body>
 	<div class="wrapper">
 
@@ -54,7 +62,7 @@ String member_id = (String)session.getAttribute("member_id");
 				<div class="content">
 				
 			<!-- 	인기도서	 -->
-				<div class="main_container">
+				<div class="main_conpop main_div">
 					<%
 					if(popularList==null){
 						%><ul><li>게시물이 없습니다.</li></ul><%
@@ -75,51 +83,57 @@ String member_id = (String)session.getAttribute("member_id");
  			
 		
 			<!-- 큐레이션 -->
-					<div class="main_container">
-					<table border="1">
-						<tr><td>번호</td><td>종류</td><td>작성자</td><td>제목</td><td>내용</td><td>파일</td><td>조회수</td><td></td></tr>
+					<div class="main_concur main_div">
+					<div class="main_box">
+					 <h2>Events</h2>
+					<ul>
 						<%
 						if(curationList==null){
-							%><tr><td colspan="8">게시물이 없습니다.</td></tr><%
-						}else{
+							%><li>게시물이 없습니다.</li><%
+						}else{ 
 							for(int i=0; i<curationList.size(); i++){
 								BoardDTO bDTO = curationList.get(i);
 							%>
-								<tr onclick="location.href='./?curNum=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>">
-								<td><%=bDTO.getCur_num() %></td><td><%=bDTO.getCur_type() %></td>
-									<td><%=bDTO.getCur_name() %></td><td><%=bDTO.getCur_subject() %></td>
-									<td><%=bDTO.getCur_content() %></td><td><img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100"></td>
-									<td><%=bDTO.getCur_readcount() %></td>
+								<li onclick="location.href='./?curNum=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>">
+								  <div class="main_box_img">
+								  	<img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100">
+								  </div>
+								  <div class="main_box_tit">
+								  <p class=tit><%=bDTO.getCur_subject() %></p>
+								  <p class=disc><%=bDTO.getCur_content() %></p>
+								  </div>
+							    </li>	
 							<%	
 							}
 						}
 						%>
-					</table>
-					</div> 
-					
+					</ul>
+					</div>
+					</div> 	
 			<!-- 	공지사항		 -->
-					<div class="main_container">
-						<ul class="brd_txt_lst">
+					<div class="main_connot main_div">
+					<div class="main_box">
+						<h2>Notice</h2>
+						<ul>
 							<!-- 글목록 -->
-							<li class="view_lst">
+							<li>
 							<%
 								if(noticeList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
 								else{
 									for(int i=0; i<noticeList.size(); i++){
 										BoardDTO bDTO = noticeList.get(i);	//제너릭 사용해서 형변환 할 필요없음
 									%>
-										<div class="con_lst DIV_CON_LST">
-											<ul>
-												<li class="col_type"><a href="#"><p><%=bDTO.getNotice_type() %></p></a></li>
-												<li class="col_title"><a href="#"><p><%=bDTO.getNotice_subject() %></p></a></li>
-												<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=bDTO.getNotice_date() %></span></li>
-												<li class="col_rc"><a href="#"><%=bDTO.getNotice_readcount() %></a></li>
-											</ul>
-										</div>
+									<li>
+									 <a href="#">
+										<p class="tit"><%=bDTO.getNotice_type() %>     <%=bDTO.getNotice_subject() %></p>
+									    <span class="date"><%=bDTO.getNotice_date() %></span>
+									</a>	
+										</li>
 									<%	}	%>
 								<%	}	%>
-							</li>
+							
 						</ul>
+						</div>
 					</div>
 					 
 				</div>

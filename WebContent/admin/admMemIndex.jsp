@@ -17,6 +17,7 @@
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.fullpage.min.js"/>"></script>
+<script src="<c:url value="/js/jQuery.Alert-1.0.js"/>"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/jsbn.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/rsa.js"></script>
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/rsa/prng4.js"></script>
@@ -24,12 +25,16 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+if("${member_id}"!='admin') {
+	$.Alert("잘못된 접근입니다", function(){location.href='./MemberLogin.me';});
+}
+</script>
 </head>
 <body>
 <%
 request.setCharacterEncoding("UTF-8");
 String member_id = (String)session.getAttribute("member_id");
-if ((member_id == null) || !(member_id.equals("admin"))) {	response.sendRedirect("./Main.fp");	}
 int count = ((Integer) request.getAttribute("count")).intValue();
 String pageNum = (String) request.getAttribute("pageNum");
 int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();

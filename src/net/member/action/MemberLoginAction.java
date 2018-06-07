@@ -47,8 +47,7 @@ public class MemberLoginAction implements Action {
     			response.setContentType("text/html;charset=utf-8");
     			PrintWriter out = response.getWriter();
     			out.print("<script>");
-    			out.print("alert('비밀번호 틀림');");
-    			out.print("location.href='./MemberLogin.me';");
+    			out.print("$.Alert('비밀번호 틀림',function(){location.href='./MemberLogin.me';});");
     			out.print("</script>");
     			out.close();
     			return null;
@@ -56,8 +55,7 @@ public class MemberLoginAction implements Action {
     			response.setContentType("text/html;charset=utf-8");
     			PrintWriter out = response.getWriter();
     			out.print("<script>");
-    			out.print("alert('아이디 틀림');");
-    			out.print("location.href='./MemberLogin.me';");
+    			out.print("$.Alert('아이디 틀림', function(){location.href='./MemberLogin.me';});");
     			out.print("</script>");
     			out.close();
     			return null;
@@ -72,8 +70,14 @@ public class MemberLoginAction implements Action {
     			cookie.setMaxAge(0);
     			cookie.setPath("/");
     		}
+    		
+    		String member_level = mDAO.AdminCheck(member_id);
+    		boolean admincheck = false;
     		response.addCookie(cookie);
     		session.setAttribute("member_id", member_id);
+    		if(member_level.equals("3")) admincheck = true;
+    		else admincheck = false;
+    		session.setAttribute("admincheck", admincheck);
             System.out.println("member_id : "+member_id);
             
         } catch (Exception ex) {
