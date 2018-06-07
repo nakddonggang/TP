@@ -25,6 +25,8 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script src="<c:url value="/js/morris.min.js"/>"></script>
+<script src="<c:url value="/js/raphael.min.js"/>"></script>
 </head>
 <body>
 

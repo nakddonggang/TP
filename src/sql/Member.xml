@@ -182,7 +182,9 @@
 	</select>
 	
 	<select id="myUseBorrowBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-		select * from history_bbook join book
+		select * from history_bbook bb
+		left join book b
+		on bb.book_number = b.book_number
 		where member_id=#{member_id}
 		limit #{startRow},#{pageSize}
 	</select>
