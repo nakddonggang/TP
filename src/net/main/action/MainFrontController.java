@@ -51,6 +51,10 @@ public class MainFrontController extends HttpServlet{
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+		}else if(command.equals("/GuideIntro.fp")){
+			forward = new ActionForward();
+			forward.setPath("guide/guideIntro.jsp");
+			forward.setRedirect(false);
 		}
 		if(forward != null){
 			if(forward.isRedirect()){
