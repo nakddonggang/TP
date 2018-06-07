@@ -93,7 +93,7 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 											<ul onclick="location.href='./AdminMemberInfo.am?info_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>&pageType='"  class="no_scroll">
 												<li class="col_typen"><a href="#"><p><%=mt.getMember_id()%></p></a></li>
 												<li class="col_typen"><a href="#"><p><%=mt.getMember_pass()%></p></a></li>
-												<li class="col_typen"><a href="#"><%=mt.getMember_name()%></li>
+												<li class="col_typen"><%=mt.getMember_name()%></li>
 												<li class="col_calln"><a href="#"><%=mt.getMember_phone()%></a></li>
 												<li class="col_typen"><%
 													if 		(gm_check.equals("0") && bl_check.equals("0")) {	%>일반회원<%		} 
@@ -129,11 +129,13 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 	</div>
 <script type="text/javascript">
 $(".callAjax").click(function(){
+	$('#ajax_container').empty();
 	var member_level = $(this).attr("id");
 	$.ajax({
 		url:"./AdminMemberAjax.am",
 		type:'POST',
 		data:{'member_level':member_level},
+		dataType:'json',
 		success:function(result){
 			var count="${count}";
 			var pageNum="${pageNum}";
@@ -142,14 +144,36 @@ $(".callAjax").click(function(){
 			var startPage="${startPage}";
 			var endPage="${endPage}";
 			
-			var jsonData = JSON.parse(result.data);
-			for(var i=0; i<jsonData.users.length; i++) {
-		          if (chatuser==jsonData.users[i]) {
-		        	 $('#nowChat').empty();
-		             $('#nowChat').append("<span>" + jsonData.users[i]+"님과 대화중입니다.</span>");
-		             other = jsonData.users[i];
-		             first = "false";
-		          }
+			var jsonData = JSON.parse("["+result+"]");
+			console.log(jsonData[0].member_id);
+			for(var i=0; i<jsonData.length; i++){
+				var content = "<div class='con_lst'><ul onclick='location.href=\"./AdminMemberInfo.am?info_id="+jsonData[i].member_id
+						+"&pageNum="+pageNum+"\"' class='no_scroll'>"
+						+"<li class='col_typen'><p>"+jsonData[i].member_id+"</p></li>"
+						+"<li class='col_typen'><p>"+jsonData[i].member_pass+"</p></li>"
+						+"<li class='col_typen'>"+jsonData[i].member_name+"</li>"
+						+"<li class='col_calln'>"+jsonData[i].member_phone+"</li>"
+						+"<li class='col_typen'>";
+				if(jsonData[i].gm_check=="0" && jsonData[i].bl_check=="0"){ content += "일반회원</li>";}
+				else if(jsonData[i].gm_check=="1" && jsonData[i].bl_check=="0"){content += "우수회원</li>";}
+				else if(jsonData[i].bl_check=="1" && jsonData[i].gm_check=="0"){content += "블랙리스트</li>";}
+				else {content += "일반회원</li>";}
+						
+				content += "<li class='col_calln'>"+jsonData[i].member_date+"</li></ul></div>";
+				$('#ajax_container').append(content);
+			}
+			
+			
+			
+// 			var jsonData = JSON.parse(result.data);
+// 			for(var i=0; i<jsonData.users.length; i++) {
+// 		          if (chatuser==jsonData.users[i]) {
+// 		        	 $('#nowChat').empty();
+// 		             $('#nowChat').append("<span>" + jsonData.users[i]+"님과 대화중입니다.</span>");
+// 		             other = jsonData.users[i];
+// 		             first = "false";
+// 		          }
+// 			}
 		}
 	});
 });

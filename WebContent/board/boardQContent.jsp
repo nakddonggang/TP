@@ -102,7 +102,7 @@
 													<ul>
 														<li class="btn_con_right">
 															<input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardQnaUpdate.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">
-															<input type="button" value="글삭제" class ="btn_type4" id="deleteBoard" onclick="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">				
+															<input type="button" value="글삭제" class ="btn_type4" id="deleteBoard" rel="location.href='./BoardQnaDeleteAction.qn?qna_num=<%=bDTO.getQna_num()%>&pageNum=<%=pageNum%>'">				
 														</li>
 													</ul>
 												</div>
@@ -129,7 +129,7 @@
 													<ul>
 														<li class="btn_con_right">
 															<input type="button"  class="btn_type4" value="답변수정" onclick="location.href='./BoardReplyUpdate.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">
-															<input type="button"  class="btn_type4" value="답변삭제" id="deleteBoardRe" onclick="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">				
+															<input type="button"  class="btn_type4" value="답변삭제" id="deleteBoardRe" rel="location.href='./BoardReplyDeleteAction.qn?qna_ref=<%=bDTO.getQna_ref() %>&pageNum=<%=pageNum %>'">				
 														</li>
 													</ul>
 												</div>
@@ -169,12 +169,16 @@ $(document).ready(function(){
 	var qna_num = "<%=bDTO.getQna_num() %>";
 	
 	$("#deleteBoard").click(function(){
-		var result = confirm('정말 삭제하시겠습니까?');
+		$.confirm('정말 삭제하시겠습니까?', function(){
+			
+		});
 		if(result){}
 		else{location.replace("./BoardQnaContent.qn?qna_num="+qna_num+"&pageNum="+pageNum); }
 	});
 	$("#deleteBoardRe").click(function(){
-		var result = confirm('정말 삭제하시겠습니까?');
+		$.confirm('정말 삭제하시겠습니까?', function(){
+			
+		});
 		if(result){}
 		else{location.replace("./BoardQnaContent.qn?qna_num="+qna_num+"&pageNum="+pageNum); }
 	});
