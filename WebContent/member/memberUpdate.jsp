@@ -73,7 +73,7 @@
             var rsaPublicKeyExponent = $("#rsaPublicKeyExponent").val();
             submitEncryptedUpdateForm(member_id, member_name, member_post, member_address1, member_address2, member_phone1, member_phone2, member_phone3, member_email1, member_email2, rsaPublicKeyModulus, rsaPublicKeyExponent);
         } catch(err) {
-            $.Alert(err);
+            alert(err);
         }
         return false;
     }

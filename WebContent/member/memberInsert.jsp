@@ -56,7 +56,7 @@
     
     function validateEncryptedInsertForm() {
 
-        var member_id = $("#member_id").val(); $.Alert("member_id: " + member_id);
+        var member_id = $("#member_id").val();
         var member_pass = $("#member_pass").val();
         var member_name = $("#member_name").val();
         var member_post = $("#member_post").val();
@@ -73,7 +73,7 @@
             var rsaPublicKeyExponent = $("#rsaPublicKeyExponent").val();
             submitEncryptedInsertForm(member_id, member_pass, member_name, member_post, member_address1, member_address2, member_phone1, member_phone2, member_phone3, member_email1, member_email2, rsaPublicKeyModulus, rsaPublicKeyExponent);
         } catch(err) {
-            $.Alert(err);
+            alert(err);
         }
         return false;
     }
@@ -83,7 +83,7 @@
         rsa.setPublic(rsaPublicKeyModulus, rsaPublicKeyExponent);
 
         // 사용자ID와 비밀번호를 RSA로 암호화한다.
-        var securedId = rsa.encrypt(member_id); $.Alert("securedId: " + securedId);
+        var securedId = rsa.encrypt(member_id);
         var securedPass = rsa.encrypt(member_pass);
         var securedName = rsa.encrypt(member_name);
         var securedPost = rsa.encrypt(member_post);
@@ -108,19 +108,7 @@
         securedInsertForm.securedPhone3.value = securedPhone3;
         securedInsertForm.securedEmail1.value = securedEmail1;
         securedInsertForm.securedEmail2.value = securedEmail2;
-        
-        $.Alert("securedId: " + securedInsertForm.securedId.value);
-        $.Alert("securedPass: " + securedInsertForm.securedPass.value);
-        $.Alert("securedName: " + securedInsertForm.securedName.value);
-        $.Alert("securedPost: " + securedInsertForm.securedPost.value);
-        $.Alert("securedAddress1: " + securedInsertForm.securedAddress1.value);
-        $.Alert("securedAddress2: " + securedInsertForm.securedAddress2.value);
-        $.Alert("securedPhone1: " + securedInsertForm.securedPhone1.value);
-        $.Alert("securedPhone2: " + securedInsertForm.securedPhone2.value);
-        $.Alert("securedPhone3: " + securedInsertForm.securedPhone3.value);
-        $.Alert("securedEmail1: " + securedInsertForm.securedEmail1.value);
-        $.Alert("securedEmail2: " + securedInsertForm.securedEmail2.value);
-        
+            
         securedInsertForm.submit();
     }
 </script>
@@ -217,36 +205,41 @@ $(document).ready(function() {
 			} // for - end
 		
 		if(pass.length == 0) {
-			$.Alert("비밀번호는 공백으로 입력할 수 없습니다.");
-			$("#member_pass").focus();
+			$.Alert("비밀번호는 공백으로 입력할 수 없습니다.", function(){
+				$("#member_pass").focus();
+			});
 			return;
 		}
 		
 		if(num < 0 || eng < 0 || spe < 0) {
-			$.Alert("비밀번호는 영문,숫자, 특수문자를 혼합하여 입력해주세요.");
-			$("#member_pass").select();
-			  return;
+			$.Alert("비밀번호는 영문,숫자, 특수문자를 혼합하여 입력해주세요.", function(){
+				$("#member_pass").select();
+			});
+			return;
 		}
 		
 		if(pass.length < 8 || pass.length > 21) {
-			$.Alert("비밀번호는 8 ~ 20자 사이로 입력해주세요.");
-			$("#meber_pass").select();
+			$.Alert("비밀번호는 8 ~ 20자 사이로 입력해주세요.", function(){
+				$("#meber_pass").select();
+			});
 		}
 		
 		if(name.length == 0) {
-			$.Alert("이름칸은 공백으로 입력할 수 없습니다.");
-			$("#member_name").focus();
+			$.Alert("이름칸은 공백으로 입력할 수 없습니다.", function(){
+				$("#member_name").focus();
+			});
 			return;
 		}
 		
 		if(kor > 0) {
-			$.Alert("이름칸에는 한글만 입력 가능합니다.");
-			$("#member_name").focus();
+			$.Alert("이름칸에는 한글만 입력 가능합니다.", function(){
+				$("#member_name").focus();
+			});
 			return;
 		}
 		
 		if($("#member_post").val() == "") {
-			$.Alert("우편번호 검색을 해주세요.");
+			$.Alert("우편번호 검색을 해주세요.", function(){});
 			return;
 		}
 		
@@ -256,44 +249,51 @@ $(document).ready(function() {
 		}
 		
 		if($("#member_phone1").val() == "" ) {
-			$.Alert("휴대폰 번호는 공백으로 입력할 수 없습니다.");
-			$("#member_phone1").focus();
+			$.Alert("휴대폰 번호는 공백으로 입력할 수 없습니다.", function(){
+				$("#member_phone1").focus();
+			});
 			return;
 		}
 		
 		if($("#member_phone1").val() < 4) {
-			$.Alert("휴대폰 번호는 4자리를 입력해주세요.");
-			$("#member_phone1").select();
+			$.Alert("휴대폰 번호는 4자리를 입력해주세요.", function(){
+				$("#member_phone1").select();
+			});
 			return;
 		}
 		
 		if (isNaN($("#member_phone1").val())) {
-			$.Alert("휴대폰 번호는 숫자로 입력해주세요.");
-			$("#member_phone1").select();
+			$.Alert("휴대폰 번호는 숫자로 입력해주세요.", function(){
+				$("#member_phone1").select();
+			});
 			return;
 		}
 	
 		if($("#member_phone2").val() == "") {
-			$.Alert("휴대폰 번호는 공백으로 입력할 수 없습니다.");
-			$("#member_phone2").focus();
+			$.Alert("휴대폰 번호는 공백으로 입력할 수 없습니다.", function(){
+				$("#member_phone2").focus();
+			});
 			return;
 		}
 		
 		if($("#member_phone2").val() < 4) {
-			$.Alert("휴대폰 번호는 4자리를 입력해주세요.");
-			$("#member_phone2").select();
+			$.Alert("휴대폰 번호는 4자리를 입력해주세요.", function(){
+				$("#member_phone2").select();
+			});
 			return;
 		}
 		
 		if (isNaN($("#member_phone2").val())) {
-			$.Alert("휴대폰 번호는 숫자로 입력해주세요.");
-			$("#member_phone2").focus();
+			$.Alert("휴대폰 번호는 숫자로 입력해주세요.", function(){
+				$("#member_phone2").focus();
+			});
 			return;
 		}
 		
 		if($("#member_email").val() == "") {
-			$.Alert("이메일은 공백으로 입력할 수 없습니다. ");
-			$("#member_email").focus();
+			$.Alert("이메일은 공백으로 입력할 수 없습니다. ", function(){
+				$("#member_email").focus();
+			});
 			return;
 		}
 		

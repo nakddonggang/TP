@@ -63,7 +63,7 @@ $(document).ready(function(){
 	
 	var msg = Request("alert");
 	if(msg=="1"){
-		$.Alert("이미 대출,예약했거나 예약이 꽉 찬 도서가 포함됐습니다.");
+		$.Alert("이미 대출,예약했거나 예약이 꽉 찬 도서가 포함됐습니다.", function(){});
 	}
 });
 </script>

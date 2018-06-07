@@ -147,9 +147,10 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 /*한진석 전체 css*/
 /* main css */
-.main_conpop{ overflow: hidden;background: #fff; display: inline-block; float: left;  width: 48%; height: 48%; margin: 0 10px 10px 0;}
-.main_concur{ overflow: hidden;background: #fff; display: inline-block; float: left;  width: 48%; height: 48%; margin: 0 0 10px 10px;}
-.main_connot{ overflow: hidden;background: #fff; display: inline-block; float: left;  width: 48%; height: 48%; margin: 0 10px 10px 0;}
+.main_div{ overflow: hidden;background: #fff; display: inline-block; float: left;  width: 48%; height: 44vh;}
+.main_conpop{ margin: 0 10px 10px 0;}
+.main_concur{ margin: 0 0 10px 10px;}
+.main_connot{ margin: 0 10px 10px 0;}
 .main_concur ul li {height: 190px; padding: 20px; border-bottom: 1px solid #ebebeb;}
 .main_concur ul li .main_box_img {float: left;display: inline-block; width: 108px; height: 140px; }
 .main_concur ul li .main_box_img img{ width: 100%; height: 100%;}

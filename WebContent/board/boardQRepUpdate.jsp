@@ -28,7 +28,7 @@ $(document).ready(function(){
 	var result;
 	
 	$('.updateBoard').click(function(){
-		result = confirm('수정하시겠습니까?');
+		result = $.Confirm('수정하시겠습니까?');
 	});
 	$('#rUpdateForm').submit(function(){
 		if($('#name').val()==""){

@@ -82,8 +82,7 @@ public class MemberUpdateAction implements Action {
             ex.printStackTrace();
         }
 		out.print("<script>");
-		out.print("$.Alert('수정되었습니다.');");
-		out.print("location.href='./MemberInfo.me';");
+		out.print("$.Alert('수정되었습니다.', function(){location.href='./MemberInfo.me';});");
 		out.print("</script>");
 		out.close();
 		

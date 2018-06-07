@@ -29,7 +29,7 @@ $(document).ready(function(){
 	var result;
 	
 	$('.updateBoard').click(function(){
-		result = confirm('수정하시겠습니까?');
+		result = $.Confirm('수정하시겠습니까?');
 	});
 	$('#fUpdateForm').submit(function(){
 		if($('#type').val()==""){

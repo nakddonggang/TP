@@ -8,7 +8,6 @@ import javax.servlet.http.HttpSession;
 
 import net.book.db.BookDTO;
 import net.member.db.MemberDAO;
-import net.member.db.MemberDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
@@ -39,8 +38,7 @@ public class BorrowBookAction implements Action{
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.print("<script>");
-			out.print("$.Alert('대출할 수 있는 권수를 초과하였습니다. 반납하고 이용해 주세요');");
-			out.print("location.href='./BookIndex.bk';");
+			out.print("$.Alert('대출할 수 있는 권수를 초과하였습니다. 반납하고 이용해 주세요', function(){location.href='./BookIndex.bk';});");
 			out.print("</script>");
 			out.close();
 		} else {

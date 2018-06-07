@@ -194,7 +194,7 @@ $(document).ready(function(){
 	$('.deleteBoard').each(function(index){
 		$(this).attr('id','delete'+index);
 		$('#delete'+index).click(function(){
-			var result = confirm('정말 삭제하시겠습니까?');
+			var result = $.Confirm('정말 삭제하시겠습니까?');
 			if(result){}
 			else{location.replace("./BoardNoticeSearch.no?pageNum="+pageNum+"&search="+search);	}
 		});

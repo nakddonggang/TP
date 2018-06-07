@@ -28,16 +28,16 @@
 
 		$('#serve_Book').submit(function() {
 			if ($('#serve_book_text1').val() == "") {
-				$.Alert("작성내용을 모두 입력해 주세요");
+				$.Alert("작성내용을 모두 입력해 주세요", function(){});
 				return false;
 			} else if ($('#serve_book_text2').val() == "") {
-				$.Alert("작성내용을 모두 입력해 주세요");
+				$.Alert("작성내용을 모두 입력해 주세요", function(){});
 				return false;
 			} else if ($('#serve_book_text3').val() == "") {
-				$.Alert("작성내용을 모두 입력해 주세요");
+				$.Alert("작성내용을 모두 입력해 주세요", function(){});
 				return false;
 			} else if ($('#serve_book_text4').val() == "") {
-				$.Alert("작성내용을 모두 입력해 주세요");
+				$.Alert("작성내용을 모두 입력해 주세요", function(){});
 				return false;
 			} else {
 			}
@@ -51,8 +51,9 @@
 		if (member_id == null) {
 	%>
 	<script type="text/javascript">
-		$.Alert("로그인 한 후 사용하세요");
-		location.href = "./MemberLogin.me";
+		$.Alert("로그인 한 후 사용하세요", function(){
+			location.href = "./MemberLogin.me";
+		});
 	</script>
 	<%
 		}

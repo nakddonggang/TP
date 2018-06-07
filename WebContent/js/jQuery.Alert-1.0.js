@@ -1,55 +1,48 @@
-/* 
-	jQuery Alert 1.0
-	http://ekfqkqhd.tistory.com
-*/
-;(function($){
-	jQuery.Alert = function (options) {
-		var $messageBox = $.parseHTML('<div id="alertBox"></div>');
-		$("body").append($messageBox);
-
-		$.Alert.options = {
-			Title : "경고창",
-			Message : "메세지",
-			ModalLayer : true,
-			ButtonText : "Ok",
-			AutoClose : false,
-			OpenCallback : function(){
-
+$.extend({
+	// Create a jquery style modal confirm dialog
+	// Usage:
+	//    $.confirm(
+	//        "message",
+	//        "title",
+	//        function() { /* Ok action here*/
+	//        });
+	Confirm : function(message, okAction) {
+		$("<div></div>").dialog({
+			// Remove the closing 'X' from the dialog
+			open : function(event, ui) {
+				$(".ui-dialog-titlebar-close").hide();
 			},
-			CloseCallBack : function(){
-				
-			}
-		}					
-		
-		if(typeof options == 'object'){
-			options = $.extend($.Alert.options,options);	
-		}else{
-			$.Alert.options.Message = options;
-		}
-		
-		var b = $.Alert.options.ButtonText;
-		var buttonOpts = {};
-		buttonOpts[b] = function(){
-			$("#alertBox").dialog("close");
-		}
-
-		$($messageBox).dialog({
-			open: function(event,ui){
-				$($messageBox).append($.Alert.options.Message)
-				if($.Alert.options.AutoClose){
-					setTimeout(function(){
-						$($messageBox).dialog("close");
-					},3000);
+			buttons : {
+				"Ok" : function() {
+					$(this).dialog("close");
+					okAction();
+				},
+				"Cancel" : function() {
+					$(this).dialog("close");
 				}
-				$.Alert.options.OpenCallback();
 			},
-			title: $.Alert.options.Title,
-			autoOpen: true,
-			modal: $.Alert.options.ModalLayer,
-			buttons: buttonOpts,
-			close : function(){
-				$.Alert.options.CloseCallBack();
-			}
-		});
-	};
-})(jQuery);
+			close : function(event, ui) {
+				$(this).remove();
+			},
+			resizable : false,
+			title : "경고",
+			modal : true
+		}).text(message);
+	},
+	Alert : function(message, okAction) {
+		$("<div></div>").dialog({
+			buttons : {
+				"Ok" : function() {
+					$(this).dialog("close");
+					okAction();
+				}
+			},
+			close : function(event, ui) {
+				$(this).remove();
+			},
+			resizable : false,
+			title : "경고",
+			modal : true
+		}).text(message);
+	}
+});

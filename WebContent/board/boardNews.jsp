@@ -154,7 +154,7 @@ $(document).ready(function(){
 													<ul>
 														<li class="btn_con_right">
 															<input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
-															<input type="button" value="글삭제" id="" class ="btn_type4 deleteBoard" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">				
+															<input type="button" value="글삭제" id="" class ="btn_type4 deleteBoard" rel="<%=bDTO.getNotice_num()%>">				
 														</li>
 													</ul>
 												</div>
@@ -208,12 +208,17 @@ $(document).ready(function(){
 $(document).ready(function(){
 	var pageNum = "${pageNum}";
 	
+	
 	$('.deleteBoard').each(function(index){
 		$(this).attr('id','delete'+index);
 		$('#delete'+index).click(function(){
-			var result = confirm('정말 삭제하시겠습니까?');
-			if(result){}
-			else{location.replace("./BoardNoticeList.no?pageNum="+pageNum);	}
+			$.Confirm(
+				'정말 삭제하시겠습니까?',
+				'경고',
+				function(){
+					location.href = './BoardNoticeDeleteAction.no?notice_num=' + $('#delete'+index).attr('rel') + '&pageNum="${pageNum}"';
+				}
+			);
 		});
 	});
 	

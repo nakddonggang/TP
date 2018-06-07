@@ -32,7 +32,7 @@ function validateEncryptedLoginForm() {
         var rsaPublicKeyExponent = document.getElementById("rsaPublicKeyExponent").value;
         submitEncryptedLoginForm(member_id, member_pass, rsaPublicKeyModulus, rsaPublicKeyExponent);
     } catch(err) {
-        $.Alert(err);
+        alert(err);
     }
     return false;
 }

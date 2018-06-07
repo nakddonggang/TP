@@ -170,12 +170,12 @@ $(document).ready(function(){
 	var qna_num = "<%=bDTO.getQna_num() %>";
 	
 	$("#deleteBoard").click(function(){
-		var result = confirm('정말 삭제하시겠습니까?');
+		var result = $.Confirm('정말 삭제하시겠습니까?');
 		if(result){}
 		else{location.replace("./BoardQnaContent.qn?qna_num="+qna_num+"&pageNum="+pageNum); }
 	});
 	$("#deleteBoardRe").click(function(){
-		var result = confirm('정말 삭제하시겠습니까?');
+		var result = $.Confirm('정말 삭제하시겠습니까?');
 		if(result){}
 		else{location.replace("./BoardQnaContent.qn?qna_num="+qna_num+"&pageNum="+pageNum); }
 	});

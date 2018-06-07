@@ -62,7 +62,7 @@ if(member_id != null) {
 				<div class="content">
 				
 			<!-- 	인기도서	 -->
-				<div class="main_conpop">
+				<div class="main_conpop main_div">
 					<%
 					if(popularList==null){
 						%><ul><li>게시물이 없습니다.</li></ul><%
@@ -83,7 +83,7 @@ if(member_id != null) {
  			
 		
 			<!-- 큐레이션 -->
-					<div class="main_concur">
+					<div class="main_concur main_div">
 					<div class="main_box">
 					 <h2>Events</h2>
 					<ul>
@@ -111,7 +111,7 @@ if(member_id != null) {
 					</div>
 					</div> 	
 			<!-- 	공지사항		 -->
-					<div class="main_connot">
+					<div class="main_connot main_div">
 					<div class="main_box">
 						<h2>Notice</h2>
 						<ul>

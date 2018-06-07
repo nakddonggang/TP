@@ -1,8 +1,6 @@
 package net.member.action;
 
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -43,8 +41,7 @@ public class MemberBasketAdd implements Action {
 				mDAO.insertBasket(mDTO);
 			}else{
 				out.print("<script>");
-				out.print("$.Alert('이미 바구니에 포함된 도서가 있습니다.');");
-				out.print("location.href='./BookIndex.bk';");
+				out.print("$.Alert('이미 바구니에 포함된 도서가 있습니다.', function(){location.href='./BookIndex.bk';});");
 				out.print("</script>");
 				out.close();
 				return null;
