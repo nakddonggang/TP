@@ -131,7 +131,7 @@ if ((member_id == null) || !(member_id.equals("admin"))) {
 						<div class="btn_btm_center">
 							<ul>
 								<li class="btn_cancle">
-									<input type="button" value="글목록" onclick="./AdminMemberIndex.am?pageNum=<%=pageNum%>&member_level=<%=pageType %>" class ="btn_type4 BTN_IF_LIST">
+									<input type="button" value="글목록" onclick="history.back();" class ="btn_type4 BTN_IF_LIST">
 								</li>
 							</ul>
 						</div>
