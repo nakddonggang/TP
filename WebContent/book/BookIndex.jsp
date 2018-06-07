@@ -30,7 +30,14 @@
 <script type="text/javascript">
 
 $(document).ready(function() {
-		
+	
+// 	var pageNum = "${pageNum}";
+// 	firstload(pageNum);
+	
+	function firstload(){
+		onload();	
+	}	
+	
 		// 주소창에 Get방식으로 받아온 request값 스크립트에서 사용하기 위한 함수
 		function Request(valuename){
 			var rtnval;
@@ -56,32 +63,29 @@ $(document).ready(function() {
 			});
 		}else{}
 		
-
-		<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
-		<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
-		
 		// 갤러리, 게시판 띄워주는 버튼
 		var book_img=<%=request.getParameter("view")%>;
-		if (book_img==null){book_img="0";} 
+		if (book_img==null){book_img="1";} 
 		if (book_img==0){
 			$('#book_pic_div').show();
 			$('#book_cont_div').hide();
+			history.pushState(null, null, "./BookIndex.bk?view=0");
 		} else if (book_img==1){
 			$('#book_pic_div').hide();
 			$('#book_cont_div').show();
+			history.pushState(null, null, "./BookIndex.bk?view=1");
 		}
 
-		var view;
 		$('#book_pic_btn').click(function(){
 			$('#book_pic_div').show();
 			$('#book_cont_div').hide();
-			view=0;
+			history.pushState(null, null, "./BookIndex.bk?view=0");
 		});
 		
 		$('#book_cont_btn').click(function(){
 			$('#book_pic_div').hide();
 			$('#book_cont_div').show();
-			view=1;
+			history.pushState(null, null, "./BookIndex.bk?view=1");
 		});
 		
 		// 검색값이 없을 때 제어
@@ -119,250 +123,258 @@ $(document).ready(function() {
 			}
 		});
 		
-		// 책 정렬 Ajax
+		// 책 정렬
 			var sort = "";	
 			$('#book_sort').change(function(){
 				sort = $("#book_sort > option:selected").val();
-				$('.AjaxTest').empty(); // div 영역 비우기
-					$.ajax({
-						url:"./BookSortAjax.bk?pageNum=${pageNum}",
-						type:'POST',
-						data:{'sort':sort, 'view':view},
-						dataType:'json',
-						success:function(result){
-							
-							$(document).ready(function() {
-										
-								// 주소창에 Get방식으로 받아온 request값 스크립트에서 사용하기 위한 함수
-								function Request(valuename){
-									var rtnval;
-									var nowAddress = unescape(location.href);
-									var parameters = new Array();
-									parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
-									for(var i = 0 ; i < parameters.length ; i++){
-										if(parameters[i].split("=")[0] == valuename){
-											rtnval = parameters[i].split("=")[1];
-											if(rtnval == undefined || rtnval == null){
-												rtnval = "";
-											}
-											return rtnval;
-										}
+				onload();
+			}); // function selectBook 함수
+			
+		// Ajax 함수
+		function onload(){
+			$('.AjaxTest').empty(); // div 영역 비우기
+			$.ajax({
+				url:"./BookSortAjax.bk?pageNum=${pageNum}&view=${view}",
+				type:'POST',
+				data:{'sort':sort},
+				dataType:'json',
+				success:function(result){
+					
+					$(document).ready(function() {
+								
+						// 주소창에 Get방식으로 받아온 request값 스크립트에서 사용하기 위한 함수
+						function Request(valuename){
+							var rtnval;
+							var nowAddress = unescape(location.href);
+							var parameters = new Array();
+							parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+							for(var i = 0 ; i < parameters.length ; i++){
+								if(parameters[i].split("=")[0] == valuename){
+									rtnval = parameters[i].split("=")[1];
+									if(rtnval == undefined || rtnval == null){
+										rtnval = "";
 									}
+									return rtnval;
 								}
-								
-								// direct값이 1이면 바구니에 정상적으로 들어간 것  
-								var direct = Request("direct");
-								if(direct=="1"){
-									var directGo = confirm("책바구니로 이동하시겠습니까?");
-									if(directGo == true){
-										location.replace('./MemberBasketList.me');
-									}else{}
-								}else{}
-								
-								// 검색값이 없을 때 제어
-								$('#SearchForm').submit(function(){
-									if ($('#search1').val() == ""&& $('#search2').val() == ""&& $('#search3').val() == "") {
-										$.Alert("검색어를 입력해주세요",function(){
-											$('#search1').focus();
-										});
-										return false;
-									} else { }
+							}
+						}
+						
+						// direct값이 1이면 바구니에 정상적으로 들어간 것  
+						var direct = Request("direct");
+						if(direct=="1"){
+							var directGo = confirm("책바구니로 이동하시겠습니까?");
+							if(directGo == true){
+								location.replace('./MemberBasketList.me');
+							}else{}
+						}else{}
+						
+						// 검색값이 없을 때 제어
+						$('#SearchForm').submit(function(){
+							if ($('#search1').val() == ""&& $('#search2').val() == ""&& $('#search3').val() == "") {
+								$.Alert("검색어를 입력해주세요",function(){
+									$('#search1').focus();
 								});
-								
-								// 갤러리, 게시판 띄워주는 버튼
-								var book_img=<%=request.getParameter("view")%>;
-								if (book_img==null){book_img="0";} 
-								if (book_img==0){
-									$('#book_pic_div').show();
-									$('#book_cont_div').hide();
-								} else if (book_img==1){
-									$('#book_pic_div').hide();
-									$('#book_cont_div').show();
-								}
-								
-								$('#adm_select_box3 > :input').click(function(){
-									book_img=$(this).index();
-										if (book_img==0){
-											$('#book_pic_div').show();
-											$('#book_cont_div').hide();
-										} else if (book_img==1){
-											$('#book_pic_div').hide();
-											$('#book_cont_div').show();
-										}
-								});
-								
-								// 갤러리 형식 hover 효과주기
-								$('#book_pic_hv').hover(function() {
-									$('.book_lst > li').mouseenter(function() {
-										$("dl", this).addClass("bil_on"); }).mouseleave(function(){
-										$("dl", this).removeClass("bil_on");
-									});
-									$('.book_lst > li').focusin(function() {
-										$("dl", this).addClass("bil_on");}).focusout(function() {
-										$("dl", this).removeClass("bil_on");
-									});
-									
-								});
-								// 대출 버튼 Jquery
-								$(".bbutton").click(function(){
-									var book_number = $(this).attr("rel");
-									var bbook = confirm("대출신청을 하시겠습니까?");
-										if (bbook == true) { var url = book_number;
-											$(location).attr('href', './BorrowBookAction.me?book_number='+url);
-										} else { return false; }
-								});
-								
-								// 예약 버튼 Jquery
-								$('.rbutton').click(function() {
-									var book_number = $(this).attr("rel");
-										var rbook = confirm("대출예약 하시겠습니까?");
-										if (rbook == true) { var url = book_number;
-											$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
-										} else { return false; }
-								});
-								
-								// 반납 버튼 Jquery
-								$('.rebutton').click(function() {
-									var book_number = $(this).attr("rel");
-										var rebook = confirm("책 반납을 하시겠습니까?");
-										if (rebook == true) { var url = book_number;
-											$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
-										} else { return false; }
-								});
+								return false;
+							} else { }
+						});
+						
+						// 갤러리, 게시판 띄워주는 버튼
+						var book_img=<%=request.getParameter("view")%>;
+						if (book_img==null){book_img="1";} 
+						if (book_img==0){
+							$('#book_pic_div').show();
+							$('#book_cont_div').hide();
+							history.pushState(null, null, "./BookIndex.bk?view=0");
+						} else if (book_img==1){
+							$('#book_pic_div').hide();
+							$('#book_cont_div').show();
+							history.pushState(null, null, "./BookIndex.bk?view=1");
+						}
+						
+						$('#book_pic_btn').click(function(){
+							$('#book_pic_div').show();
+							$('#book_cont_div').hide();
+							history.pushState(null, null, "./BookIndex.bk?view=0");
+						});
+						
+						$('#book_cont_btn').click(function(){
+							$('#book_pic_div').hide();
+							$('#book_cont_div').show();
+							history.pushState(null, null, "./BookIndex.bk?view=1");
+						});
+						
+						// 갤러리 형식 hover 효과주기
+						$('#book_pic_hv').hover(function() {
+							$('.book_lst > li').mouseenter(function() {
+								$("dl", this).addClass("bil_on"); }).mouseleave(function(){
+								$("dl", this).removeClass("bil_on");
+							});
+							$('.book_lst > li').focusin(function() {
+								$("dl", this).addClass("bil_on");}).focusout(function() {
+								$("dl", this).removeClass("bil_on");
 							});
 							
-// 							alert(result);
-							var JSdata = JSON.parse("["+result+"]");
-							var count=JSdata[JSdata.length-8].count;
-							var sort=JSdata[JSdata.length-7].sort;
-							var pageNum=JSdata[JSdata.length-6].pageNum;
-							var pageCount=JSdata[JSdata.length-5].pageCount;
-							var pageBlock=JSdata[JSdata.length-4].pageBlock;
-							var startPage=JSdata[JSdata.length-3].startPage;
-							var endPage=JSdata[JSdata.length-2].endPage;
-							var view=JSdata[JSdata.length-1].view;
+						});
+						// 대출 버튼 Jquery
+						$(".bbutton").click(function(){
+							var book_number = $(this).attr("rel");
+							var bbook = confirm("대출신청을 하시겠습니까?");
+								if (bbook == true) { var url = book_number;
+									$(location).attr('href', './BorrowBookAction.me?book_number='+url);
+								} else { return false; }
+						});
+						
+						// 예약 버튼 Jquery
+						$('.rbutton').click(function() {
+							var book_number = $(this).attr("rel");
+								var rbook = confirm("대출예약 하시겠습니까?");
+								if (rbook == true) { var url = book_number;
+									$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
+								} else { return false; }
+						});
+						
+						// 반납 버튼 Jquery
+						$('.rebutton').click(function() {
+							var book_number = $(this).attr("rel");
+								var rebook = confirm("책 반납을 하시겠습니까?");
+								if (rebook == true) { var url = book_number;
+									$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
+								} else { return false; }
+						});
+					});
+					
+//						alert(result);
+					var JSdata = JSON.parse("["+result+"]");
+					var count=JSdata[JSdata.length-8].count;
+					var sort=JSdata[JSdata.length-7].sort;
+					var pageNum=JSdata[JSdata.length-6].pageNum;
+					var pageCount=JSdata[JSdata.length-5].pageCount;
+					var pageBlock=JSdata[JSdata.length-4].pageBlock;
+					var startPage=JSdata[JSdata.length-3].startPage;
+					var endPage=JSdata[JSdata.length-2].endPage;
+					var view=JSdata[JSdata.length-1].view;
+					
+					$.Alert(view,function(){ });
+					var member_id="${member_id}";
+					
+					// content 내용 넣기
+							var text = "<ul class='brd_txt_lst' id='book_cont_div'><li class='view_lst' id='text3_ap'><div class='con_lst'><ul class='no_scroll title_t' id='text2_ap'><li class='adm_col_rrc'>목록</li><li class='adm_col_date'>사진</li><li class='adm_col_sub'>제목</li><li class='adm_col_type'>저자</li><li class='adm_col_date'>출판사</li><li class='adm_col_sub' id='text2_ap'>대출현황</li>";
+							$('.AjaxTest').append(text);
 							
-							$.Alert(view,function(){ });
-							var member_id="${member_id}";
+							if(member_id!=null){
+								var text2 = "<li class='adm_col_rc'>대출/예약</li>";
+								$('#text2_ap').append(text2);
+							}
 							
-							// content 내용 넣기
-									var text = "<form action='./MemberBasketAdd.me' method='post' id='basket_Fr'><ul class='brd_txt_lst' id='book_cont_div'><li class='view_lst' id='text3_ap'><div class='con_lst'><ul class='no_scroll title_t' id='text2_ap'><li class='adm_col_rrc'>목록</li><li class='adm_col_date'>사진</li><li class='adm_col_sub'>제목</li><li class='adm_col_type'>저자</li><li class='adm_col_date'>출판사</li><li class='adm_col_sub' id='text2_ap'>대출현황</li>";
-									$('.AjaxTest').append(text);
-									
-									if(member_id!=null){
-										var text2 = "<li class='adm_col_rc'>대출/예약</li>";
-										$('#text2_ap').append(text2);
-									}
-									
-									var text3 = "</ul></div>";
-									$('#text3_ap').append(text3);
-																
-									if(count ==0 ){
-										var text4= "<div class='con_lst'><ul><li class='col_tit'><p>책 목록이 없습니다</p></li></ul></div>";
+							var text3 = "</ul></div>";
+							$('#text3_ap').append(text3);
+														
+							if(count ==0 ){
+								var text4= "<div class='con_lst'><ul><li class='col_tit'><p>책 목록이 없습니다</p></li></ul></div>";
+								$('#text3_ap').append(text4);
+							} else {
+								for(var i=0; i<JSdata.length-8; i++){
+									var text4="<div class='con_lst'><ul class='no_scroll'  id='text5_ap"+i+"'><li class='adm_col_rrc' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
+ 										+JSdata[i].book_number+"'></li><li class='adm_col_date' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
+ 										+JSdata[i].book_number+"\"\'><img src='./upload/book/"
+										+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_col_sub' id='adm_book_high'>"
+										+JSdata[i].book_subject+"</li><li class='adm_col_type' id='adm_book_high'>"
+										+JSdata[i].book_author+"</li><li class='adm_col_date' id='adm_book_high'>"
+										+JSdata[i].book_publisher+"</li>";
 										$('#text3_ap').append(text4);
-									} else {
-										for(var i=0; i<JSdata.length-8; i++){
-											var text4="<div class='con_lst'><ul class='no_scroll'  id='text5_ap"+i+"'><li class='adm_col_rrc' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
-		 										+JSdata[i].book_number+"'></li><li class='adm_col_date' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
-		 										+JSdata[i].book_number+"\"\'><img src='./upload/book/"
-												+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_col_sub' id='adm_book_high'>"
-												+JSdata[i].book_subject+"</li><li class='adm_col_type' id='adm_book_high'>"
-												+JSdata[i].book_author+"</li><li class='adm_col_date' id='adm_book_high'>"
-												+JSdata[i].book_publisher+"</li>";
-												$('#text3_ap').append(text4);
-												
-												if (JSdata[i].bbook_bstate==0) {
-													var text5 = "<li class='adm_col_sub' id='adm_book_high'>대출가능</li>";
-													$('#text5_ap'+i).append(text5);
-												} else { 
-													var text5 = "<li class='adm_col_subid='adm_book_high'>대출중</li>";
-													$('#text5_ap'+i).append(text5);
-												}
-												
-												if (member_id!=null) {
-													if(JSdata[i].bbook_bstate==0) { 
-														var text6 = "<li class='adm_col_rc' id='adm_book_high'><input type='button' rel='"
-														+JSdata[i].book_number+"' class='bbutton' value='대출신청' id='borrowBook'></li>";
-														$('#text5_ap'+i).append(text6);
-													} else { 
-															var text6="<li class='adm_col_rc' id='adm_book_high'><input type='button' rel='"
-															+JSdata[i].book_number+"' class='rbutton' value='대출예약'></li>";
-															$('#text5_ap'+i).append(text6);
-													} // 대출가능 / 대출예약
-												} // 아이디가 있을 때 보여주기
-												
-												var text7="</ul></div>";
-												$('#text3_ap').append(text7);
+										
+										if (JSdata[i].bbook_bstate==0) {
+											var text5 = "<li class='adm_col_sub' id='adm_book_high'>대출가능</li>";
+											$('#text5_ap'+i).append(text5);
+										} else { 
+											var text5 = "<li class='adm_col_subid='adm_book_high'>대출중</li>";
+											$('#text5_ap'+i).append(text5);
 										}
-									}
-									
-									var text8="</li></ul>";
-									$('.AjaxTest').append(text7);
-									
-									var pic1="<ul class='book_lst' id='book_pic_div'>";
-									$('.AjaxTest').append(pic1);
-									
-									if(count==0){
-										var pic2="<li><dl class='book_info_layer'><dt>책 목록이 없습니다</dt><dd></dd></dl></li> ";
-										$('#book_pic_div').append(pic2);
-									} else {
-										for(var k=0; k<JSdata.length-8; k++){
-											var pic2="<li><a href='./BookInfo.bk?book_number="
-													+JSdata[k].book_number+"'><img src='./upload/book/"
-													+JSdata[k].book_file()+"' class='book_lst_img'><span id='bk_li_subs'>"
-													+JSdata[k].book_subject()+"</span><dl class='book_info_layer'><dt><span>"
-													+JSdata[k].book_subject()+"</span></dt><dd><dl><dt>저자</dt><dd>"
-													+JSdata[k].book_author()+"</dd><dt>출판사</dt><dd>"
-													+JSdata[k].book_publisher()+"</dd><dt>출판년도</dt><dd>"
-													+JSdata[k].book_pubDate()+"</dd><dt>반납상태</dt><dd>"
-													+JSdata[k].bbook_bdate()+"</dd></dl></dd></dl></a></li>";
-											$('#book_pic_div').append(pic2);
-										}
-									}						
-									var pic3="</ul>";
-									$('.AjaxTest').append(pic3);
+										
+										if (member_id!=null) {
+											if(JSdata[i].bbook_bstate==0) { 
+												var text6 = "<li class='adm_col_rc' id='adm_book_high'><input type='button' rel='"
+												+JSdata[i].book_number+"' class='bbutton' value='대출신청' id='borrowBook'></li>";
+												$('#text5_ap'+i).append(text6);
+											} else { 
+													var text6="<li class='adm_col_rc' id='adm_book_high'><input type='button' rel='"
+													+JSdata[i].book_number+"' class='rbutton' value='대출예약'></li>";
+													$('#text5_ap'+i).append(text6);
+											} // 대출가능 / 대출예약
+										} // 아이디가 있을 때 보여주기
+										
+										var text7="</ul></div>";
+										$('#text3_ap').append(text7);
+								}
+							}
+							
+							var text8="</li></ul>";
+							$('.AjaxTest').append(text7);
+							
+							var pic1="<ul class='book_lst' id='book_pic_div'>";
+							$('.AjaxTest').append(pic1);
+							
+							if(count==0){
+								var pic2="<li><dl class='book_info_layer'><dt>책 목록이 없습니다</dt><dd></dd></dl></li> ";
+								$('#book_pic_div').append(pic2);
+							} else {
+								for(var k=0; k<JSdata.length-8; k++){
+									var pic2="<li><a href='./BookInfo.bk?book_number="
+											+JSdata[k].book_number+"'><img src='./upload/book/"
+											+JSdata[k].book_file()+"' class='book_lst_img'><span id='bk_li_subs'>"
+											+JSdata[k].book_subject()+"</span><dl class='book_info_layer'><dt><span>"
+											+JSdata[k].book_subject()+"</span></dt><dd><dl><dt>저자</dt><dd>"
+											+JSdata[k].book_author()+"</dd><dt>출판사</dt><dd>"
+											+JSdata[k].book_publisher()+"</dd><dt>출판년도</dt><dd>"
+											+JSdata[k].book_pubDate()+"</dd><dt>반납상태</dt><dd>"
+											+JSdata[k].bbook_bdate()+"</dd></dl></dd></dl></a></li>";
+									$('#book_pic_div').append(pic2);
+								}
+							}						
+							var pic3="</ul>";
+							$('.AjaxTest').append(pic3);
 
-									if (member_id!=null){
-										var text9="<div class='btn_btm_center' id='text10'><ul><li><input type='submit' value='책바구니' id='basket_Fr_btn' class='btn_type4 BTN_IF_LIST'></li></ul></div>";
-										$('.AjaxTest').append(text9);
-									}
-									
-									var text10 = "<div class='paginate'><a href='./BookIndex.bk?"
-											+JSdata[i].pageNum+"=1&view="+JSdata[i].view+"'><span>&lt;&lt;&nbsp;</span></a>";
-									$('.AjaxTest').append(text10);
-												
-									if(startPage>pageBlock) {
-										var text11="<a href='./BookIndex.bk?pageNum="+startPage-pageBlock+"&view="+JSdata[i].view+"' class='prev'><span class='hide'>이전 페이지</span></a>";
-										$('.paginate').append(text11);
-									}
-									
-									for (var i=startPage; i<=endPage; i++){
-										if (i==pageNum){
-											var text12="&nbsp;<strong id='currentPage' title='현재 페이지'>"+i+"</strong> &nbsp;";
-											$('.paginate').append(text12);
-										} else{
-											var text12="&nbsp;<a href='./BookIndex.bk?pageNum="+i+"&view="+JSdata[i].view+"'>"+i+"</a> &nbsp";
-											$('.paginate').append(text12);
-										}
-									}
-									
-									if(endPage < pageCount) { 
-										var text13="<a href='./BookIndex.bk?pageNum="+startPage+pageBlock+"&view="+JSdata[i].view+"' class='next'><span class='hide'>다음 페이지</span></a id='text14_ap'>";
-										$('.paginate').append(text13);
-									}
+							if (member_id!=null){
+								var text9="<div class='btn_btm_center' id='text10'><ul><li><input type='submit' value='책바구니' id='basket_Fr_btn' class='btn_type4 BTN_IF_LIST'></li></ul></div>";
+								$('.AjaxTest').append(text9);
+							}
+							
+							var text10 = "<div class='paginate'><a href='./BookIndex.bk?"
+									+JSdata[i].pageNum+"=1&view="+JSdata[i].view+"'><span>&lt;&lt;&nbsp;</span></a>";
+							$('.AjaxTest').append(text10);
+										
+							if(startPage>pageBlock) {
+								var text11="<a href='./BookIndex.bk?pageNum="+startPage-pageBlock+"&view="+JSdata[i].view+"' class='prev'><span class='hide'>이전 페이지</span></a>";
+								$('.paginate').append(text11);
+							}
+							
+							for (var i=startPage; i<=endPage; i++){
+								if (i==pageNum){
+									var text12="&nbsp;<strong id='currentPage' title='현재 페이지'>"+i+"</strong> &nbsp;";
+									$('.paginate').append(text12);
+								} else{
+									var text12="&nbsp;<a href='./BookIndex.bk?pageNum="+i+"&view="+JSdata[i].view+"'>"+i+"</a> &nbsp";
+									$('.paginate').append(text12);
+								}
+							}
+							
+							if(endPage < pageCount) { 
+								var text13="<a href='./BookIndex.bk?pageNum="+startPage+pageBlock+"&view="+JSdata[i].view+"' class='next'><span class='hide'>다음 페이지</span></a id='text14_ap'>";
+								$('.paginate').append(text13);
+							}
 
-									var text14="<a href='./BookIndex.bk?pageNum="+pageCount+"&view="+JSdata[i].view+"'><span>&nbsp;&gt;&gt;</span></a>";
-									$('.paginate').append(text14);
-									
-									var text15="</div>";
-									$('.AjaxTest').append(text15);
-									
-						}, // Ajax 데이터 값 받기 성공
-						error:function(request,status,error){
-// 					        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-					  	} // error 발생시
-				}); // Ajax
-			}); // function selectBook 함수
+							var text14="<a href='./BookIndex.bk?pageNum="+pageCount+"&view="+JSdata[i].view+"'><span>&nbsp;&gt;&gt;</span></a>";
+							$('.paginate').append(text14);
+							
+							var text15="</div>";
+							$('.AjaxTest').append(text15);
+							
+				}, // Ajax 데이터 값 받기 성공
+				error:function(request,status,error){
+//				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			  	} // error 발생시
+		}); // Ajax
+	}
 });
 </script>
 </head>
@@ -380,7 +392,7 @@ $(document).ready(function() {
 		List<BookDTO> bookList = (List<BookDTO>) request.getAttribute("bookList");
 
 		String view = request.getParameter("view");
-		if(view==null) view = "0";
+		if(view==null) view = "1";
 	%>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
@@ -494,7 +506,6 @@ $(document).ready(function() {
 							</p>
 							
 							<div id="adm_select_box3">
-								<!-- 시험용 버튼 -->
 								<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
 								<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
 								<select name="sort" id="book_sort">

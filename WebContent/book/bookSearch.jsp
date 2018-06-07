@@ -214,7 +214,7 @@ if(view==null) view = "1";
 															</div>
 														</div>
 														<div id="book_sort_submit">
-															<input type="submit" class="book_btn_type4" value="상세검색">
+															<input type=submit class="book_btn_type4" value="상세검색" >
 															<input type="reset" class="book_btn_type5" value="입력 초기화">
 														</div>
 													</div>
@@ -230,23 +230,23 @@ if(view==null) view = "1";
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
 					
-						<div class="adms" >
-							<h1 class="adm_h_1">&lt; 혜윰나래 도서관 통합검색 &gt;</h1>
+						<div class="adms"> <!-- adms 안에 있는 내용 임시로 삭제 -->
+
+													<h3>&lt; 혜윰나래 도서관 통합검색 &gt;</h3>
 							<p>
-								Total_<span><%=count%></span>	
-							</p>	
+								Total_<span><%=count%></span>
+							</p>
 							
 							<div id="adm_select_box3">
-								<!-- 시험용 버튼 -->
 								<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
 								<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
 								<select name="sort" id="book_sort">
-									<option value="" selected="selected">정렬</option>
-									<option value="./BookSort.bk?view=<%=view%>&sort=book_subject">제목순</option>
-									<option value="./BookSort.bk?view=<%=view%>&sort=book_author">저자순</option>
-									<option value="./BookSort.bk?view=<%=view%>&sort=book_number">인기순</option>
-									<option value="./BookSort.bk?view=<%=view%>&sort=book_pubDate">신작순</option>
-									<option value="./BookSort.bk?view=<%=view%>&sort=book_date">입고순</option>
+									<option value="book_number" selected="selected">정렬</option>
+									<option value="book_subject">제목순</option>
+									<option value="book_author">저자순</option>
+									<option value="book_number">인기순</option>
+									<option value="book_pubDate">신작순</option>
+									<option value="book_date">입고순</option>
 								</select>
 							</div>
 
