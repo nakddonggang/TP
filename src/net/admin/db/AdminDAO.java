@@ -600,4 +600,9 @@ public class AdminDAO {
 		List<FacilityDTO> AllFacilityList = sqlsession.selectList("AdminAllFaciliyList", map);
 		return AllFacilityList;
 	}
+	
+	public HashMap<Integer, String> getMonthCount(int year) {
+		HashMap<Integer, String> count = sqlsession.selectMap("getMonthCount", year);
+		return count;
+	}
 }

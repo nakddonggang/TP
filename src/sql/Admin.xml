@@ -540,4 +540,8 @@
 	 	WHERE V_DATE > curdate()
 	 </select>
 	 
+	<select id="getMonthCount" parameterType="int" resultType="hashmap" >
+ 	select month(v_date) month, count(*) from visit where year(v_date) = #{year} group by month;
+ 	</select>
+	 
  </mapper>
