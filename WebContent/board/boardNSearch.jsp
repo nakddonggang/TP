@@ -70,6 +70,7 @@ $(document).ready(function(){
 		String file ="";
 	%>
 	<!-- board/boardNSearch.jsp Notice 게시판 글 검색 페이지 -->
+<iframe id="ifrm_filedown" style="position:absolute; z-index:1; visibility:hidden;"></iframe>
 	<div class="wrapper">
 
 		<!-- header -->
@@ -89,17 +90,16 @@ $(document).ready(function(){
 					<jsp:include page="../include/topbar.jsp" />
 
 					<div class="content">
+						<div class="text_top">
+							<h3>공지사항</h3>
+								<div class="dl_box">
+									<dl>
+										<dt>Read It</dt>
+										<dd>이용자분들께 신속히 알려드릴필요성이 있는 정보 및 자료를 제공해 드립니다</dd>
+									</dl>
+								</div>
+						</div>			
 						<div class=board>
-
-							<h1>Notice</h1>
-
-							<div class="search_bx">
-								<form action="./BoardNoticeSearch.no" method="post">
-									<input type="text" name="search" id="search" placeholder="공지사항을 검색해 보세요." class="inp_search">
-									<input type="submit" value="검색" class="btn_search">
-								</form>
-							</div>
-
 							<div class="view_cnt">
 								<p>Search_<span><%=count%></span></p>
 							</div>
@@ -123,28 +123,31 @@ $(document).ready(function(){
 											%>
 											<div class="con_lst DIV_CON_LST">
 												<ul>
-													<li class="col_type"><a href="#"><p><%=bDTO.getNotice_type()%></p></a></li>
-													<li class="col_title"><a href="#"><p><%=word%></p></a></li>
+													<li class="col_typeNo"><a href="#"><p><%=bDTO.getNotice_type()%></p></a></li>
+													<li class="col_titleNo"><a href="#"><p><%=word%></p></a></li>
 													<li class="col_date"><span class="tit_date">작성일 :&nbsp;</span><span><%=date.format(bDTO.getNotice_date()) %></span></li>
-													<li class="col_rc"><a href="#"><%=bDTO.getNotice_readcount()%></a></li>
 												</ul>
 										
 												<div class="con_detail DIV_CON_DETAIL">
-													<%if(bDTO.getNotice_file()!=null){
-														file = bDTO.getNotice_file();
-														%><p><img src="./upload/<%=bDTO.getNotice_file()%>" width="100" height="100"></p><%
+												<%if(bDTO.getNotice_file()!=null){
+													if(bDTO.getNotice_file().split(",")[0].equals("null")) file="";
+													else file = bDTO.getNotice_file().split(",")[0];
+											
+													if(!(bDTO.getNotice_file().split(",")[1].equals("null"))){
+														%><p><img src="./upload/<%=bDTO.getNotice_file().split(",")[1]%>" width="100" height="100"></p><%
 													}
-													%>
+												}
+												%>
 													<p><%=notice_content%></p>
-													<div class="file"><span>첨부파일</span><ul><%=file %></ul></div>
+													<div class="file"><span>첨부파일</span><ul><a href="#" class="down"><%=file %></a></ul></div>
 											
 													<%
 													if ("admin".equals(member_id)) {
 														%><div class="btn_btm_board">
 															<ul>
-																<li>
+																<li class="btn_con_right">
 											 		             <input type="button" value="글수정" class ="btn_type4" onclick="location.href='./BoardNoticeUpdate.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
-														          <input type="button" value="글삭제" class ="btn_type4 deleteBoard" onclick="location.href='./BoardNoticeDeleteAction.no?notice_num=<%=bDTO.getNotice_num()%>&pageNum=<%=pageNum%>'">
+														          <input type="button" value="글삭제" class ="btn_type4 deleteBoard" rel="<%=bDTO.getNotice_num()%>">
 											 		  		    </li>
 															</ul>
 														 </div>
@@ -159,14 +162,13 @@ $(document).ready(function(){
 										</li>
 									</ul>
 								
-											<%
-											 if ("admin".equals(member_id)) {
-											%><input type="button" class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
-											<% } %>
-
+											
+											<div class="paginate">
 											<%
 												if (pageCount < endPage) endPage = pageCount;
-
+											%>
+											<a href="BoardNoticeList.no?pageNum=1">[처음]</a>
+											<%
 												if (startPage > pageBlock) { %><a href="BoardNoticeSearch.no?pageNum=<%=startPage - pageBlock%>&search=<%=search%>"
 												class="prev"><span class="hide">이전 페이지</span></a>
 											<% }
@@ -177,6 +179,15 @@ $(document).ready(function(){
 												if (endPage < pageCount) {%><a href="BoardNoticeSearch.no?pageNum=<%=startPage + pageBlock%>&search=<%=search%>"
 												class="next"><span class="hide">다음 페이지</span></a>
 											<% } %>
+											<a href="BoardNoticeList.no?pageNum=<%=pageCount %>">[끝]</a>
+											</div>
+											
+											<div class="btn_btm_center">
+											<%
+											 if ("admin".equals(member_id)) {
+											%><input type="button" class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">
+											<% } %>
+											</div>
 							</div>
 						</div>
 				   </article>
@@ -194,9 +205,13 @@ $(document).ready(function(){
 	$('.deleteBoard').each(function(index){
 		$(this).attr('id','delete'+index);
 		$('#delete'+index).click(function(){
-			var result = $.Confirm('정말 삭제하시겠습니까?');
-			if(result){}
-			else{location.replace("./BoardNoticeSearch.no?pageNum="+pageNum+"&search="+search);	}
+			$.Confirm(
+					'정말 삭제하시겠습니까?',
+					'경고',
+					function(){
+						location.href = './BoardNoticeDeleteAction.no?notice_num=' + $('#delete'+index).attr('rel') + '&pageNum="${pageNum}"';
+					}
+				);
 		});
 	});
 });

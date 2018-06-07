@@ -24,6 +24,7 @@ public class BoardFaqAjax implements Action{
 		request.setCharacterEncoding("utf-8");
 		String selected = request.getParameter("selected");
 		System.out.println(selected);
+		if(selected == null) selected = "all";
 		String faq_type = "";
 		
 		/****** 리스트 처리 ******/
@@ -44,8 +45,8 @@ public class BoardFaqAjax implements Action{
 		/****** 페이징 처리 ******/
 		int pageSize=3;
 		String pageNum=request.getParameter("pageNum");
-		
-		if(pageNum==null) {pageNum="1";}
+		System.out.println("pageNum : "+pageNum);
+		if(pageNum==null) pageNum="1";
 		
 		int currentPage=Integer.parseInt(pageNum);
 		int startRow=(currentPage-1)*pageSize+1;
@@ -97,6 +98,7 @@ public class BoardFaqAjax implements Action{
 					.add("{\"endPage\":"+endPage+"}").build();
 		}
 		System.out.println(arr);
+		request.setAttribute("pageNum", pageNum);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(arr);

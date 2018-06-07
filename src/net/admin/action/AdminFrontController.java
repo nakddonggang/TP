@@ -106,10 +106,9 @@ public class AdminFrontController extends HttpServlet{
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}				
 		} else if (command.equals("/AdminMemberIndex.am")){
-			action = new AdminMemberIndex();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}
+			forward = new ActionForward();
+			forward.setPath("./admin/admMemIndex.jsp");
+			forward.setRedirect(false);
 		} else if (command.equals("/AdminMemberAjax.am")){
 			action = new AdminMemberAjax();
 			try {

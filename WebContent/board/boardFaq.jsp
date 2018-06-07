@@ -29,18 +29,56 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	// 주소창에 Get방식으로 받아온 request값 스크립트에서 사용하기 위한 함수
+	function Request(valuename){
+		var rtnval;
+		var nowAddress = unescape(location.href);
+		var parameters = new Array();
+		parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+		for(var i = 0 ; i < parameters.length ; i++){
+			if(parameters[i].split("=")[0] == valuename){
+				rtnval = parameters[i].split("=")[1];
+				if(rtnval == undefined || rtnval == null){
+					rtnval = "";
+				}
+				return rtnval;
+			}
+		}
+	}
+	var pageNum = Request("pageNum");
+	if(pageNum=="") pageNum=1;
 	var selected = "";
+	pageLoad(pageNum);
+	
+	function pageLoad(pageNum){
+		selected = $('#faq_select').val();
+		loadAjax(pageNum);
+	}
+	
+	$("#faq_select").change(function() {
+		history.pushState(null,null,"BoardListFaq.fa");
+		$('.view_lst').empty();
+		$('.paginate').empty();
+		$('#count').html();
+		pageNum="1";
+		selectBox();
+	});
+	
 	function selectBox(){
 		selected = $('#faq_select').val();
+		loadAjax(pageNum);
+	}
+	
+	function loadAjax(pageNum){
 		$.ajax({
-			url:"./BoardFaqAjax.fa?pageNum=${pageNum}",
+			url:"./BoardFaqAjax.fa",
 			type:'POST',
-			data:{'selected':selected},
+			data:{'selected':selected, 'pageNum':pageNum},
 			dataType:'json',
 			success:function(result){
 				var jsonData = JSON.parse("["+result+"]");
 				var count = 0;
-				var pageNum = jsonData[jsonData.length-5].pageNum;
+				pageNum = jsonData[jsonData.length-5].pageNum;
 				var pageCount = jsonData[jsonData.length-4].pageCount;
 				var pageBlock = jsonData[jsonData.length-3].pageBlock;
 				var startPage = jsonData[jsonData.length-2].startPage;
@@ -80,9 +118,9 @@ $(document).ready(function(){
 										"<ul>"
 											+"<li class='btn_con_right'>"
 												+"<input type='button' class='btn_type4' value='글수정' onclick='location.href=\"./BoardFaqUpdate.fa?faq_num="
-														+jsonData[i].faq_num+"&pageNum=${pageNum}\"\'>"
+														+jsonData[i].faq_num+"&pageNum="+pageNum+"\'>"
 												+"<input type='button' class='btn_type4 deleteBoard' value='글삭제' onclick='location.href=\"./BoardFaqDelete.fa?faq_num="
-														+jsonData[i].faq_num+"&pageNum=${pageNum}\"\'>"
+														+jsonData[i].faq_num+"&pageNum="+pageNum+"\'>"
 											+"</li>"
 										+"</ul>"
 										+"</div>"
@@ -135,22 +173,22 @@ $(document).ready(function(){
 				/***********	페이징 처리 부분		**************/
 				if(pageCount < endPage) endPage = pageCount;
 				if (startPage > pageBlock) {
-					var prev = "<a href='./BoardFaqList.fa?pageNum="+(startPage-pageBlock)+
+					var prev = "<a href='./BoardFaqAjax.fa?pageNum="+(startPage-pageBlock)+
 								"' class='prev'><span class='hide'>이전 페이지</span></a>";
 					$('.paginate').append(prev);
 				}
 				for (var p = startPage; p <= endPage; p++) {
 					if (p == parseInt(pageNum)) {
-						var current1 = "&nbsp;<strong title='현재 페이지' id='currentPage'>"+p+"</strong> &nbsp;"
+						var current1 = "&nbsp;<strong title='현재 페이지' id='currentPage'>"+p+"</strong> &nbsp;";
 						$('.paginate').append(current1);
 					} else {
-						var current2 = "&nbsp;<a href='./BoardFaqList.fa?pageNum="+p+"'>"+p+"</a>&nbsp;"
+						var current2 = "&nbsp;<a href='./BoardFaqList.fa?pageNum="+p+"'>"+p+"</a>&nbsp;";
 						$('.paginate').append(current2);
 					}
 				}
 
 				if (endPage < pageCount) {
-					var next = "<a href='./BoardFaqList.fa?pageNum="+(startPage+pageBlock)+
+					var next = "<a href='./BoardFaqAjax.fa?pageNum="+(startPage+pageBlock)+
 								"' class='next'><span class='hide'>다음 페이지</span></a>";
 					$('.paginate').append(next);
 				}
@@ -158,28 +196,22 @@ $(document).ready(function(){
 			}// success 끝
 		});
 	}
-	selectBox();
-	$("#faq_select").change(function() {
-		$('.view_lst').empty();
-		$('.paginate').empty();
-		$('#count').html();
-		selectBox();
-	});
+	
 	
 });
 </script>
 </head>
 <body>
 	<%
-		request.setCharacterEncoding("UTF-8");
-		int count = ((Integer) request.getAttribute("count")).intValue();
-		String member_id = (String) session.getAttribute("member_id");
+// 		request.setCharacterEncoding("UTF-8");
+// 		int count = ((Integer) request.getAttribute("count")).intValue();
+// 		String member_id = (String) session.getAttribute("member_id");
 		String pageNum = (String) request.getAttribute("pageNum");
-		int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
-		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
-		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
-		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
-		List<BoardDTO> faqList = (List<BoardDTO>) request.getAttribute("faqList");
+// 		int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
+// 		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
+// 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
+// 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
+// 		List<BoardDTO> faqList = (List<BoardDTO>) request.getAttribute("faqList");
 	%>
 <!-- board/boardFaq.jsp FAQ 게시판  페이지 -->
 	<div class="wrapper">
@@ -212,7 +244,7 @@ $(document).ready(function(){
 							</div>
 				
 							<div class="view_cnt">
-								<p>Total_<span id="count"><%=count%></span></p>
+								<p>Total_<span id="count"></span></p>
 								<select name="choice" id="faq_select">
 									<option value="all">전체</option>
 									<option value="buy">자료구입</option>

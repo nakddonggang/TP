@@ -32,18 +32,6 @@ if("${member_id}"!='admin') {
 </script>
 </head>
 <body>
-<%
-request.setCharacterEncoding("UTF-8");
-String member_id = (String)session.getAttribute("member_id");
-int count = ((Integer) request.getAttribute("count")).intValue();
-String pageNum = (String) request.getAttribute("pageNum");
-int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
-int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
-int startPage = ((Integer) request.getAttribute("startPage")).intValue();
-int endPage = ((Integer) request.getAttribute("endPage")).intValue();
-
-List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList");
-%>
 	<div class="wrapper">
 		<!-- header -->
 		<jsp:include page="../include/header.jsp" />
@@ -62,7 +50,7 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 				<div class="content">
 					<h3>회원 목록 리스트</h3>
 					<div class="view_cnt">
-						<p>Total_<span><%=count%></span></p>
+						<p>Total_<span id="count"></span></p>
 					</div>
 					<div>
 						<input type="button" name="btn_all"		id="%" class="callAjax" value="전체보기">
@@ -84,43 +72,7 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 								</ul>
 							</div>
 							<div id="ajax_container">
-								<% if (memberList == null) {
-									%><ul>
-										<li class="col_tit"><p>회원이 없습니다</p></li>
-									</ul><%
-								} else {
-									for (int i = 0; i < memberList.size(); i++) {
-										MemberDTO mt = memberList.get(i); //제너릭 사용해서 형변환 할 필요없음
-										String gm_check = mt.getGm_check();
-										String bl_check = mt.getBl_check();
-										
-										%><div class="con_lst">
-											<ul onclick="location.href='./AdminMemberInfo.am?info_id=<%=mt.getMember_id()%>&pageNum=<%=pageNum%>&pageType='"  class="no_scroll">
-												<li class="col_typen"><a href="#"><p><%=mt.getMember_id()%></p></a></li>
-												<li class="col_typen"><a href="#"><p><%=mt.getMember_pass()%></p></a></li>
-												<li class="col_typen"><%=mt.getMember_name()%></li>
-												<li class="col_calln"><a href="#"><%=mt.getMember_phone()%></a></li>
-												<li class="col_typen"><%
-													if 		(gm_check.equals("0") && bl_check.equals("0")) {	%>일반회원<%		} 
-													else if (gm_check.equals("1") && bl_check.equals("0")) {	%>우수회원<%		} 
-													else if (bl_check.equals("1") && gm_check.equals("0")) {	%>블랙리스트<%	} 
-													else {	%>일반회원<%	}
-												%></li>
-												<li class="col_calln"><%=mt.getMember_date()%></li>
-											</ul>
-										</div>
-										
-									<%}%>
-								<%}%>
-								<div class="paginate">
-									<%if (count != 0) {
-										//이전
-										if (startPage > pageBlock) {%><a href="./AdminMemberIndex.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%}// 1~10 11~20 21~30
-										for (int i = startPage; i <= endPage; i++) {%><a href="./AdminMemberIndex.am?pageNum=<%=i%>"> &nbsp;<strong id="currentPage" title="현재 페이지"><%=i %></strong>&nbsp;</a><%}
-										//다음
-										if (endPage < pageCount) {%><a href="./AdminMemberIndex.am?pageNum=<%=startPage + pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%}
-									}%>
-								</div>
+								
 							</div>
 						</li>
 					</ul>
@@ -133,54 +85,122 @@ List<MemberDTO> memberList = (List<MemberDTO>) request.getAttribute("memberList"
 		<!-- //본문 컨테이너 -->
 	</div>
 <script type="text/javascript">
-$(".callAjax").click(function(){
-	$('#ajax_container').empty();
-	var member_level = $(this).attr("id");
-	$.ajax({
-		url:"./AdminMemberAjax.am",
-		type:'POST',
-		data:{'member_level':member_level},
-		dataType:'json',
-		success:function(result){
-			var count="${count}";
-			var pageNum="${pageNum}";
-			var pageCount="${pageCount}";
-			var pageBlock="${pageBlock}";
-			var startPage="${startPage}";
-			var endPage="${endPage}";
-			
-			var jsonData = JSON.parse("["+result+"]");
-			console.log(jsonData[0].member_id);
-			for(var i=0; i<jsonData.length; i++){
-				var content = "<div class='con_lst'><ul onclick='location.href=\"./AdminMemberInfo.am?info_id="+jsonData[i].member_id
-						+"&pageNum="+pageNum+"\"' class='no_scroll'>"
-						+"<li class='col_typen'><p>"+jsonData[i].member_id+"</p></li>"
-						+"<li class='col_typen'><p>"+jsonData[i].member_pass+"</p></li>"
-						+"<li class='col_typen'>"+jsonData[i].member_name+"</li>"
-						+"<li class='col_calln'>"+jsonData[i].member_phone+"</li>"
-						+"<li class='col_typen'>";
-				if(jsonData[i].gm_check=="0" && jsonData[i].bl_check=="0"){ content += "일반회원</li>";}
-				else if(jsonData[i].gm_check=="1" && jsonData[i].bl_check=="0"){content += "우수회원</li>";}
-				else if(jsonData[i].bl_check=="1" && jsonData[i].gm_check=="0"){content += "블랙리스트</li>";}
-				else {content += "일반회원</li>";}
-						
-				content += "<li class='col_calln'>"+jsonData[i].member_date+"</li></ul></div>";
-				$('#ajax_container').append(content);
+$(document).ready(function(){
+	// 주소창에 Get방식으로 받아온 request값 스크립트에서 사용하기 위한 함수
+	function Request(valuename){
+		var rtnval;
+		var nowAddress = unescape(location.href);
+		var parameters = new Array();
+		parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+		for(var i = 0 ; i < parameters.length ; i++){
+			if(parameters[i].split("=")[0] == valuename){
+				rtnval = parameters[i].split("=")[1];
+				if(rtnval == undefined || rtnval == null){
+					rtnval = "";
+				}
+				return rtnval;
 			}
-			
-			
-			
-// 			var jsonData = JSON.parse(result.data);
-// 			for(var i=0; i<jsonData.users.length; i++) {
-// 		          if (chatuser==jsonData.users[i]) {
-// 		        	 $('#nowChat').empty();
-// 		             $('#nowChat').append("<span>" + jsonData.users[i]+"님과 대화중입니다.</span>");
-// 		             other = jsonData.users[i];
-// 		             first = "false";
-// 		          }
-// 			}
 		}
+	}
+	var pageNum = Request("pageNum");
+	if(pageNum=="") pageNum=1;
+
+	var member_level = "%";
+	loadAjax(member_level);
+	
+	$(".callAjax").click(function(){
+		$('#ajax_container').empty();
+		$('.empty').remove();
+		history.pushState(null,null,"AdminMemberIndex.am");
+		member_level = $(this).attr("id");
+		pageNum = "1";
+		loadAjax(member_level);
 	});
+	
+	function loadAjax(member_level){
+		$.ajax({
+			url:"./AdminMemberAjax.am",
+			type:'POST',
+			data:{'member_level':member_level, 'pageNum':pageNum},
+			dataType:'json',
+			success:function(result){
+				var jsonData = JSON.parse("["+result+"]");
+				var count= jsonData[jsonData.length-6].count;
+				var pageNum= jsonData[jsonData.length-5].pageNum;
+				var pageCount= jsonData[jsonData.length-4].pageCount;
+				var pageBlock= jsonData[jsonData.length-3].pageBlock;
+				var startPage= jsonData[jsonData.length-2].startPage;
+				var endPage= jsonData[jsonData.length-1].endPage;
+				console.log(jsonData.length);
+				$('#count').html(count);
+				
+				if(jsonData.length == 6){
+					var content = "<ul class='no_scroll empty'><li class='col_tit'><p>회원이 없습니다</p></li></ul>";
+					$(".con_lst").append(content);
+				}else{
+					for(var i=0; i<jsonData.length-6; i++){
+						var content ="";
+						if(i==jsonData.length-7){
+							content = "<div class='con_lst paging'><ul onclick='location.href=\"./AdminMemberInfo.am?info_id="+jsonData[i].member_id
+							+"&pageNum="+pageNum+"&member_level="+member_level+"\"' class='no_scroll'>"
+							+"<li class='col_typen'><p>"+jsonData[i].member_id+"</p></li>"
+							+"<li class='col_typen'><p>"+jsonData[i].member_pass+"</p></li>"
+							+"<li class='col_typen'>"+jsonData[i].member_name+"</li>"
+							+"<li class='col_calln'>"+jsonData[i].member_phone+"</li>"
+							+"<li class='col_typen'>";
+						}else {
+							content = "<div class='con_lst'><ul onclick='location.href=\"./AdminMemberInfo.am?info_id="+jsonData[i].member_id
+							+"&pageNum="+pageNum+"&member_level="+member_level+"\"' class='no_scroll'>"
+							+"<li class='col_typen'><p>"+jsonData[i].member_id+"</p></li>"
+							+"<li class='col_typen'><p>"+jsonData[i].member_pass+"</p></li>"
+							+"<li class='col_typen'>"+jsonData[i].member_name+"</li>"
+							+"<li class='col_calln'>"+jsonData[i].member_phone+"</li>"
+							+"<li class='col_typen'>";
+						}
+			
+						if(jsonData[i].gm_check=="0" && jsonData[i].bl_check=="0"){ content += "일반회원</li>";}
+						else if(jsonData[i].gm_check=="1" && jsonData[i].bl_check=="0"){content += "우수회원</li>";}
+						else if(jsonData[i].bl_check=="1" && jsonData[i].gm_check=="0"){content += "블랙리스트</li>";}
+						else {content += "일반회원</li>";}
+									
+						content += "<li class='col_calln'>"+jsonData[i].member_date+"</li></ul></div>";
+						$('#ajax_container').append(content);
+					}
+					var paging = "<div class='paginate'>";
+					if(count != 0){
+						if(startPage > pageBlock){
+							paging += "<a href='./AdminMemberIndex.am?pageNum="+(startpage-pageBlock)+"' class='prev'><span class='hide'>이전 페이지</span></a>";
+						}
+					}
+					for(var p=startPage; p<=endPage; p++){
+						if(p == parseInt(pageNum)){
+							paging += "&nbsp;<strong title='현재 페이지' id='currentPage'>"+p+"</strong> &nbsp;";
+						}else{
+							paging += "&nbsp;<a href='./AdminMemberIndex.am?pageNum="+p+"'>"+p+"</a>&nbsp;";
+						}
+					}
+					if(endPage < pageCount){
+						paging += "<a href='./AdminMemberIndex.am?pageNum="+(startpage+pageBlock)+"' class='next'><span class='hide'>다음 페이지</span></a>"
+					}
+					paging += "</div>";
+					$('.paging').append(paging);
+				}
+
+											
+//		 			var jsonData = JSON.parse(result.data);
+//		 			for(var i=0; i<jsonData.users.length; i++) {
+//		 		          if (chatuser==jsonData.users[i]) {
+//		 		        	 $('#nowChat').empty();
+//		 		             $('#nowChat').append("<span>" + jsonData.users[i]+"님과 대화중입니다.</span>");
+//		 		             other = jsonData.users[i];
+//		 		             first = "false";
+//		 		          }
+//		 			}
+			}
+		});
+	}
+		
+
 });
 </script>
 </body>
