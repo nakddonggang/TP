@@ -1,11 +1,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<div id="websocketChat">
-	<%
-		if(session.getAttribute("member_id")!=null && session.getAttribute("member_id").equals("admin")){
-			session.setAttribute("admincheck", true);
-		}
-	%>
 		<div id="userview">
 			<form name="usersForm" id="usersForm">
 				<input type="hidden" id="roomId" name="roomId"/>

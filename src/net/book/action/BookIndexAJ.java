@@ -33,6 +33,7 @@ public class BookIndexAJ  implements Action {
 		System.out.println(view);
 		if (view==null) view="1";
 		
+		
 		// 오름차순, 내림차순 결정하기
 		String adsc="";
 		if (sort.equals("book_subject")||sort.equals("book_author")||sort.equals("book_date")) adsc="asc";
