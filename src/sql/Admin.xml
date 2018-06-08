@@ -156,7 +156,7 @@
 		order by b.book_number desc limit #{startRow},#{pageSize}	 
 	 </select>	 
 	 
-	 	 <select id="getBookDateSearchAllCount" resultType="int" parameterType="hashmap">
+	 <select id="getBookDateSearchAllCount" resultType="int" parameterType="hashmap">
 	 	select count(*)
 		from book
 		where (book_subject like #{all} or book_author like #{all} or book_publisher like #{all} or book_isbn like #{all} or book_classification like #{all})

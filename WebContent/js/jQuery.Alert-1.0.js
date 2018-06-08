@@ -34,10 +34,10 @@ $.extend({
 			buttons : {
 				"Ok" : function() {
 					$(this).dialog("close");
-					okAction();
 				}
 			},
 			close : function(event, ui) {
+				okAction();
 				$(this).remove();
 			},
 			resizable : false,

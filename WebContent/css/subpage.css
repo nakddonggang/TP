@@ -445,7 +445,7 @@ strong#currentPage {font-weight: bold;}
 
 /* 각자 작업한 css end  ----------------------------------------------------------  */
 
-
+#book_divv {position: relative;width:100%;height:100vh;background-image:url("../book/library.jpeg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 
 
 
@@ -635,7 +635,6 @@ strong#currentPage {font-weight: bold;}
 /* 영지 미디어 쿼리 css */
 
 @media screen and (min-width:768px) and (max-width : 1024px) {
-#book_divv {position: relative; width:100%; height:100vh; background-image:url("../book/library.jpeg");  background-repeat:no-repeat; background-size:cover; z-index: -1;  filter: blur(3px);}
 #for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:2px; z-index:1;}
 .DIV_CON_LST { width : 100%;}
 #book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
@@ -655,7 +654,6 @@ input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-hei
 .book_media_bye { display: none; }
 }
 @media screen and (max-width: 767px) {
-#book_divv {position: relative; width:100%; height:100vh; background-image:url("../book/library.jpeg");  background-repeat:no-repeat; background-size:cover; z-index: -1;  filter: blur(3px);}
 #for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:2px; z-index:1;}
 .DIV_CON_LST { width : 100%;}
 #book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
@@ -676,7 +674,7 @@ input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-hei
 }
 
 @media screen and (min-width:1025px){
-#book_divv {position: relative; width:100%; height:100vh; background-image:url("../book/library.jpeg");  background-repeat:no-repeat; background-size:cover; z-index: -1; filter: blur(3px);}
+
 #for_book_div {width:96%; z-index:1; position: absolute; top:30%; left:2%; }
 .DIV_CON_LST { width : 100%;}
 #book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
@@ -712,3 +710,4 @@ input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; bord
 #admin_sort_submit .adm_btn_type5 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:47%; text-align: center; }
 }
 /* End 김영지 작업 Admin */
+

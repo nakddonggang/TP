@@ -214,7 +214,6 @@ $(document).ready(function(){
 		$('#delete'+index).click(function(){
 			$.Confirm(
 				'정말 삭제하시겠습니까?',
-				'경고',
 				function(){
 					location.href = './BoardNoticeDeleteAction.no?notice_num=' + $('#delete'+index).attr('rel') + '&pageNum="${pageNum}"';
 				}
