@@ -215,6 +215,22 @@ public class MemberDAO {
 		return rbookList;		
 	}
 	
+	// myUseRBookList.jsp > 책 전체 count 개수 구하기
+		public int BookCount(){
+			int count;
+			count=sqlsession.selectOne("BookCount");
+			return count;
+		}	
+		
+		// myUseRBookList.jsp > 책 리스트 뿌려주기
+		public List<BookDTO> BookList(int startRow, int pageSize){
+			HashMap map = new HashMap();
+			map.put("startRow", startRow-1);
+			map.put("pageSize", pageSize);
+			List<BookDTO> bookList = sqlsession.selectList("BookList", map);
+			return bookList;
+		}
+	
 	// 회원이 대여중인 책 총수량 검색구문
 	public int useBbookMemberCount(String member_id) {
 		int count = sqlsession.selectOne("useBbookMemberCount", member_id);
