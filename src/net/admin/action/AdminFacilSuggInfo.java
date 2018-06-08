@@ -15,7 +15,7 @@ public class AdminFacilSuggInfo implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
+		System.out.println("AdminFacilSuggInfo execute()");
 		request.setCharacterEncoding("utf-8");
 
 		String facil_num = request.getParameter("facil_num");
@@ -51,6 +51,7 @@ public class AdminFacilSuggInfo implements Action {
 		request.setAttribute("facilList", facilList);
 		request.setAttribute("facilAddList", facilAddList);
      	request.setAttribute("facil_use", facil_use);
+     	System.out.println("facil_use : "+facil_use);
      	request.setAttribute("facil_num", facil_num);
      	
 		ActionForward forward = new ActionForward();
