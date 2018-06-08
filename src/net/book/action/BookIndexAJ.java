@@ -16,7 +16,7 @@ import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class BookSortAjax  implements Action {
+public class BookIndexAJ  implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -27,8 +27,10 @@ public class BookSortAjax  implements Action {
 		// String sort 파라미터값 가져오기
 		String sort = request.getParameter("sort");
 		System.out.println("정렬해야할 값"+sort);
+		if (sort==null) sort="book_number";
 		
 		String view = request.getParameter("view");
+		System.out.println(view);
 		if (view==null) view="1";
 		
 		// 오름차순, 내림차순 결정하기
@@ -55,6 +57,7 @@ public class BookSortAjax  implements Action {
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
+		System.out.println("pageNum의 값 : "+pageNum);
 			// 페이지 번호 없으면 무조건 "1" 페이지 설정
 		if (pageNum==null)
 			pageNum="1";
@@ -160,7 +163,7 @@ public class BookSortAjax  implements Action {
 			JsonArr=Json.createArrayBuilder()
 			.add("{\"count\":"+count+"}")
 			.add("{\"sort\":\""+sort+"\"}")
-			.add("{\"pageNum\":"+pageNum+"}")
+			.add("{\"pageNum\":\""+pageNum+"\"}")
 			.add("{\"pageCount\":"+pageCount+"}")
 			.add("{\"pageBlock\":"+pageBlock+"}")
 			.add("{\"startPage\":"+startPage+"}")
@@ -172,7 +175,7 @@ public class BookSortAjax  implements Action {
 			.add(books)
 			.add("{\"count\":"+count+"}")
 			.add("{\"sort\":\""+sort+"\"}")
-			.add("{\"pageNum\":"+pageNum+"}")
+			.add("{\"pageNum\":\""+pageNum+"\"}")
 			.add("{\"pageCount\":"+pageCount+"}")
 			.add("{\"pageBlock\":"+pageBlock+"}")
 			.add("{\"startPage\":"+startPage+"}")

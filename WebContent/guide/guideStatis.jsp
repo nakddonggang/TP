@@ -62,6 +62,11 @@
 		<!-- //본문 컨테이너 -->
 	</div>
 <script>
+$(document).onload(function(){
+	$.Ajax{
+		
+	}
+})
 Morris.Bar({
 	element: 'bar-example',
 	data: [
