@@ -37,12 +37,9 @@ public class FaqFrontController extends HttpServlet{
 				e.printStackTrace();
 			}
 		}else if(command.equals("/BoardFaqList.fa")){
-			action = new BoardFaqList();
-			try{
-				forward = action.execute(request, response);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
+			forward = new ActionForward();
+			forward.setPath("./board/boardFaq.jsp");
+			forward.setRedirect(false);
 		}else if(command.equals("/BoardFaqUpdate.fa")){
 			action = new BoardFaqUpdate();
 			try{

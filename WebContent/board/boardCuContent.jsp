@@ -93,7 +93,7 @@
 									  <%	if("admin".equals(member_id)) {
 										%><li class="btn_con_right">
 											<input type="button" value="글수정" class ="btn_type4"onclick="location.href='./BoardCurUpdate.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>'">
-											<input type="button" value="글삭제" id="deleteBoard" class ="btn_type4" rel="./BoardCurDeleteAction.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>">				
+											<input type="button" value="글삭제" id="deleteBoard" class ="btn_type4" rel="<%=bDTO.getCur_num()%>">				
 										  </li>
 										<%	}	%>
 								 </ul>
@@ -113,13 +113,15 @@
 	
 <script type="text/javascript">
 $(document).ready(function(){
-	var pageNum = "<%=pageNum %>";
-	var cur_num = "<%=bDTO.getCur_num() %>";
+	var pageNum = "${pageNum}";
 	
 	$("#deleteBoard").click(function(){
-		$.Confirm('정말 삭제하시겠습니까?', function(){
-			location.href = $('#deleteBoard').attr('rel');
-		});
+		$.Confirm(
+			'정말 삭제하시겠습니까?',
+			function(){
+				location.href = './BoardCurDeleteAction.cu?cur_num=' + $('#deleteBoard').attr('rel') + '&pageNum=${pageNum}';
+			}
+		);
 	});
 	
 });
