@@ -56,7 +56,7 @@ $(document).ready(function(){
 	}
 	
 	$("#faq_select").change(function() {
-		history.pushState(null,null,"BoardListFaq.fa");
+		history.pushState(null,null,"BoardFaqList.fa");
 		$('.view_lst').empty();
 		$('.paginate').empty();
 		$('#count').html();
@@ -98,7 +98,7 @@ $(document).ready(function(){
 						faq_content = faq_content.replace(/\r\n/, "<br>");
 						faq_content = faq_content.replace(/\u0020/, "&nbsp;");
 						
-						var test = "<div class='con_lst DIV_CON_LST'><ul><li class='col_rcFAQ'><a href='#'>"+jsonData[i].faq_num+"</a></li><li class='col_type'><a href='#'><p>"
+						var test = "<div class='con_lst DIV_CON_LST'><ul><li class='col_rcFAQ'><a href=''>"+jsonData[i].faq_num+"</a></li><li class='col_type'><a href='#'><p>"
 						+jsonData[i].faq_type+"</p></a></li><li class='col_title'><a href='#'><p>"+jsonData[i].faq_subject
 						+"</p></a></li></ul><div class='con_detail DIV_CON_DETAIL' id='con_detail"+i+"'>";
 						$('.view_lst').append(test);
@@ -119,8 +119,7 @@ $(document).ready(function(){
 											+"<li class='btn_con_right'>"
 												+"<input type='button' class='btn_type4' value='글수정' onclick='location.href=\"./BoardFaqUpdate.fa?faq_num="
 														+jsonData[i].faq_num+"&pageNum="+pageNum+"\'>"
-												+"<input type='button' class='btn_type4 deleteBoard' value='글삭제' onclick='location.href=\"./BoardFaqDelete.fa?faq_num="
-														+jsonData[i].faq_num+"&pageNum="+pageNum+"\'>"
+												+"<input type='button' class='btn_type4 deleteBoard' value='글삭제' rel='"+jsonData[i].faq_num+"'>"
 											+"</li>"
 										+"</ul>"
 										+"</div>"
@@ -142,32 +141,31 @@ $(document).ready(function(){
 				
 				/***********	슬라이드 부분	**************/
 				$("div.DIV_CON_LST > ul").click(function ()
-					    {
-					        if ($(this).hasClass('active'))
-					        {
-					            $(this).removeClass('active');
-					            $(this).siblings("div.DIV_CON_DETAIL").stop(true, false).slideUp("fast");
-					        }
-					        else
-					        {
-					            $("div.DIV_CON_DETAIL").slideUp("fast");
-					            $("div.DIV_CON_LST > ul").removeClass("active");
-					            $(this).siblings("div.DIV_CON_DETAIL").stop(true, false).slideDown("fast");
-					            $(this).addClass('active');
-					        };
-					    });
-				$(function(){
-				 	var pageNum = "${pageNum}";
+				{
+					if ($(this).hasClass('active'))
+					{
+					   	$(this).removeClass('active');
+					    $(this).siblings("div.DIV_CON_DETAIL").stop(true, false).slideUp("fast");
+					}
+					else
+					{
+					    $("div.DIV_CON_DETAIL").slideUp("fast");
+					    $("div.DIV_CON_LST > ul").removeClass("active");
+					    $(this).siblings("div.DIV_CON_DETAIL").stop(true, false).slideDown("fast");
+					    $(this).addClass('active');
+					};
+				});
 					
-				 	$('.deleteBoard').each(function(index){
-				 		$(this).attr('id','delete'+index);
-				 		$('#delete'+index).click(function(){
-							var result = $.Confirm('정말 삭제하시겠습니까?');
-				 			if(result){}
-				 			else{location.replace("./BoardFaqList.fa?pageNum="+pageNum);}
-						});
+				$('.deleteBoard').each(function(index){
+					$(this).attr('id','delete'+index);
+					$('#delete'+index).click(function(){
+						$.Confirm(
+							'정말 삭제하시겠습니까?',
+							function(){
+				 				location.href = './BoardFaqDelete.fa?faq_num=' + $('#delete'+index).attr('rel') + '&pageNum="${pageNum}"';
+							}
+						);
 					});
-
 				});
 				
 				/***********	페이징 처리 부분		**************/
