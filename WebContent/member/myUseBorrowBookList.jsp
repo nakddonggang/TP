@@ -60,7 +60,7 @@ int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 					
 					<div class="text_top">
 						<!-- myUseBBookList.jsp : 도서 대출 목록 -->
-						<h3>대출중인 도서 목록</h3>
+						<h3>역대 대출 내역</h3>
 				    </div>
 						
 						
@@ -78,8 +78,8 @@ int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 							</div>
 							<%
 							SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
-								if(bbList == null) {
-									%><ul><li class="col_tit"><p>대출도서목록이 없습니다</p></li></ul><%
+								if(bbList.size()==0) {
+									%><ul><li class="col_tit"><p>대출하신 기록이 없습니다.</p></li></ul><%
 								} else {
 									for(BookDTO bDTO : bbList) {
 										%>

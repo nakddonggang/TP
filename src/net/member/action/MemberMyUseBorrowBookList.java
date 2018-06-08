@@ -33,11 +33,8 @@ public class MemberMyUseBorrowBookList implements Action{
 		int endPage=startPage+pageBlock-1;
 		
 		List<BookDTO> bbList = null;
-		
-		if(count != 0){
-			bbList=mDAO.myUseBorrowBookList(startRow, pageSize , member_id);
-		}
-		System.out.println("1111111111" + bbList.size());
+		bbList=mDAO.myUseBorrowBookList(startRow, pageSize , member_id);
+
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("pageSize", pageSize);
 		request.setAttribute("startRow", startRow);
