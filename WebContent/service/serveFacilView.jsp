@@ -68,8 +68,9 @@
 								<ul class="row_sub">
 									<li class="title">사용유무 </li>
 									<li class="inp_form"><%
-											if(Integer.parseInt(fDTO.getFacil_use()) != 1)	out.println("사용가능");
-											else out.println("사용중");
+											if(fDTO.getFacil_use().equals("0"))	out.println("사용가능");
+											else if(Integer.parseInt(fDTO.getFacil_use()) == 1) out.println("사용중");
+											else if(fDTO.getFacil_use().equals("2")) out.println("이용불가");
 									%></li>
 								</ul>
 							</li>
