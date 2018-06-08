@@ -208,12 +208,6 @@ public class MemberDAO {
 		sqlsession.delete("deleteBbook", book_number);
 	}
 	
-	// myUseRBookList.jsp 책 리스트 뿌려주기
-	public List<BookDTO> myUseRBookList(String member_id){
-		List<BookDTO> rbookList = new ArrayList<BookDTO>();
-		rbookList = sqlsession.selectList("myUseRBookList",member_id);
-		return rbookList;		
-	}
 	
 	// myUseRBookList.jsp > 책 전체 count 개수 구하기
 		public int BookCount(){
@@ -221,6 +215,12 @@ public class MemberDAO {
 			count=sqlsession.selectOne("BookCount");
 			return count;
 		}	
+		// myUseRBookList.jsp 책 리스트 뿌려주기
+		public List<BookDTO> myUseRBookList(String member_id){
+			List<BookDTO> rbookList = new ArrayList<BookDTO>();
+			rbookList = sqlsession.selectList("myUseRBookList",member_id);
+			return rbookList;		
+		}
 		
 		// myUseRBookList.jsp > 책 리스트 뿌려주기
 		public List<BookDTO> BookList(int startRow, int pageSize){
