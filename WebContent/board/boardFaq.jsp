@@ -59,7 +59,7 @@ $(document).ready(function(){
 		history.pushState(null,null,"BoardFaqList.fa");
 		$('.view_lst').empty();
 		$('.paginate').empty();
-		$('#count').html();j
+		$('#count').html();
 		pageNum="1";
 		selectBox();
 	});
