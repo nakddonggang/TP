@@ -117,12 +117,11 @@ $(document).ready(function(){
 	
 	$("#deleteBoard").click(function(){
 		$.Confirm(
-				'정말 삭제하시겠습니까?',
-				'경고',
-				function(){
-					location.href = './BoardCurDeleteAction.cu?cur_num=' + $('#deleteBoard').attr('rel') + '&pageNum=${pageNum}';
-				}
-			);
+			'정말 삭제하시겠습니까?',
+			function(){
+				location.href = './BoardCurDeleteAction.cu?cur_num=' + $('#deleteBoard').attr('rel') + '&pageNum=${pageNum}';
+			}
+		);
 	});
 	
 });
