@@ -68,7 +68,7 @@
 							
 							<%
 							List<BookDTO> bList2 = (List<BookDTO>)request.getAttribute("bList2");
-							if(bList2==null) {
+							if(bList2.size()==0) {
 								%>
 								<ul><li class="col_tit"><p>예약중인 도서가 없습니다.</p></li></ul>
 								<%
@@ -115,7 +115,7 @@
 							</ul>
 							</div>
 							<%
-							if(bList == null) {
+							if(bList.size()==0) {
 								%>
 								<ul><li class="col_tit"><p>대여중인 도서가 없습니다.</p></li></ul>
 								<%
