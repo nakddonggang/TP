@@ -62,8 +62,11 @@ public class BookSearch implements Action{
 		
 		// pubDate에 값이 없을 때
 		if (pubDate.equals("all")) {
+			// 값을 아무것도 입력하지 않았을 때
+			if (search1==""&&search2==""&&search3==""){
+				count=bdao.BookCount();
 			// 값을 한 개 입력했을 때
-			if (search1!=""&&search2==""&&search3==""){
+			} else if (search1!=""&&search2==""&&search3==""){
 				if (category1.equals("all")){
 					count = bdao.Bk_SearchAllCount(search1);
 				} else {

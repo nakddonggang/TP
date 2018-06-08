@@ -52,25 +52,25 @@ $(document).ready(function() {
 		onload(pageNum, view);	
 	});
 
-		// 책 정렬
-			var sort = "";	
-			$('#book_sort').change(function(){
-				sort = $("#book_sort > option:selected").val();
-				onload(pageNum, view);
-			}); // function selectBook 함수
+	// 책 정렬
+	var sort = "";	
+	$('#book_sort').change(function(){
+		sort = $("#book_sort > option:selected").val();
+		onload(pageNum, view);
+	}); // function selectBook 함수
 			
-		// Ajax 함수
-		function onload(pageNum, view){
-			$('.AjaxTest').empty(); // div 영역 비우기
-			$.ajax({
-				url:"./BookIndexAJ.bk",
-				type:'POST',
-				data:{'sort':sort, "pageNum":pageNum, "view":view},
-				dataType:'json',
-				success:function(result){
-					
-					$(document).ready(function() {
-								
+	// Ajax 함수
+	function onload(pageNum, view){
+		$('.AjaxTest').empty(); // div 영역 비우기
+		$.ajax({
+			url:"./BookIndexAJ.bk",
+			type:'POST',
+			data:{'sort':sort, "pageNum":pageNum, "view":view},
+			dataType:'json',
+			success:function(result){
+				
+				$(document).ready(function() {
+							
 						// 주소창에 Get방식으로 받아온 request값 스크립트에서 사용하기 위한 함수
 						function Request(valuename){
 							var rtnval;
@@ -182,11 +182,11 @@ $(document).ready(function() {
 					
 					// content 내용 넣기
 							var text = "<p>Total_<span>"
-							+count+"</span></p><ul class='brd_txt_lst' id='book_cont_div'><li class='view_lst' id='text3_ap'><div class='con_lst'><ul class='no_scroll title_t' id='text2_ap'><li class='adm_col_rrc'>목록</li><li class='adm_col_date'>사진</li><li class='adm_col_sub'>제목</li><li class='adm_col_type'>저자</li><li class='adm_col_date'>출판사</li><li class='adm_col_sub' id='text2_ap'>대출현황</li>";
+							+count+"</span></p><ul class='brd_txt_lst' id='book_cont_div'><li class='view_lst' id='text3_ap'><div class='con_lst'><ul class='no_scroll title_t' id='text2_ap'><li class='adm_col_rrc'>목록</li><li class='adm_col_date'>사진</li><li class='adm_col_sub'>제목</li><li class='adm_col_type'>저자</li><li class='adm_col_date'>출판사</li><li class='adm_col_rc' id='text2_ap'>대출현황</li>";
 							$('.AjaxTest').append(text);
 							
 							if(member_id!=null){
-								var text2 = "<li class='adm_col_rc'>대출/예약</li>";
+								var text2 = "<li class='adm_col_rc'>대출신청</li><li class='adm_col_rc'>예약신청</li>";
 								$('#text2_ap').append(text2);
 							}
 							
@@ -208,10 +208,10 @@ $(document).ready(function() {
 										$('#text3_ap').append(text4);
 										
 										if (JSdata[i].bbook_bstate==0) {
-											var text5 = "<li class='adm_col_sub' id='adm_book_high'>대출가능</li>";
+											var text5 = "<li class='adm_col_rc' id='adm_book_high'>대출가능</li>";
 											$('#text5_ap'+i).append(text5);
 										} else { 
-											var text5 = "<li class='adm_col_subid='adm_book_high'>대출중</li>";
+											var text5 = "<li class='adm_col_rc' id='adm_book_high'>대출중</li>";
 											$('#text5_ap'+i).append(text5);
 										}
 										
@@ -222,9 +222,15 @@ $(document).ready(function() {
 												$('#text5_ap'+i).append(text6);
 											} else { 
 													var text6="<li class='adm_col_rc' id='adm_book_high'><input type='button' rel='"
-													+JSdata[i].book_number+"' class='rbutton' value='대출예약'></li>";
+													+JSdata[i].book_number+"' value='대출불가'></li>";
 													$('#text5_ap'+i).append(text6);
 											} // 대출가능 / 대출예약
+										} // 아이디가 있을 때 보여주기
+										
+										if (member_id!=null) {
+												var text6 = "<li class='adm_col_rc' id='adm_book_high'><input type='button' rel='"
+												+JSdata[i].book_number+"' class='bbutton' value='대출예약' id='borrowBook'></li>";
+												$('#text5_ap'+i).append(text6);
 										} // 아이디가 있을 때 보여주기
 										
 										var text7="</ul></div>";
