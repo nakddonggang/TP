@@ -47,7 +47,7 @@ $(document).ready(function() {
 	}
 	
 var pageNum = Request("pageNum");
-var view = Request("view");
+var view = <%=request.getParameter("view")%>;
 var category1=Request("category1");
 var search1=Request("search1");
 var opt1=Request("opt1");
@@ -57,7 +57,7 @@ var opt2=Request("opt2");
 var category3=Request("category3");
 var search3=Request("search3");
 var pubDate=Request("pubDate");
-if (view=="") view=1;
+if (view==null) view="1";
 if(pageNum=="") pageNum=1;
 
 // direct값이 1이면 바구니에 정상적으로 들어간 것  
@@ -655,7 +655,7 @@ if(view==null) view = "1";
 								</ul>
 							</div>
 							<%}%>
-]
+
 
 				<!-- 버튼 css 부분 -->	
 						<div class="paginate">
