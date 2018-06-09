@@ -148,12 +148,16 @@
 		update history_bbook set bbook_rdate = now() where book_number=#{book_number}
 	</update>
 
+<!-- 	인기도서 리스트   -->
 	<select id="myUseRBookList" parameterType="string" resultType="net.book.db.BookDTO">
 		select* from rbook r
 		left join book bk
 		on r.book_number = bk.book_number
 		where member_id=#{member_id} order by r.rbook_date desc
+		limit #{startRow}, #{pageSize} 
 	</select>
+	
+	
 	
 	<select id="useBbookMemberCount" parameterType="string" resultType="int">
 		select count(*) from bbook

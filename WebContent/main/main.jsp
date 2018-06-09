@@ -69,6 +69,7 @@ if(member_id != null) {
 						for(int i=0; i<popularList.size(); i++){ 
 						BookDTO bkDTO = popularList.get(i);
 						%><ul>
+							<li><img src="./upload/book/<%=bkDTO.getBook_file()%>"width="70px" height="80px"></li>
 							<li>제목 : <%=bkDTO.getBook_subject() %></li>
 							<li>저자 : <%=bkDTO.getBook_author() %></li>
 							<li>발행처 : <%=bkDTO.getBook_publisher() %></li>
