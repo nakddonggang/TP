@@ -57,9 +57,12 @@ public class BookFrontController extends HttpServlet{
 					action = new BookSearch();
 					try{
 						forward = action.execute(request, response);
-					}catch(Exception e){
-						e.printStackTrace();
-					}
+					}catch(Exception e){e.printStackTrace();}
+				}  else if(command.equals("/BookSearchAJ.bk")){
+					action = new BookSearchAJ();
+					try{
+						forward = action.execute(request, response);
+					}catch(Exception e){e.printStackTrace();}
 				}  else if (command.equals("/ServeBook.bk")){
 					forward = new ActionForward();
 					forward.setPath("./service/serveBook.jsp");
