@@ -24,7 +24,7 @@ public class BoardCurList implements Action{
 		
 		int pageSize = 10;	//한 화면에 보여줄 글 개수 설정
 		String pageNum = request.getParameter("pageNum");	// 페이지 번호(파라미터 "pageNum") 가져오기
-
+		
 		if(pageNum == null){	//페이지 번호가 없으면 무조건 "1"페이지 설정
 			pageNum = "1";
 		}

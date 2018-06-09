@@ -37,7 +37,7 @@ public class BookDTO {
 	String hbook_author;			//	저자					char(40)								희망도서 저자
 	String hbook_check;				//	처리상태			char(10)	check in ('wait','in','not-in')	wait	희망도서 처리여부(대기/입고됨/입고불가)
 	String hbook_publisher;		//	발행처				char(20)								출판사
-	int hbook_isbn;					//	국제표준번호		int(18)								국제표준번호 ISBN
+	String hbook_isbn;					//	국제표준번호		int(18)								국제표준번호 ISBN
 	String hbook_explain;			//	희망도서 설명		varchar(2000)						희망도서 설명
 	
 	// hbook table
@@ -196,10 +196,10 @@ public class BookDTO {
 	public void setHbook_publisher(String hbook_publisher) {
 		this.hbook_publisher = hbook_publisher;
 	}
-	public int getHbook_isbn() {
+	public String getHbook_isbn() {
 		return hbook_isbn;
 	}
-	public void setHbook_isbn(int hbook_isbn) {
+	public void setHbook_isbn(String hbook_isbn) {
 		this.hbook_isbn = hbook_isbn;
 	}
 	public String getHbook_explain() {

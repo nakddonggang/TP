@@ -23,7 +23,7 @@ public class BoardFaqAjax implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		String selected = request.getParameter("selected");
-		System.out.println(selected);
+
 		if(selected == null) selected = "all";
 		String faq_type = "";
 		
@@ -37,15 +37,14 @@ public class BoardFaqAjax implements Action{
 		}else if(selected.equals("library")){
 			faq_type = "도서관 이용";
 		}
-		System.out.println("ajax page "+faq_type);
 
 		BoardDAO bDAO = new BoardDAO();
 		int count = bDAO.countFaqType(faq_type);
 		
 		/****** 페이징 처리 ******/
-		int pageSize=3;
+		int pageSize=5;
 		String pageNum=request.getParameter("pageNum");
-		System.out.println("pageNum : "+pageNum);
+
 		if(pageNum==null) pageNum="1";
 		
 		int currentPage=Integer.parseInt(pageNum);
@@ -85,7 +84,6 @@ public class BoardFaqAjax implements Action{
 					     .add("faq_file", bDTO.getFaq_file()).build();
 				result += json.toString();
 			}
-			System.out.println(json);
 			if(i != list.size()-1)	result += ",";
 		}
 		if(list.size()==0){
@@ -97,7 +95,7 @@ public class BoardFaqAjax implements Action{
 					.add("{\"pageCount\":"+pageCount+"}").add("{\"pageBlock\":"+pageBlock+"}").add("{\"startPage\":"+startPage+"}")
 					.add("{\"endPage\":"+endPage+"}").build();
 		}
-		System.out.println(arr);
+
 		request.setAttribute("pageNum", pageNum);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();

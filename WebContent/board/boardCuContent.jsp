@@ -70,7 +70,7 @@
 										<li class="cu_col_date">작성일 :&nbsp;<span><%=date.format(bDTO.getCur_date()) %></span></li>
 										<li class="cu_col_rc"><span class="tit_date">조회수 :&nbsp;</span><span><%=bDTO.getCur_readcount() %></span></li>
 										  <div class="cu_col_thm">
-								           <img src="./upload/<%=bDTO.getCur_file()%>" width="700" height="700">
+								           <img src="./upload/curation/<%=bDTO.getCur_file()%>" width="700" height="700">
 								          </div>
 								        <p class="cu_col_content"><%=cur_content%></p>
 								        <p class="cu_col_file">첨부파일 :&nbsp;<span><%=bDTO.getCur_file() %></span></p>	

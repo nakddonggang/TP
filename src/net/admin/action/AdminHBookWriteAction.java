@@ -18,7 +18,7 @@ public class AdminHBookWriteAction implements Action {
 		// 파라미터값 들고오기
 		String member_id = request.getParameter("member_id");
 		String hbook_check = request.getParameter("hbook_check");
-		int hbook_isbn = Integer.parseInt(request.getParameter("hbook_isbn"));
+		String hbook_isbn = request.getParameter("hbook_isbn");
 		
 		System.out.println(hbook_isbn+hbook_check+member_id);
 		

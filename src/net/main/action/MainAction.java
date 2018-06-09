@@ -45,15 +45,7 @@ public class MainAction implements Action{
 		int count = bDAO.getNoticeCount();		// 공지사항 글 개수 구해 count에 저장
 		
 		int pageSize = 5;	//한 화면에 보여줄 글 개수 설정
-		String pageNum = request.getParameter("pageNum");	// 페이지 번호(파라미터 "pageNum") 가져오기
-
-		if(pageNum == null){	//페이지 번호가 없으면 무조건 "1"페이지 설정
-			pageNum = "1";
-		}
-
-		int currentPage = Integer.parseInt(pageNum);
-		int startRow = (currentPage-1)*pageSize+1;	// 페이지 첫 행 구하기
-		int endRow = currentPage*pageSize;			// 마지막행 구하기
+		int startRow = 1;
 		
 		List<BoardDTO> noticeList = null;
 		
@@ -67,15 +59,6 @@ public class MainAction implements Action{
 		count = bDAO.getCurationCount();		// Curation 글 개수 구해 count에 저장
 		
 		pageSize =2;	//한 화면에 보여줄 글 개수 설정
-		pageNum = request.getParameter("pageNum");	// 페이지 번호(파라미터 "pageNum") 가져오기
-
-		if(pageNum == null){	//페이지 번호가 없으면 무조건 "1"페이지 설정
-			pageNum = "1";
-		}
-
-		currentPage = Integer.parseInt(pageNum);
-		startRow = (currentPage-1)*pageSize+1;	// 페이지 첫 행 구하기
-		endRow= currentPage*pageSize;			// 마지막행 구하기
 		
 		List<BoardDTO> curationList = null;
 		
@@ -83,7 +66,6 @@ public class MainAction implements Action{
 			curationList = bDAO.getCurationList(startRow, pageSize);
 		}
 		
-		// count, pageNum, noticeList, pageCount 저장
 		
 		//////////////////////인기도서 불러오는 값 /////////////////////////////
 		BookDAO bkDAO = new BookDAO();
@@ -95,7 +77,6 @@ public class MainAction implements Action{
 		System.out.println("popularList: " + bkDAO.popularList().size());
 		
 		request.setAttribute("popularList", popularList);
-		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("noticeList", noticeList);
 		request.setAttribute("curationList", curationList);
 	

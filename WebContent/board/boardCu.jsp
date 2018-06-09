@@ -88,7 +88,7 @@
 							  <ul class="no_scroll" onclick="location.href='./BoardCurContent.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum %>'">
 							    <li class="cu_lst">
 							    	<div class="cu_thm">
-							    		<img src="./upload/<%=bDTO.getCur_file()%>" width="428" height="197">
+							    		<img src="./upload/curation/<%=bDTO.getCur_file()%>" width="428" height="197">
 							    	</div>
 							    	<div class="cu_txt">
 							    		<h4><%=bDTO.getCur_subject() %></h4>

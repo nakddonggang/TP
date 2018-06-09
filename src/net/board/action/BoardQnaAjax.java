@@ -36,7 +36,7 @@ public class BoardQnaAjax implements Action{
 			if(i != list.size()-1)	result += ",";
 		}
 		arr = Json.createArrayBuilder().add(result).build();
-		System.out.println(arr);
+
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.print(arr);
