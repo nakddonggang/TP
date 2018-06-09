@@ -51,32 +51,27 @@ var pageNum = Request("pageNum");
 var view = Request("view");
 if(pageNum=="") pageNum=1;
 if (view=="") view=1;
-
 firstload(pageNum, view);
-
-// 	var pageNum =request.getAttribute("pageNum");
-// 	if (pageNum==null) pageNum=1;
-// 	var view = request.getAttribute("view");
-// 	var view;
-// 	if (view==null) view=1;
 
 	function firstload(pageNum, view){
 		onload(pageNum, view);	
 	}
 	
 	// 책 정렬
-	var sort = "";	
+	var sort = Request("sort");	
 	$('#book_sort').change(function(){
 		sort = $("#book_sort > option:selected").val();
 		onload(pageNum, view);
 	}); // function selectBook 함수
 	
 	$('#book_pic_btn').click(function(){
+		pageNum=1;
 		view=0;
 		onload(pageNum, view);
 	});
 	
 	$('#book_cont_btn').click(function(){
+		pageNum=1;
 		view=1;
 		onload(pageNum, view);
 	});
@@ -99,6 +94,19 @@ firstload(pageNum, view);
 						location.replace('./MemberBasketList.me');
 					}else{}
 				}else{}		
+				
+				// 책바구니 이동 Jquery
+				$('#basket_Fr').submit(function(){
+					if ($('.bncheck').is(":checked") == true ){
+						var con = confirm("책바구니에 담으시겠습니까?");
+						if (con==true) $("#basket_Fr").submit;
+						else return false;
+					} else {
+						$.Alert("책을 선택해주세요",function(){
+							return false;
+						});
+					}
+				});
 				
 				// ajax 변수 
 				var JSdata = JSON.parse("["+result+"]");
@@ -245,16 +253,6 @@ firstload(pageNum, view);
 								$('#book_pic_div').hide();
 								$('#book_cont_div').show();
 							}
-							
-						// 검색값이 없을 때 제어
-						$('#SearchForm').submit(function(){
-							if ($('#search1').val() == ""&& $('#search2').val() == ""&& $('#search3').val() == "") {
-								$.Alert("검색어를 입력해주세요",function(){
-									$('#search1').focus();
-								});
-								return false;
-							} else { }
-						});
 
 						// 갤러리 형식 hover 효과주기
 						$('#book_pic_hv').hover(function() {
@@ -330,7 +328,7 @@ firstload(pageNum, view);
 						</div>
 					</div>
 					<div id="for_book_div">
-											<form action="./BookSearch.bk" method="get" name="searchFr"
+											<form action="./BookSearch.bk" method="post" name="searchFr"
 												id="SearchForm">
 												<div id="book_field">
 													<h1>통합검색</h1>

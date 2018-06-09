@@ -57,21 +57,90 @@ var opt2=Request("opt2");
 var category3=Request("category3");
 var search3=Request("search3");
 var pubDate=Request("pubDate");
-
-if(pageNum=="") pageNum=1;
 if (view=="") view=1;
+if(pageNum=="") pageNum=1;
 
-firstload(pageNum, view);
+// direct값이 1이면 바구니에 정상적으로 들어간 것  
+var direct = Request("direct");
+if(direct=="1"){
+	var directGo = confirm("책바구니로 이동하시겠습니까?");
+	if(directGo == true){
+		location.replace('./MemberBasketList.me');
+	}else{}
+}else{}		
 
-// 	var pageNum =request.getAttribute("pageNum");
-// 	if (pageNum==null) pageNum=1;
-// 	var view = request.getAttribute("view");
-// 	var view;
-// 	if (view==null) view=1;
-
-	function firstload(pageNum, view){
-		onload(pageNum, view);	
+// 책바구니 이동 Jquery
+$('#basket_Fr').submit(function(){
+	if ($('.bncheck').is(":checked") == true ){
+		var con = confirm("책바구니에 담으시겠습니까?");
+		if (con==true) $("#basket_Fr").submit;
+		else return false;
+	} else {
+		$.Alert("책을 선택해주세요",function(){
+			return false;
+		});
 	}
+});
+
+// 갤러리, 게시판 띄워주는 버튼
+if (view==0){
+	$('#book_pic_div').show();
+	$('#book_cont_div').hide();
+} else if (view==1){
+	$('#book_pic_div').hide();
+	$('#book_cont_div').show();
+}
+
+$('#book_pic_btn').click(function(){
+	pageNum=1;
+	view=0;
+	onload(pageNum, view);
+});
+
+$('#book_cont_btn').click(function(){
+	pageNum=1;
+	view=1;
+	onload(pageNum, view);
+});
+
+// 갤러리 형식 hover 효과주기
+$('#book_pic_hv').hover(function() {
+$('.book_lst > li').mouseenter(function() {
+	$("dl", this).addClass("bil_on"); }).mouseleave(function(){
+	$("dl", this).removeClass("bil_on");
+});
+$('.book_lst > li').focusin(function() {
+	$("dl", this).addClass("bil_on");}).focusout(function() {
+	$("dl", this).removeClass("bil_on");
+});
+});
+
+// 대출 버튼 Jquery
+$(".bbutton").click(function(){
+var book_number = $(this).attr("rel");
+var bbook = confirm("대출신청을 하시겠습니까?");
+	if (bbook == true) { var url = book_number;
+		$(location).attr('href', './BorrowBookAction.me?book_number='+url);
+	} else { return false; }
+});
+
+// 예약 버튼 Jquery
+$('.rbutton').click(function() {
+var book_number = $(this).attr("rel");
+	var rbook = confirm("대출예약 하시겠습니까?");
+	if (rbook == true) { var url = book_number;
+		$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
+	} else { return false; }
+});
+
+// 반납 버튼 Jquery
+$('.rebutton').click(function() {
+var book_number = $(this).attr("rel");
+	var rebook = confirm("책 반납을 하시겠습니까?");
+	if (rebook == true) { var url = book_number;
+		$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
+	} else { return false; }
+});
 	
 	// 책 정렬
 	var sort = "";	
@@ -100,6 +169,19 @@ firstload(pageNum, view);
 						location.replace('./MemberBasketList.me');
 					}else{}
 				}else{}		
+
+				// 책바구니 이동 Jquery
+				$('#basket_Fr').submit(function(){
+					if ($('.bncheck').is(":checked") == true ){
+						var con = confirm("책바구니에 담으시겠습니까?");
+						if (con==true) $("#basket_Fr").submit;
+						else return false;
+					} else {
+						$.Alert("책을 선택해주세요",function(){
+							return false;
+						});
+					}
+				});
 				
 				// ajax 변수 
 				var JSdata = JSON.parse("["+result+"]");
@@ -266,30 +348,6 @@ firstload(pageNum, view);
 								$('#book_pic_div').hide();
 								$('#book_cont_div').show();
 							}
-							
-							$('#book_pic_btn').click(function(){
-								view=0;
-								$('#book_pic_div').show();
-								$('#book_cont_div').hide();
-								history.pushState(null, null, "BookIndex.bk?pageNum="+pageNum+"&view=0");
-							});
-							
-							$('#book_cont_btn').click(function(){
-								view=1;
-								$('#book_pic_div').hide();
-								$('#book_cont_div').show();
-								history.pushState(null, null, "BookIndex.bk?pageNum="+pageNum+"&view=1");
-							});
-							
-// 						// 검색값이 없을 때 제어
-// 						$('#SearchForm').submit(function(){
-// 							if ($('#search1').val() == ""&& $('#search2').val() == ""&& $('#search3').val() == "") {
-// 								$.Alert("검색어를 입력해주세요",function(){
-// 									$('#search1').focus();
-// 								});
-// 								return false;
-// 							} else { }
-// 						});
 
 						// 갤러리 형식 hover 효과주기
 						$('#book_pic_hv').hover(function() {
@@ -339,7 +397,30 @@ firstload(pageNum, view);
 });
 </script>
 </head>
-<body>
+<body><%
+String member_id = (String)session.getAttribute("member_id");
+request.setCharacterEncoding("utf-8");
+//count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 가져오기
+String search1 = (String)request.getAttribute("search1");
+String search2 = (String)request.getAttribute("search2");
+String search3 = (String)request.getAttribute("search3");
+String category1 = (String)request.getAttribute("category1");
+String category2 = (String)request.getAttribute("category2");
+String category3 = (String)request.getAttribute("category3");
+String opt1 = (String)request.getAttribute("opt1");
+String opt2 = (String)request.getAttribute("opt2");
+String pubDate = (String)request.getAttribute("pubDate");
+int count = ((Integer)request.getAttribute("count")).intValue();
+String pageNum = (String)request.getAttribute("pageNum");
+int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
+int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
+int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchList");
+
+String view = request.getParameter("view");
+if(view==null) view = "1";
+%>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
 
@@ -463,7 +544,135 @@ firstload(pageNum, view);
 
 <form action="./MemberBasketAdd.me" method="post" id="basket_Fr">		
 <div class="AjaxTest">
+		<div class="AjaxTest">
+							<p>
+								Total_<span><%=count%></span>	
+							</p>	
+
+							<ul class="brd_txt_lst" id="book_cont_div">
+								<!-- 글목록 -->
+								<li class="view_lst">
+									<div class="con_lst">
+										<ul class="no_scroll title_t">
+											<li class="adm_col_rrc">목록</li>
+											<li class="adm_col_date">사진</li>
+											<li class="adm_col_sub">제목</li>
+											<li class="adm_col_type">저자</li>
+											<li class="adm_col_date">출판사</li>
+											<li class="adm_col_date">대출현황</li>
+											<%if(member_id!=null){ %>
+											<li class="adm_col_rc">대출/예약 신청</li><%}%>
+										</ul>
+									</div> <%
+ 	if (count == 0) {
+ %><ul>
+										<li class="col_tit"><p>책 목록이 없습니다</p></li>
+									</ul> <%
+ 	} else {
+ 		for (BookDTO booksearchLists : booksearchList) {
+ %>
+									<div class="con_lst">
+										<ul class="no_scroll">
+											<li class="adm_col_rrc" id="adm_book_high"><input
+												type="checkbox" name="basket_check"  class="bncheck" 
+												value="<%=booksearchLists.getBook_number()%>" ></li>
+											<li class="adm_col_date" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><img
+												src="./upload/book/<%=booksearchLists.getBook_file()%>"
+												width="70px" height="80px"></li>
+											<li class="adm_col_sub" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_subject()%></li>
+											<li class="adm_col_type" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_author()%></li>
+											<li class="adm_col_date" id="adm_book_high"
+												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_publisher()%></li>
+											<li class="adm_col_date"  id="adm_book_high" onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'">
+											<%if (Integer.parseInt(booksearchLists.getBbook_bstate())==0){ %> 대출가능 <% }
+											else { %><%=date.format(booksearchLists.getBbook_bdate())%>~<%=date.format(booksearchLists.getBbook_rdate())%> 대출중
+											<%}%>
+											</li>
+										<%if(member_id!=null){ %>
+											<li class="adm_col_rc book_iff"  id="adm_book_high">
+												<%if (Integer.parseInt(booksearchLists.getBbook_bstate())==0){ %>
+													<input type="button" rel="<%=booksearchLists.getBook_number()%>" class="bbutton" value="대출신청" id="borrowBook">
+												<%} else {%>
+													<input type="button" rel="<%=booksearchLists.getBook_number()%>" class="rbutton" value="대출예약"> <%}%>
+											</li><%}%>
+										</ul>
+									</div>
+									<%}
+ 								}%>
+								</li>
+							</ul>
+							<!-- ★게시판으로 보여지는 통합검색 -->
+
+							<!-- ★갤러리로 보여지는 통합검색 -->
+							<ul class="book_lst" id="book_pic_div">
+								<li>
+									<%
+										if (count == 0) {
+									%>
+									<dl class="book_info_layer">
+										<dt>책 목록이 없습니다</dt>
+										<dd></dd>
+									</dl>
+									</li> <%
+									 	} else {
+ 		for (BookDTO booksearchLists : booksearchList) {
+ %>
+				<li><a href="./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>">
+						<img src="./upload/book/<%=booksearchLists.getBook_file()%>" class="book_lst_img">
+						<span id="bk_li_subs"><%=booksearchLists.getBook_subject()%></span>
+					<dl class="book_info_layer">
+						<dt>
+							<span><%=booksearchLists.getBook_subject()%></span>
+						</dt>
+						<dd>
+							<dl>
+								<dt>저자</dt>
+								<dd><%=booksearchLists.getBook_author()%>
+								</dd>
+								<dt>출판사</dt>
+								<dd><%=booksearchLists.getBook_publisher()%></dd>
+								<dt>출판년도</dt>
+								<dd><%=booksearchLists.getBook_pubDate()%></dd>
+								<dt>반납상태</dt>
+								<dd><%=booksearchLists.getBbook_bstate()%></dd>
+							</dl>
+						</dd>
+					</dl>
+					</a>
+					</li>
+				<%}
+				}%>
+	</ul>
+							<!-- ★갤러리로 보여지는 통합검색 -->
+							<%if(member_id!=null){ %>
+							<div class="btn_btm_center">
+								<ul>
+									<li><input type="submit" value="책바구니" id="basket_Fr_btn"
+										class="btn_type4 BTN_IF_LIST"></li>
+								</ul>
+							</div>
+							<%}%>
+]
+
+				<!-- 버튼 css 부분 -->	
+						<div class="paginate">
+						<a href="./BookSearch.bk?pageNum=1&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./BookSearch.bk?pageNum=<%=startPage - pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./BookSearch.bk?pageNum=<%=p%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./BookSearch.bk?pageNum=<%=startPage+pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./BookSearch.bk?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
+						 </div>
 		
+		</div>
 </div>						 
 </form>
 
