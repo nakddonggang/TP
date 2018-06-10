@@ -208,7 +208,7 @@
 		order by b.book_number desc limit #{startRow},#{pageSize}
 	 </select>	 
 	 
-	<select id="Bk_DateAllCount" resultType="int" parameterType="hashmap">
+	<select id="Bk_DateAllCount" resultType="int" parameterType="String">
 	 	select count(b.book_number) from book b
 		left join dbook db
 		on b.book_number = db.book_number

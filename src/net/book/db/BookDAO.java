@@ -213,8 +213,7 @@ public class BookDAO {
 		// 발행일로만 책 전체 개수 구하기
 		public int Bk_DateAllCount(String pubDate){
 			int count;
-			HashMap map = new HashMap();
-			count=sqlsession.selectOne("Bk_DateSearchAllCount", pubDate);
+			count=sqlsession.selectOne("Bk_DateAllCount", pubDate);
 			return count;
 		}
 		
@@ -224,7 +223,7 @@ public class BookDAO {
 			map.put("startRow", startRow-1);
 			map.put("pageSize", pageSize);
 			map.put("pubDate", pubDate);
-			List<BookDTO> booksearchList = sqlsession.selectList("Bk_DateSearchAllList", map);
+			List<BookDTO> booksearchList = sqlsession.selectList("Bk_DateAllList", map);
 			return booksearchList;
 		}	
 		// 검색결과로 나온 책 전체 개수 구하기
