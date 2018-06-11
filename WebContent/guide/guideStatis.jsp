@@ -27,6 +27,186 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script src="<c:url value="/js/morris.min.js"/>"></script>
 <script src="<c:url value="/js/raphael.min.js"/>"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+ 
+  <script type="text/javascript">
+   $(document).ready(function(){
+	   var selected = "";
+	   $('#sta_select').change(function(){
+		   selected = $("#sta_select > option:selected").val();
+// 	   function selectBox(){
+// 		   selected = $('#sta_select').val();
+		   $.ajax({
+			   url:"./GuideStatisAjax.fp",
+			   type:'post',
+			   data:{'selected':selected},
+			   dataType:'json',
+			   success:function(result){
+				   var jsonData = JSON.parse("["+result+"]");
+				   selected = $('#sta_select').val();
+				   alert(selected);
+				   alert(result);
+				   if(selected=="month"){
+					   
+				   alert("월별 시작")
+				   Morris.Bar({
+						element: 'visit',
+						data: [
+							{ y: jsonData[0].month+"월", a: jsonData[0].count},
+							{ y: jsonData[1].month+"월", a: jsonData[1].count},
+							{ y: jsonData[2].month+"월", a: jsonData[2].count},
+							{ y: jsonData[3].month+"월", a: jsonData[3].count},
+							{ y: jsonData[4].month+"월", a: jsonData[4].count},
+							{ y: jsonData[5].month+"월", a: jsonData[5].count},
+							{ y: jsonData[6].month+"월", a: jsonData[6].count},
+							{ y: jsonData[7].month+"월", a: jsonData[7].count},
+							{ y: jsonData[8].month+"월", a: jsonData[8].count},
+							{ y: jsonData[9].month+"월", a: jsonData[9].count},
+							{ y: jsonData[10].month+"월", a: jsonData[10].count},
+							{ y: jsonData[11].month+"월", a: jsonData[11].count}
+							
+						],
+						xkey: 'y',
+						ykeys: ['a'],
+						labels: ['방문자 수']
+					});
+				   Morris.Bar({
+						element: 'book',
+						data: [
+							{ y: jsonData[12].month1+"월", a: jsonData[12].count1},
+							{ y: jsonData[13].month1+"월", a: jsonData[13].count1},
+							{ y: jsonData[14].month1+"월", a: jsonData[14].count1},
+							{ y: jsonData[15].month1+"월", a: jsonData[15].count1},
+							{ y: jsonData[16].month1+"월", a: jsonData[16].count1},
+							{ y: jsonData[17].month1+"월", a: jsonData[17].count1},
+							{ y: jsonData[18].month1+"월", a: jsonData[18].count1},
+							{ y: jsonData[19].month1+"월", a: jsonData[19].count1},
+							{ y: jsonData[20].month1+"월", a: jsonData[20].count1},
+							{ y: jsonData[21].month1+"월", a: jsonData[21].count1},
+							{ y: jsonData[22].month1+"월", a: jsonData[22].count1},
+							{ y: jsonData[23].month1+"월", a: jsonData[23].count1}
+							
+						],
+						xkey: 'y',
+						ykeys: ['a'],
+						labels: ['입고 수']
+					});
+				   Morris.Bar({
+						element: 'bbook',
+						data: [
+							{ y: jsonData[24].month2+"월", a: jsonData[24].count3},
+							{ y: jsonData[25].month2+"월", a: jsonData[25].count3},
+							{ y: jsonData[26].month2+"월", a: jsonData[26].count3},
+							{ y: jsonData[27].month2+"월", a: jsonData[27].count3},
+							{ y: jsonData[28].month2+"월", a: jsonData[28].count3},
+							{ y: jsonData[29].month2+"월", a: jsonData[29].count3},
+							{ y: jsonData[30].month2+"월", a: jsonData[30].count3},
+							{ y: jsonData[31].month2+"월", a: jsonData[31].count3},
+							{ y: jsonData[32].month2+"월", a: jsonData[32].count3},
+							{ y: jsonData[33].month2+"월", a: jsonData[33].count3},
+							{ y: jsonData[34].month2+"월", a: jsonData[34].count3},
+							{ y: jsonData[35].month2+"월", a: jsonData[35].count3}
+							
+						],
+						xkey: 'y',
+						ykeys: ['a'],
+						labels: ['대출 수']
+					});
+				   Morris.Bar({
+						element: 'member',
+						data: [
+							{ y: jsonData[36].month3+"월", a: jsonData[36].count3},
+							{ y: jsonData[37].month3+"월", a: jsonData[37].count3},
+							{ y: jsonData[38].month3+"월", a: jsonData[38].count3},
+							{ y: jsonData[39].month3+"월", a: jsonData[39].count3},
+							{ y: jsonData[40].month3+"월", a: jsonData[40].count3},
+							{ y: jsonData[41].month3+"월", a: jsonData[41].count3},
+							{ y: jsonData[42].month3+"월", a: jsonData[42].count3},
+							{ y: jsonData[43].month3+"월", a: jsonData[43].count3},
+							{ y: jsonData[44].month3+"월", a: jsonData[44].count3},
+							{ y: jsonData[45].month3+"월", a: jsonData[45].count3},
+							{ y: jsonData[46].month3+"월", a: jsonData[46].count3},
+							{ y: jsonData[47].month3+"월", a: jsonData[47].count3}
+							
+						],
+						xkey: 'y',
+						ykeys: ['a'],
+						labels: ['가입자 수']
+					});
+			
+				   }else if(selected=="year"){
+					   
+					   alert("년별 시작")
+					   Morris.Bar({
+							element: 'visit',
+							data: [
+								{ y: jsonData[0].year+"년", a: jsonData[0].count},
+								{ y: jsonData[1].year+"년", a: jsonData[1].count},
+								{ y: jsonData[2].year+"년", a: jsonData[2].count},
+								{ y: jsonData[3].year+"년", a: jsonData[3].count},
+								{ y: jsonData[4].year+"년", a: jsonData[4].count}	
+							],
+							xkey: 'y',
+							ykeys: ['a'],
+							labels: ['방문자 수']
+						});  
+					   Morris.Bar({
+							element: 'book',
+							data: [
+								{ y: jsonData[5].year1+"년", a: jsonData[5].count1},
+								{ y: jsonData[6].year1+"년", a: jsonData[6].count1},
+								{ y: jsonData[7].year1+"년", a: jsonData[7].count1},
+								{ y: jsonData[8].year1+"년", a: jsonData[8].count1},
+								{ y: jsonData[9].year1+"년", a: jsonData[9].count1}
+								
+							],
+							xkey: 'y',
+							ykeys: ['a'],
+							labels: ['입고 수']
+						});
+					   Morris.Bar({
+							element: 'bbook',
+							data: [
+								{ y: jsonData[10].year2+"년", a: jsonData[10].count2},
+								{ y: jsonData[11].year2+"년", a: jsonData[11].count2},
+								{ y: jsonData[12].year2+"년", a: jsonData[12].count2},
+								{ y: jsonData[13].year2+"년", a: jsonData[13].count2},
+								{ y: jsonData[14].year2+"년", a: jsonData[14].count2}
+								
+							],
+							xkey: 'y',
+							ykeys: ['a'],
+							labels: ['대출 수']
+						});
+					   Morris.Bar({
+							element: 'member',
+							data: [
+								{ y: jsonData[15].year3+"년", a: jsonData[15].count3},
+								{ y: jsonData[16].year3+"년", a: jsonData[16].count3},
+								{ y: jsonData[17].year3+"년", a: jsonData[17].count3},
+								{ y: jsonData[18].year3+"년", a: jsonData[18].count3},
+								{ y: jsonData[19].year3+"년", a: jsonData[19].count3}
+								
+								
+							],
+							xkey: 'y',
+							ykeys: ['a'],
+							labels: ['가입자 수']
+						});
+					   
+					   
+				   }
+				   
+				   
+				   
+			   }//success 끝
+			   
+		   });
+		});
+	   selectBox();
+   });
+  </script>
 </head>
 <body>
 
@@ -47,9 +227,27 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
+				
+				<select id="sta_select">
+				<option>선택</option>
+				<option value="year">연도별</option>
+				<option value="month">월별</option>	
+				</select>
 					<div>
-						<h5>막대그래프</h5>
-						<div id="bar-example"></div>
+						<h5>방문자 수</h5>
+						<div id="visit"></div>
+					</div>
+					<div>
+						<h5>책 입고수</h5>
+						<div id="book"></div>
+					</div>
+					<div>
+						<h5>대출 수</h5>
+						<div id="bbook"></div>
+					</div>
+					<div>
+						<h5>가입자 수</h5>
+						<div id="member"></div>
 					</div>
 					<div></div>
 					<div></div>
@@ -61,23 +259,5 @@
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
-<script>
-$(document).onload(function(){
-	$.Ajax{
-		
-	}
-})
-Morris.Bar({
-	element: 'bar-example',
-	data: [
-		{ y: '2015', a: 100, b: 90 },
-		{ y: '2014', a: 75, b: 65 },
-		{ y: '2013', a: 50, b: 40 }
-	],
-	xkey: 'y',
-	ykeys: ['a', 'b'],
-	labels: ['A data', 'B data']
-});
-</script>
 </body>
 </html>

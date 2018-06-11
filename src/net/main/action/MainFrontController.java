@@ -55,6 +55,13 @@ public class MainFrontController extends HttpServlet{
 			forward = new ActionForward();
 			forward.setPath("guide/guideIntro.jsp");
 			forward.setRedirect(false);
+		}else if(command.equals("/GuideStatisAjax.fp")){
+			action = new GuideStatisAjax();
+			try {
+				forward = action.execute(request, response);		
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		if(forward != null){
 			if(forward.isRedirect()){
