@@ -33,10 +33,10 @@
   <script type="text/javascript">
    $(document).ready(function(){
 	   var selected = "";
-	   $('#sta_select').change(function(){
-		   selected = $("#sta_select > option:selected").val();
-// 	   function selectBox(){
-// 		   selected = $('#sta_select').val();
+	   
+	   $("#month").click(function(){
+			var selected = $('#h_month').val();
+
 		   $.ajax({
 			   url:"./GuideStatisAjax.fp",
 			   type:'post',
@@ -44,12 +44,14 @@
 			   dataType:'json',
 			   success:function(result){
 				   var jsonData = JSON.parse("["+result+"]");
-				   selected = $('#sta_select').val();
-				   alert(selected);
-				   alert(result);
-				   if(selected=="month"){
+				   selected = $('#h_month').val();
+// 				   alert(selected);
+// 				   alert(result);
 					   
-				   alert("월별 시작")
+// 				   alert("월별 시작")
+				$('#visit').empty();
+				$('#book').empty();
+				$('#bbook').empty();
 				   Morris.Bar({
 						element: 'visit',
 						data: [
@@ -95,49 +97,50 @@
 				   Morris.Bar({
 						element: 'bbook',
 						data: [
-							{ y: jsonData[24].month2+"월", a: jsonData[24].count3},
-							{ y: jsonData[25].month2+"월", a: jsonData[25].count3},
-							{ y: jsonData[26].month2+"월", a: jsonData[26].count3},
-							{ y: jsonData[27].month2+"월", a: jsonData[27].count3},
-							{ y: jsonData[28].month2+"월", a: jsonData[28].count3},
-							{ y: jsonData[29].month2+"월", a: jsonData[29].count3},
-							{ y: jsonData[30].month2+"월", a: jsonData[30].count3},
-							{ y: jsonData[31].month2+"월", a: jsonData[31].count3},
-							{ y: jsonData[32].month2+"월", a: jsonData[32].count3},
-							{ y: jsonData[33].month2+"월", a: jsonData[33].count3},
-							{ y: jsonData[34].month2+"월", a: jsonData[34].count3},
-							{ y: jsonData[35].month2+"월", a: jsonData[35].count3}
+							{ y: jsonData[24].month2+"월", a: jsonData[24].count2},
+							{ y: jsonData[25].month2+"월", a: jsonData[25].count2},
+							{ y: jsonData[26].month2+"월", a: jsonData[26].count2},
+							{ y: jsonData[27].month2+"월", a: jsonData[27].count2},
+							{ y: jsonData[28].month2+"월", a: jsonData[28].count2},
+							{ y: jsonData[29].month2+"월", a: jsonData[29].count2},
+							{ y: jsonData[30].month2+"월", a: jsonData[30].count2},
+							{ y: jsonData[31].month2+"월", a: jsonData[31].count2},
+							{ y: jsonData[32].month2+"월", a: jsonData[32].count2},
+							{ y: jsonData[33].month2+"월", a: jsonData[33].count2},
+							{ y: jsonData[34].month2+"월", a: jsonData[34].count2},
+							{ y: jsonData[35].month2+"월", a: jsonData[35].count2}
 							
 						],
 						xkey: 'y',
 						ykeys: ['a'],
 						labels: ['대출 수']
 					});
-				   Morris.Bar({
-						element: 'member',
-						data: [
-							{ y: jsonData[36].month3+"월", a: jsonData[36].count3},
-							{ y: jsonData[37].month3+"월", a: jsonData[37].count3},
-							{ y: jsonData[38].month3+"월", a: jsonData[38].count3},
-							{ y: jsonData[39].month3+"월", a: jsonData[39].count3},
-							{ y: jsonData[40].month3+"월", a: jsonData[40].count3},
-							{ y: jsonData[41].month3+"월", a: jsonData[41].count3},
-							{ y: jsonData[42].month3+"월", a: jsonData[42].count3},
-							{ y: jsonData[43].month3+"월", a: jsonData[43].count3},
-							{ y: jsonData[44].month3+"월", a: jsonData[44].count3},
-							{ y: jsonData[45].month3+"월", a: jsonData[45].count3},
-							{ y: jsonData[46].month3+"월", a: jsonData[46].count3},
-							{ y: jsonData[47].month3+"월", a: jsonData[47].count3}
-							
-						],
-						xkey: 'y',
-						ykeys: ['a'],
-						labels: ['가입자 수']
-					});
-			
-				   }else if(selected=="year"){
+			   }
+		   });
+		   selectBox();
+		   
+		});
+	   
+  
+				  
+   $("#year").click(function(){
+		var selected = $('#h_year').val();
+
+	   $.ajax({
+		   url:"./GuideStatisAjax.fp",
+		   type:'post',
+		   data:{'selected':selected},
+		   dataType:'json',
+		   success:function(result){
+			   var jsonData = JSON.parse("["+result+"]");
+			   selected = $('#h_year').val();
+// 			   alert(selected);
+// 			   alert(result);
 					   
-					   alert("년별 시작")
+// 					   alert("년별 시작")
+				$('#visit').empty();
+				$('#book').empty();
+				$('#bbook').empty();
 					   Morris.Bar({
 							element: 'visit',
 							data: [
@@ -179,32 +182,14 @@
 							ykeys: ['a'],
 							labels: ['대출 수']
 						});
-					   Morris.Bar({
-							element: 'member',
-							data: [
-								{ y: jsonData[15].year3+"년", a: jsonData[15].count3},
-								{ y: jsonData[16].year3+"년", a: jsonData[16].count3},
-								{ y: jsonData[17].year3+"년", a: jsonData[17].count3},
-								{ y: jsonData[18].year3+"년", a: jsonData[18].count3},
-								{ y: jsonData[19].year3+"년", a: jsonData[19].count3}
-								
-								
-							],
-							xkey: 'y',
-							ykeys: ['a'],
-							labels: ['가입자 수']
-						});
-					   
-					   
-				   }
-				   
-				   
-				   
+
+
 			   }//success 끝
-			   
-		   });
-		});
+  			 
+   			});
 	   selectBox();
+		});	
+   
    });
   </script>
 </head>
@@ -227,12 +212,10 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-				
-				<select id="sta_select">
-				<option>선택</option>
-				<option value="year">연도별</option>
-				<option value="month">월별</option>	
-				</select>
+				<input type="button" value="연도별"  id="year">
+				<input type="button" value="월별"  id="month">
+				<input type="hidden" value="year" id="h_year">
+				<input type="hidden" value="month" id="h_month">
 					<div>
 						<h5>방문자 수</h5>
 						<div id="visit"></div>
@@ -245,12 +228,6 @@
 						<h5>대출 수</h5>
 						<div id="bbook"></div>
 					</div>
-					<div>
-						<h5>가입자 수</h5>
-						<div id="member"></div>
-					</div>
-					<div></div>
-					<div></div>
 				</div>
 				<!-- //메인 페이지-->
 				</article>
