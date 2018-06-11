@@ -22,10 +22,10 @@ public class GuideStatisAjax implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("java들어옴");
+		
 		request.setCharacterEncoding("utf-8");
 		String selected = request.getParameter("selected");
-		System.out.println(selected);
+	
 		
 		int sta_type = 0;
 		

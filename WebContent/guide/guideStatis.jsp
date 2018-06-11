@@ -45,10 +45,13 @@
 			   success:function(result){
 				   var jsonData = JSON.parse("["+result+"]");
 				   selected = $('#h_month').val();
-				   alert(selected);
-				   alert(result);
+// 				   alert(selected);
+// 				   alert(result);
 					   
-				   alert("월별 시작")
+// 				   alert("월별 시작")
+				$('#visit').empty();
+				$('#book').empty();
+				$('#bbook').empty();
 				   Morris.Bar({
 						element: 'visit',
 						data: [
@@ -115,6 +118,7 @@
 			   }
 		   });
 		   selectBox();
+		   
 		});
 	   
   
@@ -130,10 +134,13 @@
 		   success:function(result){
 			   var jsonData = JSON.parse("["+result+"]");
 			   selected = $('#h_year').val();
-			   alert(selected);
-			   alert(result);
+// 			   alert(selected);
+// 			   alert(result);
 					   
-					   alert("년별 시작")
+// 					   alert("년별 시작")
+				$('#visit').empty();
+				$('#book').empty();
+				$('#bbook').empty();
 					   Morris.Bar({
 							element: 'visit',
 							data: [
