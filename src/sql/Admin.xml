@@ -531,15 +531,6 @@
 		INSERT INTO VISIT (V_DATE) VALUES (now())
 	 </insert>
 	 
-	 <select id="getTotalCount">
-		SELECT COUNT(*) AS TotalCnt FROM VISIT
-	 </select>
-	 
-	 <select id="getTodayCount"> 
-	 	SELECT COUNT(*) AS TodayCnt FROM VISIT
-	 	WHERE V_DATE > curdate()
-	 </select>
-	 
 	 <select id="getVisitMonthCount" resultType="map">
 	 	select month(v_date) month, count(*) count from visit
 	 	where year(v_date) = #{sta_type} group by month
