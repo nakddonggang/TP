@@ -602,6 +602,13 @@ public class AdminDAO {
 		return AllFacilityList;
 	}
 	
+	// 유저별 대출 횟수 구문
+	public int userBorrowCount(String member_id) {
+		return sqlsession.selectOne("userBorrowCount", member_id);
+	}
+	
+	// 유저별 연체 횟수 구문
+	
 
 	public  List<Map<String,Integer>> getVisitMonthCount(int sta_type){
 	 List<Map<String,Integer>> VisitMonth = sqlsession.selectList("getVisitMonthCount",sta_type);

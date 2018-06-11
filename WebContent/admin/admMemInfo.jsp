@@ -32,7 +32,7 @@ String pageType = request.getParameter("pageType");
 MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
 String gm_check =(String)request.getAttribute("gm_check");
 String bl_check =(String)request.getAttribute("bl_check");
-
+int borrowcount = (int)(request.getAttribute("borrowcount"));
 String member_id = (String)session.getAttribute("member_id");
 if ((member_id == null) || !(member_id.equals("admin"))) {
 	response.sendRedirect("./Main.fp");
@@ -112,7 +112,7 @@ if ((member_id == null) || !(member_id.equals("admin"))) {
 							<li>
 								<ul class="row_sub">
 									<li class="title_adm"><span>대출횟수</span></li>
-									<li class="inp_form"><input type="text" name="borrow_count"  value="<%=mDTO.getBorrow_count()%>"  readonly></li>
+									<li class="inp_form"><input type="text" name="borrow_count"  value="<%=borrowcount%>"  readonly></li>
 								</ul>
 							</li>
 							<li>

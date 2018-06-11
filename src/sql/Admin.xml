@@ -571,7 +571,9 @@
 	 	where year(bbook_bdate) > #{sta_type}-5 group by year
 	 </select>
 	 
-
+	 <select id="userBorrowCount" parameterType="string" resultType="int">
+	 	select count(*) from history_bbook where member_id=#{member_id}
+	 </select>
 
 	
 	 
