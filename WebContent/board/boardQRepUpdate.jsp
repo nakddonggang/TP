@@ -46,7 +46,7 @@ $(document).ready(function(){
 				return false;
 			}
 		});
-		$('#qUpdateForm').submit();
+		$('#rUpdateForm').submit();
 	});
 });
 </script>

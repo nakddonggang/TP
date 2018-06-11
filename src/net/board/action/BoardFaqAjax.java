@@ -36,6 +36,10 @@ public class BoardFaqAjax implements Action{
 			faq_type = "자료구입";
 		}else if(selected.equals("library")){
 			faq_type = "도서관 이용";
+		}else if(selected.equals("original")){
+			faq_type = "원문이용/상호대차";
+		}else if(selected.equals("etc")){
+			faq_type = "기타";
 		}
 
 		BoardDAO bDAO = new BoardDAO();
