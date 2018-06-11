@@ -231,7 +231,7 @@ $(document).ready(function(){
 					<jsp:include page="../include/topbar.jsp" />
 
 					<div class="content">
-						<div class=board>
+						<div class=board style="word-break: break-all;">
 							<h3>자주 하는 질문</h3>
 							<div class="dl_box">
 							<dl>

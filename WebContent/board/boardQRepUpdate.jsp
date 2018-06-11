@@ -25,29 +25,28 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var result;
-	
 	$('.updateBoard').click(function(){
-		result = $.Confirm('수정하시겠습니까?');
-	});
-	$('#rUpdateForm').submit(function(){
-		if($('#name').val()==""){
-			$.Alert('답변자 소속부서 혹은 이름 입력하세요');
-			$('#name').focus();
-			return false;
-		}
-		if($('#email').val()==""){
-			$.Alert("답변자 EMAIL 입력하세요");
-			$('#email').focus();
-			return false;
-		}
-		if($('#content').val()==""){
-			$.Alert('답변내용 입력하세요');
-			$('#content').focus();
-			return false;
-		}
-		if(result){}
-		else return false;
+		$.Confirm('수정하시겠습니까?', function(){
+			if($('#name').val()==""){
+				$.Alert("답변자 소속부서 혹은 이름 입력하세요", function(){
+					$('#name').focus();
+				});
+				return false;
+			}
+			if($('#email').val()==""){
+				$.Alert("답변자 EMAIL 입력하세요", function(){
+					$('#email').focus();
+				});
+				return false;
+			}
+			if($('#content').val()==""){
+				$.Alert("답변내용 입력하세요", function(){
+					$('#content').focus();
+				});
+				return false;
+			}
+		});
+		$('#qUpdateForm').submit();
 	});
 });
 </script>
@@ -116,7 +115,7 @@ String pageNum = request.getParameter("pageNum");
 										<div class="btn_btm_center">
 											<ul>
 												<li class="btn_cancle">
-													<input type="submit" value="수정" class ="btn_type4 updateBoard">
+													<input type="button" value="수정" class ="btn_type4 updateBoard">
 												</li>
 												<li>
 													<input type="reset" value="취소" class ="btn_type4">

@@ -26,29 +26,28 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	var result;
-	
 	$('.updateBoard').click(function(){
-		result = $.Confirm('수정하시겠습니까?');
-	});
-	$('#fUpdateForm').submit(function(){
-		if($('#type').val()==""){
-			$.Alert("분류항목 입력하세요");
-			$('#type').focus();
-			return false;
-		}
-		if($('#subject').val()==""){
-			$.Alert("제목 입력하세요");
-			$('#subject').focus();
-			return false;
-		}
-		if($('#content').val()==""){
-			$.Alert("내용 입력하세요");
-			$('#content').focus();
-			return false;
-		}
-		if(result){}
-		else return false;
+		$.Confirm('수정하시겠습니까?',	function(){
+			if($('#type').val()==""){
+				$.Alert("분류항목 입력하세요", function(){
+					$('#type').focus();
+				});
+				return false;
+			}
+			if($('#subject').val()==""){
+				$.Alert("제목 입력하세요", function(){
+					$('#subject').focus();
+				});
+				return false;
+			}
+			if($('#content').val()==""){
+				$.Alert("내용 입력하세요", function(){
+					$('#content').focus();
+				});
+				return false;
+			}
+			$('#fUpdateForm').submit();
+		});
 	});
 });
 </script>
@@ -129,7 +128,7 @@ $(document).ready(function(){
 									<li>
 										<div class="btn_btm_center">
 											<ul>
-												<li class="btn_cancle"><input type="submit" value="글수정"
+												<li class="btn_cancle"><input type="button" value="글수정"
 													class="btn_type4 updateBoard"></li>
 												<li><input type="reset" value="다시쓰기" class="btn_type4">
 												</li>
