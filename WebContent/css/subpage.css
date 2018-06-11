@@ -288,7 +288,11 @@ h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-famil
 
 /* busket css */
 
-
+/*myUseBookList*/
+.view_lst .con_lst > ul.no_scroll .my_p {width:25%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .my_pp {width:25%; padding:0 10px; height: 70px; line-height: 70px;}
+.view_lst .con_lst > ul.no_scroll .my_ppp {width:25%; padding:0 10px;  height: 70px; line-height: 70px;}
+/*myUseBookList*/
 
 
 
@@ -558,6 +562,10 @@ strong#currentPage {font-weight: bold;}
 	.join_form .row_sub > li.title {width: 56px;  min-width: 60px; height: 15px; padding: 5px; text-align: center;}
 	.join_form .row_sub > li textarea { float:left;width: 100%; resize: none; background:#f6f6f6; border:0; font-family: "Noto_M";}
 	/* member join end */
+	
+	/*myUseBookList*/
+	.view_lst .con_lst > ul.no_scroll .my_ppp{line-height: 14px;}}
+	/*myUseBookList*/
 	
 /* admin css */
 	.join_form .row_subIO > li.title { width: 95px; height: 50px;padding: 5px 10px;background: #f6f6f6; font-family: "Noto_M";letter-spacing: -0.08em;text-align: center;}
