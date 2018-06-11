@@ -77,8 +77,8 @@
 	</select>
 
 	<insert id="insertNotice" parameterType="net.board.db.BoardDTO">
-		insert into notice(notice_num, notice_type, notice_subject, notice_content, notice_file, notice_date, notice_readcount)
-		values (#{notice_num}, #{notice_type}, #{notice_subject}, #{notice_content}, #{notice_file}, now(), #{notice_readcount})
+		insert into notice(notice_num, notice_type, notice_subject, notice_content, notice_file, notice_date)
+		values (#{notice_num}, #{notice_type}, #{notice_subject}, #{notice_content}, #{notice_file}, now())
 	</insert>
 
 	<update id="updateNotice" parameterType="net.board.db.BoardDTO">

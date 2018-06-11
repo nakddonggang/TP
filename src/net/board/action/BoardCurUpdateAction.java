@@ -21,7 +21,7 @@ public class BoardCurUpdateAction implements Action{
 		int num = Integer.parseInt(request.getParameter("cur_num"));
 		String pageNum = request.getParameter("pageNum");
 		
-		String realPath = request.getRealPath("/upload");
+		String realPath = request.getRealPath("/upload/curation");
 		System.out.println("upload폴더 물리적경로 : "+realPath);
 
 		int maxSize = 5*1024*1024;	//5Mb

@@ -403,9 +403,9 @@
 
 	<select id="popularList" resultType="net.book.db.BookDTO">
 		select
-		bb.book_number,count(*),b.* from bbook bb join book b on
-		(bb.book_number=b.book_number)
-		group by bb.book_number order by count(*) desc
+		hb.book_number, ifnull(count(*),0) count ,b.* from history_bbook hb join book b on
+		(hb.book_number=b.book_number)
+		group by hb.book_number order by count desc limit 0,4
 	</select>
 
 	<select id="newBookList" resultType="net.book.db.BookDTO">
