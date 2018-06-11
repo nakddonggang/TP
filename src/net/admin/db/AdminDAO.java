@@ -618,10 +618,6 @@ public class AdminDAO {
 			return BbookMonth;
 		}
 	
-	public  List<Map<String,Integer>> getMemberMonthCount(int sta_type){
-		 List<Map<String,Integer>> MemberMonth = sqlsession.selectList("getMemberMonthCount",sta_type);
-			return MemberMonth;
-		}
 		
 	public  List<Map<String,Integer>> getVisitYearCount(int sta_type){
 		 List<Map<String,Integer>> VisitYear = sqlsession.selectList("getVisitYearCount",sta_type);
@@ -638,10 +634,5 @@ public class AdminDAO {
 				return BbookYear;
 			}
 		
-		public  List<Map<String,Integer>> getMemberYearCount(int sta_type){
-			 List<Map<String,Integer>> MemberYear = sqlsession.selectList("getMemberYearCount",sta_type);
-				return MemberYear;
-			}
-	
 
 }

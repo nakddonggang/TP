@@ -44,17 +44,7 @@ public class GuideStatisAjax implements Action{
 			 List<Map<String,Integer>> VisitMonth = aDAO.getVisitMonthCount(sta_type);
 			 List<Map<String,Integer>> BookMonth = aDAO.getBookMonthCount(sta_type);
 			 List<Map<String,Integer>> BbookMonth = aDAO.getBbookMonthCount(sta_type);
-			 List<Map<String,Integer>> MemberMonth = aDAO.getMemberMonthCount(sta_type);
 
-		    System.out.println(BbookMonth.get(0));
-		  
-		    System.out.println(MemberMonth.get(0));
-		    
-			
-			//Map m = StatisMonth.get(0);
-			//System.out.println(m.get("month"));
-			//System.out.println(m.get("count"));
-			
 			/****** JSON ******/
 			JsonArray arr = null;
 			JsonObject json = null;
@@ -67,9 +57,7 @@ public class GuideStatisAjax implements Action{
 			int month2=0;
 			int count2=0;
 			Map m2 = null;
-			int month3=0;
-			int count3=0;
-			Map m3 = null;
+
 			
 			String result = "";
 			for(int j=1; j<13; j++){
@@ -119,50 +107,27 @@ public class GuideStatisAjax implements Action{
 				}
 			
 			result += ",";
-			for(int y=1; y<13; y++){
-				//bbook 월별 대출수
-				for(int u=0; u<BbookMonth.size(); u++){
-					 m2 = BbookMonth.get(u);
-					if((Integer)m2.get("month") == y){
+			for(int a=1; a<13; a++){
+				//book 월별 입고수
+				for(int f=0; f<BbookMonth.size(); f++){
+					 m2 = BbookMonth.get(f);
+					if((Integer)m2.get("month") == a){
 						month2 = Integer.parseInt(m2.get("month").toString());
 						count2 = Integer.parseInt(m2.get("count").toString());
 						break;
 					}
 				}
-				if((Integer)m2.get("month") != y){
-					month2 = y;	count2 = 0;
+				if((Integer)m2.get("month") != a){
+					month2 = a;	count2 = 0;
 				}
-				
-							
+					
 					json= Json.createObjectBuilder()
 						  .add("month2", month2)
 						  .add("count2", count2).build();
 						result += json.toString();
-						if(y != 12)	result += ",";
+						if(a != 12)	result += ",";
 				}
-			
-			result += ",";
-			for(int g=1; g<13; g++){
-				//member 월별 가입자수
-				for(int e=0; e<MemberMonth.size(); e++){
-					 m3 = MemberMonth.get(e);
-					if((Integer)m3.get("month") == g){
-						month3 = Integer.parseInt(m.get("month").toString());
-						count3 = Integer.parseInt(m.get("count").toString());
-						break;
-					}
-				}
-				if((Integer)m3.get("month") != g){
-					month3 = g;	count3 = 0;
-				}
-				
-							
-					json= Json.createObjectBuilder()
-						  .add("month3", month3)
-						  .add("count3", count3).build();
-						result += json.toString();
-						if(g != 12)	result += ",";
-				}
+
 			
 			arr = Json.createArrayBuilder()
 					.add(result).build();
@@ -185,15 +150,8 @@ public class GuideStatisAjax implements Action{
 			 List<Map<String,Integer>> VisitYear = aDAO.getVisitYearCount(sta_type);
 			 List<Map<String,Integer>> BookYear = aDAO.getBookYearCount(sta_type);
 			 List<Map<String,Integer>> BbookYear = aDAO.getBbookYearCount(sta_type);
-			 List<Map<String,Integer>> MemberYear = aDAO.getMemberYearCount(sta_type);
+
 			 
-			
-			
-			
-			System.out.println(VisitYear.get(0));
-			System.out.println(BookYear.get(0));
-			System.out.println(BbookYear.get(0));
-			System.out.println(MemberYear.get(0));
 			
 			/****** JSON ******/
 			JsonArray arr = null;
@@ -207,9 +165,7 @@ public class GuideStatisAjax implements Action{
 			int year2=0;
 			int count2=0;
 			Map m2 = null;
-			int year3=0;
-			int count3=0;
-			Map m3 = null;
+
 			
 			String result = "";
 			for(int j=(sta_type-4); j<=sta_type; j++){
@@ -281,28 +237,7 @@ public class GuideStatisAjax implements Action{
 						if(b != sta_type)	result += ",";
 				}
 			
-			result += ",";
-			for(int c=(sta_type-4); c<=sta_type; c++){
-				//member 월별 가입자수
-				for(int e=0; e<MemberYear.size(); e++){
-					 m3 = MemberYear.get(e);
-					if((Integer)m3.get("year") == c){
-						year3 = Integer.parseInt(m.get("year").toString());
-						count3 = Integer.parseInt(m.get("count").toString());
-						break;
-					}
-				}
-				if((Integer)m3.get("year") != c){
-					year3 = c;	count3 = 0;
-				}
-				
-							
-					json= Json.createObjectBuilder()
-						  .add("year3", year3)
-						  .add("count3", count3).build();
-						result += json.toString();
-						if(c != sta_type)	result += ",";
-				}
+
 			
 			arr = Json.createArrayBuilder()
 					.add(result).build();

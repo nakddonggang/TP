@@ -554,11 +554,7 @@
 	 	select month(bbook_bdate) month, count(*) count from history_bbook
 	 	where year(bbook_bdate) = #{sta_type} group by month
 	 </select>
-	 
-	  <select id="getMemberMonthCount" resultType="map">
-	 	select month(member_date) month, count(*) count from member
-	 	where year(member_date) = #{sta_type} group by month
-	 </select>
+	
 	 
 	 <select id="getVisitYearCount" resultType="map">
 	 	select year(v_date) year, count(*) count from visit
@@ -575,10 +571,7 @@
 	 	where year(bbook_bdate) > #{sta_type}-5 group by year
 	 </select>
 	 
-	  <select id="getMemberYearCount" resultType="map">
-	 	select year(member_date) year, count(*) count from member
-	 	where year(member_date) > #{sta_type}-5 group by year
-	 </select>
+
 
 	
 	 
