@@ -126,7 +126,7 @@ $(document).ready(function(){
 									<div class="con_lst">
 										<ul class="no_scroll">
 											<li class="buk_c"><input type="checkbox" name="checkbox" value="<%=mDTO.getBasket_number() %>"></li>
-											<li class="buk_p"><img src="./upload/book/<%=mDTO.getBook_file()%>" width="70" height="80"></li>
+											<li class="buk_p"><img src="./upload/book/<%=mDTO.getBook_file()%>" width="48" height="50"></li>
 											<li class="buk_t"><p><%=mDTO.getBook_subject() %></p></li>
 											<li class="buk_n"><p><%=mDTO.getBook_author() %></p></li>
 											<li class="buk_n"><p><%=bbook_bstate %></p></li>
