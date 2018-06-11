@@ -200,17 +200,7 @@ $(document).ready(function(){
 </script>
 </head>
 <body>
-	<%
-// 		request.setCharacterEncoding("UTF-8");
-// 		int count = ((Integer) request.getAttribute("count")).intValue();
-// 		String member_id = (String) session.getAttribute("member_id");
-		String pageNum = (String) request.getAttribute("pageNum");
-// 		int pageCount = ((Integer) request.getAttribute("pageCount")).intValue();
-// 		int pageBlock = ((Integer) request.getAttribute("pageBlock")).intValue();
-// 		int startPage = ((Integer) request.getAttribute("startPage")).intValue();
-// 		int endPage = ((Integer) request.getAttribute("endPage")).intValue();
-// 		List<BoardDTO> faqList = (List<BoardDTO>) request.getAttribute("faqList");
-	%>
+<%String pageNum = (String) request.getAttribute("pageNum");%>
 <!-- board/boardFaq.jsp FAQ 게시판  페이지 -->
 	<div class="wrapper">
 
@@ -248,6 +238,8 @@ $(document).ready(function(){
 									<option value="buy">자료구입</option>
 									<option value="book">대출/반납/예약</option>
 									<option value="library">도서관 이용</option>
+									<option value="original">원문이용/상호대차</option>
+									<option value="etc">기타</option>
 								</select>
 							</div>
 							<ul class="brd_txt_lst">

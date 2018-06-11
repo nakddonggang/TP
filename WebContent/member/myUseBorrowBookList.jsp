@@ -84,7 +84,7 @@ int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 									for(BookDTO bDTO : bbList) {
 										%>
 										<div class="con_lst">
-										   <ul class="no_scroll" onclick="location.href='#'">
+										   <ul class="no_scroll" onclick="location.href='./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>'">
 												<li class="col_num"><p><%=bDTO.getBook_number() %></p></li>
 												<li class="adm_col_date"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
 												<li class="col_title"><p><%=bDTO.getBook_subject() %></p></li>
@@ -118,6 +118,12 @@ int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 					                           <a href="MemberMyUseBorrowBookList.me?pageNum=<%=pageCount %>">[끝]</a>
 					                  </div>
 					
+					
+			             <div class="btn_btm_center">
+					
+						<input type="button"  class="btn_type5" value="목록" onclick="location.href='./MemberUseIndex.me'">
+						
+						 </div>
 						
 						
 			        </div>
