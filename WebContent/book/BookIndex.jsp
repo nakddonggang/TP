@@ -65,13 +65,13 @@ firstload(pageNum, view);
 	}); // function selectBook 함수
 	
 	$('#book_pic_btn').click(function(){
-		pageNum=1;
+// 		pageNum=1;
 		view=0;
 		onload(pageNum, view);
 	});
 	
 	$('#book_cont_btn').click(function(){
-		pageNum=1;
+// 		pageNum=1;
 		view=1;
 		onload(pageNum, view);
 	});
@@ -172,7 +172,7 @@ firstload(pageNum, view);
 										
 										if (member_id!=null) {
 												var text6 = "<li class='adm_col_type' id='adm_book_high'><input type='button' rel='"
-												+JSdata[i].book_number+"' class='bbutton2' value='대출예약' id='borrowBook'></li>";
+												+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='borrowBook'></li>";
 												$('#text5_ap'+i).append(text6);
 										} // 아이디가 있을 때 보여주기
 										
@@ -328,7 +328,7 @@ firstload(pageNum, view);
 						</div>
 					</div>
 					<div id="for_book_div">
-											<form action="./BookSearch.bk" method="post" name="searchFr"
+											<form action="./BookSearch.bk" method="get" name="searchFr"
 												id="SearchForm">
 												<div id="book_field">
 													<h1>통합검색</h1>

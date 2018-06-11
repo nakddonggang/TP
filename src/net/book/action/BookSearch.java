@@ -19,7 +19,7 @@ public class BookSearch implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
-
+		 
 		// String sort 파라미터값 가져오기
 //		String sort = request.getParameter("sort");
 //		System.out.println("정렬해야할 값"+sort);
@@ -146,7 +146,7 @@ public class BookSearch implements Action{
 		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 9;
+		int pageSize = 6;
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
