@@ -47,7 +47,7 @@ $(document).ready(function() {
 	}
 	
 var pageNum = Request("pageNum");
-var view = <%=request.getParameter("view")%>;
+var view =  Request("view");
 var category1=Request("category1");
 var search1=Request("search1");
 var opt1=Request("opt1");
@@ -57,6 +57,7 @@ var opt2=Request("opt2");
 var category3=Request("category3");
 var search3=Request("search3");
 var pubDate=Request("pubDate");
+$.Alert(search1, function(){ });
 if (view==null) view="1";
 if(pageNum=="") pageNum=1;
 
@@ -92,13 +93,13 @@ if (view==0){
 }
 
 $('#book_pic_btn').click(function(){
-	pageNum=1;
+// 	pageNum=1;
 	view=0;
 	onload(pageNum, view);
 });
 
 $('#book_cont_btn').click(function(){
-	pageNum=1;
+// 	pageNum=1;
 	view=1;
 	onload(pageNum, view);
 });
@@ -155,6 +156,7 @@ var book_number = $(this).attr("rel");
 		$.ajax({
 			url:"./BookSearchAJ.bk",
 			type:'POST',
+			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
 			data:{'sort':sort, "pageNum":pageNum, "view":view, "category1":category1, "search1":search1,
 				"opt1":opt1, "category2":category2, "search2":search2, "opt2":opt2, "category3":category3,
 				"search3":search3, "pubDate":pubDate},
@@ -544,7 +546,6 @@ if(view==null) view = "1";
 
 <form action="./MemberBasketAdd.me" method="post" id="basket_Fr">		
 <div class="AjaxTest">
-		<div class="AjaxTest">
 							<p>
 								Total_<span><%=count%></span>	
 							</p>	
@@ -672,7 +673,6 @@ if(view==null) view = "1";
 						<a href="./BookSearch.bk?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
 						 </div>
 		
-		</div>
 </div>						 
 </form>
 
