@@ -156,7 +156,7 @@
 		order by b.book_number desc limit #{startRow},#{pageSize}	 
 	 </select>	 
 	 
-	 	 <select id="getBookDateSearchAllCount" resultType="int" parameterType="hashmap">
+	 <select id="getBookDateSearchAllCount" resultType="int" parameterType="hashmap">
 	 	select count(*)
 		from book
 		where (book_subject like #{all} or book_author like #{all} or book_publisher like #{all} or book_isbn like #{all} or book_classification like #{all})
@@ -579,4 +579,8 @@
 	 	select year(member_date) year, count(*) count from member
 	 	where year(member_date) > #{sta_type}-5 group by year
 	 </select>
+
+	
+	 
+
  </mapper>

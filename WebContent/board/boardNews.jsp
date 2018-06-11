@@ -67,7 +67,7 @@ $(document).ready(function(){
 		List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
 	%>
 <!-- board/boardNews.jsp Notice 게시판  페이지 -->
-<iframe id="ifrm_filedown" style="position:absolute; z-index:1; visibility:hidden;"></iframe>   
+<iframe id="ifrm_filedown" style="position:absolute; z-index:1; visibility:hidden;"></iframe>
 	<div class="wrapper">
 
 		<!-- header -->
@@ -108,13 +108,8 @@ $(document).ready(function(){
 						<div class="view_cnt">
 							<p>Total_<span><%=count %></span></p>
 						</div>
-						
-						
-						
+		
 						<ul class="brd_txt_lst">
-						
-						
-						
 							<!-- 글목록 -->
 							<li class="view_lst">
 							
@@ -141,7 +136,7 @@ $(document).ready(function(){
 													if(bDTO.getNotice_file().split(",")[0].equals("null")) file="";
 													else file = bDTO.getNotice_file().split(",")[0];
 											
-													if(bDTO.getNotice_file().split(",").length>1){
+													if(!(bDTO.getNotice_file().split(",")[1].equals("null"))){
 														%><p><img src="./upload/<%=bDTO.getNotice_file().split(",")[1]%>" width="100" height="100"></p><%
 													}
 												}
@@ -214,7 +209,6 @@ $(document).ready(function(){
 		$('#delete'+index).click(function(){
 			$.Confirm(
 				'정말 삭제하시겠습니까?',
-				'경고',
 				function(){
 					location.href = './BoardNoticeDeleteAction.no?notice_num=' + $('#delete'+index).attr('rel') + '&pageNum="${pageNum}"';
 				}

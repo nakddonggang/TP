@@ -29,7 +29,6 @@
 </head>
 <%
 request.setCharacterEncoding("UTF-8");
-String pageNum =  (String)request.getAttribute("pageNum");
 List<BoardDTO> noticeList = (List<BoardDTO>)request.getAttribute("noticeList");
 List<BoardDTO> curationList = (List<BoardDTO>)request.getAttribute("curationList");
 List<BookDTO> popularList = (List<BookDTO>)request.getAttribute("popularList");
@@ -70,6 +69,7 @@ if(member_id != null) {
 						for(int i=0; i<popularList.size(); i++){ 
 						BookDTO bkDTO = popularList.get(i);
 						%><ul>
+							<li><img src="./upload/book/<%=bkDTO.getBook_file()%>"width="70px" height="80px"></li>
 							<li>제목 : <%=bkDTO.getBook_subject() %></li>
 							<li>저자 : <%=bkDTO.getBook_author() %></li>
 							<li>발행처 : <%=bkDTO.getBook_publisher() %></li>
@@ -85,7 +85,7 @@ if(member_id != null) {
 			<!-- 큐레이션 -->
 					<div class="main_concur main_div">
 					<div class="main_box">
-					 <h2>Events</h2>
+					 <h2>Curation</h2>
 					<ul>
 						<%
 						if(curationList==null){
@@ -94,9 +94,9 @@ if(member_id != null) {
 							for(int i=0; i<curationList.size(); i++){
 								BoardDTO bDTO = curationList.get(i);
 							%>
-								<li onclick="location.href='./?curNum=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum%>">
+								<li onclick="location.href='./BoardCurContent.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=1'">
 								  <div class="main_box_img">
-								  	<img src="./upload/<%=bDTO.getCur_file()%>" width="100" height="100">
+								  	<img src="./upload/curation/<%=bDTO.getCur_file()%>" width="100" height="100">
 								  </div>
 								  <div class="main_box_tit">
 								  <p class=tit><%=bDTO.getCur_subject() %></p>
@@ -114,25 +114,24 @@ if(member_id != null) {
 					<div class="main_connot main_div">
 					<div class="main_box">
 						<h2>Notice</h2>
-						<ul>
-							<!-- 글목록 -->
-							<li>
+						<!-- 글목록 -->
+							<ul>
 							<%
-								if(noticeList==null){	%><ul><li class="col_tit"><p>게시글이 없습니다</p></li></ul><%	}
+								if(noticeList==null){	%><li class="col_tit"><p>게시글이 없습니다</p></li><%	}
 								else{
 									for(int i=0; i<noticeList.size(); i++){
 										BoardDTO bDTO = noticeList.get(i);	//제너릭 사용해서 형변환 할 필요없음
 									%>
+								
 									<li>
-									 <a href="#">
-										<p class="tit"><%=bDTO.getNotice_type() %>     <%=bDTO.getNotice_subject() %></p>
+									 <a href="./BoardNoticeList.no?pageNum=1">
+										<p class="tit"><%=bDTO.getNotice_type() %> <%=bDTO.getNotice_subject() %></p>
 									    <span class="date"><%=bDTO.getNotice_date() %></span>
 									</a>	
-										</li>
+									</li>
 									<%	}	%>
 								<%	}	%>
-							
-						</ul>
+							</ul>
 						</div>
 					</div>
 					 

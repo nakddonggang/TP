@@ -56,7 +56,7 @@
 						
 					
 					<div class='join_form'>
-					<h3>회원정보 수정</h3>
+					<h3>회원정보</h3>
 						<form action="MemberUpdate.me"  method="post"  name="fr"  id = "fr">
 							<ul class="row">
 								

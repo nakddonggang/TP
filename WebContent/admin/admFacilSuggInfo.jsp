@@ -26,18 +26,11 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-<%-- <%if(facil_use.equals("0")){ %> --%>
-// <input type="text" value="이용가능" readonly>
-// <input type="button" value="사용불가" >
-<%-- <%}else if(facil_use.equals("1")){%> --%>
-// <input type="text"  value="이용중" readonly>
-<%-- <%}else if(facil_use.equals("2")){ %> --%>
-// <input type="text"  value="사용불가" readonly>
-// <input type="button" value="사용가능" id="ajaxUseFacilbutton">
 	$(document).ready(function(){
+		var facil_num = $('#add1').val();
+		
 		$("#ajaxUseFacilbutton").click(function(){
 			var facil_use = $('#hidden_facil_use').val();
-			var facil_num = $('#add1').val();
 			$.ajax({
 				url:'./AdminFacilUseButton.am',
 				type:'POST',
@@ -61,7 +54,6 @@
 		
 		$("#Facil_Add12").click(function(){
 			var obj_mname = $('#obj_mname').val();
-			var facil_num = $('#add1').val();
 				$.ajax({
 					url:'./AdminFacilSuggAddAction.am',
 					type:'POST',

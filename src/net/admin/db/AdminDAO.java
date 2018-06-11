@@ -602,6 +602,7 @@ public class AdminDAO {
 		return AllFacilityList;
 	}
 	
+
 	public  List<Map<String,Integer>> getVisitMonthCount(int sta_type){
 	 List<Map<String,Integer>> VisitMonth = sqlsession.selectList("getVisitMonthCount",sta_type);
 		return VisitMonth;
@@ -642,4 +643,5 @@ public class AdminDAO {
 				return MemberYear;
 			}
 	
+
 }
