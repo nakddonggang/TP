@@ -62,17 +62,19 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 					<div class="content">
 						<div class=board>
 						
-							<h1>예약중인 도서 <%=count %>권</h1>
+							<h3>예약중인 도서</h3>
+							<div class="view_cnt">
+							<p>Total_<span><%=count %></span></p>
+							</div>
 							<ul class="brd_txt_lst">
 								<!-- 글목록 -->
 								<li class="view_lst">
 								<div class="con_lst">
 									<ul class="no_scroll title_t">
-										<li class="adm_col_date">번호</li>
-										<li class="adm_col_date">사진</li>
-										<li class="adm_col_date">제목</li>
-										<li class="adm_col_date">저자</li>
-										<li class="adm_col_date">예약일자</li>
+										<li class="my_p">사진</li>
+										<li class="my_p">제목</li>
+										<li class="my_p">저자</li>
+										<li class="my_p">예약일자</li>
 									</ul>
 								</div>
 					
@@ -85,11 +87,11 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 										%>					
 								<div class="con_lst">
 									<ul class="no_scroll" onclick="location.href='./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>'">
-										<li class="adm_col_date"><%=bDTO.getBook_number() %></li>
-										<li class="adm_col_date"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
-										<li class="adm_col_date"><%=bDTO.getBook_subject() %></li>
-										<li class="adm_col_date"><%=bDTO.getBook_author() %></li>
-										<li class="adm_col_date"><%=date.format(bDTO.getRbook_date()) %></li>
+									
+										<li class="my_pp"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
+										<li class="my_ppp"><%=bDTO.getBook_subject() %></li>
+										<li class="my_pp"><%=bDTO.getBook_author() %></li>
+										<li class="my_pp"><%=date.format(bDTO.getRbook_date()) %></li>
 									</ul>
 								</div>
 										<%
@@ -117,11 +119,9 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 						 </div>
 						 
 						 <div class="btn_btm_center">
-						 <%		
-						if ("admin".equals(member_id)) {
-						%>
+					
 						<input type="button"  class="btn_type5" value="목록" onclick="location.href='./MemberUseIndex.me'">
-						<%  }  %>
+						
 						 </div>
 						
 					</div>

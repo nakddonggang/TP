@@ -53,10 +53,10 @@ if("${member_id}"!='admin') {
 						<p>Total_<span id="count"></span></p>
 					</div>
 					<div>
-						<input type="button" name="btn_all"		id="%" class="callAjax" value="전체보기">
-						<input type="button" name="btn_black"	id="1" class="callAjax" value="블랙리스트">
-						<input type="button" name="btn_good"	id="2" class="callAjax" value="우수화원">
-						<input type="button" name="btn_admin"	id="3" class="callAjax" value="관리자">
+						<input type="button" name="btn_all"		id="%" class="callAjax btn_type6" value="전체보기">
+						<input type="button" name="btn_black"	id="1" class="callAjax btn_type6" value="블랙리스트">
+						<input type="button" name="btn_good"	id="2" class="callAjax btn_type6" value="우수회원">
+						<input type="button" name="btn_admin"	id="3" class="callAjax btn_type6" value="관리자">
 					</div>
 					<ul class="brd_txt_lst">
 						<!-- 글목록 -->

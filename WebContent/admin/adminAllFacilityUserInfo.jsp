@@ -62,8 +62,8 @@
 								<ul class="no_scroll title_t">
 								<li class="col_mem_r">시설번호</li>
 								<li class="col_mem_r">사용자</li>
-								<li class="col_mem_r">사용시작시간</li>
-								<li class="col_mem_r">사용끝낸시간</li>
+								<li class="col_mem_r">시작시간</li>
+								<li class="col_mem_r">반납시간</li>
 							</ul>
 							</div>
 							<%

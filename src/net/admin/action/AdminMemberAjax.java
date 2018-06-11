@@ -37,7 +37,7 @@ public class AdminMemberAjax implements Action {
 		int startPage = ((currentPage-1)/pageBlock)*pageBlock+1;
 		int endPage = startPage+pageBlock-1;	if(endPage > pageCount)	endPage = pageCount;
 		
-		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat transFormat = new SimpleDateFormat("yyyy-MM-dd");
 
 		if(count !=0)	memberList = adao.getMemberList(member_level, startRow, pageSize);
 		

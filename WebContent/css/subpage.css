@@ -79,7 +79,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 
 
-
+.btn_type6 {top: 90px; width: 60px; height: 25px; line-height: 25px; color: #fff !important; border: 0; text-align: center; background: #464646; font-size: 0.5em; margin-bottom: 3px;}
 .btn_type5 {position:absolute; top:-25px; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
 .btn_type1 {position:absolute; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; font-size:1.14em;}
 .btn_type2 {position:absolute; right:0; bottom:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#71847a;}
@@ -274,7 +274,7 @@ h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-famil
 		/* admin css*/
 
 /* member css*/
-.view_lst .con_lst > ul.no_scroll .col_mem_r {width:25%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .col_mem_r {width:25%; padding:0 5px;}
 .view_lst .con_lst > ul.no_scroll .col_mem_b {width:33%; padding:0 10px;}
 
 /* member css*/
@@ -288,7 +288,11 @@ h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-famil
 
 /* busket css */
 
-
+/*myUseBookList*/
+.view_lst .con_lst > ul.no_scroll .my_p {width:25%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .my_pp {width:25%; padding:0 10px; height: 70px; line-height: 70px;}
+.view_lst .con_lst > ul.no_scroll .my_ppp {width:25%; padding:0 10px;  height: 70px; line-height: 70px;}
+/*myUseBookList*/
 
 
 
@@ -559,6 +563,10 @@ strong#currentPage {font-weight: bold;}
 	.join_form .row_sub > li textarea { float:left;width: 100%; resize: none; background:#f6f6f6; border:0; font-family: "Noto_M";}
 	/* member join end */
 	
+	/*myUseBookList*/
+	.view_lst .con_lst > ul.no_scroll .my_ppp{line-height: 14px;}}
+	/*myUseBookList*/
+	
 /* admin css */
 	.join_form .row_subIO > li.title { width: 95px; height: 50px;padding: 5px 10px;background: #f6f6f6; font-family: "Noto_M";letter-spacing: -0.08em;text-align: center;}
 	.IOcss {width: 200px}
@@ -575,9 +583,15 @@ strong#currentPage {font-weight: bold;}
 	/* admin rbook */
 	
 	/* admin Nmember */
+	#ajax_container .con_lst > ul > li.col_typen {width:25%; padding:0 20px;}
+	#ajax_container .con_lst > ul > li.col_daten{width:25%; padding:0 10px;}
+	#ajax_container .con_lst > ul > li.col_calln{display: none;}
+	#ajax_container .con_lst > ul > li.col_callb{display: none;}
+	#ajax_container .con_lst > ul > li.col_typeb {width:20%; padding:0 10px;}
+	#ajax_container .con_lst > ul > li.col_dateb{width:20%; padding:0 10px;}
 	.brd_txt_lst li > .con_lst > ul > li.col_typen {width:25%; padding:0 20px;}
 	.brd_txt_lst li > .con_lst > ul > li.col_daten{width:25%; padding:0 10px;}
-	.brd_txt_lst li > .con_lst > ul > li.col_calln{display: none;}
+    .brd_txt_lst li > .con_lst > ul > li.col_calln{display: none;}
 	.brd_txt_lst li > .con_lst > ul > li.col_callb{display: none;}
 	.brd_txt_lst li > .con_lst > ul > li.col_typeb {width:20%; padding:0 10px;}
 	.brd_txt_lst li > .con_lst > ul > li.col_dateb{width:20%; padding:0 10px;}
