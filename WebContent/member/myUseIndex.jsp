@@ -77,7 +77,7 @@
 								for(BookDTO bDTO : bList2) {
 									%>
 									<div class="con_lst">
-										<ul class="no_scroll" onclick = "loaction.href = './myUseRBookList.jsp'">
+										<ul class="no_scroll" onclick="location.href='./MemberMyUseRBookList.me'">
 											<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
 											<li class="col_mem_b"><%=bDTO.getRbook_num() %></li>
 											<li class="col_mem_b"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
