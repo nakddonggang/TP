@@ -49,8 +49,8 @@ $(window).on('load', function() {
 		$("#addFacilDialog").dialog("open");
 	});
 	
-	$("#BTN_CLOSE").click(function() {
-		$("#BTN_CLOSE1").dialog("close");
+	$("#BTN_CLOSE1").click(function() {
+		$("#addFacilDialog").dialog("close");
 	});
 	// 진석 수정끝
 
