@@ -2,6 +2,7 @@ package net.admin.db;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -600,4 +601,45 @@ public class AdminDAO {
 		List<FacilityDTO> AllFacilityList = sqlsession.selectList("AdminAllFaciliyList", map);
 		return AllFacilityList;
 	}
+	
+	public  List<Map<String,Integer>> getVisitMonthCount(int sta_type){
+	 List<Map<String,Integer>> VisitMonth = sqlsession.selectList("getVisitMonthCount",sta_type);
+		return VisitMonth;
+	}
+	
+	public  List<Map<String,Integer>> getBookMonthCount(int sta_type){
+		 List<Map<String,Integer>> BookMonth = sqlsession.selectList("getBookMonthCount",sta_type);
+			return BookMonth;
+		}
+	
+	public  List<Map<String,Integer>> getBbookMonthCount(int sta_type){
+		 List<Map<String,Integer>> BbookMonth = sqlsession.selectList("getBbookMonthCount",sta_type);
+			return BbookMonth;
+		}
+	
+	public  List<Map<String,Integer>> getMemberMonthCount(int sta_type){
+		 List<Map<String,Integer>> MemberMonth = sqlsession.selectList("getMemberMonthCount",sta_type);
+			return MemberMonth;
+		}
+		
+	public  List<Map<String,Integer>> getVisitYearCount(int sta_type){
+		 List<Map<String,Integer>> VisitYear = sqlsession.selectList("getVisitYearCount",sta_type);
+			return VisitYear;
+		}
+		
+		public  List<Map<String,Integer>> getBookYearCount(int sta_type){
+			 List<Map<String,Integer>> BookYear = sqlsession.selectList("getBookYearCount",sta_type);
+				return BookYear;
+			}
+		
+		public  List<Map<String,Integer>> getBbookYearCount(int sta_type){
+			 List<Map<String,Integer>> BbookYear = sqlsession.selectList("getBbookYearCount",sta_type);
+				return BbookYear;
+			}
+		
+		public  List<Map<String,Integer>> getMemberYearCount(int sta_type){
+			 List<Map<String,Integer>> MemberYear = sqlsession.selectList("getMemberYearCount",sta_type);
+				return MemberYear;
+			}
+	
 }

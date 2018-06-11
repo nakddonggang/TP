@@ -540,4 +540,43 @@
 	 	WHERE V_DATE > curdate()
 	 </select>
 	 
+	 <select id="getVisitMonthCount" resultType="map">
+	 	select month(v_date) month, count(*) count from visit
+	 	where year(v_date) = #{sta_type} group by month
+	 </select>
+	 
+	  <select id="getBookMonthCount" resultType="map">
+	 	select month(book_date) month, count(*) count from book
+	 	where year(book_date) = #{sta_type} group by month
+	 </select>
+	 
+	  <select id="getBbookMonthCount" resultType="map">
+	 	select month(bbook_bdate) month, count(*) count from history_bbook
+	 	where year(bbook_bdate) = #{sta_type} group by month
+	 </select>
+	 
+	  <select id="getMemberMonthCount" resultType="map">
+	 	select month(member_date) month, count(*) count from member
+	 	where year(member_date) = #{sta_type} group by month
+	 </select>
+	 
+	 <select id="getVisitYearCount" resultType="map">
+	 	select year(v_date) year, count(*) count from visit
+	 	where year(v_date) > #{sta_type}-5 group by year
+	 </select>
+	 
+	  <select id="getBookYearCount" resultType="map">
+	 	select year(book_date) year, count(*) count from book
+	 	where year(book_date) > #{sta_type}-5 group by year
+	 </select>
+	 
+	  <select id="getBbookYearCount" resultType="map">
+	 	select year(bbook_bdate) year, count(*) count from history_bbook
+	 	where year(bbook_bdate) > #{sta_type}-5 group by year
+	 </select>
+	 
+	  <select id="getMemberYearCount" resultType="map">
+	 	select year(member_date) year, count(*) count from member
+	 	where year(member_date) > #{sta_type}-5 group by year
+	 </select>
  </mapper>
