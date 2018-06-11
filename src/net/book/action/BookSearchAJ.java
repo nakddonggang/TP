@@ -22,6 +22,7 @@ public class BookSearchAJ implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("BookSearchAjax 처리해주는 페이지");
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 
@@ -154,7 +155,7 @@ public class BookSearchAJ implements Action{
 		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 6;
+		int pageSize = 8;
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
@@ -347,7 +348,7 @@ public class BookSearchAJ implements Action{
 				.add("{\"category3\":\""+category3+"\"}")
 				.add("{\"opt1\":\""+opt1+"\"}")
 				.add("{\"opt2\":\""+opt2+"\"}")
-				.add("{\"pubDate\":"+pubDate+"}")
+				.add("{\"pubDate\":\""+pubDate+"\"}")
 				.add("{\"sort\":\""+sort+"\"}")
 				.add("{\"pageNum\":\""+pageNum+"\"}")
 				.add("{\"pageCount\":"+pageCount+"}")
@@ -368,7 +369,7 @@ public class BookSearchAJ implements Action{
 				.add("{\"category3\":\""+category3+"\"}")
 				.add("{\"opt1\":\""+opt1+"\"}")
 				.add("{\"opt2\":\""+opt2+"\"}")
-				.add("{\"pubDate\":"+pubDate+"}")
+				.add("{\"pubDate\":\""+pubDate+"\"}")
 				.add("{\"sort\":\""+sort+"\"}")
 				.add("{\"pageNum\":\""+pageNum+"\"}")
 				.add("{\"pageCount\":"+pageCount+"}")

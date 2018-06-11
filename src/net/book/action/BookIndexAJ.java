@@ -54,7 +54,7 @@ public class BookIndexAJ  implements Action {
 //		System.out.println("borrowcheck : " +BorrowCheck);
 
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 6;		
+		int pageSize = 8;		
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
