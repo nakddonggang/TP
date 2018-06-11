@@ -117,11 +117,9 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 						 </div>
 						 
 						 <div class="btn_btm_center">
-						 <%		
-						if ("admin".equals(member_id)) {
-						%>
+					
 						<input type="button"  class="btn_type5" value="목록" onclick="location.href='./MemberUseIndex.me'">
-						<%  }  %>
+						
 						 </div>
 						
 					</div>
