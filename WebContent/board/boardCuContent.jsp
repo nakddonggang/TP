@@ -51,13 +51,13 @@
 				<jsp:include page="../include/topbar.jsp" />
 					
 					<div class="content">
-						<div class=board>
+						<div class="board">
 						
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
 							
-								<div class="con_lst DIV_CON_LST">
+								<div class="con_lst">
 									<ul class="no_scroll">
 									<%
 									SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
@@ -69,22 +69,18 @@
 										<li class="cu_col_title"><%=bDTO.getCur_subject() %></li>
 										<li class="cu_col_date">작성일 :&nbsp;<span><%=date.format(bDTO.getCur_date()) %></span></li>
 										<li class="cu_col_rc"><span class="tit_date">조회수 :&nbsp;</span><span><%=bDTO.getCur_readcount() %></span></li>
-										  <div class="cu_col_thm">
-								           <img src="./upload/curation/<%=bDTO.getCur_file()%>" width="700" height="700">
-								          </div>
-								        <p class="cu_col_content"><%=cur_content%></p>
-								        <p class="cu_col_file">첨부파일 :&nbsp;<span><%=bDTO.getCur_file() %></span></p>	
-							       
-						            </ul>
-			
+									</ul>	
+									<div class="cu_col_thm">
+								    	<img src="./upload/curation/<%=bDTO.getCur_file()%>" width="700" height="700">
+								    	<p class="cu_col_content"><%=cur_content%></p>
+								    </div>
+<!-- 								    <div class="file"> -->
+<%-- 								    	<p class="cu_col_file">첨부파일 :&nbsp;<span><%=bDTO.getCur_file() %></span></p> --%>
+<!-- 								    </div> -->
 						        </div>
 							</li>
 						</ul>
-						
-							   
-						
-						
-					      	          
+       
 							<div class="btn_btm_board">
 								<ul>
 									<li class="btn_con_left">
