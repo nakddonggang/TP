@@ -95,8 +95,8 @@ $(document).ready(function(){
 					for(var i=0; i<jsonData.length-6; i++){
 						var file = "";
 						var faq_content = jsonData[i].faq_content;
-						faq_content = faq_content.replace(/\r\n/, "<br>");
-						faq_content = faq_content.replace(/\u0020/, "&nbsp;");
+						faq_content = faq_content.replace(/\r\n/gi, "<br>");
+						faq_content = faq_content.replace(/\u0020/gi, "&nbsp;");
 						
 						var test = "<div class='con_lst DIV_CON_LST'><ul><li class='col_rcFAQ'><a href=''>"+jsonData[i].faq_num+"</a></li><li class='col_type'><a href='#'><p>"
 						+jsonData[i].faq_type+"</p></a></li><li class='col_title'><a href='#'><p>"+jsonData[i].faq_subject
@@ -118,7 +118,7 @@ $(document).ready(function(){
 										"<ul>"
 											+"<li class='btn_con_right'>"
 												+"<input type='button' class='btn_type4' value='글수정' onclick='location.href=\"./BoardFaqUpdate.fa?faq_num="
-														+jsonData[i].faq_num+"&pageNum="+pageNum+"\'>"
+														+jsonData[i].faq_num+"&pageNum="+pageNum+"\"'>"
 												+"<input type='button' class='btn_type4 deleteBoard' value='글삭제' rel='"+jsonData[i].faq_num+"'>"
 											+"</li>"
 										+"</ul>"

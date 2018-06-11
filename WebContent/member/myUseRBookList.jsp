@@ -32,7 +32,14 @@
 <% 
 request.setCharacterEncoding("utf-8");
 List<BookDTO> rbList = (List<BookDTO>)request.getAttribute("rbList");
- %>
+int count = ((Integer)request.getAttribute("count")).intValue();
+String member_id = (String) session.getAttribute("member_id");
+String pageNum =  (String)request.getAttribute("pageNum");
+int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
+int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
+int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+%>
  <!-- member/myUseBook.jsp / MyUseIndex >> 대출예약조회 페이지 -->
 	<div class="wrapper">
 
@@ -55,7 +62,7 @@ List<BookDTO> rbList = (List<BookDTO>)request.getAttribute("rbList");
 					<div class="content">
 						<div class=board>
 						
-							<h1>예약중인 도서 목록</h1>
+							<h1>예약중인 도서 <%=count %>권</h1>
 							<ul class="brd_txt_lst">
 								<!-- 글목록 -->
 								<li class="view_lst">
@@ -77,7 +84,7 @@ List<BookDTO> rbList = (List<BookDTO>)request.getAttribute("rbList");
 										BookDTO bDTO =(BookDTO)rbList.get(i);
 										%>					
 								<div class="con_lst">
-									<ul class="no_scroll">
+									<ul class="no_scroll" onclick="location.href='./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>'">
 										<li class="adm_col_date"><%=bDTO.getBook_number() %></li>
 										<li class="adm_col_date"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
 										<li class="adm_col_date"><%=bDTO.getBook_subject() %></li>
@@ -92,6 +99,31 @@ List<BookDTO> rbList = (List<BookDTO>)request.getAttribute("rbList");
 					
 							</li>
 						</ul>
+						
+						<div class="paginate">
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						%>
+						<a href="MemberMyUseRBookList.me?pageNum=1">[처음]</a>
+						<%
+						if(startPage > pageBlock)	{ %><a href="MemberMyUseRBookList.me?pageNum=<%=startPage-pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="MemberMyUseRBookList.me?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="MemberMyUseRBookList.me?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="MemberMyUseRBookList.me?pageNum=<%=pageCount %>">[끝]</a>
+						 </div>
+						 
+						 <div class="btn_btm_center">
+						 <%		
+						if ("admin".equals(member_id)) {
+						%>
+						<input type="button"  class="btn_type5" value="목록" onclick="location.href='./MemberUseIndex.me'">
+						<%  }  %>
+						 </div>
+						
 					</div>
 				</div>
 

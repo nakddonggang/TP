@@ -215,20 +215,15 @@ public class MemberDAO {
 			count=sqlsession.selectOne("BookCount");
 			return count;
 		}	
-		// myUseRBookList.jsp 책 리스트 뿌려주기
-		public List<BookDTO> myUseRBookList(String member_id){
-			List<BookDTO> rbookList = new ArrayList<BookDTO>();
-			rbookList = sqlsession.selectList("myUseRBookList",member_id);
-			return rbookList;		
-		}
 		
 		// myUseRBookList.jsp > 책 리스트 뿌려주기
-		public List<BookDTO> BookList(int startRow, int pageSize){
+		public List<BookDTO> myUseRBookList(String member_id, int startRow, int pageSize){
 			HashMap map = new HashMap();
+			map.put("member_id", member_id);
 			map.put("startRow", startRow-1);
 			map.put("pageSize", pageSize);
-			List<BookDTO> bookList = sqlsession.selectList("BookList", map);
-			return bookList;
+			List<BookDTO> rbookList = sqlsession.selectList("myUseRBookList", map);
+			return rbookList;
 		}
 	
 	// 회원이 대여중인 책 총수량 검색구문

@@ -23,7 +23,7 @@ public class ServeBookAction implements Action {
 		bookdto.setHbook_publisher(request.getParameter("hbook_publisher"));
 		bookdto.setHbook_explain(request.getParameter("hbook_explain"));
 		bookdto.setHbook_check(request.getParameter("hbook_check"));
-		bookdto.setHbook_isbn(0);
+		bookdto.setHbook_isbn("0");
 		
 		BookDAO bdao = new BookDAO();
 		int result = bdao.insertHBook(bookdto);
