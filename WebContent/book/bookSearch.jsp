@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.util.Date"%>
 <%@page import="net.book.db.BookDTO"%>
@@ -46,20 +47,21 @@ $(document).ready(function() {
 		}
 	}
 	
-var pageNum = Request("pageNum");
+var pageNum = "${pageNum}";
 var view =  Request("view");
-var category1=Request("category1");
-var search1=Request("search1");
-var opt1=Request("opt1");
-var category2=Request("category2");
-var search2=Request("search2");
+var category1="${category1}";
+var search1="${search1}";
+var category2="${category2}";
+var search2="${search2}";
+var opt1=Request("opt2");
 var opt2=Request("opt2");
-var category3=Request("category3");
-var search3=Request("search3");
+var category3="${category3}";
+var search3="${search3}";
 var pubDate=Request("pubDate");
-$.Alert(search1, function(){ });
+var sort="book_number";
 if (view==null) view="1";
-if(pageNum=="") pageNum=1;
+if(pageNum=="") pageNum="1";
+$.Alert(pageNum+", "+view+", "+category1+", "+category2+", "+category3+", "+search1+", "+search2+", "+search3,function(){});
 
 // direct값이 1이면 바구니에 정상적으로 들어간 것  
 var direct = Request("direct");
@@ -134,19 +136,20 @@ var book_number = $(this).attr("rel");
 	} else { return false; }
 });
 
-// 반납 버튼 Jquery
-$('.rebutton').click(function() {
-var book_number = $(this).attr("rel");
-	var rebook = confirm("책 반납을 하시겠습니까?");
-	if (rebook == true) { var url = book_number;
-		$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
-	} else { return false; }
-});
+// // 반납 버튼 Jquery
+// $('.rebutton').click(function() {
+// var book_number = $(this).attr("rel");
+// 	var rebook = confirm("책 반납을 하시겠습니까?");
+// 	if (rebook == true) { var url = book_number;
+// 		$(location).attr('href', './MemberBasketResAction.me?book_number='+url);
+// 	} else { return false; }
+// });
 	
 	// 책 정렬
 	var sort = "";	
 	$('#book_sort').change(function(){
 		sort = $("#book_sort > option:selected").val();
+		$.Alert("정렬되는지 시험"+pageNum+", "+sort,function(){ });
 		onload(pageNum, view);
 	}); // function selectBook 함수
 			
@@ -156,10 +159,7 @@ var book_number = $(this).attr("rel");
 		$.ajax({
 			url:"./BookSearchAJ.bk",
 			type:'POST',
-			contentType: "application/x-www-form-urlencoded; charset=UTF-8", 
-			data:{'sort':sort, "pageNum":pageNum, "view":view, "category1":category1, "search1":search1,
-				"opt1":opt1, "category2":category2, "search2":search2, "opt2":opt2, "category3":category3,
-				"search3":search3, "pubDate":pubDate},
+			data:{'pageNum':pageNum, 'sort':sort, 'view':view, 'category1':category1, 'search1':search1, 'opt1':opt1, 'category2':category2, 'search2':search2, 'opt2':opt2, 'category3':category3, 'search3':search3, 'pubDate':pubDate},
 			dataType:'json',
 			success:function(result){
 				
@@ -184,19 +184,20 @@ var book_number = $(this).attr("rel");
 						});
 					}
 				});
-				
+
+// 				$.Alert("접니다",function(){ });
 				// ajax 변수 
 				var JSdata = JSON.parse("["+result+"]");
 				var count=JSdata[JSdata.length-17].count;
-				search1=JSdata[JSdata.length-16].sort;
-				search2=JSdata[JSdata.length-15].sort;
-				search3=JSdata[JSdata.length-14].sort;
-				category1=JSdata[JSdata.length-13].sort;
-				category2=JSdata[JSdata.length-12].sort;
-				category3=JSdata[JSdata.length-11].sort;
-				opt1=JSdata[JSdata.length-10].sort;
-				opt2=JSdata[JSdata.length-9].sort;
-				pubDate=JSdata[JSdata.length-8].sort;
+				var search1=JSdata[JSdata.length-16].sort;
+				var search2=JSdata[JSdata.length-15].sort;
+				var search3=JSdata[JSdata.length-14].sort;
+				var category1=JSdata[JSdata.length-13].sort;
+				var category2=JSdata[JSdata.length-12].sort;
+				var category3=JSdata[JSdata.length-11].sort;
+				var opt1=JSdata[JSdata.length-10].sort;
+				var opt2=JSdata[JSdata.length-9].sort;
+				var pubDate=JSdata[JSdata.length-8].sort;
 				var sort=JSdata[JSdata.length-7].sort;
 				pageNum=JSdata[JSdata.length-6].pageNum;
 				var pageCount=JSdata[JSdata.length-5].pageCount;
@@ -205,7 +206,7 @@ var book_number = $(this).attr("rel");
 				var endPage=JSdata[JSdata.length-2].endPage;
 				view=JSdata[JSdata.length-1].view;
 
-				
+				$.Alert(JSdata,function(){ });
 				$.Alert(view,function(){ });
 				$.Alert(pageNum,function(){ });
 				var member_id="${member_id}";
@@ -259,7 +260,7 @@ var book_number = $(this).attr("rel");
 										
 										if (member_id!=null) {
 												var text6 = "<li class='adm_col_type' id='adm_book_high'><input type='button' rel='"
-												+JSdata[i].book_number+"' class='bbutton2' value='대출예약' id='borrowBook'></li>";
+												+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='borrowBook'></li>";
 												$('#text5_ap'+i).append(text6);
 										} // 아이디가 있을 때 보여주기
 										
@@ -269,7 +270,7 @@ var book_number = $(this).attr("rel");
 							}
 							
 							var text8="</li></ul>";
-							$('.AjaxTest').append(text7);
+							$('.AjaxTest').append(text8);
 							
 							var pic1="<ul class='book_lst' id='book_pic_div'>";
 							$('.AjaxTest').append(pic1);
@@ -423,6 +424,9 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 String view = request.getParameter("view");
 if(view==null) view = "1";
 %>
+<script type="text/javascript">
+alert("decode"+decode);
+</script>
 	<div class="wrapper">
 		<!-- 본문 컨테이너 -->
 
