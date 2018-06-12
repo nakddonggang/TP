@@ -62,21 +62,26 @@ if(member_id != null) {
 				
 			<!-- 	인기도서	 -->
 				<div class="main_conpop main_div">
+				<div class="main_box">
+					 <h2>Popular Book</h2>
 					<%
 					if(popularList==null){
 						%><ul><li>게시물이 없습니다.</li></ul><%
 					}else{
 						for(int i=0; i<popularList.size(); i++){ 
 						BookDTO bkDTO = popularList.get(i);
-						%><ul>
-							<li><img src="./upload/book/<%=bkDTO.getBook_file()%>"width="70px" height="80px"></li>
-							<li>제목 : <%=bkDTO.getBook_subject() %></li>
-							<li>저자 : <%=bkDTO.getBook_author() %></li>
-							<li>발행처 : <%=bkDTO.getBook_publisher() %></li>
-							<li>발행일 : <%=bkDTO.getBook_pubDate() %></li>
-						</ul><%
+						%><ul class="book_lst" id="book_pic_div">
+							
+					<li><img src="./upload/book/<%=bkDTO.getBook_file()%>"width="200px" height="260px" class="book_lst_img">
+					<span id='bk_li_subs'><%=bkDTO.getBook_subject() %></span>
+					<dl class='book_info_layer'><dt><span><%=bkDTO.getBook_subject() %></span></dt><dd><dl><dt>저자</dt>
+					<dd><%=bkDTO.getBook_author() %></dd><dt>출판사</dt>
+					<dd><%=bkDTO.getBook_publisher() %></dd><dt>출판년도</dt>
+					<dd><%=bkDTO.getBook_pubDate() %></dd></dl></dd></dl></li></ul>
+								}<%
 						}
-					}%>		
+					%>	
+					</div>	
 				</div>
 					
  			<!--  통계   -->
