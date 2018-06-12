@@ -1,5 +1,6 @@
 package net.admin.action;
 
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -21,6 +22,8 @@ public class AdminBookReWriteAction implements Action{
 		
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
 		// file 객체
 		
@@ -46,16 +49,20 @@ public class AdminBookReWriteAction implements Action{
 		bookdto.setBook_isbn(request.getParameter("book_isbn"));
 		bookdto.setBook_classification(request.getParameter("book_classification"));
 		
+		ActionForward forward = new ActionForward();
 		// AdminDAO 객체 생성 및 insert 메소드 불러오기
 			// if 문 result 값
 		AdminDAO adao = new AdminDAO();
 		adao.admBookReWrite(bookdto);
+
+		System.out.println("success");
+		out.println("<script>");
+		out.println("alert('입고 수정이 완료되었습니다')");
+		out.println("location.href='./AdminIndex.am'");
+		out.println("</script>");
+		out.close();
 		
-		// ActionForward
-		ActionForward forward = new ActionForward();
-		forward.setPath("./AdminIndex.am");
-		forward.setRedirect(true);
-		return forward;
+		return null;
 
 	}
 	
