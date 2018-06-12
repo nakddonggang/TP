@@ -641,8 +641,12 @@ public class AdminDAO {
 				return BbookYear;
 			}
 		
-		 public void HBookDelete(int book_number) {
-			 sqlsession.delete("HBookDelete", book_number);
+		 public void HBookDelete(String member_id, String hbook_subject, String hbook_author) {
+				HashMap map = new HashMap();
+				map.put("member_id", member_id);
+				map.put("hbook_subject", hbook_subject);
+				map.put("hbook_author", hbook_author);
+				sqlsession.selectList("HBookDelete", map);
 		 }
 
 }

@@ -101,7 +101,7 @@ firstload(pageNum, view);
 						$.Confirm(
 								'책바구니에 담으시겠습니까??',
 								function(){
-									if (con==true) $("#basket_Fr").submit;
+									if (true) $("#basket_Fr").submit;
 									else return false;
 								}
 							);

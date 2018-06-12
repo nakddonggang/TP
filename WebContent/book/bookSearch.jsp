@@ -78,7 +78,7 @@ $('#basket_Fr').submit(function(){
 		$.Confirm(
 				'책바구니에 담으시겠습니까??',
 				function(){
-					if (con==true) $("#basket_Fr").submit;
+					if (true) $("#basket_Fr").submit;
 					else return false;
 				}
 			);
@@ -184,7 +184,7 @@ $(".BTN_CLOSE").click(function() {
 						$.Confirm(
 								'책바구니에 담으시겠습니까??',
 								function(){
-									if (con==true) $("#basket_Fr").submit;
+									if (true) $("#basket_Fr").submit;
 									else return false;
 								}
 							);

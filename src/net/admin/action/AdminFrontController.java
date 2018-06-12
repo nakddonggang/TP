@@ -168,7 +168,12 @@ public class AdminFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} else if (command.equals("/ADminHBookDelete.am")){
+			action = new ADminHBookDelete();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}				
+		} 
 		// 여기까지 Facility 구간
 		
 		

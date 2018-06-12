@@ -578,8 +578,8 @@
 	 	select count(*) from history_bbook where member_id=#{member_id}
 	 </select>
 	 
-	 <delete id="HBookDelete" parameterType="int">
-	 	delete from hbook where book_number=#{book_number}
+	 <delete id="HBookDelete" parameterType="hashmap">
+	 	delete from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject}, hbook_author=#{hbook_author}
 	 </delete>
 
 	

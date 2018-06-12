@@ -1,5 +1,7 @@
 package net.admin.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,15 +17,27 @@ public class ADminHBookDelete implements Action  {
 
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
 		
-		int book_number = Integer.parseInt(request.getParameter("book_number"));
+		String member_id = request.getParameter("member_id");
+		String hbook_subject = request.getParameter("hbook_subject");
+		String hbook_author = request.getParameter("hbook_author");
+		System.out.println(member_id);
+		System.out.println(hbook_subject);
+		System.out.println(hbook_author);
+		
 		AdminDAO adao = new AdminDAO();
-		adao.HBookDelete(book_number);
+		adao.HBookDelete(member_id, hbook_subject, hbook_author);
 		
-		ActionForward forward = new ActionForward();
-//		forward.setPath("./AdminBookDLos.am");
-		forward.setRedirect(true);
-		return forward;
+		System.out.println("success");
+		out.println("<script>");
+		out.println("alert('희망도서 삭제가 완료되었습니다')");
+		out.println("location.href='./AdminHBookList.am'");
+		out.println("</script>");
+		out.close();
+		
+		return null;
 	}
 	
 }
