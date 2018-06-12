@@ -136,7 +136,7 @@ firstload(pageNum, view);
 								$('#text3_ap').append(text4);
 							} else {
 								for(var i=0; i<JSdata.length-8; i++){
-									var text4="<div class='con_lst'><ul class='no_scroll'  id='text5_ap"+i+"'><li class='adm_col_rrc' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
+									var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll'  id='text5_ap"+i+"'><li class='adm_col_rrc' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
  										+JSdata[i].book_number+"'></li><li class='adm_col_date' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
  										+JSdata[i].book_number+"\"\'><img src='./upload/book/"
 										+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_col_sub' id='adm_book_high'>"
@@ -147,17 +147,17 @@ firstload(pageNum, view);
 										$('#text3_ap').append(text4);
 										
 										if (JSdata[i].bbook_bstate==0) {
-											var mod1 = "<div id='BookMod"+i+"'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
+											var mod1 = "<div class='BookMod"+i+"'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
 											+JSdata[i].book_number+"' class='bbutton' value='대출신청' id='borrowBook'></li></ul></li><li><ul class='row_sub'><li class='title'>예약</li><li class='inp_form'><input type='button' rel='"
 											+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='borrowBook'></li></ul></li></ul><div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
 											+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
-											$('#text5_ap'+i).append(mod1);
+											$('#mod_div'+i).append(mod1);
 										} else {
-											var mod1 = "<div id='BookMod"+i+"'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
+											var mod1 = "<div class='BookMod"+i+"'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
 											+JSdata[i].book_number+"' class='bbutton2' value='대출불가'></li></ul></li><li><ul class='row_sub'><li class='title'>예약</li><li class='inp_form'><input type='button' rel='"
 											+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='borrowBook'></li></ul></li></ul><div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
 											+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
-											$('#text5_ap'+i).append(mod1);
+											$('#mod_div'+i).append(mod1);
 										}
 
 										var mod2="</div>";
@@ -293,10 +293,9 @@ firstload(pageNum, view);
 						
 						// 모달창 띄우기
 						$(window).on('load', function() {
-							var bookListSize = "${bookList.size()}";
 							//admin 대출,예약,책상태 
-							for(var i=0;i<bookListSize;i++){
-								$('#BookMod' + i).dialog({ 
+							for(var i=0;i<JSdata.length-8;i++){
+								$('.BookMod' + i).dialog({ 
 									autoOpen: false, 
 									width: 400, 
 									modal: true, 
@@ -304,12 +303,12 @@ firstload(pageNum, view);
 							}
 							$(".info").click(function() {
 								var listvalue = $(this).attr("id");
-								$('#BookMod' + listvalue).dialog("open");
+								$('.BookMod' + listvalue).dialog("open");
 							});
 							
 							$(".BTN_CLOSE").click(function() {
 								var listvalue = $(this).attr("id");
-								$('#BookMod' + listvalue).dialog("close");
+								$('.BookMod' + listvalue).dialog("close");
 							});
 						});
 							
