@@ -321,7 +321,7 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.book_subject limit #{startRow}, #{pageSize}	 
+		order by b.book_subject asc limit #{startRow}, #{pageSize}	 
 	 </select>
 	 
 	 <select id="getBookSortAuthor" parameterType="hashmap" resultType="net.book.db.BookDTO">
@@ -335,7 +335,7 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.book_author limit #{startRow}, #{pageSize}	 
+		order by b.book_author asc limit #{startRow}, #{pageSize}	 
 	 </select>
 
 	 <select id="getBookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
@@ -345,6 +345,8 @@
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
+		left join dbook hisb
+		on b.book_number=hisb.book_number
 		left join bbook bb
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
@@ -363,7 +365,7 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.book_pubDate desc limit #{startRow}, #{pageSize} 	 
+		order by b.book_pubDate desc, b.book_number asc limit #{startRow}, #{pageSize} 	 
 	 </select>
 
 	 <select id="getBookSortDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
@@ -377,7 +379,7 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.book_date desc limit #{startRow}, #{pageSize} 	 
+		order by b.book_date desc, b.book_number asc limit #{startRow}, #{pageSize} 	 
 	 </select>	 	 	
 	 
 	 <select id="getBookNum" parameterType="int" resultType="int">
@@ -575,6 +577,10 @@
 	 <select id="userBorrowCount" parameterType="string" resultType="int">
 	 	select count(*) from history_bbook where member_id=#{member_id}
 	 </select>
+	 
+	 <delete id="HBookDelete" parameterType="int">
+	 	delete from hbook where book_number=#{book_number}
+	 </delete>
 
 	
 	 

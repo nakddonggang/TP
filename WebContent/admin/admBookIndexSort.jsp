@@ -255,9 +255,6 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 							<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'" class ="btn_type4 BTN_IF_LIST b">
 						</li>
 						<li class="adm_btn__left">
-							<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'" class ="btn_type4 BTN_IF_LIST">
-						</li>
-						<li class="adm_btn__left">
 							<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'" class ="btn_type4 BTN_IF_LIST">
 						</li>
 					</ul>
@@ -269,14 +266,14 @@ List<BookDTO> booksortList = (List<BookDTO>)request.getAttribute("booksortList")
 						<a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=1"><span>&lt;&lt;&nbsp;</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
-						if(startPage > pageBlock)	{ %><a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						if(startPage > pageBlock)	{ %><a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+							else {%> &nbsp;<a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
 						}
-						if(endPage < pageCount){	%><a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						if(endPage < pageCount){	%><a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="./BookSort.bk?sort=<%=sort%>&pageNum=<%=pageCount%>"><span>&nbsp;&gt;&gt;</span></a>
+						<a href="./AdminBookSort.am?sort=<%=sort%>&pageNum=<%=pageCount%>"><span>&nbsp;&gt;&gt;</span></a>
 						 </div>
 				
 					</div>

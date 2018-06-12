@@ -261,9 +261,6 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 							<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'" class ="btn_type4 BTN_IF_LIST b">
 						</li>
 						<li class="adm_btn__left">
-							<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'" class ="btn_type4 BTN_IF_LIST">
-						</li>
-						<li class="adm_btn__left">
 							<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'" class ="btn_type4 BTN_IF_LIST">
 						</li>
 					</ul>

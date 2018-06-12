@@ -47,6 +47,15 @@ $(document).ready(function() {
 		}
 	}
 	
+	// direct값이 1이면 바구니에 정상적으로 들어간 것  
+	var direct = Request("direct");
+	if(direct=="1"){
+		var directGo = confirm("책바구니로 이동하시겠습니까?");
+		if(directGo == true){
+			location.replace('./MemberBasketList.me');
+		}else{}
+	}else{}
+	
 var pageNum = Request("pageNum");
 var view = Request("view");
 if(pageNum=="") pageNum=1;
@@ -89,24 +98,19 @@ firstload(pageNum, view);
 				// 책바구니 이동 Jquery
 				$('#basket_Fr').submit(function(){
 					if ($('.bncheck').is(":checked") == true ){
-						var con = confirm("책바구니에 담으시겠습니까?");
-						if (con==true) $("#basket_Fr").submit;
-						else return false;
+						$.Confirm(
+								'책바구니에 담으시겠습니까??',
+								function(){
+									if (con==true) $("#basket_Fr").submit;
+									else return false;
+								}
+							);
 					} else {
 						$.Alert("책을 선택해주세요",function(){
 							return false;
 						});
 					}
-				});
-				
-				// direct값이 1이면 바구니에 정상적으로 들어간 것  
-				var direct = Request("direct");
-				if(direct=="1"){
-					var directGo = confirm("책바구니로 이동하시겠습니까?");
-					if(directGo == true){
-						location.replace('./MemberBasketList.me');
-					}else{}
-				}else{}		
+				});		
 				
 				// ajax 변수 
 				var JSdata = JSON.parse("["+result+"]");
@@ -184,14 +188,13 @@ firstload(pageNum, view);
 									+JSdata[k].book_subject+"</span></dt><dd><dl><dt>저자</dt><dd>"
 									+JSdata[k].book_author+"</dd><dt>출판사</dt><dd>"
 									+JSdata[k].book_publisher+"</dd><dt>출판년도</dt><dd>"
-									+JSdata[k].book_pubDate+"</dd><dt>반납상태</dt><dd>"
-									+JSdata[k].bbook_bdate+"</dd></dl></dd></dl></a></li>";
+									+JSdata[k].book_pubDate+"</dd></dl></dd></dl></a></li>";
 									$('#book_pic_div').append(pic2);
 								}
 							}						
 							var pic3="</ul>";
 							$('.AjaxTest').append(pic3);
-
+							
 							if (member_id!=null){
 								var text9="<div class='btn_btm_center' id='text10'><ul><li><input type='submit' value='책바구니' id='basket_Fr_btn' class='btn_type4 BTN_IF_LIST'></li></ul></div>";
 								$('.AjaxTest').append(text9);
@@ -233,6 +236,7 @@ firstload(pageNum, view);
 							// 갤러리, 게시판 띄워주는 버튼
 							if (view==0){
 								$('#book_pic_div').show();
+								$('.btn_btm_center').hide();
 								$('#book_cont_div').hide();
 							} else if (view==1){
 								$('#book_pic_div').hide();
@@ -278,18 +282,18 @@ firstload(pageNum, view);
 								} else { return false; }
 						});
 						
-						// 책바구니 이동 Jquery
-						$('#basket_Fr').submit(function(){
-							if ($('.bncheck').is(":checked") == true ){
-								var con = confirm("책바구니에 담으시겠습니까?");
-								if (con==true) $("#basket_Fr").submit;
-								else return false;
-							} else {
-								$.Alert("책을 선택해주세요",function(){
-									return false;
-								});
-							}
-						});
+// 						// 책바구니 이동 Jquery
+// 						$('#basket_Fr').submit(function(){
+// 							if ($('.bncheck').is(":checked") == true ){
+// 								var con = confirm("책바구니에 담으시겠습니까?");
+// 								if (con==true) $("#basket_Fr").submit;
+// 								else return false;
+// 							} else {
+// 								$.Alert("책을 선택해주세요",function(){
+// 									return false;
+// 								});
+// 							}
+// 						});
 						
 						// 모달창 띄우기
 							//admin 대출,예약,책상태 

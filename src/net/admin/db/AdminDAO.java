@@ -641,5 +641,8 @@ public class AdminDAO {
 				return BbookYear;
 			}
 		
+		 public void HBookDelete(int book_number) {
+			 sqlsession.delete("HBookDelete", book_number);
+		 }
 
 }
