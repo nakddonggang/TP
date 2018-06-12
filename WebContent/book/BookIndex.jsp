@@ -86,15 +86,6 @@ firstload(pageNum, view);
 			dataType:'json',
 			success:function(result){
 				
-				// direct값이 1이면 바구니에 정상적으로 들어간 것  
-				var direct = Request("direct");
-				if(direct=="1"){
-					var directGo = confirm("책바구니로 이동하시겠습니까?");
-					if(directGo == true){
-						location.replace('./MemberBasketList.me');
-					}else{}
-				}else{}		
-				
 				// 책바구니 이동 Jquery
 				$('#basket_Fr').submit(function(){
 					if ($('.bncheck').is(":checked") == true ){
@@ -107,6 +98,15 @@ firstload(pageNum, view);
 						});
 					}
 				});
+				
+				// direct값이 1이면 바구니에 정상적으로 들어간 것  
+				var direct = Request("direct");
+				if(direct=="1"){
+					var directGo = confirm("책바구니로 이동하시겠습니까?");
+					if(directGo == true){
+						location.replace('./MemberBasketList.me');
+					}else{}
+				}else{}		
 				
 				// ajax 변수 
 				var JSdata = JSON.parse("["+result+"]");
@@ -136,24 +136,24 @@ firstload(pageNum, view);
 								$('#text3_ap').append(text4);
 							} else {
 								for(var i=0; i<JSdata.length-8; i++){
-									var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll'  id='text5_ap"+i+"'><li class='adm_col_rrc' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
+									var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll'><li class='adm_col_rrc' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
  										+JSdata[i].book_number+"'></li><li class='adm_col_date' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
  										+JSdata[i].book_number+"\"\'><img src='./upload/book/"
 										+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_col_sub' id='adm_book_high'>"
 										+JSdata[i].book_subject+"</li><li class='adm_col_type' id='adm_book_high'>"
 										+JSdata[i].book_author+"</li><li class='adm_col_sub' id='adm_book_high'>"
 										+JSdata[i].book_publisher+"</li><li class='adm_col_sub' id='adm_book_high'><input type='button' id='"
-										+i+"' value='상세보기' class ='bbutton2 info' ></li></ul>";
+										+i+"' value='상세보기' class ='info_bbutton2' ></li></ul>";
 										$('#text3_ap').append(text4);
 										
 										if (JSdata[i].bbook_bstate==0) {
-											var mod1 = "<div class='BookMod"+i+"'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
+											var mod1 = "<div class='BookMod"+i+"' id='book_mod'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
 											+JSdata[i].book_number+"' class='bbutton' value='대출신청' id='borrowBook'></li></ul></li><li><ul class='row_sub'><li class='title'>예약</li><li class='inp_form'><input type='button' rel='"
 											+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='borrowBook'></li></ul></li></ul><div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
 											+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
 											$('#mod_div'+i).append(mod1);
 										} else {
-											var mod1 = "<div class='BookMod"+i+"'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
+											var mod1 = "<div class='BookMod"+i+"' id='book_mod'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
 											+JSdata[i].book_number+"' class='bbutton2' value='대출불가'></li></ul></li><li><ul class='row_sub'><li class='title'>예약</li><li class='inp_form'><input type='button' rel='"
 											+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='borrowBook'></li></ul></li></ul><div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
 											+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
@@ -161,7 +161,7 @@ firstload(pageNum, view);
 										}
 
 										var mod2="</div>";
-										$('.con_lst').append(mod2);
+										$('.text3_ap').append(mod2);
 										
 							}
 						}
@@ -292,7 +292,6 @@ firstload(pageNum, view);
 						});
 						
 						// 모달창 띄우기
-						$(window).on('load', function() {
 							//admin 대출,예약,책상태 
 							for(var i=0;i<JSdata.length-8;i++){
 								$('.BookMod' + i).dialog({ 
@@ -301,7 +300,7 @@ firstload(pageNum, view);
 									modal: true, 
 								});
 							}
-							$(".info").click(function() {
+							$(".info_bbutton2").click(function() {
 								var listvalue = $(this).attr("id");
 								$('.BookMod' + listvalue).dialog("open");
 							});
@@ -310,7 +309,6 @@ firstload(pageNum, view);
 								var listvalue = $(this).attr("id");
 								$('.BookMod' + listvalue).dialog("close");
 							});
-						});
 							
 				}, // Ajax 데이터 값 받기 성공
 				error:function(request,status,error){
