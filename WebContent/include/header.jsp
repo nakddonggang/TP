@@ -37,7 +37,7 @@
 						<ul class="DIV_SUB_MNU">
 							<li><a href="./GuideIntro.fp">도서관 소개</a></li>
 							<li><a href="./GuideMap.fp">찾아오시는 길</a></li>
-							<li><a href="./GuideStatis.fp">(X)도서관 통계</a></li>
+							<li><a href="./GuideStatis.fp">도서관 통계</a></li>
 						</ul></li>
 				<% String member_id = (String) session.getAttribute("member_id");
 				if ((member_id != null) && (member_id.equals("admin"))) {%>	
