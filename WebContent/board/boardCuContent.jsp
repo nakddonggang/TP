@@ -52,7 +52,7 @@
 					
 					<div class="content">
 						<div class="board">
-						
+						<h3>Curation</h3>
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">

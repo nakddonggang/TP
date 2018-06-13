@@ -171,7 +171,6 @@
 						      hideHover: 'auto',
 						      behaveLikeLine: true,
 						      resize: true,
-						      xLabelAngle: '70',
 						      pointFillColors:['#ffffff'],
 						      pointStrokeColors: ['black'],
 						      lineColors:['gray']
@@ -193,7 +192,6 @@
 						      hideHover: 'auto',
 						      behaveLikeLine: true,
 						      resize: true,
-						      xLabelAngle: '70',
 						      pointFillColors:['#ffffff'],
 						      pointStrokeColors: ['black'],
 						      lineColors:['gray']
@@ -215,7 +213,6 @@
 				      hideHover: 'auto',
 				      behaveLikeLine: true,
 				      resize: true,
-				      xLabelAngle: '70',
 				      pointFillColors:['#ffffff'],
 				      pointStrokeColors: ['black'],
 				      lineColors:['gray']

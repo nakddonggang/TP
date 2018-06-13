@@ -268,7 +268,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 				
 				<div class="paginate">
 						
-						<a href="./AdminIndex.am?pageNum=1"><span>&lt;&lt;&nbsp;</span></a>
+						<a href="./AdminIndex.am?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 						if(startPage > pageBlock)	{ %><a href="./AdminIndex.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
@@ -278,7 +278,7 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 						}
 						if(endPage < pageCount){	%><a href="./AdminIndex.am?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="./AdminIndex.am?pageNum=<%=pageCount%>"><span>&nbsp;&gt;&gt;</span></a>
+						<a href="./AdminIndex.am?pageNum=<%=pageCount%>" class="next2"><span class="hide">페이지끝</span></a>
 				</div>	
 
 					</div>
