@@ -30,10 +30,7 @@ $(document).ready(function(){
 	$('.bbutton2').click(function(){
 		$.Confirm(
 			'희망도서를 삭제하시겠습니까?',
-			function(){
-				$("#hb_delete").submit;
-			}
-		);
+			function(){ $("#hb_delete").submit; });
 	});
 	
 });

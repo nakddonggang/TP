@@ -646,7 +646,7 @@ public class AdminDAO {
 				map.put("member_id", member_id);
 				map.put("hbook_subject", hbook_subject);
 				map.put("hbook_author", hbook_author);
-				sqlsession.selectList("HBookDelete", map);
+				sqlsession.delete("HBookDelete", map);
 		 }
 
 }

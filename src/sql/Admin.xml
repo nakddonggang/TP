@@ -438,12 +438,12 @@
 	 </select>
  	
  	 <select id="getHBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select member_id,hbook_subject,hbook_author,hbook_check,hbook_publisher,ifnull(hbook_isbn, 0) hbook_isbn, hbook_explain
+	 	select member_id,hbook_subject,hbook_author,hbook_check,hbook_publisher, ifnull(hbook_isbn, 0) hbook_isbn, hbook_explain
 	 	from hbook order by member_id desc limit #{startRow},#{pageSize}
 	 </select>
 	 
 	 <select id="getHBookInfo" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select * from hbook where (member_id=#{member_id} and hbook_subject=#{hbook_subject}) and hbook_author=#{hbook_author}
+	 	select * from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
 	 </select>
 	 
 	 <update id="getHBookReWrite" parameterType="net.book.db.BookDTO">
@@ -578,7 +578,7 @@
 	 	select count(*) from history_bbook where member_id=#{member_id}
 	 </select>
 	 
-	 <delete id="HBookDelete" parameterType="hashmap">
+	 <delete id="HBookDelete" parameterType="net.book.db.BookDTO">
 	 	delete from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
 	 </delete>
 

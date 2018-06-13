@@ -724,19 +724,39 @@ input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; bord
 }
 /* End 김영지 작업 Admin */
 
-#adm_for_book_div {width:96%; position: absolute; top:5%; }
-#adm_book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
+/* ADMIN 통합검색 ★★ */
+#adm_for_book_div {width:99%; position: relative; background-color: #fdf0ea; }
+#adm_book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:black; box-sizing : border-box;}
 #adm_book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
-#adm_book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 10px; display: inline-block;}
+#adm_book_select_box{border:1px solid #fdf0ea; width: 100%; height: 35px; margin-bottom: 10px; display: inline-block;}
 #adm_book_select1 {border: none; height:33px; width:20%;}
 #adm_book_select2 {border:none; height: 33px;  width:20%;}
 input.adm_inp_search { height: 33px; line-height: 33px;  width:40%;}
 input.adm_btn_search {  width:20%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
 #adm_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
-#adm_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
+#adm_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid #FAE0D4;}
 #adm_date_box #adm_book_date { height: 33px; line-height: 33px; }
 #adm_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
 .adm_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
 .adm_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
 .adm_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
 .adm_media_bye { display: block;}
+
+@media screen and (min-width:768px) and (max-width : 1024px) {
+	#adm_book_select1 {border: none; height:33px; width:18%;}
+	#adm_book_select2 {border:none; height: 33px;  width:18%;}
+	.adm_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
+	.adm_media_bye { display: none; }
+}
+
+@media screen and (max-width: 767px) {
+	#adm_book_select1 {border: none; height:33px; width:18%;}
+	#adm_book_select2 {border:none; height: 33px;  width:18%;}
+	.adm_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
+	.adm_media_bye { display: none; }
+}
+
+@media screen and (min-width:1025px){
+	.adm_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
+	.book_media_bye { display: block; }
+}
