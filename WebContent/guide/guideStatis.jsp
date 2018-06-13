@@ -71,7 +71,8 @@
 						],
 						xkey: 'y',
 						ykeys: ['a'],
-						labels: ['방문자 수'],		 
+						labels: ['방문자 수'],
+					      xLabelAngle: '70',
 				      hideHover: 'auto',
 				      behaveLikeLine: true,
 				      resize: true,
@@ -98,6 +99,7 @@
 						ykeys: ['a'],
 						labels: ['입고 수'],
 					      hideHover: 'auto',
+					      xLabelAngle: '70',
 					      behaveLikeLine: true,
 					      resize: true,
 					      barColors:['gray']
@@ -122,6 +124,7 @@
 						ykeys: ['a'],
 						labels: ['대출 수'],					
 					      hideHover: 'auto',
+					      xLabelAngle: '70',
 					      behaveLikeLine: true,
 					      resize: true,
 					      barColors:['gray']
@@ -168,6 +171,7 @@
 						      hideHover: 'auto',
 						      behaveLikeLine: true,
 						      resize: true,
+						      xLabelAngle: '70',
 						      pointFillColors:['#ffffff'],
 						      pointStrokeColors: ['black'],
 						      lineColors:['gray']
@@ -189,6 +193,7 @@
 						      hideHover: 'auto',
 						      behaveLikeLine: true,
 						      resize: true,
+						      xLabelAngle: '70',
 						      pointFillColors:['#ffffff'],
 						      pointStrokeColors: ['black'],
 						      lineColors:['gray']
@@ -210,6 +215,7 @@
 				      hideHover: 'auto',
 				      behaveLikeLine: true,
 				      resize: true,
+				      xLabelAngle: '70',
 				      pointFillColors:['#ffffff'],
 				      pointStrokeColors: ['black'],
 				      lineColors:['gray']

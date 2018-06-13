@@ -29,6 +29,10 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="<c:url value="/js/morris.min.js"/>"></script>
+<script src="<c:url value="/js/raphael.min.js"/>"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
 <script>
 var slideIndex = 1;
 showDivs(slideIndex);
@@ -48,7 +52,102 @@ function showDivs(n) {
   x[slideIndex-1].style.display = "block";  
 }
 </script>
+	<script type="text/javascript">
+	 $(document).ready(function(){
 
+		 var selected = $('#h_month').val();
+		   $.ajax({
+			   url:"./GuideStatisAjax.fp",
+			   type:'post',
+			   data:{'selected':selected},
+			   dataType:'json',
+			   success:function(result){
+				   var jsonData = JSON.parse("["+result+"]");
+				   selected = $('#h_month').val();
+		   		
+		   		
+// 	 Morris.Bar({
+// 			element: 'visit',
+// 			data: [
+// 				{ y: jsonData[0].month+"월", a: jsonData[0].count},
+// 				{ y: jsonData[1].month+"월", a: jsonData[1].count},
+// 				{ y: jsonData[2].month+"월", a: jsonData[2].count},
+// 				{ y: jsonData[3].month+"월", a: jsonData[3].count},
+// 				{ y: jsonData[4].month+"월", a: jsonData[4].count},
+// 				{ y: jsonData[5].month+"월", a: jsonData[5].count},
+// 				{ y: jsonData[6].month+"월", a: jsonData[6].count},
+// 				{ y: jsonData[7].month+"월", a: jsonData[7].count},
+// 				{ y: jsonData[8].month+"월", a: jsonData[8].count},
+// 				{ y: jsonData[9].month+"월", a: jsonData[9].count},
+// 				{ y: jsonData[10].month+"월", a: jsonData[10].count},
+// 				{ y: jsonData[11].month+"월", a: jsonData[11].count}
+				
+// 			],
+// 			xkey: 'y',
+// 			ykeys: ['a'],
+// 			labels: ['방문자 수'],		 
+// 	      hideHover: 'auto',
+// 	      behaveLikeLine: true,
+// 	      resize: true,
+// 	      barColors:['gray']
+// 		});
+	   Morris.Bar({
+			element: 'book',
+			data: [
+				{ y: jsonData[12].month1+"월", a: jsonData[12].count1},
+				{ y: jsonData[13].month1+"월", a: jsonData[13].count1},
+				{ y: jsonData[14].month1+"월", a: jsonData[14].count1},
+				{ y: jsonData[15].month1+"월", a: jsonData[15].count1},
+				{ y: jsonData[16].month1+"월", a: jsonData[16].count1},
+				{ y: jsonData[17].month1+"월", a: jsonData[17].count1},
+				{ y: jsonData[18].month1+"월", a: jsonData[18].count1},
+				{ y: jsonData[19].month1+"월", a: jsonData[19].count1},
+				{ y: jsonData[20].month1+"월", a: jsonData[20].count1},
+				{ y: jsonData[21].month1+"월", a: jsonData[21].count1},
+				{ y: jsonData[22].month1+"월", a: jsonData[22].count1},
+				{ y: jsonData[23].month1+"월", a: jsonData[23].count1}
+				
+			],
+			xkey: 'y',
+			ykeys: ['a'],
+			labels: ['입고 수'],
+		      hideHover: 'always',
+		      behaveLikeLine: true,
+		      resize: true,
+		      barColors:['gray']
+		});
+	   Morris.Bar({
+			element: 'bbook',
+			data: [
+				{ y: jsonData[24].month2+"월", a: jsonData[24].count2},
+				{ y: jsonData[25].month2+"월", a: jsonData[25].count2},
+				{ y: jsonData[26].month2+"월", a: jsonData[26].count2},
+				{ y: jsonData[27].month2+"월", a: jsonData[27].count2},
+				{ y: jsonData[28].month2+"월", a: jsonData[28].count2},
+				{ y: jsonData[29].month2+"월", a: jsonData[29].count2},
+				{ y: jsonData[30].month2+"월", a: jsonData[30].count2},
+				{ y: jsonData[31].month2+"월", a: jsonData[31].count2},
+				{ y: jsonData[32].month2+"월", a: jsonData[32].count2},
+				{ y: jsonData[33].month2+"월", a: jsonData[33].count2},
+				{ y: jsonData[34].month2+"월", a: jsonData[34].count2},
+				{ y: jsonData[35].month2+"월", a: jsonData[35].count2}	
+			],
+			xkey: 'y',
+			ykeys: ['a'],
+			labels: ['대출 수'],					
+		      hideHover: 'always',
+		      behaveLikeLine: true,
+		      resize: true,
+		      barColors:['gray']
+		});
+	   
+			   }//success 끝
+	  			 
+  			});
+	   selectBox();
+		});	
+	   
+	</script>
 </head>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -98,7 +197,7 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 						%>
 						<ul class="main_lst w3-content w3-display-container" id="book_pic_div" >	
 							<li class="mySlides">
-							<img src="./upload/book/<%=bkDTO.getBook_file()%>"width="200px" height="260px" class="book_lst_img">
+							<img src="./upload/book/<%=bkDTO.getBook_file()%>"width="200px" height="260px" class="main_lst_img">
 								<span id='bk_li_subs'><%=bkDTO.getBook_subject() %></span>
 								<dl class='book_info_layer'>
 									<dt>
@@ -124,7 +223,7 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 					</div>	
 				</div>
 					
- 			<!--  통계   -->
+ 			
  			
 		
 			<!-- 큐레이션 -->
@@ -171,7 +270,7 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 									<li>
 									 <a href="./BoardNoticeList.no?pageNum=1">
 										<p class="tit"><%=bDTO.getNotice_type() %> <%=bDTO.getNotice_subject() %></p>
-									    <span class="date"><%=bDTO.getNotice_date() %></span>
+									    <span class="date"><%=date.format(bDTO.getNotice_date())%></span>
 									</a>	
 									</li>
 									<%	}	%>
@@ -179,6 +278,33 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 							</ul>
 						</div>
 					</div>
+					 
+					 <!--  통계   -->
+					 <div class="main_consta main_div">
+						 <div class="main_box">
+						 <h2>Statis</h2>
+						 
+<!-- 						 <div style="padding: 0 20px;"> -->
+<!-- 							<p>방문자 수</p> -->
+<!-- 							<div id="visit" style="width: 400px; height: 150px;"></div> -->
+<!-- 						 </div>	 -->
+								
+						 <div id="sta_size">
+							<p class="tit">장서 입고수</p>
+							<div id="book"></div>
+						 </div>
+						
+						 <div id="sta_size">
+							<p class="tit">대출 수</p>
+							<div id="bbook"></div>
+						 </div>
+
+					 	</div>
+					 	<input type="hidden" value="month" id="h_month">
+					 </div>
+					 
+					 
+					 
 					 
 				</div>
 				<!-- //메인 페이지-->
@@ -188,5 +314,6 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+
 </body>
 </html>
