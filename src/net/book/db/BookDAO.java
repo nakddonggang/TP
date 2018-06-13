@@ -48,6 +48,21 @@ public class BookDAO {
 			List<BookDTO> bookList = sqlsession.selectList("BookSorts", map);
 			return bookList;
 		}	
+		public List<BookDTO> BookSortDate(int startRow, int pageSize){
+			HashMap map = new HashMap();
+			map.put("startRow", startRow-1);
+			map.put("pageSize", pageSize);
+			List<BookDTO> booksortList = sqlsession.selectList("BookSortDate", map);
+			return booksortList;
+		}	
+		public List<BookDTO> BookSortPopul(int startRow, int pageSize){
+			HashMap map = new HashMap();
+			map.put("startRow", startRow-1);
+			map.put("pageSize", pageSize);
+			List<BookDTO> booksortList = sqlsession.selectList("BookSortPopul", map);
+			return booksortList;
+		}	
+		
 // 책정렬
 		
 // START 상세검색

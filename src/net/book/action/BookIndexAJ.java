@@ -36,8 +36,8 @@ public class BookIndexAJ  implements Action {
 		
 		// 오름차순, 내림차순 결정하기
 		String adsc="";
-		if (sort.equals("book_subject")||sort.equals("book_author")||sort.equals("book_date")) adsc="asc";
-		else if (sort.equals("book_number")||sort.equals("book_number")||sort.equals("book_pubDate")) adsc="desc";
+		if (sort.equals("book_subject")||sort.equals("book_author")) adsc="asc";
+		else if (sort.equals("book_number")||sort.equals("book_pubDate")) adsc="desc";
 		System.out.println(adsc);
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
@@ -78,7 +78,13 @@ public class BookIndexAJ  implements Action {
 		PrintWriter out = response.getWriter();
 		
 		// 책 뿌려주는 메소드 생성
-		List<BookDTO> list = bdao.BookSorts(sort, adsc, startRow, pageSize);
+		List<BookDTO> list =null;
+		if (count!=0){
+			if (sort.equals("book_date")) list=bdao.BookSortDate(startRow, pageSize);
+			else if (sort.equals("book_popul")) list=bdao.BookSortPopul(startRow, pageSize);
+			else list = bdao.BookSorts(sort, adsc, startRow, pageSize);
+		} else { System.out.println("count=0");}
+				
 		
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		

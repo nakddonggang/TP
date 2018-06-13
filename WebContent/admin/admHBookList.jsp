@@ -115,7 +115,10 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 								<li class="adm_col_rch" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getMember_id()%></li>
 								<li class="adm_col_dateh" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_subject()%></li>								
 								<li class="adm_col_nameh" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_author()%></li>
-								<li class="adm_col_rch" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_check()%></li>
+								<li class="adm_col_rch" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'">
+								<%if(hbookLists.getHbook_check().equals("wait")){ %>대기 <%}
+								else if(hbookLists.getHbook_check().equals("in")){ %> 입고됨 <%}
+								else if(hbookLists.getHbook_check().equals("not-in")) {%>입고불가 <%}%></li>
 								<li class="adm_col_typeh" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_publisher()%></li>
 								<li class="adm_col_typeh"><%=hbookLists.getHbook_isbn()%></li>
 								<li class="adm_col_rch"><input type='submit' class='bbutton2' value='삭제하기'></li>

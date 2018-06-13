@@ -49,7 +49,38 @@
 			where db.dbook_state is null
 			order by b.${bookSR} ${adsc}  limit #{startRow},#{pageSize}
 	 </select>
-
+	 
+	 <select id="BookSortDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher,
+		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
+		on b.book_number=rb.book_number
+		where db.dbook_state is null
+		order by b.book_number asc limit #{startRow}, #{pageSize} 	 
+	 </select>	 	
+	 
+	  <select id="BookSortPopul" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher,
+		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate, ifnull(hb.hbcount, 0) hbcount
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
+		on b.book_number=rb.book_number 
+        left join (select count(book_number) as hbcount, book_number from history_bbook group by book_number) hb
+		on b.book_number=hb.book_number
+		order by hbcount desc, b.book_number asc limit #{startRow}, #{pageSize}
+	 </select> 
+	 
 	 <select id="Bk_SearchAllCount" resultType="int" parameterType="hashmap">
 	 	select count(b.book_number) from book b
 		left join dbook db

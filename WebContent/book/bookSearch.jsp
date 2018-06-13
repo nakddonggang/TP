@@ -67,7 +67,7 @@ var opt2=Request("opt2");
 var category3="${category3}";
 var search3="${search3}";
 var pubDate=Request("pubDate");
-var sort="book_number";
+var sort=Request("sort");
 if (view==null) view="1";
 if(pageNum=="") pageNum="1";
 // $.Alert(pageNum+", "+view+", "+category1+", "+category2+", "+category3+", "+search1+", "+search2+", "+search3,function(){});
@@ -102,13 +102,13 @@ if (view==0){
 $('#book_pic_btn').click(function(){
 // 	pageNum=1;
 	view=0;
-	onload(pageNum, view);
+	onload(pageNum, view, sort);
 });
 
 $('#book_cont_btn').click(function(){
 // 	pageNum=1;
 	view=1;
-	onload(pageNum, view);
+	onload(pageNum, view, sort);
 });
 
 // 갤러리 형식 hover 효과주기
@@ -141,35 +141,15 @@ var book_number = $(this).attr("rel");
 	} else { return false; }
 });
 
-// 모달창 띄우기
-//admin 대출,예약,책상태 
-for(var i=0;i<JSdata.length-8;i++){
-	$('.BookMod' + i).dialog({ 
-		autoOpen: false, 
-		width: 400, 
-		modal: true, 
-	});
-}
-$(".info_bbutton2").click(function() {
-	var listvalue = $(this).attr("id");
-	$('.BookMod' + listvalue).dialog("open");
-});
-
-$(".BTN_CLOSE").click(function() {
-	var listvalue = $(this).attr("id");
-	$('.BookMod' + listvalue).dialog("close");
-});
-
 	// 책 정렬
-	var sort = "";	
 	$('#book_sort').change(function(){
+		pageNum=1;
 		sort = $("#book_sort > option:selected").val();
-// 		$.Alert("정렬되는지 시험"+pageNum+", "+sort,function(){ });
-		onload(pageNum, view);
+		onload(pageNum, view, sort);
 	}); // function selectBook 함수
 			
 	// Ajax 함수
-	function onload(pageNum, view){
+	function onload(pageNum, view, sort){
 		$('.AjaxTest').empty(); // div 영역 비우기
 		$.ajax({
 			url:"./BookSearchAJ.bk",
@@ -282,8 +262,7 @@ $(".BTN_CLOSE").click(function() {
 									+JSdata[k].book_subject+"</span></dt><dd><dl><dt>저자</dt><dd>"
 									+JSdata[k].book_author+"</dd><dt>출판사</dt><dd>"
 									+JSdata[k].book_publisher+"</dd><dt>출판년도</dt><dd>"
-									+JSdata[k].book_pubDate+"</dd><dt>반납상태</dt><dd>"
-									+JSdata[k].bbook_bdate+"</dd></dl></dd></dl></a></li>";
+									+JSdata[k].book_pubDate+"</dd></dl></dd></dl></a></li>";
 									$('#book_pic_div').append(pic2);
 								}
 							}						
@@ -305,7 +284,7 @@ $(".BTN_CLOSE").click(function() {
 							if(startPage>pageBlock) {
 								var text11="<a href='./BookSearch.bk?pageNum="+(startPage-pageBlock)+"&category1="+category1+"&search1="+search1+"&opt1="
 								+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-								+search3+"&pubDate="+pubDate+"&view="+view+"' class='prev'><span class='hide'>이전 페이지</span></a>";
+								+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"' class='prev'><span class='hide'>이전 페이지</span></a>";
 								$('.paginate').append(text11);
 							}
 							
@@ -316,7 +295,7 @@ $(".BTN_CLOSE").click(function() {
 								} else{
 									var text12="&nbsp;<a href='./BookSearch.bk?pageNum="+i+"&category1="+category1+"&search1="+search1+"&opt1="
 									+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-									+search3+"&pubDate="+pubDate+"&view="+view+"'>"+i+"</a> &nbsp";
+									+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"'>"+i+"</a> &nbsp";
 									$('.paginate').append(text12);
 								}
 							}
@@ -324,13 +303,13 @@ $(".BTN_CLOSE").click(function() {
 							if(endPage < pageCount) { 
 								var text13="<a href='./BookSearch.bk?pageNum="+(startPage+pageBlock)+"&category1="+category1+"&search1="+search1+"&opt1="
 								+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-								+search3+"&pubDate="+pubDate+"&view="+view+"' class='next'><span class='hide'>다음 페이지</span></a id='text14_ap'>";
+								+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"' class='next'><span class='hide'>다음 페이지</span></a id='text14_ap'>";
 								$('.paginate').append(text13);
 							}
 
 							var text14="<a href='./BookSearch.bk?pageNum="+pageCount+"&category1="+category1+"&search1="+search1+"&opt1="
 							+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-							+search3+"&pubDate="+pubDate+"&view="+view+"'><span>&nbsp;&gt;&gt;</span></a>";
+							+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"'><span>&nbsp;&gt;&gt;</span></a>";
 							$('.paginate').append(text14);
 							
 							var text15="</div>";
@@ -554,10 +533,10 @@ alert("decode"+decode);
 								<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
 								<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
 								<select name="sort" id="book_sort">
-									<option value="book_number" selected="selected">정렬</option>
+									<option value="book_number">정렬</option>
 									<option value="book_subject">제목순</option>
 									<option value="book_author">저자순</option>
-									<option value="book_number">인기순</option>
+									<option value="book_popul">인기순</option>
 									<option value="book_pubDate">신작순</option>
 									<option value="book_date">입고순</option>
 								</select>
@@ -689,8 +668,6 @@ alert("decode"+decode);
 								<dd><%=booksearchLists.getBook_publisher()%></dd>
 								<dt>출판년도</dt>
 								<dd><%=booksearchLists.getBook_pubDate()%></dd>
-								<dt>반납상태</dt>
-								<dd><%=booksearchLists.getBbook_bstate()%></dd>
 							</dl>
 						</dd>
 					</dl>
@@ -700,6 +677,29 @@ alert("decode"+decode);
 				<%}
 				}%>
 	</ul>
+	
+<script type="text/javascript">
+$(window).on('load', function() {
+	var booksearchList = "${booksearchList.size()}";
+	//admin 대출,예약,책상태 
+	for(var i=0; i<booksearchList; i++){
+		$('.BookMod' + i).dialog({ 
+			autoOpen: false, 
+			width: 400, 
+			modal: true, 
+		});
+	}
+	$(".info_bbutton2").click(function() {
+		var listvalue = $(this).attr("id");
+		$('.BookMod' + listvalue).dialog("open");
+	});
+	
+	$(".BTN_CLOSE").click(function() {
+		var listvalue = $(this).attr("id");
+		$('.BookMod' + listvalue).dialog("close");
+	});
+});
+</script>	
 							<!-- ★갤러리로 보여지는 통합검색 -->
 							<%if(member_id!=null){ %>
 							<div class="btn_btm_center">

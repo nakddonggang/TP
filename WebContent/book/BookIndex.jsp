@@ -58,35 +58,36 @@ $(document).ready(function() {
 	
 var pageNum = Request("pageNum");
 var view = Request("view");
+var sort = Request("sort");
 if(pageNum=="") pageNum=1;
 if (view=="") view=1;
-firstload(pageNum, view);
+firstload(pageNum, view, sort);
 
 	function firstload(pageNum, view){
-		onload(pageNum, view);	
+		onload(pageNum, view, sort);	
 	}
 	
 	// 책 정렬
-	var sort = Request("sort");	
 	$('#book_sort').change(function(){
+		pageNum=1;
 		sort = $("#book_sort > option:selected").val();
-		onload(pageNum, view);
+		onload(pageNum, view, sort);
 	}); // function selectBook 함수
 	
 	$('#book_pic_btn').click(function(){
 // 		pageNum=1;
 		view=0;
-		onload(pageNum, view);
+		onload(pageNum, view, sort);
 	});
 	
 	$('#book_cont_btn').click(function(){
 // 		pageNum=1;
 		view=1;
-		onload(pageNum, view);
+		onload(pageNum, view, sort);
 	});
 			
 	// Ajax 함수
-	function onload(pageNum, view){
+	function onload(pageNum, view, sort){
 		$('.AjaxTest').empty(); // div 영역 비우기
 		$.ajax({
 			url:"./BookIndexAJ.bk",
@@ -99,9 +100,9 @@ firstload(pageNum, view);
 				$('#basket_Fr').submit(function(){
 					if ($('.bncheck').is(":checked") == true ){
 						$.Confirm(
-								'책바구니에 담으시겠습니까??',
+								'책바구니에 담으시겠습니까?',
 								function(){
-									if (true) $("#basket_Fr").submit;
+									if(true) $("#basket_Fr").submit;
 									else return false;
 								}
 							);
@@ -200,13 +201,13 @@ firstload(pageNum, view);
 								$('.AjaxTest').append(text9);
 							}
 							
-							var text10 = "<div class='paginate'><a href='./BookIndex.bk?pageNum=1&view="+view+"'><span>&lt;&lt;&nbsp;</span></a>";
+							var text10 = "<div class='paginate'><a href='./BookIndex.bk?pageNum=1&view="+view+"&sort="+sort+"'><span>&lt;&lt;&nbsp;</span></a>";
 							$('.AjaxTest').append(text10);
 								
 							if(pageCount < endPage)	endPage = pageCount;
 							
 							if(startPage>pageBlock) {
-								var text11="<a href='./BookIndex.bk?pageNum="+(startPage-pageBlock)+"&view="+view+"' class='prev'><span class='hide'>이전 페이지</span></a>";
+								var text11="<a href='./BookIndex.bk?pageNum="+(startPage-pageBlock)+"&view="+view+"&sort="+sort+"' class='prev'><span class='hide'>이전 페이지</span></a>";
 								$('.paginate').append(text11);
 							}
 							
@@ -215,17 +216,17 @@ firstload(pageNum, view);
 									var text12="&nbsp;<strong id='currentPage' title='현재 페이지'>"+i+"</strong> &nbsp;";
 									$('.paginate').append(text12);
 								} else{
-									var text12="&nbsp;<a href='./BookIndex.bk?pageNum="+i+"&view="+view+"'>"+i+"</a> &nbsp";
+									var text12="&nbsp;<a href='./BookIndex.bk?pageNum="+i+"&view="+view+"&sort="+sort+"'>"+i+"</a> &nbsp";
 									$('.paginate').append(text12);
 								}
 							}
 							
 							if(endPage < pageCount) { 
-								var text13="<a href='./BookIndex.bk?pageNum="+(startPage+pageBlock)+"&view="+view+"' class='next'><span class='hide'>다음 페이지</span></a id='text14_ap'>";
+								var text13="<a href='./BookIndex.bk?pageNum="+(startPage+pageBlock)+"&view="+view+"&sort="+sort+"' class='next'><span class='hide'>다음 페이지</span></a id='text14_ap'>";
 								$('.paginate').append(text13);
 							}
 
-							var text14="<a href='./BookIndex.bk?pageNum="+pageCount+"&view="+view+"'><span>&nbsp;&gt;&gt;</span></a>";
+							var text14="<a href='./BookIndex.bk?pageNum="+pageCount+"&view="+view+"&sort="+sort+"'><span>&nbsp;&gt;&gt;</span></a>";
 							$('.paginate').append(text14);
 							
 							var text15="</div>";
@@ -436,10 +437,10 @@ firstload(pageNum, view);
 								<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
 								<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
 								<select name="sort" id="book_sort">
-									<option value="book_number" selected="selected">정렬</option>
+									<option value="book_number">정렬</option>
 									<option value="book_subject">제목순</option>
 									<option value="book_author">저자순</option>
-									<option value="book_number">인기순</option>
+									<option value="book_popul">인기순</option>
 									<option value="book_pubDate">신작순</option>
 									<option value="book_date">입고순</option>
 								</select>

@@ -128,7 +128,7 @@ public class AdminBookSearch implements Action{
 		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 2;		
+		int pageSize = 5;		
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");

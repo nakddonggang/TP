@@ -341,17 +341,17 @@
 	 <select id="getBookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, ifnull(hb.hbcount, 0) hbcount
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
-		left join dbook hisb
-		on b.book_number=hisb.book_number
 		left join bbook bb
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by bb.book_number desc limit #{startRow}, #{pageSize} 	 
+        left join (select count(book_number) as hbcount, book_number from history_bbook group by book_number) hb
+		on b.book_number=hb.book_number
+		order by hbcount desc, b.book_number asc limit #{startRow}, #{pageSize}
 	 </select>
 
 	 <select id="getBookSortPubDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
@@ -365,7 +365,7 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.book_pubDate desc, b.book_number asc limit #{startRow}, #{pageSize} 	 
+		order by b.book_pubDate desc limit #{startRow}, #{pageSize} 	 
 	 </select>
 
 	 <select id="getBookSortDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
@@ -379,7 +379,7 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.book_date desc, b.book_number asc limit #{startRow}, #{pageSize} 	 
+		order by b.book_number asc limit #{startRow}, #{pageSize} 	 
 	 </select>	 	 	
 	 
 	 <select id="getBookNum" parameterType="int" resultType="int">
@@ -579,7 +579,7 @@
 	 </select>
 	 
 	 <delete id="HBookDelete" parameterType="hashmap">
-	 	delete from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject}, hbook_author=#{hbook_author}
+	 	delete from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
 	 </delete>
 
 	
