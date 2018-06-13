@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.book.db.BookDTO"%>
 <%@page import="net.board.db.BoardDTO"%>
 <%@page import="java.util.List"%>
@@ -26,6 +27,28 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script>
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+  showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+  var i;
+  var x = document.getElementsByClassName("mySlides");
+  if (n > x.length) {slideIndex = 1}    
+  if (n < 1) {slideIndex = x.length}
+  for (i = 0; i < x.length; i++) {
+     x[i].style.display = "none";  
+  }
+  x[slideIndex-1].style.display = "block";  
+}
+</script>
+
 </head>
 <%
 request.setCharacterEncoding("UTF-8");
@@ -38,6 +61,8 @@ if(member_id != null) {
 } else {
 	session.removeAttribute("admincheck");
 }
+
+SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 %>
 
 
@@ -70,17 +95,32 @@ if(member_id != null) {
 					}else{
 						for(int i=0; i<popularList.size(); i++){ 
 						BookDTO bkDTO = popularList.get(i);
-						%><ul class="book_lst" id="book_pic_div">
-							
-					<li><img src="./upload/book/<%=bkDTO.getBook_file()%>"width="200px" height="260px" class="book_lst_img">
-					<span id='bk_li_subs'><%=bkDTO.getBook_subject() %></span>
-					<dl class='book_info_layer'><dt><span><%=bkDTO.getBook_subject() %></span></dt><dd><dl><dt>저자</dt>
-					<dd><%=bkDTO.getBook_author() %></dd><dt>출판사</dt>
-					<dd><%=bkDTO.getBook_publisher() %></dd><dt>출판년도</dt>
-					<dd><%=bkDTO.getBook_pubDate() %></dd></dl></dd></dl></li></ul>
-								}<%
-						}
+						%>
+						<ul class="main_lst w3-content w3-display-container" id="book_pic_div" >	
+							<li class="mySlides">
+							<img src="./upload/book/<%=bkDTO.getBook_file()%>"width="200px" height="260px" class="book_lst_img">
+								<span id='bk_li_subs'><%=bkDTO.getBook_subject() %></span>
+								<dl class='book_info_layer'>
+									<dt>
+										<span><%=bkDTO.getBook_subject() %></span>
+									</dt>
+									<dd>
+										<dl>
+											<dt>저자</dt><dd><%=bkDTO.getBook_author() %></dd>
+											<dt>출판사</dt><dd><%=bkDTO.getBook_publisher() %></dd>
+											<dt>출판년도</dt><dd><%=date.format(bkDTO.getBook_pubDate())%></dd>
+										</dl>
+									</dd>
+								</dl>
+									
+							</li>
+							<button class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
+  							<button class="w3-button w3-black w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+						</ul>
+								<%
+						}}
 					%>	
+				
 					</div>	
 				</div>
 					
