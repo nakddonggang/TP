@@ -244,8 +244,21 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-				<div class="board">
-				<h3>혜윰누리 통계</h3>
+				<div class="statis">
+				 <div class="statis_pad">
+				<h3>혜윰나래 통계</h3>
+				<div class="dl_boxg">
+					<dl>
+							<dt> 통계</dt>
+							<dd> 혜윰나래 홈페이지의 <span class="bold">방문자수</span> <span class="bold">장서 입고수</span> <span class="bold">대출 수</span>를</dd>
+							<dd> 월별  연도별로 수치를 볼 수 있는 페이지입니다.</dd>
+							<dd></dd>
+					</dl>
+					<br>
+					<br>
+				</div>
+				</div>
+				
 				<input type="button" value="연도별"  id="year" class="btn_type6">
 				<input type="button" value="월별"  id="month" class="btn_type6">
 				<input type="hidden" value="year" id="h_year">
@@ -257,7 +270,7 @@
 						</div>
 					</div>
 					<div>
-						<h5>책 입고수</h5>
+						<h5>장서 입고수</h5>
 						<div id="book">
 						
 						</div>
