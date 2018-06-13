@@ -28,10 +28,6 @@ public class AdminBookIndex implements Action{
 		if (sort==null) sort="book_number";
 		System.out.println("정렬해야할 값"+sort);
 		
-		String view = request.getParameter("view");
-		System.out.println(view);
-		if (view==null) view="1";		
-		
 		// 오름차순, 내림차순 결정하기
 		String adsc="";
 		if (sort.equals("book_subject")||sort.equals("book_author")) adsc="asc";

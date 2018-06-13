@@ -78,6 +78,7 @@
 		on b.book_number=rb.book_number 
         left join (select count(book_number) as hbcount, book_number from history_bbook group by book_number) hb
 		on b.book_number=hb.book_number
+		where db.dbook_state is null
 		order by hbcount desc, b.book_number asc limit #{startRow}, #{pageSize}
 	 </select> 
 	 

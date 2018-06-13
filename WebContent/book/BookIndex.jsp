@@ -52,7 +52,7 @@ var view = Request("view");
 var sort = Request("sort");
 if(pageNum=="") pageNum=1;
 if (view=="") view=1;
-firstload(pageNum, view, sort);
+firstload(pageNum, view);
 
 	function firstload(pageNum, view){
 		onload(pageNum, view, sort);	

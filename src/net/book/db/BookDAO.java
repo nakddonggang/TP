@@ -67,11 +67,10 @@ public class BookDAO {
 		
 // START 상세검색
 		// 검색결과로 나온 책 전체 개수 구하기
-		public int Bk_SearchAllCount(String search){
+		public int Bk_SearchAllCount(String all){
 			int count;
-			HashMap map = new HashMap();
-			map.put("all", "%"+search+"%");
-			count=sqlsession.selectOne("Bk_SearchAllCount", map);
+			all = all.replaceAll(all, "%"+all+"%");
+			count=sqlsession.selectOne("Bk_SearchAllCount", all);
 			return count;
 		}
 		
@@ -137,7 +136,8 @@ public class BookDAO {
 		public int Bk_SearchTwoAllCount(String all, String option, String category, String value){
 			int count;
 			HashMap map = new HashMap();
-			map.put("all", "%"+all+"%");
+			value = value.replaceAll(value, "%"+value+"%");
+			map.put("all", value);
 			map.put("option", option);
 			map.put("category", category);
 			map.put("value", value);
@@ -195,7 +195,8 @@ public class BookDAO {
 		public int Bk_SearchThrAllCount(String all, String option1, String category1, String value1, String option2, String category2, String value2){
 			int count;
 			HashMap map = new HashMap();
-			map.put("all", "%"+all+"%");
+			all = all.replaceAll(all, "%"+all+"%");
+			map.put("all", all);
 			map.put("option1", option1);
 			map.put("category1", category1);
 			map.put("value1", value1);
@@ -245,7 +246,8 @@ public class BookDAO {
 		public int Bk_DateSearchAllCount(String search, String pubDate){
 			int count;
 			HashMap map = new HashMap();
-			map.put("all", "%"+search+"%");
+			search = search.replaceAll(search, "%"+search+"%");
+			map.put("all", search);
 			map.put("pubDate", pubDate);
 			count=sqlsession.selectOne("Bk_DateSearchAllCount", map);
 			return count;
@@ -318,7 +320,8 @@ public class BookDAO {
 		public int Bk_DateSearchTwoAllCount(String all, String option, String category, String value, String pubDate){
 			int count;
 			HashMap map = new HashMap();
-			map.put("all", "%"+all+"%");
+			all = all.replaceAll(all, "%"+all+"%");
+			map.put("all", all);
 			map.put("option", option);
 			map.put("category", category);
 			map.put("value", value);
@@ -380,7 +383,8 @@ public class BookDAO {
 		public int Bk_DateSearchThrAllCount(String all, String option1, String category1, String value1, String option2, String category2, String value2, String pubDate){
 			int count;
 			HashMap map = new HashMap();
-			map.put("all", "%"+all+"%");
+			all = all.replaceAll(all, "%"+all+"%");
+			map.put("all", all);
 			map.put("option1", option1);
 			map.put("category1", category1);
 			map.put("value1", value1);

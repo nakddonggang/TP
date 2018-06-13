@@ -179,15 +179,15 @@ $('.rbutton').click(function() {
 				// ajax 변수 
 				var JSdata = JSON.parse("["+result+"]");
 				var count=JSdata[JSdata.length-17].count;
-				var search1=JSdata[JSdata.length-16].sort;
-				var search2=JSdata[JSdata.length-15].sort;
-				var search3=JSdata[JSdata.length-14].sort;
-				var category1=JSdata[JSdata.length-13].sort;
-				var category2=JSdata[JSdata.length-12].sort;
-				var category3=JSdata[JSdata.length-11].sort;
-				var opt1=JSdata[JSdata.length-10].sort;
-				var opt2=JSdata[JSdata.length-9].sort;
-				var pubDate=JSdata[JSdata.length-8].sort;
+				var search1=JSdata[JSdata.length-16].search1;
+				var search2=JSdata[JSdata.length-15].search2;
+				var search3=JSdata[JSdata.length-14].search3;
+				var category1=JSdata[JSdata.length-13].category1;
+				var category2=JSdata[JSdata.length-12].category2;
+				var category3=JSdata[JSdata.length-11].category3;
+				var opt1=JSdata[JSdata.length-10].opt1;
+				var opt2=JSdata[JSdata.length-9].opt2;
+				var pubDate=JSdata[JSdata.length-8].pubDate;
 				var sort=JSdata[JSdata.length-7].sort;
 				pageNum=JSdata[JSdata.length-6].pageNum;
 				var pageCount=JSdata[JSdata.length-5].pageCount;
@@ -213,7 +213,7 @@ $('.rbutton').click(function() {
 					var text4= "<div class='con_lst'><ul><li class='col_tit'><p>책 목록이 없습니다</p></li></ul></div>";
 					$('#text3_ap').append(text4);
 				} else {
-					for(var i=0; i<JSdata.length-8; i++){
+					for(var i=0; i<JSdata.length-17; i++){
 						var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll'><li class='adm_col_rrc' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
 							+JSdata[i].book_number+"'></li><li class='adm_col_date' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
 							+JSdata[i].book_number+"\"\'><img src='./upload/book/"
@@ -254,7 +254,7 @@ $('.rbutton').click(function() {
 								var pic2="<li><dl class='book_info_layer'><dt>책 목록이 없습니다</dt><dd></dd></dl></li> ";
 								$('#book_pic_div').append(pic2);
 							} else {
-								for(var k=0; k<JSdata.length-8; k++){
+								for(var k=0; k<JSdata.length-17; k++){
 									var pic2="<li><a href='./BookInfo.bk?book_number="
 									+JSdata[k].book_number+"'><img src='./upload/book/"
 									+JSdata[k].book_file+"' class='book_lst_img'><span id='bk_li_subs'>"
@@ -276,7 +276,7 @@ $('.rbutton').click(function() {
 							
 							var text10 = "<div class='paginate'><a href='./BookSearch.bk?pageNum=1&category1="+category1+"&search1="+search1+"&opt1="
 									+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-									+search3+"&pubDate="+pubDate+"&view="+view+"'><span>&lt;&lt;&nbsp;</span></a>";
+									+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"'><span>&lt;&lt;&nbsp;</span></a>";
 							$('.AjaxTest').append(text10);
 								
 							if(pageCount < endPage)	endPage = pageCount;
@@ -371,7 +371,7 @@ $('.rbutton').click(function() {
 						
 						// 모달창 띄우기
 						//admin 대출,예약,책상태 
-						for(var i=0;i<JSdata.length-8;i++){
+						for(var i=0;i<JSdata.length-17;i++){
 							$('.BookMod' + i).dialog({ 
 								autoOpen: false, 
 								width: 400, 

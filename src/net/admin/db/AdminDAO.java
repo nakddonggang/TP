@@ -100,9 +100,8 @@ public class AdminDAO {
 	// 검색결과로 나온 책 전체 개수 구하기
 	public int getBookSearchAllCount(String search){
 		int count;
-		HashMap map = new HashMap();
-		map.put("all", "%"+search+"%");
-		count=sqlsession.selectOne("getBookSearchAllCount", map);
+		search = search.replaceAll(search, "%"+search+"%");
+		count=sqlsession.selectOne("getBookSearchAllCount", search);
 		return count;
 	}
 	
@@ -168,7 +167,8 @@ public class AdminDAO {
 	public int SearchTwoAllCount(String all, String option, String category, String value){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", "%"+all+"%");
+		value = value.replaceAll(value, "%"+value+"%");
+		map.put("all", value);
 		map.put("option", option);
 		map.put("category", category);
 		map.put("value", value);
@@ -226,7 +226,8 @@ public class AdminDAO {
 	public int SearchThrAllCount(String all, String option1, String category1, String value1, String option2, String category2, String value2){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", "%"+all+"%");
+		all = all.replaceAll(all, "%"+all+"%");
+		map.put("all", all);
 		map.put("option1", option1);
 		map.put("category1", category1);
 		map.put("value1", value1);
@@ -254,13 +255,30 @@ public class AdminDAO {
 	}			
 	
 	
-	// 발행일을 검색내용에 넣을 때 책 검색
+// 발행일을 검색내용에 넣을 때 책 검색
+	// 발행일로만 책 전체 개수 구하기
+	public int getDateAllCount(String pubDate){
+		int count;
+		count=sqlsession.selectOne("getDateAllCount", pubDate);
+		return count;
+	}
+	
+	//발행일로만 나온 책 전체 리스트 뿌려주기
+	public List<BookDTO> getDateAllList(int startRow, int pageSize, String pubDate){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("pubDate", pubDate);
+		List<BookDTO> booksearchList = sqlsession.selectList("getDateAllList", map);
+		return booksearchList;
+	}	
 	
 	// 검색결과로 나온 책 전체 개수 구하기
 	public int getBookDateSearchAllCount(String search, String pubDate){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", "%"+search+"%");
+		search = search.replaceAll(search, "%"+search+"%");
+		map.put("all", search);
 		map.put("pubDate", pubDate);
 		count=sqlsession.selectOne("getBookDateSearchAllCount", map);
 		return count;
@@ -333,7 +351,8 @@ public class AdminDAO {
 	public int SearchDateTwoAllCount(String all, String option, String category, String value, String pubDate){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", "%"+all+"%");
+		all = all.replaceAll(all, "%"+all+"%");
+		map.put("all", all);
 		map.put("option", option);
 		map.put("category", category);
 		map.put("value", value);
@@ -395,7 +414,8 @@ public class AdminDAO {
 	public int SearchDateThrAllCount(String all, String option1, String category1, String value1, String option2, String category2, String value2, String pubDate){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", "%"+all+"%");
+		all = all.replaceAll(all, "%"+all+"%");
+		map.put("all", all);
 		map.put("option1", option1);
 		map.put("category1", category1);
 		map.put("value1", value1);

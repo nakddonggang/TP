@@ -305,6 +305,27 @@
 		order by b.book_number desc limit #{startRow},#{pageSize}	 
 	 </select>	 
 	 
+	<select id="getDateAllCount" resultType="int" parameterType="String">
+		select count(*)
+		from book
+		where book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+	 </select>
+	 
+	 <select id="getDateAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
+		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
+			from book b
+			left join dbook db
+			on b.book_number=db.book_number
+			left join bbook bb
+			on b.book_number=bb.book_number
+			left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
+			on b.book_number=rb.book_number
+			where b.book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+			order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select> 	 
+	 
 	 <select id="getBookSorts" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
@@ -321,8 +342,8 @@
 
 	 <select id="getBookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
-		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate, b.book_pubDate
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, ifnull(hb.hbcount, 0) hbcount
+		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate, ifnull(hb.hbcount, 0) hbcount
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
