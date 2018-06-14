@@ -29,6 +29,10 @@
 String info_id = request.getParameter("info_id");
 String pageNum = request.getParameter("pageNum");
 String pageType = request.getParameter("pageType");
+String member_level = request.getParameter("member_level");
+if(member_level==null){
+	member_level = "%";
+}
 MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
 String gm_check =(String)request.getAttribute("gm_check");
 String bl_check =(String)request.getAttribute("bl_check");
@@ -41,10 +45,75 @@ if ((member_id == null) || !(member_id.equals("admin"))) {
 }
 %>
 
-<body class="if_board">
+<body>
 	<div class="wrapper">
+			<!-- header -->
+		<jsp:include page="../include/header.jsp" />
+		<!-- //header -->
+
+		<!-- 본문 컨테이너 -->
+		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
+
+				<!-- 서브메뉴 -->
+				<jsp:include page="../include/submenu_main.jsp" />
+				<!-- //서브메뉴 -->
 				<article class="mainmenu section SECTION">
+<<<<<<< HEAD
+				<jsp:include page="../include/topbar.jsp" />
+				<!-- 메인 페이지 -->
+				<div class="content">
+					<div class="join_form">
+							<h3>사용자 정보보기</h3>
+							<ul class="row">
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>User ID</span></li>
+										<li class="inp_form"><input type="text" name="member_id" value="<%=mDTO.getMember_id()%>" readonly></li>
+									</ul>
+								</li>
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>Password</span></li>
+										<li class="inp_form"><input type="text" name="member_pass"  value="<%=mDTO.getMember_pass()%>"  readonly></li>
+									</ul>
+								</li>
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>Name</span></li>
+										<li class="inp_form"><input type="text" name="member_name" value="<%=mDTO.getMember_name()%>" readonly></li>
+									</ul>
+								</li>
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>E-Mail</span></li>
+										<li class="inp_form"><input type="text" name="member_email" value="<%=mDTO.getMember_email()%>" readonly></li>
+									</ul>
+								</li>
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>Post</span></li>
+										<li class="inp_form"><input type="text" name="member_post"  value="<%=mDTO.getMember_post()%>" readonly></li>
+									</ul>
+								</li>
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>Address</span></li>
+										<li class="inp_form"><input type="text" name="member_address"  value="<%=mDTO.getMember_address1()%><%=mDTO.getMember_address2()%> " readonly></li>
+									</ul>
+								</li>
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>Phone</span></li>
+										<li class="inp_form"><input type="text" name="member_phone" value="<%=mDTO.getMember_phone()%>" readonly></li>
+									</ul>
+								</li>
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>Date</span></li>
+										<li class="inp_form"><input type="text" name="member_date" value="<%=mDTO.getMember_date()%>" readonly></li>
+									</ul>
+=======
 					<div class='join_form'>
 						<h3>사용자 정보보기</h3>
 						<ul class="row">
@@ -134,14 +203,58 @@ if ((member_id == null) || !(member_id.equals("admin"))) {
 							<ul>
 								<li class="btn_cancle">
 									<input type="button" value="글목록" onclick="history.back();" class ="btn_type4 BTN_IF_LIST">
+>>>>>>> 5a8d7a96afb4d299460905353efb77229c61f8ed
 								</li>
 							</ul>
+							<ul class="row">
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>회원등급</span></li>
+										<%
+										if(gm_check.equals("0")&&bl_check.equals("0")){
+										%><li class="inp_form"><input type="text" name="level" value="일반회원" readonly></li><%
+										}else if(gm_check.equals("1")){
+											%><li class="inp_form"><input type="text" name="level" value="우수회원" readonly></li><%
+										}else if(bl_check.equals("1")){
+											%><li class="inp_form"><input type="text" name="level" value="블랙리스트" readonly></li><%
+										}%>
+									</ul>
+								</li>
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>대출횟수</span></li>
+										<li class="inp_form"><input type="text" name="borrow_count"  value="<%=borrowcount%>"  readonly></li>
+									</ul>
+								</li>
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>연체횟수</span></li>
+										<li class="inp_form"><input type="text" name="bl_count" value="<%=mDTO.getBl_count()%>" readonly></li>
+									</ul>
+								</li>
+								<li>
+									<ul class="row_sub">
+										<li class="title_adm"><span>연체총일수</span></li>
+										<li class="inp_form"><input type="text" name="bl_date" value="<%=mDTO.getBl_date()%>" readonly></li>
+									</ul>
+								</li>
+							</ul>
+							<div class="btn_btm_center">
+								<ul>
+									<li class="btn_cancle">
+										<input type="button" value="글목록" onclick='location.href="./AdminMemberIndex.am?pageNum=<%=pageNum %>&member_level=<%=member_level %>"' class ="btn_type4 BTN_IF_LIST">
+										
+										
+									</li>
+								</ul>
+							</div>
 						</div>
 					</div>
 				<!-- //메인 페이지-->
 				</article>
 			</section>
 		<!-- //본문 컨테이너 -->
+		</div>
 	</div>
 </body>
 </html>
