@@ -34,7 +34,7 @@ String gm_check =(String)request.getAttribute("gm_check");
 String bl_check =(String)request.getAttribute("bl_check");
 int borrowcount = (int)(request.getAttribute("borrowcount"));
 int overduecount = (int)request.getAttribute("overduecount");
-int overduedate = (int)request.getAsyncContext("overduedate");
+int overduedate = (int)request.getAttribute("overduedate");
 String member_id = (String)session.getAttribute("member_id");
 if ((member_id == null) || !(member_id.equals("admin"))) {
 	response.sendRedirect("./Main.fp");
