@@ -686,5 +686,13 @@ public class AdminDAO {
 				map.put("hbook_author", hbook_author);
 				sqlsession.delete("HBookDelete", map);
 		 }
+		 
+		 public int AllOverDueCount(String member_id) {
+			 return sqlsession.selectOne("AllOverdueCount", member_id);
+		 }
+		 
+		 public int AllOverDueDate(String member_id) {
+			 return sqlsession.selectOne("AllOverdueDate", member_id);
+		 }
 
 }

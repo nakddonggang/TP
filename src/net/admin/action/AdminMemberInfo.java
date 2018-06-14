@@ -34,9 +34,12 @@ public class AdminMemberInfo implements Action{
 		String bl_check = mDTO.getBl_check();
 		String gm_check = mDTO.getGm_check();
 		String member_id = mDTO.getMember_id();
-		System.out.println("mDTO.getMember_id : "+member_id);
+		int overduecount = adao.AllOverDueCount(member_id);
 		int borrowcount = adao.userBorrowCount(member_id);
+		int overduedate = adao.AllOverDueDate(member_id);
+		request.setAttribute("overduecount", overduecount);
 		request.setAttribute("borrowcount", borrowcount);
+		request.setAttribute("overduedate", overduedate);
 		request.setAttribute("mDTO", mDTO);
 		request.setAttribute("bl_check", bl_check);
 		request.setAttribute("gm_check", gm_check);
