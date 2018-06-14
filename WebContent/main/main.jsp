@@ -28,7 +28,6 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <script src="<c:url value="/js/morris.min.js"/>"></script>
 <script src="<c:url value="/js/raphael.min.js"/>"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -195,7 +194,7 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 						for(int i=0; i<popularList.size(); i++){ 
 						BookDTO bkDTO = popularList.get(i);
 						%>
-						<ul class="main_lst w3-content w3-display-container" id="book_pic_div" >	
+						<ul class="main_lst1 w3-content w3-display-container" id="book_pic_div" >	
 							<li class="mySlides">
 							<img src="./upload/book/<%=bkDTO.getBook_file()%>"width="200px" height="260px" class="main_lst_img">
 								<span id='bk_li_subs'><%=bkDTO.getBook_subject() %></span>
@@ -289,12 +288,12 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 <!-- 							<div id="visit" style="width: 400px; height: 150px;"></div> -->
 <!-- 						 </div>	 -->
 								
-						 <div id="sta_size">
+						 <div id="sta_size" onclick="location.href='./GuideStatis.fp">
 							<p class="tit">장서 입고수</p>
 							<div id="book"></div>
 						 </div>
 						
-						 <div id="sta_size">
+						 <div id="sta_size" onclick="location.href='./GuideStatis.fp">
 							<p class="tit">대출 수</p>
 							<div id="bbook"></div>
 						 </div>
