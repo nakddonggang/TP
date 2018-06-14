@@ -568,8 +568,20 @@
 	 	select count(*) from history_facil
 	 </select>
 	 
+	 <select id="AdminAllFacilitysearch" parameterType="hashmap" resultType="int">
+	 	select count(*) from history_facil 
+	 	where member_id like #{search} or facil_num like #{search} or facil_stime like #{search}
+	 </select>
+	 
 	 <select id="AdminAllFaciliyList" parameterType="hashmap" resultType="net.facility.db.FacilityDTO">
 	 	select * from history_facil
+	 	order by facil_stime desc
+	 	limit #{startRow},#{pageSize}
+	 </select>
+	 
+	 <select id="AdminSearchAllFaciliyList" parameterType="hashmap" resultType="net.facility.db.FacilityDTO">
+	 	select * from history_facil
+	 	where member_id like #{search} or facil_num like #{search} or facil_stime like #{search}
 	 	order by facil_stime desc
 	 	limit #{startRow},#{pageSize}
 	 </select>
