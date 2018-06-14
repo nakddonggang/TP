@@ -164,21 +164,20 @@ $(document).ready(function(){
 						
 	
 						
-						<div class="paginate">
+					<div class="paginate">
+						
+						<a href="./BoardNoticeList.no?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
-						%>
-						<a href="BoardNoticeList.no?pageNum=1">[처음]</a>
-						<%
-						if(startPage > pageBlock)	{ %><a href="BoardNoticeList.no?pageNum=<%=startPage-pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						if(startPage > pageBlock)	{ %><a href="./BoardNoticeList.no?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="BoardNoticeList.no?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+							else {%> &nbsp;<a href="./BoardNoticeList.no?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
 						}
-						if(endPage < pageCount){	%><a href="BoardNoticeList.no?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						if(endPage < pageCount){	%><a href="./BoardNoticeList.no?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="BoardNoticeList.no?pageNum=<%=pageCount %>">[끝]</a>
-						 </div>
+						<a href="./BoardNoticeList.no?pageNum=<%=pageCount%>" class="next2"><span class="hide">페이지끝</span></a>
+				  </div>
 						 
 						 <div class="btn_btm_center1">
 						 <%		
