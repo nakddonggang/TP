@@ -124,7 +124,7 @@ firstload(pageNum, view);
 					
 					// content 내용 넣기
 							var text = "<p>Total_<span>"
-							+count+"</span></p><ul class='brd_txt_lst' id='book_cont_div'><li class='view_lst' id='text3_ap'><div class='con_lst'><ul class='no_scroll title_t' id='text2_ap'><li class='adm_col_rrc'>목록</li><li class='adm_col_date'>사진</li><li class='adm_col_sub'>제목</li><li class='adm_col_type'>저자</li><li class='adm_col_sub'>출판사</li><li class='adm_col_sub' id='text2_ap'>대출/예약 현황</li>";
+							+count+"</span></p><ul class='brd_txt_lst' id='book_cont_div'><li class='view_lst' id='text3_ap'><div class='con_lst'><ul class='no_scroll title_t' id='text2_ap'><li class='adm_num'>번호</li><li class='adm_pic'>사진</li><li class='adm_subs'>제목</li><li class='adm_name'>저자</li><li class='adm_ten'>출판사</li><li class='adm_ten'>상세정보</li>";
 							$('.AjaxTest').append(text);
 							
 							var text3 = "</ul></div>";
@@ -135,13 +135,13 @@ firstload(pageNum, view);
 								$('#text3_ap').append(text4);
 							} else {
 								for(var i=0; i<JSdata.length-8; i++){
-									var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll'><li class='adm_col_rrc' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
- 										+JSdata[i].book_number+"'></li><li class='adm_col_date' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
+									var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll'><li class='adm_num' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
+ 										+JSdata[i].book_number+"'></li><li class='adm_pic' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
  										+JSdata[i].book_number+"\"\'><img src='./upload/book/"
-										+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_col_sub' id='adm_book_high'>"
-										+JSdata[i].book_subject+"</li><li class='adm_col_type  over_dot' id='adm_book_high'>"
-										+JSdata[i].book_author+"</li><li class='adm_col_sub over_dot' id='adm_book_high'>"
-										+JSdata[i].book_publisher+"</li><li class='adm_col_sub' id='adm_book_high'><input type='button' id='"
+										+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_subs2' id='adm_book_high'>"
+										+JSdata[i].book_subject+"</li><li class='adm_name over_dot' id='adm_book_high'>"
+										+JSdata[i].book_author+"</li><li class='adm_ten over_dot' id='adm_book_high'>"
+										+JSdata[i].book_publisher+"</li><li class='adm_ten' id='adm_book_high'><input type='button' id='"
 										+i+"' value='상세보기' class ='info_bbutton2' ></li></ul>";
 										$('#text3_ap').append(text4);
 										
