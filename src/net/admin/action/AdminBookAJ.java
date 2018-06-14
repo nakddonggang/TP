@@ -1,9 +1,13 @@
 package net.admin.action;
 
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonValue;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -12,18 +16,16 @@ import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class AdminBookSearch implements Action{
-
+public class AdminBookAJ implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		
-		// 현재날짜 값 얻기
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-//		String now = sdf.format(new Date(System.currentTimeMillis()));
-//		System.out.println("현재시간"+now);
+		// String sort 파라미터값 가져오기
+		String sort = request.getParameter("sort");
+		System.out.println("정렬해야할 값"+sort);
+		if (sort==null) sort="book_number";
 		
 		// 검색 파라미터값 가져오기
 		String category1 = request.getParameter("category1");
@@ -234,6 +236,86 @@ public class AdminBookSearch implements Action{
 					} else { System.out.println("값을 입력받지 못함");}
 				}
 		} else { System.out.println("count==0"); }
+		
+		System.out.println(pageSize+", "+pageNum+", "+currentPage+", "+startRow+", "+endRow);
+		
+		// 입출력
+		response.setContentType("text/html; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+		
+		JsonObject JsonObj = null;
+		JsonArray JsonArr = null;
+		String books="";
+		
+		for(int i=0; i<booksearchList.size(); i++){
+			BookDTO bdto = booksearchList.get(i);
+			if ((bdto.getBbook_bdate()==null)&&(bdto.getBbook_rdate()==null)){
+				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_pubDate", date.format(bdto.getBook_pubDate()))
+						.add("book_number", bdto.getBook_number())
+						.add("book_subject", bdto.getBook_subject())
+						.add("book_author", bdto.getBook_author())
+						.add("book_publisher", bdto.getBook_publisher())
+						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("dbook_state", bdto.getDbook_state())
+						.add("bbook_bdate", JsonValue.NULL)
+						.add("bbook_rdate",  JsonValue.NULL)
+						.add("rbook_check", bdto.getRbook_check())
+						.add("book_file", bdto.getBook_file()).build();
+				books += JsonObj.toString();
+			} else if (bdto.getBbook_bdate()==null){
+				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_pubDate", date.format(bdto.getBook_pubDate()))
+						.add("book_number", bdto.getBook_number())
+						.add("book_subject", bdto.getBook_subject())
+						.add("book_author", bdto.getBook_author())
+						.add("book_publisher", bdto.getBook_publisher())
+						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("dbook_state", bdto.getDbook_state())
+						.add("bbook_bdate", JsonValue.NULL)
+						.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
+						.add("rbook_check", bdto.getRbook_check())
+						.add("book_file", bdto.getBook_file()).build();
+				books += JsonObj.toString();
+				System.out.println(books);
+			} else if (bdto.getBbook_rdate()==null){
+				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_pubDate", date.format(bdto.getBook_pubDate()))
+						.add("book_number", bdto.getBook_number())
+						.add("book_subject", bdto.getBook_subject())
+						.add("book_author", bdto.getBook_author())
+						.add("book_publisher", bdto.getBook_publisher())
+						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("dbook_state", bdto.getDbook_state())
+						.add("bbook_bdate", date.format(bdto.getBbook_bdate()))
+						.add("bbook_rdate", JsonValue.NULL)
+						.add("rbook_check", bdto.getRbook_check())
+						.add("book_file", bdto.getBook_file()).build();
+				books += JsonObj.toString();
+				System.out.println(books);
+			} else {
+				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_pubDate", date.format(bdto.getBook_pubDate()))
+						.add("book_number", bdto.getBook_number())
+						.add("book_subject", bdto.getBook_subject())
+						.add("book_author", bdto.getBook_author())
+						.add("book_publisher", bdto.getBook_publisher())
+						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("dbook_state", bdto.getDbook_state())
+						.add("bbook_bdate", date.format(bdto.getBbook_bdate()))
+						.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
+						.add("rbook_check", bdto.getRbook_check())
+						.add("book_file", bdto.getBook_file()).build();
+				books += JsonObj.toString();
+				System.out.println(books);
+			}
+			
+			System.out.println(JsonObj);
+			if(i != booksearchList.size()-1) books += ",";
+		} // result >> String에 넣어주는 역할
+		
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);
 		// 한 화면에 보여줄 페이지수 설정
@@ -246,29 +328,56 @@ public class AdminBookSearch implements Action{
 		if (endPage>pageCount){
 			endPage=pageCount;
 		}	
+		System.out.println(pageCount+", "+pageBlock+", "+startPage+", "+endPage);
 		
-		// count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
-		request.setAttribute("count", count);
-		request.setAttribute("search1", search1);
-		request.setAttribute("search2", search2);
-		request.setAttribute("search3", search3);
-		request.setAttribute("category1", category1);
-		request.setAttribute("category2", category2);
-		request.setAttribute("category3", category3);
-		request.setAttribute("opt1", opt1);
-		request.setAttribute("opt2", opt2);
-		request.setAttribute("pubDate", pubDate);
-		request.setAttribute("pageNum", pageNum);
-		request.setAttribute("booksearchList", booksearchList);
-		request.setAttribute("pageCount", pageCount);
-		request.setAttribute("pageBlock", pageBlock);
-		request.setAttribute("startPage", startPage);
-		request.setAttribute("endPage", endPage);	
+		// 배열을 제외한 나머지 값 추가로 JsonArray에 넣어주기
+		if (booksearchList.size() == 0) {
+			JsonArr=Json.createArrayBuilder()
+			.add("{\"count\":"+count+"}")
+			.add("{\"search1\":\""+search1+"\"}")
+			.add("{\"search2\":\""+search2+"\"}")
+			.add("{\"search3\":\""+search3+"\"}")
+			.add("{\"category1\":\""+category1+"\"}")
+			.add("{\"category2\":\""+category2+"\"}")
+			.add("{\"category3\":\""+category3+"\"}")
+			.add("{\"opt1\":\""+opt1+"\"}")
+			.add("{\"opt2\":\""+opt2+"\"}")
+			.add("{\"pubDate\":\""+pubDate+"\"}")
+			.add("{\"sort\":\""+sort+"\"}")
+			.add("{\"pageNum\":\""+pageNum+"\"}")
+			.add("{\"pageCount\":"+pageCount+"}")
+			.add("{\"pageBlock\":"+pageBlock+"}")
+			.add("{\"startPage\":"+startPage+"}")
+			.add("{\"endPage\":"+endPage+"}")
+			.build();
+		} else { 
+			JsonArr=Json.createArrayBuilder()
+			.add(books)
+			.add("{\"count\":"+count+"}")
+			.add("{\"search1\":\""+search1+"\"}")
+			.add("{\"search2\":\""+search2+"\"}")
+			.add("{\"search3\":\""+search3+"\"}")
+			.add("{\"category1\":\""+category1+"\"}")
+			.add("{\"category2\":\""+category2+"\"}")
+			.add("{\"category3\":\""+category3+"\"}")
+			.add("{\"opt1\":\""+opt1+"\"}")
+			.add("{\"opt2\":\""+opt2+"\"}")
+			.add("{\"pubDate\":\""+pubDate+"\"}")
+			.add("{\"sort\":\""+sort+"\"}")
+			.add("{\"pageNum\":\""+pageNum+"\"}")
+			.add("{\"pageCount\":"+pageCount+"}")
+			.add("{\"pageBlock\":"+pageBlock+"}")
+			.add("{\"startPage\":"+startPage+"}")
+			.add("{\"endPage\":"+endPage+"}")
+			.build();
+		} // [ ] 생성	
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./admin/admBookIndexSearch.jsp");
-		forward.setRedirect(false);
-		return forward;
+		System.out.println(JsonArr);
+		out.print(JsonArr);
+		out.flush();
+		out.close();
+		
+		return null;
+		
 	}
-	
 }

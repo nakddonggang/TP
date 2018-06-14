@@ -10,7 +10,7 @@
 	 <select id="getBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -30,7 +30,7 @@
 	 <select id="getBookSearchAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -50,7 +50,7 @@
 	 <select id="getBookSearchList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -70,7 +70,7 @@
 	<select id="SearchTwoList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -93,7 +93,7 @@
 	<select id="SearchTwoAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -117,7 +117,7 @@
 	<select id="SearchThrList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -142,7 +142,7 @@
 	<select id="SearchThrAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -166,7 +166,7 @@
 	 <select id="getBookDateSearchAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -187,7 +187,7 @@
 	 <select id="getBookDateSearchList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -211,7 +211,7 @@
 	<select id="SearchDateTwoList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -236,7 +236,7 @@
 	<select id="SearchDateTwoAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -263,7 +263,7 @@
 	<select id="SearchDateThrList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -290,7 +290,7 @@
 	<select id="SearchDateThrAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">	
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -305,15 +305,31 @@
 		order by b.book_number desc limit #{startRow},#{pageSize}	 
 	 </select>	 
 	 
+	<select id="getDateAllCount" resultType="int" parameterType="String">
+		select count(*)
+		from book
+		where book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+	 </select>
 	 
-	 
-	 
-	 
-	 
-	 <select id="getBookSortSubject" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 <select id="getDateAllList" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
+			from book b
+			left join dbook db
+			on b.book_number=db.book_number
+			left join bbook bb
+			on b.book_number=bb.book_number
+			left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
+			on b.book_number=rb.book_number
+			where b.book_pubDate >= date_sub(current_date(), INTERVAL #{pubDate} YEAR)
+			order by b.book_number desc limit #{startRow},#{pageSize}
+	 </select> 	 
+	 
+	 <select id="getBookSorts" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
+		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -321,13 +337,57 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.book_subject limit #{startRow}, #{pageSize}	 
+		order by b.${bookSR} ${adsc}  limit #{startRow},#{pageSize}
+	 </select>	 
+
+	 <select id="getBookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
+		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate, ifnull(hb.hbcount, 0) hbcount
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
+		on b.book_number=rb.book_number 
+        left join (select count(book_number) as hbcount, book_number from history_bbook group by book_number) hb
+		on b.book_number=hb.book_number
+		order by hbcount desc, b.book_number asc limit #{startRow}, #{pageSize}
+	 </select>
+	 
+	 	 <select id="getBookSortDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
+		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
+		on b.book_number=rb.book_number 
+		order by b.book_number asc limit #{startRow}, #{pageSize} 	 
+	 </select>
+
+	 <select id="getBookSortSubject" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
+		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
+		from book b
+		left join dbook db
+		on b.book_number=db.book_number
+		left join bbook bb
+		on b.book_number=bb.book_number
+		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
+		on b.book_number=rb.book_number 
+		order by b.book_subject asc limit #{startRow}, #{pageSize}	 
 	 </select>
 	 
 	 <select id="getBookSortAuthor" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -335,27 +395,13 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.book_author limit #{startRow}, #{pageSize}	 
-	 </select>
-
-	 <select id="getBookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
-		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
-		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
-		from book b
-		left join dbook db
-		on b.book_number=db.book_number
-		left join bbook bb
-		on b.book_number=bb.book_number
-		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
-		on b.book_number=rb.book_number 
-		order by bb.book_number desc limit #{startRow}, #{pageSize} 	 
+		order by b.book_author asc limit #{startRow}, #{pageSize}	 
 	 </select>
 
 	 <select id="getBookSortPubDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -366,10 +412,10 @@
 		order by b.book_pubDate desc limit #{startRow}, #{pageSize} 	 
 	 </select>
 
-	 <select id="getBookSortDate" parameterType="hashmap" resultType="net.book.db.BookDTO">
+	 <select id="getBookSortDdate" parameterType="hashmap" resultType="net.book.db.BookDTO">
 		select b.book_number, b.book_subject, b.book_author, b.book_publisher, ifnull(db.dbook_state, 0) dbook_state,
 		ifnull(bb.bbook_bstate, 0) bbook_bstate, bb.bbook_bdate, bb.bbook_rdate,
-		ifnull(rb.rbook_check, 0) rbook_check, b.book_file
+		ifnull(rb.rbook_check, 0) rbook_check, b.book_file, b.book_pubDate
 		from book b
 		left join dbook db
 		on b.book_number=db.book_number
@@ -377,8 +423,8 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.book_date desc limit #{startRow}, #{pageSize} 	 
-	 </select>	 	 	
+		order by b.book_number asc limit #{startRow}, #{pageSize} 	 
+	 </select>
 	 
 	 <select id="getBookNum" parameterType="int" resultType="int">
 	 	select ifnull(max(book_number),0) from book
@@ -436,12 +482,12 @@
 	 </select>
  	
  	 <select id="getHBookList" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select member_id,hbook_subject,hbook_author,hbook_check,hbook_publisher,ifnull(hbook_isbn, 0) hbook_isbn, hbook_explain
+	 	select member_id,hbook_subject,hbook_author,hbook_check,hbook_publisher, ifnull(hbook_isbn, 0) hbook_isbn, hbook_explain
 	 	from hbook order by member_id desc limit #{startRow},#{pageSize}
 	 </select>
 	 
 	 <select id="getHBookInfo" parameterType="hashmap" resultType="net.book.db.BookDTO">
-	 	select * from hbook where (member_id=#{member_id} and hbook_subject=#{hbook_subject}) and hbook_author=#{hbook_author}
+	 	select * from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
 	 </select>
 	 
 	 <update id="getHBookReWrite" parameterType="net.book.db.BookDTO">
@@ -575,6 +621,10 @@
 	 <select id="userBorrowCount" parameterType="string" resultType="int">
 	 	select count(*) from history_bbook where member_id=#{member_id}
 	 </select>
+	 
+	 <delete id="HBookDelete" parameterType="net.book.db.BookDTO">
+	 	delete from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
+	 </delete>
 
 	
 	 

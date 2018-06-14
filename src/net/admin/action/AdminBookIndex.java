@@ -1,4 +1,4 @@
-package net.book.action;
+package net.admin.action;
 
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
@@ -11,13 +11,12 @@ import javax.json.JsonValue;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.book.db.BookDAO;
+import net.admin.db.AdminDAO;
 import net.book.db.BookDTO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
-public class BookIndexAJ  implements Action {
-
+public class AdminBookIndex implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
@@ -26,39 +25,25 @@ public class BookIndexAJ  implements Action {
 		
 		// String sort 파라미터값 가져오기
 		String sort = request.getParameter("sort");
-		System.out.println("정렬해야할 값"+sort);
 		if (sort==null) sort="book_number";
-		
-		String view = request.getParameter("view");
-		System.out.println(view);
-		if (view==null) view="1";
-		
+		System.out.println("정렬해야할 값"+sort);
 		
 		// 오름차순, 내림차순 결정하기
 		String adsc="";
 		if (sort.equals("book_subject")||sort.equals("book_author")) adsc="asc";
 		else if (sort.equals("book_number")||sort.equals("book_pubDate")) adsc="desc";
-		System.out.println(adsc);
+		System.out.println(adsc);	
 		
-		// AdminDAO adao 객체 생성 및 count 메소드 호출
-		BookDAO bdao = new BookDAO();
-		int count = bdao.BookCount();
+		// AdminDAO 객체생성 및 total 책의 개수 가져오기
+		AdminDAO adao = new AdminDAO();
+		int count = adao.getBookCount();
 		System.out.println(count);
-
-//		HttpSession session = request.getSession();
-//		String member_id = (String)session.getAttribute("member_id");
-//		int BorrowCheck;
-//		if(member_id != null) {
-//			BorrowCheck = bdao.userBorrowBookCheck(member_id);
-//		} else { BorrowCheck=0;}
-//		System.out.println("borrowcheck : " +BorrowCheck);
-
+		
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 8;		
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
-		System.out.println("pageNum의 값 : "+pageNum);
 			// 페이지 번호 없으면 무조건 "1" 페이지 설정
 		if (pageNum==null)
 			pageNum="1";
@@ -73,26 +58,27 @@ public class BookIndexAJ  implements Action {
 		int endRow = pageSize*currentPage;
 
 		System.out.println(pageSize+", "+pageNum+", "+currentPage+", "+startRow+", "+endRow);
+		
 		// 입출력
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
 		// 책 뿌려주는 메소드 생성
-		List<BookDTO> list =null;
+		List<BookDTO> bookList = null;
 		if (count!=0){
-			if (sort.equals("book_date")) list=bdao.BookSortDate(startRow, pageSize);
-			else if (sort.equals("book_popul")) list=bdao.BookSortPopul(startRow, pageSize);
-			else list = bdao.BookSorts(sort, adsc, startRow, pageSize);
+			if (sort.equals("book_date")) bookList=adao.getBookSortDate(startRow, pageSize);
+			else if (sort.equals("book_popul")) bookList=adao.getBookSortNumber(startRow, pageSize);
+			else bookList = adao.getBookSorts(sort, adsc, startRow, pageSize);
 		} else { System.out.println("count=0");}
-				
+
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		
 		JsonObject JsonObj = null;
 		JsonArray JsonArr = null;
 		String books="";
-		  
-		for(int i=0; i<list.size(); i++){
-			BookDTO bdto = list.get(i);
+		
+		for(int i=0; i<bookList.size(); i++){
+			BookDTO bdto = bookList.get(i);
 			if ((bdto.getBbook_bdate()==null)&&(bdto.getBbook_rdate()==null)){
 				JsonObj=Json.createObjectBuilder() // { } 생성
 						.add("book_pubDate", date.format(bdto.getBook_pubDate()))
@@ -101,6 +87,7 @@ public class BookIndexAJ  implements Action {
 						.add("book_author", bdto.getBook_author())
 						.add("book_publisher", bdto.getBook_publisher())
 						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("dbook_state", bdto.getDbook_state())
 						.add("bbook_bdate", JsonValue.NULL)
 						.add("bbook_rdate",  JsonValue.NULL)
 						.add("rbook_check", bdto.getRbook_check())
@@ -114,6 +101,7 @@ public class BookIndexAJ  implements Action {
 						.add("book_author", bdto.getBook_author())
 						.add("book_publisher", bdto.getBook_publisher())
 						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("dbook_state", bdto.getDbook_state())
 						.add("bbook_bdate", JsonValue.NULL)
 						.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
 						.add("rbook_check", bdto.getRbook_check())
@@ -128,6 +116,7 @@ public class BookIndexAJ  implements Action {
 						.add("book_author", bdto.getBook_author())
 						.add("book_publisher", bdto.getBook_publisher())
 						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("dbook_state", bdto.getDbook_state())
 						.add("bbook_bdate", date.format(bdto.getBbook_bdate()))
 						.add("bbook_rdate", JsonValue.NULL)
 						.add("rbook_check", bdto.getRbook_check())
@@ -142,6 +131,7 @@ public class BookIndexAJ  implements Action {
 						.add("book_author", bdto.getBook_author())
 						.add("book_publisher", bdto.getBook_publisher())
 						.add("bbook_bstate", bdto.getBbook_bstate())
+						.add("dbook_state", bdto.getDbook_state())
 						.add("bbook_bdate", date.format(bdto.getBbook_bdate()))
 						.add("bbook_rdate", date.format(bdto.getBbook_rdate()))
 						.add("rbook_check", bdto.getRbook_check())
@@ -151,9 +141,9 @@ public class BookIndexAJ  implements Action {
 			}
 			
 			System.out.println(JsonObj);
-			if(i != list.size()-1) books += ",";
+			if(i != bookList.size()-1) books += ",";
 		} // result >> String에 넣어주는 역할
-
+		
 		// 게시판 전체 페이지 수
 		int pageCount = count/pageSize+(count%pageSize==0?0:1);
 		// 한 화면에 보여줄 페이지수 설정
@@ -169,7 +159,7 @@ public class BookIndexAJ  implements Action {
 		System.out.println(pageCount+", "+pageBlock+", "+startPage+", "+endPage);
 		
 		// 배열을 제외한 나머지 값 추가로 JsonArray에 넣어주기
-		if (list.size() == 0) {
+		if (bookList.size() == 0) {
 			JsonArr=Json.createArrayBuilder()
 			.add("{\"count\":"+count+"}")
 			.add("{\"sort\":\""+sort+"\"}")
@@ -178,7 +168,6 @@ public class BookIndexAJ  implements Action {
 			.add("{\"pageBlock\":"+pageBlock+"}")
 			.add("{\"startPage\":"+startPage+"}")
 			.add("{\"endPage\":"+endPage+"}")
-			.add("{\"view\":\""+view+"\"}")
 			.build();
 		} else { 
 			JsonArr=Json.createArrayBuilder()
@@ -190,9 +179,8 @@ public class BookIndexAJ  implements Action {
 			.add("{\"pageBlock\":"+pageBlock+"}")
 			.add("{\"startPage\":"+startPage+"}")
 			.add("{\"endPage\":"+endPage+"}")
-			.add("{\"view\":\""+view+"\"}")
 			.build();
-		} // [ ] 생성
+		} // [ ] 생성		
 		
 		System.out.println(JsonArr);
 		out.print(JsonArr);
@@ -200,7 +188,6 @@ public class BookIndexAJ  implements Action {
 		out.close();
 		
 		return null;
+		
 	}
-	
-	
 }

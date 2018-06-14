@@ -267,6 +267,7 @@ public class BookSearchAJ implements Action{
 				BookDTO bdto = booksearchList.get(i);
 				if ((bdto.getBbook_bdate()==null)&&(bdto.getBbook_rdate()==null)){
 					JsonObj=Json.createObjectBuilder() // { } 생성
+							.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 							.add("book_number", bdto.getBook_number())
 							.add("book_subject", bdto.getBook_subject())
 							.add("book_author", bdto.getBook_author())
@@ -279,6 +280,7 @@ public class BookSearchAJ implements Action{
 					books += JsonObj.toString();
 				} else if (bdto.getBbook_bdate()==null){
 					JsonObj=Json.createObjectBuilder() // { } 생성
+							.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 							.add("book_number", bdto.getBook_number())
 							.add("book_subject", bdto.getBook_subject())
 							.add("book_author", bdto.getBook_author())
@@ -292,6 +294,7 @@ public class BookSearchAJ implements Action{
 					System.out.println(books);
 				} else if (bdto.getBbook_rdate()==null){
 					JsonObj=Json.createObjectBuilder() // { } 생성
+							.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 							.add("book_number", bdto.getBook_number())
 							.add("book_subject", bdto.getBook_subject())
 							.add("book_author", bdto.getBook_author())
@@ -305,6 +308,7 @@ public class BookSearchAJ implements Action{
 					System.out.println(books);
 				} else {
 					JsonObj=Json.createObjectBuilder() // { } 생성
+							.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 							.add("book_number", bdto.getBook_number())
 							.add("book_subject", bdto.getBook_subject())
 							.add("book_author", bdto.getBook_author())

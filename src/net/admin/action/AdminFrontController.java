@@ -28,11 +28,15 @@ public class AdminFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		if (command.equals("/AdminIndex.am")){
-			action = new AdminIndex();
+			forward = new ActionForward();
+			forward.setPath("./admin/admBookIndexAJ.jsp");
+			forward.setRedirect(false);		
+		}  else if (command.equals("/AdminBookIndex.am")){
+			action = new AdminBookIndex();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}			
-		} else if (command.equals("/AdminBookWrite.am")){
+			} catch (Exception e) {e.printStackTrace();}					
+		}  else if (command.equals("/AdminBookWrite.am")){
 			forward = new ActionForward();
 			forward.setPath("./admin/admBookIO.jsp");
 			forward.setRedirect(false);
@@ -168,7 +172,12 @@ public class AdminFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} else if (command.equals("/ADminHBookDelete.am")){
+			action = new ADminHBookDelete();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}				
+		} 
 		// 여기까지 Facility 구간
 		
 		

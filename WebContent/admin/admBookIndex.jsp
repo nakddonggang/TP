@@ -88,70 +88,76 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
 						
-<form action="./AdminBookSearch.am" method="get" id="SearchForm">
-		<fieldset id="adm_field">
-			<legend>&nbsp;통합검색&nbsp;</legend>
-	
-		<div id="admin_select_box">
-				<select name="category1" id="admin_select1">
-					<option value="all" >전체</option>
-					<option value="book_subject">제목</option>
-					<option value="book_author">저자</option>
-					<option value="book_publisher">출판사</option>
-					<option value="book_isbn">국제표준번호</option>
-					<option value="book_classification">분류기호</option>
-				</select>
-				<input type="text" id="search1" name="search1" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
+				<div id="adm_for_book_div">
+											<form action="./AdminBookSearch.am" method="get" name="searchFr" id="SearchForm">
+												<div id="adm_book_field">
+													<h1>통합검색</h1>
+													<div class="DIV_CON_LST">
+														<div id="adm_book_select_box">
+															<select name="category1" id="adm_book_select1">
+																<option value="all">전체</option>
+																<option value="book_subject">제목</option>
+																<option value="book_author">저자</option>
+																<option value="book_publisher">출판사</option>
+																<option value="book_isbn">국제표준번호</option>
+																<option value="book_classification">분류기호</option>
+															</select> <input type="text" id="search1" name="search1"
+																placeholder="입력하세요" class="adm_inp_search"><input
+																type="button" value="검색" class="adm_btn_search">
+															<select name="opt1" id="adm_book_select2">
+																<option value="and">and</option>
+																<option value="or">or</option>
+															</select> <a href="#"><span class="adm_btn_type3">▼</span></a>
+														</div>
+														<div class="adm_media_bye">
+															<div id="adm_book_select_box">
+																<select name="category2" id="adm_book_select1">
+																	<option value="book_subject">제목</option>
+																	<option value="book_author">저자</option>
+																	<option value="book_publisher">출판사</option>
+																	<option value="book_isbn">국제표준번호</option>
+																	<option value="book_classification">분류기호</option>
+																</select> <input type="text" id="search2" name="search2"
+																	placeholder="입력하세요" class="adm_inp_search"><input
+																	type="button" value="검색" class="adm_btn_search">
+																<select name="opt2" id="adm_book_select2">
+																	<option value="and">and</option>
+																	<option value="or">or</option>
+																</select>
+															</div>
 
-				<select name="opt1" id="admin_select2">
-					<option value="and">and</option>
-					<option value="or">or</option>
-				</select>
-		</div>
-				
-		<div id="admin_select_box" >
-		<select name="category2" id="admin_select1">
-					<option value="book_subject">제목</option>
-					<option value="book_author">저자</option>
-					<option value="book_publisher">출판사</option>
-					<option value="book_isbn">국제표준번호</option>
-					<option value="book_classification">분류기호</option>
-		</select>
-		<input type="text" id="search2" name="search2" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
-				
-				<select name="opt2" id="admin_select2">
-					<option value="and">and</option>
-					<option value="or">or</option>
-				</select>
-		</div>
-				
-		<div id="admin_select_box">
-		<select name="category3" id="admin_select1">
-					<option value="book_subject">제목</option>
-					<option value="book_author">저자</option>
-					<option value="book_publisher">출판사</option>
-					<option value="book_isbn">국제표준번호</option>
-					<option value="book_classification">분류기호</option>
-				</select>
-				<input type="text" id="search3" name="search3" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
-		</div>
-		<div id="admin_select_box2">
-			<p>&nbsp;발행일</p>
-				<select name="pubDate" id="admin_select2">
-					<option value="all">전체</option>
-					<option value="1">최근 1년</option>
-					<option value="2">최근 2년</option>
-					<option value="5">최근 5년</option>
-					<option value="10">최근 10년</option>
-					<option value="20">최근 20년</option>
-				</select>
-		</div>
-		<div id="admin_sort_submit">
-			<input type="submit" class="adm_btn_type4" value="상세검색">
-			<input type="reset" class="adm_btn_type5" value="입력 초기화">		
-		</div>
-		</fieldset>
-</form>
+															<div id="adm_book_select_box">
+																<select name="category3" id="adm_book_select1">
+																	<option value="book_subject">제목</option>
+																	<option value="book_author">저자</option>
+																	<option value="book_publisher">출판사</option>
+																	<option value="book_isbn">국제표준번호</option>
+																	<option value="book_classification">분류기호</option>
+																</select> <input type="text" id="search3" name="search3"
+																	placeholder="입력하세요" class="adm_inp_search"><input
+																	type="button" value="검색" class="adm_btn_search">
+															</div>
+
+															<div id="adm_date_box" >
+																<p>&nbsp;&nbsp;발행일</p>
+																<select name="pubDate" id="adm_book_date">
+																	<option value="all">전체</option>
+																	<option value="1">최근 1년</option>
+																	<option value="2">최근 2년</option>
+																	<option value="5">최근 5년</option>
+																	<option value="10">최근 10년</option>
+																	<option value="20">최근 20년</option>
+																</select>
+															</div>
+														</div>
+														<div id="adm_sort_submit">
+															<input type=submit class="adm_btn_type4" value="상세검색" >
+															<input type="reset" class="adm_btn_type5" value="입력 초기화">
+														</div>
+													</div>
+												</div>
+											</form>
+									</div>
 					
 						<div class="adms" >
 							<h4>&lt; 통합도서관리시스템 &gt;</h4>
@@ -256,9 +262,6 @@ List<BookDTO> bookList = (List<BookDTO>)request.getAttribute("bookList");
 					<ul>
 						<li class="adm_btn_cancle">
 							<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'" class ="btn_type4 BTN_IF_LIST b">
-						</li>
-						<li class="adm_btn__left">
-							<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'" class ="btn_type4 BTN_IF_LIST">
 						</li>
 						<li class="adm_btn__left">
 							<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'" class ="btn_type4 BTN_IF_LIST">

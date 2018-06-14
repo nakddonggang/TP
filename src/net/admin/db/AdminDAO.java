@@ -38,53 +38,70 @@ public class AdminDAO {
 	
 // 책 정렬 메소드
 	// 제목 정렬
-	public List<BookDTO> getBookSortSubject(int startRow, int pageSize){
+	public List<BookDTO> getBookSorts(String bookSR, String adsc, int startRow, int pageSize){
 		HashMap map = new HashMap();
-		map.put("startRow", startRow-1);
+		map.put("bookSR", bookSR);
+		map.put("adsc", adsc);
+		map.put("startRow", startRow);
 		map.put("pageSize", pageSize);
-		List<BookDTO> bookList = sqlsession.selectList("getBookSortSubject", map);
+		List<BookDTO> bookList = sqlsession.selectList("getBookSorts", map);
 		return bookList;
 	}	
-	// 저자 정렬
-	public List<BookDTO> getBookSortAuthor(int startRow, int pageSize){
-		HashMap map = new HashMap();
-		map.put("startRow", startRow-1);
-		map.put("pageSize", pageSize);
-		List<BookDTO> bookList = sqlsession.selectList("getBookSortAuthor", map);
-		return bookList;
-	}	
-	// 인기순
+	
 	public List<BookDTO> getBookSortNumber(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		List<BookDTO> bookList = sqlsession.selectList("getBookSortNumber", map);
 		return bookList;
-	}	
-	// 신작순
+	}
+	
+	public List<BookDTO> getBookSortDate(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> bookList = sqlsession.selectList("getBookSortDate", map);
+		return bookList;
+	}
+	
+	public List<BookDTO> getBookSortSubject(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> bookList = sqlsession.selectList("getBookSortSubject", map);
+		return bookList;
+	}
+	
+	public List<BookDTO> getBookSortAuthor(int startRow, int pageSize){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		List<BookDTO> bookList = sqlsession.selectList("getBookSortAuthor", map);
+		return bookList;
+	}
+	
 	public List<BookDTO> getBookSortPubDate(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		List<BookDTO> bookList = sqlsession.selectList("getBookSortPubDate", map);
 		return bookList;
-	}	
-	// 입고순
-	public List<BookDTO> getBookSortDate(int startRow, int pageSize){
+	}
+	
+	public List<BookDTO> getBookSortDdate(int startRow, int pageSize){
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
-		List<BookDTO> booksortList = sqlsession.selectList("getBookSortDate", map);
-		return booksortList;
-	}	
+		List<BookDTO> bookList = sqlsession.selectList("getBookSortDdate", map);
+		return bookList;
+	}
 // 책 정렬 메소드 끝
 	
 	// 검색결과로 나온 책 전체 개수 구하기
 	public int getBookSearchAllCount(String search){
 		int count;
-		HashMap map = new HashMap();
-		map.put("all", "%"+search+"%");
-		count=sqlsession.selectOne("getBookSearchAllCount", map);
+		search = search.replaceAll(search, "%"+search+"%");
+		count=sqlsession.selectOne("getBookSearchAllCount", search);
 		return count;
 	}
 	
@@ -150,7 +167,8 @@ public class AdminDAO {
 	public int SearchTwoAllCount(String all, String option, String category, String value){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", "%"+all+"%");
+		value = value.replaceAll(value, "%"+value+"%");
+		map.put("all", value);
 		map.put("option", option);
 		map.put("category", category);
 		map.put("value", value);
@@ -208,7 +226,8 @@ public class AdminDAO {
 	public int SearchThrAllCount(String all, String option1, String category1, String value1, String option2, String category2, String value2){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", "%"+all+"%");
+		all = all.replaceAll(all, "%"+all+"%");
+		map.put("all", all);
 		map.put("option1", option1);
 		map.put("category1", category1);
 		map.put("value1", value1);
@@ -236,13 +255,30 @@ public class AdminDAO {
 	}			
 	
 	
-	// 발행일을 검색내용에 넣을 때 책 검색
+// 발행일을 검색내용에 넣을 때 책 검색
+	// 발행일로만 책 전체 개수 구하기
+	public int getDateAllCount(String pubDate){
+		int count;
+		count=sqlsession.selectOne("getDateAllCount", pubDate);
+		return count;
+	}
+	
+	//발행일로만 나온 책 전체 리스트 뿌려주기
+	public List<BookDTO> getDateAllList(int startRow, int pageSize, String pubDate){
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("pubDate", pubDate);
+		List<BookDTO> booksearchList = sqlsession.selectList("getDateAllList", map);
+		return booksearchList;
+	}	
 	
 	// 검색결과로 나온 책 전체 개수 구하기
 	public int getBookDateSearchAllCount(String search, String pubDate){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", "%"+search+"%");
+		search = search.replaceAll(search, "%"+search+"%");
+		map.put("all", search);
 		map.put("pubDate", pubDate);
 		count=sqlsession.selectOne("getBookDateSearchAllCount", map);
 		return count;
@@ -315,7 +351,8 @@ public class AdminDAO {
 	public int SearchDateTwoAllCount(String all, String option, String category, String value, String pubDate){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", "%"+all+"%");
+		all = all.replaceAll(all, "%"+all+"%");
+		map.put("all", all);
 		map.put("option", option);
 		map.put("category", category);
 		map.put("value", value);
@@ -377,7 +414,8 @@ public class AdminDAO {
 	public int SearchDateThrAllCount(String all, String option1, String category1, String value1, String option2, String category2, String value2, String pubDate){
 		int count;
 		HashMap map = new HashMap();
-		map.put("all", "%"+all+"%");
+		all = all.replaceAll(all, "%"+all+"%");
+		map.put("all", all);
 		map.put("option1", option1);
 		map.put("category1", category1);
 		map.put("value1", value1);
@@ -641,5 +679,12 @@ public class AdminDAO {
 				return BbookYear;
 			}
 		
+		 public void HBookDelete(String member_id, String hbook_subject, String hbook_author) {
+				HashMap map = new HashMap();
+				map.put("member_id", member_id);
+				map.put("hbook_subject", hbook_subject);
+				map.put("hbook_author", hbook_author);
+				sqlsession.delete("HBookDelete", map);
+		 }
 
 }
