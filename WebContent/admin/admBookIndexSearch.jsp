@@ -95,8 +95,6 @@ $('#book_sort').change(function(){
 				var startPage=JSdata[JSdata.length-2].startPage;
 				var endPage=JSdata[JSdata.length-1].endPage;
 
-				$.Alert(JSdata,function(){ });
-				$.Alert(pageNum,function(){ });
 				var member_id="${member_id}";
 					
 				// content 내용 넣기
@@ -367,8 +365,8 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 															</div>
 														</div>
 														<div id="adm_sort_submit">
-															<input type=submit class="adm_btn_type4" value="상세검색" >
-															<input type="reset" class="adm_btn_type5" value="입력 초기화">
+															<input type=submit class="adm_btn_sr" value="상세검색" >
+															<input type="reset" class="adm_btn_rs" value="입력 초기화">
 														</div>
 													</div>
 												</div>

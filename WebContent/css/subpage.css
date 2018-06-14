@@ -659,7 +659,6 @@ strong#currentPage {font-weight: bold;}
 	.book_lst li {width: 70%;height: 300px; margin: 40px 30px 20px 50px;}
 	.book_lst_img { width:99%; height: 290px;}
 	.book_info_layer{ height:290px; }
-	
 	/* book css */
 	
 	
@@ -679,8 +678,6 @@ strong#currentPage {font-weight: bold;}
 		#selectEmail {margin-left: 115px;}
 		
 }
-
-
 
 
 
@@ -782,8 +779,8 @@ input.adm_btn_search {  width:20%; border:0; width: 35px; height:33px; line-heig
 #adm_date_box #adm_book_date { height: 33px; line-height: 33px; }
 #adm_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
 .adm_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
-.adm_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.adm_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+.adm_btn_sr { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0; margin:0 auto; }
+.adm_btn_rs { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
 .adm_media_bye { display: block;}
 
 @media screen and (min-width:768px) and (max-width : 1024px) {
@@ -804,3 +801,17 @@ input.adm_btn_search {  width:20%; border:0; width: 35px; height:33px; line-heig
 	.adm_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
 	.book_media_bye { display: block; }
 }
+
+/* adm hbooklist.jsp */
+.brd_txt_lst li .con_lst > ul > li.admh_id {width:15%; padding:0 10px;}
+.brd_txt_lst li .con_lst > ul > li.admh_ten {width:15%; padding:0 10px;}
+.brd_txt_lst li .con_lst > ul > li.admh_num {width:10%; padding:0 10px;}
+.brd_txt_lst li .con_lst > ul > li.adm_isbn {width:12%; padding:0 10px;}
+#admh_book_high {height: 50px; line-height: 50px;}
+.hb_button {border: none; background-color: #FAE0D4; margin-top: 15px;}
+ 
+@media (max-width: 767px) {
+.brd_txt_lst li .con_lst > ul > li.admh_id {width:20%; padding:0 5px;}
+.brd_txt_lst li .con_lst > ul > li.admh_ten {width:15%; padding:0 3px;}
+.brd_txt_lst li .con_lst > ul > li.admh_num {width:15%; padding:0 3px;}
+.brd_txt_lst li .con_lst > ul > li.adm_isbn { display: none; }

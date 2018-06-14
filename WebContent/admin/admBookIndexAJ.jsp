@@ -221,25 +221,26 @@ firstload(pageNum);
 							var text15="</div>";
 							$('.AdAjaxTest').append(text15);
 							
-						$(document).ready(function() {		
-							// 모달창 띄우기
-							for(var i=0; i<JSdata.length-7; i++){
-								$('#Borrows' + i).dialog({ 
-									autoOpen: false, 
-									width: 400, 
-									modal: true, 
-								});
-							}
-							$(".bbutton_info").click(function() {
-								var listvalue = $(this).attr("id");
-								$('#Borrows' + listvalue).dialog("open");
-							});
 							
-							$(".BTN_CLOSE").click(function() {
-								var listvalue = $(this).attr("id");
-								$('#Borrows' + listvalue).dialog("close");
-							});
-						});
+							$(window).on('load', function() {
+								// 모달창 띄우기
+								for(var i=0; i<JSdata.length-7; i++){
+									$('#Borrows' + i).dialog({ 
+										autoOpen: false, 
+										width: 400, 
+										modal: true, 
+									});
+								}
+								$(".bbutton_info").click(function() {
+									var listvalue = $(this).attr("id");
+									$('#Borrows' + listvalue).dialog("open");
+								});
+								
+								$(".BTN_CLOSE").click(function() {
+									var listvalue = $(this).attr("id");
+									$('#Borrows' + listvalue).dialog("close");
+								});
+							})
 							
 				}, // Ajax 데이터 값 받기 성공
 				error:function(request,status,error){ } // error 발생시
@@ -339,8 +340,8 @@ firstload(pageNum);
 															</div>
 														</div>
 														<div id="adm_sort_submit">
-															<input type=submit class="adm_btn_type4" value="상세검색" >
-															<input type="reset" class="adm_btn_type5" value="입력 초기화">
+															<input type=submit class="adm_btn_sr" value="상세검색" >
+															<input type="reset" class="adm_btn_rs" value="입력 초기화">
 														</div>
 													</div>
 												</div>
