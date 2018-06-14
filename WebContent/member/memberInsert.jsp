@@ -339,7 +339,7 @@ $(document).ready(function() {
 								<li>
 									<ul class="row_sub">
 										<li class="title">Pass</li>
-										<li class="inp_form"><input type="password" name="member_pass" id = "member_pass" value=""></li>
+										<li class="inp_form"><input type="password" name="member_pass" id = "member_pass" value=""><span>영문,숫자,특수문자를 혼합하여 8~20자 사이로 입력해주세요.</span></li>
 									</ul>
 								</li>
 								

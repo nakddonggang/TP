@@ -88,7 +88,7 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 								<div class="con_lst">
 									<ul class="no_scroll" onclick="location.href='./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>'">
 									
-										<li class="my_pp"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
+										<li class="my_p"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
 										<li class="my_ppp"><%=bDTO.getBook_subject() %></li>
 										<li class="my_pp"><%=bDTO.getBook_author() %></li>
 										<li class="my_pp"><%=date.format(bDTO.getRbook_date()) %></li>

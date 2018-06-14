@@ -106,7 +106,7 @@ String pageNum = request.getParameter("pageNum");
 										  <input type="text" id="fileName1" class="file_input_textbox" readonly="readonly">
 										  <div class="file_input_div">
 											 <input type="button" value="파일 찾기" class="file_input_button btn_type4">
-											 <input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" name="notice_file" value="<%=bDTO.getNotice_file()%>">
+											 <input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName1').value = this.value" name="notice_attachments">
 										  </div>
 									 <!-- end 파일 입력부분 -->
 								  </li>
@@ -120,7 +120,7 @@ String pageNum = request.getParameter("pageNum");
 										  <input type="text" id="fileName2" class="file_input_textbox" readonly="readonly">
 										  <div class="file_input_div">
 											 <input type="button" value="파일 찾기" class="file_input_button btn_type4">
-											 <input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName').value = this.value" name="notice_file" value="<%=bDTO.getNotice_file()%>">
+											 <input type="file" class="file_input_hidden" onchange="javascript: document.getElementById('fileName2').value = this.value" name="notice_image">
 										  </div>
 									 <!-- end 파일 입력부분 -->
 								  </li>

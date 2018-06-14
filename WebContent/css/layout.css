@@ -48,7 +48,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .submenu {height:100% !important; float:left; width:40%; }
 .mainmenu {float:left; width:60% !important;}
 .mainmenu_no_sub {float:left; width:100% !important;}
-.content { display: inline-block; width: calc(100% - 40px);margin: 20px;padding: 10px;}
+.content { display: inline-block; width: calc(100% - 40px);margin: 20px;padding: 10px; background-color: #fff;}
 
 
 .SECTION_FULL_PAGE01 .slide_con {position:relative; width:100%;}

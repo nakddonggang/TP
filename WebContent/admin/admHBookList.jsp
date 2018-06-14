@@ -24,6 +24,17 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script>
+$(document).ready(function(){
+	
+	$('.bbutton2').click(function(){
+		$.Confirm(
+			'희망도서를 삭제하시겠습니까?',
+			function(){ $("#hb_delete").submit; });
+	});
+	
+});
+</script>
 </head>
 <body>
 	<%
@@ -79,7 +90,8 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 								<li class="adm_col_nameh">저자</li>
 								<li class="adm_col_rch">처리상태</li>
 								<li class="adm_col_typeh">발행처</li>
-								<li class="adm_col_exh">국제표준번호</li>
+								<li class="adm_col_typeh">국제표준번호</li>
+								<li class="adm_col_rch">삭제</li>
 							</ul>
 							</div>
 						<%
@@ -91,17 +103,25 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 							} else {
 								for (BookDTO hbookLists : hbookList){
 						%>
+						<form action="./ADminHBookDelete.am" method="post" id="">
+						<input type="hidden" value="<%=hbookLists.getHbook_subject()%>" name="hbook_subject">
+						<input type="hidden" value="<%=hbookLists.getHbook_author()%>" name="hbook_author">
+						<input type="hidden" value="<%=hbookLists.getMember_id()%>" name="member_id">
 						<div class="con_lst">
-							<ul class="no_scroll" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'">
-								<li class="adm_col_rch"><%=hbookLists.getMember_id()%></li>
-								<li class="adm_col_dateh"><%=hbookLists.getHbook_subject()%></li>
-								
-								<li class="adm_col_nameh"><%=hbookLists.getHbook_author()%></li>
-								<li class="adm_col_rch"><%=hbookLists.getHbook_check()%></li>
-								<li class="adm_col_typeh"><%=hbookLists.getHbook_publisher()%></li>
-								<li class="adm_col_exh"><%=hbookLists.getHbook_isbn()%></li>
+							<ul class="no_scroll" >
+								<li class="adm_col_rch" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getMember_id()%></li>
+								<li class="adm_col_dateh" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_subject()%></li>								
+								<li class="adm_col_nameh" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_author()%></li>
+								<li class="adm_col_rch" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'">
+								<%if(hbookLists.getHbook_check().equals("wait")){ %>대기 <%}
+								else if(hbookLists.getHbook_check().equals("in")){ %> 입고됨 <%}
+								else if(hbookLists.getHbook_check().equals("not-in")) {%>입고불가 <%}%></li>
+								<li class="adm_col_typeh" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_publisher()%></li>
+								<li class="adm_col_typeh"><%=hbookLists.getHbook_isbn()%></li>
+								<li class="adm_col_rch"><input type='submit' class='bbutton2' value='삭제하기'></li>
 							</ul>
-						</div><%}
+						</div>
+						</form><%}
 						}%>
 							</li>
 						</ul>
@@ -128,7 +148,10 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 						
 				<div class="btn_btm_center">
 				<ul>
-					<li class="btn_cancle">
+					<li class="adm_btn_cancle">
+								<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'" class ="btn_type4 BTN_IF_LIST b">
+					</li>
+					<li class="adm_btn__left">
 						<input type="button" value="도서관리페이지" onclick="location.href='./AdminIndex.am'" class ="btn_type4 BTN_IF_LIST">
 					</li>
 				</ul>

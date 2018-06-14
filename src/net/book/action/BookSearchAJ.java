@@ -22,6 +22,7 @@ public class BookSearchAJ implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("BookSearchAjax 처리해주는 페이지");
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 
@@ -154,7 +155,7 @@ public class BookSearchAJ implements Action{
 		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 6;
+		int pageSize = 8;
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
@@ -266,6 +267,7 @@ public class BookSearchAJ implements Action{
 				BookDTO bdto = booksearchList.get(i);
 				if ((bdto.getBbook_bdate()==null)&&(bdto.getBbook_rdate()==null)){
 					JsonObj=Json.createObjectBuilder() // { } 생성
+							.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 							.add("book_number", bdto.getBook_number())
 							.add("book_subject", bdto.getBook_subject())
 							.add("book_author", bdto.getBook_author())
@@ -278,6 +280,7 @@ public class BookSearchAJ implements Action{
 					books += JsonObj.toString();
 				} else if (bdto.getBbook_bdate()==null){
 					JsonObj=Json.createObjectBuilder() // { } 생성
+							.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 							.add("book_number", bdto.getBook_number())
 							.add("book_subject", bdto.getBook_subject())
 							.add("book_author", bdto.getBook_author())
@@ -291,6 +294,7 @@ public class BookSearchAJ implements Action{
 					System.out.println(books);
 				} else if (bdto.getBbook_rdate()==null){
 					JsonObj=Json.createObjectBuilder() // { } 생성
+							.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 							.add("book_number", bdto.getBook_number())
 							.add("book_subject", bdto.getBook_subject())
 							.add("book_author", bdto.getBook_author())
@@ -304,6 +308,7 @@ public class BookSearchAJ implements Action{
 					System.out.println(books);
 				} else {
 					JsonObj=Json.createObjectBuilder() // { } 생성
+							.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 							.add("book_number", bdto.getBook_number())
 							.add("book_subject", bdto.getBook_subject())
 							.add("book_author", bdto.getBook_author())
@@ -347,7 +352,7 @@ public class BookSearchAJ implements Action{
 				.add("{\"category3\":\""+category3+"\"}")
 				.add("{\"opt1\":\""+opt1+"\"}")
 				.add("{\"opt2\":\""+opt2+"\"}")
-				.add("{\"pubDate\":"+pubDate+"}")
+				.add("{\"pubDate\":\""+pubDate+"\"}")
 				.add("{\"sort\":\""+sort+"\"}")
 				.add("{\"pageNum\":\""+pageNum+"\"}")
 				.add("{\"pageCount\":"+pageCount+"}")
@@ -368,7 +373,7 @@ public class BookSearchAJ implements Action{
 				.add("{\"category3\":\""+category3+"\"}")
 				.add("{\"opt1\":\""+opt1+"\"}")
 				.add("{\"opt2\":\""+opt2+"\"}")
-				.add("{\"pubDate\":"+pubDate+"}")
+				.add("{\"pubDate\":\""+pubDate+"\"}")
 				.add("{\"sort\":\""+sort+"\"}")
 				.add("{\"pageNum\":\""+pageNum+"\"}")
 				.add("{\"pageCount\":"+pageCount+"}")

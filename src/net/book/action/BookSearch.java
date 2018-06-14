@@ -146,7 +146,7 @@ public class BookSearch implements Action{
 		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 6;
+		int pageSize = 8;
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
@@ -263,6 +263,7 @@ public class BookSearch implements Action{
 		// count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
 		request.setAttribute("count", count);
 		request.setAttribute("search1", search1);
+		System.out.println("확인 : "+search1);
 		request.setAttribute("search2", search2);
 		request.setAttribute("search3", search3);
 		request.setAttribute("category1", category1);

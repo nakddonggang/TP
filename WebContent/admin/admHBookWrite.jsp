@@ -81,9 +81,9 @@ BookDTO bookdto = (BookDTO)request.getAttribute("bookdto");
 								<ul class="row_sub">
 										<li class="title"><span>처리상태</span></li>
 										<li class="inp_form"><select name="hbook_check">
-										<option value="wait" <%if(bookdto.getHbook_check()=="wait") {%>selected<%}%>>대기</option>
-										<option value="in" <%if(bookdto.getHbook_check()=="in") {%>selected<%}%>>입고됨</option>
-										<option value="not-in" <%if(bookdto.getHbook_check()=="not-in") {%>selected<%}%>>입고불가</option>
+										<option value="wait" <%if(bookdto.getHbook_check().equals("wait")) {%>selected<%}%>>대기</option>
+										<option value="in" <%if(bookdto.getHbook_check().equals("in")) {%>selected<%}%>>입고됨</option>
+										<option value="not-in" <%if(bookdto.getHbook_check().equals("not-in")) {%>selected<%}%>>입고불가</option>
 										</select></li>
 								</ul>
 							</li>
@@ -96,7 +96,7 @@ BookDTO bookdto = (BookDTO)request.getAttribute("bookdto");
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>국제표준번호</span></li>
-										<li class="inp_form"><input type="text" name="hbook_isbn" value="<%=bookdto.getHbook_isbn()%>"></li>
+										<li class="inp_form"><input type="text" name="hbook_isbn" <%if(bookdto.getHbook_isbn()!=null){%>value="<%=bookdto.getHbook_isbn()%><%}%>"></li>
 								</ul>
 							</li>
 							<li>

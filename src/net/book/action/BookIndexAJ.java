@@ -36,8 +36,8 @@ public class BookIndexAJ  implements Action {
 		
 		// 오름차순, 내림차순 결정하기
 		String adsc="";
-		if (sort.equals("book_subject")||sort.equals("book_author")||sort.equals("book_date")) adsc="asc";
-		else if (sort.equals("book_number")||sort.equals("book_number")||sort.equals("book_pubDate")) adsc="desc";
+		if (sort.equals("book_subject")||sort.equals("book_author")) adsc="asc";
+		else if (sort.equals("book_number")||sort.equals("book_pubDate")) adsc="desc";
 		System.out.println(adsc);
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
@@ -54,7 +54,7 @@ public class BookIndexAJ  implements Action {
 //		System.out.println("borrowcheck : " +BorrowCheck);
 
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 6;		
+		int pageSize = 8;		
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
@@ -78,8 +78,13 @@ public class BookIndexAJ  implements Action {
 		PrintWriter out = response.getWriter();
 		
 		// 책 뿌려주는 메소드 생성
-		List<BookDTO> list = bdao.BookSorts(sort, adsc, startRow, pageSize);
-		
+		List<BookDTO> list =null;
+		if (count!=0){
+			if (sort.equals("book_date")) list=bdao.BookSortDate(startRow, pageSize);
+			else if (sort.equals("book_popul")) list=bdao.BookSortPopul(startRow, pageSize);
+			else list = bdao.BookSorts(sort, adsc, startRow, pageSize);
+		} else { System.out.println("count=0");}
+				
 		SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
 		
 		JsonObject JsonObj = null;
@@ -90,6 +95,7 @@ public class BookIndexAJ  implements Action {
 			BookDTO bdto = list.get(i);
 			if ((bdto.getBbook_bdate()==null)&&(bdto.getBbook_rdate()==null)){
 				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 						.add("book_number", bdto.getBook_number())
 						.add("book_subject", bdto.getBook_subject())
 						.add("book_author", bdto.getBook_author())
@@ -102,6 +108,7 @@ public class BookIndexAJ  implements Action {
 				books += JsonObj.toString();
 			} else if (bdto.getBbook_bdate()==null){
 				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 						.add("book_number", bdto.getBook_number())
 						.add("book_subject", bdto.getBook_subject())
 						.add("book_author", bdto.getBook_author())
@@ -115,6 +122,7 @@ public class BookIndexAJ  implements Action {
 				System.out.println(books);
 			} else if (bdto.getBbook_rdate()==null){
 				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 						.add("book_number", bdto.getBook_number())
 						.add("book_subject", bdto.getBook_subject())
 						.add("book_author", bdto.getBook_author())
@@ -128,6 +136,7 @@ public class BookIndexAJ  implements Action {
 				System.out.println(books);
 			} else {
 				JsonObj=Json.createObjectBuilder() // { } 생성
+						.add("book_pubDate", date.format(bdto.getBook_pubDate()))
 						.add("book_number", bdto.getBook_number())
 						.add("book_subject", bdto.getBook_subject())
 						.add("book_author", bdto.getBook_author())
