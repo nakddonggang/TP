@@ -652,7 +652,7 @@ public class AdminDAO {
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		map.put("search" , search);
-		List<FacilityDTO> AllFacilityList = sqlsession.selectList("AdminAllFacilitysearch", map);
+		List<FacilityDTO> AllFacilityList = sqlsession.selectList("AdminSearchAllFaciliyList", map);
 		return AllFacilityList;
 	}
 	

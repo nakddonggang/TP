@@ -29,6 +29,33 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
+	<script type="text/javascript">
+	$(document).ready(function() {
+		$("#search_btn").click(function() {
+			var Search = document.getElementById("search").value;
+			var num = Search.search(/[0-9]/g);
+			var eng = Search.search(/[a-z]/ig);
+			var spe  = Search.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
+			var kor = 0;
+			
+			for (var i=0; i<Search.length; i++) {
+				var chk = Search.substring(i,i+1);
+				if(chk.match(/[0-9]|[a-z]|[A-Z]|[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/)) {
+					kor = kor + 1;
+				}
+			}
+			
+			if(kor == 0) {
+				$.Alert("한글검색 불가능", function(){
+					$("#search").focus();
+				});
+				return;
+			}
+			
+			$("#searchstart").submit();
+		});
+	});
+	</script>
 	<!-- member/myUseIndex.jsp 이용현황 목록 페이지 -->
 	<div class="wrapper">
 		<!-- header -->
@@ -56,13 +83,10 @@
 					int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 					List<FacilityDTO> fDTO_List = (List<FacilityDTO>)request.getAttribute("fDTO_List");
 					%>
-					<script type="text/javascript">
-					alert("${fDTO_List}");
-					</script>
 						<h3>사용중인 시설 목록</h3>
 						<div class="adminsearch_bx">
-							<form action="./AdminAllFacilitySearch.am" method="post">
-								<input type="text" id="search" name="search" class="inp_search"><input type="submit" value="검색" class="btn_search" >
+							<form action="./AdminAllFacilitySearch.am" method="post" id = "searchstart">
+								<input type="text" id="search" name="search" class="inp_search"><input type="button" value="검색" class="btn_search" id="search_btn">
 							</form>
 						</div>
 							<ul class="brd_txt_lst">
