@@ -49,13 +49,16 @@
 					<%
 					int count = ((Integer)request.getAttribute("count")).intValue();
 					String pageNum = (String)request.getAttribute("pageNum");
+					String search = request.getParameter("search");
 					int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
 					int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
 					int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 					int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 					List<FacilityDTO> fDTO_List = (List<FacilityDTO>)request.getAttribute("fDTO_List");
 					%>
-					
+					<script type="text/javascript">
+					alert("${fDTO_List}");
+					</script>
 						<h3>사용중인 시설 목록</h3>
 						<div class="adminsearch_bx">
 							<form action="./AdminAllFacilitySearch.am" method="post">
@@ -108,13 +111,13 @@
 							<%
 							if (count != 0) {
 								if (startPage > pageBlock) {
-									%><a href="./AdminAllFacilityUserInfo.am?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%
+									%><a href="./AdminAllFacilitySearch.am?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%
 								}
 								for (int i = startPage; i <= endPage; i++) {%>
-								<a href="./AdminAllFacilityUserInfo.am?pageNum=<%=i%>">&nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a><%		
+								<a href="./AdminAllFacilitySearch.am?pageNum=<%=i%>">&nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a><%		
 								}
 								if (endPage<pageCount){%>
-									<a href="./AdminAllFacilityUserInfo.am?pageNum=<%=startPage+pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%
+									<a href="./AdminAllFacilitySearch.am?pageNum=<%=startPage+pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%
 								}
 							} %>		
 						</div>

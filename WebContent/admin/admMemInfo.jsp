@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="net.member.db.MemberDTO"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -39,6 +40,7 @@ String member_id = (String)session.getAttribute("member_id");
 if ((member_id == null) || !(member_id.equals("admin"))) {
 	response.sendRedirect("./Main.fp");
 }
+SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 %>
 
 <body class="if_board">
@@ -93,7 +95,7 @@ if ((member_id == null) || !(member_id.equals("admin"))) {
 							<li>
 								<ul class="row_sub">
 									<li class="title_adm"><span>Date</span></li>
-									<li class="inp_form"><input type="text" name="member_date" value="<%=mDTO.getMember_date()%>" readonly></li>
+									<li class="inp_form"><input type="text" name="member_date" value="<%=date.format(mDTO.getMember_date())%>" readonly></li>
 								</ul>
 							</li>
 						</ul>
