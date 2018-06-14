@@ -535,14 +535,14 @@ alert("decode"+decode);
 							<div id="adm_select_box3">
 								<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
 								<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
-								<select name="sort" id="book_sort">
-									<option value="book_number">정렬</option>
-									<option value="book_subject">제목순</option>
-									<option value="book_author">저자순</option>
-									<option value="book_popul">인기순</option>
-									<option value="book_pubDate">신작순</option>
-									<option value="book_date">입고순</option>
-								</select>
+<!-- 								<select name="sort" id="book_sort"> -->
+<!-- 									<option value="book_number">정렬</option> -->
+<!-- 									<option value="book_subject">제목순</option> -->
+<!-- 									<option value="book_author">저자순</option> -->
+<!-- 									<option value="book_popul">인기순</option> -->
+<!-- 									<option value="book_pubDate">신작순</option> -->
+<!-- 									<option value="book_date">입고순</option> -->
+<!-- 								</select> -->
 							</div>
 
 <form action="./MemberBasketAdd.me" method="post" id="basket_Fr">		

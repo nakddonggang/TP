@@ -236,6 +236,7 @@ public class AdminBookSearch implements Action{
 		// count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
 		request.setAttribute("count", count);
 		request.setAttribute("search1", search1);
+		System.out.println("확인 : "+search1);
 		request.setAttribute("search2", search2);
 		request.setAttribute("search3", search3);
 		request.setAttribute("category1", category1);

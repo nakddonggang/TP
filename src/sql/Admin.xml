@@ -337,7 +337,7 @@
 		on b.book_number=bb.book_number
 		left join (select book_number, count(*) rbook_check from rbook group by book_number) rb
 		on b.book_number=rb.book_number 
-		order by b.${bookSR} ${adsc}  limit #{startRow},#{pageSize}
+		order by b.${bookSR} ${adsc} limit #{startRow},#{pageSize}
 	 </select>	 
 
 	 <select id="getBookSortNumber" parameterType="hashmap" resultType="net.book.db.BookDTO">
