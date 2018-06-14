@@ -120,7 +120,7 @@
 						<a href="BoardCurSearch.cu?pageNum=<%=pageCount %>" class="next2"><span class="hide">[끝]</span></a>
 						 </div>
 						 
-						 <div class="btn_btm_center">
+						 <div class="btn_btm_center1">
 						 <%		
 						if ("admin".equals(member_id)) {
 						%>

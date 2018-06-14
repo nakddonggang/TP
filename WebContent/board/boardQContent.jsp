@@ -117,13 +117,16 @@
 							<li class="view_lst">
 								<div class="con_lst">
 									<%if(bDTO1!=null){
+										String rep_content = bDTO1.getRep_content();
+										rep_content = rep_content.replaceAll("\r\n", "<br>");
+										rep_content = rep_content.replaceAll("\u0020", "&nbsp;");
 										%>
 									<ul class="no_scroll">
 										<li class="col_con_id1"><p>담당자-<%=bDTO1.getRep_name() %></p></li>
 										<li class="col_con_email"><p>담당자 연락처-<%=bDTO1.getRep_email() %></p></li>
 									</ul>
 									<div class="con_detail_block">
-										<p><%=bDTO1.getRep_content() %></p>
+										<p><%=rep_content %></p>
 										<%
 											if ("admin".equals(member_id)) {
 												%><div class="btn_btm_board">

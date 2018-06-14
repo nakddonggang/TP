@@ -105,7 +105,9 @@ $(document).ready(function(){
 	var pageNum = Request("pageNum");
 	if(pageNum=="") pageNum=1;
 
-	var member_level = "%";
+	var member_level = Request("member_level");
+	if(member_level==null) member_level = "%";
+	
 	loadAjax(member_level);
 	
 	$(".callAjax").click(function(){

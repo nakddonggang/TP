@@ -62,7 +62,7 @@
 									<li class="col_mem_b">책 제목</li>
 									<li class="col_mem_b">예약번호</li>
 									<li class="col_mem_b">예약신청날짜</li>
-									
+									<li>신청버튼</li>
 								</ul>
 								</div>							
 							
@@ -81,7 +81,9 @@
 											<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
 											<li class="col_mem_b"><%=bDTO.getRbook_num() %></li>
 											<li class="col_mem_b"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
-											
+											<li><%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
+												%><input type="button" value ="대출신청" onclick="location.href='./BorrowBookAction.me?book_number=<%=bDTO.getBook_number()%>'">
+											<%} %></li>
 										</ul>
 									</div>
 									<%
