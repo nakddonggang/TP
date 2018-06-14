@@ -47,27 +47,27 @@ $(document).ready(function() {
 	}
 	
 var pageNum = "${pageNum}";
-var sort=Request("sort");
 var category1="${category1}";
 var search1="${search1}";
 var category2="${category2}";
 var search2="${search2}";
-var opt1=Request("opt2");
+var opt1=Request("opt1");
 var opt2=Request("opt2");
 var category3="${category3}";
 var search3="${search3}";
 var pubDate=Request("pubDate");
+var sort=Request("sort");
 if(pageNum=="") pageNum="1";
 
 // 책 정렬
 $('#book_sort').change(function(){
 	pageNum=1;
 	sort = $("#book_sort > option:selected").val();
-	onload(pageNum, sort);
+	start(pageNum, sort);
 }); // function selectBook 함수
 			
 	// Ajax 함수
-	function onload(pageNum, sort){
+	function start(pageNum, sort){
 		$('.AdAjaxTest').empty(); // div 영역 비우기
 		$.ajax({
 			url:"./AdminBookAJ.am",
@@ -95,6 +95,8 @@ $('#book_sort').change(function(){
 				var startPage=JSdata[JSdata.length-2].startPage;
 				var endPage=JSdata[JSdata.length-1].endPage;
 
+				$.Alert(JSdata,function(){ });
+				$.Alert(pageNum,function(){ });
 				var member_id="${member_id}";
 					
 				// content 내용 넣기
@@ -109,7 +111,7 @@ $('#book_sort').change(function(){
 					var text4= "<div class='con_lst'><ul><li class='col_tit'><p>책 목록이 없습니다</p></li></ul></div>";
 					$('#text3_ap').append(text4);
 				} else {
-					for(var i=0; i<JSdata.length-7; i++){
+					for(var i=0; i<JSdata.length-16; i++){
 						var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll'><li class='adm_num' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
 						+JSdata[i].book_number+"\"\'>"
 						+JSdata[i].book_number+"</li><li class='adm_pic' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
@@ -185,15 +187,15 @@ $('#book_sort').change(function(){
 				var text9 = "<div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='입고하기' onclick='bookwrite();' class ='btn_type4 BTN_IF_LIST b'></li>&nbsp;<li class='adm_btn__left'><input type='button' value='희망도서목록' onclick='hbooklist();' class ='btn_type4 BTN_IF_LIST'></li></ul></div>";
 				$('.AdAjaxTest').append(text9);
 					
-				var text10 = "<div class='paginate'><a href='./AdminIndex.am?pageNum=1&category1="+category1+"&search1="+search1+"&opt1="
+				var text10 = "<div class='paginate'><a href='./AdminBookAJ.am?pageNum=1&category1="+category1+"&search1="+search1+"&opt1="
 				+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-				+search3+"&pubDate="+pubDate+"&sort="+sort+"'><span>&lt;&lt;&nbsp;</span></a>";
+				+search3+"&pubDate="+pubDate+"&sort="+sort+"' class='prev2'><span class='hide'>페이지처음</span></a>";
 				$('.AdAjaxTest').append(text10);
 			
 			if(pageCount < endPage)	endPage = pageCount;
 		
 			if(startPage>pageBlock) {
-				var text11="<a href='./AdminIndex.am?pageNum="+(startPage-pageBlock)+"&category1="+category1+"&search1="+search1+"&opt1="
+				var text11="<a href='./AdminBookAJ.am?pageNum="+(startPage-pageBlock)+"&category1="+category1+"&search1="+search1+"&opt1="
 				+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
 				+search3+"&pubDate="+pubDate+"&sort="+sort+"' class='prev'><span class='hide'>이전 페이지</span></a>";
 				$('.paginate').append(text11);
@@ -204,7 +206,7 @@ $('#book_sort').change(function(){
 					var text12="&nbsp;<strong id='currentPage' title='현재 페이지'>"+i+"</strong> &nbsp;";
 					$('.paginate').append(text12);
 				} else{
-					var text12="&nbsp;<a href='./AdminIndex.am?pageNum="+i+"&category1="+category1+"&search1="+search1+"&opt1="
+					var text12="&nbsp;<a href='./AdminBookAJ.am?pageNum="+i+"&category1="+category1+"&search1="+search1+"&opt1="
 					+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
 					+search3+"&pubDate="+pubDate+"&sort="+sort+"'>"+i+"</a> &nbsp";
 					$('.paginate').append(text12);
@@ -212,32 +214,23 @@ $('#book_sort').change(function(){
 			}
 		
 		if(endPage < pageCount) { 
-			var text13="<a href='./AdminIndex.am?pageNum="+(startPage+pageBlock)+"&category1="+category1+"&search1="+search1+"&opt1="
+			var text13="<a href='./AdminBookAJ.am?pageNum="+(startPage+pageBlock)+"&category1="+category1+"&search1="+search1+"&opt1="
 			+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
 			+search3+"&pubDate="+pubDate+"&sort="+sort+"' class='next'><span class='hide'>다음 페이지</span></a id='text14_ap'>";
 			$('.paginate').append(text13);
 		}
 
-			var text14="<a href='./AdminIndex.am?pageNum="+pageCount+"&category1="+category1+"&search1="+search1+"&opt1="
+			var text14="<a href='./AdminBookAJ.am?pageNum="+pageCount+"&category1="+category1+"&search1="+search1+"&opt1="
 			+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-			+search3+"&pubDate="+pubDate+"&sort="+sort+"'><span>&nbsp;&gt;&gt;</span></a>";
+			+search3+"&pubDate="+pubDate+"&sort="+sort+"' class='next2'><span class='hide'>페이지끝</span></a>";
 			$('.paginate').append(text14);
 				
 				var text15="</div>";
 				$('.AdAjaxTest').append(text15);
 				
 				
-				// JQUERY★
-				function bookwrite(){
-					location.href="./AdminBookWrite.am";
-				}
-				
-				function hbooklist(){
-					location.href="./AdminHBookList.am";
-				}
-				
 				// 모달창 띄우기
-				for(var i=0; i<JSdata.length-7; i++){
+				for(var i=0; i<JSdata.length-16; i++){
 					$('#Borrows' + i).dialog({ 
 						autoOpen: false, 
 						width: 400, 
@@ -506,10 +499,10 @@ $(window).on('load', function() {
 				<div class="btn_btm_center" >
 					<ul>
 						<li class="adm_btn_cancle">
-							<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'" class ="btn_type4 BTN_IF_LIST b">
+							<input type="button" value="입고하기" onclick="bookwrite();" class ="btn_type4 BTN_IF_LIST b">
 						</li>
 						<li class="adm_btn__left">
-							<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'" class ="btn_type4 BTN_IF_LIST">
+							<input type="button" value="희망도서목록" onclick="hbooklist();" class ="btn_type4 BTN_IF_LIST">
 						</li>
 					</ul>
 						</div>	
@@ -517,7 +510,7 @@ $(window).on('load', function() {
 				<!-- 버튼 css 부분 -->	
 						<div class="paginate">
 						
-						<a href="./AdminBookSearch.am?pageNum=1&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>"><span>&lt;&lt;&nbsp;</span></a>
+						<a href="./AdminBookSearch.am?pageNum=1&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="prev2"><span class="hide">페이지처음</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 						if(startPage > pageBlock)	{ %><a href="./AdminBookSearch.am?pageNum=<%=startPage - pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
@@ -527,16 +520,47 @@ $(window).on('load', function() {
 						}
 						if(endPage < pageCount){	%><a href="./AdminBookSearch.am?pageNum=<%=startPage+pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="./AdminBookSearch.am?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>"><span>&nbsp;&gt;&gt;</span></a>
+						<a href="./AdminBookSearch.am?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="next2"><span class="hide">페이지끝</span></a>
 						 </div>
 </div>
+
+<script type="text/javascript">
+			// JQUERY★
+			function bookwrite(){
+				location.href="./AdminBookWrite.am";
+			}
+			
+			function hbooklist(){
+				location.href="./AdminHBookList.am";
+			}
+			
+			$(window).on('load', function() {
+				var bookListSize = "${bookList.size()}";
+				//admin 대출,예약,책상태 
+				for(var i=0;i<bookListSize;i++){
+					$('#Borrows' + i).dialog({ 
+						autoOpen: false, 
+						width: 400, 
+						modal: true, 
+					});
+				}
+				$(".bbutton_info").click(function() {
+					var listvalue = $(this).attr("id");
+					$('#Borrows' + listvalue).dialog("open");
+				});
 				
+				$(".BTN_CLOSE").click(function() {
+					var listvalue = $(this).attr("id");
+					$('#Borrows' + listvalue).dialog("close");
+				});
+			});
+</script>
 					</div>
 					</div>
 			</article>
 
 		</section>
-		
+
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>

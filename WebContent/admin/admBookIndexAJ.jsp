@@ -188,8 +188,8 @@ firstload(pageNum);
 							
 							var text9 = "<div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='입고하기' onclick='bookwrite();' class ='btn_type4 BTN_IF_LIST b'></li>&nbsp;<li class='adm_btn__left'><input type='button' value='희망도서목록' onclick='hbooklist();' class ='btn_type4 BTN_IF_LIST'></li></ul></div>";
 							$('.AdAjaxTest').append(text9);
-						
-							var text10 = "<div class='paginate'><a href='./AdminIndex.am?pageNum=1&sort="+sort+"'><span>&lt;&lt;&nbsp;</span></a>";
+							
+							var text10 = "<div class='paginate'><a href='./AdminIndex.am?pageNum=1&sort="+sort+"' class='prev2'><span class='hide'>페이지처음</span></a>";
 							$('.AdAjaxTest').append(text10);
 								
 							if(pageCount < endPage)	endPage = pageCount;
@@ -214,21 +214,11 @@ firstload(pageNum);
 								$('.paginate').append(text13);
 							}
 
-							var text14="<a href='./AdminIndex.am?pageNum="+pageCount+"&sort="+sort+"'><span>&nbsp;&gt;&gt;</span></a>";
+							var text14="<a href='./AdminIndex.am?pageNum="+pageCount+"&sort="+sort+"' class='next2'><span class='hide'>페이지끝</span></a>";
 							$('.paginate').append(text14);
 							
 							var text15="</div>";
 							$('.AdAjaxTest').append(text15);
-							
-							
-							// JQUERY★
-							function bookwrite(){
-								location.href="./AdminBookWrite.am";
-							}
-							
-							function hbooklist(){
-								location.href="./AdminHBookList.am";
-							}
 							
 							// 모달창 띄우기
 							for(var i=0; i<JSdata.length-7; i++){
@@ -372,6 +362,15 @@ firstload(pageNum);
 
 <div class="AdAjaxTest">					
 </div>
+							<script type="text/javascript">
+							function bookwrite(){
+								location.href="./AdminBookWrite.am";
+							}
+							
+							function hbooklist(){
+								location.href="./AdminHBookList.am";
+							}
+							 </script>
 
 					</div>
 					</div>

@@ -53,7 +53,7 @@ var category1="${category1}";
 var search1="${search1}";
 var category2="${category2}";
 var search2="${search2}";
-var opt1=Request("opt2");
+var opt1=Request("opt1");
 var opt2=Request("opt2");
 var category3="${category3}";
 var search3="${search3}";
@@ -276,7 +276,7 @@ $('.rbutton').click(function() {
 							
 							var text10 = "<div class='paginate'><a href='./BookSearch.bk?pageNum=1&category1="+category1+"&search1="+search1+"&opt1="
 									+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-									+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"'><span>&lt;&lt;&nbsp;</span></a>";
+									+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"' class='prev2'><span class='hide'>페이지처음</span></a>";
 							$('.AjaxTest').append(text10);
 								
 							if(pageCount < endPage)	endPage = pageCount;
@@ -309,7 +309,7 @@ $('.rbutton').click(function() {
 
 							var text14="<a href='./BookSearch.bk?pageNum="+pageCount+"&category1="+category1+"&search1="+search1+"&opt1="
 							+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-							+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"'><span>&nbsp;&gt;&gt;</span></a>";
+							+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"' class='next2'><span class='hide'>페이지끝</span></a>";
 							$('.paginate').append(text14);
 							
 							var text15="</div>";
@@ -716,7 +716,7 @@ $(window).on('load', function() {
 
 				<!-- 버튼 css 부분 -->	
 						<div class="paginate">
-						<a href="./BookSearch.bk?pageNum=1&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
+						<a href="./BookSearch.bk?pageNum=1&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>" class="prev2"><span class="hide">페이지처음</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 						if(startPage > pageBlock)	{ %><a href="./BookSearch.bk?pageNum=<%=startPage - pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
@@ -726,7 +726,7 @@ $(window).on('load', function() {
 						}
 						if(endPage < pageCount){	%><a href="./BookSearch.bk?pageNum=<%=startPage+pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="./BookSearch.bk?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
+						<a href="./BookSearch.bk?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>" class="next2"><span class="hide">페이지끝</span></a>
 						 </div>
 		
 </div>						 

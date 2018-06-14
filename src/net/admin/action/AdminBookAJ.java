@@ -19,6 +19,8 @@ import util.actionForward.ActionForward;
 public class AdminBookAJ implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("검색검색정려ㅑㄹ정렬");
+		
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		

@@ -147,14 +147,14 @@ firstload(pageNum, view);
 										
 										if (JSdata[i].bbook_bstate==0) {
 											var mod1 = "<div class='BookMod"+i+"' id='book_mod'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
-											+JSdata[i].book_number+"' class='bbutton' value='대출신청' id='borrowBook'></li></ul></li><li><ul class='row_sub'><li class='title'>예약</li><li class='inp_form'><input type='button' rel='"
-											+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='borrowBook'></li></ul></li></ul><div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
+											+JSdata[i].book_number+"' class='bbutton' value='대출신청' id='bbutton'></li></ul></li><li><ul class='row_sub'><li class='title'>예약</li><li class='inp_form'><input type='button' rel='"
+											+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='rbutton'></li></ul></li></ul><div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
 											+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
 											$('#mod_div'+i).append(mod1);
 										} else {
 											var mod1 = "<div class='BookMod"+i+"' id='book_mod'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
-											+JSdata[i].book_number+"' class='bbutton2' value='대출불가'></li></ul></li><li><ul class='row_sub'><li class='title'>예약</li><li class='inp_form'><input type='button' rel='"
-											+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='borrowBook'></li></ul></li></ul><div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
+											+JSdata[i].book_number+"' class='bbutton2' value='대출불가' id='bbutton2'></li></ul></li><li><ul class='row_sub'><li class='title'>예약</li><li class='inp_form'><input type='button' rel='"
+											+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='rbutton'></li></ul></li></ul><div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
 											+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
 											$('#mod_div'+i).append(mod1);
 										}
@@ -195,7 +195,7 @@ firstload(pageNum, view);
 								$('.AjaxTest').append(text9);
 							}
 							
-							var text10 = "<div class='paginate'><a href='./BookIndex.bk?pageNum=1&view="+view+"&sort="+sort+"'><span>&lt;&lt;&nbsp;</span></a>";
+							var text10 = "<div class='paginate'><a href='./BookIndex.bk?pageNum=1&view="+view+"&sort="+sort+"' class='prev2'><span class='hide'>페이지처음</span></a>";
 							$('.AjaxTest').append(text10);
 								
 							if(pageCount < endPage)	endPage = pageCount;
@@ -220,7 +220,7 @@ firstload(pageNum, view);
 								$('.paginate').append(text13);
 							}
 
-							var text14="<a href='./BookIndex.bk?pageNum="+pageCount+"&view="+view+"&sort="+sort+"'><span>&nbsp;&gt;&gt;</span></a>";
+							var text14="<a href='./BookIndex.bk?pageNum="+pageCount+"&view="+view+"&sort="+sort+"' class='next2'><span class='hide'>페이지끝</span></a>";
 							$('.paginate').append(text14);
 							
 							var text15="</div>";
