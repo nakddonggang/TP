@@ -170,7 +170,7 @@ $(document).ready(function(){
 						<a href="BoardQnaList.qn?pageNum=<%=pageCount %>">[끝]</a>
 						</div>
 						
-						 <div class="btn_btm_center">
+						 <div class="btn_btm_center1">
 								
 								<%if(member_id != null){
 									%><input type="button" value="글쓰기" class="btn_type1" onclick="location.href='./BoardQnaWrite.qn'"><%
