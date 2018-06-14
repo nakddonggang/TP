@@ -182,7 +182,7 @@ $(document).ready(function(){
 											<a href="BoardNoticeList.no?pageNum=<%=pageCount %>">[끝]</a>
 											</div>
 											
-											<div class="btn_btm_center">
+											<div class="btn_btm_center1">
 											<%
 											 if ("admin".equals(member_id)) {
 											%><input type="button" class="btn_type1" value="글쓰기" onclick="location.href='./BoardNoticeWrite.no'">

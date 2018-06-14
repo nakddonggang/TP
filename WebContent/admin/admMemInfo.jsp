@@ -33,6 +33,8 @@ MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
 String gm_check =(String)request.getAttribute("gm_check");
 String bl_check =(String)request.getAttribute("bl_check");
 int borrowcount = (int)(request.getAttribute("borrowcount"));
+int overduecount = (int)request.getAttribute("overduecount");
+int overduedate = (int)request.getAttribute("overduedate");
 String member_id = (String)session.getAttribute("member_id");
 if ((member_id == null) || !(member_id.equals("admin"))) {
 	response.sendRedirect("./Main.fp");
@@ -118,13 +120,13 @@ if ((member_id == null) || !(member_id.equals("admin"))) {
 							<li>
 								<ul class="row_sub">
 									<li class="title_adm"><span>연체횟수</span></li>
-									<li class="inp_form"><input type="text" name="bl_count" value="<%=mDTO.getBl_count()%>" readonly></li>
+									<li class="inp_form"><input type="text" name="bl_count" value="<%=overduecount%>" readonly></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 									<li class="title_adm"><span>연체총일수</span></li>
-									<li class="inp_form"><input type="text" name="bl_date" value="<%=mDTO.getBl_date()%>" readonly></li>
+									<li class="inp_form"><input type="text" name="bl_date" value="<%=overduedate%>" readonly></li>
 								</ul>
 							</li>
 						</ul>

@@ -86,7 +86,8 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .btn_type3 {position:absolute; top:30px; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
 .btn_type4 {display:block; width:96px; height:40px; line-height:40px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
 .btn_btm {position:relative; margin-bottom:150px;}
-.btn_btm_center {position:relative; width:100%; margin-bottom:20px;}
+.btn_btm_center {position:relative; width:100%; margin-bottom:20px; margin-top:50px;}
+.btn_btm_center1 {position:relative; width:100%; margin-bottom:20px;}
 .btn_btm_center ul {text-align:center;}
 .btn_btm_center ul li {display:inline-block;}
 .btn_btm_center ul li.btn_cancle {padding-right:6px;}
@@ -667,7 +668,7 @@ strong#currentPage {font-weight: bold;}
 	.brd_txt_lst li > .con_lst > ul > li.buk_t {width:35%; padding:0 5px;}
 	.brd_txt_lst li > .con_lst > ul > li.buk_n {width:19%; padding:0 5px;}
 	
-	
+	.bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info, .info_bbutton2 {border: none; background-color: #FAE0D4; margin-top: 15px;}
 	
 	
 	

@@ -626,7 +626,15 @@
 	 	delete from hbook where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
 	 </delete>
 
+	<!-- 총 연체 회수 조회 구문 -->
+	<select id="AllOverdueCount" parameterType="string" resultType="int">
+		select count(*) from history_bbook 
+		where DATE_ADD(bbook_bdate , interval 10 DAY) <![CDATA[< bbook_rdate]]> and member_id=#{member_id}
+	</select>
 	
-	 
+	<select id="AllOverdueDate" parameterType="string" resultType="int">
+		select ifnull(sum(result),0) from (select (bbook_rdate - (bbook_bdate+10)) 
+		result from history_bbook where member_id = #{member_id}) result where result > 0;
+	</select>
 
  </mapper>

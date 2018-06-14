@@ -17,16 +17,14 @@ public class ReturnBookAction implements Action {
 		
 		String[] book_numbers = request.getParameterValues("returnBookCheckBox");
 		int book_number = 0;
-		for(int i=0; i<book_numbers.length; i++) {
-			System.out.println("book_numbers["+i+"] : "+book_numbers[i]);
-			book_number = Integer.parseInt(book_numbers[i]);
-		}
-		System.out.println("book_number : "+book_number);
 		BookDTO bDTO = new BookDTO();
 		MemberDAO mDAO = new MemberDAO();
 		
-		mDAO.ReturnHistoryBorrowBook(book_number);
-		mDAO.ReturnBorrowBook(book_number);
+		for(int i=0; i<book_numbers.length; i++) {
+			book_number = Integer.parseInt(book_numbers[i]);
+			mDAO.ReturnHistoryBorrowBook(book_number);
+			mDAO.ReturnBorrowBook(book_number);
+		}
 		
 		ActionForward forward = new ActionForward();
 		forward.setPath("./MemberUseIndex.me");

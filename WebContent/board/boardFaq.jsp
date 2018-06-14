@@ -136,7 +136,7 @@ $(document).ready(function(){
 				if("admin"=="${member_id}"){
 					
 					var test6 = "<input type='button' class='btn_type1' value='글쓰기' onclick='writeMove();'>";
-					$('.btn_btm_center').append(test6);
+					$('.btn_btm_center1').append(test6);
 				}
 				
 				/***********	슬라이드 부분	**************/
@@ -256,7 +256,7 @@ $(document).ready(function(){
 
 								</div>
 								
-								 <div class="btn_btm_center">
+								 <div class="btn_btm_center1">
 								 <script type="text/javascript">
 								 	function writeMove(){
 										location.href="./BoardFaqWrite.fa";
