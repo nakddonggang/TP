@@ -120,10 +120,11 @@ firstload(pageNum);
 									+JSdata[i].book_number+"\"\'><img src='./upload/book/"
 									+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_subs2' id='adm_book_high'onclick='location.href=\"./AdminBookInfo.am?book_number="
 									+JSdata[i].book_number+"\"\'>"
-									+JSdata[i].book_subject+"</li><li class='adm_name' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
+									+JSdata[i].book_subject+"</li><li class='adm_name over_dot' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
 									+JSdata[i].book_number+"\"\'>"
-									+JSdata[i].book_author+"</li><li class='adm_ten' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
-									+JSdata[i].book_number+"\"\'>"+JSdata[i].book_publisher+"</li><li class='adm_ten'><input type='button' id="
+									+JSdata[i].book_author+"</li><li class='adm_ten over_dot' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
+									+JSdata[i].book_number+"\"\'>"
+									+JSdata[i].book_publisher+"</li><li class='adm_ten'><input type='button' id="
 									+i+"' value='보기' class ='bbutton_info' ></li></ul>";
 										$('#text3_ap').append(text4);
 
@@ -188,8 +189,8 @@ firstload(pageNum);
 							
 							var text9 = "<div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='입고하기' onclick='bookwrite();' class ='btn_type4 BTN_IF_LIST b'></li>&nbsp;<li class='adm_btn__left'><input type='button' value='희망도서목록' onclick='hbooklist();' class ='btn_type4 BTN_IF_LIST'></li></ul></div>";
 							$('.AdAjaxTest').append(text9);
-						
-							var text10 = "<div class='paginate'><a href='./AdminIndex.am?pageNum=1&sort="+sort+"'><span>&lt;&lt;&nbsp;</span></a>";
+							
+							var text10 = "<div class='paginate'><a href='./AdminIndex.am?pageNum=1&sort="+sort+"' class='prev2'><span class='hide'>페이지처음</span></a>";
 							$('.AdAjaxTest').append(text10);
 								
 							if(pageCount < endPage)	endPage = pageCount;
@@ -214,39 +215,32 @@ firstload(pageNum);
 								$('.paginate').append(text13);
 							}
 
-							var text14="<a href='./AdminIndex.am?pageNum="+pageCount+"&sort="+sort+"'><span>&nbsp;&gt;&gt;</span></a>";
+							var text14="<a href='./AdminIndex.am?pageNum="+pageCount+"&sort="+sort+"' class='next2'><span class='hide'>페이지끝</span></a>";
 							$('.paginate').append(text14);
 							
 							var text15="</div>";
 							$('.AdAjaxTest').append(text15);
 							
 							
-							// JQUERY★
-							function bookwrite(){
-								location.href="./AdminBookWrite.am";
-							}
-							
-							function hbooklist(){
-								location.href="./AdminHBookList.am";
-							}
-							
-							// 모달창 띄우기
-							for(var i=0; i<JSdata.length-7; i++){
-								$('#Borrows' + i).dialog({ 
-									autoOpen: false, 
-									width: 400, 
-									modal: true, 
+							$(window).on('load', function() {
+								// 모달창 띄우기
+								for(var i=0; i<JSdata.length-7; i++){
+									$('#Borrows' + i).dialog({ 
+										autoOpen: false, 
+										width: 400, 
+										modal: true, 
+									});
+								}
+								$(".bbutton_info").click(function() {
+									var listvalue = $(this).attr("id");
+									$('#Borrows' + listvalue).dialog("open");
 								});
-							}
-							$(".bbutton_info").click(function() {
-								var listvalue = $(this).attr("id");
-								$('#Borrows' + listvalue).dialog("open");
-							});
-							
-							$(".BTN_CLOSE").click(function() {
-								var listvalue = $(this).attr("id");
-								$('#Borrows' + listvalue).dialog("close");
-							});
+								
+								$(".BTN_CLOSE").click(function() {
+									var listvalue = $(this).attr("id");
+									$('#Borrows' + listvalue).dialog("close");
+								});
+							})
 							
 				}, // Ajax 데이터 값 받기 성공
 				error:function(request,status,error){ } // error 발생시
@@ -346,8 +340,8 @@ firstload(pageNum);
 															</div>
 														</div>
 														<div id="adm_sort_submit">
-															<input type=submit class="adm_btn_type4" value="상세검색" >
-															<input type="reset" class="adm_btn_type5" value="입력 초기화">
+															<input type=submit class="adm_btn_sr" value="상세검색" >
+															<input type="reset" class="adm_btn_rs" value="입력 초기화">
 														</div>
 													</div>
 												</div>
@@ -372,6 +366,15 @@ firstload(pageNum);
 
 <div class="AdAjaxTest">					
 </div>
+							<script type="text/javascript">
+							function bookwrite(){
+								location.href="./AdminBookWrite.am";
+							}
+							
+							function hbooklist(){
+								location.href="./AdminHBookList.am";
+							}
+							 </script>
 
 					</div>
 					</div>

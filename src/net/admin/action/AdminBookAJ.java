@@ -19,6 +19,8 @@ import util.actionForward.ActionForward;
 public class AdminBookAJ implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("검색검색정려ㅑㄹ정렬");
+		
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		
@@ -29,26 +31,17 @@ public class AdminBookAJ implements Action{
 		
 		// 검색 파라미터값 가져오기
 		String category1 = request.getParameter("category1");
-		System.out.println(category1);
 		String search1 = request.getParameter("search1");
-		System.out.println(search1);
 		String opt1 = request.getParameter("opt1");
-		System.out.println(opt1);
 
 		String category2 = request.getParameter("category2");
-		System.out.println(category2);
 		String search2 = request.getParameter("search2");
-		System.out.println(search2);
 		String opt2 = request.getParameter("opt2");
-		System.out.println(opt2);
 
 		String category3 = request.getParameter("category3");
-		System.out.println(category3);
 		String search3 = request.getParameter("search3");
-		System.out.println(search3);
 		
 		String pubDate = request.getParameter("pubDate");
-		System.out.println(pubDate);
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		AdminDAO adao = new AdminDAO();
@@ -154,7 +147,6 @@ public class AdminBookAJ implements Action{
 		
 		// 책 뿌려주는 메소드 생성
 		List<BookDTO> booksearchList = null;
-		System.out.println(count);
 			if (count!=0) {
 				// pubDate에 값이 없을 때
 				if (pubDate.equals("all")) {
@@ -237,7 +229,6 @@ public class AdminBookAJ implements Action{
 				}
 		} else { System.out.println("count==0"); }
 		
-		System.out.println(pageSize+", "+pageNum+", "+currentPage+", "+startRow+", "+endRow);
 		
 		// 입출력
 		response.setContentType("text/html; charset=utf-8");
@@ -309,10 +300,8 @@ public class AdminBookAJ implements Action{
 						.add("rbook_check", bdto.getRbook_check())
 						.add("book_file", bdto.getBook_file()).build();
 				books += JsonObj.toString();
-				System.out.println(books);
 			}
 			
-			System.out.println(JsonObj);
 			if(i != booksearchList.size()-1) books += ",";
 		} // result >> String에 넣어주는 역할
 		
@@ -328,7 +317,6 @@ public class AdminBookAJ implements Action{
 		if (endPage>pageCount){
 			endPage=pageCount;
 		}	
-		System.out.println(pageCount+", "+pageBlock+", "+startPage+", "+endPage);
 		
 		// 배열을 제외한 나머지 값 추가로 JsonArray에 넣어주기
 		if (booksearchList.size() == 0) {
@@ -372,7 +360,6 @@ public class AdminBookAJ implements Action{
 			.build();
 		} // [ ] 생성	
 		
-		System.out.println(JsonArr);
 		out.print(JsonArr);
 		out.flush();
 		out.close();

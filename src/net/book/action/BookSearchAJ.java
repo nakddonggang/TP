@@ -322,7 +322,7 @@ public class BookSearchAJ implements Action{
 					System.out.println(books);
 				}
 				
-				System.out.println(JsonObj);
+//				System.out.println(JsonObj);
 				if(i != booksearchList.size()-1) books += ",";
 			} // result >> String에 넣어주는 역할
 
@@ -384,7 +384,7 @@ public class BookSearchAJ implements Action{
 				.build();
 			} // [ ] 생성
 			
-			System.out.println(JsonArr);
+//			System.out.println(JsonArr);
 			out.print(JsonArr);
 			out.flush();
 			out.close();

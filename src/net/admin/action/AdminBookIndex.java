@@ -26,18 +26,15 @@ public class AdminBookIndex implements Action{
 		// String sort 파라미터값 가져오기
 		String sort = request.getParameter("sort");
 		if (sort==null) sort="book_number";
-		System.out.println("정렬해야할 값"+sort);
 		
 		// 오름차순, 내림차순 결정하기
 		String adsc="";
 		if (sort.equals("book_subject")||sort.equals("book_author")) adsc="asc";
 		else if (sort.equals("book_number")||sort.equals("book_pubDate")) adsc="desc";
-		System.out.println(adsc);	
 		
 		// AdminDAO 객체생성 및 total 책의 개수 가져오기
 		AdminDAO adao = new AdminDAO();
 		int count = adao.getBookCount();
-		System.out.println(count);
 		
 		// 한 화면에 보여줄 책의 개수 설정
 		int pageSize = 8;		
@@ -57,8 +54,6 @@ public class AdminBookIndex implements Action{
 			// 1page - 10 / 2page - 20 / 3page - 30
 		int endRow = pageSize*currentPage;
 
-		System.out.println(pageSize+", "+pageNum+", "+currentPage+", "+startRow+", "+endRow);
-		
 		// 입출력
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -140,7 +135,6 @@ public class AdminBookIndex implements Action{
 				System.out.println(books);
 			}
 			
-			System.out.println(JsonObj);
 			if(i != bookList.size()-1) books += ",";
 		} // result >> String에 넣어주는 역할
 		
@@ -156,7 +150,6 @@ public class AdminBookIndex implements Action{
 		if (endPage>pageCount){
 			endPage=pageCount;
 		}	
-		System.out.println(pageCount+", "+pageBlock+", "+startPage+", "+endPage);
 		
 		// 배열을 제외한 나머지 값 추가로 JsonArray에 넣어주기
 		if (bookList.size() == 0) {
@@ -181,8 +174,7 @@ public class AdminBookIndex implements Action{
 			.add("{\"endPage\":"+endPage+"}")
 			.build();
 		} // [ ] 생성		
-		
-		System.out.println(JsonArr);
+
 		out.print(JsonArr);
 		out.flush();
 		out.close();

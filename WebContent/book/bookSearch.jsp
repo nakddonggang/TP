@@ -53,7 +53,7 @@ var category1="${category1}";
 var search1="${search1}";
 var category2="${category2}";
 var search2="${search2}";
-var opt1=Request("opt2");
+var opt1=Request("opt1");
 var opt2=Request("opt2");
 var category3="${category3}";
 var search3="${search3}";
@@ -203,7 +203,7 @@ $('.rbutton').click(function() {
 					
 				// content 내용 넣기
 				var text = "<p>Total_<span>"
-				+count+"</span></p><ul class='brd_txt_lst' id='book_cont_div'><li class='view_lst' id='text3_ap'><div class='con_lst'><ul class='no_scroll title_t' id='text2_ap'><li class='adm_col_rrc'>목록</li><li class='adm_col_date'>사진</li><li class='adm_col_sub'>제목</li><li class='adm_col_type'>저자</li><li class='adm_col_sub'>출판사</li><li class='adm_col_sub' id='text2_ap'>대출/예약 현황</li>";
+				+count+"</span></p><ul class='brd_txt_lst' id='book_cont_div'><li class='view_lst' id='text3_ap'><div class='con_lst'><ul class='no_scroll title_t' id='text2_ap'><li class='adm_num'>번호</li><li class='adm_pic'>사진</li><li class='adm_subs'>제목</li><li class='adm_name'>저자</li><li class='adm_ten'>출판사</li><li class='adm_ten'>상세정보</li>";
 				$('.AjaxTest').append(text);
 				
 				var text3 = "</ul></div>";
@@ -214,13 +214,13 @@ $('.rbutton').click(function() {
 					$('#text3_ap').append(text4);
 				} else {
 					for(var i=0; i<JSdata.length-17; i++){
-						var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll'><li class='adm_col_rrc' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
-							+JSdata[i].book_number+"'></li><li class='adm_col_date' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
+						var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll'><li class='adm_num' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
+							+JSdata[i].book_number+"'></li><li class='adm_pic' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
 							+JSdata[i].book_number+"\"\'><img src='./upload/book/"
-							+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_col_sub' id='adm_book_high'>"
-							+JSdata[i].book_subject+"</li><li class='adm_col_type' id='adm_book_high'>"
-							+JSdata[i].book_author+"</li><li class='adm_col_sub' id='adm_book_high'>"
-							+JSdata[i].book_publisher+"</li><li class='adm_col_sub' id='adm_book_high'><input type='button' id='"
+							+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_subs2' id='adm_book_high'>"
+							+JSdata[i].book_subject+"</li><li class='adm_name over_dot' id='adm_book_high'>"
+							+JSdata[i].book_author+"</li><li class='adm_ten over_dot' id='adm_book_high'>"
+							+JSdata[i].book_publisher+"</li><li class='adm_ten' id='adm_book_high'><input type='button' id='"
 							+i+"' value='상세보기' class ='info_bbutton2' ></li></ul>";
 							$('#text3_ap').append(text4);
 							
@@ -276,7 +276,7 @@ $('.rbutton').click(function() {
 							
 							var text10 = "<div class='paginate'><a href='./BookSearch.bk?pageNum=1&category1="+category1+"&search1="+search1+"&opt1="
 									+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-									+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"'><span>&lt;&lt;&nbsp;</span></a>";
+									+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"' class='prev2'><span class='hide'>페이지처음</span></a>";
 							$('.AjaxTest').append(text10);
 								
 							if(pageCount < endPage)	endPage = pageCount;
@@ -309,7 +309,7 @@ $('.rbutton').click(function() {
 
 							var text14="<a href='./BookSearch.bk?pageNum="+pageCount+"&category1="+category1+"&search1="+search1+"&opt1="
 							+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
-							+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"'><span>&nbsp;&gt;&gt;</span></a>";
+							+search3+"&pubDate="+pubDate+"&view="+view+"&sort="+sort+"' class='next2'><span class='hide'>페이지끝</span></a>";
 							$('.paginate').append(text14);
 							
 							var text15="</div>";
@@ -556,12 +556,12 @@ alert("decode"+decode);
 								<li class="view_lst">
 									<div class="con_lst">
 										<ul class="no_scroll title_t">
-											<li class="adm_col_rrc">목록</li>
-											<li class="adm_col_date">사진</li>
-											<li class="adm_col_sub">제목</li>
-											<li class="adm_col_type">저자</li>
-											<li class="adm_col_sub">출판사</li>
-											<li class="adm_col_sub">대출/예약 현황</li>
+											<li class="adm_num">목록</li>
+											<li class="adm_pic">사진</li>
+											<li class="adm_subs">제목</li>
+											<li class="adm_name">저자</li>
+											<li class="adm_ten">출판사</li>
+											<li class="adm_ten">대출/예약 현황</li>
 											<li >
 										</ul>
 									</div> <%
@@ -575,21 +575,21 @@ alert("decode"+decode);
  %>
 									<div class="con_lst">
 										<ul class="no_scroll">
-											<li class="adm_col_rrc" id="adm_book_high"><input
+											<li class="adm_num" id="adm_book_high"><input
 												type="checkbox" name="basket_check"  class="bncheck" 
 												value="<%=booksearchLists.getBook_number()%>" ></li>
-											<li class="adm_col_date" id="adm_book_high"
+											<li class="adm_pic" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><img
 												src="./upload/book/<%=booksearchLists.getBook_file()%>"
 												width="70px" height="80px"></li>
-											<li class="adm_col_sub" id="adm_book_high"
+											<li class="adm_subs" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_subject()%></li>
-											<li class="adm_col_type" id="adm_book_high"
+											<li class="adm_name over_dot" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_author()%></li>
-											<li class="adm_col_sub" id="adm_book_high"
+											<li class="adm_ten over_dot" id="adm_book_high"
 												onclick="location.href='./BookInfo.bk?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_publisher()%></li>
 											<%if(member_id!=null){ %>
-											<li class="adm_col_sub"><input type="button" id="<%=i %>" value=상세보기  class ='info_bbutton2' ></li><%
+											<li class="adm_ten"><input type="button" id="<%=i %>" value=상세보기  class ='info_bbutton2' ></li><%
 											}%>
 										</ul>
 						<%if(member_id!=null){ %>				
@@ -716,7 +716,7 @@ $(window).on('load', function() {
 
 				<!-- 버튼 css 부분 -->	
 						<div class="paginate">
-						<a href="./BookSearch.bk?pageNum=1&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>"><span>&lt;&lt;&nbsp;</span></a>
+						<a href="./BookSearch.bk?pageNum=1&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>" class="prev2"><span class="hide">페이지처음</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 						if(startPage > pageBlock)	{ %><a href="./BookSearch.bk?pageNum=<%=startPage - pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
@@ -726,7 +726,7 @@ $(window).on('load', function() {
 						}
 						if(endPage < pageCount){	%><a href="./BookSearch.bk?pageNum=<%=startPage+pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="./BookSearch.bk?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>"><span>&nbsp;&gt;&gt;</span></a>
+						<a href="./BookSearch.bk?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>&view=<%=view%>" class="next2"><span class="hide">페이지끝</span></a>
 						 </div>
 		
 </div>						 
