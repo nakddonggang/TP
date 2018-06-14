@@ -129,7 +129,7 @@
 							%>
 							<div class="con_lst">
 							<ul class="no_scroll" >
-								<li class="col_mem_b"><input type="checkbox" name = "returnBookCheckBox"  value ="<%=bDTO.getBbook_number() %>"></li>
+								<li class="col_mem_b"><input type="checkbox" name = "returnBookCheckBox"  value ="<%=bDTO.getBook_number() %>"></li>
 								<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
 								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
 								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
