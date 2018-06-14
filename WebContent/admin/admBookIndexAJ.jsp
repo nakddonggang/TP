@@ -120,10 +120,11 @@ firstload(pageNum);
 									+JSdata[i].book_number+"\"\'><img src='./upload/book/"
 									+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_subs2' id='adm_book_high'onclick='location.href=\"./AdminBookInfo.am?book_number="
 									+JSdata[i].book_number+"\"\'>"
-									+JSdata[i].book_subject+"</li><li class='adm_name' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
+									+JSdata[i].book_subject+"</li><li class='adm_name over_dot' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
 									+JSdata[i].book_number+"\"\'>"
-									+JSdata[i].book_author+"</li><li class='adm_ten' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
-									+JSdata[i].book_number+"\"\'>"+JSdata[i].book_publisher+"</li><li class='adm_ten'><input type='button' id="
+									+JSdata[i].book_author+"</li><li class='adm_ten over_dot' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
+									+JSdata[i].book_number+"\"\'>"
+									+JSdata[i].book_publisher+"</li><li class='adm_ten'><input type='button' id="
 									+i+"' value='보기' class ='bbutton_info' ></li></ul>";
 										$('#text3_ap').append(text4);
 
@@ -220,6 +221,7 @@ firstload(pageNum);
 							var text15="</div>";
 							$('.AdAjaxTest').append(text15);
 							
+						$(document).ready(function() {		
 							// 모달창 띄우기
 							for(var i=0; i<JSdata.length-7; i++){
 								$('#Borrows' + i).dialog({ 
@@ -237,6 +239,7 @@ firstload(pageNum);
 								var listvalue = $(this).attr("id");
 								$('#Borrows' + listvalue).dialog("close");
 							});
+						});
 							
 				}, // Ajax 데이터 값 받기 성공
 				error:function(request,status,error){ } // error 발생시

@@ -139,8 +139,8 @@ firstload(pageNum, view);
  										+JSdata[i].book_number+"'></li><li class='adm_col_date' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
  										+JSdata[i].book_number+"\"\'><img src='./upload/book/"
 										+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_col_sub' id='adm_book_high'>"
-										+JSdata[i].book_subject+"</li><li class='adm_col_type' id='adm_book_high'>"
-										+JSdata[i].book_author+"</li><li class='adm_col_sub' id='adm_book_high'>"
+										+JSdata[i].book_subject+"</li><li class='adm_col_type  over_dot' id='adm_book_high'>"
+										+JSdata[i].book_author+"</li><li class='adm_col_sub over_dot' id='adm_book_high'>"
 										+JSdata[i].book_publisher+"</li><li class='adm_col_sub' id='adm_book_high'><input type='button' id='"
 										+i+"' value='상세보기' class ='info_bbutton2' ></li></ul>";
 										$('#text3_ap').append(text4);

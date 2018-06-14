@@ -118,9 +118,9 @@ $('#book_sort').change(function(){
 						+JSdata[i].book_number+"\"\'><img src='./upload/book/"
 						+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_subs2' id='adm_book_high'onclick='location.href=\"./AdminBookInfo.am?book_number="
 						+JSdata[i].book_number+"\"\'>"
-						+JSdata[i].book_subject+"</li><li class='adm_name' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
+						+JSdata[i].book_subject+"</li><li class='adm_name over_dot' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
 						+JSdata[i].book_number+"\"\'>"
-						+JSdata[i].book_author+"</li><li class='adm_ten' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
+						+JSdata[i].book_author+"</li><li class='adm_ten over_dot' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
 						+JSdata[i].book_number+"\"\'>"+JSdata[i].book_publisher+"</li><li class='adm_ten'><input type='button' id="
 						+i+"' value='보기' class ='bbutton_info' ></li></ul>";
 							$('#text3_ap').append(text4);
@@ -423,8 +423,8 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 								<li class="adm_num" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_number()%></li>
 								<li class="adm_pic" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><img src="./upload/book/<%=booksearchLists.getBook_file()%>" width="70px" height="80px"></li>
 								<li class="adm_subs2" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_subject()%></li>
-								<li class="adm_name" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_author()%></li>
-								<li class="adm_ten" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_publisher()%></li>
+								<li class="adm_name over_dot" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_author()%></li>
+								<li class="adm_ten over_dot" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_publisher()%></li>
 								<li class="adm_ten"><input type="button" id="<%=i %>" value="보기" class ="bbutton info" ></li>
 							</ul>
 							

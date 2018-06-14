@@ -26,11 +26,9 @@ public class BookIndexAJ  implements Action {
 		
 		// String sort 파라미터값 가져오기
 		String sort = request.getParameter("sort");
-		System.out.println("정렬해야할 값"+sort);
 		if (sort==null) sort="book_number";
 		
 		String view = request.getParameter("view");
-		System.out.println(view);
 		if (view==null) view="1";
 		
 		
@@ -38,12 +36,10 @@ public class BookIndexAJ  implements Action {
 		String adsc="";
 		if (sort.equals("book_subject")||sort.equals("book_author")) adsc="asc";
 		else if (sort.equals("book_number")||sort.equals("book_pubDate")) adsc="desc";
-		System.out.println(adsc);
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		BookDAO bdao = new BookDAO();
 		int count = bdao.BookCount();
-		System.out.println(count);
 
 //		HttpSession session = request.getSession();
 //		String member_id = (String)session.getAttribute("member_id");
@@ -58,7 +54,6 @@ public class BookIndexAJ  implements Action {
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
-		System.out.println("pageNum의 값 : "+pageNum);
 			// 페이지 번호 없으면 무조건 "1" 페이지 설정
 		if (pageNum==null)
 			pageNum="1";
@@ -72,7 +67,6 @@ public class BookIndexAJ  implements Action {
 			// 1page - 10 / 2page - 20 / 3page - 30
 		int endRow = pageSize*currentPage;
 
-		System.out.println(pageSize+", "+pageNum+", "+currentPage+", "+startRow+", "+endRow);
 		// 입출력
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
@@ -166,7 +160,7 @@ public class BookIndexAJ  implements Action {
 		if (endPage>pageCount){
 			endPage=pageCount;
 		}	
-		System.out.println(pageCount+", "+pageBlock+", "+startPage+", "+endPage);
+//		System.out.println(pageCount+", "+pageBlock+", "+startPage+", "+endPage);
 		
 		// 배열을 제외한 나머지 값 추가로 JsonArray에 넣어주기
 		if (list.size() == 0) {
@@ -194,7 +188,7 @@ public class BookIndexAJ  implements Action {
 			.build();
 		} // [ ] 생성
 		
-		System.out.println(JsonArr);
+//		System.out.println(JsonArr);
 		out.print(JsonArr);
 		out.flush();
 		out.close();

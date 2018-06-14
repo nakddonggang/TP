@@ -31,26 +31,26 @@ public class BookSearch implements Action{
 		
 		// 검색 파라미터값 가져오기
 		String category1 = request.getParameter("category1");
-		System.out.println(category1);
+//		System.out.println(category1);
 		String search1 = request.getParameter("search1");
-		System.out.println(search1);
+//		System.out.println(search1);
 		String opt1 = request.getParameter("opt1");
-		System.out.println(opt1);
+//		System.out.println(opt1);
 
 		String category2 = request.getParameter("category2");
-		System.out.println(category2);
+//		System.out.println(category2);
 		String search2 = request.getParameter("search2");
-		System.out.println(search2);
+//		System.out.println(search2);
 		String opt2 = request.getParameter("opt2");
-		System.out.println(opt2);
+//		System.out.println(opt2);
 
 		String category3 = request.getParameter("category3");
-		System.out.println(category3);
+//		System.out.println(category3);
 		String search3 = request.getParameter("search3");
-		System.out.println(search3);
+//		System.out.println(search3);
 		
 		String pubDate = request.getParameter("pubDate");
-		System.out.println(pubDate);
+//		System.out.println(pubDate);
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		BookDAO bdao = new BookDAO();

@@ -417,7 +417,7 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 .book_lst .book_info_layer dd dd {overflow: hidden;  margin-bottom: 9px;  font-size: 11px;  text-overflow: ellipsis;  white-space: nowrap;  color: #fff; }
 
 /* END 김영지 책 갤러리 형식으로 보기 css */
-
+.over_dot { overflow: hidden; text-overflow: ellipsis;  white-space: nowrap; }
 
 /* start 윤창훈 작업(Notice List) */
 .view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%;}
