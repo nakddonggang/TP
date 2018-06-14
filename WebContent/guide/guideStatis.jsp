@@ -29,71 +29,7 @@
 <script src="<c:url value="/js/raphael.min.js"/>"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
- <script type="text/javascript">
-						 new Morris.Line({
-								element: 'visit',
-								data: [
-									{ y: jsonData[0].year+"년", a: jsonData[0].count},
-									{ y: jsonData[1].year+"년", a: jsonData[1].count},
-									{ y: jsonData[2].year+"년", a: jsonData[2].count},
-									{ y: jsonData[3].year+"년", a: jsonData[3].count},
-									{ y: jsonData[4].year+"년", a: jsonData[4].count}	
-								],
-								xkey: 'y',
-								ykeys: ['a'],
-								labels: ['방문자 수'],
-								  fillOpacity: 0.6,
-							      hideHover: 'auto',
-							      behaveLikeLine: true,
-							      resize: true,
-							      pointFillColors:['#ffffff'],
-							      pointStrokeColors: ['black'],
-							      lineColors:['gray']
-							});  
-						new Morris.Line({
-							element: 'book',
-							data: [
-								{ y: jsonData[5].year1+"년", a: jsonData[5].count1},
-								{ y: jsonData[6].year1+"년", a: jsonData[6].count1},
-								{ y: jsonData[7].year1+"년", a: jsonData[7].count1},
-								{ y: jsonData[8].year1+"년", a: jsonData[8].count1},
-								{ y: jsonData[9].year1+"년", a: jsonData[9].count1}
-								
-							],
-							xkey: 'y',
-							ykeys: ['a'],
-							labels: ['입고 수'],
-							  fillOpacity: 0.6,
-						      hideHover: 'auto',
-						      behaveLikeLine: true,
-						      resize: true,
-						      pointFillColors:['#ffffff'],
-						      pointStrokeColors: ['black'],
-						      lineColors:['gray']
-						});
-						new Morris.Line({
-							element: 'bbook',
-							data: [
-								{ y: jsonData[10].year2+"년", a: jsonData[10].count2},
-								{ y: jsonData[11].year2+"년", a: jsonData[11].count2},
-								{ y: jsonData[12].year2+"년", a: jsonData[12].count2},
-								{ y: jsonData[13].year2+"년", a: jsonData[13].count2},
-								{ y: jsonData[14].year2+"년", a: jsonData[14].count2}
-								
-							],
-							xkey: 'y',
-							ykeys: ['a'],
-							labels: ['대출 수'],
-					  fillOpacity: 0.6,
-				      hideHover: 'auto',
-				      behaveLikeLine: true,
-				      resize: true,
-				      pointFillColors:['#ffffff'],
-				      pointStrokeColors: ['black'],
-				      lineColors:['gray']
-						});
 
-		</script>
   <script type="text/javascript">
    $(document).ready(function(){
 	   var selected = "";
@@ -136,12 +72,10 @@
 						xkey: 'y',
 						ykeys: ['a'],
 						labels: ['방문자 수'],
-				   fillOpacity: 0.6,
+					      xLabelAngle: '70',
 				      hideHover: 'auto',
 				      behaveLikeLine: true,
 				      resize: true,
-				      pointFillColors:['#ffffff'],
-				      pointStrokeColors: ['black'],
 				      barColors:['gray']
 					});
 				   Morris.Bar({
@@ -164,12 +98,10 @@
 						xkey: 'y',
 						ykeys: ['a'],
 						labels: ['입고 수'],
-						  fillOpacity: 0.6,
 					      hideHover: 'auto',
+					      xLabelAngle: '70',
 					      behaveLikeLine: true,
 					      resize: true,
-					      pointFillColors:['#ffffff'],
-					      pointStrokeColors: ['black'],
 					      barColors:['gray']
 					});
 				   Morris.Bar({
@@ -186,18 +118,15 @@
 							{ y: jsonData[32].month2+"월", a: jsonData[32].count2},
 							{ y: jsonData[33].month2+"월", a: jsonData[33].count2},
 							{ y: jsonData[34].month2+"월", a: jsonData[34].count2},
-							{ y: jsonData[35].month2+"월", a: jsonData[35].count2}
-							
+							{ y: jsonData[35].month2+"월", a: jsonData[35].count2}	
 						],
 						xkey: 'y',
 						ykeys: ['a'],
-						labels: ['대출 수'],
-						  fillOpacity: 0.6,
+						labels: ['대출 수'],					
 					      hideHover: 'auto',
+					      xLabelAngle: '70',
 					      behaveLikeLine: true,
 					      resize: true,
-					      pointFillColors:['#ffffff'],
-					      pointStrokeColors: ['black'],
 					      barColors:['gray']
 					});
 			   }
@@ -318,8 +247,21 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-				<div class="board">
-				<h3>혜윰누리 통계</h3>
+				<div class="statis">
+				 <div class="statis_pad">
+				<h3>혜윰나래 통계</h3>
+				<div class="dl_boxg">
+					<dl>
+							<dt> 통계</dt>
+							<dd> 혜윰나래 홈페이지의 <span class="bold">방문자수</span> <span class="bold">장서 입고수</span> <span class="bold">대출 수</span>를</dd>
+							<dd> 월별  연도별로 수치를 볼 수 있는 페이지입니다.</dd>
+							<dd></dd>
+					</dl>
+					<br>
+					<br>
+				</div>
+				</div>
+				
 				<input type="button" value="연도별"  id="year" class="btn_type6">
 				<input type="button" value="월별"  id="month" class="btn_type6">
 				<input type="hidden" value="year" id="h_year">
@@ -331,7 +273,7 @@
 						</div>
 					</div>
 					<div>
-						<h5>책 입고수</h5>
+						<h5>장서 입고수</h5>
 						<div id="book">
 						
 						</div>

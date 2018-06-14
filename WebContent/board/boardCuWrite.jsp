@@ -83,7 +83,7 @@ $(document).ready(function(){
 					<div class="content">
 						<div class="write_form">
 
-							<h1>Curation 글쓰기</h1>
+							<h3>Curation 글쓰기</h3>
 							<form action="./BoardCurWriteAction.cu" method="post" name="fr" id="cWriteForm" enctype="multipart/form-data">
 								<ul class="row">
 									<li>

@@ -87,7 +87,7 @@ String pageNum = request.getParameter("pageNum");
 				<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
 						<div class="write_form">
-					 		<h1>Curation 수정하기</h1>
+					 		<h3>Curation 수정</h3>
 							<form action="./BoardCurUpdateAction.cu?cur_num=<%=bDTO.getCur_num() %>&pageNum=<%=pageNum %>"  method="post" id="cUpdateForm" name="fr" enctype="multipart/form-data">
 				         		<ul class="row">
 									<li>
