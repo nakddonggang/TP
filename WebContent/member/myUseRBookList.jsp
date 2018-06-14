@@ -75,6 +75,7 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 										<li class="my_p">제목</li>
 										<li class="my_p">저자</li>
 										<li class="my_p">예약일자</li>
+										<li>신청버튼</li>
 									</ul>
 								</div>
 					
@@ -86,12 +87,15 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 										BookDTO bDTO =(BookDTO)rbList.get(i);
 										%>					
 								<div class="con_lst">
-									<ul class="no_scroll" onclick="location.href='./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>'">
+									<ul class="no_scroll">
 									
-										<li class="my_p"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
-										<li class="my_ppp"><%=bDTO.getBook_subject() %></li>
-										<li class="my_pp"><%=bDTO.getBook_author() %></li>
-										<li class="my_pp"><%=date.format(bDTO.getRbook_date()) %></li>
+										<li class="my_p"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></a></li>
+										<li class="my_ppp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_subject() %></a></li>
+										<li class="my_pp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_author() %></a></li>
+										<li class="my_pp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=date.format(bDTO.getRbook_date()) %></a></li>
+										<li><%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
+												%><input type="button" value ="대출신청" onclick="location.href='./BorrowBookAction.me?book_number=<%=bDTO.getBook_number()%>'">
+											<%} %></li>
 									</ul>
 								</div>
 										<%
@@ -103,11 +107,10 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 						</ul>
 						
 						<div class="paginate">
+						
+						<a href="MemberMyUseRBookList.me?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
-						%>
-						<a href="MemberMyUseRBookList.me?pageNum=1">[처음]</a>
-						<%
 						if(startPage > pageBlock)	{ %><a href="MemberMyUseRBookList.me?pageNum=<%=startPage-pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
@@ -115,7 +118,7 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 						}
 						if(endPage < pageCount){	%><a href="MemberMyUseRBookList.me?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="MemberMyUseRBookList.me?pageNum=<%=pageCount %>">[끝]</a>
+						<a href="MemberMyUseRBookList.me?pageNum=<%=pageCount %>" class="next2"><span class="hide">페이지끝</span></a>
 						 </div>
 						 
 						 <div class="btn_btm_center">
