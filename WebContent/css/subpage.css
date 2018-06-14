@@ -413,7 +413,8 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 .join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px;}
 .join_form .row_sub > li textarea { float: left;width: 100%; resize: none; background: #f6f6f6; border: 0; font-family: "Noto_M";}
 .adm_h_1{ font-size: 17px;}
-.bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info, .info_bbutton2 {border: none; background-color: #FAE0D4; margin-top: 30px;}
+.bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info, .info_bbutton2, #bbutton, #rbutton, #bbutton2 {border: none; background-color: #FAE0D4; margin-top: 30px;}
+#bbutton, #rbutton, #bbutton2  {border: none; background-color: #FAE0D4; margin:2px auto; color: black; }
 .bncheck {line-height: 70%; height: 90%;}
 #book_cont_btn, #book_pic_btn { float:right; margin-left: 5px ; margin-top: 0; display: block; width: 50px; height: 30px; color: #fff !important; border: 0; text-align: center; background: #464646; color: #fff; cursor: pointer;}
 
@@ -434,7 +435,7 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 .book_lst .book_info_layer dd dd {overflow: hidden;  margin-bottom: 9px;  font-size: 11px;  text-overflow: ellipsis;  white-space: nowrap;  color: #fff; }
 
 /* END 김영지 책 갤러리 형식으로 보기 css */
-
+.over_dot { overflow: hidden; text-overflow: ellipsis;  white-space: nowrap; }
 
 /* start 윤창훈 작업(Notice List) */
 .view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%;}
@@ -675,7 +676,6 @@ strong#currentPage {font-weight: bold;}
 	.book_lst li {width: 70%;height: 300px; margin: 40px 30px 20px 50px;}
 	.book_lst_img { width:99%; height: 290px;}
 	.book_info_layer{ height:290px; }
-	
 	/* book css */
 	
 	
@@ -695,8 +695,6 @@ strong#currentPage {font-weight: bold;}
 		#selectEmail {margin-left: 115px;}
 		
 }
-
-
 
 
 
@@ -798,8 +796,8 @@ input.adm_btn_search {  width:20%; border:0; width: 35px; height:33px; line-heig
 #adm_date_box #adm_book_date { height: 33px; line-height: 33px; }
 #adm_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
 .adm_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
-.adm_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.adm_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+.adm_btn_sr { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0; margin:0 auto; }
+.adm_btn_rs { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
 .adm_media_bye { display: block;}
 
 @media screen and (min-width:768px) and (max-width : 1024px) {
@@ -820,3 +818,17 @@ input.adm_btn_search {  width:20%; border:0; width: 35px; height:33px; line-heig
 	.adm_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
 	.book_media_bye { display: block; }
 }
+
+/* adm hbooklist.jsp */
+.brd_txt_lst li .con_lst > ul > li.admh_id {width:15%; padding:0 10px;}
+.brd_txt_lst li .con_lst > ul > li.admh_ten {width:15%; padding:0 10px;}
+.brd_txt_lst li .con_lst > ul > li.admh_num {width:10%; padding:0 10px;}
+.brd_txt_lst li .con_lst > ul > li.adm_isbn {width:12%; padding:0 10px;}
+#admh_book_high {height: 50px; line-height: 50px;}
+.hb_button {border: none; background-color: #FAE0D4; margin-top: 15px;}
+ 
+@media (max-width: 767px) {
+.brd_txt_lst li .con_lst > ul > li.admh_id {width:20%; padding:0 5px;}
+.brd_txt_lst li .con_lst > ul > li.admh_ten {width:15%; padding:0 3px;}
+.brd_txt_lst li .con_lst > ul > li.admh_num {width:15%; padding:0 3px;}
+.brd_txt_lst li .con_lst > ul > li.adm_isbn { display: none; }

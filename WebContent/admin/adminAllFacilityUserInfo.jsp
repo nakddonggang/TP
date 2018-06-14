@@ -131,20 +131,20 @@
 						</ul>
 						 </div>
 						 
-						<div class="paginate">
-							<%
-							if (count != 0) {
-								if (startPage > pageBlock) {
-									%><a href="./AdminAllFacilityUserInfo.am?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%
-								}
-								for (int i = startPage; i <= endPage; i++) {%>
-								<a href="./AdminAllFacilityUserInfo.am?pageNum=<%=i%>">&nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a><%		
-								}
-								if (endPage<pageCount){%>
-									<a href="./AdminAllFacilityUserInfo.am?pageNum=<%=startPage+pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%
-								}
-							} %>		
-						</div>
+					<div class="paginate">
+						
+						<a href="./AdminAllFacilityUserInfo.am?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./AdminAllFacilityUserInfo.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./AdminAllFacilityUserInfo.am?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./AdminAllFacilityUserInfo.am?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./AdminAllFacilityUserInfo.am?pageNum=<%=pageCount%>" class="next2"><span class="hide">페이지끝</span></a>
+				  </div>
 						
 						<div class="btn_btm_center">
 							<ul>

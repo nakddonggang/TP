@@ -100,10 +100,17 @@ $(document).ready(function(){
 								</div>
 						</div>			
 						<div class=board>
+						
+							<div class="search_bx">
+							<form action="./BoardNoticeSearch.no" method="post">
+								<input type="text" name="search" id="search" placeholder="공지사항을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
+							</form>
+						   </div>
+						   
 							<div class="view_cnt">
 								<p>Search_<span><%=count%></span></p>
 							</div>
-							<p class="sub_txt">이용자분들께 신속히 알려드릴 필요성이 있는 정보 및 자료를 제공해 드립니다.</p>
+							
 
 							<ul class="brd_txt_lst">
 								<!-- 글목록 -->
@@ -164,23 +171,20 @@ $(document).ready(function(){
 								
 											
 											<div class="paginate">
-											<%
-												if (pageCount < endPage) endPage = pageCount;
-											%>
-											<a href="BoardNoticeList.no?pageNum=1">[처음]</a>
-											<%
-												if (startPage > pageBlock) { %><a href="BoardNoticeSearch.no?pageNum=<%=startPage - pageBlock%>&search=<%=search%>"
-												class="prev"><span class="hide">이전 페이지</span></a>
-											<% }
-												for (int p = startPage; p <= endPage; p++) {
-													if (p == Integer.parseInt(pageNum)) {%>&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<% } 
-													else {%> &nbsp;<a href="BoardNoticeSearch.no?pageNum=<%=p%>&search=<%=search%>"><%=p%></a> &nbsp;<% }
-												}
-												if (endPage < pageCount) {%><a href="BoardNoticeSearch.no?pageNum=<%=startPage + pageBlock%>&search=<%=search%>"
-												class="next"><span class="hide">다음 페이지</span></a>
-											<% } %>
-											<a href="BoardNoticeList.no?pageNum=<%=pageCount %>">[끝]</a>
-											</div>
+						
+						<a href="./BoardNoticeSearch.no?pageNum=1&search=<%=search %>" class="prev2"><span class="hide">페이지처음</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./BoardNoticeSearch.no?pageNum=<%=startPage - pageBlock%>&search=<%=search %>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./BoardNoticeSearch.no?pageNum=<%=p%>&search=<%=search %>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./BoardNoticeSearch.no?pageNum=<%=startPage+pageBlock%>&search=<%=search %>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./BoardNoticeSearch.no?pageNum=<%=pageCount%>&search=<%=search %>" class="next2"><span class="hide">페이지끝</span></a>
+				  </div>
+						 
 											
 											<div class="btn_btm_center1">
 											<%

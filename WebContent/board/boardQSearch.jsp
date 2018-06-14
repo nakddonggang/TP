@@ -156,17 +156,20 @@ $(document).ready(function(){
 						
 						<input type="button" value="글쓰기" class="btn_type1" onclick="location.href='./BoardQnaWrite.qn'">
 					
+					<div class="paginate">
+						
+						<a href="./BoardQnaSearch.qn?pageNum=1&search=<%=search %>" class="prev2"><span class="hide">페이지처음</span></a>
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
-					
-						if(startPage > pageBlock)	{ %><a href="BoardQnaSearch.qn?pageNum=<%=startPage-pageBlock%>&search=<%=search%>"class="prev"><span class="hide">이전 페이지</span></a><%	}
+						if(startPage > pageBlock)	{ %><a href="./BoardQnaSearch.qn?pageNum=<%=startPage - pageBlock%>&search=<%=search %>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
-							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong title="현재 페이지" id="currentPage"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="BoardQnaSearch.qn?pageNum=<%=p%>&search=<%=search%>"><%=p %></a> &nbsp;<%}
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./BoardQnaSearch.qn?pageNum=<%=p%>&search=<%=search %>"><%=p %></a> &nbsp;<%}
 						}
-						if(endPage < pageCount){ %><a href="BoardQnaSearch.qn?pageNum=<%=startPage+pageBlock%>&search=<%=search%>" class="next"><span class="hide">다음 페이지</span></a><%	}
-
+						if(endPage < pageCount){	%><a href="./BoardQnaSearch.qn?pageNum=<%=startPage+pageBlock%>&search=<%=search %>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
+						<a href="./BoardQnaSearch.qn?pageNum=<%=pageCount%>&search=<%=search %>" class="next2"><span class="hide">페이지끝</span></a>
+				  </div>
 						</div>
 					</div>
 

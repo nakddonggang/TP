@@ -36,6 +36,11 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}					
+		} else if (command.equals("/AdminBookAJ.am")){
+			action = new AdminBookAJ();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}					
 		}  else if (command.equals("/AdminBookWrite.am")){
 			forward = new ActionForward();
 			forward.setPath("./admin/admBookIO.jsp");
@@ -89,11 +94,6 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}			
-		} else if (command.equals("/AdminBookSort.am")){
-			action = new AdminBookSort();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}		
 		} else if (command.equals("/AdminHBookList.am")){
 			action = new AdminHBookList();
 			try {
