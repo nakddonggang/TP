@@ -46,13 +46,14 @@ $(document).ready(function(){
 		}
 	}
 	var pageNum = Request("pageNum");
+	var selected = Request("selected");
 	if(pageNum=="") pageNum=1;
-	var selected = "";
-	pageLoad(pageNum);
+// 	var selected = "";
+	pageLoad(pageNum,selected);
 	
-	function pageLoad(pageNum){
-		selected = $('#faq_select').val();
-		loadAjax(pageNum);
+	function pageLoad(pageNum,selected){
+// 		selected = $('#faq_select').val();
+		loadAjax(pageNum, selected);
 	}
 	
 	$("#faq_select").change(function() {
@@ -66,10 +67,10 @@ $(document).ready(function(){
 	
 	function selectBox(){
 		selected = $('#faq_select').val();
-		loadAjax(pageNum);
+		loadAjax(pageNum, selected);
 	}
 	
-	function loadAjax(pageNum){
+	function loadAjax(pageNum, selected){
 		$.ajax({
 			url:"./BoardFaqAjax.fa",
 			type:'POST',
@@ -89,6 +90,7 @@ $(document).ready(function(){
 				}
 				
 				$('#count').html(count);
+				$("#faq_select").val(selected).prop("selected", true);
 				
 				/***********	게시판 리스트	**************/
 				if(jsonData.length > 6){
@@ -169,10 +171,13 @@ $(document).ready(function(){
 				});
 				
 				/***********	페이징 처리 부분		**************/
+				var prev2 = "<a href='./BoardFaqList.fa?pageNum=1&selected="+selected+"' class='prev2'><span class='hide'>페이지처음</span></a>";
+				$('.paginate').append(prev2);
+				
 				if(pageCount < endPage) endPage = pageCount;
 				if (startPage > pageBlock) {
-					var prev = "<a href='./BoardFaqAjax.fa?pageNum="+(startPage-pageBlock)+
-								"' class='prev'><span class='hide'>이전 페이지</span></a>";
+					var prev = "<a href='./BoardFaqList.fa?pageNum="+(startPage-pageBlock)+
+								"&selected="+selected+"' class='prev'><span class='hide'>이전 페이지</span></a>";
 					$('.paginate').append(prev);
 				}
 				for (var p = startPage; p <= endPage; p++) {
@@ -180,16 +185,18 @@ $(document).ready(function(){
 						var current1 = "&nbsp;<strong title='현재 페이지' id='currentPage'>"+p+"</strong> &nbsp;";
 						$('.paginate').append(current1);
 					} else {
-						var current2 = "&nbsp;<a href='./BoardFaqList.fa?pageNum="+p+"'>"+p+"</a>&nbsp;";
+						var current2 = "&nbsp;<a href='./BoardFaqList.fa?pageNum="+p+"&selected="+selected+"'>"+p+"</a>&nbsp;";
 						$('.paginate').append(current2);
 					}
 				}
 
 				if (endPage < pageCount) {
-					var next = "<a href='./BoardFaqAjax.fa?pageNum="+(startPage+pageBlock)+
-								"' class='next'><span class='hide'>다음 페이지</span></a>";
+					var next = "<a href='./BoardFaqList.fa?pageNum="+(startPage+pageBlock)+
+								"&selected="+selected+"' class='next'><span class='hide'>다음 페이지</span></a>";
 					$('.paginate').append(next);
 				}
+				var next2 = "<a href='./BoardFaqList.fa?pageNum="+pageCount+"&selected="+selected+"' class='next2'><span class='hide'>페이지끝</span></a>";
+				$('.paginate').append(next2);
 
 			}// success 끝
 		});
