@@ -35,7 +35,7 @@
 			<section class="fullpage SECTION_FULL_PAGE01">
 
 				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
+<%-- 				<jsp:include page="../include/submenu_main.jsp" /> --%>
 				<!-- //서브메뉴 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
