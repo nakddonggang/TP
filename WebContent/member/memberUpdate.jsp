@@ -187,7 +187,7 @@ $(document).ready(function() {
 					
 				%>
 				<article class="mainmenu section SECTION">
-				<jsp:include page="../include/topbar.jsp" />
+<%-- 				<jsp:include page="../include/topbar.jsp" /> --%>
 				<!-- 메인 페이지 -->
 				<div class="content">
 					<div class='member_content'>

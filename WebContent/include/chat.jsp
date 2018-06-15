@@ -51,14 +51,14 @@
 		$("#inputview").css("display","none");
     } 
     else {
-    	if(admincheck){
+    	if(admincheck=="true"){
     		$("#joinchat").css("display","none");
     		$("#chatview").css("width","");
     		$("#inputview").css("display","");
     		webSocket = connection(url);
     		sessionStorage.setItem('chatstart', true);
         }
-        if(admincheck=="") {
+        if(admincheck=="" || admincheck=="false") {
         	$("#userview").css("display","none");
         	$("#chatview").css("width","100%");
            if(chatstart==null){
@@ -163,7 +163,7 @@
  });
  
 $('#leaveBtn').click(function() {
-	if(admincheck==""){
+	if(admincheck=="" || admincheck=="false"){
 		webSocket.close();
 		socketchat.close();
 		sessionStorage.clear();
@@ -264,7 +264,7 @@ $('#leaveBtn').click(function() {
  }
 
  function chatsend(message) {
-    if(admincheck){
+    if(admincheck=="true"){
        socketchat.send(JSON.stringify({ 'message' : message , 'room' : chatuser }));
     } else {
        socketchat.send(JSON.stringify({ 'message' : message , 'room' : username }));
@@ -302,7 +302,7 @@ $('#leaveBtn').click(function() {
 	 
 	 socketchat.onclose = function() {
 	       var chatlog=$("#chatLog").html();
-	       if(admincheck==""){
+	       if(admincheck=="" || admincheck=="false"){
 	          sessionStorage.setItem('chatlog' + username, chatlog);
 	       } else {
 	    	  sessionStorage.setItem('chatlog' + chatuser, chatlog);
