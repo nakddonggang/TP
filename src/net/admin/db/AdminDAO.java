@@ -710,5 +710,9 @@ public class AdminDAO {
 		 public int AllOverDueDate(String member_id) {
 			 return sqlsession.selectOne("AllOverdueDate", member_id);
 		 }
+		 
+		public void DLosReWrite(BookDTO bookdto){
+			sqlsession.update("DLosReWrite", bookdto);
+		}
 
 }

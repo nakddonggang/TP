@@ -23,6 +23,19 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function() {	
+	
+$('#hbook_rewrite').click(function(){
+	$.Confirm(
+		'손망실 정보를 수정하시겠습니까?',
+		function(){
+			$('#hb_submit').submit(); });
+		}
+	);
+	
+});
+</script>
 </head>
 	<%
 		String member_id = (String)session.getAttribute("member_id");
@@ -34,7 +47,6 @@
 String pageNum = (String)request.getAttribute("pageNum");
 BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 %>
-
 <body>
 	<div class="wrapper">
 
@@ -62,7 +74,8 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 					
 					<div class='join_form'>
 					
-					<h3>손망실 책 상세정보</h3>
+					<h3>손망실 책 수정하기</h3>
+					<form action="AdminBookDLosReWriteAction.am" method="post" id="hb_submit">
 						<ul class="row">
 							<li>
 								<ul class="row_sub">
@@ -73,28 +86,29 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>사유</span></li>
-										<li class="ta_form"><textarea cols="20" rows="10" readonly><%=bookList.getDbook_reason()%></textarea></li>
+										<li class="ta_form"><textarea cols="20" rows="10" name="dbook_reason"></textarea></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>도서상태</span></li>
-										<li class="ta_form"><input type="text" name="dbook_state" value="<%=bookList.getDbook_state()%>" readonly></li>
+										<li class="ta_form"><input type="text" name="dbook_state" value="<%=bookList.getDbook_state()%>"></li>
 								</ul>
 							</li>
 						</ul>
 
-				<div class="btn_btm_center" >
-					<ul>
-						<li class="adm_btn_cancle">
-							<input type="button" value="글목록" onclick="location.href='./AdminBookDLos.am?pageNum=<%=pageNum%>'" class ="btn_type4 BTN_IF_LIST">
-						</li>
-						<li class="adm_btn__left">
-							<input type="button" value="손망실 수정" onclick="location.href='./AdminBookDLosReWrite.am?book_number=<%=bookList.getBook_number()%>'"  class ="btn_type4 BTN_IF_LIST">
-						</li>
-					</ul>
-				</div>
-				
+						<div class="btn_btm_center">
+							<ul>
+								<li class="btn_cancle">
+									<input type="submit" value="수정하기" class ="btn_type4" id="hbook_rewrite">
+								</li>
+								<li>
+									<input type="reset" value="취소" class ="btn_type4" >
+								</li>
+							</ul>
+						</div>
+						</form>
+						
 					</div>
 					</div>
 				<!-- //메인 페이지-->
