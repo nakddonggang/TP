@@ -26,7 +26,7 @@ public class AdminBookIndex implements Action{
 		// String sort 파라미터값 가져오기
 		String sort = request.getParameter("sort");
 		if (sort==null) sort="book_number";
-		
+
 		// 오름차순, 내림차순 결정하기
 		String adsc="";
 		if (sort.equals("book_subject")||sort.equals("book_author")) adsc="asc";
