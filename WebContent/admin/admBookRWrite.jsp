@@ -26,6 +26,39 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$('#bok_io_fr').submit(function() {
+		if ($('#bok_io_fr_1').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else if ($('#bok_io_fr_2').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else if ($('#bok_io_fr_3').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else if ($('#bok_io_fr_4').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		}  else if ($('#bok_io_fr_5').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		}  else if ($('#bok_io_fr_6').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		}  else if ($('#bok_io_fr_7').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		}  else if ($('#bok_io_fr_8').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		}  else { }
+	});
+	
+});
+</script>
 </head>
 <body>
 	<%
@@ -60,7 +93,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 				
 					<div class='join_form adminfo_join_form' >
 					<h3>도서 정보 수정하기</h3>
-					<form action="./AdminBookReWriteAction.am" method="post">
+					<form action="./AdminBookReWriteAction.am" method="post" id="bok_io_fr">
 						<input type="hidden" name="book_number" value="<%=bookList.getBook_number()%>">
 						<ul class="row">
 							<li>
@@ -72,49 +105,49 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 							<li>
 								<ul class="row_sub">
 										<li class="title_bif"><span>표제</span></li>
-										<li class="inp_form"><input type="text" name="book_subject" value="<%=bookList.getBook_subject()%>"></li>
+										<li class="inp_form"><input type="text" name="book_subject" value="<%=bookList.getBook_subject()%>" id="bok_io_fr_1"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title_bif"><span>저자</span></li>
-										<li class="inp_form"><input type="text" name="book_author" value="<%=bookList.getBook_author()%>"></li>
+										<li class="inp_form"><input type="text" name="book_author" value="<%=bookList.getBook_author()%>" id="bok_io_fr_2"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title_bif"><span>발행처</span></li>
-										<li class="inp_form"><input type="text" name="book_publisher" value="<%=bookList.getBook_publisher()%>"></li>
+										<li class="inp_form"><input type="text" name="book_publisher" value="<%=bookList.getBook_publisher()%>" id="bok_io_fr_3"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title_bif"><span>발행일</span></li>
-										<li class="inp_form"><input type="text" name="book_pubDate"  placeholder="yyyy-MM-dd 형식으로 입력해주세요"></li>
+										<li class="inp_form"><input type="text" name="book_pubDate"  placeholder="yyyy-MM-dd 형식으로 입력해주세요" id="bok_io_fr_4"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title_bif"><span>형태</span></li>
-										<li class="inp_form"><input type="text" name="book_form" value="<%=bookList.getBook_form()%>"></li>
+										<li class="inp_form"><input type="text" name="book_form" value="<%=bookList.getBook_form()%>" id="bok_io_fr_5"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title_bif"><span>주기</span></li>
-										<li class="inp_form"><input type="text" name="book_notation" value="<%=bookList.getBook_notation()%>"></li>
+										<li class="inp_form"><input type="text" name="book_notation" value="<%=bookList.getBook_notation()%>" id="bok_io_fr_6"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title_bif"><span>국제표준번호</span></li>
-										<li class="inp_form"><input type="text" name="book_isbn" value="<%=bookList.getBook_isbn()%>"></li>
+										<li class="inp_form"><input type="text" name="book_isbn" value="<%=bookList.getBook_isbn()%>" id="bok_io_fr_7"></li>
 								</ul>
 							</li>
 							<li>
 								<ul class="row_sub">
 										<li class="title_bif"><span>분류기호</span></li>
-										<li class="inp_form"><input type="text" name="book_classification" value="<%=bookList.getBook_classification()%>"></li>
+										<li class="inp_form"><input type="text" name="book_classification" value="<%=bookList.getBook_classification()%>" id="bok_io_fr_8"></li>
 								</ul>
 							</li>
 							<li>

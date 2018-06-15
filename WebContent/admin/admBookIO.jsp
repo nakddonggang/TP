@@ -22,6 +22,66 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	function Request(valuename){
+		var rtnval;
+		var nowAddress = unescape(location.href);
+		var parameters = new Array();
+		parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+			for(var i = 0 ; i < parameters.length ; i++){
+				if(parameters[i].split("=")[0] == valuename){
+					rtnval = parameters[i].split("=")[1];
+					if(rtnval == undefined || rtnval == null){
+						rtnval = "";
+					}
+					return rtnval;
+				}
+			}
+	}
+	
+	$('#bok_io_fr').submit(function() {
+		if ($('#bok_io_fr_1').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else if ($('#bok_io_fr_2').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else if ($('#bok_io_fr_3').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else if ($('#bok_io_fr_4').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		}  else if ($('#bok_io_fr_5').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		}  else if ($('#bok_io_fr_6').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		}  else if ($('#bok_io_fr_7').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		}  else if ($('#bok_io_fr_8').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		}  else if ($('#bok_io_fr_9').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else { }
+	});
+	
+
+	// direct값이 1이면 바구니에 정상적으로 들어간 것  
+		var direct = Request("direct");
+		if(direct=="1"){
+			$.Alert('책 입고가 정상 등록 되었습니다!', function(){
+				location.replace('./AdminIndex.am'); });
+		} else{}
+
+});
+</script>
 </head>
 <body>
 	<%
@@ -55,60 +115,60 @@
 	
 			<div class="join_form">
 			<h3>책 입고하기</h3>
-			<form action="./AdminBookWriteAction.am" method="post" enctype="multipart/form-data">
+			<form action="./AdminBookWriteAction.am" method="post" enctype="multipart/form-data" id="bok_io_fr">
 				<ul class="row">
 					<li>
 						<ul class="row_subIO">
 							<li class="title"><span>표제</span></li>
-							<li class="adm_inp_form"><input type="text" name="book_subject"></li>
+							<li class="adm_inp_form"><input type="text" name="book_subject" id="bok_io_fr_1"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_subIO">
 						<li class="title"><span>저자</span></li>
-						<li class="adm_inp_form"><input type="text" name="book_author" ></li>
+						<li class="adm_inp_form"><input type="text" name="book_author" id="bok_io_fr_2"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_subIO">
 						<li class="title"><span>발행처</span></li>
-						<li class="adm_inp_form"><input type="text" name="book_publisher" ></li>
+						<li class="adm_inp_form"><input type="text" name="book_publisher" id="bok_io_fr_3"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_subIO">
 						<li class="title"><span>발행일</span></li>
-						<li class="adm_inp_form"><input type="text" name="book_pubDate" placeholder="YYYY-MM-DD 형식으로 입력해주세요" ></li>
+						<li class="adm_inp_form"><input type="text" name="book_pubDate" id="bok_io_fr_4" placeholder="YYYY-MM-DD 형식으로 입력해주세요" ></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_subIO">
 						<li class="title"><span>형태</span></li>
-						<li class="adm_inp_form"><input type="text" name="book_form" ></li>
+						<li class="adm_inp_form"><input type="text" name="book_form" id="bok_io_fr_5"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_subIO">
 						<li class="title"><span>주기</span></li>
-						<li class="adm_inp_form"><input type="text" name="book_notation" ></li>
+						<li class="adm_inp_form"><input type="text" name="book_notation" id="bok_io_fr_6"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_subIO">
 						<li class="title"><span>국제표준번호</span></li>
-						<li class="adm_inp_form"><input type="text" name="book_isbn" ></li>
+						<li class="adm_inp_form"><input type="text" name="book_isbn" id="bok_io_fr_7"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_subIO">
 						<li class="title"><span>분류기호</span></li>
-						<li class="adm_inp_form"><input type="text" name="book_classification" ></li>
+						<li class="adm_inp_form"><input type="text" name="book_classification" id="bok_io_fr_8"></li>
 						</ul>
 					</li>
 					<li>
 						<ul class="row_subIO">
 						<li class="title"><span>책 사진</span></li>
-						<li class="adm_inp_form"><input type="file" name="book_file" class="IOcss"></li>
+						<li class="adm_inp_form"><input type="file" name="book_file" class="IOcss" id="bok_io_fr_9"></li>
 						</ul>
 					</li>
 				</ul>

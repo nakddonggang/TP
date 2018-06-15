@@ -29,14 +29,15 @@ public class AdminBookDLosWriteAction implements Action {
 		int result = adao.insertDBook(bookdto);
 		if(result ==0){
 			System.out.println("Fail");
+			return null;
 		} else {
-			System.out.println("Success");
+			System.out.println("Success");ActionForward forward = new ActionForward();
+			forward.setPath("./AdminBookDLos.am?direct=1");
+			forward.setRedirect(true);
+			return forward;
 		}
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./AdminBookDLos.am");
-		forward.setRedirect(true);
-		return forward;
+		
 	}
 	
 }

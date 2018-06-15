@@ -61,13 +61,9 @@ public class AdminBookWriteAction implements Action{
 			System.out.println("Fail");
 			return null;
 		} else {
-			System.out.println("success");
-			out.println("<script>");
-			out.println("alert('입고 등록이 완료되었습니다')");
-			out.println("location.href='./AdminIndex.am'");
-			out.println("</script>");
-			out.close();
-			return null;
+			forward.setPath("./AdminBookWrite.am?direct=1");
+			forward.setRedirect(true);
+			return forward;
 		}
 		
 	}
