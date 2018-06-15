@@ -156,7 +156,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .main_concur{ margin: 0 0 10px 10px;}
 .main_connot{ margin: 0 10px 10px 0;}
 .main_consta{ margin: 0 0 10px 10px;}
-.main_concur ul li {height: 190px; padding: 20px; border-bottom: 1px solid #ebebeb;}
+.main_concur ul li {height: 190px; padding: 20px; border-bottom: 1px solid #ebebeb; cursor: pointer;}
 .main_concur ul li .main_box_img {float: left;display: inline-block; width: 108px; height: 140px; }
 .main_concur ul li .main_box_img img{ width: 100%; height: 100%;}
 .main_concur ul li .main_box_tit{ float: left ; display: inline-block; width: 50%; max-width: 326px; min-width: 100px; padding-left: 10px; font-family:"Noto_M";}
@@ -223,7 +223,7 @@ h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-famil
 	.text_top{margin: 70px 30px 0 30px; }
 	h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
 	h4{display: block;  margin-bottom: 30px; font-size: 2.0em; font-family: "Noto_B";}
-	.paginate{text-align: center;	height:50px; vertical-align:middle; font-size: 14px; line-height: 12px;}
+	.paginate{text-align: center;	height:50px; vertical-align:middle; font-size: 14px; line-height: 12px; padding-top: 10px;}
 	.dl_box{margin: 30px 0;}
 	.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.5em; margin: 3px 0;}
 	.dl_box dl dd{font-size: 1.2em; margin: 3px 0;}
