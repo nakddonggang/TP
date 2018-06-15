@@ -24,8 +24,8 @@ public class CancelReservation implements Action{
 		int rbook_num = mDAO.selectRbookNum(member_id, book_number);	// 취소하는 행의 rbook_num 조회
 		mDAO.cancelRes(member_id, book_number);							// 예약 테이블에서 삭제
 		mDAO.updateRbookNum(book_number, rbook_num);					// 이후의 해당책 rbook_num들 -1 해줌
-		mDAO.updateRbookCheck();
 		mDAO.updateRbookCheck2();
+		mDAO.updateRbookCheck();
 		
 		forward.setPath("./MemberMyUseRBookList.me?pageNum="+pageNum);
 		forward.setRedirect(true);

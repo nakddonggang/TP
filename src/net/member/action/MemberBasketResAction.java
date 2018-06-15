@@ -22,14 +22,16 @@ public class MemberBasketResAction implements Action{
 		ActionForward forward = new ActionForward();
 		HttpSession session = request.getSession();
 		String member_id = (String)session.getAttribute("member_id");
-
-		String[] checkbox = request.getParameterValues("checkbox");		// check한 basket 번호들 배열에 저장
-		int[] book_number = new int[checkbox.length];					// basket 번호에 매칭되는 책 번호 저장하기 위한 배열
-		
-		if(checkbox==null){		// 아무것도 선택안했을 경우 다시 바구니로 돌아감
-			forward.setPath("./MemberBasketList.me");
-			forward.setRedirect(true);
-			return forward;
+		String book_num = request.getParameter("book_number");
+		String[] checkbox = null;
+		int[] book_number = null;
+		if(book_num == null){
+			checkbox = request.getParameterValues("checkbox");		// check한 basket 번호들 배열에 저장
+			book_number = new int[checkbox.length];					// basket 번호에 매칭되는 책 번호 저장하기 위한 배열
+		}else{
+			checkbox = new String[1];
+			book_number = new int[1];
+			book_number[0] = Integer.parseInt(book_num);
 		}
 		
 		MemberDAO mDAO = new MemberDAO();
@@ -39,7 +41,9 @@ public class MemberBasketResAction implements Action{
 		System.out.println("checkbox length : "+checkbox.length);
 		
 		for(int i=0; i<checkbox.length; i++){
-			book_number[i] = mDAO.matchBookNum(Integer.parseInt(checkbox[i]));			// 바구니 번호에 해당하는 책 번호 불러와서 저장
+			if(book_num == null){
+				book_number[i] = mDAO.matchBookNum(Integer.parseInt(checkbox[i]));			// 바구니 번호에 해당하는 책 번호 불러와서 저장
+			}
 			list.add(book_number[i]);	// 체크한 책 번호들  list에 저장
 			book_state[i] = mDAO.selectBbook((int)list.get(i));	// 해당 책 bbook테이블에 조회대출중인지 여부
 			bbook_id[i] = mDAO.selectBbookId((int)list.get(i));	// 누가 대출중인지 조회
@@ -77,8 +81,9 @@ public class MemberBasketResAction implements Action{
 				}
 			}		
 		}
-		mDAO.updateRbookCheck();	// rbook 테이블 전체에서 예약대기자가 3명인 경우 rbook_check를 '0'으로 수정(예약불가)
+		
 		mDAO.updateRbookCheck2();	// rbook 테이블 전체에서 예약대기자가 3명미만인 경우 rbook_check를 '1'으로 수정(예약불가)
+		mDAO.updateRbookCheck();	// rbook 테이블 전체에서 예약대기자가 3명인 경우 rbook_check를 '0'으로 수정(예약불가)
 		
 		forward.setPath("./MemberBasketList.me");
 		forward.setRedirect(true);
