@@ -27,6 +27,33 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.cancelRes').each(function(index){
+		$(this).attr('id','cancelRes'+index);
+		$('#cancelRes'+index).click(function(){
+			$.Confirm(
+				'정말 취소하시겠습니까?',
+				function(){
+					location.href = './CancelReservation.me?book_number=' + $('#cancelRes'+index).attr('rel') + '&pageNum=${pageNum}';
+				}
+			);
+		});
+	});
+	
+	$('.borrow').each(function(index){
+		$(this).attr('id','borrow'+index);
+		$('#borrow'+index).click(function(){
+			$.Confirm(
+				'대출신청 하시겠습니까?',
+				function(){
+					location.href = './BorrowBookAction.me?book_number=' + $('#borrow'+index).attr('rel') + '&pageNum=${pageNum}';
+				}
+			);
+		});
+	});
+});
+</script>
 </head>
 <body>
 <% 
@@ -93,8 +120,9 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 										<li class="my_ppp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_subject() %></a></li>
 										<li class="my_pp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_author() %></a></li>
 										<li class="my_pp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=date.format(bDTO.getRbook_date()) %></a></li>
-										<li><%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
-												%><input type="button" value ="대출신청" onclick="location.href='./BorrowBookAction.me?book_number=<%=bDTO.getBook_number()%>'">
+										<li><input type="button" value="예약취소" id="" class="cancelRes" rel="<%=bDTO.getBook_number() %>">
+										<%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
+												%><input type="button" value ="대출신청" id="" class="borrow" rel="<%=bDTO.getBook_number() %>">
 											<%} %></li>
 									</ul>
 								</div>

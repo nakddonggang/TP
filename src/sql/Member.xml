@@ -88,12 +88,12 @@
 		<if test="rbook_num == 2">(#{book_number}, #{member_id}, #{rbook_num}+1, now(), '0')</if>
 	</insert>
 	
-	<update id="updateRbookCheck" parameterType="int">
-		update rbook set rbook_check='0' where book_number=#{book_number}
+	<update id="updateRbookCheck">
+		update rbook set rbook_check='0' where book_number=any(select * from(select distinct book_number from rbook where rbook_num = 3)as r)
 	</update>
 	
 	<update id="updateRbookCheck2">
-		update rbook set rbook_check='1' where book_number=any(select * from(select distinct book_number from rbook where rbook_num <![CDATA[< 3]]>)as r);
+		update rbook set rbook_check='1' where book_number=any(select * from(select distinct book_number from rbook where rbook_num <![CDATA[< 3]]>)as r)
 	</update>
 	
 	<select id="rbookCkMember" parameterType="hashmap" resultType="int">
@@ -211,6 +211,25 @@
 		on bb.book_number = b.book_number
 		where member_id=#{member_id}
 		limit #{startRow},#{pageSize}
+	</select>
+	
+	<delete id="cancelRes" parameterType="hashmap">
+		delete from rbook where member_id=#{member_id} and book_number=#{book_number}
+	</delete>
+	
+	<select id="selectRbookNum" parameterType="hashmap" resultType="int">
+		select rbook_num from rbook where member_id=#{member_id} and book_number=#{book_number}
+	</select>
+	
+	<update id="updateRbookNum" parameterType="hashmap">
+		update rbook set rbook_num=rbook_num-1 where book_number=#{book_number} and rbook_num<![CDATA[>#{rbook_num} ]]>
+	</update>
+	
+	<select id="myRbook" parameterType="hashmap" resultType="net.book.db.BookDTO">
+		select * from rbook rb left join bbook bb 
+		on (rb.book_number=bb.book_number) join book b 
+		on (rb.book_number=b.book_number) 
+		where rb.member_id=#{member_id} and bb.bbook_bstate is null and rb.rbook_num=1;
 	</select>
 
 </mapper>
