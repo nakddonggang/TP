@@ -29,11 +29,31 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#resBtn').click(function(){
-		$('#basketForm').attr("action","./MemberBasketResAction.me");
+		if($('.checkbox').is(":checked")==false){
+			$.Alert('책을 선택해주세요', function(){ });
+		}else{
+			$.Confirm(
+				'예약 하시겠습니까?',
+				function(){
+					$('#basketForm').attr("action","./MemberBasketResAction.me");
+					$('#basketForm').submit();
+				}
+			);
+		}
 	});
 	
 	$('#delBtn').click(function(){
-		$('#basketForm').attr("action","./MemberBasketDelete.me");
+		if($('.checkbox').is(":checked")==false){
+			$.Alert('책을 선택해주세요', function(){ });
+		}else{
+			$.Confirm(
+				'삭제 하시겠습니까?',
+				function(){
+					$('#basketForm').attr("action","./MemberBasketDelete.me");
+					$('#basketForm').submit();
+				}
+			);
+		}
 	});
 	
 	$('#allCheck').click(function(){
@@ -134,7 +154,7 @@ $(document).ready(function(){
 									%>
 									<div class="con_lst">
 										<ul class="no_scroll">
-											<li class="buk_c"><input type="checkbox" name="checkbox" value="<%=mDTO.getBasket_number() %>"></li>
+											<li class="buk_c"><input type="checkbox" name="checkbox" class="checkbox" value="<%=mDTO.getBasket_number() %>"></li>
 											<li class="buk_p"><img src="./upload/book/<%=mDTO.getBook_file()%>" width="48" height="50"></li>
 											<li class="buk_t"><p><%=mDTO.getBook_subject() %></p></li>
 											<li class="buk_n"><p><%=mDTO.getBook_author() %></p></li>
@@ -152,10 +172,10 @@ $(document).ready(function(){
 						<div class="btn_btm_center">	
 						<ul>
 						<li class="adm_btn_cancle">
-									<input type="submit" value="예약하기" class="btn_type4 BTN_IF_LIST" id="resBtn"> 
+									<input type="button" value="예약하기" class="btn_type4 BTN_IF_LIST" id="resBtn"> 
 						</li>
 						<li class="adm_btn_cancle">
-									<input type="submit" value="삭제하기" class="btn_type4 BTN_IF_LIST" id="delBtn">
+									<input type="button" value="삭제하기" class="btn_type4 BTN_IF_LIST" id="delBtn">
 						</li>
 						</ul>
 						

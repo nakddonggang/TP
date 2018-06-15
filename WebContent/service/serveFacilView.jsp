@@ -81,7 +81,8 @@
 											<input type="hidden" value="<%=fDTO.getFacil_use()%>" name = "facil_use">
 											<% 
 												if(member_id != null){
-													if(Integer.parseInt(fDTO.getFacil_use()) != 1 && check == 0) out.print("<input type='submit' value='사용하기' class='btn_type4'>");
+													if(Integer.parseInt(fDTO.getFacil_use()) == 0 && check == 0) out.print("<input type='submit' value='사용하기' class='btn_type4'>");
+														if(Integer.parseInt(fDTO.getFacil_use()) == 2) { out.print("<span>이용불가 자리 입니다</span>"); }
 													else if(userCheck.equals(member_id)) {
 														String time = start_date.format(fDTO.getFacil_stime());
 														out.print("<input type='button' value='반납' class ='btn_type4' onclick=location.href='./FacilityUnUseAction.fy?facil_num=" + fDTO.getFacil_num() + "&facil_use=" + fDTO.getFacil_use() + "&facil_stime=" + time + "'>");

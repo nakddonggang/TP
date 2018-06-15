@@ -24,21 +24,39 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $.toast.config.align = 'center';
-    $.toast.config.width = 300;
+    $.toast.config.width = 500;
     
 	var member_id = "${member_id}";
 	$.ajax({
 		url:"./MemberBbookCheck.me",
 		type:'POST',
 		data:{'member_id':member_id},
+		dataType: 'json',
 		success:function(result){
-			if(result != "0"){
+			var jsonData = JSON.parse("["+result+"]");
+			
+			if((jsonData.length == 1 && jsonData[jsonData.length-1].check!=0) || jsonData.length >= 3){
 				$('#badge').html('★');
 				$('#alarm').click(function(){
-                    $.toast('<h6>2일 이내 반납해야할 책 '+result+'권입니다.</h6>',{
-                        sticky: true,
-                        type: 'danger'
-                    });
+					if((jsonData.length == 1 && jsonData[jsonData.length-1].check!=0) || (jsonData.length>3 && jsonData[jsonData.length-1].check!=0)){
+                    	$.toast('<h6>2일 이내 반납해야할 책 '+jsonData[jsonData.length-1].check+'권입니다.</h6>',{
+                       		duration: 3000,
+                       		type: 'danger'
+                    	});
+					}
+					if(jsonData.length>=3){
+                    	if(jsonData[jsonData.length-2].book_count>1){
+                    		$.toast('<h6>예약하신 책 ['+jsonData[0].book_subject+'] 외 대출신청 가능한 책 '+(jsonData[jsonData.length-2].book_count-1)+'권 있습니다.</h6>',{
+                            	duration: 3000,
+                            	type: 'info'
+                        	});
+                    	}else if(jsonData[jsonData.length-2].book_count==1){
+                    		$.toast('<h6>예약하신 책['+jsonData[0].book_subject+'] 대출신청 가능합니다.</h6>',{
+                            	duration: 3000,
+                            	type: 'info'
+                        	});
+                    	}
+                    }
 
 				});
 			}

@@ -40,11 +40,9 @@ public class MemberBasketAdd implements Action {
 				mDTO.setBook_number(Integer.parseInt(checkbox[i]));
 				mDAO.insertBasket(mDTO);
 			}else{
-				out.print("<script>");
-				out.print("$.Alert('이미 바구니에 포함된 도서가 있습니다.', function(){location.href='./BookIndex.bk';});");
-				out.print("</script>");
-				out.close();
-				return null;
+				forward.setPath("./BookIndex.bk?direct=0");
+			    forward.setRedirect(true);
+				return forward;
 			}
 		}
 		forward.setPath("./BookIndex.bk?direct=1");

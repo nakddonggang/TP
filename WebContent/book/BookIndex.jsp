@@ -87,22 +87,6 @@ firstload(pageNum, view);
 			dataType:'json',
 			success:function(result){
 				
-				function Request(valuename){
-					var rtnval;
-					var nowAddress = unescape(location.href);
-					var parameters = new Array();
-					parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
-						for(var i = 0 ; i < parameters.length ; i++){
-							if(parameters[i].split("=")[0] == valuename){
-								rtnval = parameters[i].split("=")[1];
-								if(rtnval == undefined || rtnval == null){
-									rtnval = "";
-								}
-								return rtnval;
-							}
-						}
-					}
-				
 				// ajax 변수 
 				var JSdata = JSON.parse("["+result+"]");
 				var count=JSdata[JSdata.length-8].count;
