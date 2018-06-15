@@ -67,7 +67,7 @@ public class MemberJoinAction implements Action{
 			mDTO.setMember_email(member_email);
 			
 			int result = mDAO.insertMember(mDTO);
-			
+			request.setAttribute("member_id", member_id);
 			if(result==0){	System.out.println("Faile");	}
 			else{	System.out.println("Sucsses");	}
 			
@@ -75,7 +75,7 @@ public class MemberJoinAction implements Action{
             ex.printStackTrace();
         }
 		forward.setRedirect(true);
-		forward.setPath("MemberLogin.me");
+		forward.setPath("Congratulation.me");
 		return forward;
 	}
 }
