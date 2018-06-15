@@ -191,7 +191,8 @@
 		select * from 
 		<if test='table.equals("notice")'>notice where notice_subject</if>
 		<if test='table.equals("qna")'>qna where qna_subject</if>
-		 like #{search}
+		<if test='table.equals("curation")'>curation where cur_subject</if>
+		 like #{search} limit 0,10
 	</select>
 	
 	<select id="selectFaqType" parameterType="hashmap" resultType="net.board.db.BoardDTO">

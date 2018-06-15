@@ -79,7 +79,7 @@
 									<ul>
 										<li class="btn_cancle">
 											<input type="hidden" value="<%=fDTO.getFacil_use()%>" name = "facil_use">
-											<% 
+											<%
 												if(member_id != null){
 													if(Integer.parseInt(fDTO.getFacil_use()) == 0 && check == 0) out.print("<input type='submit' value='사용하기' class='btn_type4'>");
 														if(Integer.parseInt(fDTO.getFacil_use()) == 2) { out.print("<span>이용불가 자리 입니다</span>"); }

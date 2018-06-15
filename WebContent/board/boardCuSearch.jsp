@@ -25,6 +25,34 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#search").autocomplete({
+        source : function(request, response){
+					$.ajax({
+						type: 'POST',
+						url: './BoardCurAjax.cu',
+						dataType: 'json',
+						data: { 'search' : request.term },
+						success: function(data) {
+							var jsonData = JSON.parse("["+data+"]");
+							response(
+								$.map(jsonData, function(item) {
+									return {
+										label: item.cur_subject,
+										value: item.cur_subject
+									}
+								})
+							);
+						}
+					});
+		},
+    //조회를 위한 최소글자수
+        minLength: 1,
+        select:function(event,ui){},
+    });
+});
+</script>
 </head>
 <body>
 	<%
@@ -60,7 +88,7 @@
 						  <h3>Curation</h3>
 						  <div class="search_bx">
 							<form action="./BoardCurSearch.cu" method="post">
-								<input type="text" name="search" placeholder="큐레이션을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
+								<input type="text" name="search" id="search" placeholder="큐레이션을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
 						  </div>
 						
