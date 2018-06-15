@@ -631,12 +631,28 @@ public class AdminDAO {
 		return count;
 	}
 	
+	public int AdminAllFacilityCount(String search) {
+		HashMap map = new HashMap();
+		map.put("search", search);
+		int count = sqlsession.selectOne("AdminAllFacilitysearch", map);
+		return count;
+	}
+	
 	//AdminAllFacilityList 구문
 	public List<FacilityDTO> AdminAllFaciliyList(int startRow, int pageSize) {
 		HashMap map = new HashMap();
 		map.put("startRow", startRow-1);
 		map.put("pageSize", pageSize);
 		List<FacilityDTO> AllFacilityList = sqlsession.selectList("AdminAllFaciliyList", map);
+		return AllFacilityList;
+	}
+	
+	public List<FacilityDTO> AdminAllFaciliyList2(int startRow, int pageSize , String search) {
+		HashMap map = new HashMap();
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		map.put("search" , search);
+		List<FacilityDTO> AllFacilityList = sqlsession.selectList("AdminSearchAllFaciliyList", map);
 		return AllFacilityList;
 	}
 	

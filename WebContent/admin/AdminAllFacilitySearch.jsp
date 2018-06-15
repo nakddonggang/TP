@@ -76,17 +76,17 @@
 					<%
 					int count = ((Integer)request.getAttribute("count")).intValue();
 					String pageNum = (String)request.getAttribute("pageNum");
+					String search = request.getParameter("search");
 					int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
 					int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
 					int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 					int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 					List<FacilityDTO> fDTO_List = (List<FacilityDTO>)request.getAttribute("fDTO_List");
 					%>
-					
 						<h3>사용중인 시설 목록</h3>
 						<div class="adminsearch_bx">
 							<form action="./AdminAllFacilitySearch.am" method="post" id = "searchstart">
-								<input type="text" id="search" name="search" class="inp_search"><input type="button" value="검색" class="btn_search"  id="search_btn">
+								<input type="text" id="search" name="search" class="inp_search"><input type="button" value="검색" class="btn_search" id="search_btn">
 							</form>
 						</div>
 							<ul class="brd_txt_lst">
@@ -131,20 +131,20 @@
 						</ul>
 						 </div>
 						 
-					<div class="paginate">
-						
-						<a href="./AdminAllFacilityUserInfo.am?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
-						<%
-						if(pageCount < endPage)	endPage = pageCount;
-						if(startPage > pageBlock)	{ %><a href="./AdminAllFacilityUserInfo.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
-						for (int p = startPage; p <= endPage; p++) {	
-							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="./AdminAllFacilityUserInfo.am?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
-						}
-						if(endPage < pageCount){	%><a href="./AdminAllFacilityUserInfo.am?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
-						%>
-						<a href="./AdminAllFacilityUserInfo.am?pageNum=<%=pageCount%>" class="next2"><span class="hide">페이지끝</span></a>
-				  </div>
+						<div class="paginate">
+							<%
+							if (count != 0) {
+								if (startPage > pageBlock) {
+									%><a href="./AdminAllFacilitySearch.am?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%
+								}
+								for (int i = startPage; i <= endPage; i++) {%>
+								<a href="./AdminAllFacilitySearch.am?pageNum=<%=i%>">&nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a><%		
+								}
+								if (endPage<pageCount){%>
+									<a href="./AdminAllFacilitySearch.am?pageNum=<%=startPage+pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%
+								}
+							} %>		
+						</div>
 						
 						<div class="btn_btm_center">
 							<ul>

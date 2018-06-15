@@ -10,7 +10,8 @@ public class FacilityDTO {
 	String facil_use;				//	사용유무	char(2)	check in ('0','1')		자리 사용중인지 여부
 	String facil_type;				//	자리유형	varchar(20)							해당 자리 유형
 	String member_id;
-	
+	String facil_comment;
+
 	//	<object table>						
 	String obj_mname;			//	모델명		varchar(20)							물품 모델명
 	String obj_type;				//	물품종류	varchar(20)	check in ('chair','desk','mouse','keyboard','computer')		물품의 종류
@@ -91,6 +92,12 @@ public class FacilityDTO {
 	}
 	public void setObj_d_reason(String obj_d_reason) {
 		this.obj_d_reason = obj_d_reason;
+	}
+	public String getFacil_comment() {
+		return facil_comment;
+	}
+	public void setFacil_comment(String facil_comment) {
+		this.facil_comment = facil_comment;
 	}
 	
 }
