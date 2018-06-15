@@ -36,8 +36,23 @@
 
 				<!-- 서브메뉴 -->
 <%-- 				<jsp:include page="../include/submenu_main.jsp" /> --%>
+
 				<!-- //서브메뉴 -->
 				<article class="mainmenu section SECTION">
+				
+				<div class="slide DIV_SLIDE">
+						<div class="intro1">
+							<div class="slide_con">
+								<div class="box_thm">
+									<div id="guide_img" >
+									</div>
+								</div>
+							</div>
+					</div>
+				</div>
+				
+				
+				
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
