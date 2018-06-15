@@ -27,7 +27,7 @@ button {cursor:pointer; box-sizing:border-box; -webkit-box-sizing:border-box; -m
 input[type="radio"], 
 input[type="checkbox"] {position:relative; top:1px; margin-right:2px; *margin-right:0;}
 input[type="file"], 
-select {height:30px; line-height:26px; padding:0 5px;}
+select {height:30px; line-height:26px; padding:0 5px; cursor: pointer;}
 
 /* html5 ==================================================================================================== */
 header, footer, section, article, nav, menu, aside, figcaption, figure, details, hgroup, canvas {display:block;}
