@@ -231,6 +231,10 @@ public class MemberFrontController extends HttpServlet{
 			}catch(Exception e){
 				e.printStackTrace();
 			}
+		} else if(command.equals("/Congratulation.me")) {
+			forward = new ActionForward();
+			forward.setPath("./member/Congratulation.jsp");
+			forward.setRedirect(false);
 		}
 		
 		if(forward != null){
