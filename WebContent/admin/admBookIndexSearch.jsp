@@ -27,7 +27,36 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
+$(document).ready(function(){
+			// JQUERY★
+			function bookwrite(){
+				location.href="./AdminBookWrite.am";
+			}
+			
+			function hbooklist(){
+				location.href="./AdminHBookList.am";
+			}
 
+				var bookListSize = "${booksearchList.size()}";
+				//admin 대출,예약,책상태 
+				for(var i=0;i<bookListSize;i++){
+					$('#Borrow' + i).dialog({ 
+						autoOpen: false, 
+						width: 400, 
+						modal: true, 
+					});
+				}
+				$(".info").click(function() {
+					var listvalue = $(this).attr("id");
+					$('#Borrow' + listvalue).dialog("open");
+				});
+				
+				$(".BTN_CLOSE").click(function() {
+					var listvalue = $(this).attr("id");
+					$('#Borrow' + listvalue).dialog("close");
+				});
+				
+});
 </script>
 </head>
 <body>
@@ -264,38 +293,6 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 						 </div>
 </div>
 
-<script type="text/javascript">
-$(document).ready(function(){
-			// JQUERY★
-			function bookwrite(){
-				location.href="./AdminBookWrite.am";
-			}
-			
-			function hbooklist(){
-				location.href="./AdminHBookList.am";
-			}
-
-				var bookListSize = "${booksearchList.size()}";
-				//admin 대출,예약,책상태 
-				for(var i=0;i<bookListSize;i++){
-					$('#Borrow' + i).dialog({ 
-						autoOpen: false, 
-						width: 400, 
-						modal: true, 
-					});
-				}
-				$(".info").click(function() {
-					var listvalue = $(this).attr("id");
-					$('#Borrow' + listvalue).dialog("open");
-				});
-				
-				$(".BTN_CLOSE").click(function() {
-					var listvalue = $(this).attr("id");
-					$('#Borrow' + listvalue).dialog("close");
-				});
-				
-});
-</script>
 					</div>
 					</div>
 			</article>

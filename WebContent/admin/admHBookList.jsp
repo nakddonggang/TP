@@ -33,6 +33,28 @@ $(document).ready(function(){
 			function(){ $("#hb_delete").submit; });
 	});
 	
+	function Request(valuename){
+		var rtnval;
+		var nowAddress = unescape(location.href);
+		var parameters = new Array();
+		parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+			for(var i = 0 ; i < parameters.length ; i++){
+				if(parameters[i].split("=")[0] == valuename){
+					rtnval = parameters[i].split("=")[1];
+					if(rtnval == undefined || rtnval == null){
+						rtnval = "";
+					}
+					return rtnval;
+				}
+			}
+		}	
+	
+	var direct = Request("direct");
+	if(direct=="1"){
+		$.Alert(
+				'삭제 완료되었습니다', function() { location.reload(true); });
+	} else{}
+	
 });
 </script>
 </head>

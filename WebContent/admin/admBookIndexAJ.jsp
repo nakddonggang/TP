@@ -44,7 +44,7 @@ $(document).ready(function(){
 					return rtnval;
 				}
 			}
-	}	
+		}	
 	
 	var pageNum = Request("pageNum");
 	var sort = Request("sort");

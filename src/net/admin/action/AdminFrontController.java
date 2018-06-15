@@ -179,7 +179,17 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}				
-		} 
+		} else if (command.equals("/AdminBookDLosReWrite.am")){
+			action=new AdminBookDLosReWrite();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}			
+		} else if (command.equals("/AdminBookDLosReWriteAction.am")){
+			action=new AdminBookDLosReWriteAction();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}		
+		}
 		// 여기까지 Facility 구간
 		
 		
