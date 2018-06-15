@@ -413,8 +413,8 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 .join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px;}
 .join_form .row_sub > li textarea { float: left;width: 100%; resize: none; background: #f6f6f6; border: 0; font-family: "Noto_M";}
 .adm_h_1{ font-size: 17px;}
-.bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info, .info_bbutton2, #bbutton, #rbutton, #bbutton2 {border: none; background-color: #FAE0D4; margin-top: 30px;}
-#bbutton, #rbutton, #bbutton2  {border: none; background-color: #FAE0D4; margin:2px auto; color: black; }
+.bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info, .info_bbutton2, #bbutton, #rbutton, #bbutton2, .mod_btn {border: none; background-color: #FAE0D4; margin-top: 30px;}
+#bbutton, #rbutton, #bbutton2, #borrowBook{border: none; background-color: #FAE0D4; margin:2px auto; color: black; }
 .bncheck {line-height: 70%; height: 90%;}
 #book_cont_btn, #book_pic_btn { float:right; margin-left: 5px ; margin-top: 0; display: block; width: 50px; height: 30px; color: #fff !important; border: 0; text-align: center; background: #464646; color: #fff; cursor: pointer;}
 

@@ -30,14 +30,10 @@ public class ADminHBookDelete implements Action  {
 		AdminDAO adao = new AdminDAO();
 		adao.HBookDelete(member_id, hbook_subject, hbook_author);
 		
-		System.out.println("success");
-		out.println("<script>");
-		out.println("alert('희망도서 삭제가 완료되었습니다')");
-		out.println("location.href='./AdminHBookList.am'");
-		out.println("</script>");
-		out.close();
-		
-		return null;
+		ActionForward forward = new ActionForward();
+		forward.setPath("./AdminHBookList.am?direct=1");
+		forward.setRedirect(true);
+	    return forward;
 	}
 	
 }
