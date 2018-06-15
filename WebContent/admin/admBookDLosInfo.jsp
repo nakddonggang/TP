@@ -83,16 +83,22 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 								</ul>
 							</li>
 						</ul>
-						<div class="btn_btm_center">
-							<ul>
-								<li class="btn_cancle">
-									<input type="button" value="글목록" onclick="location.href='./AdminBookDLos.am?pageNum=<%=pageNum%>'" class ="btn_type4 BTN_IF_LIST">
-								</li>
-							</ul>
-						</div>
+
+				<div class="btn_btm_center" >
+					<ul>
+						<li class="adm_btn_cancle">
+							<input type="button" value="글목록" onclick="location.href='./AdminBookDLos.am?pageNum=<%=pageNum%>'" class ="btn_type4 BTN_IF_LIST">
+						</li>
+						<li class="adm_btn__left">
+							<input type="button" value="손망실 수정" onclick="location.href='./AdminBookDLosReWrite.am?book_number=<%=bookList.getBook_number()%>'"  class ="btn_type4 BTN_IF_LIST">
+						</li>
+					</ul>
+				</div>
+				
 					</div>
 					</div>
 				<!-- //메인 페이지-->
+				
 				</article>
 				
 			</section>

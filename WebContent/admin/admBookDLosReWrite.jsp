@@ -1,5 +1,4 @@
-<%@page import="net.facility.db.FacilityDTO"%>
-<%@page import="java.util.List"%>
+<%@page import="net.book.db.BookDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -24,7 +23,30 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function() {	
+	
+$('#hbook_rewrite').click(function(){
+	$.Confirm(
+		'손망실 정보를 수정하시겠습니까?',
+		function(){
+			$('#hb_submit').submit(); });
+		}
+	);
+	
+});
+</script>
 </head>
+	<%
+		String member_id = (String)session.getAttribute("member_id");
+		if ((member_id == null) || !(member_id.equals("admin"))) {
+			response.sendRedirect("./Main.fp");
+		}
+	%>
+<%
+String pageNum = (String)request.getAttribute("pageNum");
+BookDTO bookList = (BookDTO)request.getAttribute("bookList");
+%>
 <body>
 	<div class="wrapper">
 
@@ -37,69 +59,60 @@
 			<section class="fullpage SECTION_FULL_PAGE01">
 
 				<!-- 서브메뉴 -->
-				<article class="submenu section SECTION">
-					<div class="slide DIV_SLIDE">
-						<div class="intro1">
-							<div class="slide_con">
-								<div class="box_thm">
-									<div id="serveFacil_img" >
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</article>
+				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
+					<div class="content">
 				<!-- 메인 페이지 -->
-				<div class="content">
-				<div class="text_top">
-							<h3>열람실 자리 신청</h3>
-							<div class="dl_box">
-								<dl>
-									<dt>이용안내</dt>
-									<dd><span class="bold">평일 :</span> 09:00 ~ 24:00</dd>
-									<dd><span class="bold">주말 , 공휴일 :</span> 10:00 ~ 21:00</dd>
-									<dd><span class="bold">휴관일 :</span> 매월 첫 번째 세 번째 월요일, 공휴일</dd>
-									<br>
-									<dt>주의 사항</dt>
-									<dd>초록색: 사용가능 / 빨강색: 사용중  / 검은색 : 이용불가</dd>
-								</dl>
-							</div>
-						</div>
-					<fieldset class="seatLayout">
-					<legend class="seatlegend">[출입문]</legend>
-					
-						
-						<ul>
-					<%
-					List<FacilityDTO> Facilitylist = (List<FacilityDTO>)request.getAttribute("Facilitylist");
-					for(FacilityDTO fDTO : Facilitylist) {
-						out.print(
-							"<li class='seat'>" + 
-								"<a class='btn-open-facil' rel='./FacilityView.fy?facil_num="+fDTO.getFacil_num()+"' href = '#'>" + 
-									"<div class='ucheck" + fDTO.getFacil_use() + "' id='" + fDTO.getFacil_num() + "'>" + 
-										"<span>" + fDTO.getFacil_num() + "</span>" + 
-									"</div>" + 
-								"</a>" + 
-							"</li>");
-						if(fDTO.getFacil_num().substring(1, 2).equals("4")) {
-							out.print("<li><div class='abc'></div></li>");
-					}
-						if(fDTO.getFacil_num().substring(1, 2).equals("7")) {
-								out.print("</ul><ul>");
-						}
-					}
-					%>
-					</ul>
-					<div id="facil_dialog">
-						<iframe src=''>이 브라우저는 iframe을 지원하지 않습니다</iframe>
-					</div>
 				
-					</fieldset>
-				</div>
+					<div class="total_search"></div>
+					<div class="curation"></div>
+					<div class=""></div>
+					<div class=""></div>
+					<!-- 본문 공간 -->
+					
+					<div class='join_form'>
+					
+					<h3>손망실 책 수정하기</h3>
+					<form action="AdminBookDLosReWriteAction.am" method="post" id="hb_submit">
+						<ul class="row">
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>고유 번호</span></li>
+										<li class="inp_form"><input type="text" name="book_number" value="<%=bookList.getBook_number()%>" readonly></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>사유</span></li>
+										<li class="ta_form"><textarea cols="20" rows="10" name="dbook_reason"></textarea></li>
+								</ul>
+							</li>
+							<li>
+								<ul class="row_sub">
+										<li class="title"><span>도서상태</span></li>
+										<li class="ta_form"><input type="text" name="dbook_state" value="<%=bookList.getDbook_state()%>"></li>
+								</ul>
+							</li>
+						</ul>
+
+						<div class="btn_btm_center">
+							<ul>
+								<li class="btn_cancle">
+									<input type="submit" value="수정하기" class ="btn_type4" id="hbook_rewrite">
+								</li>
+								<li>
+									<input type="reset" value="취소" class ="btn_type4" >
+								</li>
+							</ul>
+						</div>
+						</form>
+						
+					</div>
+					</div>
 				<!-- //메인 페이지-->
+				
 				</article>
 				
 			</section>

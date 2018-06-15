@@ -44,7 +44,7 @@ $(document).ready(function(){
 					return rtnval;
 				}
 			}
-	}	
+		}	
 	
 	var pageNum = Request("pageNum");
 	var sort = Request("sort");
@@ -67,8 +67,7 @@ $(document).ready(function(){
 			data:{'sort':sort, "pageNum":pageNum},
 			dataType:'json',
 			success:function(result){
-				$.Alert(result, function(){ });
-			
+
 				// ajax 변수 
 				var JSdata = JSON.parse("["+result+"]");
 				var count=JSdata[JSdata.length-7].count;
@@ -102,53 +101,39 @@ $(document).ready(function(){
 						+JSdata[i].book_subject+"</li><li class='adm_name over_dot' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
 						+JSdata[i].book_number+"\"\'>"
 						+JSdata[i].book_author+"</li><li class='adm_ten over_dot' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
-						+JSdata[i].book_number+"\"\'>"+JSdata[i].book_publisher+"</li><li class='adm_ten'><input type='button' id='"
-						+i+"' value='보기' class ='info_bbutton2' ></li></ul>";
+						+JSdata[i].book_number+"\"\'>"+JSdata[i].book_publisher+"</li><li class='adm_ten'><input type='button' value='보기' id='"
+						+i+"' class ='mod_btn' ></li></ul>";
 							$('#text3_ap').append(text4);
-
-							if (JSdata[i].bbook_bstate==0){
-								var mod1="<div id='Borrow"+i+"'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능";
-								$('.mod_dv'+i).append(mod1);
-							} else {
-								var mod1="<div id='Borrow"+i+"'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>"
-								JSdata[i].bbook_bdate+"~"+JSdata[i].bbook_rdate+"대출중";
-								$('.mod_dv'+i).append(mod1);
-							}
 						
-							var mod2="</li></ul></li>";
-							$('.mod_dv'+i).append(mod2);
+						var md="<div id='Borrow"+i+"'><div class='join_form'><h3>시설관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form' id='modAP"+i+"'></ul></li><li><ul class='row_sub'><li class='title'>예약상태</li><li class='inp_form' id='mod2AP"+i+"'></ul></li><li><ul class='row_sub'><li class='title'>책상태</li><li class='inp_form' id='mod3AP"+i+"'></ul></li></ul><div class='btn_btm_center' ><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
+						$('#mod_div'+i).append(md);
 						
-							if (JSdata[i].rbook_check>=3){
-								var mod3="<li><ul class='row_sub''><li class='title'>예약상태</li><li class='inp_form'>예약불가";
-								$('.mod_dv'+i).append(mod3);
-							} else{
-								var mod3="<li><ul class='row_sub''><li class='title'>예약상태</li><li class='inp_form'>예약가능";
-								$('.mod_dv'+i).append(mod3);
-							}
+						if (JSdata[i].bbook_bstate==0){
+							var md2="대출가능</li>";
+							$('#modAP'+i).append(md2);
+						} else {
+							var md2=""+JSdata[i].bbook_bdate+"~"+JSdata[i].bbook_rdate+"<br>대출중</li>";
+							$('#modAP'+i).append(md2);
+						}
 						
-							var mod4="</li></ul></li>";
-							$('.mod_dv'+i).append(mod4);
+						if (JSdata[i].rbook_check>=3){
+							var md3="예약불가</li>";
+							$('#mod2AP'+i).append(md3);
+						} else {
+							var md3="예약가능</li>";
+							$('#mod2AP'+i).append(md3);
+						}
 						
-							if (JSdata[i].dbook_state==0){
-								var mod5="<li><ul class='row_sub'><li class='title'>책상태</li><li class='inp_form'>상태양호";
-								$('.mod_dv'+i).append(mod5);
-							} else {
-								var mod5="<li><ul class='row_sub'><li class='title'>책상태</li><li class='inp_form'>"+JSdata[i].dbook_state+"";
-								$('.mod_dv'+i).append(mod5);
-							}
-						
-							var mod6="</li></ul></li>";
-							$('.mod_dv'+i).append(mod6);
-						
-							var mod7="</ul>";
-							$('.mod_dv'+i).append(mod7);
-
-							var mod8="<div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
-								+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
-								$('.mod_dv'+i).append(mod8);
+						if (JSdata[i].dbook_state==0){
+							var md4="책상태 양호</li>";
+							$('#mod3AP'+i).append(md4);
+						} else {
+							var md4=""+JSdata[i].dbook_state+"</li>";
+							$('#mod3AP'+i).append(md4);
+						}
 						
 							var mod12="</div>";
-							$('.text3_ap').append(mod12);
+							$('#text3_ap').append(mod12);
 						
 				}
 			}
@@ -199,7 +184,7 @@ $(document).ready(function(){
 						modal: true, 
 					});
 				}
-				$(".info_bbutton2").click(function() {
+				$(".mod_btn").click(function() {
 					var listvalue = $(this).attr("id");
 					$('#Borrow' + listvalue).dialog("open");
 				});
@@ -338,14 +323,14 @@ $(document).ready(function(){
 			
 </div>
 <script type="text/javascript">
-			// JQUERY★
-			function bookwrite(){
-				location.href="./AdminBookWrite.am";
-			}
-			
-			function hbooklist(){
-				location.href="./AdminHBookList.am";
-			}
+// JQUERY★
+function bookwrite(){
+	location.href="./AdminBookWrite.am";
+}
+
+function hbooklist(){
+	location.href="./AdminHBookList.am";
+}
 </script>
 
 					</div>

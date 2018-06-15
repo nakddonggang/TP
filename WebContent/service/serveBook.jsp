@@ -24,8 +24,32 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-	$(document).ready(function() {
 
+	$(document).ready(function() {
+		
+		function Request(valuename){
+			var rtnval;
+			var nowAddress = unescape(location.href);
+			var parameters = new Array();
+			parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+				for(var i = 0 ; i < parameters.length ; i++){
+					if(parameters[i].split("=")[0] == valuename){
+						rtnval = parameters[i].split("=")[1];
+						if(rtnval == undefined || rtnval == null){
+							rtnval = "";
+						}
+						return rtnval;
+					}
+				}
+		}
+		
+		// direct값이 1이면 바구니에 정상적으로 들어간 것  
+		var direct = Request("direct");
+		if(direct=="1"){
+			$.Alert('희망도서 작성이 완료되었습니다!', function(){
+				location.replace('./BookIndex.bk'); });
+		} else{}
+		
 		$('#serve_Book').submit(function() {
 			if ($('#serve_book_text1').val() == "") {
 				$.Alert("작성내용을 모두 입력해 주세요", function(){});
@@ -69,7 +93,18 @@
 			<section class="fullpage SECTION_FULL_PAGE01">
 
 				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
+					<article class="submenu section SECTION">
+					<div class="slide DIV_SLIDE">
+						<div class="intro1">
+							<div class="slide_con">
+								<div class="box_thm">
+									<div id="serveBook_img" >
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					</article>
 				<!-- //서브메뉴 -->
 
 				<article class="mainmenu section SECTION">

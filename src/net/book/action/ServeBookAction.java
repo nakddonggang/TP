@@ -37,13 +37,9 @@ public class ServeBookAction implements Action {
 			System.out.println("fail");
 			return null;
 		} else {
-			System.out.println("success");
-			out.println("<script>");
-			out.println("alert('희망도서 신청이 완료되었습니다')");
-			out.println("location.href='./BookIndex.bk'");
-			out.println("</script>");
-			out.close();
-			return null;
+			forward.setPath("./ServeBook.bk?direct=1");
+		    forward.setRedirect(true);
+		    return forward;
 		}
 		
 	}

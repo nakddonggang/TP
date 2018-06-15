@@ -35,12 +35,8 @@
 			<section class="fullpage SECTION_FULL_PAGE01">
 
 				<!-- 서브메뉴 -->
-<%-- 				<jsp:include page="../include/submenu_main.jsp" /> --%>
-
-				<!-- //서브메뉴 -->
-				<article class="mainmenu section SECTION">
-				
-				<div class="slide DIV_SLIDE">
+				<article class="submenu section SECTION">
+					<div class="slide DIV_SLIDE">
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
@@ -48,11 +44,11 @@
 									</div>
 								</div>
 							</div>
+						</div>
 					</div>
-				</div>
-				
-				
-				
+				</article>
+				<!-- //서브메뉴 -->
+				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
