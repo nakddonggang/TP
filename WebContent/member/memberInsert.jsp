@@ -323,7 +323,7 @@ $(document).ready(function() {
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
 				<article class="mainmenu section SECTION">
-				<jsp:include page="../include/topbar.jsp" />
+<%-- 				<jsp:include page="../include/topbar.jsp" /> --%>
 				<!-- 메인 페이지 -->
 					<div class="content">
 					<div class='join_form'>
@@ -408,7 +408,7 @@ $(document).ready(function() {
 									<input type="hidden" name="securedEmail1" id="securedEmail1" value="" />
 									<input type="hidden" name="securedEmail2" id="securedEmail2" value="" />	
 									<ul>
-										<li class="btn_cancle"><input type="submit" value="회원가입" class ="btn_type4"></li>
+										<li class="btn_cancle"><input type="button" value="회원가입" class ="btn_type4" id = "#submit_button"></li>
 										<li><input type="button" value="닫기" class ="btn_type4" id="BTN_CLOSE"></li>
 									</ul>
 								</div>

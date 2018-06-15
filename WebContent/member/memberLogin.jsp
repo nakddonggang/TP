@@ -73,7 +73,7 @@ function submitEncryptedLoginForm(member_id, member_pass, rsaPublicKeyModulus, r
 				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
 				<article class="mainmenu section SECTION">
-				<jsp:include page="../include/topbar.jsp" />
+<%-- 				<jsp:include page="../include/topbar.jsp" /> --%>
 				<!-- 메인 페이지 -->
 					<div class="content">
 						<div class='member_content'>

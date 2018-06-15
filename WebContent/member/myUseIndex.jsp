@@ -62,7 +62,7 @@
 									<li class="col_mem_b">책 제목</li>
 									<li class="col_mem_b">예약번호</li>
 									<li class="col_mem_b">예약신청날짜</li>
-									
+									<li>신청버튼</li>
 								</ul>
 								</div>							
 							
@@ -81,7 +81,9 @@
 											<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
 											<li class="col_mem_b"><%=bDTO.getRbook_num() %></li>
 											<li class="col_mem_b"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
-											
+											<li><%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
+												%><input type="button" value ="대출신청" onclick="location.href='./BorrowBookAction.me?book_number=<%=bDTO.getBook_number()%>'">
+											<%} %></li>
 										</ul>
 									</div>
 									<%
@@ -102,6 +104,7 @@
 					<%
 					List<BookDTO> bList = (List<BookDTO>)request.getAttribute("bList");
 					%>
+					<form action = "./ReturnBookAction.me" method = "post" name ="returnBookform">
 					<div class=board>
 						<!-- myUseBook.jsp : 도서 대출 목록 -->
 						<h4>대출중인 도서 목록</h4>
@@ -109,6 +112,7 @@
 							<li class="view_lst">
 							<div class="con_lst">
 								<ul class="no_scroll title_t">
+								<li class="col_mem_b">목록</li>
 								<li class="col_mem_b">책 제목</li>
 								<li class="col_mem_b">대출일자</li>
 								<li class="col_mem_b">반납할 일자</li>
@@ -124,7 +128,8 @@
 							for(BookDTO bDTO :  bList) {
 							%>
 							<div class="con_lst">
-							<ul class="no_scroll" onclick="location.href = 'MemberMyUseBorrowBookList.me'">
+							<ul class="no_scroll" >
+								<li class="col_mem_b"><input type="checkbox" name = "returnBookCheckBox"  value ="<%=bDTO.getBook_number() %>"></li>
 								<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
 								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
 								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
@@ -137,10 +142,12 @@
 							</li>
 						</ul>
 						
-						<div class="btn_btm_center">							
+						<div class="btn_btm_center">		
+										<input type = "submit" value = "반납하기" >				
 										<input type = "button" value ="대출내역보기"  class="btn_type5" onclick = "location.href ='./MemberMyUseBorrowBookList.me'">
 								</div>
 						 </div>
+						 </form>
 					</div>
 				</article>
 			</section>

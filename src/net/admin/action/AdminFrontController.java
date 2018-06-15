@@ -28,10 +28,14 @@ public class AdminFrontController extends HttpServlet{
 		ActionForward forward = null;
 		Action action = null;
 		if (command.equals("/AdminIndex.am")){
-			action = new AdminIndex();
+			forward = new ActionForward();
+			forward.setPath("./admin/admBookIndexAJ.jsp");
+			forward.setRedirect(false);		
+		}  else if (command.equals("/AdminBookIndex.am")){
+			action = new AdminBookIndex();
 			try {
 				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}			
+			} catch (Exception e) {e.printStackTrace();}					
 		} else if (command.equals("/AdminBookWrite.am")){
 			forward = new ActionForward();
 			forward.setPath("./admin/admBookIO.jsp");
@@ -85,11 +89,6 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}			
-		} else if (command.equals("/AdminBookSort.am")){
-			action = new AdminBookSort();
-			try {
-				forward = action.execute(request, response);
-			} catch (Exception e) {e.printStackTrace();}		
 		} else if (command.equals("/AdminHBookList.am")){
 			action = new AdminHBookList();
 			try {
@@ -168,7 +167,19 @@ public class AdminFrontController extends HttpServlet{
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-		}
+		} else if(command.equals("/AdminAllFacilitySearch.am")) {
+			action = new AdminAllFacilitySearch();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/ADminHBookDelete.am")){
+			action = new ADminHBookDelete();
+			try {
+				forward = action.execute(request, response);
+			} catch (Exception e) {e.printStackTrace();}				
+		} 
 		// 여기까지 Facility 구간
 		
 		

@@ -58,22 +58,23 @@ int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 			            
 					<div class=board>
 					
-					<div class="text_top">
+					
 						<!-- myUseBBookList.jsp : 도서 대출 목록 -->
 						<h3>역대 대출 내역</h3>
-				    </div>
-						
+						<div class="view_cnt">
+							<p>Total_<span><%=count %></span></p>
+						</div>
 						
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
 							<div class="con_lst">
 								<ul class="no_scroll title_t">
-								    <li class="col_num">책 번호</li>
-								    <li class="adm_col_date">사진</li>
-									<li class="col_title">책 제목</li>
-									<li class="col_date">대출일자</li>
-									<li class="col_date">반납할 일자</li>
+								   
+								    <li class="my_p">사진</li>
+									<li class="my_p">책 제목</li>
+									<li class="my_p">대출일자</li>
+									<li class="my_p">반납할 일자</li>
 								</ul>
 							</div>
 							<%
@@ -85,11 +86,11 @@ int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 										%>
 										<div class="con_lst">
 										   <ul class="no_scroll" onclick="location.href='./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>'">
-												<li class="col_num"><p><%=bDTO.getBook_number() %></p></li>
-												<li class="adm_col_date"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
-												<li class="col_title"><p><%=bDTO.getBook_subject() %></p></li>
-												<li class="col_date"><span><%=date.format(bDTO.getBbook_bdate()) %></span></li>
-												<li class="col_date"><span><%=date.format(bDTO.getBbook_rdate()) %></span></li>
+												
+												<li class="my_p"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
+												<li class="my_ppp"><p><%=bDTO.getBook_subject() %></p></li>
+												<li class="my_pp"><span><%=date.format(bDTO.getBbook_bdate()) %></span></li>
+												<li class="my_pp"><span><%=date.format(bDTO.getBbook_rdate()) %></span></li>
 											</ul>
 										</div>
 										<%
@@ -100,23 +101,20 @@ int endPage = ((Integer) request.getAttribute("endPage")).intValue();
 				         </ul>
 
 
-                                      <div class="paginate">
-											<%
-												if (pageCount < endPage) endPage = pageCount;%>
-												<a href="MemberMyUseBorrowBookList.me?pageNum=1">[처음]</a>
-
-												<%if (startPage > pageBlock) { %><a href="MemberMyUseBorrowBookList.me?pageNum=<%=startPage - pageBlock%>"
-												class="prev"><span class="hide">이전 페이지</span></a>
-											<% }
-												for (int p = startPage; p <= endPage; p++) {
-													if (p == Integer.parseInt(pageNum)) {%>&nbsp;<strong title="현재 페이지" id="currentPage"><%=p%></strong> &nbsp;<% } 
-													else {%> &nbsp;<a href="MemberMyUseBorrowBookList.me?pageNum=<%=p%>"><%=p%></a> &nbsp;<% }
-												}
-												if (endPage < pageCount) {%><a href="MemberMyUseBorrowBookList.me?pageNum=<%=startPage + pageBlock%>"
-												class="next"><span class="hide">다음 페이지</span></a>
-											<% } %>
-					                           <a href="MemberMyUseBorrowBookList.me?pageNum=<%=pageCount %>">[끝]</a>
-					                  </div>
+                      <div class="paginate">
+						
+						<a href="./MemberMyUseBorrowBookList.me?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./MemberMyUseBorrowBookList.me?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./MemberMyUseBorrowBookList.me?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./MemberMyUseBorrowBookList.me?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./MemberMyUseBorrowBookList.me?pageNum=<%=pageCount%>" class="next2"><span class="hide">페이지끝</span></a>
+				     </div>
 					
 					
 			             <div class="btn_btm_center">

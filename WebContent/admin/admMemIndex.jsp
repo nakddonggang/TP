@@ -105,13 +105,15 @@ $(document).ready(function(){
 	var pageNum = Request("pageNum");
 	if(pageNum=="") pageNum=1;
 
-	var member_level = "%";
+	var member_level = Request("member_level");
+	if(member_level==null) member_level = "%";
+	
 	loadAjax(member_level);
 	
 	$(".callAjax").click(function(){
 		$('#ajax_container').empty();
 		$('.empty').remove();
-		history.pushState(null,null,"AdminMemberIndex.am");
+		history.pushState(null,null,"AdminMemberIndex.am?member_level="+member_level);
 		member_level = $(this).attr("id");
 		pageNum = "1";
 		loadAjax(member_level);
@@ -131,7 +133,9 @@ $(document).ready(function(){
 				var pageBlock= jsonData[jsonData.length-3].pageBlock;
 				var startPage= jsonData[jsonData.length-2].startPage;
 				var endPage= jsonData[jsonData.length-1].endPage;
-				console.log(jsonData.length);
+				$('#ajax_container').empty();
+				$('.empty').remove();
+				
 				$('#count').html(count);
 				
 				if(jsonData.length == 6){
@@ -166,23 +170,23 @@ $(document).ready(function(){
 						content += "<li class='col_calln'>"+jsonData[i].member_date+"</li></ul></div>";
 						$('#ajax_container').append(content);
 					}
-					var paging = "<div class='paginate'>";
+					var paging = "<div class='paginate'><a href='./AdminMemberIndex.am?pageNum=1&member_level="+member_level+"' class='prev2'><span class='hide'>페이지처음</span></a>";
 					if(count != 0){
 						if(startPage > pageBlock){
-							paging += "<a href='./AdminMemberIndex.am?pageNum="+(startpage-pageBlock)+"' class='prev'><span class='hide'>이전 페이지</span></a>";
+							paging += "<a href='./AdminMemberIndex.am?pageNum="+(startpage-pageBlock)+"&member_level="+member_level+"' class='prev'><span class='hide'>이전 페이지</span></a>";
 						}
 					}
 					for(var p=startPage; p<=endPage; p++){
 						if(p == parseInt(pageNum)){
 							paging += "&nbsp;<strong title='현재 페이지' id='currentPage'>"+p+"</strong> &nbsp;";
 						}else{
-							paging += "&nbsp;<a href='./AdminMemberIndex.am?pageNum="+p+"'>"+p+"</a>&nbsp;";
+							paging += "&nbsp;<a href='./AdminMemberIndex.am?pageNum="+p+"&member_level="+member_level+"'>"+p+"</a>&nbsp;";
 						}
 					}
 					if(endPage < pageCount){
-						paging += "<a href='./AdminMemberIndex.am?pageNum="+(startpage+pageBlock)+"' class='next'><span class='hide'>다음 페이지</span></a>"
+						paging += "<a href='./AdminMemberIndex.am?pageNum="+(startpage+pageBlock)+"&member_level="+member_level+"' class='next'><span class='hide'>다음 페이지</span></a>"
 					}
-					paging += "</div>";
+					paging += "<a href='./AdminMemberIndex.am?pageNum="+pageCount+"&member_level="+member_level+"' class='next2'><span class='hide'>페이지끝</span></a></div>";
 					$('.paging').append(paging);
 				}
 

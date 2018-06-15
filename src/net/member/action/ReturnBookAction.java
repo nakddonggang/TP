@@ -15,15 +15,19 @@ public class ReturnBookAction implements Action {
 		System.out.println("ReturnBookAction execute()");
 		request.setCharacterEncoding("utf-8");
 		
-		int book_number = Integer.parseInt(request.getParameter("book_number"));
+		String[] book_numbers = request.getParameterValues("returnBookCheckBox");
+		int book_number = 0;
 		BookDTO bDTO = new BookDTO();
 		MemberDAO mDAO = new MemberDAO();
 		
-		mDAO.ReturnHistoryBorrowBook(book_number);
-		mDAO.ReturnBorrowBook(book_number);
+		for(int i=0; i<book_numbers.length; i++) {
+			book_number = Integer.parseInt(book_numbers[i]);
+			mDAO.ReturnHistoryBorrowBook(book_number);
+			mDAO.ReturnBorrowBook(book_number);
+		}
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("./BookIndex.bk");
+		forward.setPath("./MemberUseIndex.me");
 		forward.setRedirect(true);
 		return forward;
 	}

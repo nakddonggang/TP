@@ -103,18 +103,20 @@ List<BookDTO> dbookList = (List<BookDTO>)request.getAttribute("dbookList");
 							</li>
 						</ul>
 						
-						<div class="paginate">
-						<%if (count != 0) {//이전
-								if (startPage > pageBlock) {
-						%><a href="./AdminBookDLos.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a>
-						<%}// 1~10 11~20 21~30
-							for (int i = startPage; i <= endPage; i++) {
-						%><a href="./AdminBookDLos.am?pageNum=<%=i%>"> &nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a>
-						<%}//다음
-								if (endPage < pageCount) {
-						%><a href="./AdminBookDLos.am?pageNum=<%=startPage + pageBlock%>" class="next"><span class="hide">다음 페이지</span></a></a>
-						<%}}%>
-						</div>
+				 <div class="paginate">
+						
+						<a href="./AdminBookDLos.am?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./AdminBookDLos.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./AdminBookDLos.am?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./AdminBookDLos.am?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./AdminBookDLos.am?pageNum=<%=pageCount%>" class="next2"><span class="hide">페이지끝</span></a>
+				  </div>
 						
 						  <div class="btn_btm_center">
 							<ul>

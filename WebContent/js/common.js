@@ -49,8 +49,8 @@ $(window).on('load', function() {
 		$("#addFacilDialog").dialog("open");
 	});
 	
-	$("#BTN_CLOSE").click(function() {
-		$("#BTN_CLOSE1").dialog("close");
+	$("#BTN_CLOSE1").click(function() {
+		$("#addFacilDialog").dialog("close");
 	});
 	// 진석 수정끝
 
@@ -134,5 +134,13 @@ $(function() {
 	        $(".book_media_bye").slideToggle("slow");
 	    });
 	});
+	
+	// adm 통합검색 슬라이드
+	$(document).ready(function(){
+	    $(".adm_btn_type3").click(function(){
+	        $(".adm_media_bye").slideToggle("slow");
+	    });
+	});
+	
 });
 

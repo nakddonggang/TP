@@ -73,6 +73,14 @@ $(document).ready(function(){
 	List<MemberDTO> MemberBasketList = (List<MemberDTO>)request.getAttribute("bList");
 	List bbookList = (List)request.getAttribute("bbook_bstate");
 	List rbookList = (List)request.getAttribute("rbook_check");
+	List checkMember = (List)request.getAttribute("check_member");
+	int count = ((Integer)request.getAttribute("count")).intValue();
+	String member_id = (String) session.getAttribute("member_id");
+	String pageNum =  (String)request.getAttribute("pageNum");
+	int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
+	int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
+	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 %>
 	<!-- member/myUseBasket.jsp / MyUseIndex >> 책바구니 페이지 -->
 	<div class="wrapper">
@@ -122,6 +130,7 @@ $(document).ready(function(){
 									else{ bbook_bstate = "대출가능";}
 									if("3".equals(rbookList.get(i).toString())){ rbook_check = "예약불가";}
 									else{ rbook_check = "예약가능";}
+									if((int)checkMember.get(i)==1) { rbook_check = "예약중";}
 									%>
 									<div class="con_lst">
 										<ul class="no_scroll">
@@ -150,6 +159,21 @@ $(document).ready(function(){
 						</li>
 						</ul>
 						
+						</div>
+						
+						<div class="paginate">
+						
+						<a href="./MemberBasketList.me?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./MemberBasketList.me?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./MemberBasketList.me?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./MemberBasketList.me?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./MemberBasketList.me?pageNum=<%=pageCount%>" class="next2"><span class="hide">페이지끝</span></a>
 						</div>
 						
 						</form>

@@ -20,33 +20,19 @@ public class AdminBookSearch implements Action{
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		
-		// 현재날짜 값 얻기
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
-//		String now = sdf.format(new Date(System.currentTimeMillis()));
-//		System.out.println("현재시간"+now);
-		
 		// 검색 파라미터값 가져오기
 		String category1 = request.getParameter("category1");
-		System.out.println(category1);
 		String search1 = request.getParameter("search1");
-		System.out.println(search1);
 		String opt1 = request.getParameter("opt1");
-		System.out.println(opt1);
 
 		String category2 = request.getParameter("category2");
-		System.out.println(category2);
 		String search2 = request.getParameter("search2");
-		System.out.println(search2);
 		String opt2 = request.getParameter("opt2");
-		System.out.println(opt2);
 
 		String category3 = request.getParameter("category3");
-		System.out.println(category3);
 		String search3 = request.getParameter("search3");
-		System.out.println(search3);
 		
 		String pubDate = request.getParameter("pubDate");
-		System.out.println(pubDate);
 		
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		AdminDAO adao = new AdminDAO();
@@ -54,8 +40,10 @@ public class AdminBookSearch implements Action{
 		
 		// pubDate에 값이 없을 때
 		if (pubDate.equals("all")) {
-			// 값을 한 개 입력했을 때
-			if (search1!=""&&search2==""&&search3==""){
+			if (search1==""&&search2==""&&search3==""){
+				count=adao.getBookCount();
+			}// 값을 한 개 입력했을 때
+			else if (search1!=""&&search2==""&&search3==""){
 				if (category1.equals("all")){
 					count = adao.getBookSearchAllCount(search1);
 				} else {
@@ -90,8 +78,11 @@ public class AdminBookSearch implements Action{
 			} else { System.out.println("값을 입력받지 못함");}
 		// pubDate에 값이 있을 때
 		} else {
+			// 값을 아무것도 입력하지 않았을 때
+			if (search1==""&&search2==""&&search3==""){
+				count=adao.getDateAllCount(pubDate);
 			// 값을 한 개 입력했을 때
-			if (search1!=""&&search2==""&&search3==""){
+			} else if (search1!=""&&search2==""&&search3==""){
 				if (category1.equals("all")){
 					count = adao.getBookDateSearchAllCount(search1, pubDate);
 					System.out.println("값");
@@ -128,7 +119,7 @@ public class AdminBookSearch implements Action{
 		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 2;		
+		int pageSize = 8;		
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
@@ -151,8 +142,11 @@ public class AdminBookSearch implements Action{
 			if (count!=0) {
 				// pubDate에 값이 없을 때
 				if (pubDate.equals("all")) {
+					// 값을 아무것도 입력하지 않았을 때
+					if (search1==""&&search2==""&&search3==""){
+						booksearchList=adao.getBookList(startRow, pageSize);
 					// 값을 한 개 입력했을 때
-					if (search1!=""&&search2==""&&search3==""){
+					} else if  (search1!=""&&search2==""&&search3==""){
 						if (category1.equals("all")){
 							booksearchList = adao.getBookSearchAllList(startRow, pageSize, search1);
 						} else {
@@ -187,8 +181,11 @@ public class AdminBookSearch implements Action{
 					} else { System.out.println("값을 입력받지 못함"); }
 				// pubDate에 값이 있을 때
 				} else {
+					// 값을 아무것도 입력하지 않았을 떄
+					if (search1==""&&search2==""&&search3==""){
+						booksearchList=adao.getDateAllList(startRow, pageSize, pubDate);
 					// 값을 한 개 입력했을 때
-					if (search1!=""&&search2==""&&search3==""){
+					} else if (search1!=""&&search2==""&&search3==""){
 						if (category1.equals("all")){
 							booksearchList = adao.getBookDateSearchAllList(startRow, pageSize, search1, pubDate);
 						} else {
@@ -239,6 +236,7 @@ public class AdminBookSearch implements Action{
 		// count, pageNum, boardList, pageCount, pageBlock, startPage, endPage 저장
 		request.setAttribute("count", count);
 		request.setAttribute("search1", search1);
+		System.out.println("확인 : "+search1);
 		request.setAttribute("search2", search2);
 		request.setAttribute("search3", search3);
 		request.setAttribute("category1", category1);

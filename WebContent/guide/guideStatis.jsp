@@ -29,11 +29,11 @@
 <script src="<c:url value="/js/raphael.min.js"/>"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="/resources/demos/style.css">
- 
+
   <script type="text/javascript">
    $(document).ready(function(){
 	   var selected = "";
-	   
+	  
 	   $("#month").click(function(){
 			var selected = $('#h_month').val();
 
@@ -71,7 +71,12 @@
 						],
 						xkey: 'y',
 						ykeys: ['a'],
-						labels: ['방문자 수']
+						labels: ['방문자 수'],
+					      xLabelAngle: '70',
+				      hideHover: 'auto',
+				      behaveLikeLine: true,
+				      resize: true,
+				      barColors:['gray']
 					});
 				   Morris.Bar({
 						element: 'book',
@@ -92,7 +97,12 @@
 						],
 						xkey: 'y',
 						ykeys: ['a'],
-						labels: ['입고 수']
+						labels: ['입고 수'],
+					      hideHover: 'auto',
+					      xLabelAngle: '70',
+					      behaveLikeLine: true,
+					      resize: true,
+					      barColors:['gray']
 					});
 				   Morris.Bar({
 						element: 'bbook',
@@ -108,12 +118,16 @@
 							{ y: jsonData[32].month2+"월", a: jsonData[32].count2},
 							{ y: jsonData[33].month2+"월", a: jsonData[33].count2},
 							{ y: jsonData[34].month2+"월", a: jsonData[34].count2},
-							{ y: jsonData[35].month2+"월", a: jsonData[35].count2}
-							
+							{ y: jsonData[35].month2+"월", a: jsonData[35].count2}	
 						],
 						xkey: 'y',
 						ykeys: ['a'],
-						labels: ['대출 수']
+						labels: ['대출 수'],					
+					      hideHover: 'auto',
+					      xLabelAngle: '70',
+					      behaveLikeLine: true,
+					      resize: true,
+					      barColors:['gray']
 					});
 			   }
 		   });
@@ -141,7 +155,7 @@
 				$('#visit').empty();
 				$('#book').empty();
 				$('#bbook').empty();
-					   Morris.Bar({
+					  new Morris.Line({
 							element: 'visit',
 							data: [
 								{ y: jsonData[0].year+"년", a: jsonData[0].count},
@@ -152,9 +166,16 @@
 							],
 							xkey: 'y',
 							ykeys: ['a'],
-							labels: ['방문자 수']
+							labels: ['방문자 수'],
+							  fillOpacity: 0.6,
+						      hideHover: 'auto',
+						      behaveLikeLine: true,
+						      resize: true,
+						      pointFillColors:['#ffffff'],
+						      pointStrokeColors: ['black'],
+						      lineColors:['gray']
 						});  
-					   Morris.Bar({
+					   new Morris.Line({
 							element: 'book',
 							data: [
 								{ y: jsonData[5].year1+"년", a: jsonData[5].count1},
@@ -166,9 +187,16 @@
 							],
 							xkey: 'y',
 							ykeys: ['a'],
-							labels: ['입고 수']
+							labels: ['입고 수'],
+							  fillOpacity: 0.6,
+						      hideHover: 'auto',
+						      behaveLikeLine: true,
+						      resize: true,
+						      pointFillColors:['#ffffff'],
+						      pointStrokeColors: ['black'],
+						      lineColors:['gray']
 						});
-					   Morris.Bar({
+					  new Morris.Line({
 							element: 'bbook',
 							data: [
 								{ y: jsonData[10].year2+"년", a: jsonData[10].count2},
@@ -180,7 +208,14 @@
 							],
 							xkey: 'y',
 							ykeys: ['a'],
-							labels: ['대출 수']
+							labels: ['대출 수'],
+					  fillOpacity: 0.6,
+				      hideHover: 'auto',
+				      behaveLikeLine: true,
+				      resize: true,
+				      pointFillColors:['#ffffff'],
+				      pointStrokeColors: ['black'],
+				      lineColors:['gray']
 						});
 
 
@@ -212,22 +247,44 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-				<input type="button" value="연도별"  id="year">
-				<input type="button" value="월별"  id="month">
+				<div class="statis">
+				 <div class="statis_pad">
+				<h3>혜윰나래 통계</h3>
+				<div class="dl_boxg">
+					<dl>
+							<dt> 통계</dt>
+							<dd> 혜윰나래 홈페이지의 <span class="bold">방문자수</span> <span class="bold">장서 입고수</span> <span class="bold">대출 수</span>를</dd>
+							<dd> 월별  연도별로 수치를 볼 수 있는 페이지입니다.</dd>
+							<dd></dd>
+					</dl>
+					<br>
+					<br>
+				</div>
+				</div>
+				
+				<input type="button" value="연도별"  id="year" class="btn_type6">
+				<input type="button" value="월별"  id="month" class="btn_type6">
 				<input type="hidden" value="year" id="h_year">
 				<input type="hidden" value="month" id="h_month">
 					<div>
 						<h5>방문자 수</h5>
-						<div id="visit"></div>
+						<div id="visit">
+						
+						</div>
 					</div>
 					<div>
-						<h5>책 입고수</h5>
-						<div id="book"></div>
+						<h5>장서 입고수</h5>
+						<div id="book">
+						
+						</div>
 					</div>
 					<div>
 						<h5>대출 수</h5>
-						<div id="bbook"></div>
+						<div id="bbook">
+						
+						</div>
 					</div>
+				</div>
 				</div>
 				<!-- //메인 페이지-->
 				</article>
@@ -236,5 +293,6 @@
 		</div>
 		<!-- //본문 컨테이너 -->
 	</div>
+	
 </body>
 </html>

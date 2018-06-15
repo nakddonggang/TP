@@ -125,7 +125,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 				<div class="btn_btm_center">
 				<ul>
 					<li class="adm_btn_cancle">
-						<input type="button" value="목록보기" onclick="history.back()" class ="btn_type4 BTN_IF_LIST b">
+						<input type="button" value="목록보기" onclick="location.href='javascript:history.back()'" class ="btn_type4 BTN_IF_LIST b">
 					</li>
 				</ul>
 				</div>

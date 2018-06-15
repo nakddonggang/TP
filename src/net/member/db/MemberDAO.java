@@ -113,10 +113,21 @@ public class MemberDAO {
 		return sqlsession.selectOne("basketCheck", map);
 	}
 	
+	// 바구니 카운트
+	public int basketCount(String member_id){
+		HashMap map = new HashMap();
+		map.put("member_id", member_id);
+		return sqlsession.selectOne("basketCount", map);
+	}
+	
 	// 도서바구니 리스트
-	public List<MemberDTO> MemberBasketList(String member_id){
+	public List<MemberDTO> MemberBasketList(String member_id, int startRow, int pageSize){
 		List<MemberDTO> bList = new ArrayList<MemberDTO>();
-		bList = sqlsession.selectList("MemberBasketList", member_id);
+		HashMap map = new HashMap();
+		map.put("member_id", member_id);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		bList = sqlsession.selectList("MemberBasketList", map);
 		return bList;
 	}
 	// 도서바구니 선택항목 삭제
@@ -292,6 +303,14 @@ public class MemberDAO {
 	 
 	 public int BorrowBookCountList(String member_id) {
 		 return sqlsession.selectOne("BorrowBookCountList", member_id);
+	 }
+	 
+	 // 멤버 rbook 전체 리스트
+	 public int memberRbookCount(String member_id, int book_number){
+		 HashMap map = new HashMap();
+		 map.put("member_id", member_id);
+		 map.put("book_number", book_number);
+		 return sqlsession.selectOne("memberRbookCount", map);
 	 }
 	
 }

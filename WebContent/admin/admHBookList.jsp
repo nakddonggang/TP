@@ -24,6 +24,17 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script>
+$(document).ready(function(){
+	
+	$('.hb_button').click(function(){
+		$.Confirm(
+			'희망도서를 삭제하시겠습니까?',
+			function(){ $("#hb_delete").submit; });
+	});
+	
+});
+</script>
 </head>
 <body>
 	<%
@@ -63,7 +74,7 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 					<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
-						<div class='join_form adminfo_join_form' >
+						<div class='adminfo_join_form' >
 							<h3>희망도서 신청 목록</h3>
 							<p>
 								Total_<span><%=count%></span>
@@ -74,12 +85,13 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 							<li class="view_lst">
 							<div class="con_lst">
 							<ul class="no_scroll title_t">
-								<li class="adm_col_rch">아이디</li>
-								<li class="adm_col_dateh">도서명</li>
-								<li class="adm_col_nameh">저자</li>
-								<li class="adm_col_rch">처리상태</li>
-								<li class="adm_col_typeh">발행처</li>
-								<li class="adm_col_exh">국제표준번호</li>
+								<li class="admh_id">아이디</li>
+								<li class="admh_ten">도서명</li>
+								<li class="admh_ten">저자</li>
+								<li class="admh_num">처리상태</li>
+								<li class="admh_ten">발행처</li>
+								<li class="adm_isbn">국제표준번호</li>
+								<li class="admh_id">삭제</li>
 							</ul>
 							</div>
 						<%
@@ -91,44 +103,51 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 							} else {
 								for (BookDTO hbookLists : hbookList){
 						%>
+						<form action="./ADminHBookDelete.am" method="post" id="">
+						<input type="hidden" value="<%=hbookLists.getHbook_subject()%>" name="hbook_subject">
+						<input type="hidden" value="<%=hbookLists.getHbook_author()%>" name="hbook_author">
+						<input type="hidden" value="<%=hbookLists.getMember_id()%>" name="member_id">
 						<div class="con_lst">
-							<ul class="no_scroll" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'">
-								<li class="adm_col_rch"><%=hbookLists.getMember_id()%></li>
-								<li class="adm_col_dateh"><%=hbookLists.getHbook_subject()%></li>
-								
-								<li class="adm_col_nameh"><%=hbookLists.getHbook_author()%></li>
-								<li class="adm_col_rch"><%=hbookLists.getHbook_check()%></li>
-								<li class="adm_col_typeh"><%=hbookLists.getHbook_publisher()%></li>
-								<li class="adm_col_exh"><%=hbookLists.getHbook_isbn()%></li>
+							<ul class="no_scroll" >
+								<li class="admh_id" id="admh_book_high" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getMember_id()%></li>
+								<li class="admh_ten over_dot"  id="admh_book_high" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_subject()%></li>								
+								<li class="admh_ten over_dot"  id="admh_book_high" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_author()%></li>
+								<li class="admh_num"  id="admh_book_high" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'">
+								<%if(hbookLists.getHbook_check().equals("wait")){ %>대기 <%}
+								else if(hbookLists.getHbook_check().equals("in")){ %> 입고됨 <%}
+								else if(hbookLists.getHbook_check().equals("not-in")) {%>입고불가 <%}%></li>
+								<li class="admh_ten over_dot"  id="admh_book_high" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_publisher()%></li>
+								<li class="adm_isbn" id="admh_book_high" ><%=hbookLists.getHbook_isbn()%></li>
+								<li class="admh_id" id="admh_book_high" ><input type='submit' class='hb_button' value='삭제하기'></li>
 							</ul>
-						</div><%}
+						</div>
+						</form><%}
 						}%>
 							</li>
 						</ul>
 								
 				
-				<div class="paginate">
-						 
-							<% // count = 전체 글의 개수
-							if (count != 0) {
-							// 이전페이지 // if (startPage와 pageBlock을 비교)
-							if (startPage > pageBlock) {
-							%><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%
-							}
-							// 1~10		11~20		21~30
-							for (int i = startPage; i <= endPage; i++) {%>
-								<a href="./AdminHBookList.am?pageNum=<%=i%>">&nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a><%		
-							}
-								// 다음 // if (endPage와 pageCount를 비교)
-							if (endPage<pageCount){%>
-								<a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%
-								}
-							} // if count 괄호 %>		
-						</div>
+				    <div class="paginate">
+						
+						<a href="./AdminHBookList.am?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./AdminHBookList.am?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./AdminHBookList.am?pageNum=<%=pageCount%>" class="next2"><span class="hide">페이지끝</span></a>
+				   </div>
 						
 				<div class="btn_btm_center">
 				<ul>
-					<li class="btn_cancle">
+					<li class="adm_btn_cancle">
+								<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'" class ="btn_type4 BTN_IF_LIST">
+					</li>
+					<li class="adm_btn__left">
 						<input type="button" value="도서관리페이지" onclick="location.href='./AdminIndex.am'" class ="btn_type4 BTN_IF_LIST">
 					</li>
 				</ul>

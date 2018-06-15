@@ -27,25 +27,222 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-	$(document).ready(function(){
+
+// $(document).ready(function() {	
+	
+// 	function Request(valuename){
+// 	var rtnval;
+// 	var nowAddress = unescape(location.href);
+// 	var parameters = new Array();
+// 	parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+// 		for(var i = 0 ; i < parameters.length ; i++){
+// 			if(parameters[i].split("=")[0] == valuename){
+// 				rtnval = parameters[i].split("=")[1];
+// 				if(rtnval == undefined || rtnval == null){
+// 					rtnval = "";
+// 				}
+// 				return rtnval;
+// 			}
+// 		}
+// 	}
+	
+// var pageNum = "${pageNum}";
+// var category1="${category1}";
+// var search1="${search1}";
+// var category2="${category2}";
+// var search2="${search2}";
+// var opt1=Request("opt1");
+// var opt2=Request("opt2");
+// var category3="${category3}";
+// var search3="${search3}";
+// var pubDate=Request("pubDate");
+// var sort=Request("sort");
+// if(pageNum=="") pageNum="1";
+
+// // 책 정렬
+// $('#book_sorts').change(function(){
+// 	pageNum=1;
+// 	sort = $("#book_sorts > option:selected").val();
+// 	start(pageNum, sort);
+// }); // function selectBook 함수
+			
+// 	// Ajax 함수
+// 	function start(pageNum, sort){
+// 		$('.AdAjaxTest').empty(); // div 영역 비우기
+// 		$.ajax({
+// 			url:"./AdminBookAJ.am",
+// 			type:'POST',
+// 			data:{'pageNum':pageNum, 'sort':sort, 'category1':category1, 'search1':search1, 'opt1':opt1, 'category2':category2, 'search2':search2, 'opt2':opt2, 'category3':category3, 'search3':search3, 'pubDate':pubDate},
+// 			dataType:'json',
+// 			success:function(result){
+
+// 				// ajax 변수 
+// 				var JSdata = JSON.parse("["+result+"]");
+// 				var count=JSdata[JSdata.length-16].count;
+// 				var search1=JSdata[JSdata.length-15].search1;
+// 				var search2=JSdata[JSdata.length-14].search2;
+// 				var search3=JSdata[JSdata.length-13].search3;
+// 				var category1=JSdata[JSdata.length-12].category1;
+// 				var category2=JSdata[JSdata.length-11].category2;
+// 				var category3=JSdata[JSdata.length-10].category3;
+// 				var opt1=JSdata[JSdata.length-9].opt1;
+// 				var opt2=JSdata[JSdata.length-8].opt2;
+// 				var pubDate=JSdata[JSdata.length-7].pubDate;
+// 				var sort=JSdata[JSdata.length-6].sort;
+// 				pageNum=JSdata[JSdata.length-5].pageNum;
+// 				var pageCount=JSdata[JSdata.length-4].pageCount;
+// 				var pageBlock=JSdata[JSdata.length-3].pageBlock;
+// 				var startPage=JSdata[JSdata.length-2].startPage;
+// 				var endPage=JSdata[JSdata.length-1].endPage;
+
+// 				var member_id="${member_id}";
+					
+// 				// content 내용 넣기
+// 				var text = "<p>Total_<span>"
+// 				+count+"</span></p><ul class='brd_txt_lst'><li class='view_lst' id='text3_ap'><div class='con_lst'><ul class='no_scroll title_t' id='text2_ap'><li class='adm_num'>번호</li><li class='adm_pic'>사진</li><li class='adm_subs'>제목</li><li class='adm_name'>저자</li><li class='adm_ten'>출판사</li><li class='adm_ten'>상세정보</li>";
+// 				$('.AdAjaxTest').append(text);
+				
+// 				var text3 = "</ul></div>";
+// 				$('#text3_ap').append(text3);
+				
+// 				if(count ==0 ){
+// 					var text4= "<div class='con_lst'><ul><li class='col_tit'><p>책 목록이 없습니다</p></li></ul></div>";
+// 					$('#text3_ap').append(text4);
+// 				} else {
+// 					for(var i=0; i<JSdata.length-16; i++){
+// 						var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll'><li class='adm_num' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
+// 						+JSdata[i].book_number+"\"\'>"
+// 						+JSdata[i].book_number+"</li><li class='adm_pic' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
+// 						+JSdata[i].book_number+"\"\'><img src='./upload/book/"
+// 						+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_subs2' id='adm_book_high'onclick='location.href=\"./AdminBookInfo.am?book_number="
+// 						+JSdata[i].book_number+"\"\'>"
+// 						+JSdata[i].book_subject+"</li><li class='adm_name over_dot' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
+// 						+JSdata[i].book_number+"\"\'>"
+// 						+JSdata[i].book_author+"</li><li class='adm_ten over_dot' id='adm_book_high' onclick='location.href=\"./AdminBookInfo.am?book_number="
+// 						+JSdata[i].book_number+"\"\'>"+JSdata[i].book_publisher+"</li><li class='adm_ten'><input type='button' id='"
+// 						+i+"' value='보기' class ='info_bbutton2' ></li></ul>";
+// 							$('#text3_ap').append(text4);
+
+// 							if (JSdata[i].bbook_bstate==0){
+// 								var mod1="<div id='Borrow"+i+"'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능";
+// 								$('.mod_dv'+i).append(mod1);
+// 							} else {
+// 								var mod1="<div id='Borrow"+i+"'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>"
+//  								JSdata[i].bbook_bdate+"~"+JSdata[i].bbook_rdate+"대출중";
+// 								$('.mod_dv'+i).append(mod1);
+// 							}
+							
+// 							var mod2="</li></ul></li>";
+// 							$('.mod_dv'+i).append(mod2);
+							
+// 							if (JSdata[i].rbook_check>=3){
+// 								var mod3="<li><ul class='row_sub''><li class='title'>예약상태</li><li class='inp_form'>예약불가";
+// 								$('.mod_dv'+i).append(mod3);
+// 							} else{
+// 								var mod3="<li><ul class='row_sub''><li class='title'>예약상태</li><li class='inp_form'>예약가능";
+// 								$('.mod_dv'+i).append(mod3);
+// 							}
+							
+// 							var mod4="</li></ul></li>";
+// 							$('.mod_dv'+i).append(mod4);
+							
+// 							if (JSdata[i].dbook_state==0){
+// 								var mod5="<li><ul class='row_sub'><li class='title'>책상태</li><li class='inp_form'>상태양호";
+// 								$('.mod_dv'+i).append(mod5);
+// 							} else {
+// 								var mod5="<li><ul class='row_sub'><li class='title'>책상태</li><li class='inp_form'>"+JSdata[i].dbook_state+"";
+// 								$('.mod_dv'+i).append(mod5);
+// 							}
+							
+// 							var mod6="</li></ul></li>";
+// 							$('.mod_dv'+i).append(mod6);
+							
+// 							var mod7="</ul>";
+// 							$('.mod_dv'+i).append(mod7);
+
+// 							var mod8="<div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
+// 								+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
+// 								$('.mod_dv'+i).append(mod8);
+							
+// 							var mod12="</div>";
+// 							$('.text3_ap').append(mod12);
+							
+// 				}
+// 			}
+				
+// 				var text8="</li></ul>";
+// 				$('.AdAjaxTest').append(text8);
+				
+// 				var text9 = "<div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='입고하기' onclick='bookwrite();' class ='btn_type4 BTN_IF_LIST b'></li>&nbsp;<li class='adm_btn__left'><input type='button' value='희망도서목록' onclick='hbooklist();' class ='btn_type4 BTN_IF_LIST'></li></ul></div>";
+// 				$('.AdAjaxTest').append(text9);
+					
+// 				var text10 = "<div class='paginate'><a href='./AdminBookAJ.am?pageNum=1&category1="+category1+"&search1="+search1+"&opt1="
+// 				+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
+// 				+search3+"&pubDate="+pubDate+"&sort="+sort+"' class='prev2'><span class='hide'>페이지처음</span></a>";
+// 				$('.AdAjaxTest').append(text10);
+			
+// 			if(pageCount < endPage)	endPage = pageCount;
 		
-		$('#SearchForm').submit(
-			function(){
-				if($('#search1').val()==""&&$('#search2').val()==""&&$('#search3').val()==""){
-				alert ("검색어를 입력해주세요");
-				$('#search1').focus();
-				return false;
-				} else { }
-		});
+// 			if(startPage>pageBlock) {
+// 				var text11="<a href='./AdminBookAJ.am?pageNum="+(startPage-pageBlock)+"&category1="+category1+"&search1="+search1+"&opt1="
+// 				+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
+// 				+search3+"&pubDate="+pubDate+"&sort="+sort+"' class='prev'><span class='hide'>이전 페이지</span></a>";
+// 				$('.paginate').append(text11);
+// 			}
 		
-		$('#book_sort').change(function(){
-			var sort = $("#book_sort > option:selected").val();	
-			if(sort!=""){
-				$(location).attr('href', sort);
-			} else {}
-		});
+// 			for (var i=startPage; i<=endPage; i++){
+// 				if (i==pageNum){
+// 					var text12="&nbsp;<strong id='currentPage' title='현재 페이지'>"+i+"</strong> &nbsp;";
+// 					$('.paginate').append(text12);
+// 				} else{
+// 					var text12="&nbsp;<a href='./AdminBookAJ.am?pageNum="+i+"&category1="+category1+"&search1="+search1+"&opt1="
+// 					+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
+// 					+search3+"&pubDate="+pubDate+"&sort="+sort+"'>"+i+"</a> &nbsp";
+// 					$('.paginate').append(text12);
+// 				}
+// 			}
 		
-});
+// 		if(endPage < pageCount) { 
+// 			var text13="<a href='./AdminBookAJ.am?pageNum="+(startPage+pageBlock)+"&category1="+category1+"&search1="+search1+"&opt1="
+// 			+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
+// 			+search3+"&pubDate="+pubDate+"&sort="+sort+"' class='next'><span class='hide'>다음 페이지</span></a id='text14_ap'>";
+// 			$('.paginate').append(text13);
+// 		}
+
+// 			var text14="<a href='./AdminBookAJ.am?pageNum="+pageCount+"&category1="+category1+"&search1="+search1+"&opt1="
+// 			+opt1+"&category2="+category2+"&search2="+search2+"&opt2="+opt2+"&category3="+category3+"&search3="
+// 			+search3+"&pubDate="+pubDate+"&sort="+sort+"' class='next2'><span class='hide'>페이지끝</span></a>";
+// 			$('.paginate').append(text14);
+				
+// 				var text15="</div>";
+// 				$('.AdAjaxTest').append(text15);
+				
+// 				// 모달창 띄우기
+// 				//admin 대출,예약,책상태 
+// 				for(var i=0; i<JSdata.length-7; i++){
+// 					$('#Borrow' + i).dialog({ 
+// 						autoOpen: false, 
+// 						width: 400, 
+// 						modal: true, 
+// 					});
+// 				}
+// 				$(".info_bbutton2").click(function() {
+// 					var listvalue = $(this).attr("id");
+// 					$('#Borrow' + listvalue).dialog("open");
+// 				});
+				
+// 				$(".BTN_CLOSE").click(function() {
+// 					var listvalue = $(this).attr("id");
+// 					$('#Borrow' + listvalue).dialog("close");
+// 				});
+							
+// 				}, // Ajax 데이터 값 받기 성공
+// 				error:function(request,status,error){
+// //				        alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+// 			  	} // error 발생시
+// 		}); // Ajax
+// 	}
+// });
 </script>
 </head>
 <body>
@@ -96,87 +293,86 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
 						
-<form action="./AdminBookSearch.am" method="post" id="SearchForm">
-		<fieldset id="adm_field">
-			<legend>&nbsp;통합검색&nbsp;</legend>
-	
-		<div id="admin_select_box">
-				<select name="category1" id="admin_select1">
-					<option value="all" >전체</option>
-					<option value="book_subject">제목</option>
-					<option value="book_author">저자</option>
-					<option value="book_publisher">출판사</option>
-					<option value="book_isbn">국제표준번호</option>
-					<option value="book_classification">분류기호</option>
-				</select>
-				<input type="text" id="search1" name="search1" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
+				<div id="adm_for_book_div">
+											<form action="./AdminBookSearch.am" method="get" name="searchFr" id="SearchForm">
+												<div id="adm_book_field">
+													<h1>통합검색</h1>
+													<div class="DIV_CON_LST">
+														<div id="adm_book_select_box">
+															<select name="category1" id="adm_book_select1">
+																<option value="all">전체</option>
+																<option value="book_subject">제목</option>
+																<option value="book_author">저자</option>
+																<option value="book_publisher">출판사</option>
+																<option value="book_isbn">국제표준번호</option>
+																<option value="book_classification">분류기호</option>
+															</select> <input type="text" id="search1" name="search1"
+																placeholder="입력하세요" class="adm_inp_search"><input
+																type="button" value="검색" class="adm_btn_search">
+															<select name="opt1" id="adm_book_select2">
+																<option value="and">and</option>
+																<option value="or">or</option>
+															</select> <a href="#"><span class="adm_btn_type3">▼</span></a>
+														</div>
+														<div class="adm_media_bye">
+															<div id="adm_book_select_box">
+																<select name="category2" id="adm_book_select1">
+																	<option value="book_subject">제목</option>
+																	<option value="book_author">저자</option>
+																	<option value="book_publisher">출판사</option>
+																	<option value="book_isbn">국제표준번호</option>
+																	<option value="book_classification">분류기호</option>
+																</select> <input type="text" id="search2" name="search2"
+																	placeholder="입력하세요" class="adm_inp_search"><input
+																	type="button" value="검색" class="adm_btn_search">
+																<select name="opt2" id="adm_book_select2">
+																	<option value="and">and</option>
+																	<option value="or">or</option>
+																</select>
+															</div>
 
-				<select name="opt1" id="admin_select2">
-					<option value="and">and</option>
-					<option value="or">or</option>
-				</select>
-		</div>
-				
-		<div id="admin_select_box" >
-		<select name="category2" id="admin_select1">
-					<option value="book_subject">제목</option>
-					<option value="book_author">저자</option>
-					<option value="book_publisher">출판사</option>
-					<option value="book_isbn">국제표준번호</option>
-					<option value="book_classification">분류기호</option>
-		</select>
-		<input type="text" id="search2" name="search2" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
-				
-				<select name="opt2" id="admin_select2">
-					<option value="and">and</option>
-					<option value="or">or</option>
-				</select>
-		</div>
-				
-		<div id="admin_select_box">
-		<select name="category3" id="admin_select1">
-					<option value="book_subject">제목</option>
-					<option value="book_author">저자</option>
-					<option value="book_publisher">출판사</option>
-					<option value="book_isbn">국제표준번호</option>
-					<option value="book_classification">분류기호</option>
-				</select>
-				<input type="text" id="search3" name="search3" placeholder="입력하세요" class="adm_inp_search"><input type="button" value="검색" class="adm_btn_search" >
-		</div>
-		<div id="admin_select_box2">
-			<p>&nbsp;발행일</p>
-				<select name="pubDate" id="admin_select2">
-					<option value="all">전체</option>
-					<option value="1">최근 1년</option>
-					<option value="2">최근 2년</option>
-					<option value="5">최근 5년</option>
-					<option value="10">최근 10년</option>
-					<option value="20">최근 20년</option>
-				</select>
-		</div>
-		<div id="admin_sort_submit">
-			<input type="submit" class="adm_btn_type4" value="상세검색">
-			<input type="reset" class="adm_btn_type5" value="입력 초기화">		
-		</div>
-		</fieldset>
-</form>
-					
+															<div id="adm_book_select_box">
+																<select name="category3" id="adm_book_select1">
+																	<option value="book_subject">제목</option>
+																	<option value="book_author">저자</option>
+																	<option value="book_publisher">출판사</option>
+																	<option value="book_isbn">국제표준번호</option>
+																	<option value="book_classification">분류기호</option>
+																</select> <input type="text" id="search3" name="search3"
+																	placeholder="입력하세요" class="adm_inp_search"><input
+																	type="button" value="검색" class="adm_btn_search">
+															</div>
+
+															<div id="adm_date_box" >
+																<p>&nbsp;&nbsp;발행일</p>
+																<select name="pubDate" id="adm_book_date">
+																	<option value="all">전체</option>
+																	<option value="1">최근 1년</option>
+																	<option value="2">최근 2년</option>
+																	<option value="5">최근 5년</option>
+																	<option value="10">최근 10년</option>
+																	<option value="20">최근 20년</option>
+																</select>
+															</div>
+														</div>
+														<div id="adm_sort_submit">
+															<input type=submit class="adm_btn_sr" value="상세검색" >
+															<input type="reset" class="adm_btn_rs" value="입력 초기화">
+														</div>
+													</div>
+												</div>
+											</form>
+									</div>
+
+				<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>					
 						<div class="adms">	
-							<h4>&lt;통합도서관리시스템&gt;</h4>
+							<h3>&lt; 통합도서관리시스템 &gt;</h3>	
+							
+<div class="AdAjaxTest">											
 							<p>
 								Total_<span><%=count%></span>
 							</p>
-							<div id="adm_select_box3">
-									<select name="sort"  id="book_sort">
-											<option value="" selected="selected">정렬</option>
-											<option value="./AdminBookSort.am?sort=book_subject">제목순</option>
-											<option value="./AdminBookSort.am?sort=book_author">저자순</option>
-											<option value="./AdminBookSort.am?sort=book_number">인기순</option>
-											<option value="./AdminBookSort.am?sort=book_pubDate">신작순</option>
-											<option value="./AdminBookSort.am?sort=book_date">입고순</option>
-									</select>
-							</div>	
-							<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>	
+							
 						<ul class="brd_txt_lst">
 							<!-- 글목록 -->
 							<li class="view_lst">
@@ -205,8 +401,8 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 								<li class="adm_num" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_number()%></li>
 								<li class="adm_pic" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><img src="./upload/book/<%=booksearchLists.getBook_file()%>" width="70px" height="80px"></li>
 								<li class="adm_subs2" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_subject()%></li>
-								<li class="adm_name" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_author()%></li>
-								<li class="adm_ten" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_publisher()%></li>
+								<li class="adm_name over_dot" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_author()%></li>
+								<li class="adm_ten over_dot" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_publisher()%></li>
 								<li class="adm_ten"><input type="button" id="<%=i %>" value="보기" class ="bbutton info" ></li>
 							</ul>
 							
@@ -253,48 +449,8 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 						}%>
 							</li>
 						</ul>
-								
-				<!-- 버튼 css 부분 -->	
-				<div class="btn_btm_center" >
-					<ul>
-						<li class="adm_btn_cancle">
-							<input type="button" value="입고하기" onclick="location.href='./AdminBookWrite.am'" class ="btn_type4 BTN_IF_LIST b">
-						</li>
-						<li class="adm_btn__left">
-							<input type="button" value="예약관리" onclick="location.href='./AdminBookRes.am'" class ="btn_type4 BTN_IF_LIST">
-						</li>
-						<li class="adm_btn__left">
-							<input type="button" value="희망도서목록" onclick="location.href='./AdminHBookList.am'" class ="btn_type4 BTN_IF_LIST">
-						</li>
-					</ul>
-						</div>	
-				
-				<!-- 버튼 css 부분 -->	
-						<div class="paginate">
 						
-						<a href="./AdminBookSearch.am?pageNum=1&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>"><span>&lt;&lt;&nbsp;</span></a>
-						<%
-						if(pageCount < endPage)	endPage = pageCount;
-						if(startPage > pageBlock)	{ %><a href="./AdminBookSearch.am?pageNum=<%=startPage - pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
-						for (int p = startPage; p <= endPage; p++) {	
-							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="./AdminBookSearch.am?pageNum=<%=p%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>"><%=p %></a> &nbsp;<%}
-						}
-						if(endPage < pageCount){	%><a href="./AdminBookSearch.am?pageNum=<%=startPage+pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="next"><span class="hide">다음 페이지</span></a><% }
-						%>
-						<a href="./AdminBookSearch.am?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>"><span>&nbsp;&gt;&gt;</span></a>
-						 </div>
-				
-					</div>
-					</div>
-			</article>
-
-		</section>
-		
-		</div>
-		<!-- //본문 컨테이너 -->
-	</div>
-	<script type="text/javascript">
+<script type="text/javascript">
 $(window).on('load', function() {
 	var bookListSize = "${booksearchList.size()}";
 	//admin 대출,예약,책상태 
@@ -316,5 +472,54 @@ $(window).on('load', function() {
 	});
 });
 </script>	
+								
+				<!-- 버튼 css 부분 -->	
+				<div class="btn_btm_center" >
+					<ul>
+						<li class="adm_btn_cancle">
+							<input type="button" value="입고하기" onclick="bookwrite();" class ="btn_type4 BTN_IF_LIST b">
+						</li>
+						<li class="adm_btn__left">
+							<input type="button" value="희망도서목록" onclick="hbooklist();" class ="btn_type4 BTN_IF_LIST">
+						</li>
+					</ul>
+						</div>	
+				
+				<!-- 버튼 css 부분 -->	
+						<div class="paginate">
+						
+						<a href="./AdminBookSearch.am?pageNum=1&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="prev2"><span class="hide">페이지처음</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./AdminBookSearch.am?pageNum=<%=startPage - pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./AdminBookSearch.am?pageNum=<%=p%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./AdminBookSearch.am?pageNum=<%=startPage+pageBlock%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./AdminBookSearch.am?pageNum=<%=pageCount%>&category1=<%=category1%>&search1=<%=search1%>&opt1=<%=opt1%>&category2=<%=category2%>&search2=<%=search2%>&opt2=<%=opt2%>&category3=<%=category3%>&search3=<%=search3%>&pubDate=<%=pubDate%>" class="next2"><span class="hide">페이지끝</span></a>
+						 </div>
+</div>
+
+<script type="text/javascript">
+			// JQUERY★
+			function bookwrite(){
+				location.href="./AdminBookWrite.am";
+			}
+			
+			function hbooklist(){
+				location.href="./AdminHBookList.am";
+			}
+</script>
+					</div>
+					</div>
+			</article>
+
+		</section>
+
+		</div>
+		<!-- //본문 컨테이너 -->
+	</div>
 </body>
 </html>

@@ -58,7 +58,7 @@
 					<div class="content">
 					  <div class=board>
 					  
-					  <h1>Curation</h1>
+					  <h3>Curation</h3>
 					  
 					  <div class="search_bx">
 							<form action="./BoardCurSearch.cu" method="post">
@@ -113,7 +113,7 @@
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 						%>
-						<a href="BoardCurList.cu?pageNum=1">[처음]</a>
+						<a href="BoardCurList.cu?pageNum=1" class="prev2"><span class="hide">[처음]</span></a>
 						<%
 						if(startPage > pageBlock)	{ %><a href="BoardCurList.cu?pageNum=<%=startPage-pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
@@ -122,10 +122,10 @@
 						}
 						if(endPage < pageCount){	%><a href="BoardCurList.cu?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="BoardCurList.cu?pageNum=<%=pageCount %>">[끝]</a>
+						<a href="BoardCurList.cu?pageNum=<%=pageCount %>" class="next2"><span class="hide">[끝]</span></a>
 						 </div>
 						 
-						 <div class="btn_btm_center">
+						 <div class="btn_btm_center1">
 						 <%		
 						if ("admin".equals(member_id)) {
 						%>
