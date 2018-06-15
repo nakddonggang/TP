@@ -231,7 +231,7 @@ $('.rbutton').click(function() {
 								+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
 								$('#mod_div'+i).append(mod1);
 							} else {
-								var mod1 = "<div class='BookMod"+i+"' id='book_mod'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출가능</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
+								var mod1 = "<div class='BookMod"+i+"' id='book_mod'><div class='join_form'><h3>책관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form'>대출중</li></ul></li><li><ul class='row_sub''><li class='title'>대출</li><li class='inp_form'><input type='button' rel='"
 								+JSdata[i].book_number+"' class='bbutton2' value='대출불가'></li></ul></li><li><ul class='row_sub'><li class='title'>예약</li><li class='inp_form'><input type='button' rel='"
 								+JSdata[i].book_number+"' class='rbutton' value='대출예약' id='borrowBook'></li></ul></li></ul><div class='btn_btm_center'><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"
 								+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
@@ -535,14 +535,14 @@ alert("decode"+decode);
 							<div id="adm_select_box3">
 								<input type="button" value="갤러리" id="book_pic_btn"  class="book_btn">
 								<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
-								<select name="sort" id="book_sort">
-									<option value="book_number">정렬</option>
-									<option value="book_subject">제목순</option>
-									<option value="book_author">저자순</option>
-									<option value="book_popul">인기순</option>
-									<option value="book_pubDate">신작순</option>
-									<option value="book_date">입고순</option>
-								</select>
+<!-- 								<select name="sort" id="book_sort"> -->
+<!-- 									<option value="book_number">정렬</option> -->
+<!-- 									<option value="book_subject">제목순</option> -->
+<!-- 									<option value="book_author">저자순</option> -->
+<!-- 									<option value="book_popul">인기순</option> -->
+<!-- 									<option value="book_pubDate">신작순</option> -->
+<!-- 									<option value="book_date">입고순</option> -->
+<!-- 								</select> -->
 							</div>
 
 <form action="./MemberBasketAdd.me" method="post" id="basket_Fr">		
@@ -611,7 +611,7 @@ alert("decode"+decode);
 										<li class="inp_form"><%if (Integer.parseInt(booksearchLists.getBbook_bstate())==0){ %>
 										<input type='button' rel='<%=booksearchLists.getBook_number()%>' class='bbutton' value='대출신청' id='borrowBook'> 
 										<% }else { %>
-											<input type='button' rel='<%=booksearchLists.getBook_number()%>' class='bbutton2' value='대출불가'>
+											<input type='button' rel='<%=booksearchLists.getBook_number()%>' class='bbutton2' value='대출불가' id='borrowBook'> 
 											<%}%></li>
 										</ul>
 									</li>

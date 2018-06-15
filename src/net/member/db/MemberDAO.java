@@ -113,10 +113,21 @@ public class MemberDAO {
 		return sqlsession.selectOne("basketCheck", map);
 	}
 	
+	// 바구니 카운트
+	public int basketCount(String member_id){
+		HashMap map = new HashMap();
+		map.put("member_id", member_id);
+		return sqlsession.selectOne("basketCount", map);
+	}
+	
 	// 도서바구니 리스트
-	public List<MemberDTO> MemberBasketList(String member_id){
+	public List<MemberDTO> MemberBasketList(String member_id, int startRow, int pageSize){
 		List<MemberDTO> bList = new ArrayList<MemberDTO>();
-		bList = sqlsession.selectList("MemberBasketList", member_id);
+		HashMap map = new HashMap();
+		map.put("member_id", member_id);
+		map.put("startRow", startRow-1);
+		map.put("pageSize", pageSize);
+		bList = sqlsession.selectList("MemberBasketList", map);
 		return bList;
 	}
 	// 도서바구니 선택항목 삭제
@@ -149,8 +160,8 @@ public class MemberDAO {
 		sqlsession.insert("insertRbook",map);
 	}
 	// rbook 테이블 rbook_num=3인것들 찾아서 rbook_check='0'으로 수정
-	public void updateRbookCheck(int book_number){
-		sqlsession.update("updateRbookCheck", book_number);
+	public void updateRbookCheck(){
+		sqlsession.update("updateRbookCheck");
 	}
 	// rbook_num<3인것들은 rbook_check='1'로 수정
 	public void updateRbookCheck2(){
@@ -293,5 +304,43 @@ public class MemberDAO {
 	 public int BorrowBookCountList(String member_id) {
 		 return sqlsession.selectOne("BorrowBookCountList", member_id);
 	 }
+	 
+	 // 멤버 rbook 전체 리스트
+	 public int memberRbookCount(String member_id, int book_number){
+		 HashMap map = new HashMap();
+		 map.put("member_id", member_id);
+		 map.put("book_number", book_number);
+		 return sqlsession.selectOne("memberRbookCount", map);
+	 }
+	 
+	 // 예약취소
+	 public void cancelRes(String member_id, int book_number){
+		 HashMap map = new HashMap();
+		 map.put("member_id", member_id);
+		 map.put("book_number", book_number);
+		 sqlsession.delete("cancelRes", map);
+	 }
 	
+	 // 예약취소하는 rbook_num 조회
+	 public int selectRbookNum(String member_id, int book_number){
+		 HashMap map = new HashMap();
+		 map.put("member_id", member_id);
+		 map.put("book_number", book_number);
+		 return sqlsession.selectOne("selectRbookNum", map);
+	 }
+	 
+	 // 취소된 예약 후순위들 rbook_num -1씩 수정
+	 public void updateRbookNum(int book_number, int rbook_num){
+		 HashMap map = new HashMap();
+		 map.put("book_number", book_number);
+		 map.put("rbook_num", rbook_num);
+		 sqlsession.update("updateRbookNum", map);
+	 }
+	 
+	 // 유저 rbook 조회
+	 public List<BookDTO> myRbook(String member_id){
+		 HashMap map = new HashMap();
+		 map.put("member_id", member_id);
+		 return sqlsession.selectList("myRbook", map);
+	 }
 }

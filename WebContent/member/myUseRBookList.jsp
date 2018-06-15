@@ -27,6 +27,33 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.cancelRes').each(function(index){
+		$(this).attr('id','cancelRes'+index);
+		$('#cancelRes'+index).click(function(){
+			$.Confirm(
+				'정말 취소하시겠습니까?',
+				function(){
+					location.href = './CancelReservation.me?book_number=' + $('#cancelRes'+index).attr('rel') + '&pageNum=${pageNum}';
+				}
+			);
+		});
+	});
+	
+	$('.borrow').each(function(index){
+		$(this).attr('id','borrow'+index);
+		$('#borrow'+index).click(function(){
+			$.Confirm(
+				'대출신청 하시겠습니까?',
+				function(){
+					location.href = './BorrowBookAction.me?book_number=' + $('#borrow'+index).attr('rel') + '&pageNum=${pageNum}';
+				}
+			);
+		});
+	});
+});
+</script>
 </head>
 <body>
 <% 
@@ -75,6 +102,7 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 										<li class="my_p">제목</li>
 										<li class="my_p">저자</li>
 										<li class="my_p">예약일자</li>
+										<li>신청버튼</li>
 									</ul>
 								</div>
 					
@@ -86,12 +114,16 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 										BookDTO bDTO =(BookDTO)rbList.get(i);
 										%>					
 								<div class="con_lst">
-									<ul class="no_scroll" onclick="location.href='./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>'">
+									<ul class="no_scroll">
 									
-										<li class="my_p"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></li>
-										<li class="my_ppp"><%=bDTO.getBook_subject() %></li>
-										<li class="my_pp"><%=bDTO.getBook_author() %></li>
-										<li class="my_pp"><%=date.format(bDTO.getRbook_date()) %></li>
+										<li class="my_p"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></a></li>
+										<li class="my_ppp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_subject() %></a></li>
+										<li class="my_pp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_author() %></a></li>
+										<li class="my_pp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=date.format(bDTO.getRbook_date()) %></a></li>
+										<li><input type="button" value="예약취소" id="" class="cancelRes" rel="<%=bDTO.getBook_number() %>">
+										<%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
+												%><input type="button" value ="대출신청" id="" class="borrow" rel="<%=bDTO.getBook_number() %>">
+											<%} %></li>
 									</ul>
 								</div>
 										<%

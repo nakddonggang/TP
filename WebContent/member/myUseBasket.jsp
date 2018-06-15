@@ -29,11 +29,31 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#resBtn').click(function(){
-		$('#basketForm').attr("action","./MemberBasketResAction.me");
+		if($('.checkbox').is(":checked")==false){
+			$.Alert('책을 선택해주세요', function(){ });
+		}else{
+			$.Confirm(
+				'예약 하시겠습니까?',
+				function(){
+					$('#basketForm').attr("action","./MemberBasketResAction.me");
+					$('#basketForm').submit();
+				}
+			);
+		}
 	});
 	
 	$('#delBtn').click(function(){
-		$('#basketForm').attr("action","./MemberBasketDelete.me");
+		if($('.checkbox').is(":checked")==false){
+			$.Alert('책을 선택해주세요', function(){ });
+		}else{
+			$.Confirm(
+				'삭제 하시겠습니까?',
+				function(){
+					$('#basketForm').attr("action","./MemberBasketDelete.me");
+					$('#basketForm').submit();
+				}
+			);
+		}
 	});
 	
 	$('#allCheck').click(function(){
@@ -73,6 +93,14 @@ $(document).ready(function(){
 	List<MemberDTO> MemberBasketList = (List<MemberDTO>)request.getAttribute("bList");
 	List bbookList = (List)request.getAttribute("bbook_bstate");
 	List rbookList = (List)request.getAttribute("rbook_check");
+	List checkMember = (List)request.getAttribute("check_member");
+	int count = ((Integer)request.getAttribute("count")).intValue();
+	String member_id = (String) session.getAttribute("member_id");
+	String pageNum =  (String)request.getAttribute("pageNum");
+	int pageCount = ((Integer)request.getAttribute("pageCount")).intValue();
+	int pageBlock = ((Integer)request.getAttribute("pageBlock")).intValue();
+	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 %>
 	<!-- member/myUseBasket.jsp / MyUseIndex >> 책바구니 페이지 -->
 	<div class="wrapper">
@@ -122,10 +150,11 @@ $(document).ready(function(){
 									else{ bbook_bstate = "대출가능";}
 									if("3".equals(rbookList.get(i).toString())){ rbook_check = "예약불가";}
 									else{ rbook_check = "예약가능";}
+									if((int)checkMember.get(i)==1) { rbook_check = "예약중";}
 									%>
 									<div class="con_lst">
 										<ul class="no_scroll">
-											<li class="buk_c"><input type="checkbox" name="checkbox" value="<%=mDTO.getBasket_number() %>"></li>
+											<li class="buk_c"><input type="checkbox" name="checkbox" class="checkbox" value="<%=mDTO.getBasket_number() %>"></li>
 											<li class="buk_p"><img src="./upload/book/<%=mDTO.getBook_file()%>" width="48" height="50"></li>
 											<li class="buk_t"><p><%=mDTO.getBook_subject() %></p></li>
 											<li class="buk_n"><p><%=mDTO.getBook_author() %></p></li>
@@ -143,13 +172,28 @@ $(document).ready(function(){
 						<div class="btn_btm_center">	
 						<ul>
 						<li class="adm_btn_cancle">
-									<input type="submit" value="예약하기" class="btn_type4 BTN_IF_LIST" id="resBtn"> 
+									<input type="button" value="예약하기" class="btn_type4 BTN_IF_LIST" id="resBtn"> 
 						</li>
 						<li class="adm_btn_cancle">
-									<input type="submit" value="삭제하기" class="btn_type4 BTN_IF_LIST" id="delBtn">
+									<input type="button" value="삭제하기" class="btn_type4 BTN_IF_LIST" id="delBtn">
 						</li>
 						</ul>
 						
+						</div>
+						
+						<div class="paginate">
+						
+						<a href="./MemberBasketList.me?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
+						<%
+						if(pageCount < endPage)	endPage = pageCount;
+						if(startPage > pageBlock)	{ %><a href="./MemberBasketList.me?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
+						for (int p = startPage; p <= endPage; p++) {	
+							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
+							else {%> &nbsp;<a href="./MemberBasketList.me?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+						}
+						if(endPage < pageCount){	%><a href="./MemberBasketList.me?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						%>
+						<a href="./MemberBasketList.me?pageNum=<%=pageCount%>" class="next2"><span class="hide">페이지끝</span></a>
 						</div>
 						
 						</form>
