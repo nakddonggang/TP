@@ -73,7 +73,6 @@ public class MemberJoinAction implements Action{
 			
         } catch (Exception ex) {
             ex.printStackTrace();
-            System.out.println("11");
         }
 		forward.setRedirect(true);
 		forward.setPath("MemberLogin.me");
