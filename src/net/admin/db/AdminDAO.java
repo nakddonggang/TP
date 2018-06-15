@@ -714,5 +714,13 @@ public class AdminDAO {
 		public void DLosReWrite(BookDTO bookdto){
 			sqlsession.update("DLosReWrite", bookdto);
 		}
+		
+		// 회원 등급 수정
+		public void updateMemberLevel(String member_level, String member_id){
+			HashMap map = new HashMap();
+			map.put("member_level", member_level);
+			map.put("member_id", member_id);
+			sqlsession.update("updateMemberLevel", map);
+		}
 
 }

@@ -25,6 +25,18 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#updateBtn').click(function(){
+		$.Confirm(
+			'수정하시겠습니까?',
+			function(){
+				$('#updateFr').submit();
+			}
+		);
+	});
+});
+</script>
 </head>
 <%
 String info_id = request.getParameter("info_id");
@@ -65,7 +77,8 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 				<!-- 메인 페이지 -->
 				<div class="content">
 					<div class="join_form">
-							<h3>사용자 정보보기</h3>
+							<h3>사용자 정보수정</h3>
+							<form action="./AdminMemberUpdateAction.am" method="post" id="updateFr">
 							<ul class="row">
 								<li>
 									<ul class="row_sub">
@@ -120,14 +133,11 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 								<li>
 									<ul class="row_sub">
 										<li class="title_adm"><span>회원등급</span></li>
-										<%
-										if(gm_check.equals("0")&&bl_check.equals("0")){
-										%><li class="inp_form"><input type="text" name="level" value="일반회원" readonly></li><%
-										}else if(gm_check.equals("1")){
-											%><li class="inp_form"><input type="text" name="level" value="우수회원" readonly></li><%
-										}else if(bl_check.equals("1")){
-											%><li class="inp_form"><input type="text" name="level" value="블랙리스트" readonly></li><%
-										}%>
+										<li><select name="grade">
+											<option value="nomal" <%if(gm_check.equals("0")&&bl_check.equals("0")) out.print("selected");%>>일반회원</option>
+											<option value="good" <%if(gm_check.equals("1")) out.print("selected"); %>>우수회원</option>
+											<option value="black" <%if(bl_check.equals("1")) out.print("selected"); %>>블랙리스트</option>
+										</select></li>
 									</ul>
 								</li>
 								<li>
@@ -152,12 +162,13 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 							<div class="btn_btm_center">
 								<ul>
 									<li class="btn_cancle">
-										<input type="button" value="글목록" onclick='location.href="./AdminMemberIndex.am?pageNum=<%=pageNum %>&member_level=<%=member_level %>"' class ="btn_type4 BTN_IF_LIST">
-										<input type="button" value="회원정보수정" onclick="location.href='./AdminMemberUpdate.am?info_id=<%=mDTO.getMember_id() %>'" class ="btn_type4 BTN_IF_LIST">
+										<input type="button" value="뒤로가기" onclick='history.back();' class ="btn_type4 BTN_IF_LIST">
+										<input type="button" value="수정하기" class ="btn_type4 BTN_IF_LIST" id="updateBtn">
 										
 									</li>
 								</ul>
 							</div>
+							</form>
 						</div>
 					</div>
 				<!-- //메인 페이지-->
