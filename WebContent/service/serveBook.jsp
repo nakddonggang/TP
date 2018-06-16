@@ -64,6 +64,9 @@
 				$.Alert("작성내용을 모두 입력해 주세요", function(){});
 				return false;
 			} else {
+				$.Confirm(
+						"희망도서 신청을 하시겠습니까?",
+						function(){ });
 			}
 		});
 	});
