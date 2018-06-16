@@ -421,7 +421,7 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 
 /* START 김영지 책 갤러리 형식으로 보기 css */
 .book_lst {overflow: hidden; width: 90%; margin: 0 auto; position: relative; margin-top:10px; }
-.book_lst li { float: left; width: 24%; height: 280px; margin: 10px 3px 10px 3px; padding-bottom: 26px; position: relative;}
+.book_lst li { float: left; width: 30%; height: 280px; margin: 10px 3px 10px 3px; padding-bottom: 26px; position: relative;}
 .book_lst li a {color: #666; text-decoration: none; }
 .book_lst_img { width:99%; height: 270px;}
 #bk_li_subs { display: block; width: 99%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; margin-top: 2px;}

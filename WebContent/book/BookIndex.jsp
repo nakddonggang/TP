@@ -123,7 +123,6 @@ firstload(pageNum, view);
 								$('#text3_ap').append(text4);
 							} else {
 								for(var i=0; i<JSdata.length-8; i++){
-// 									$.Alert(member_id,function(){ });
 									var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll' id='text5_ap"+i+"'><li class='adm_num' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
 										+JSdata[i].book_number+"'></li><li class='adm_pic' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
 										+JSdata[i].book_number+"\"\'><img src='./upload/book/"
@@ -178,7 +177,8 @@ firstload(pageNum, view);
 												+JSdata[k].book_pubDate+"</dd></dl></dd></dl></a></li>";
 												$('#book_pic_div').append(pic2);
 											}
-										}						
+										}	
+										
 										var pic3="</ul>";
 										$('.AjaxTest').append(pic3);
 

@@ -202,7 +202,7 @@ $('#book_sort').change(function(){
 								}
 
 								var mod2="</div>";
-								$('.text3_ap').append(mod2);
+								$('#text3_ap').append(mod2);
 							
 				}
 			}
@@ -216,7 +216,7 @@ $('#book_sort').change(function(){
 								var pic2="<li><dl class='book_info_layer'><dt>책 목록이 없습니다</dt><dd></dd></dl></li> ";
 								$('#book_pic_div').append(pic2);
 							} else {
-								for(var k=0; k<JSdata.length-17; k++){
+								for(var k=0; k<JSdata.length-16; k++){
 									var pic2="<li><a href='./BookInfo.bk?book_number="
 									+JSdata[k].book_number+"'><img src='./upload/book/"
 									+JSdata[k].book_file+"' class='book_lst_img'><span id='bk_li_subs'>"
@@ -227,7 +227,8 @@ $('#book_sort').change(function(){
 									+JSdata[k].book_pubDate+"</dd></dl></dd></dl></a></li>";
 									$('#book_pic_div').append(pic2);
 								}
-							}						
+							}			
+							
 							var pic3="</ul>";
 							$('.AjaxTest').append(pic3);
 
@@ -579,10 +580,10 @@ if(view==null) view = "1";
 
 							<!-- ★갤러리로 보여지는 통합검색 -->
 							<ul class="book_lst" id="book_pic_div">
-								<li>
 									<%
 										if (count == 0) {
 									%>
+									<li>
 									<dl class="book_info_layer">
 										<dt>책 목록이 없습니다</dt>
 										<dd></dd>
