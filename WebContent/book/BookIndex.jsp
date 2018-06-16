@@ -154,7 +154,7 @@ firstload(pageNum, view);
 											var pic2="<li><dl class='book_info_layer'><dt>책 목록이 없습니다</dt><dd></dd></dl></li> ";
 											$('#book_pic_div').append(pic2);
 										} else {
-											for(var k=0; k<JSdata.length-17; k++){
+											for(var k=0; k<JSdata.length-8; k++){
 												var pic2="<li><a href='./BookInfo.bk?book_number="
 												+JSdata[k].book_number+"'><img src='./upload/book/"
 												+JSdata[k].book_file+"' class='book_lst_img'><span id='bk_li_subs'>"

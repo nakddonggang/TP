@@ -1,5 +1,7 @@
 package net.admin.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -31,10 +33,24 @@ public class AdminBookDLosWriteAction implements Action {
 			System.out.println("Fail");
 			return null;
 		} else {
-			System.out.println("Success");ActionForward forward = new ActionForward();
-			forward.setPath("./AdminBookDLos.am?direct=1");
-			forward.setRedirect(true);
-			return forward;
+			request.setCharacterEncoding("utf-8");		
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+			out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+			out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+			out.print("<script src='./js/jquery-ui.min.js'></script>");
+			out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
+			out.println("<script>");
+			out.println("$(document).ready(function() { ");
+			out.println("$.Alert('손망실 등록이 완료되었습니다' , function(){"
+					+ "location.href = './AdminIndex.am'"
+					+ "});");
+			out.println("});");
+			out.println("</script>");
+			out.close();
+			
+			return null;
 		}
 		
 		

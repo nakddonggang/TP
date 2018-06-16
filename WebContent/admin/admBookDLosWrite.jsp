@@ -25,30 +25,6 @@
 <script type="text/javascript">
 $(document).ready(function() {	
 	
-function Request(valuename){
-	var rtnval;
-	var nowAddress = unescape(location.href);
-	var parameters = new Array();
-	parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
-		for(var i = 0 ; i < parameters.length ; i++){
-			if(parameters[i].split("=")[0] == valuename){
-				rtnval = parameters[i].split("=")[1];
-				if(rtnval == undefined || rtnval == null){
-					rtnval = "";
-				}
-				return rtnval;
-			}
-		}
-}
-	
-// $('#hbook_write').click(function(){
-// 	$.Confirm(
-// 		'손망실 책을 등록하시겠습니까?',
-// 		function(){
-// 			$('#hb_submit').submit(); });
-// 		}
-// 	);
-
 		$('#dlos_fr').submit(function() {
 			if ($('#dlos_text1').val() == "") {
 				$.Alert("손망실 사유를 입력해 주세요", function(){});
@@ -56,15 +32,10 @@ function Request(valuename){
 			} else if ($('#dlos_text2').val() == "") {
 				$.Alert("도서 상태를 기입해 주세요", function(){});
 				return false;
-			} else { }
+			} else { $.Confirm(
+					'손망실 책을 등록하시겠습니까?', function(){ });
+			}
 		});
-	
-	// direct값이 1이면 바구니에 정상적으로 들어간 것  
-	var direct = Request("direct");
-	if(direct=="1"){
-		$.Alert('손망실 등록이 완료되었습니다', function(){
-			location.replace('./AdminIndex.am'); });
-	} else{}
 	
 });
 </script>

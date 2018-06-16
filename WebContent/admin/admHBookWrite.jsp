@@ -23,6 +23,19 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$('#hb_write_fr').submit(function(){
+		if ($('#hb_isbn').val() == "") {
+			$.Alert("국제표준번호를 입력해 주세요", function(){});
+			return false;
+		} else { $.Confirm( '희망도서 책 정보를 수정하시겠습니까?', function(){  });
+		}
+	});
+	
+});
+</script>
 </head>
 <body>
 	<%
@@ -57,7 +70,7 @@ BookDTO bookdto = (BookDTO)request.getAttribute("bookdto");
 					<div class='join_form adminfo_join_form' >
 					<h3>희망도서 정보</h3>
 					<div class="adm">
-					<form action="./AdminHBookWriteAction.am" method="post">
+					<form action="./AdminHBookWriteAction.am" method="post" id="hb_write_fr">
 						<ul class="row">
 							<li>
 								<ul class="row_sub">
@@ -96,7 +109,8 @@ BookDTO bookdto = (BookDTO)request.getAttribute("bookdto");
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>국제표준번호</span></li>
-										<li class="inp_form"><input type="text" name="hbook_isbn" <%if(bookdto.getHbook_isbn()!=null){%>value="<%=bookdto.getHbook_isbn()%><%}%>"></li>
+										<li class="inp_form"><input type="text" name="hbook_isbn"  id="hb_isbn"
+										<%if(bookdto.getHbook_isbn()!=null){%>value="<%=bookdto.getHbook_isbn()%><%}%>"></li>
 								</ul>
 							</li>
 							<li>

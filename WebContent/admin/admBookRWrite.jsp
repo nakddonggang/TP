@@ -54,7 +54,9 @@ $(document).ready(function() {
 		}  else if ($('#bok_io_fr_8').val() == "") {
 			$.Alert("작성내용을 모두 입력해 주세요", function(){});
 			return false;
-		}  else { }
+		}  else {
+			$.Confirm( '입고된 책 정보를 수정하시겠습니까?', function(){ } );
+		}
 	});
 	
 });

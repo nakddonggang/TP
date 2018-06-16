@@ -24,23 +24,7 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-	
-	function Request(valuename){
-		var rtnval;
-		var nowAddress = unescape(location.href);
-		var parameters = new Array();
-		parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
-			for(var i = 0 ; i < parameters.length ; i++){
-				if(parameters[i].split("=")[0] == valuename){
-					rtnval = parameters[i].split("=")[1];
-					if(rtnval == undefined || rtnval == null){
-						rtnval = "";
-					}
-					return rtnval;
-				}
-			}
-	}
-	
+
 	$('#bok_io_fr').submit(function() {
 		if ($('#bok_io_fr_1').val() == "") {
 			$.Alert("작성내용을 모두 입력해 주세요", function(){});
@@ -69,16 +53,10 @@ $(document).ready(function() {
 		}  else if ($('#bok_io_fr_9').val() == "") {
 			$.Alert("작성내용을 모두 입력해 주세요", function(){});
 			return false;
-		} else { }
+		} else {
+			$.Confirm( '입력하신 책을 입고하시겠습니까?', function(){ } );
+		}
 	});
-	
-
-	// direct값이 1이면 바구니에 정상적으로 들어간 것  
-		var direct = Request("direct");
-		if(direct=="1"){
-			$.Alert('책 입고가 정상 등록 되었습니다!', function(){
-				location.replace('./AdminIndex.am'); });
-		} else{}
 
 });
 </script>

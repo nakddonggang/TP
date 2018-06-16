@@ -26,13 +26,16 @@
 <script type="text/javascript">
 $(document).ready(function() {	
 	
-$('#hbook_rewrite').click(function(){
-	$.Confirm(
-		'손망실 정보를 수정하시겠습니까?',
-		function(){
-			$('#hb_submit').submit(); });
+$('#hb_submit').submit(function(){
+	if ($('#dlos_re_1').val() == "") {
+		$.Alert("손망실 사유를 입력해 주세요", function(){});
+		return false;
+	} else {
+		$.Confirm(
+		'손망실 정보를 수정하시겠습니까?', function(){ });
 		}
-	);
+	}
+);
 	
 });
 </script>
@@ -86,7 +89,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 							<li>
 								<ul class="row_sub">
 										<li class="title"><span>사유</span></li>
-										<li class="ta_form"><textarea cols="20" rows="10" name="dbook_reason"></textarea></li>
+										<li class="ta_form"><textarea cols="20" rows="10" name="dbook_reason" id="dlos_re_1"></textarea></li>
 								</ul>
 							</li>
 							<li>

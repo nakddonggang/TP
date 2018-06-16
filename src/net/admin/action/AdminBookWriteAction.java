@@ -23,7 +23,6 @@ public class AdminBookWriteAction implements Action{
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
 		
 		// file 객체
 		String realPath=request.getRealPath("/upload/book");
@@ -61,9 +60,23 @@ public class AdminBookWriteAction implements Action{
 			System.out.println("Fail");
 			return null;
 		} else {
-			forward.setPath("./AdminBookWrite.am?direct=1");
-			forward.setRedirect(true);
-			return forward;
+			request.setCharacterEncoding("utf-8");		
+			response.setContentType("text/html;charset=utf-8");
+			PrintWriter out = response.getWriter();
+			out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+			out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+			out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+			out.print("<script src='./js/jquery-ui.min.js'></script>");
+			out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
+			out.println("<script>");
+			out.println("$(document).ready(function() { ");
+			out.println("$.Alert('책 입고가 정상 등록 되었습니다!' , function(){"
+					+ "location.href = './AdminIndex.am'"
+					+ "});");
+			out.println("});");
+			out.println("</script>");
+			out.close();
+			return null;
 		}
 		
 	}

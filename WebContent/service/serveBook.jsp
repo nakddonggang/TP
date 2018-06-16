@@ -46,7 +46,7 @@
 		// direct값이 1이면 바구니에 정상적으로 들어간 것  
 		var direct = Request("direct");
 		if(direct=="1"){
-			$.Alert('희망도서 작성이 완료되었습니다!', function(){
+			$.Alert('희망도서 작성완료이 완료되었습니다', function(){
 				location.replace('./BookIndex.bk'); });
 		} else{}
 		
