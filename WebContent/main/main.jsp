@@ -15,6 +15,7 @@
 <link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
+<link href="<c:url value="/css/main.css"/>" rel="stylesheet" type="text/css">
 <script src="<c:url value="/js/jquery-3.3.1.min.js"/>"></script>
 <script src="<c:url value="/js/jquery-ui.min.js"/>"></script>
 <script src="<c:url value="/js/jquery.bxslider.min.js"/>"></script>
@@ -182,7 +183,7 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
-				
+				<div class="box_wrap">
 			<!-- 	인기도서	 -->
 				<div class="main_conpop main_div">
 				<div class="main_box">
@@ -279,7 +280,7 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 					</div>
 					 
 					 <!--  통계   -->
-					 <div class="main_consta main_div">
+					 <div class="main_consta main_div" onclick="location.href='./GuideStatis.fp'">
 						 <div class="main_box">
 						 <h2>Statis</h2>
 						 
@@ -288,12 +289,12 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 <!-- 							<div id="visit" style="width: 400px; height: 150px;"></div> -->
 <!-- 						 </div>	 -->
 								
-						 <div id="sta_size" onclick="location.href='./GuideStatis.fp">
+						 <div id="sta_size">
 							<p class="tit">장서 입고수</p>
 							<div id="book"></div>
 						 </div>
 						
-						 <div id="sta_size" onclick="location.href='./GuideStatis.fp">
+						 <div id="sta_size">
 							<p class="tit">대출 수</p>
 							<div id="bbook"></div>
 						 </div>
@@ -304,7 +305,7 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 					 
 					 
 					 
-					 
+					 </div>
 				</div>
 				<!-- //메인 페이지-->
 				</article>

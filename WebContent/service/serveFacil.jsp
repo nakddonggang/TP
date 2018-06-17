@@ -43,6 +43,7 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
+				<div class="box_wrap">
 				<div class="text_top">
 							<h3>열람실 자리 신청</h3>
 							<div class="dl_box">
@@ -87,6 +88,7 @@
 					</div>
 				
 					</fieldset>
+				</div>
 				</div>
 				<!-- //메인 페이지-->
 				</article>
