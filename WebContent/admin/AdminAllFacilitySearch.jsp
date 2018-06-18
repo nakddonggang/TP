@@ -74,6 +74,13 @@
 					<div class="content">
 					<div class=board>
 					<%
+					String member_id = (String) session.getAttribute("member_id");
+					if (member_id == null) {
+						boolean admincheck = (boolean) session.getAttribute("admincheck");
+						if(admincheck == false) {
+								response.sendRedirect("./Main.fp");
+						}
+					}
 					int count = ((Integer)request.getAttribute("count")).intValue();
 					String pageNum = (String)request.getAttribute("pageNum");
 					String search = request.getParameter("search");

@@ -38,9 +38,12 @@ MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
 int borrowcount = (int)(request.getAttribute("borrowcount"));
 int overduecount = (int)request.getAttribute("overduecount");
 int overduedate = (int)request.getAttribute("overduedate");
-String member_id = (String)session.getAttribute("member_id");
-if ((member_id == null) || !(member_id.equals("admin"))) {
-	response.sendRedirect("./Main.fp");
+String member_id = (String) session.getAttribute("member_id");
+if (member_id == null) {
+	boolean admincheck = (boolean) session.getAttribute("admincheck");
+	if(admincheck == false) {
+			response.sendRedirect("./Main.fp");
+	}
 }
 SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 %>
