@@ -137,7 +137,7 @@ $(document).ready(function(){
 													else file = bDTO.getNotice_file().split(",")[0];
 											
 													if(!(bDTO.getNotice_file().split(",")[1].equals("null"))){
-														%><p><img src="./upload/<%=bDTO.getNotice_file().split(",")[1]%>" width="100" height="100"></p><%
+														%><p><img src="./upload/notice/<%=bDTO.getNotice_file().split(",")[1]%>" width="100" height="100"></p><%
 													}
 												}
 												%>
