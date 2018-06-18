@@ -233,7 +233,7 @@ $('#book_sort').change(function(){
 							$('.AjaxTest').append(pic3);
 
 							if (member_id!=""){
-								var text9="<div class='btn_btm_center' id='text10'><ul><li><input type='submit' value='책바구니' id='basket_Fr_btn' class='btn_type4 BTN_IF_LIST'></li></ul></div>";
+								var text9="<div class='btn_btm_center' id='text10'><ul><li><input type='button' onclick='basket_click();' value='책바구니' id='basket_Fr_btn' class='btn_type4 BTN_IF_LIST'></li></ul></div>";
 								$('.AjaxTest').append(text9);
 							}
 							
@@ -482,7 +482,7 @@ if(view==null) view = "1";
 								<input type="button" value="게시판" id="book_cont_btn"  class="book_btn" >
 							</div>
 
-<form action="./MemberBasketAdd.me" method="post" id="basket_Fr">		
+<form action="" method="post" id="basket_Fr">		
 <div class="AjaxTest">
 							<p>
 								Total_<span><%=count%></span>	
@@ -644,7 +644,7 @@ $(window).on('load', function() {
 							<%if(member_id!=null){ %>
 							<div class="btn_btm_center">
 								<ul>
-									<li><input type="submit" value="책바구니" id="basket_Fr_btn"
+									<li><input type="button" onclick="basket_click();" value="책바구니" id="basket_Fr_btn"
 										class="btn_type4 BTN_IF_LIST"></li>
 								</ul>
 							</div>
@@ -669,21 +669,20 @@ $(window).on('load', function() {
 </div>						 
 </form>
 <script type="text/javascript">
-$(document).ready(function(){
-// 책바구니 이동 Jquery
-		$('#basket_Fr').submit(function(){
+	
+		function basket_click(){
 			if ($('.bncheck').is(":checked") == false){
 				$.Alert("책을 선택해주세요",function(){ });
 				return false;
 			}else {
-// 				var result = confirm("책바구니에 담?");
-// 				if (true){ ('#basket_Fr').submit; }
 				$.Confirm(
 					"책바구니에 담으시겠습니까?",
-					function(){  });
+					function(){
+						$('#basket_Fr').attr("action","./MemberBasketAdd.me");
+						$('#basket_Fr').submit();
+					});
 			} 
-		});
-});
+		}
 </script>
 						</div>
 					</div>

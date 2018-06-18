@@ -418,11 +418,11 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 .join_form .row_sub > li.adm_inp_form input[type="text"] {width:290px; margin-right:6px; margin-left:6px; text-indent:10px;}
 .join_form .row_sub > li textarea { float: left;width: 100%; resize: none; background: #f6f6f6; border: 0; font-family: "Noto_M";}
 .adm_h_1{ font-size: 17px;}
-.bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info, .info_bbutton2, #bbutton, #rbutton, #bbutton2, .mod_btn {border: none; background-color: #FAE0D4; margin-top: 30px;}
+.rbutton, .rebutton, .bbutton2, .bbutton_info, #bbutton, #rbutton, #bbutton2 {border: none; background-color: #FAE0D4; margin-top: 30px;}
 #bbutton, #rbutton, #bbutton2, #borrowBook{border: none; background-color: #FAE0D4; margin:2px auto; color: black; }
 .bncheck {line-height: 70%; height: 90%;}
 #book_cont_btn, #book_pic_btn { float:right; margin-left: 5px ; margin-top: 0; display: block; width: 50px; height: 30px; color: #fff !important; border: 0; text-align: center; background: #464646; color: #fff; cursor: pointer;}
-
+.info_bbutton2, .mod_btn {border: none; background-color: #FAE0D4; margin-top: 30px;}
 
 /* START 김영지 책 갤러리 형식으로 보기 css */
 .book_lst {overflow: hidden; width: 90%; margin: 0 auto; position: relative; margin-top:10px; }
@@ -645,7 +645,7 @@ strong#currentPage {font-weight: bold;}
 	.brd_txt_lst li > .con_lst > ul > li.adm_col_dateh {width:30%; padding:0 10px;}
 	.brd_txt_lst li > .con_lst > ul > li.adm_col_exh {display: none;}
 	.join_form .row_sub > li.adm_inp_formh input[type="text"] {width:220px;  text-indent:10px;}
-	
+	.info_bbutton2, .mod_btn {border: none; background-color: #FAE0D4; margin-top: 15px;}
 	/* admin rbook */
 	.view_lst .con_lst > ul.no_scroll .col_con_rid {width:27%; padding:0 5px;}
 	.view_lst .con_lst > ul.no_scroll .col_con_rnum {width:17%; padding:0 5px;}
@@ -692,9 +692,9 @@ strong#currentPage {font-weight: bold;}
 	.brd_txt_lst li > .con_lst > ul > li.buk_t {width:35%; padding:0 5px;}
 	.brd_txt_lst li > .con_lst > ul > li.buk_n {width:19%; padding:0 5px;}
 	
-	.bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info, .info_bbutton2 {border: none; background-color: #FAE0D4; margin-top: 15px;}
-	.btn_type7{margin: 13px 0 0 5px;}
-	
+.bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info {border: none; background-color: #FAE0D4; height: 40px;}
+.btn_type7{margin: 13px 0 0 5px;}
+
 	
 	
 }

@@ -50,26 +50,30 @@
 				location.replace('./BookIndex.bk'); });
 		} else{}
 		
-		$('#serve_Book').submit(function() {
-			if ($('#serve_book_text1').val() == "") {
-				$.Alert("작성내용을 모두 입력해 주세요", function(){});
-				return false;
-			} else if ($('#serve_book_text2').val() == "") {
-				$.Alert("작성내용을 모두 입력해 주세요", function(){});
-				return false;
-			} else if ($('#serve_book_text3').val() == "") {
-				$.Alert("작성내용을 모두 입력해 주세요", function(){});
-				return false;
-			} else if ($('#serve_book_text4').val() == "") {
-				$.Alert("작성내용을 모두 입력해 주세요", function(){});
-				return false;
-			} else {
-				$.Confirm(
-						"희망도서 신청을 하시겠습니까?",
-						function(){ });
-			}
-		});
 	});
+	
+function hb_submit(){
+		if ($('#serve_book_text1').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else if ($('#serve_book_text2').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else if ($('#serve_book_text3').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else if ($('#serve_book_text4').val() == "") {
+			$.Alert("작성내용을 모두 입력해 주세요", function(){});
+			return false;
+		} else {
+			$.Confirm(
+					"희망도서 신청을 하시겠습니까?",
+					function(){ 
+						$('#serve_Book').attr("action","./ServeBookAction.bk");
+						$('#serve_Book').submit();
+					});
+		}
+	}
 </script>
 </head>
 <body>
@@ -124,7 +128,7 @@
 					<div class='join_form adminfo_join_form'>
 						
 						<div class="adm">
-							<form action="./ServeBookAction.bk" method="post" id="serve_Book">
+							<form action="" method="post" id="serve_Book">
 								<input type="hidden" value="wait" name="hbook_check">
 								<ul class="row">
 									<li>
@@ -166,7 +170,7 @@
 
 								<div class="btn_btm_center">
 									<ul>
-										<li class="btn_cancle"><input type="submit"
+										<li class="btn_cancle"><input type="button" onclick="hb_submit();"
 											value="도서 신청하기" class="btn_type4 BTN_IF_LIST"></li>
 										<li class="adm_btn__left"><input type="reset" value="취소"
 											class="btn_type4 BTN_IF_LIST"></li>
