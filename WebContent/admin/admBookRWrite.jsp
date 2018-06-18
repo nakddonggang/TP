@@ -27,9 +27,7 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	
-	$('#bok_io_fr').submit(function() {
+function book_reio(){
 		if ($('#bok_io_fr_1').val() == "") {
 			$.Alert("작성내용을 모두 입력해 주세요", function(){});
 			return false;
@@ -55,11 +53,11 @@ $(document).ready(function() {
 			$.Alert("작성내용을 모두 입력해 주세요", function(){});
 			return false;
 		}  else {
-			$.Confirm( '입고된 책 정보를 수정하시겠습니까?', function(){ } );
+			$.Confirm( '입고된 책 정보를 수정하시겠습니까?', function(){ 
+				$('#bok_io_fr').attr("action","./AdminBookReWriteAction.am");
+				$('#bok_io_fr').submit(); });
 		}
-	});
-	
-});
+}	
 </script>
 </head>
 <body>
@@ -95,7 +93,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 				
 					<div class='join_form adminfo_join_form' >
 					<h3>도서 정보 수정하기</h3>
-					<form action="./AdminBookReWriteAction.am" method="post" id="bok_io_fr">
+					<form action="" method="post" id="bok_io_fr">
 						<input type="hidden" name="book_number" value="<%=bookList.getBook_number()%>">
 						<ul class="row">
 							<li>
@@ -159,7 +157,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 				<div class="btn_btm_center">
 				<ul>
 					<li class="adm_btn_cancle">
-						<input type="submit" value="수정하기"  class ="btn_type4 BTN_IF_LIST">
+						<input type="button" value="수정하기"  onclick="book_reio();" class ="btn_type4 BTN_IF_LIST">
 					</li>
 					<li class="adm_btn__left">
 						<input type="reset" value="취소" class ="btn_type4 BTN_IF_LIST">

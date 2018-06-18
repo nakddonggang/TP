@@ -26,7 +26,7 @@ public class BoardFaqWriteAction implements Action{
 		
 		int faq_num=bDAO.selectFaq()+1;
 		
-		String realPath=request.getRealPath("/upload");
+		String realPath=request.getRealPath("/upload/faq");
 		System.out.println("upload폴더 물리적 경로: "+realPath);
 		
 		int maxSize=5*1024*1024;

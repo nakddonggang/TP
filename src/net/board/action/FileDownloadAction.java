@@ -26,7 +26,7 @@ public class FileDownloadAction implements Action{
 
         // 실제 파일이 들어있는 경로에 설정한 
         // upload폴더와 파일 이름을 붙여서
-        String uploadFileName = request.getRealPath("/upload") + "/" + filename;
+        String uploadFileName = request.getRealPath("/upload/notice") + "/" + filename;
  
         // 해당 스트링에서 파일을 가져온 후
         File downFile = new File(uploadFileName);

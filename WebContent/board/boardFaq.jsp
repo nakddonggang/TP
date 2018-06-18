@@ -47,12 +47,13 @@ $(document).ready(function(){
 	}
 	var pageNum = Request("pageNum");
 	var selected = Request("selected");
-	if(pageNum=="") pageNum=1;
-// 	var selected = "";
+	if(pageNum == "") pageNum=1;
+
 	pageLoad(pageNum,selected);
 	
 	function pageLoad(pageNum,selected){
-// 		selected = $('#faq_select').val();
+		selected = "all";
+		$("#faq_select option:eq(0)").prop("selected", true);
 		loadAjax(pageNum, selected);
 	}
 	
@@ -108,7 +109,7 @@ $(document).ready(function(){
 						/***********	이미지 처리 부분		**************/
 						if(jsonData[i].faq_file != null){
 							file = jsonData[i].faq_file;
-							var test2 = "<p><img src='./upload/"+jsonData[i].faq_file+"' width='100' height='100'></p>";
+							var test2 = "<p><img src='./upload/faq/"+jsonData[i].faq_file+"' width='100' height='100'></p>";
 							$('#con_detail'+i).append(test2);
 						}
 						var test3 = "<p>"+faq_content+"</p><div class='file'><span>첨부파일</span><ul>"+file+"</ul></div>"
