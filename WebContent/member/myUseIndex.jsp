@@ -90,7 +90,7 @@
 											<li class="col_use"><%=bDTO.getBook_subject() %></li>
 											<li class="col_mem_r"><%=bDTO.getRbook_num() %></li>
 											<li class="col_mem_r"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
-											<li><%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
+											<li class="col_mem_r"><%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
 												%><input type="button" value ="대출신청" onclick="location.href='./BorrowBookAction.me?book_number=<%=bDTO.getBook_number()%>'" class="btn_type7">
 											<%} %></li>
 										</ul>
