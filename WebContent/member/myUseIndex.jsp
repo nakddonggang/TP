@@ -68,10 +68,10 @@
 							<li class="view_lst">
 								<div class="con_lst">
 								<ul class="no_scroll title_t">
-									<li class="col_mem_b">책 제목</li>
-									<li class="col_mem_b">예약번호</li>
-									<li class="col_mem_b">예약신청날짜</li>
-									<li>신청버튼</li>
+									<li class="col_mem_r">책 제목</li>
+									<li class="col_mem_r">예약번호</li>
+									<li class="col_mem_r">예약신청날짜</li>
+									<li class="col_mem_r">신청버튼</li>
 								</ul>
 								</div>							
 							
@@ -87,11 +87,11 @@
 									%>
 									<div class="con_lst">
 										<ul class="no_scroll" onclick="location.href='./MemberMyUseRBookList.me'">
-											<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
-											<li class="col_mem_b"><%=bDTO.getRbook_num() %></li>
-											<li class="col_mem_b"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
+											<li class="col_use"><%=bDTO.getBook_subject() %></li>
+											<li class="col_mem_r"><%=bDTO.getRbook_num() %></li>
+											<li class="col_mem_r"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
 											<li><%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
-												%><input type="button" value ="대출신청" onclick="location.href='./BorrowBookAction.me?book_number=<%=bDTO.getBook_number()%>'">
+												%><input type="button" value ="대출신청" onclick="location.href='./BorrowBookAction.me?book_number=<%=bDTO.getBook_number()%>'" class="btn_type7">
 											<%} %></li>
 										</ul>
 									</div>
@@ -121,10 +121,10 @@
 							<li class="view_lst">
 							<div class="con_lst">
 								<ul class="no_scroll title_t">
-								<li class="col_mem_b">목록</li>
-								<li class="col_mem_b">책 제목</li>
-								<li class="col_mem_b">대출일자</li>
-								<li class="col_mem_b">반납할 일자</li>
+								<li class="col_mem_r">목록</li>
+								<li class="col_mem_r">책 제목</li>
+								<li class="col_mem_r">대출일자</li>
+								<li class="col_mem_r">반납할 일자</li>
 							</ul>
 							</div>
 							<%
@@ -138,10 +138,10 @@
 							%>
 							<div class="con_lst">
 							<ul class="no_scroll" >
-								<li class="col_mem_b"><input type="checkbox" name = "returnBookCheckBox"  value ="<%=bDTO.getBook_number() %>" class = "checkbox"></li>
-								<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
-								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
-								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
+								<li class="col_che"><input type="checkbox" name = "returnBookCheckBox"  value ="<%=bDTO.getBook_number() %>" class = "checkbox"></li>
+								<li class="col_use"><%=bDTO.getBook_subject() %></li>
+								<li class="col_mem_r"><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
+								<li class="col_mem_r"><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
 							</ul>
 							</div>
 							<%
@@ -152,7 +152,7 @@
 						</ul>
 						
 						<div class="btn_btm_center">		
-										<input type = "button" value = "반납하기"  id = "useIndexBtn">				
+										<input type = "button" value = "반납하기"  id = "useIndexBtn" class="btn_type5">				
 										<input type = "button" value ="대출내역보기"  class="btn_type5" onclick = "location.href ='./MemberMyUseBorrowBookList.me'">
 								</div>
 						 </div>
