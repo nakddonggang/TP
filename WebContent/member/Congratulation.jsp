@@ -41,18 +41,30 @@
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 					<div class="content">
-						<div class='member_content'>
-						
-					
-					<div class='join_form'>
-						<h1>가입을 축하 합니다.</h1> 
-							<ul>
-								<li class="btn_cancle"><input type="button" value="로그인" class ="btn_type4" onclick = "location.href = './MemberLogin.me'"></li>
+					<div class="content">
+				<div class = "board">
+
+				    <span class="intro">Congraturation</span>
+					<div class="dl_boxg">
+							<dl>
+							<dt>가입인사</dt>
+							<dd><span class="bold">혜윰나래의 회원가입을 감사드립니다.</span></dd>
+							<dd>회원님의 가입은 성공적으로 이루어졌습니다.</dd>
+							<dd><span class="bold">생각의 날개</span>를 펼쳐 지식을 펼칠 수 있는 혜윰나래에서 알찬 정보를 얻으시길 바랍니다! </dd>
+							</dl>
+							<br>
+							<br>
+							<div class="btn_btm_center">
+								<ul>
+									<li><input type="button" value="로그인" class ="btn_type4" onclick = "location.href = './MemberLogin.me'"></li>
 								<li><input type="button" value="메인으로" class ="btn_type4" id="BTN_CLOSE" onclick = "location.href = './Main.fp'"></li>
-							</ul>
+								</ul>
+							</div>
+							
+					</div>
 					</div>
 				</div>
-				</div>
+
 			</article>
 		</section>
 	</div>
