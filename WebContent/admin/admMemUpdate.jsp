@@ -160,8 +160,9 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 							</ul>
 							<div class="btn_btm_center">
 								<ul>
-									<li class="btn_cancle">
-										<input type="button" value="뒤로가기" onclick='history.back();' class ="btn_type4 BTN_IF_LIST">
+									<li>
+										<input type="button" value="뒤로가기" onclick='history.back();' class ="btn_type4 BTN_IF_LIST"></li>
+										<li>
 										<input type="button" value="수정하기" class ="btn_type4 BTN_IF_LIST" id="updateBtn">
 										
 									</li>

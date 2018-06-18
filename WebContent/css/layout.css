@@ -27,7 +27,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .fullpage {z-index:2;} /* 본문 z-index설정 */
 
 .member_modal {display:block; width:350px; margin:0 auto;}
-.member_modal .info_txt {display:table; width:300px; height:80px; padding:0 30px; margin:15px auto 0; border:1px solid #e5e5e5; letter-spacing:-0.08em; background:#fff;}
+.member_modal .info_txt {display:table; width:300px; height:80px; padding:0 30px; margin:15px 0 0 0; border:1px solid #e5e5e5; letter-spacing:-0.08em; background:#fff;}
 .member_modal .info_txt p {display:table-cell; vertical-align:middle; text-align:center;}
 .member_modal .info_txt p span {display:inline-block; color:#000; font-family:"Noto_M";}
 .member_modal form {width:350px;}
@@ -124,7 +124,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 	.mainmenu {width:100% !important;}
 	
 	.SECTION_FULL_PAGE01 .fp-slides {height:240px !important;}
-	.SECTION_FULL_PAGE01 .fp-tableCell {height:720px !important;}
+	.SECTION_FULL_PAGE01 .fp-tableCell {height:720px !important; background-color: white;}
 	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-prev {left:20px !important;}
 	.SECTION_FULL_PAGE01 .fp-slidesNav {bottom:10px !important;}
 	.SECTION_FULL_PAGE01 .arrow_wrap {margin:10px auto 0 !important;}

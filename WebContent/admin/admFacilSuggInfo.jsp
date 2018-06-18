@@ -237,6 +237,7 @@ String pageNum = (String)request.getAttribute("pageNum");
 						}
 					%>
 				</select>
+				
 			</div>
 			<div class="btn_btm_center btn_btm_modal" id="BTN_CLOSE1">
 				<ul>

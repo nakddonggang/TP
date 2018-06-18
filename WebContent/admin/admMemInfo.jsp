@@ -151,10 +151,9 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 							</ul>
 							<div class="btn_btm_center">
 								<ul>
-									<li class="btn_cancle">
-										<input type="button" value="글목록" onclick='location.href="./AdminMemberIndex.am?pageNum=<%=pageNum %>&member_level=<%=member_level %>"' class ="btn_type4 BTN_IF_LIST">
-										<input type="button" value="회원정보수정" onclick="location.href='./AdminMemberUpdate.am?info_id=<%=mDTO.getMember_id() %>'" class ="btn_type4 BTN_IF_LIST">
-										
+									<li>
+										<input type="button" value="글목록" onclick='location.href="./AdminMemberIndex.am?pageNum=<%=pageNum %>&member_level=<%=member_level %>"' class ="btn_type4 BTN_IF_LIST"></li>
+									<li>	<input type="button" value="회원정보수정" onclick="location.href='./AdminMemberUpdate.am?info_id=<%=mDTO.getMember_id() %>'" class ="btn_type4 BTN_IF_LIST">
 									</li>
 								</ul>
 							</div>

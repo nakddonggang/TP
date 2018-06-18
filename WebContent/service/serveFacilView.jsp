@@ -88,6 +88,7 @@
 														out.print("<input type='button' value='반납' class ='btn_type4' onclick=location.href='./FacilityUnUseAction.fy?facil_num=" + fDTO.getFacil_num() + "&facil_use=" + fDTO.getFacil_use() + "&facil_stime=" + time + "'>");
 													} else if(check == 1) { out.print("<span>사용중인 자리 반납 후 사용 가능 합니다.</span>");
 												} else out.print("<span>좌석 예약은 로그인 후 이용 가능합니다</span>");
+												}
 											%>	
 										</li> 
 										<li>
