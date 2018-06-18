@@ -81,7 +81,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 
 
-
+.btn_type7 {margin:13px 0 0 40px;  top: 90px; width: 60px; height: 25px; line-height: 25px; color: #fff !important; border: 0; text-align: center; background: #464646; font-size: 0.5em; margin-bottom: 3px;}
 .btn_type6 {top: 90px; width: 60px; height: 25px; line-height: 25px; color: #fff !important; border: 0; text-align: center; background: #464646; font-size: 0.5em; margin-bottom: 3px;}
 .btn_type5 {position:absolute; top:-25px; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
 .btn_type1 {position:absolute; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; font-size:1.14em;}
@@ -90,7 +90,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .btn_type4 {display:block; width:96px; height:40px; line-height:40px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
 .btn_btm {position:relative; margin-bottom:150px;}
 .btn_btm_center {position:relative; width:100%; margin-bottom:20px; margin-top:30px;}
-.btn_btm_center1 {position:relative; width:100%; margin-bottom:20px;}
+.btn_btm_center1 {position:relative; width:100%; margin-bottom:40px;}
 .btn_btm_center ul {text-align:center;}
 .btn_btm_center ul li {display:inline-block;}
 .btn_btm_center ul li.btn_cancle {padding-right:6px;}
@@ -316,6 +316,11 @@ h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-famil
 .view_lst .con_lst > ul.no_scroll .col_mem_r {width:25%; padding:0 5px;}
 .view_lst .con_lst > ul.no_scroll .col_mem_b {width:33%; padding:0 10px;}
 
+.view_lst .con_lst > ul.no_scroll .col_use {width:25%; padding:0 5px;}
+.view_lst .con_lst > ul.no_scroll .col_che {width:25%; padding:12px 5px 0 5px;}
+
+
+
 /* member css*/
 
 /* busket css */
@@ -522,6 +527,7 @@ strong#currentPage {font-weight: bold;}
 
 
 @media (max-width:767px){
+	.box_wrap{margin: 0 auto; width: 320px;}
 /*main*/
 .main_concur {width: 320px; height: 350px;}
 .main_concur ul {padding:10px 20px;}
@@ -608,7 +614,7 @@ strong#currentPage {font-weight: bold;}
 	.write_form .row_subfacil2 > li {width: 70%; display: inline-table;}
 	/* admin facil end */
 	/* servefacil start*/
-	.seatLayout { margin: 10px; height: 240px; width: 320px;border: 2px solid #666; padding: 0px;}
+	.seatLayout { margin: 0px; height: 240px; width: 320px;border: 2px solid #666; padding: 0px;}
 	.seat {display: inline-block; width: 100%; height: 30px; margin: 5px;}
 	.seatLayout > ul > li {float: left;width: 30px;}
 	.seat > a > div { background-color: #464646; display: table-cell;width: 30px; height: 30px;cursor: pointer;text-align: center;vertical-align: middle; border-radius: 10px;}
@@ -627,6 +633,8 @@ strong#currentPage {font-weight: bold;}
 	/*myUseBookList*/
 	.view_lst .con_lst > ul.no_scroll .my_ppp{line-height: 14px;}
 	/*myUseBookList*/
+	
+	.view_lst .con_lst > ul.no_scroll .col_use {width:25%; padding:0 5px; line-height: 15px;}
 	
 /* admin css */
 	.join_form .row_subIO > li.title { width: 95px; height: 50px;padding: 5px 10px;background: #f6f6f6; font-family: "Noto_M";letter-spacing: -0.08em;text-align: center;}
@@ -685,8 +693,8 @@ strong#currentPage {font-weight: bold;}
 	.brd_txt_lst li > .con_lst > ul > li.buk_n {width:19%; padding:0 5px;}
 	
 .bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info {border: none; background-color: #FAE0D4; height: 40px;}
-	
-	
+.btn_type7{margin: 13px 0 0 5px;}
+
 	
 	
 }

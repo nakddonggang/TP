@@ -35,8 +35,6 @@ if(member_level==null){
 	member_level = "%";
 }
 MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
-String gm_check =(String)request.getAttribute("gm_check");
-String bl_check =(String)request.getAttribute("bl_check");
 int borrowcount = (int)(request.getAttribute("borrowcount"));
 int overduecount = (int)request.getAttribute("overduecount");
 int overduedate = (int)request.getAttribute("overduedate");
@@ -121,12 +119,14 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 									<ul class="row_sub">
 										<li class="title_adm"><span>회원등급</span></li>
 										<%
-										if(gm_check.equals("0")&&bl_check.equals("0")){
+										if(mDTO.getMember_level().equals("0")){
 										%><li class="inp_form"><input type="text" name="level" value="일반회원" readonly></li><%
-										}else if(gm_check.equals("1")){
-											%><li class="inp_form"><input type="text" name="level" value="우수회원" readonly></li><%
-										}else if(bl_check.equals("1")){
+										}else if(mDTO.getMember_level().equals("1")){
 											%><li class="inp_form"><input type="text" name="level" value="블랙리스트" readonly></li><%
+										}else if(mDTO.getMember_level().equals("2")){
+											%><li class="inp_form"><input type="text" name="level" value="우수회원" readonly></li><%
+										}else if(mDTO.getMember_level().equals("3")){
+											%><li class="inp_form"><input type="text" name="level" value="관리자" readonly></li><%
 										}%>
 									</ul>
 								</li>

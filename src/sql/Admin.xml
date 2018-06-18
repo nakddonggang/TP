@@ -507,8 +507,7 @@
  	select count(*) from good_member;
  	</select>
  	<select id="getMemberList" parameterType="hashmap" resultType="net.member.db.MemberDTO">
-		select m.member_id, m.member_pass, m.member_name, m.member_post, m.member_address1, m.member_address2, 
-		m.member_phone, m.member_email, m.member_date, m.member_level, g.borrow_count, ifnull(g.gm_check, 0) gm_check, b.bl_count, b.bl_date, ifnull(b.bl_check, 0) bl_check
+		select m.*, g.borrow_count, ifnull(g.gm_check, 0) gm_check, b.bl_count, b.bl_date, ifnull(b.bl_check, 0) bl_check
 		from member m
 		left join good_member g
 		on m.member_id=g.member_id 
@@ -516,15 +515,18 @@
 		on m.member_id = b.member_id 
 		where member_level LIKE #{member_level}
 		order by member_name desc limit #{startRow},#{pageSize}
+		
+<!-- 		select * from member where member_level LIKE #{member_level} order by member_name desc limit #{startRow},#{pageSize} -->
    	</select>
 	<select id="getAdminMember" parameterType="String" resultType="net.member.db.MemberDTO">
-	select m.member_id, m.member_pass, m.member_name, m.member_post, m.member_address1, m.member_address2, 
-		m.member_phone, m.member_email, m.member_date, g.borrow_count, ifnull(g.gm_check, 0) gm_check, b.bl_count, b.bl_date, ifnull(b.bl_check, 0) bl_check
+	select m.*, g.borrow_count, ifnull(g.gm_check, 0) gm_check, b.bl_count, b.bl_date, ifnull(b.bl_check, 0) bl_check
 		from member m
 		left join good_member g
 		on m.member_id=g.member_id 
 		left join blacklist b 
-		on m.member_id = b.member_id where m.member_id=#{member_id};
+		on m.member_id = b.member_id where m.member_id=#{member_id}
+		
+<!-- 		select * from member where member_id=#{member_id} -->
 	</select>
 	
 	<insert id="AdminFacilityInsert" parameterType="net.facility.db.FacilityDTO">
