@@ -23,9 +23,7 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-$(document).ready(function() {	
-	
-		$('#dlos_fr').submit(function() {
+function DLos_wr(){
 			if ($('#dlos_text1').val() == "") {
 				$.Alert("손망실 사유를 입력해 주세요", function(){});
 				return false;
@@ -33,11 +31,11 @@ $(document).ready(function() {
 				$.Alert("도서 상태를 기입해 주세요", function(){});
 				return false;
 			} else { $.Confirm(
-					'손망실 책을 등록하시겠습니까?', function(){ });
+					'손망실 책을 등록하시겠습니까?', function(){
+						$('#DLos_Fr').attr("action","./AdminBookDLosWriteAction.am");
+						$('#DLos_Fr').submit(); });
 			}
-		});
-	
-});
+}
 </script>
 </head>
 <body>
@@ -82,7 +80,7 @@ int book_number = Integer.parseInt(request.getParameter("book_number"));
 								</dl>
 							
 						</div>
-							<form action="./AdminBookDLosWriteAction.am"  method="post"  name="fr" id="dlos_fr">
+							<form action=""  method="post"  name="fr" id="DLos_Fr">
 								<ul class="row">
 									<li>
 										<ul class="row_sub">
@@ -106,7 +104,7 @@ int book_number = Integer.parseInt(request.getParameter("book_number"));
 										<div class="btn_btm_center">
 											<ul>
 												<li class="btn_cancle">
-													<input type="submit" value="손망실 신청" class ="btn_type4" id="hbook_write">
+													<input type="button" value="손망실 신청" onclick="DLos_wr();" class ="btn_type4" id="hbook_write">
 												</li>
 												<li>
 													<input type="reset" value="취소" class ="btn_type4">

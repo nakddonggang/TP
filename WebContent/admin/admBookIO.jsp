@@ -23,9 +23,7 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-
-	$('#bok_io_fr').submit(function() {
+function book_io(){
 		if ($('#bok_io_fr_1').val() == "") {
 			$.Alert("작성내용을 모두 입력해 주세요", function(){});
 			return false;
@@ -54,11 +52,11 @@ $(document).ready(function() {
 			$.Alert("작성내용을 모두 입력해 주세요", function(){});
 			return false;
 		} else {
-			$.Confirm( '입력하신 책을 입고하시겠습니까?', function(){ } );
+			$.Confirm( '입력하신 책을 입고하시겠습니까?', function(){
+				$('#bok_io_fr').attr("action","./AdminBookWriteAction.am");
+				$('#bok_io_fr').submit(); });
 		}
-	});
-
-});
+}	
 </script>
 </head>
 <body>
@@ -93,7 +91,7 @@ $(document).ready(function() {
 	
 			<div class="join_form">
 			<h3>책 입고하기</h3>
-			<form action="./AdminBookWriteAction.am" method="post" enctype="multipart/form-data" id="bok_io_fr">
+			<form action="" method="post" enctype="multipart/form-data" id="bok_io_fr">
 				<ul class="row">
 					<li>
 						<ul class="row_subIO">
@@ -153,7 +151,7 @@ $(document).ready(function() {
 				
 				<div class="btn_btm_center">
 				<ul>
-					<li class="btn_cancle"><input type="submit" value="입고하기" class ="btn_type4 BTN_IF_LIST"></li>
+					<li class="btn_cancle"><input type="button" value="입고하기" onclick="book_io();" class ="btn_type4 BTN_IF_LIST"></li>
 					<li class="btn_cancle"><input type="reset" value="취소" class ="btn_type4 BTN_IF_LIST"></li>
 				</ul>
 				</div>
