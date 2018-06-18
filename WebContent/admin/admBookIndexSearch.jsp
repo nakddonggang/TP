@@ -185,7 +185,7 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 								<li class="adm_subs2" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_subject()%></li>
 								<li class="adm_name over_dot" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_author()%></li>
 								<li class="adm_ten over_dot" id="adm_book_high"><%=booksearchLists.getBook_publisher()%></li>
-								<li class="adm_ten"><input type="button" id="<%=i %>" value="보기" class ="bbutton info" ></li>
+								<li class="adm_ten"><input type="button" id="<%=i %>" value="보기" class ="mod_btn info" ></li>
 							</ul>
 							
 							<div id="Borrow<%=i%>">
