@@ -321,7 +321,7 @@ firstload(pageNum, view);
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="book_div1" >
+									<div id="book_divv" >
 									</div>
 								</div>
 							</div>
