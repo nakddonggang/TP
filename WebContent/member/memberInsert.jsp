@@ -187,6 +187,10 @@ $(document).ready(function() {
 				}
 			});
 		});
+	
+	$("#BTN_CLOSE").click(function() {
+		location.href = "./Main.fp";
+	});
 
 	$("#submit_button").click(function() {
 		
@@ -420,7 +424,7 @@ $(document).ready(function() {
 									<input type="hidden" name="securedEmail2" id="securedEmail2" value="" />	
 									<ul>
 										<li class="btn_cancle"><input type="button" value="회원가입" class ="btn_type4" id ="submit_button"></li>
-										<li><input type="button" value="닫기" class ="btn_type4" id="BTN_CLOSE"></li>
+										<li><input type="button" value="뒤로가기" class ="btn_type4" id="BTN_CLOSE"></li>
 									</ul>
 								</div>
 							</form>
