@@ -55,7 +55,18 @@ if (member_id == null) {
 			<section class="fullpage SECTION_FULL_PAGE01">
 
 				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
+				<article class="submenu section SECTION">
+					<div class="slide DIV_SLIDE">
+						<div class="intro1">
+							<div class="slide_con">
+								<div class="box_thm">
+									<div id="admFacilSugg_img" >
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
 				<!-- //서브메뉴 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />

@@ -162,7 +162,18 @@ $(document).ready(function() {
 			<section class="fullpage SECTION_FULL_PAGE01">
 
 				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
+				<article class="submenu section SECTION">
+					<div class="slide DIV_SLIDE">
+						<div class="intro1">
+							<div class="slide_con">
+								<div class="box_thm">
+									<div id="memberUpdate_img" >
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
 				<!-- //서브메뉴 -->
 				<%
 					String member_id = (String)session.getAttribute("member_id");

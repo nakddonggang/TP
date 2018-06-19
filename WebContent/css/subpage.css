@@ -1,8 +1,5 @@
 @charset "UTF-8";
 
-
-
-
 .abc{width: 1px; height: 1px;}
 .seatLayout{    margin: 30px; height: 450px;width: 700px; border: 2px solid #666; padding: 0 20px 0 30px}
 .seatlegend{text-align: right; font-size: 1.4em; font-family:"Noto_M";}
@@ -165,47 +162,13 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-family: "Noto_B"; padding-left: 20px; background: #fff; border-bottom: 1px solid #ebebeb; letter-spacing: -0.05em;}
 
 .main_connot {margin-bottom:0;}
-.main_connot ul li {display:block; overflow:hidden; height:63px; padding-left:30px; border-bottom:1px solid #ebebeb; background:url("http://img.pajubookcity.org/WisdomForest/Common/bul_brd.gif") left 18px center; background-repeat:no-repeat; font-family:"Noto_M"; }
+.main_connot ul li {display:block; overflow:hidden; height:63px; padding-left:30px; border-bottom:1px solid #ebebeb; background:url("http://img.pajubookcity.org/WisdomForest/Common/bul_brd.gif") left 18px center; background-repeat:no-repeat;}
 .main_connot ul li:last-child {border-bottom:0;}
-.main_connot ul li a {line-height:63px; font-family:"Noto_M"; }
-.main_connot ul li a p {display:inline-block; width:278px; font-family:"Noto_M"; }
-.main_connot ul li a span {display:block; float:right; width:88px; padding-right:20px; text-align:right; font-family:"Noto_M"; }
-
-.main_consta .tit { font-size: 0.7em; line-height: 16px; margin-left: 10px; letter-spacing: -0.1em; font-family:"Noto_M";}
-.statis_pad {margin: 30px;}
-#sta_size{padding: 0 20px 0 40px;}
-#sta_size #book{width: 400px; height: 180px;}
-#sta_size #bbook{width: 400px; height: 180px;}
+.main_connot ul li a {line-height:63px;}
+.main_connot ul li a p {display:inline-block; width:278px;}
+.main_connot ul li a span {display:block; float:right; width:88px; padding-right:20px; text-align:right;}
 
 
-
-
-.main_lst {overflow: hidden; width: 90%; margin: 0 auto; position: relative; margin-top:10px; }
-.main_lst li { width: 200px; height: 300px; margin: 50px auto 50px auto; padding-bottom: 26px; position: relative;}
-.main_lst li a {color: #666; text-decoration: none; }
-.main_lst_img { width:99%; height: 270px;}
-.main_lst1 {overflow: hidden; width: 90%; margin: 0 auto; position: relative; }
-.main_lst1 li { width: 200px; height: 300px; margin: 50px auto 50px auto; padding-bottom: 26px; position: relative;}
-.main_lst1 li a {color: #666; text-decoration: none; }
-.main_lst1_img { width:99%; height: 270px;}
-#bk_li_subs { display: block; width: 99%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; margin-top: 2px;}
-/* .book_info_layer{ display: none; background: url(../book/bg_book_hover.png) no-repeat; } */
-.book_info_layer{ display: none;	position:absolute; top:0; left:0; width:97%; height:270px; background: url(../book/bg_book_hover.png) repeat;}
-.main_lst .book_info_layer > dt {height: 47px;	padding: 15px; width:99%; background-color: #222;  color: #fff; }
-.main_lst .book_info_layer > dt > span {overflow: hidden; display: inline-block;  height: 56px; line-height: 14px; word-break: break-all; text-overflow: ellipsis;  white-space: nowrap; width: 100%;}
-.main_lst li:HOVER .book_info_layer { display: block; z-index: 1; width:100%; }
-.main_lst .book_info_layer dd dl { padding: 15px 15px 0 15px; width:100%; box-sizing : border-box; }
-.main_lst .book_info_layer dd dt { float: left; width: 47px; height: auto;  margin-right: 10px;  line-height: normal;  font-size: 11px;  color: #a5a5a5; }
-.main_lst .book_info_layer dd dd {overflow: hidden;  margin-bottom: 9px;  font-size: 11px;  text-overflow: ellipsis;  white-space: nowrap;  color: #fff; }
-.main_lst1 .book_info_layer > dt {height: 47px;	padding: 15px; width:99%; background-color: #222;  color: #fff; }
-.main_lst1 .book_info_layer > dt > span {overflow: hidden; display: inline-block;  height: 56px; line-height: 14px; word-break: break-all; text-overflow: ellipsis;  white-space: nowrap; width: 100%;}
-.main_lst1 li:HOVER .book_info_layer { display: block; z-index: 1; width:100%; }
-.main_lst1 .book_info_layer dd dl { padding: 15px 15px 0 15px; width:100%; box-sizing : border-box; }
-.main_lst1 .book_info_layer dd dt { float: left; width: 47px; height: auto;  margin-right: 10px;  line-height: normal;  font-size: 11px;  color: #a5a5a5; }
-.main_lst1 .book_info_layer dd dd {overflow: hidden;  margin-bottom: 9px;  font-size: 11px;  text-overflow: ellipsis;  white-space: nowrap;  color: #fff; }
-
-
-/* END main*/
 
 
 /* board css start*/
@@ -338,13 +301,7 @@ h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-famil
 .view_lst .con_lst > ul.no_scroll .my_ppp {width:25%; padding:0 10px;  height: 70px; line-height: 70px;}
 /*myUseBookList*/
 
-
 .row_group{margin: 0 20px;}
-
-
-
-
-
 
 
 
@@ -359,10 +316,6 @@ h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-famil
 .join_form .row_sub > li input[type="text"].inp_form {width:60px; margin-right:6px; margin-left:6px; text-indent:10px}
 .join_form .row_sub > li input[type="text"].inp_form2 {width:60px; text-indent:10px}
 .join_form .row_sub > li select.phone_frist {float:left}
-.adminsearch_bx {position:absolute; top:0px; right:0; /*z-index:1;*/ border:1px solid #666; }
-.adminsearch_bx select {float:left; width:100px; height:34px; margin-right:5px; border:0; background:#f0f0f0; color:#999; font-family:"Noto_M";}
-.adminsearch_bx input.inp_search {float:left; width:340px; height:34px; border:0;}
-.adminsearch_bx input.btn_search {float:left; width:35px; height:34px; border:0; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
 /* end 박용철 작업(Q&A) */
 
 
@@ -440,7 +393,7 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 .book_lst .book_info_layer dd dd {overflow: hidden;  margin-bottom: 9px;  font-size: 11px;  text-overflow: ellipsis;  white-space: nowrap;  color: #fff; }
 
 /* END 김영지 책 갤러리 형식으로 보기 css */
-.over_dot { overflow: hidden; text-overflow: ellipsis;  white-space: nowrap; }
+
 
 /* start 윤창훈 작업(Notice List) */
 .view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%;}
@@ -499,19 +452,70 @@ p.sub_txt {margin: 15px 0 30px 0; }
 
 /* start 윤창훈 작업(page) */
 strong#currentPage {font-weight: bold;}
-.prev {background: url("../resource/img/003-back.png") no-repeat center center; width: 12px; height: 12px; line-height: 12px; display: inline-block;}
-.next {background: url("../resource/img/004-next.png") no-repeat center center; width: 12px; height: 12px; line-height: 12px; display: inline-block;}
-.prev2 {background: url("../resource/img/001-rewind.png") no-repeat center center; width: 16px; height: 12px; line-height: 12px; display: inline-block;}
-.next2 {background: url("../resource/img/002-fast-forward.png") no-repeat center center; width: 16px; height: 12px; line-height: 12px; display: inline-block;}
+.prev {background: url("../resource/img/pagenate_btn_prev.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
+.next {background: url("../resource/img/pagenate_btn_next.png") no-repeat center center; width: 20px; height: 20px; line-height: 20px; display: inline-block;}
 /* start 윤창훈 작업(page) */
 
 /* 각자 작업한 css end  ----------------------------------------------------------  */
 
+
+/*sub 사진 수정 */
 #book_divv {position: relative;width:100%;height:100vh;background-image:url("../book/library.jpeg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#guide_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#serveBook_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#serveFacil_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#myUseIndex_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardNUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQna_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardFaq_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#myUseBasket_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#guideStatis_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 
+/* amdin 사진 수정 */
+#admMemIndex_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookDLos_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookDLosInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookDLosReWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookIndexAJ_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookIndexSearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookIO_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookRes_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookRWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admFacilityInsert_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admFacilSugg_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admFacilSuggInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admHBookList_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admHBookWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#AdminAllFacilitySearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#adminAllFacilityUserInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admMemInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admMemUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 
+/* board 사진수정 */
+#boardCuUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardCuWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardFUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardFWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardNews_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardNSearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardNWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQContent_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQReply_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQRepUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQSearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 
-
+/* member 사진수정 */
+#Congratulation_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#memberDelete_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#memberInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#memberInsert_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#memberLogin_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#memberUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#myUseBorrowBookList_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#myUseRBookList_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 
 
 
@@ -529,7 +533,7 @@ strong#currentPage {font-weight: bold;}
 @media (max-width:767px){
 	.box_wrap{margin: 0 auto; width: 320px;}
 /*main*/
-.main_concur {width: 320px; height: 350px;}
+.main_concur {width: 320px; height: 330px;}
 .main_concur ul {padding:10px 20px;}
 .main_concur ul li {float:left; height:134px; padding:10px 0;}
 .main_concur ul li .main_box_img {width:inherit;}
@@ -538,19 +542,12 @@ strong#currentPage {font-weight: bold;}
 .main_concur ul li .main_box_tit .tit {overflow:hidden; height:26px; line-height:inherit; font-size:1em;}
 .main_concur ul li .main_box_tit .disc {overflow:hidden; height:84px; font-size:0.93em;}
 
-.main_connot {width: 320px; height: 350px;}
+.main_connot {width: 320px; height: 330px;}
 .main_connot ul li {height:58px;}
 .main_connot ul li a {display:block; width:100%; position:relative; line-height:58px;}
 .main_connot ul li a p {width:180px; font-size:0.86em;}
 .main_connot ul li a span {position:absolute; right:0; top:0; padding-right:20px; font-size:0.86em;}
 
-.main_consta {width: 320px; height: 350px;}
-.main_conpop {width: 320px; height: 350px;}
-.main_lst_img {height: 250px;}
-.main_lst li {margin: 10px auto 10px auto;}
-#sta_size{padding: 0 10px 0 4px;}
-#sta_size #book{width: 306px; height: 120px;}
-#sta_size #bbook{width: 306px; height: 120px;}
 
 /*login css */
 .login_form{margin: 50px auto 0 auto ; width: 300px;}
@@ -632,7 +629,7 @@ strong#currentPage {font-weight: bold;}
 	/* member join end */
 	
 	/*myUseBookList*/
-	.view_lst .con_lst > ul.no_scroll .my_ppp{line-height: 14px;}
+	.view_lst .con_lst > ul.no_scroll .my_ppp{line-height: 14px;}}
 	/*myUseBookList*/
 	
 	.view_lst .con_lst > ul.no_scroll .col_use {width:25%; padding:0 5px; line-height: 15px;}
@@ -685,6 +682,7 @@ strong#currentPage {font-weight: bold;}
 	.book_lst li {width: 70%;height: 300px; margin: 40px 30px 20px 50px;}
 	.book_lst_img { width:99%; height: 290px;}
 	.book_info_layer{ height:290px; }
+	
 	/* book css */
 	
 	
@@ -704,6 +702,8 @@ strong#currentPage {font-weight: bold;}
 		#selectEmail {margin-left: 115px;}
 		
 }
+
+
 
 
 
@@ -791,53 +791,3 @@ input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; bord
 }
 /* End 김영지 작업 Admin */
 
-/* ADMIN 통합검색 ★★ */
-#adm_for_book_div {width:99%; position: relative; background-color: #fdf0ea; }
-#adm_book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:black; box-sizing : border-box;}
-#adm_book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
-#adm_book_select_box{border:1px solid #fdf0ea; width: 100%; height: 35px; margin-bottom: 10px; display: inline-block;}
-#adm_book_select1 {border: none; height:33px; width:20%;}
-#adm_book_select2 {border:none; height: 33px;  width:20%;}
-input.adm_inp_search { height: 33px; line-height: 33px;  width:40%;}
-input.adm_btn_search {  width:20%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
-#adm_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
-#adm_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid #FAE0D4;}
-#adm_date_box #adm_book_date { height: 33px; line-height: 33px; }
-#adm_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
-.adm_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
-.adm_btn_sr { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0; margin:0 auto; }
-.adm_btn_rs { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.adm_media_bye { display: block;}
-
-@media screen and (min-width:768px) and (max-width : 1024px) {
-	#adm_book_select1 {border: none; height:33px; width:18%;}
-	#adm_book_select2 {border:none; height: 33px;  width:18%;}
-	.adm_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
-	.adm_media_bye { display: none; }
-}
-
-@media screen and (max-width: 767px) {
-	#adm_book_select1 {border: none; height:33px; width:18%;}
-	#adm_book_select2 {border:none; height: 33px;  width:18%;}
-	.adm_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
-	.adm_media_bye { display: none; }
-}
-
-@media screen and (min-width:1025px){
-	.adm_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
-	.book_media_bye { display: block; }
-}
-
-/* adm hbooklist.jsp */
-.brd_txt_lst li .con_lst > ul > li.admh_id {width:15%; padding:0 10px;}
-.brd_txt_lst li .con_lst > ul > li.admh_ten {width:15%; padding:0 10px;}
-.brd_txt_lst li .con_lst > ul > li.admh_num {width:10%; padding:0 10px;}
-.brd_txt_lst li .con_lst > ul > li.adm_isbn {width:12%; padding:0 10px;}
-#admh_book_high {height: 50px; line-height: 50px;}
-.hb_button {border: none; background-color: #FAE0D4; margin-top: 15px;}
- 
-@media (max-width: 767px) {
-.brd_txt_lst li .con_lst > ul > li.admh_id {width:20%; padding:0 5px;}
-.brd_txt_lst li .con_lst > ul > li.admh_ten {width:15%; padding:0 3px;}
-.brd_txt_lst li .con_lst > ul > li.admh_num {width:15%; padding:0 3px;}
-.brd_txt_lst li .con_lst > ul > li.adm_isbn { display: none; }
