@@ -276,7 +276,7 @@ $(document).ready(function() {
 									<input type="hidden" name="securedEmail2" id="securedEmail2" value="" />	
 									<ul>
 										<li class="btn_cancle"><input type="submit" value="수정하기" class ="btn_type4"></li>
-										<li><input type="button" value="닫기" class ="btn_type4" id="BTN_CLOSE"></li>
+										<li><input type="button" value="메인으로" class ="btn_type4" id="BTN_CLOSE"></li>
 									</ul>
 								</div>
 							</form>	
