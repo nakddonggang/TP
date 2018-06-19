@@ -102,7 +102,7 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 										<li class="my_p">제목</li>
 										<li class="my_p">저자</li>
 										<li class="my_p">예약일자</li>
-										<li>신청버튼</li>
+										<li class="my_p">신청버튼</li>
 									</ul>
 								</div>
 					
@@ -120,9 +120,9 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 										<li class="my_ppp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_subject() %></a></li>
 										<li class="my_pp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_author() %></a></li>
 										<li class="my_pp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=date.format(bDTO.getRbook_date()) %></a></li>
-										<li><input type="button" value="예약취소" id="" class="cancelRes" rel="<%=bDTO.getBook_number() %>">
+										<li class="my_p"><input type="button" value="예약취소" id="" class="cancelRes btn_type7" rel="<%=bDTO.getBook_number() %>">
 										<%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
-												%><input type="button" value ="대출신청" id="" class="borrow" rel="<%=bDTO.getBook_number() %>">
+												%><input type="button" value ="대출신청" id="" class="borrow btn_type7" rel="<%=bDTO.getBook_number() %>">
 											<%} %></li>
 									</ul>
 								</div>
