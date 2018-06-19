@@ -22,6 +22,52 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
+<script type="text/javascript">
+$(document).ready(function() {	
+	
+function Request(valuename){
+	var rtnval;
+	var nowAddress = unescape(location.href);
+	var parameters = new Array();
+	parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+		for(var i = 0 ; i < parameters.length ; i++){
+			if(parameters[i].split("=")[0] == valuename){
+				rtnval = parameters[i].split("=")[1];
+				if(rtnval == undefined || rtnval == null){
+					rtnval = "";
+				}
+				return rtnval;
+			}
+		}
+}
+	
+// $('#hbook_write').click(function(){
+// 	$.Confirm(
+// 		'손망실 책을 등록하시겠습니까?',
+// 		function(){
+// 			$('#hb_submit').submit(); });
+// 		}
+// 	);
+
+		$('#dlos_fr').submit(function() {
+			if ($('#dlos_text1').val() == "") {
+				$.Alert("손망실 사유를 입력해 주세요", function(){});
+				return false;
+			} else if ($('#dlos_text2').val() == "") {
+				$.Alert("도서 상태를 기입해 주세요", function(){});
+				return false;
+			} else { }
+		});
+	
+	// direct값이 1이면 바구니에 정상적으로 들어간 것  
+	var direct = Request("direct");
+	if(direct=="1"){
+		$.Alert('손망실 등록이 완료되었습니다', function(){
+			location.replace('./AdminIndex.am'); });
+	} else{}
+	
+});
+</script>
 </head>
 <body>
 	<%
@@ -65,7 +111,7 @@ int book_number = Integer.parseInt(request.getParameter("book_number"));
 								</dl>
 							
 						</div>
-							<form action="./AdminBookDLosWriteAction.am"  method="post"  name="fr" >
+							<form action="./AdminBookDLosWriteAction.am"  method="post"  name="fr" id="dlos_fr">
 								<ul class="row">
 									<li>
 										<ul class="row_sub">
@@ -76,20 +122,20 @@ int book_number = Integer.parseInt(request.getParameter("book_number"));
 									<li>
 										<ul class="row_sub">
 											<li class="title">사유</li>
-											<li class="ta_form"><textarea cols="20" rows="10" name="dbook_reason"></textarea></li>
+											<li class="ta_form"><textarea cols="20" rows="10" name="dbook_reason" id="dlos_text1"></textarea></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 											<li class="title">도서상태</li>
-											<li class="inp_form"><input type="text" name="dbook_state" value=""></li>
+											<li class="inp_form"><input type="text" name="dbook_state" id="dlos_text2"></li>
 										</ul>
 									</li>
 									<li>
 										<div class="btn_btm_center">
 											<ul>
 												<li class="btn_cancle">
-													<input type="submit" value="손망실 신청" class ="btn_type4">
+													<input type="submit" value="손망실 신청" class ="btn_type4" id="hbook_write">
 												</li>
 												<li>
 													<input type="reset" value="취소" class ="btn_type4">
@@ -99,14 +145,15 @@ int book_number = Integer.parseInt(request.getParameter("book_number"));
 									</li>
 								</ul>
 							</form>
+							
 							</div>
 						</div>
 						</div>
 					<!-- // 본문 공간 -->
 				</article>
-			</section>
+			 </section>
 		</div>
 		<!-- //container -->
-	</div>
+
 </body>
 </html>

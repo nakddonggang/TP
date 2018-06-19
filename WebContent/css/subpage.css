@@ -151,7 +151,8 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .main_conpop{ margin: 0 10px 10px 0;}
 .main_concur{ margin: 0 0 10px 10px;}
 .main_connot{ margin: 0 10px 10px 0;}
-.main_concur ul li {height: 190px; padding: 20px; border-bottom: 1px solid #ebebeb;}
+.main_consta{ margin: 0 0 10px 10px;}
+.main_concur ul li {height: 190px; padding: 20px; border-bottom: 1px solid #ebebeb; cursor: pointer;}
 .main_concur ul li .main_box_img {float: left;display: inline-block; width: 108px; height: 140px; }
 .main_concur ul li .main_box_img img{ width: 100%; height: 100%;}
 .main_concur ul li .main_box_tit{ float: left ; display: inline-block; width: 50%; max-width: 326px; min-width: 100px; padding-left: 10px; font-family:"Noto_M";}
@@ -184,7 +185,7 @@ h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-famil
 	.text_top{margin: 70px 30px 0 30px; }
 	h3{display: block;  margin-bottom: 30px; font-size: 2.5em; font-family: "Noto_B";}
 	h4{display: block;  margin-bottom: 30px; font-size: 2.0em; font-family: "Noto_B";}
-	.paginate{line-height: 50px;text-align: center;	height:50px; vertical-align:middle;}
+	.paginate{text-align: center;	height:50px; vertical-align:middle; font-size: 14px; line-height: 12px; padding-top: 10px;}
 	.dl_box{margin: 30px 0;}
 	.dl_box dl dt{color: #5e1012; font-family: "Noto_M"; font-size: 1.5em; margin: 3px 0;}
 	.dl_box dl dd{font-size: 1.2em; margin: 3px 0;}
@@ -453,14 +454,54 @@ strong#currentPage {font-weight: bold;}
 
 /* 각자 작업한 css end  ----------------------------------------------------------  */
 
+
+/*sub 사진 수정 */
 #book_div1 {position: relative;width:100%;height:100vh;background-image:url("../img/library.jpeg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 #guide_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#serveBook_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/serveBook_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#serveFacil_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/serveFacil_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#myUseIndex_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/myUseIndex_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#serveBook_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#serveFacil_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#myUseIndex_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardNUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQna_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardFaq_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#myUseBasket_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#guideStatis_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 
+/* amdin 사진 수정 */
+#admMemIndex_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookDLos_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookDLosInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookDLosReWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookIndexAJ_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookIndexSearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookIO_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookRes_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admBookRWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admFacilityInsert_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admFacilSugg_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admFacilSuggInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admHBookList_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admHBookWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#AdminAllFacilitySearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#adminAllFacilityUserInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admMemInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admMemUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 
-
+/* board 사진수정 */
+#boardCuUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardCuWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardFUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardFWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardNews_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardNSearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardNWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQContent_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQReply_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQRepUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQSearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardQWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 
 
 

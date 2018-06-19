@@ -89,7 +89,18 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 			<section class="fullpage SECTION_FULL_PAGE01">
 			
 				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
+				<article class="submenu section SECTION">
+					<div class="slide DIV_SLIDE">
+						<div class="intro1">
+							<div class="slide_con">
+								<div class="box_thm">
+									<div id="admHBookList_img" >
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
 				<!-- //서브메뉴 -->
 				
 				<!-- 메인 페이지 -->
@@ -149,20 +160,24 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 						</ul>
 								
 				
-				    <div class="paginate">
-						
-						<a href="./AdminHBookList.am?pageNum=1" class="prev2"><span class="hide">페이지처음</span></a>
-						<%
-						if(pageCount < endPage)	endPage = pageCount;
-						if(startPage > pageBlock)	{ %><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
-						for (int p = startPage; p <= endPage; p++) {	
-							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="./AdminHBookList.am?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
-						}
-						if(endPage < pageCount){	%><a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
-						%>
-						<a href="./AdminHBookList.am?pageNum=<%=pageCount%>" class="next2"><span class="hide">페이지끝</span></a>
-				   </div>
+				<div class="paginate">
+						 
+							<% // count = 전체 글의 개수
+							if (count != 0) {
+							// 이전페이지 // if (startPage와 pageBlock을 비교)
+							if (startPage > pageBlock) {
+							%><a href="./AdminHBookList.am?pageNum=<%=startPage - pageBlock%>"class="prev"><span class="hide">이전 페이지</span></a><%
+							}
+							// 1~10		11~20		21~30
+							for (int i = startPage; i <= endPage; i++) {%>
+								<a href="./AdminHBookList.am?pageNum=<%=i%>">&nbsp;<strong title="현재 페이지" id="currentPage"><%=i %></strong> &nbsp;</a><%		
+							}
+								// 다음 // if (endPage와 pageCount를 비교)
+							if (endPage<pageCount){%>
+								<a href="./AdminHBookList.am?pageNum=<%=startPage+pageBlock%>"class="next"><span class="hide">다음 페이지</span></a><%
+								}
+							} // if count 괄호 %>		
+						</div>
 						
 				<div class="btn_btm_center">
 				<ul>

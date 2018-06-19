@@ -652,5 +652,9 @@
 	<update id="DLosReWrite" parameterType="net.book.db.BookDTO">
 		update dbook set dbook_reason=#{dbook_reason}, dbook_state=#{dbook_state} where book_number=#{book_number}
 	</update>
+	
+	<update id="updateMemberLevel" parameterType="hashmap">
+		update member set member_level=#{member_level} where member_id=#{member_id}
+	</update>
 
  </mapper>

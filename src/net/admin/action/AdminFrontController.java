@@ -189,6 +189,20 @@ public class AdminFrontController extends HttpServlet{
 			try {
 				forward = action.execute(request, response);
 			} catch (Exception e) {e.printStackTrace();}		
+		}else if(command.equals("/AdminMemberUpdate.am")){
+			action = new AdminMemberUpdate();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/AdminMemberUpdateAction.am")){
+			action = new AdminMemberUpdateAction();
+			try{
+				forward = action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		// 여기까지 Facility 구간
 		

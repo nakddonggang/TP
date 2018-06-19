@@ -28,6 +28,17 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("#useIndexBtn").click(function(){
+			if($('.checkbox').is(":checked")==false){
+				$.Alert('반납할 책을 선택해 주세요', function(){ });
+				return;
+			}
+			$("#returnBookform").submit();
+		});
+	});
+</script>
 	<!-- member/myUseIndex.jsp 이용현황 목록 페이지 -->
 	<div class="wrapper">
 		<!-- header -->
@@ -57,10 +68,8 @@
 					<div class="content">
 					<%
 						String member_id = (String)session.getAttribute("member_id");
-	
 					%>
-					
-					
+						
 					<div class=board>
 					<!-- myUseBasket.jsp : 책바구니 -->
 						<h4>예약중인 도서목록</h4>
@@ -73,6 +82,7 @@
 									<li class="col_mem_b">책 제목</li>
 									<li class="col_mem_b">예약번호</li>
 									<li class="col_mem_b">예약신청날짜</li>
+									<li>신청버튼</li>
 								</ul>
 								</div>							
 							
@@ -91,6 +101,9 @@
 											<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
 											<li class="col_mem_b"><%=bDTO.getRbook_num() %></li>
 											<li class="col_mem_b"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
+											<li><%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
+												%><input type="button" value ="대출신청" onclick="location.href='./BorrowBookAction.me?book_number=<%=bDTO.getBook_number()%>'">
+											<%} %></li>
 										</ul>
 									</div>
 									<%
@@ -111,7 +124,7 @@
 					<%
 					List<BookDTO> bList = (List<BookDTO>)request.getAttribute("bList");
 					%>
-					<form action = "./ReturnBookAction.me" method = "post" name ="returnBookform">
+					<form action = "./ReturnBookAction.me" method = "post" name ="returnBookform" id="returnBookform">
 					<div class=board>
 						<!-- myUseBook.jsp : 도서 대출 목록 -->
 						<h4>대출중인 도서 목록</h4>
@@ -136,7 +149,7 @@
 							%>
 							<div class="con_lst">
 							<ul class="no_scroll" >
-								<li class="col_mem_b"><input type="checkbox" name = "returnBookCheckBox"  value ="<%=bDTO.getBook_number() %>"></li>
+								<li class="col_mem_b"><input type="checkbox" name = "returnBookCheckBox"  value ="<%=bDTO.getBook_number() %>" class = "checkbox"></li>
 								<li class="col_mem_b"><%=bDTO.getBook_subject() %></li>
 								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
 								<li class="col_mem_b"><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
@@ -150,7 +163,7 @@
 						</ul>
 						
 						<div class="btn_btm_center">		
-										<input type = "submit" value = "반납하기" >				
+										<input type = "button" value = "반납하기"  id = "useIndexBtn">				
 										<input type = "button" value ="대출내역보기"  class="btn_type5" onclick = "location.href ='./MemberMyUseBorrowBookList.me'">
 								</div>
 						 </div>

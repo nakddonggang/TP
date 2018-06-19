@@ -343,4 +343,11 @@ public class MemberDAO {
 		 map.put("member_id", member_id);
 		 return sqlsession.selectList("myRbook", map);
 	 }
+	 
+	 // 유저 시설 이용 조회
+	 public List<FacilityDTO> selectUseInfo(String member_id){
+		 HashMap map = new HashMap();
+		 map.put("member_id", member_id);
+		 return sqlsession.selectList("selectUseInfo", map);
+	 }
 }

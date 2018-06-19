@@ -34,14 +34,19 @@ $(document).ready(function(){
 		dataType: 'json',
 		success:function(result){
 			var jsonData = JSON.parse("["+result+"]");
-			
-			if((jsonData.length == 1 && jsonData[jsonData.length-1].check!=0) || jsonData.length >= 3){
+			if((jsonData.length <= 2 && jsonData[jsonData.length-1].check!=0) || jsonData.length >= 3){
 				$('#badge').html('★');
 				$('#alarm').click(function(){
-					if((jsonData.length == 1 && jsonData[jsonData.length-1].check!=0) || (jsonData.length>3 && jsonData[jsonData.length-1].check!=0)){
+					if((jsonData.length <= 2 && jsonData[jsonData.length-1].check!=0) || (jsonData.length>3 && jsonData[jsonData.length-1].check!=0)){
                     	$.toast('<h6>2일 이내 반납해야할 책 '+jsonData[jsonData.length-1].check+'권입니다.</h6>',{
                        		duration: 3000,
                        		type: 'danger'
+                    	});
+					}
+					if(jsonData.length ==2){
+						$.toast('<h6>['+jsonData[0].facil_num+'] 좌석 사용중입니다.</h6>',{
+                        	duration: 3000,
+                        	type: 'info'
                     	});
 					}
 					if(jsonData.length>=3){
@@ -57,7 +62,12 @@ $(document).ready(function(){
                         	});
                     	}
                     }
-
+					if(jsonData.length >= 4){
+						$.toast('<h6>['+jsonData[jsonData.length-3].facil_num+'] 좌석 사용중입니다.</h6>',{
+                        	duration: 3000,
+                        	type: 'info'
+                    	});
+					}
 				});
 			}
 		}

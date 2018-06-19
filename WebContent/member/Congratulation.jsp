@@ -24,12 +24,6 @@
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 </head>
 <body>
-	<%
-		String member_id = (String)session.getAttribute("member_id");
-		if ((member_id == null) || !(member_id.equals("admin"))) {
-			response.sendRedirect("./Main.fp");
-		}
-	%>
 	<div class="wrapper">
 
 		<!-- header -->
@@ -41,58 +35,27 @@
 			<section class="fullpage SECTION_FULL_PAGE01">
 
 				<!-- 서브메뉴 -->
-				<article class="submenu section SECTION">
-					<div class="slide DIV_SLIDE">
-						<div class="intro1">
-							<div class="slide_con">
-								<div class="box_thm">
-									<div id="admFacilityInsert_img" >
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</article>
+				<jsp:include page="../include/submenu_main.jsp" />
 				<!-- //서브메뉴 -->
-				
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
-				
-					<div class="total_search"></div>
-					<div class="curation"></div>
-					<div class=""></div>
-					<div class=""></div>
-					<!-- 본문 공간 -->
-					<h2>자리 생성</h2>
-					<form action="./AdminFacilityInsertAction.am" method="post">
-						<table border="1">
-							<tr>
-								<th>자리번호 : </th><td><input type="text" name="facil_num" ></td>
-							</tr>
-							<tr>	
-								<th>자리유형 : </th>
-								<td>
-									<select name = "facil_type">
-									<option value ="media">미디어</option>
-									<option value ="desk">칸막이</option>
-									<option value ="etc">기타</option>
-									</select>
-								</td>
-							</tr>
-						</table>		
+					<div class="content">
+						<div class='member_content'>
 						
-						<div>
-					<input type="submit" value="열람실 자리 생성">
-					<input type="reset" value="취소">
+					
+					<div class='join_form'>
+						<h1>가입을 축하 합니다.</h1> 
+							<ul>
+								<li class="btn_cancle"><input type="button" value="로그인" class ="btn_type4" onclick = "location.href = './MemberLogin.me'"></li>
+								<li><input type="button" value="메인으로" class ="btn_type4" id="BTN_CLOSE" onclick = "location.href = './Main.fp'"></li>
+							</ul>
+					</div>
 				</div>
-							
-					</form>
-					<!-- // 본문 공간 -->
-				</article>
-			</section>
-		</div>
-		<!-- //container -->
+				</div>
+			</article>
+		</section>
+	</div>
 	</div>
 </body>
 </html>

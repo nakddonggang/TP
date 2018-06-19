@@ -1,5 +1,7 @@
 package net.member.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,10 +28,23 @@ public class ReturnBookAction implements Action {
 			mDAO.ReturnBorrowBook(book_number);
 		}
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./MemberUseIndex.me");
-		forward.setRedirect(true);
-		return forward;
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+		out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+		out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+		out.print("<script src='./js/jquery-ui.min.js'></script>");
+		out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
+		out.println("<script>");
+		out.println("$(document).ready(function() { ");
+		out.println("$.Alert('반납됨' , function(){"
+				+ "location.href = './MemberUseIndex.me'"
+				+ "});");
+		out.println("});");
+		out.println("</script>");
+		out.close();
+
+		return null;
 	}
 
 }

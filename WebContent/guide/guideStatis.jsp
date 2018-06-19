@@ -73,7 +73,7 @@
 						ykeys: ['a'],
 						labels: ['방문자 수'],
 					      xLabelAngle: '70',
-				      hideHover: 'auto',
+				     
 				      behaveLikeLine: true,
 				      resize: true,
 				      barColors:['gray']
@@ -98,7 +98,7 @@
 						xkey: 'y',
 						ykeys: ['a'],
 						labels: ['입고 수'],
-					      hideHover: 'auto',
+					     
 					      xLabelAngle: '70',
 					      behaveLikeLine: true,
 					      resize: true,
@@ -123,7 +123,7 @@
 						xkey: 'y',
 						ykeys: ['a'],
 						labels: ['대출 수'],					
-					      hideHover: 'auto',
+					     
 					      xLabelAngle: '70',
 					      behaveLikeLine: true,
 					      resize: true,
@@ -168,7 +168,7 @@
 							ykeys: ['a'],
 							labels: ['방문자 수'],
 							  fillOpacity: 0.6,
-						      hideHover: 'auto',
+						    
 						      behaveLikeLine: true,
 						      resize: true,
 						      pointFillColors:['#ffffff'],
@@ -189,7 +189,7 @@
 							ykeys: ['a'],
 							labels: ['입고 수'],
 							  fillOpacity: 0.6,
-						      hideHover: 'auto',
+						    
 						      behaveLikeLine: true,
 						      resize: true,
 						      pointFillColors:['#ffffff'],
@@ -210,7 +210,7 @@
 							ykeys: ['a'],
 							labels: ['대출 수'],
 					  fillOpacity: 0.6,
-				      hideHover: 'auto',
+				    
 				      behaveLikeLine: true,
 				      resize: true,
 				      pointFillColors:['#ffffff'],
@@ -241,7 +241,18 @@
 			<section class="fullpage SECTION_FULL_PAGE01">
 
 				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
+				<article class="submenu section SECTION">
+					<div class="slide DIV_SLIDE">
+						<div class="intro1">
+							<div class="slide_con">
+								<div class="box_thm">
+									<div id="guideStatis_img" >
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</article>
 				<!-- //서브메뉴 -->
 				<article class="mainmenu section SECTION">
 				<jsp:include page="../include/topbar.jsp" />

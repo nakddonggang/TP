@@ -36,5 +36,9 @@
 		where facil_num = #{facil_num} and facil_stime = #{facil_stime}
 	</update>
 	
+	<select id="selectUseInfo" parameterType="hashmap" resultType="net.facility.db.FacilityDTO">
+		select * from facility where member_id=#{member_id}
+	</select>
+	
 	
 </mapper>
