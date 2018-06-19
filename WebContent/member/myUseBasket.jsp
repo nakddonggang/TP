@@ -119,7 +119,7 @@ $(document).ready(function(){
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="myUseBasket_img" >
+									<div id="myUseBasket_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

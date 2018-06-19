@@ -67,7 +67,7 @@ String pageNum = request.getParameter("pageNum");
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="boardQReply_img" >
+									<div id="boardQReply_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

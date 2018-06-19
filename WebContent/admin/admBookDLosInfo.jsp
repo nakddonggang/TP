@@ -55,7 +55,7 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="admBookDLosInfo_img" >
+									<div id="admBookDLosInfo_img" class="box_thm01">
 									</div>
 								</div>
 							</div>
