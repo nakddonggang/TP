@@ -32,6 +32,15 @@ if("${member_id}"!='admin') {
 </script>
 </head>
 <body>
+<%
+String member_id = (String) session.getAttribute("member_id");
+if (member_id == null) {
+	boolean admincheck = (boolean) session.getAttribute("admincheck");
+	if(admincheck == false) {
+			response.sendRedirect("./Main.fp");
+	}
+}
+%>
 	<div class="wrapper">
 		<!-- header -->
 		<jsp:include page="../include/header.jsp" />

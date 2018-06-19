@@ -37,10 +37,13 @@ function hb_write(){
 </head>
 <body>
 	<%
-		String member_id = (String)session.getAttribute("member_id");
-		if ((member_id == null) || !(member_id.equals("admin"))) {
-			response.sendRedirect("./Main.fp");
+	String member_id = (String) session.getAttribute("member_id");
+	if (member_id == null) {
+		boolean admincheck = (boolean) session.getAttribute("admincheck");
+		if(admincheck == false) {
+				response.sendRedirect("./Main.fp");
 		}
+	}
 	%>
 <%
 BookDTO bookdto = (BookDTO)request.getAttribute("bookdto");

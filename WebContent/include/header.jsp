@@ -40,7 +40,10 @@
 							<li><a href="./GuideStatis.fp">도서관 통계</a></li>
 						</ul></li>
 				<% String member_id = (String) session.getAttribute("member_id");
-				if ((member_id != null) && (member_id.equals("admin"))) {%>	
+				if (member_id != null) {
+					boolean admincheck = (boolean) session.getAttribute("admincheck");
+					if(admincheck == true) {
+					%>	
 					<li><a href="#">관리자 페이지</a>
 						<ul class="DIV_SUB_MNU">
 							<li><a href="./AdminIndex.am">도서통합관리</a></li>
@@ -49,7 +52,8 @@
 							<li><a href="./AdminFacilSugg.am">시설관리</a></li>
 							<li><a href="./AdminAllFacilityUserInfo.am">시설이용내역</a></li>
 						</ul></li>
-					<%}%>
+					<%}
+					}%>
 				</ul>
 			</div>
 		</nav>
