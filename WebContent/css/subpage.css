@@ -460,7 +460,7 @@ strong#currentPage {font-weight: bold;}
 
 
 /*sub 사진 수정 */
-#book_divv {position: relative;width:100%;height:100vh;background-image:url("../img/library.jpeg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#book_divv {position: relative;width:100%;height:100vh;background-image:url("../book/library.jpeg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 #guide_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 #serveBook_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 #serveFacil_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
@@ -506,6 +506,16 @@ strong#currentPage {font-weight: bold;}
 #boardQSearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 #boardQUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 #boardQWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+
+/* member 사진수정 */
+#Congratulation_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#memberDelete_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#memberInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#memberInsert_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#memberLogin_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#memberUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#myUseBorrowBookList_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#myUseRBookList_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 
 
 
