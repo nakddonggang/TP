@@ -459,15 +459,27 @@ strong#currentPage {font-weight: bold;}
 /* 각자 작업한 css end  ----------------------------------------------------------  */
 
 
-/*sub 사진 수정 */
+
+/* 통합검색 */
 #book_divv {background-image:url("../resource/img/library.jpeg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#guide_img {background-image:url("../resource/subImg/book_img.jpg");}
-#serveBook_img {background-image:url("../resource/subImg/hopebook.jpeg");}
-#serveFacil_img {background-image:url("../resource/subImg/book_img.jpg");}
+
+/* 도서관소개 */
+#guide_img {background-image:url("../resource/subImg/guide_img .jpg");}
+
+/* 희망도서신청 */
+#serveBook_img {background-image:url("../resource/subImg/serveBook_img.jpeg");}
+
+/* 열람실 자리신청 */
+#serveFacil_img {background-image:url("../resource/subImg/serveFacil_img.jpeg" );}
+
+/* Q&A */
+#boardQna_img {background-image:url("../resource/subImg/boardFaq_img.jpg");}
+
+/* FAQ */
+#boardFaq_img {background-image:url("../resource/subImg/boardFaq_img.jpg");}
+
 #myUseIndex_img {background-image:url("../resource/subImg/book_img.jpg");}
 #boardNUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardQna_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardFaq_img {background-image:url("../resource/subImg/book_img.jpg");}
 #myUseBasket_img {background-image:url("../resource/subImg/book_img.jpg");}
 #guideStatis_img {background-image:url("../resource/subImg/book_img.jpg");}
 
