@@ -78,10 +78,10 @@
 									<div class="btn_btm_center">
 										<ul>
 											<li class="btn_cancle">
-												<input type="submit" value="회원" class ="btn_type4" id = "submit_button">
+												<input type="submit" value="탈퇴" class ="btn_type4" id = "submit_button">
 											</li>
 											<li>
-												<input type="reset" value="취소" class ="btn_type4">
+												<input type="button" value="뒤로가기" class ="btn_type4" onclick = "history.back()">
 											</li>
 										</ul>
 									</div>

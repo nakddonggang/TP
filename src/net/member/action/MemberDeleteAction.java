@@ -29,14 +29,33 @@ public class MemberDeleteAction implements Action {
 		case 1:
 			mDAO.DeleteMember(id);
 			session.removeAttribute("member_id");
-			out.print("<script>");
-			out.print("$.Alert('삭제되었습니다.', function(){location.href='./MemberLogin.me';});");
-			out.print("</script>");
+			out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+			out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+			out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+			out.print("<script src='./js/jquery-ui.min.js'></script>");
+			out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
+			out.println("<script>");
+			out.println("$(document).ready(function() { ");
+			out.println("$.Alert('탈퇴되었습니다.' , function(){"
+					+ "location.href = './MemberLogin.me'"
+					+ "});");
+			out.println("});");
+			out.println("</script>");
 			out.close();
+
 		default :
-			out.print("<script>");
-			out.print("$.Alert('비밀번호가 일치하지 않음', function(){location.href='./MemberDelete.me';});");
-			out.print("</script>");
+			out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+			out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+			out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+			out.print("<script src='./js/jquery-ui.min.js'></script>");
+			out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
+			out.println("<script>");
+			out.println("$(document).ready(function() { ");
+			out.println("$.Alert('비밀번호가 일치하지 않습니다.' , function(){"
+					+ "location.href = './MemberDelete.me'"
+					+ "});");
+			out.println("});");
+			out.println("</script>");
 			out.close();
 		}
 		return null;
