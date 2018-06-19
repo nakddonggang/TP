@@ -116,7 +116,7 @@ String pageNum = (String)request.getAttribute("pageNum");
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="admFacilSuggInfo_img" >
+									<div id="admFacilSuggInfo_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

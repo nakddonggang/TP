@@ -459,64 +459,76 @@ strong#currentPage {font-weight: bold;}
 /* 각자 작업한 css end  ----------------------------------------------------------  */
 
 
-/*sub 사진 수정 */
-#book_divv {position: relative;width:100%;height:100vh;background-image:url("../book/library.jpeg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#guide_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/guide_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#serveBook_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#serveFacil_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#myUseIndex_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardNUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardQna_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardFaq_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#myUseBasket_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#guideStatis_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+
+/* 통합검색 */
+#book_divv {background-image:url("../resource/img/library.jpeg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+
+/* 도서관소개 */
+#guide_img {background-image:url("../resource/subImg/guide_img .jpg");}
+
+/* 희망도서신청 */
+#serveBook_img {background-image:url("../resource/subImg/serveBook_img.jpeg");}
+
+/* 열람실 자리신청 */
+#serveFacil_img {background-image:url("../resource/subImg/serveFacil_img.jpeg" );}
+
+/* Q&A */
+#boardQna_img {background-image:url("../resource/subImg/boardFaq_img.jpg");}
+
+/* FAQ */
+#boardFaq_img {background-image:url("../resource/subImg/boardFaq_img.jpg");}
+
+#myUseIndex_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardNUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
+#myUseBasket_img {background-image:url("../resource/subImg/book_img.jpg");}
+#guideStatis_img {background-image:url("../resource/subImg/book_img.jpg");}
 
 /* amdin 사진 수정 */
-#admMemIndex_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admBookDLos_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admBookDLosInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admBookDLosReWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admBookIndexAJ_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admBookIndexSearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admBookInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admBookIO_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admBookRes_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admBookRWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admFacilityInsert_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admFacilSugg_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admFacilSuggInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admHBookList_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admHBookWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#AdminAllFacilitySearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#adminAllFacilityUserInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admMemInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#admMemUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#admMemIndex_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admBookDLos_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admBookDLosInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admBookDLosReWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admBookIndexAJ_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admBookIndexSearch_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admBookInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admBookIO_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admBookRes_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admBookRWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admFacilityInsert_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admFacilSugg_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admFacilSuggInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admHBookList_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admHBookWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
+#AdminAllFacilitySearch_img {background-image:url("../resource/subImg/book_img.jpg");}
+#adminAllFacilityUserInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admMemInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admMemUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 
 /* board 사진수정 */
-#boardCuUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardCuWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardFUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardFWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardNews_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardNSearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardNWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardQContent_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardQReply_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardQRepUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardQSearch_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardQUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#boardQWrite_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
+#boardCuUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardCuWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardFUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardFWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardNews_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardNSearch_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardNWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardQContent_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardQReply_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardQRepUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardQSearch_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardQUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardQWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
 
 /* member 사진수정 */
-#Congratulation_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#memberDelete_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#memberInfo_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#memberInsert_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#memberLogin_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#memberUpdate_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#myUseBorrowBookList_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-#myUseRBookList_img {position: relative;width:100%;height:100vh;background-image:url("../resource/subImg/book_img.jpg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
-  
+#Congratulation_img {background-image:url("../resource/subImg/book_img.jpg");}
+#memberDelete_img {background-image:url("../resource/subImg/book_img.jpg");}
+#memberInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
+#memberInsert_img {background-image:url("../resource/subImg/book_img.jpg");}
+#memberLogin_img {background-image:url("../resource/subImg/book_img.jpg");}
+#memberUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
+#myUseBorrowBookList_img {background-image:url("../resource/subImg/book_img.jpg");}
+#myUseRBookList_img {background-image:url("../resource/subImg/book_img.jpg");}
+
 
 
 /* 미디어쿼리 작업부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
@@ -629,7 +641,7 @@ strong#currentPage {font-weight: bold;}
 	/* member join end */
 	
 	/*myUseBookList*/
-	.view_lst .con_lst > ul.no_scroll .my_ppp{line-height: 14px;}}
+	.view_lst .con_lst > ul.no_scroll .my_ppp{line-height: 14px;}
 	/*myUseBookList*/
 	
 	.view_lst .con_lst > ul.no_scroll .col_use {width:25%; padding:0 5px; line-height: 15px;}
@@ -715,79 +727,130 @@ strong#currentPage {font-weight: bold;}
 /* 영지 미디어 쿼리 css */
 
 @media screen and (min-width:768px) and (max-width : 1024px) {
-#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:2px; z-index:1;}
-.DIV_CON_LST { width : 100%;}
-#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
-#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
-#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 3px; display: inline-block;}
-#book_select1 {border: none; height:33px; width:18%;}
-#book_select2 {border:none; height: 33px;  width:18%;}
-input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
-input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
-#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
-#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
-#book_date_box #book_date { height: 33px; line-height: 33px; }
-#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
-.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
-.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_media_bye { display: none; }
+	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:2px; z-index:1;}
+	.DIV_CON_LST { width : 100%;}
+	#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
+	#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
+	#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 3px; display: inline-block;}
+	#book_select1 {border: none; height:33px; width:18%;}
+	#book_select2 {border:none; height: 33px;  width:18%;}
+	input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
+	input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
+	#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
+	#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
+	#book_date_box #book_date { height: 33px; line-height: 33px; }
+	#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
+	.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
+	.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_media_bye { display: none; }
 }
 @media screen and (max-width: 767px) {
-#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:2px; z-index:1;}
-.DIV_CON_LST { width : 100%;}
-#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
-#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
-#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 3px; display: inline-block;}
-#book_select1 {border: none; height:33px; width:18%;}
-#book_select2 {border:none; height: 33px;  width:18%;}
-input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
-input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
-#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
-#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
-#book_date_box #book_date { height: 33px; line-height: 33px; }
-#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
-.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
-.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_media_bye { display: none; }
+	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:2px; z-index:1;}
+	.DIV_CON_LST { width : 100%;}
+	#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
+	#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
+	#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 3px; display: inline-block;}
+	#book_select1 {border: none; height:33px; width:18%;}
+	#book_select2 {border:none; height: 33px;  width:18%;}
+	input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
+	input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
+	#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
+	#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
+	#book_date_box #book_date { height: 33px; line-height: 33px; }
+	#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
+	.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
+	.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_media_bye { display: none; }
 }
 
 @media screen and (min-width:1025px){
-
-#for_book_div {width:96%; z-index:1; position: absolute; top:30%; left:2%; }
-.DIV_CON_LST { width : 100%;}
-#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
-#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
-#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 10px; display: inline-block;}
-#book_select1 {border: none; height:33px; width:20%;}
-#book_select2 {border:none; height: 33px;  width:20%;}
-input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
-input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
-#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
-#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
-#book_date_box #book_date { height: 33px; line-height: 33px; }
-#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
-.book_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
-.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_media_bye { display: block; }
+	#for_book_div {width:96%; z-index:1; position: absolute; top:30%; left:2%; }
+	.DIV_CON_LST { width : 100%;}
+	#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
+	#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
+	#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 10px; display: inline-block;}
+	#book_select1 {border: none; height:33px; width:20%;}
+	#book_select2 {border:none; height: 33px;  width:20%;}
+	input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
+	input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
+	#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
+	#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
+	#book_date_box #book_date { height: 33px; line-height: 33px; }
+	#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
+	.book_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
+	.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_media_bye { display: block; }
 }
 
 /*통합검색 페이지 제일 작게 했을 떄 검색창이 망가져서 미디어쿼리 사용함*/
 @media (max-width:767px){
-#admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; height : 40px; width:85%;}
-#admin_select_box #admin_select1 {width:20%; border : none; float : left; height:34px; line-height: 34px; margin : 0 4px; }
-#admin_select_box #admin_select2 { width: 20%; float:right; border : none; height:32px; line-height: 32px; margin:0 4px; padding: 0 4px;}
-input.adm_inp_search {float:left; width:40%; height:34px; border:0; line-height: 34px;}
-input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; border:0; line-height: 34px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
-
-#admin_select_box2 { border: 1px solid #FAE0D4; margin: 0 7px 7px 7px; padding : 1px 2px 2px 2px; height : 40px; width: 30%; position: relative;}
-#admin_select_box2 p {height:38px; line-height: 38px; width: 30%; float: left; position: absolute; left:2px; }
-#admin_select_box2 select { border: none; height:35px; line-height: 35px; margin : 0; float: left; position: absolute; right: 2px; width: 50%;}
-#admin_sort_submit { margin: 0 0 0 20%; height:40px; width : 70%; position: relative;}
-#admin_sort_submit .adm_btn_type4 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:17%;  text-align: center;}
-#admin_sort_submit .adm_btn_type5 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:47%; text-align: center; }
+	#admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; height : 40px; width:85%;}
+	#admin_select_box #admin_select1 {width:20%; border : none; float : left; height:34px; line-height: 34px; margin : 0 4px; }
+	#admin_select_box #admin_select2 { width: 20%; float:right; border : none; height:32px; line-height: 32px; margin:0 4px; padding: 0 4px;}
+	input.adm_inp_search {float:left; width:40%; height:34px; border:0; line-height: 34px;}
+	input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; border:0; line-height: 34px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
+	#admin_select_box2 { border: 1px solid #FAE0D4; margin: 0 7px 7px 7px; padding : 1px 2px 2px 2px; height : 40px; width: 30%; position: relative;}
+	#admin_select_box2 p {height:38px; line-height: 38px; width: 30%; float: left; position: absolute; left:2px; }
+	#admin_select_box2 select { border: none; height:35px; line-height: 35px; margin : 0; float: left; position: absolute; right: 2px; width: 50%;}
+	#admin_sort_submit { margin: 0 0 0 20%; height:40px; width : 70%; position: relative;}
+	#admin_sort_submit .adm_btn_type4 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:17%;  text-align: center;}
+	#admin_sort_submit .adm_btn_type5 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:47%; text-align: center; }
 }
 /* End 김영지 작업 Admin */
 
+/* start ADMIN 통합검색  */
+#adm_for_book_div {width:99%; position: relative; background-color: #fdf0ea; }
+#adm_book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:black; box-sizing : border-box;}
+#adm_book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
+#adm_book_select_box{border:1px solid #fdf0ea; width: 100%; height: 35px; margin-bottom: 10px; display: inline-block;}
+#adm_book_select1 {border: none; height:33px; width:20%;}
+#adm_book_select2 {border:none; height: 33px;  width:20%;}
+input.adm_inp_search { height: 33px; line-height: 33px;  width:40%;}
+input.adm_btn_search {  width:20%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
+#adm_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
+#adm_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid #FAE0D4;}
+#adm_date_box #adm_book_date { height: 33px; line-height: 33px; }
+#adm_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
+.adm_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
+.adm_btn_sr { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0; margin:0 auto; }
+.adm_btn_rs { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+.adm_media_bye { display: block;}
+
+@media screen and (min-width:768px) and (max-width : 1024px) {
+   #adm_book_select1 {border: none; height:33px; width:18%;}
+   #adm_book_select2 {border:none; height: 33px;  width:18%;}
+   .adm_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
+   .adm_media_bye { display: none; }
+}
+
+@media screen and (max-width: 767px) {
+   #adm_book_select1 {border: none; height:33px; width:18%;}
+   #adm_book_select2 {border:none; height: 33px;  width:18%;}
+   .adm_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
+   .adm_media_bye { display: none; }
+}
+
+@media screen and (min-width:1025px){
+   .adm_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
+   .book_media_bye { display: block; }
+}
+
+/* adm hbooklist.jsp */
+.brd_txt_lst li .con_lst > ul > li.admh_id {width:15%; padding:0 10px;}
+.brd_txt_lst li .con_lst > ul > li.admh_ten {width:15%; padding:0 10px;}
+.brd_txt_lst li .con_lst > ul > li.admh_num {width:10%; padding:0 10px;}
+.brd_txt_lst li .con_lst > ul > li.adm_isbn {width:12%; padding:0 10px;}
+#admh_book_high {height: 50px; line-height: 50px;}
+.hb_button {border: none; background-color: #FAE0D4; margin-top: 15px;}
+ 
+@media (max-width: 767px) {
+.brd_txt_lst li .con_lst > ul > li.admh_id {width:20%; padding:0 5px;}
+.brd_txt_lst li .con_lst > ul > li.admh_ten {width:15%; padding:0 3px;}
+.brd_txt_lst li .con_lst > ul > li.admh_num {width:15%; padding:0 3px;}
+.brd_txt_lst li .con_lst > ul > li.adm_isbn { display: none; }
+
+}
+/* end ADMIN 통합검색  */

@@ -246,7 +246,7 @@
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="guideStatis_img" >
+									<div id="guideStatis_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

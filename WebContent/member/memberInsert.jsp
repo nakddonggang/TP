@@ -325,7 +325,7 @@ $(document).ready(function() {
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="memberInsert_img" >
+									<div id="memberInsert_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

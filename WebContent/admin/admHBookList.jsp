@@ -72,7 +72,7 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="admHBookList_img" >
+									<div id="admHBookList_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

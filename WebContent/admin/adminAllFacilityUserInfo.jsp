@@ -71,7 +71,7 @@
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="adminAllFacilityUserInfo_img" >
+									<div id="adminAllFacilityUserInfo_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

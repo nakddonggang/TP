@@ -85,7 +85,7 @@ $(document).ready(function(){
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="boardQSearch_img" >
+									<div id="boardQSearch_img" class="box_thm01">
 									</div>
 								</div>
 							</div>
