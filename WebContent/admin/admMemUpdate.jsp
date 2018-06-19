@@ -47,8 +47,6 @@ if(member_level==null){
 	member_level = "%";
 }
 MemberDTO mDTO = (MemberDTO)request.getAttribute("mDTO");
-String gm_check =(String)request.getAttribute("gm_check");
-String bl_check =(String)request.getAttribute("bl_check");
 int borrowcount = (int)(request.getAttribute("borrowcount"));
 int overduecount = (int)request.getAttribute("overduecount");
 int overduedate = (int)request.getAttribute("overduedate");
@@ -145,9 +143,10 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 									<ul class="row_sub">
 										<li class="title_adm"><span>회원등급</span></li>
 										<li><select name="grade">
-											<option value="nomal" <%if(gm_check.equals("0")&&bl_check.equals("0")) out.print("selected");%>>일반회원</option>
-											<option value="good" <%if(gm_check.equals("1")) out.print("selected"); %>>우수회원</option>
-											<option value="black" <%if(bl_check.equals("1")) out.print("selected"); %>>블랙리스트</option>
+											<option value="nomal" <%if(mDTO.getMember_level().equals("0")) out.print("selected");%>>일반회원</option>
+											<option value="black" <%if(mDTO.getMember_level().equals("1")) out.print("selected"); %>>블랙리스트</option>
+											<option value="good" <%if(mDTO.getMember_level().equals("2")) out.print("selected"); %>>우수회원</option>
+											<option value="admin" <%if(mDTO.getMember_level().equals("3")) out.print("selected"); %>>관리자</option>
 										</select></li>
 									</ul>
 								</li>
@@ -172,8 +171,9 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 							</ul>
 							<div class="btn_btm_center">
 								<ul>
-									<li class="btn_cancle">
-										<input type="button" value="뒤로가기" onclick='history.back();' class ="btn_type4 BTN_IF_LIST">
+									<li>
+										<input type="button" value="뒤로가기" onclick='history.back();' class ="btn_type4 BTN_IF_LIST"></li>
+										<li>
 										<input type="button" value="수정하기" class ="btn_type4 BTN_IF_LIST" id="updateBtn">
 										
 									</li>

@@ -23,25 +23,7 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script type="text/javascript">
-$(document).ready(function() {
-	
-	function Request(valuename){
-		var rtnval;
-		var nowAddress = unescape(location.href);
-		var parameters = new Array();
-		parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
-			for(var i = 0 ; i < parameters.length ; i++){
-				if(parameters[i].split("=")[0] == valuename){
-					rtnval = parameters[i].split("=")[1];
-					if(rtnval == undefined || rtnval == null){
-						rtnval = "";
-					}
-					return rtnval;
-				}
-			}
-	}
-	
-	$('#bok_io_fr').submit(function() {
+function book_io(){
 		if ($('#bok_io_fr_1').val() == "") {
 			$.Alert("작성내용을 모두 입력해 주세요", function(){});
 			return false;
@@ -69,18 +51,12 @@ $(document).ready(function() {
 		}  else if ($('#bok_io_fr_9').val() == "") {
 			$.Alert("작성내용을 모두 입력해 주세요", function(){});
 			return false;
-		} else { }
-	});
-	
-
-	// direct값이 1이면 바구니에 정상적으로 들어간 것  
-		var direct = Request("direct");
-		if(direct=="1"){
-			$.Alert('책 입고가 정상 등록 되었습니다!', function(){
-				location.replace('./AdminIndex.am'); });
-		} else{}
-
-});
+		} else {
+			$.Confirm( '입력하신 책을 입고하시겠습니까?', function(){
+				$('#bok_io_fr').attr("action","./AdminBookWriteAction.am");
+				$('#bok_io_fr').submit(); });
+		}
+}	
 </script>
 </head>
 <body>
@@ -126,7 +102,7 @@ $(document).ready(function() {
 	
 			<div class="join_form">
 			<h3>책 입고하기</h3>
-			<form action="./AdminBookWriteAction.am" method="post" enctype="multipart/form-data" id="bok_io_fr">
+			<form action="" method="post" enctype="multipart/form-data" id="bok_io_fr">
 				<ul class="row">
 					<li>
 						<ul class="row_subIO">
@@ -186,7 +162,7 @@ $(document).ready(function() {
 				
 				<div class="btn_btm_center">
 				<ul>
-					<li class="btn_cancle"><input type="submit" value="입고하기" class ="btn_type4 BTN_IF_LIST"></li>
+					<li class="btn_cancle"><input type="button" value="입고하기" onclick="book_io();" class ="btn_type4 BTN_IF_LIST"></li>
 					<li class="btn_cancle"><input type="reset" value="취소" class ="btn_type4 BTN_IF_LIST"></li>
 				</ul>
 				</div>

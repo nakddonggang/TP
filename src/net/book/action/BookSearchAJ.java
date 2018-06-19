@@ -29,14 +29,9 @@ public class BookSearchAJ implements Action{
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		// String sort 파라미터값 가져오기
-		String sort = request.getParameter("sort");
-		System.out.println("정렬해야할 값"+sort);
-		if (sort==null) sort="book_number";
-		
 		String view = request.getParameter("view");
 		System.out.println(view);
-		if (view==null) view="1";	
+		if (view=="") view="1";	
 		
 		// 검색 파라미터값 가져오기
 		String category1 = request.getParameter("category1");
@@ -64,14 +59,6 @@ public class BookSearchAJ implements Action{
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		BookDAO bdao = new BookDAO();
 		int count = 0;
-
-//		HttpSession session = request.getSession();
-//		String member_id = (String)session.getAttribute("member_id");
-//		int BorrowCheck;
-//		if(member_id != null) {
-//			BorrowCheck = bdao.userBorrowBookCheck(member_id);
-//		} else { BorrowCheck=0;}
-		
 		
 		// pubDate에 값이 없을 때
 		if (pubDate.equals("all")) {
@@ -155,7 +142,7 @@ public class BookSearchAJ implements Action{
 		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 8;
+		int pageSize = 6;
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
@@ -353,7 +340,6 @@ public class BookSearchAJ implements Action{
 				.add("{\"opt1\":\""+opt1+"\"}")
 				.add("{\"opt2\":\""+opt2+"\"}")
 				.add("{\"pubDate\":\""+pubDate+"\"}")
-				.add("{\"sort\":\""+sort+"\"}")
 				.add("{\"pageNum\":\""+pageNum+"\"}")
 				.add("{\"pageCount\":"+pageCount+"}")
 				.add("{\"pageBlock\":"+pageBlock+"}")
@@ -374,7 +360,6 @@ public class BookSearchAJ implements Action{
 				.add("{\"opt1\":\""+opt1+"\"}")
 				.add("{\"opt2\":\""+opt2+"\"}")
 				.add("{\"pubDate\":\""+pubDate+"\"}")
-				.add("{\"sort\":\""+sort+"\"}")
 				.add("{\"pageNum\":\""+pageNum+"\"}")
 				.add("{\"pageCount\":"+pageCount+"}")
 				.add("{\"pageBlock\":"+pageBlock+"}")

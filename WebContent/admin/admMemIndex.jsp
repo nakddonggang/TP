@@ -65,6 +65,7 @@ if("${member_id}"!='admin') {
 					</div>
 					<div>
 						<input type="button" name="btn_all"		id="%" class="callAjax btn_type6" value="전체보기">
+						<input type="button" name="btn_nomal"	id="0" class="callAjax btn_type6" value="일반회원">
 						<input type="button" name="btn_black"	id="1" class="callAjax btn_type6" value="블랙리스트">
 						<input type="button" name="btn_good"	id="2" class="callAjax btn_type6" value="우수회원">
 						<input type="button" name="btn_admin"	id="3" class="callAjax btn_type6" value="관리자">
@@ -173,10 +174,10 @@ $(document).ready(function(){
 							+"<li class='col_typen'>";
 						}
 			
-						if(jsonData[i].gm_check=="0" && jsonData[i].bl_check=="0"){ content += "일반회원</li>";}
-						else if(jsonData[i].gm_check=="1" && jsonData[i].bl_check=="0"){content += "우수회원</li>";}
-						else if(jsonData[i].bl_check=="1" && jsonData[i].gm_check=="0"){content += "블랙리스트</li>";}
-						else {content += "일반회원</li>";}
+						if(jsonData[i].member_level=="0"){ content += "일반회원</li>";}
+						else if(jsonData[i].member_level=="1"){content += "블랙리스트</li>";}
+						else if(jsonData[i].member_level=="2"){content += "우수회원</li>";}
+						else if(jsonData[i].member_level=="3"){content += "관리자</li>";}
 									
 						content += "<li class='col_calln'>"+jsonData[i].member_date+"</li></ul></div>";
 						$('#ajax_container').append(content);

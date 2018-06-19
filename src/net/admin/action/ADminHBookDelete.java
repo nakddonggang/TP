@@ -30,10 +30,21 @@ public class ADminHBookDelete implements Action  {
 		AdminDAO adao = new AdminDAO();
 		adao.HBookDelete(member_id, hbook_subject, hbook_author);
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./AdminHBookList.am?direct=1");
-		forward.setRedirect(true);
-	    return forward;
+		out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+		out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+		out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+		out.print("<script src='./js/jquery-ui.min.js'></script>");
+		out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
+		out.println("<script>");
+		out.println("$(document).ready(function() { ");
+		out.println("$.Alert('희망도서 책 삭제가 완료되었습니다!' , function(){"
+				+ "location.href = './AdminHBookList.am'"
+				+ "});");
+		out.println("});");
+		out.println("</script>");
+		out.close();
+		
+	    return null;
 	}
 	
 }

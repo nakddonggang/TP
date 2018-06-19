@@ -20,6 +20,7 @@ public class AdminMemberUpdateAction implements Action{
 		if("nomal".equals(grade))	member_level = "0";
 		else if("black".equals(grade))	member_level = "1";
 		else if("good".equals(grade))	member_level = "2";
+		else if("admin".equals(grade))	member_level = "3";
 		
 		AdminDAO aDAO = new AdminDAO();
 		aDAO.updateMemberLevel(member_level, member_id);

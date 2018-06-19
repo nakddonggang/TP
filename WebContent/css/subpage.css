@@ -78,7 +78,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 
 
-
+.btn_type7 {margin:13px 0 0 0;  top: 90px; width: 60px; height: 25px; line-height: 25px; color: #fff !important; border: 0; text-align: center; background: #464646; font-size: 0.5em; margin-bottom: 3px;}
 .btn_type6 {top: 90px; width: 60px; height: 25px; line-height: 25px; color: #fff !important; border: 0; text-align: center; background: #464646; font-size: 0.5em; margin-bottom: 3px;}
 .btn_type5 {position:absolute; top:-25px; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
 .btn_type1 {position:absolute; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; font-size:1.14em;}
@@ -86,7 +86,8 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 .btn_type3 {position:absolute; top:30px; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
 .btn_type4 {display:block; width:96px; height:40px; line-height:40px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
 .btn_btm {position:relative; margin-bottom:150px;}
-.btn_btm_center {position:relative; width:100%; margin-bottom:50px; margin-top:30px;}
+.btn_btm_center {position:relative; width:100%; margin-bottom:20px; margin-top:30px;}
+.btn_btm_center1 {position:relative; width:100%; margin-bottom:40px;}
 .btn_btm_center ul {text-align:center;}
 .btn_btm_center ul li {display:inline-block;}
 .btn_btm_center ul li.btn_cancle {padding-right:6px;}
@@ -147,7 +148,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 /*한진석 전체 css*/
 /* main css */
-.main_div{ overflow: hidden;background: #fff; display: inline-block; float: left;  width: 48%; height: 44vh;}
+.main_div{ overflow: hidden;background: #fff; display: inline-block; float: left;  width: 48%; height: 48%; max-height: 430px; }
 .main_conpop{ margin: 0 10px 10px 0;}
 .main_concur{ margin: 0 0 10px 10px;}
 .main_connot{ margin: 0 10px 10px 0;}
@@ -278,6 +279,11 @@ h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-famil
 .view_lst .con_lst > ul.no_scroll .col_mem_r {width:25%; padding:0 5px;}
 .view_lst .con_lst > ul.no_scroll .col_mem_b {width:33%; padding:0 10px;}
 
+.view_lst .con_lst > ul.no_scroll .col_use {width:25%; padding:0 5px;}
+.view_lst .con_lst > ul.no_scroll .col_che {width:25%; padding:12px 5px 0 5px;}
+
+
+
 /* member css*/
 
 /* busket css */
@@ -296,6 +302,17 @@ h2 { width: 100%; height: 50px; line-height: 50px; font-size: 1.36em; font-famil
 /*myUseBookList*/
 
 
+<<<<<<< HEAD
+=======
+.row_group{margin: 0 20px;}
+
+
+
+
+
+
+
+>>>>>>> 547e59e0c9956489ed9506d4b8c4ab918a18392b
 
 /* 각자 작업한 css  ----------------------------------------------------------  */
 
@@ -364,18 +381,22 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 .join_form .row_sub > li textarea { float: left;width: 100%; resize: none; background: #f6f6f6; border: 0; font-family: "Noto_M";}
 .adm_h_1{ font-size: 17px;}
 <<<<<<< HEAD
+<<<<<<< HEAD
 .bbutton, .rbutton, .rebutton, .bbutton2 {border: none; background-color: #FAE0D4; margin-top: 30px;}
 =======
 .bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info, .info_bbutton2, #bbutton, #rbutton, #bbutton2, .mod_btn {border: none; background-color: #FAE0D4; margin-top: 30px;}
+=======
+.rbutton, .rebutton, .bbutton2, .bbutton_info, #bbutton, #rbutton, #bbutton2 {border: none; background-color: #FAE0D4; margin-top: 30px;}
+>>>>>>> 547e59e0c9956489ed9506d4b8c4ab918a18392b
 #bbutton, #rbutton, #bbutton2, #borrowBook{border: none; background-color: #FAE0D4; margin:2px auto; color: black; }
 >>>>>>> 0ea829aed544790cf1258fc9b9702e5ed3fdf243
 .bncheck {line-height: 70%; height: 90%;}
 #book_cont_btn, #book_pic_btn { float:right; margin-left: 5px ; margin-top: 0; display: block; width: 50px; height: 30px; color: #fff !important; border: 0; text-align: center; background: #464646; color: #fff; cursor: pointer;}
-
+.info_bbutton2, .mod_btn {border: none; background-color: #FAE0D4; margin-top: 30px;}
 
 /* START 김영지 책 갤러리 형식으로 보기 css */
 .book_lst {overflow: hidden; width: 90%; margin: 0 auto; position: relative; margin-top:10px; }
-.book_lst li { float: left; width: 24%; height: 280px; margin: 10px 3px 10px 3px; padding-bottom: 26px; position: relative;}
+.book_lst li { float: left; width: 30%; height: 280px; margin: 10px 3px 10px 3px; padding-bottom: 26px; position: relative;}
 .book_lst li a {color: #666; text-decoration: none; }
 .book_lst_img { width:99%; height: 270px;}
 #bk_li_subs { display: block; width: 99%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; margin-top: 2px;}
@@ -517,6 +538,7 @@ strong#currentPage {font-weight: bold;}
 
 
 @media (max-width:767px){
+	.box_wrap{margin: 0 auto; width: 320px;}
 /*main*/
 .main_concur {width: 320px; height: 330px;}
 .main_concur ul {padding:10px 20px;}
@@ -596,12 +618,17 @@ strong#currentPage {font-weight: bold;}
 	.write_form .row_subfacil2 > li {width: 70%; display: inline-table;}
 	/* admin facil end */
 	/* servefacil start*/
+<<<<<<< HEAD
 	.seatLayout { margin: 20px; height: 240px; width: 320px;border: 2px solid #666;}
+=======
+	.seatLayout { margin: 0px; height: 240px; width: 320px;border: 2px solid #666; padding: 0px;}
+>>>>>>> 547e59e0c9956489ed9506d4b8c4ab918a18392b
 	.seat {display: inline-block; width: 100%; height: 30px; margin: 5px;}
 	.seatLayout > ul > li {float: left;width: 30px;}
 	.seat > a > div { background-color: #464646; display: table-cell;width: 30px; height: 30px;cursor: pointer;text-align: center;vertical-align: middle; border-radius: 10px;}
 	/* servefacil  end*/
-	#obj_mname{margin-left: 120px;}
+	
+	
 	
 	
 	
@@ -616,6 +643,8 @@ strong#currentPage {font-weight: bold;}
 	.view_lst .con_lst > ul.no_scroll .my_ppp{line-height: 14px;}}
 	/*myUseBookList*/
 	
+	.view_lst .con_lst > ul.no_scroll .col_use {width:25%; padding:0 5px; line-height: 15px;}
+	
 /* admin css */
 	.join_form .row_subIO > li.title { width: 95px; height: 50px;padding: 5px 10px;background: #f6f6f6; font-family: "Noto_M";letter-spacing: -0.08em;text-align: center;}
 	.IOcss {width: 200px}
@@ -625,7 +654,7 @@ strong#currentPage {font-weight: bold;}
 	.brd_txt_lst li > .con_lst > ul > li.adm_col_dateh {width:30%; padding:0 10px;}
 	.brd_txt_lst li > .con_lst > ul > li.adm_col_exh {display: none;}
 	.join_form .row_sub > li.adm_inp_formh input[type="text"] {width:220px;  text-indent:10px;}
-	
+	.info_bbutton2, .mod_btn {border: none; background-color: #FAE0D4; margin-top: 15px;}
 	/* admin rbook */
 	.view_lst .con_lst > ul.no_scroll .col_con_rid {width:27%; padding:0 5px;}
 	.view_lst .con_lst > ul.no_scroll .col_con_rnum {width:17%; padding:0 5px;}
@@ -673,9 +702,15 @@ strong#currentPage {font-weight: bold;}
 	.brd_txt_lst li > .con_lst > ul > li.buk_t {width:35%; padding:0 5px;}
 	.brd_txt_lst li > .con_lst > ul > li.buk_n {width:19%; padding:0 5px;}
 	
+<<<<<<< HEAD
 	
 	
 	
+=======
+.bbutton, .rbutton, .rebutton, .bbutton2, .bbutton_info {border: none; background-color: #FAE0D4; height: 40px;}
+.btn_type7{margin: 13px 0 0 0;}
+
+>>>>>>> 547e59e0c9956489ed9506d4b8c4ab918a18392b
 	
 	
 }

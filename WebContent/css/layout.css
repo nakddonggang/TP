@@ -27,7 +27,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .fullpage {z-index:2;} /* 본문 z-index설정 */
 
 .member_modal {display:block; width:350px; margin:0 auto;}
-.member_modal .info_txt {display:table; width:300px; height:80px; padding:0 30px; margin:15px auto 0; border:1px solid #e5e5e5; letter-spacing:-0.08em; background:#fff;}
+.member_modal .info_txt {display:table; width:300px; height:80px; padding:0 30px; margin:15px 0 0 0; border:1px solid #e5e5e5; letter-spacing:-0.08em; background:#fff;}
 .member_modal .info_txt p {display:table-cell; vertical-align:middle; text-align:center;}
 .member_modal .info_txt p span {display:inline-block; color:#000; font-family:"Noto_M";}
 .member_modal form {width:350px;}
@@ -48,7 +48,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .submenu {height:100% !important; float:left; width:40%; }
 .mainmenu {float:left; width:60% !important;}
 .mainmenu_no_sub {float:left; width:100% !important;}
-.content {display: inline-block;width: calc(100% - 40px);margin: 20px;padding: 10px;background-color: #fff;max-height: calc(100vh - 90px);}
+.content {display: inline-block;width: calc(100% - 40px);margin: 20px;padding: 10px;background-color: #fff; min-height: calc(100vh - 90px);}
 
 
 .SECTION_FULL_PAGE01 .slide_con {position:relative; width:100%;}
@@ -68,23 +68,24 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 .top_bar  ul > li {display: inline-block;float:right;margin: 10px 20px 10px 20px;}
 
 /*	start 채팅 css 작업	*/
-
+#nowChat {border-bottom: 1px solid #ccc; font-family: Noto_M;}
 #chat_dialog {z-index:999; padding: 0;}
 #chat_dialog > #websocketChat {/* border:5px solid grey; */margin:0 auto;background: #fff;padding:10px;height:  100%;}
 #chat_dialog > #websocketChat > #chatview {width: 70%;overflow-y: scroll;height: calc(100% - 30px);}
-#chat_dialog > #websocketChat > #userview {float:left;width: 30%;overflow-y:  scroll;height: calc(100% - 30px);}
+#chat_dialog > #websocketChat > #userview {float:left;width: 30%;overflow-y:  scroll;height: calc(100% - 30px); font-family:"Noto_M";  border: 1px solid #ccc; border-radius: 8px;}
 #chat_dialog > #websocketChat > #inputview {height: 30px;}
-#chat_dialog > #websocketChat > #chatview > #chatLog{padding:5px;}  
-#chat_dialog > #websocketChat > #chatview > #chatLog p {word-wrap:  break-word;text-align: left;}
+#chat_dialog > #websocketChat > #chatview > #chatLog{padding:5px; font-family:"Noto_M";}  
+#chat_dialog > #websocketChat > #chatview > #chatLog p {word-wrap:  break-word;text-align: left; font-family:"Noto_M";}
 #btn-open-chat {background-image: url("../resource/img/icon_chat.png");background-repeat:  round;display: inline-block;width: 50px;height: 50px; position:  fixed;bottom: 0;right: 0;}
-#chat_dialog>#websocketChat input[type="button"]{padding: 5px; width:60px;border-radius: 3px;	border: 1px solid #ccc;	}
-#chat_dialog>#websocketChat input:focus {	border: 1px solid #fafafa;	box-shadow: 0px 0px 5px #007eff;}
-#chat_dialog>#websocketChat input#textMessage{display:inline-block; width:calc(100% - 130px); }
-#chat_dialog>#websocketChat .username {width:min-content;}
-#chat_dialog>#websocketChat .username.right{	margin: 5px 15px 5px auto;}
-#chat_dialog>#websocketChat .username.left{	margin: 5px auto 5px 15px;}
+#chat_dialog>#websocketChat input[type="button"]{padding: 5px; width:60px;border-radius: 3px;	border: 1px solid #ccc; font-family:"Noto_M"; height: 30px; line-height: 1px;}
+#chat_dialog>#websocketChat input:focus {	border: 1px solid #fafafa;	box-shadow: 0px 0px 5px #007eff; font-family:"Noto_M";}
+#chat_dialog>#websocketChat input#textMessage{display:inline-block; width:calc(100% - 130px); font-family:"Noto_M"; border-radius: 8px; }
+#chat_dialog>#websocketChat .username {width:min-content; font-family:"Noto_M";}
+#chat_dialog>#websocketChat .username.right{	margin: 5px 15px 5px auto; font-family:"Noto_M";}
+#chat_dialog>#websocketChat .username.left{	margin: 5px auto 5px 15px; font-family:"Noto_M";}
 #chat_dialog>#websocketChat .bubble {
-	background-color: #F2F2F2;
+	background-color: black;
+	color: white;
 	border-radius: 5px;
 	max-width:  350px;
 	border: 1px solid #bbb;
@@ -96,8 +97,8 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 	width: min-content;
 	vertical-align: top;
 	}
-#chat_dialog>#websocketChat .tail {	position: absolute;	height: 18px;	width: 18px;	overflow: hidden;}
-#chat_dialog>#websocketChat .tail:before {	border: 1px solid #bbb;	background-color: #F2F2F2;	content: "\00a0";	display: block;	position: absolute;	top: 0px;	height: 12px;	width: 12px;}
+#chat_dialog>#websocketChat .tail {	position: absolute;	height: 18px;	width: 18px;	overflow: hidden; font-family:"Noto_M";}
+#chat_dialog>#websocketChat .tail:before {	border: 1px solid #bbb;	background-color: black; content: "\00a0";	display: block;	position: absolute;	top: 0px;	height: 12px;	width: 12px;}
 #chat_dialog>#websocketChat .bubble.left {	text-align: left;	margin: 1em auto 1em 18px;}
 #chat_dialog>#websocketChat .bubble.left .tail {	top: 12px;	left: -18px;}
 #chat_dialog>#websocketChat .bubble.left .tail:before {	left: 12px;	-webkit-transform: skewX(-45deg);	-moz-transform: skewX(-45deg);	-o-transform: skewX(-45deg);}
@@ -123,7 +124,7 @@ nav > div > ul > li.btn_newsletter a {display:block; color:#fff; cursor:pointer;
 	.mainmenu {width:100% !important;}
 	
 	.SECTION_FULL_PAGE01 .fp-slides {height:240px !important;}
-	.SECTION_FULL_PAGE01 .fp-tableCell {height:720px !important;}
+	.SECTION_FULL_PAGE01 .fp-tableCell {height:720px !important; background-color: white;}
 	.SECTION_FULL_PAGE01 .fp-controlArrow.fp-prev {left:20px !important;}
 	.SECTION_FULL_PAGE01 .fp-slidesNav {bottom:10px !important;}
 	.SECTION_FULL_PAGE01 .arrow_wrap {margin:10px auto 0 !important;}

@@ -55,10 +55,17 @@ public class AdminBookReWriteAction implements Action{
 		AdminDAO adao = new AdminDAO();
 		adao.admBookReWrite(bookdto);
 
-		System.out.println("success");
+		out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+		out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+		out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+		out.print("<script src='./js/jquery-ui.min.js'></script>");
+		out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
 		out.println("<script>");
-		out.println("alert('입고 수정이 완료되었습니다')");
-		out.println("location.href='./AdminIndex.am'");
+		out.println("$(document).ready(function() { ");
+		out.println("$.Alert('입고 수정이 완료되었습니다!' , function(){"
+				+ "location.href = './AdminIndex.am'"
+				+ "});");
+		out.println("});");
 		out.println("</script>");
 		out.close();
 		

@@ -25,37 +25,12 @@
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
 <script>
-$(document).ready(function(){
-	
-	$('.hb_button').click(function(){
+function hb_delete(){
 		$.Confirm(
-			'희망도서를 삭제하시겠습니까?',
-			function(){ $("#hb_delete").submit; });
-	});
-	
-	function Request(valuename){
-		var rtnval;
-		var nowAddress = unescape(location.href);
-		var parameters = new Array();
-		parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
-			for(var i = 0 ; i < parameters.length ; i++){
-				if(parameters[i].split("=")[0] == valuename){
-					rtnval = parameters[i].split("=")[1];
-					if(rtnval == undefined || rtnval == null){
-						rtnval = "";
-					}
-					return rtnval;
-				}
-			}
-		}	
-	
-	var direct = Request("direct");
-	if(direct=="1"){
-		$.Alert(
-				'삭제 완료되었습니다', function() { location.reload(true); });
-	} else{}
-	
-});
+			'희망도서를 삭제하시겠습니까?', function(){
+				$('#hbdelete_fr').attr("action","./ADminHBookDelete.am");
+				$('#hbdelete_fr').submit(); });
+}
 </script>
 </head>
 <body>
@@ -136,7 +111,7 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 							} else {
 								for (BookDTO hbookLists : hbookList){
 						%>
-						<form action="./ADminHBookDelete.am" method="post" id="">
+						<form action="" method="post" id="hbdelete_fr">
 						<input type="hidden" value="<%=hbookLists.getHbook_subject()%>" name="hbook_subject">
 						<input type="hidden" value="<%=hbookLists.getHbook_author()%>" name="hbook_author">
 						<input type="hidden" value="<%=hbookLists.getMember_id()%>" name="member_id">
@@ -151,7 +126,7 @@ List<BookDTO> hbookList = (List<BookDTO>)request.getAttribute("hbookList");
 								else if(hbookLists.getHbook_check().equals("not-in")) {%>입고불가 <%}%></li>
 								<li class="admh_ten over_dot"  id="admh_book_high" onclick="location.href='./AdminHBookWrite.am?member_id=<%=hbookLists.getMember_id()%>&hbook_subject=<%=hbookLists.getHbook_subject()%>&hbook_author=<%=hbookLists.getHbook_author()%>'"><%=hbookLists.getHbook_publisher()%></li>
 								<li class="adm_isbn" id="admh_book_high" ><%=hbookLists.getHbook_isbn()%></li>
-								<li class="admh_id" id="admh_book_high" ><input type='submit' class='hb_button' value='삭제하기'></li>
+								<li class="admh_id" id="admh_book_high" ><input type='button' onclick="hb_delete();" class='hb_button' value='삭제하기'></li>
 							</ul>
 						</div>
 						</form><%}

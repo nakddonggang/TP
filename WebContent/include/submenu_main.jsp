@@ -8,8 +8,8 @@
 					<div class="box_thm01 DIV_BOX_THM01"></div>
 				</div>
 				<div class="box_txt">
-					<p>Neque porro quisquam est qui do</p>
-					<span>Lorem ipsum</span>
+					<p>생각의&nbsp;&nbsp;날개를&nbsp;&nbsp;펼치는</p>
+					<span>혜윰나래</span>
 				</div>
 			</div>
 		</div>
@@ -21,8 +21,8 @@
 					<div class="box_thm02 DIV_BOX_THM02"></div>
 				</div>
 				<div class="box_txt">
-					<p>Neque porro quisquam est qui do</p>
-					<span>Lorem ipsum</span>
+					<p>생각의&nbsp;&nbsp;날개를&nbsp;&nbsp;펼치는</p>
+					<span>혜윰나래</span>
 				</div>
 			</div>
 		</div>
@@ -34,8 +34,8 @@
 					<div class="box_thm03 DIV_BOX_THM03"></div>
 				</div>
 				<div class="box_txt">
-					<p>Neque porro quisquam est qui do</p>
-					<span>Lorem ipsum</span>
+					<p>생각의&nbsp;&nbsp;날개를&nbsp;&nbsp;펼치는</p>
+					<span>혜윰나래</span>
 				</div>
 			</div>
 		</div>

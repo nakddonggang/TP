@@ -1,5 +1,7 @@
 package net.admin.action;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -27,10 +29,23 @@ public class AdminBookDLosReWriteAction implements Action{
 		AdminDAO adao = new AdminDAO();
 		adao.DLosReWrite(bdto);
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("./AdminBookDLos.am");
-		forward.setRedirect(true);
-		return forward;
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+		out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+		out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+		out.print("<script src='./js/jquery-ui.min.js'></script>");
+		out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
+		out.println("<script>");
+		out.println("$(document).ready(function() { ");
+		out.println("$.Alert('손망실 책 수정이 완료되었습니다!' , function(){"
+				+ "location.href = './AdminBookDLos.am'"
+				+ "});");
+		out.println("});");
+		out.println("</script>");
+		out.close();
+		
+		return null;
 	}
 	
 }

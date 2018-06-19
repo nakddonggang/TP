@@ -19,15 +19,6 @@ public class BookSearch implements Action{
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// 한글처리
 		request.setCharacterEncoding("UTF-8");
-		 
-		// String sort 파라미터값 가져오기
-//		String sort = request.getParameter("sort");
-//		System.out.println("정렬해야할 값"+sort);
-//		if (sort==null) sort="book_number";
-		
-//		String view = request.getParameter("view");
-//		System.out.println(view);
-//		if (view==null) view="1";
 		
 		// 검색 파라미터값 가져오기
 		String category1 = request.getParameter("category1");
@@ -55,14 +46,6 @@ public class BookSearch implements Action{
 		// AdminDAO adao 객체 생성 및 count 메소드 호출
 		BookDAO bdao = new BookDAO();
 		int count = 0;
-
-//		HttpSession session = request.getSession();
-//		String member_id = (String)session.getAttribute("member_id");
-//		int BorrowCheck;
-//		if(member_id != null) {
-//			BorrowCheck = bdao.userBorrowBookCheck(member_id);
-//		} else { BorrowCheck=0;}
-		
 		
 		// pubDate에 값이 없을 때
 		if (pubDate.equals("all")) {
@@ -146,7 +129,7 @@ public class BookSearch implements Action{
 		}
 		
 		// 한 화면에 보여줄 책의 개수 설정
-		int pageSize = 8;
+		int pageSize = 6;
 		
 		// 페이지 번호 (PageNum)
 		String pageNum = request.getParameter("pageNum");
@@ -278,9 +261,6 @@ public class BookSearch implements Action{
 		request.setAttribute("pageBlock", pageBlock);
 		request.setAttribute("startPage", startPage);
 		request.setAttribute("endPage", endPage);		
-//		request.setAttribute("view", view);			
-//		request.setAttribute("sort", sort);			
-//		request.setAttribute("BorrowCheck", BorrowCheck);		
 				
 				ActionForward forward = new ActionForward();
 				forward.setPath("./book/bookSearch.jsp");

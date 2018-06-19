@@ -30,7 +30,7 @@ public class BoardNoticeWriteAction implements Action {
 		
 		notice_num = bDAO.selectNMaxNum()+1;				// 게시판 max 번호 구한 뒤 +1
 		
-		String realPath = request.getRealPath("/upload");
+		String realPath = request.getRealPath("/upload/notice");
 		System.out.println("upload폴더 물리적경로 : "+realPath);
 		
 		int maxSize = 5*1024*1024;	//5Mb

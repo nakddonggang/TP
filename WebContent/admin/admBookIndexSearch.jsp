@@ -26,38 +26,6 @@
 <script type="text/javascript" src="<%=request.getContextPath()%>/js/jquery.toast.min.js"></script>
 <script src="<c:url value="/js/common.js"/>"></script>
 <script src="<c:url value="/js/fullpage.js"/>"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-			// JQUERY★
-			function bookwrite(){
-				location.href="./AdminBookWrite.am";
-			}
-			
-			function hbooklist(){
-				location.href="./AdminHBookList.am";
-			}
-
-				var bookListSize = "${booksearchList.size()}";
-				//admin 대출,예약,책상태 
-				for(var i=0;i<bookListSize;i++){
-					$('#Borrow' + i).dialog({ 
-						autoOpen: false, 
-						width: 400, 
-						modal: true, 
-					});
-				}
-				$(".info").click(function() {
-					var listvalue = $(this).attr("id");
-					$('#Borrow' + listvalue).dialog("open");
-				});
-				
-				$(".BTN_CLOSE").click(function() {
-					var listvalue = $(this).attr("id");
-					$('#Borrow' + listvalue).dialog("close");
-				});
-				
-});
-</script>
 </head>
 <body>
 	<%
@@ -228,7 +196,7 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 								<li class="adm_subs2" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_subject()%></li>
 								<li class="adm_name over_dot" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_author()%></li>
 								<li class="adm_ten over_dot" id="adm_book_high"><%=booksearchLists.getBook_publisher()%></li>
-								<li class="adm_ten"><input type="button" id="<%=i %>" value="보기" class ="bbutton info" ></li>
+								<li class="adm_ten"><input type="button" id="<%=i %>" value="보기" class ="mod_btn info" ></li>
 							</ul>
 							
 							<div id="Borrow<%=i%>">
@@ -304,6 +272,40 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 						 </div>
 </div>
 
+<script type="text/javascript">
+			// JQUERY★
+			function bookwrite(){
+				location.href="./AdminBookWrite.am";
+			}
+			
+			function hbooklist(){
+				location.href="./AdminHBookList.am";
+			}
+
+
+
+$(document).ready(function(){
+	var bookListSize = "${booksearchList.size()}";
+				//admin 대출,예약,책상태 
+				for(var i=0;i<bookListSize;i++){
+					$('#Borrow' + i).dialog({ 
+						autoOpen: false, 
+						width: 400, 
+						modal: true, 
+					});
+				}
+				
+				$(".info").click(function() {
+					var listvalue = $(this).attr("id");
+					$('#Borrow' + listvalue).dialog("open");
+				});
+				
+				$(".BTN_CLOSE").click(function() {
+					var listvalue = $(this).attr("id");
+					$('#Borrow' + listvalue).dialog("close");
+				});
+});
+</script>
 					</div>
 					</div>
 			</article>
