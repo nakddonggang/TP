@@ -196,8 +196,8 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 						BookDTO bkDTO = popularList.get(i);
 						%>
 						<ul class="main_lst1 w3-content w3-display-container" id="book_pic_div" >	
-							<li class="mySlides">
-							<img src="./upload/book/<%=bkDTO.getBook_file()%>"width="200px" height="260px" class="main_lst_img">
+							<li class="mySlides" onclick="location.href='./BookInfo.bk?book_number=<%=bkDTO.getBook_number()%>'">
+							<img src="./upload/book/<%=bkDTO.getBook_file()%>"width="200px" height="260px" class="main_lst_img" >
 								<span id='bk_li_subs'><%=bkDTO.getBook_subject() %></span>
 								<dl class='book_info_layer'>
 									<dt>
