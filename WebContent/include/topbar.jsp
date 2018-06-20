@@ -6,7 +6,7 @@
 				<%
 					if (session.getAttribute("member_id") != null) {
 						String member_id = (String) session.getAttribute("member_id");
-						%><a href="#"><span id="badge"></span><img src="./resource/img/user2.png" width="30px" height="30px" id="alarm"></a><%
+						%><a href="#"><span id="badge"></span><img src="./resource/img/Letter.png" width="30px" height="30px" id="alarm"></a><%
 						out.print("<span class='top_bold' id='member_id'>"+" "+ member_id +" "+" </span>");
 						%><span class='top_bold'> | </span><a href="./MemberLogout.me"><img src="./resource/img/logout.png" width="30px" height="30px"></a>
 						<span class='top_bold'> | </span><a href="./MemberInfo.me"><img src="./resource/img/account.png" width="30px" height="30px"></a><%
@@ -35,7 +35,7 @@ $(document).ready(function(){
 		success:function(result){
 			var jsonData = JSON.parse("["+result+"]");
 			if(jsonData.length <= 2 || jsonData[jsonData.length-1].check!=0 || jsonData.length >= 3){
-				$('#badge').html('★');
+				$('#badge').html('<img src="resource/img//Heart.png" width=20px; height=20px; />');
 				$('#alarm').click(function(){
 					if((jsonData.length <= 2 && jsonData[jsonData.length-1].check!=0) || (jsonData.length>3 && jsonData[jsonData.length-1].check!=0)){
                     	$.toast('<h6>2일 이내 반납해야할 책 '+jsonData[jsonData.length-1].check+'권입니다.</h6>',{

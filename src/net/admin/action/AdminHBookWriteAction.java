@@ -20,6 +20,8 @@ public class AdminHBookWriteAction implements Action {
 		// 파라미터값 들고오기
 		String member_id = request.getParameter("member_id");
 		String hbook_check = request.getParameter("hbook_check");
+		String hbook_author = request.getParameter("hbook_author");
+		String hbook_subject = request.getParameter("hbook_subject");
 		String hbook_isbn = request.getParameter("hbook_isbn");
 		
 		System.out.println(hbook_isbn+hbook_check+member_id);
@@ -28,6 +30,8 @@ public class AdminHBookWriteAction implements Action {
 		BookDTO bookdto = new BookDTO();
 		bookdto.setMember_id(member_id);
 		bookdto.setHbook_check(hbook_check);
+		bookdto.setHbook_author(hbook_author);
+		bookdto.setHbook_subject(hbook_subject);
 		bookdto.setHbook_isbn(hbook_isbn);
 		
 		// DAO 생성 및 메소드 불러오기

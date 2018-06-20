@@ -196,7 +196,7 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 						BookDTO bkDTO = popularList.get(i);
 						%>
 						<ul class="main_lst1 w3-content w3-display-container" id="book_pic_div" >	
-							<li class="mySlides" onclick="location.href='./BookInfo.bk?book_number=<%=bkDTO.getBook_number()%>'">
+							<li class="mySlides" onclick="location.href='./BookInfo.bk?book_number=<%=bkDTO.getBook_number()%>'" style="cursor:pointer;" >
 							<img src="./upload/book/<%=bkDTO.getBook_file()%>"width="200px" height="260px" class="main_lst_img" >
 								<span id='bk_li_subs'><%=bkDTO.getBook_subject() %></span>
 								<dl class='book_info_layer'>
@@ -280,7 +280,7 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 					</div>
 					 
 					 <!--  통계   -->
-					 <div class="main_consta main_div" onclick="location.href='./GuideStatis.fp'">
+					 <div class="main_consta main_div" onclick="location.href='./GuideStatis.fp'" >
 						 <div class="main_box">
 						 <h2>Statis</h2>
 						 
@@ -289,12 +289,12 @@ SimpleDateFormat date = new SimpleDateFormat("yyyy/MM/dd");
 <!-- 							<div id="visit" style="width: 400px; height: 150px;"></div> -->
 <!-- 						 </div>	 -->
 								
-						 <div id="sta_size">
+						 <div id="sta_size" style="cursor:pointer;">
 							<p class="tit">장서 입고수</p>
 							<div id="book"></div>
 						 </div>
 						
-						 <div id="sta_size">
+						 <div id="sta_size" style="cursor:pointer;">
 							<p class="tit">대출 수</p>
 							<div id="bbook"></div>
 						 </div>

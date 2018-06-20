@@ -309,7 +309,7 @@ if (member_id == null) {
 															</div>
 														</div>
 														<div id="adm_sort_submit">
-															<input type=submit class="adm_btn_sr" value="상세검색" >
+															<input type="submit" class="adm_btn_sr" value="상세검색" >
 															<input type="reset" class="adm_btn_rs" value="입력 초기화">
 														</div>
 													</div>

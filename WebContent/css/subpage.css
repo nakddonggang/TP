@@ -597,19 +597,13 @@ strong#currentPage {font-weight: bold;}
 
 /* 미디어쿼리 작업부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
-
 @media(max-width:1025px){
-	.book_lst li {     width: 48%;height: 400px; margin: 12px 5px 20px 5px;}
-	.book_lst_img { width:99%; height: 390px;}
-	.book_info_layer{ height:390px; }
-	.book_wrap{margin: 0 auto; width: 600px;}
+	.book_lst li {     width: 48%;height: 37%; margin: 10px 1% 3% 1%;}
+	.book_lst_img { width:93%; height: 93%;}
+	.book_info_layer{ width:93%; height:89%; }
 }
 
-
-
 @media (max-width:767px){
-	.book_wrap{margin: 0 auto; width: 400px;}
-	.box_wrap{margin: 0 auto; width: 320px;}
 /*main*/
 .main_concur {width: 320px; height: 350px;}
 .main_concur ul {padding:10px 20px;}
@@ -765,9 +759,9 @@ strong#currentPage {font-weight: bold;}
 	
 	/* book css */
 	  /* book img css */
-	.book_lst li {width: 70%;height: 300px; margin: 10px 30px 90px 50px;}
-	.book_lst_img { width:99%; height: 350px;}
-	.book_info_layer{ height:350px; }
+	.book_lst li {width: 47%;height: 37%; margin: 10px 1% 3% 1%;}
+	.book_lst_img { width:94%; height: 94%;}
+	.book_info_layer{ width:94%; height:90%; }
 	/* book css */
 	
 	
