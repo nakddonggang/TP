@@ -516,7 +516,7 @@ strong#currentPage {font-weight: bold;}
 #book_divv {background-image:url("../resource/img/library.jpeg");background-repeat:no-repeat;background-size:cover;z-index: -1;filter: blur(5px) grayscale(80%); transform: scale(1.1);}
 
 /* 도서관소개 */
-#guide_img {background-image:url("../resource/subImg/guide_img .jpg");}
+#guide_img {background-image:url("../resource/subImg/guide_img.jpg");}
 
 /* 희망도서신청 */
 #serveBook_img {background-image:url("../resource/subImg/serveBook_img.jpeg");}
@@ -536,8 +536,8 @@ strong#currentPage {font-weight: bold;}
 /* 통계 */
 #guideStatis_img {background-image:url("../resource/subImg/guideStatis_img.jpeg");}
 
-#boardNUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
-#myUseBasket_img {background-image:url("../resource/subImg/book_img.jpg");}
+#boardNUpdate_img {background-image:url("../resource/subImg/writing .jpeg");}
+#myUseBasket_img {background-image:url("../resource/subImg/writing .jpeg");}
 
 
 /* amdin 사진 수정 */
@@ -545,54 +545,67 @@ strong#currentPage {font-weight: bold;}
 /* 통합도서관리시스템 */
 #admMemIndex_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
 
-#admBookDLos_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admBookDLosInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admBookDLosReWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admBookIndexAJ_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admBookIndexSearch_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admBookInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admBookIO_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admBookRes_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admBookRWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admFacilityInsert_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admFacilSugg_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admFacilSuggInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admHBookList_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admHBookWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
-#AdminAllFacilitySearch_img {background-image:url("../resource/subImg/book_img.jpg");}
-#adminAllFacilityUserInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admMemInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
-#admMemUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
+#admBookDLosReWrite_img {background-image:url("../resource/subImg/writing .jpeg");}
+#admBookRWrite_img {background-image:url("../resource/subImg/writing .jpeg");}
+#admHBookWrite_img {background-image:url("../resource/subImg/writing .jpeg");}
+
+#admBookIndexAJ_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admBookIndexSearch_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admBookDLos_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admBookDLosInfo_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admFacilityInsert_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admFacilSugg_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admFacilSuggInfo_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#AdminAllFacilitySearch_img {background-image:url("../resource/admMemIndex_img.jpeg");}
+#adminAllFacilityUserInfo_img {background-image:url("../resource/admMemIndex_img.jpeg");}
+
+#admBookInfo_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admBookIO_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admBookRes_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admHBookList_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admMemInfo_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+#admMemUpdate_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
 
 
 /* board 사진수정 */
-#boardCuUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardCuWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardFUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardFWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardNews_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardNSearch_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardNWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardQContent_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardQReply_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardQRepUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardQSearch_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardQUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
-#boardQWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
+
+/* 공지사항 */
+#boardNews_img {background-image:url("../resource/subImg/boardNews_img.jpeg");}
+#boardNSearch_img {background-image:url("../resource/subImg/boardNews_img.jpeg");}
+#boardNWrite_img {background-image:url("../resource/subImg/boardNews_img.jpeg");}
+
+
+#boardCuUpdate_img {background-image:url("../resource/subImg/writing .jpeg");}
+#boardCuWrite_img {background-image:url("../resource/subImg/writing .jpeg");}
+
+#boardFUpdate_img {background-image:url("../resource/subImg/writing .jpeg");}
+#boardFWrite_img {background-image:url("../resource/subImg/writing .jpeg");}
+
+#boardQContent_img {background-image:url("../resource/subImg/writing .jpeg");}
+#boardQReply_img {background-image:url("../resource/subImg/writing .jpeg");}
+
+#boardQRepUpdate_img {background-image:url("../resource/subImg/writing .jpeg");}
+
+#boardQSearch_img {background-image:url("../resource/subImg/writing .jpeg");}
+
+#boardQUpdate_img {background-image:url("../resource/subImg/writing .jpeg");}
+#boardQWrite_img {background-image:url("../resource/subImg/writing .jpeg");}
 
 
 /* member 사진수정 */
-#Congratulation_img {background-image:url("../resource/subImg/book_img.jpg");}
-#memberDelete_img {background-image:url("../resource/subImg/book_img.jpg");}
-#memberInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
-#memberInsert_img {background-image:url("../resource/subImg/book_img.jpg");}
+#Congratulation_img {background-image:url("../resource/subImg/member.jpeg");}
+#memberDelete_img {background-image:url("../resource/subImg/member.jpeg");}
+#memberInfo_img {background-image:url("../resource/subImg/member.jpeg");}
+#memberInsert_img {background-image:url("../resource/subImg/member.jpeg");}
 
 /* 로그인 수정*/
 #memberLogin_img {background-image:url("../resource/subImg/memberLogin_img.jpeg");}
+#memberUpdate_img {background-image:url("../resource/subImg/memberLogin_img.jpeg");}
 
-#memberUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
-#myUseBorrowBookList_img {background-image:url("../resource/subImg/book_img.jpg");}
-#myUseRBookList_img {background-image:url("../resource/subImg/book_img.jpg");}
+#myUseBorrowBookList_img {background-image:url("../resource/subImg/guide_img.jpg");}
+#myUseRBookList_img {background-image:url("../resource/subImg/guide_img.jpg");}
+
+
 
 /* 미디어쿼리 작업부분!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
 
