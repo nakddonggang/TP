@@ -492,7 +492,7 @@
 	 
 	 <update id="getHBookReWrite" parameterType="net.book.db.BookDTO">
 	 	update hbook set hbook_check=#{hbook_check}, hbook_isbn=#{hbook_isbn}
-	 	where member_id=#{member_id}
+	 	where member_id=#{member_id} and hbook_subject=#{hbook_subject} and hbook_author=#{hbook_author}
 	 </update>
  
 	<select id="getMemberCount" parameterType="String" resultType="int">

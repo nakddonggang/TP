@@ -123,11 +123,14 @@ firstload(pageNum, view);
 								$('#text3_ap').append(text4);
 							} else {
 								for(var i=0; i<JSdata.length-8; i++){
-									var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll' id='text5_ap"+i+"'><li class='adm_num' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
+									var text4="<div class='con_lst' id='mod_div"+i+"'><ul class='no_scroll' id='text5_ap"+i+"'><li onclick='location.href=\"./BookInfo.bk?book_number="
+									+JSdata[i].book_number+"\"\' class='adm_num' id='adm_book_high'><input type='checkbox' name='basket_check' class='bncheck' value='"
 										+JSdata[i].book_number+"'></li><li class='adm_pic' id='adm_book_high'  onclick='location.href=\"./BookInfo.bk?book_number="
 										+JSdata[i].book_number+"\"\'><img src='./upload/book/"
-										+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_subs2' id='adm_book_high'>"
-										+JSdata[i].book_subject+"</li><li class='adm_name over_dot' id='adm_book_high'>"
+										+JSdata[i].book_file+"' width='70px' height='80px'></li><li class='adm_subs2' id='adm_book_high' onclick='location.href=\"./BookInfo.bk?book_number="
+										+JSdata[i].book_number+"\"\'>"
+										+JSdata[i].book_subject+"</li><li class='adm_name over_dot' id='adm_book_high' onclick='location.href=\"./BookInfo.bk?book_number="
+										+JSdata[i].book_number+"\"\'>"
 										+JSdata[i].book_author+"</li><li class='adm_ten over_dot' id='adm_book_high'>"
 										+JSdata[i].book_publisher+"</li></ul>";
 										$('#text3_ap').append(text4);
@@ -391,7 +394,7 @@ firstload(pageNum, view);
 															</div>
 														</div>
 														<div id="book_sort_submit">
-															<input type=submit class="book_btn_type4" value="상세검색" >
+															<input type="submit" class="book_btn_type4" value="상세검색" >
 															<input type="reset" class="book_btn_type5" value="입력 초기화">
 														</div>
 													</div>
