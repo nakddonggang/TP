@@ -22,6 +22,7 @@ public class BorrowBookAction implements Action{
 		HttpSession session = request.getSession();
 		String member_id = (String)session.getAttribute("member_id");
 		String pageNum = request.getParameter("pageNum");
+		if(pageNum==null) pageNum="1";
 		int bbookMaxNumber = 0;
 		int book_number = Integer.parseInt(request.getParameter("book_number"));
 		
@@ -51,7 +52,7 @@ public class BorrowBookAction implements Action{
 		mDAO.updateRbookCheck();
 		mDAO.updateRbookCheck2();			// rbook_num < 3 인것들 예약가능으로 수정
 		
-		forward.setPath("./MemberUseRbookList.me?pageNum="+pageNum);
+		forward.setPath("./MemberUseIndex.me");
 		forward.setRedirect(true);
 		
 		return forward;
