@@ -530,10 +530,13 @@ strong#currentPage {font-weight: bold;}
 /* FAQ */
 #boardFaq_img {background-image:url("../resource/subImg/boardFaq_img.jpg");}
 
-#myUseIndex_img {background-image:url("../resource/subImg/book_img.jpg");}
+/* 대출,예약중인도서 */
+#myUseIndex_img {background-image:url("../resource/subImg/myUseIndex_img.jpeg");}
+
 #boardNUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 #myUseBasket_img {background-image:url("../resource/subImg/book_img.jpg");}
 #guideStatis_img {background-image:url("../resource/subImg/book_img.jpg");}
+
 
 /* amdin 사진 수정 */
 #admMemIndex_img {background-image:url("../resource/subImg/book_img.jpg");}
@@ -556,6 +559,7 @@ strong#currentPage {font-weight: bold;}
 #admMemInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
 #admMemUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 
+
 /* board 사진수정 */
 #boardCuUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 #boardCuWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
@@ -571,12 +575,16 @@ strong#currentPage {font-weight: bold;}
 #boardQUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 #boardQWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
 
+
 /* member 사진수정 */
 #Congratulation_img {background-image:url("../resource/subImg/book_img.jpg");}
 #memberDelete_img {background-image:url("../resource/subImg/book_img.jpg");}
 #memberInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
 #memberInsert_img {background-image:url("../resource/subImg/book_img.jpg");}
-#memberLogin_img {background-image:url("../resource/subImg/book_img.jpg");}
+
+/* 로그인 임시 수정 안먹힘*/
+#memberLogin_img {background-image:url("../resource/subImg/memberLogin_img.jpg");}
+
 #memberUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 #myUseBorrowBookList_img {background-image:url("../resource/subImg/book_img.jpg");}
 #myUseRBookList_img {background-image:url("../resource/subImg/book_img.jpg");}
