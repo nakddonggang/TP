@@ -114,11 +114,14 @@
 </script>
 <script type="text/javascript">
 var idcheck = 0;
+var inputid;	
+var idnum;
+var ideng;
 
 	function checkId() {
-		var inputid = $("#member_id").val();	
-		var idnum = inputid.search(/[0-9]/g);
-		var ideng = inputid.search(/[a-z]/ig);
+		inputid = $("#member_id").val();	
+		idnum = inputid.search(/[0-9]/g);
+		ideng = inputid.search(/[a-z]/ig);
 		
 		$.ajax({
 			url:'./MemberIdCheck.me',

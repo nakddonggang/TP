@@ -141,7 +141,7 @@ $(document).ready(function(){
 									for(int i=0; i<searchList.size(); i++){
 										BoardDTO bDTO = searchList.get(i);
 										String word = bDTO.getQna_subject();
-										word = word.replaceAll(search, "<mark>"+search+"</mark>");
+										word = word.replaceAll(search, "<mark class='pinkMark'>"+search+"</mark>");
 										String check = bDTO.getQna_check();
 										if(check.equals("1")){check="답변완료";}
 										else {check="답변대기";}

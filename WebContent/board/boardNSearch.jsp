@@ -137,7 +137,7 @@ $(document).ready(function(){
 												notice_content = notice_content.replaceAll("\r\n", "<br>");
 												notice_content = notice_content.replaceAll("\u0020", "&nbsp;");
 												String word = bDTO.getNotice_subject();
-												word = word.replaceAll(search, "<mark>" + search + "</mark>");
+												word = word.replaceAll(search, "<mark class='pinkMark'>" + search + "</mark>");
 											%>
 											<div class="con_lst DIV_CON_LST">
 												<ul>

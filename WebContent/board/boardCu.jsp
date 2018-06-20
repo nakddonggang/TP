@@ -79,6 +79,10 @@ $(document).ready(function(){
 		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
 				
+				<!-- 서브메뉴 -->
+				<div class="no_sub"></div>
+				<!-- //서브메뉴 -->
+				
 				<!-- 메인 페이지 -->
 				<article class="mainmenu_no_sub section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
@@ -88,7 +92,7 @@ $(document).ready(function(){
 					  
 					  <h3>Curation</h3>
 					  
-					  <div class="search_bx">
+					  <div class="search_bx cur_search">
 							<form action="./BoardCurSearch.cu" method="post">
 								<input type="text" name="search" id="search" placeholder="큐레이션을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>

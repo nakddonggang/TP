@@ -78,7 +78,11 @@ $(document).ready(function(){
 		<!-- 본문 컨테이너 -->
 		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
-
+				
+				<!-- 서브메뉴 -->
+				<div class="no_sub"></div>
+				<!-- //서브메뉴 -->
+				
 				<!-- 메인 페이지 -->
 				<article class="mainmenu_no_sub section SECTION">
 				<jsp:include page="../include/topbar.jsp" />
@@ -86,7 +90,7 @@ $(document).ready(function(){
 					<div class="content">
 					  <div class=board>
 						  <h3>Curation</h3>
-						  <div class="search_bx">
+						  <div class="search_bx cur_search">
 							<form action="./BoardCurSearch.cu" method="post">
 								<input type="text" name="search" id="search" placeholder="큐레이션을 검색해 보세요." class="inp_search"><input type="submit" value="검색" class="btn_search" >
 							</form>
@@ -107,7 +111,7 @@ $(document).ready(function(){
 									for(int i=0; i<searchList.size(); i++){
 									BoardDTO bDTO = searchList.get(i);
 									String word = bDTO.getCur_subject();
-									word = word.replaceAll(search, "<mark>"+search+"</mark>");
+									word = word.replaceAll(search, "<mark class='pinkMark'>"+search+"</mark>");
 								%>
 									<div class="con_lst_cu DIV_CON_LST">
 									  <ul class="no_scroll" onclick="location.href='./BoardCurContent.cu?cur_num=<%=bDTO.getCur_num()%>&pageNum=<%=pageNum %>'">

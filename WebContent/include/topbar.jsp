@@ -24,7 +24,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
     $.toast.config.align = 'center';
-    $.toast.config.width = 500;
+    $.toast.config.width = 350;
     
 	var member_id = "${member_id}";
 	$.ajax({

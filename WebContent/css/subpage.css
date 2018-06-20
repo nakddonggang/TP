@@ -458,11 +458,12 @@ ul.cu_brd_txt_lst > li.view_lst {float: left; width:100%;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_thm {float:left; width:40%; height:100%; padding-right:20px;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_thm img {width:100%; height:100%;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt {float:left; width:60%; height:100%;}
-.view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt h4 {margin:10px 0; font-size:1.43em; font-family:"Noto_M"; line-height:20px;}
+.view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt h4 {margin:10px 0; font-size:1.43em; font-family:"Noto_M"; line-height:25px;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt p {overflow:hidden; height:126px;}
-.view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt {margin-top:10px;}
+.view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt {margin-top:0px;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.tit_date {display:none;}
 .view_lst > .con_lst_cu > ul.no_scroll > li.cu_lst > div.cu_txt .cu_btm_txt span.date {margin-right:30px;}
+.pinkMark {background-color: pink;}
 /* end 윤창훈 작업(Curation List) */
 
 
@@ -636,6 +637,7 @@ strong#currentPage {font-weight: bold;}
 /* board css*/
 	/* text css start*/
 	.board .search_bx { top: -25px; margin-right: 20px;}
+	.board .cur_search {top: 0 !important;}
 	.search_bx { right:0; width:60%;}
     .search_bx input.inp_search {width:100%;  paddind:0px; font-size:0.75em;  }
    	.search_bx input.btn_search {position:absolute; right:0;}
