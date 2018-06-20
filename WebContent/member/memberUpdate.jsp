@@ -57,7 +57,7 @@
     
     function validateEncryptedUpdateForm() {
 
-        var member_id = $("#member_id").text();
+        var member_id = $("#member_id").val();
         var member_name = $("#member_name").val();
         var member_post = $("#member_post").val();
         var member_address1 = $("#member_address1").val();

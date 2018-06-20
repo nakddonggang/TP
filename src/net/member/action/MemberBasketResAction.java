@@ -65,7 +65,7 @@ public class MemberBasketResAction implements Action{
 					mDAO.insertRbook((int)list.get(i), member_id, rbook_num);	// 예약테이블에 insert
 					mDAO.deleteRes((int)list.get(i), member_id);				// 예약하고 바구니에서 삭제	
 				}else{	// 예약대기자가 3명 이상일 경우 or 이미 예약한 경우 예약 불가
-					forward.setPath("./MemberBasketList.me?alert=1");
+					forward.setPath("./MemberUseIndex.me?alert=1");
 					forward.setRedirect(true);
 					return forward;
 				}
@@ -75,7 +75,7 @@ public class MemberBasketResAction implements Action{
 					mDAO.deleteRes((int)list.get(i), member_id);				// 예약하고 바구니에서 삭제
 					
 				}else{
-					forward.setPath("./MemberBasketList.me?alert=1");
+					forward.setPath("./MemberUseIndex.me?alert=1");
 					forward.setRedirect(true);
 					return forward;
 				}
@@ -85,7 +85,7 @@ public class MemberBasketResAction implements Action{
 		mDAO.updateRbookCheck2();	// rbook 테이블 전체에서 예약대기자가 3명미만인 경우 rbook_check를 '1'으로 수정(예약불가)
 		mDAO.updateRbookCheck();	// rbook 테이블 전체에서 예약대기자가 3명인 경우 rbook_check를 '0'으로 수정(예약불가)
 		
-		forward.setPath("./MemberBasketList.me");
+		forward.setPath("./MemberUseIndex.me");
 		forward.setRedirect(true);
 		
 		return forward;
