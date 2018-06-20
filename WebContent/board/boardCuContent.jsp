@@ -74,7 +74,8 @@
 										<li class="cu_col_rc"><span class="tit_date">조회수 :&nbsp;</span><span><%=bDTO.getCur_readcount() %></span></li>
 									</ul>	
 									<div class="cu_col_thm">
-								    	<img src="./upload/curation/<%=bDTO.getCur_file()%>" width="700" height="700">
+									<div class="box_wrap">
+								    	<img src="./upload/curation/<%=bDTO.getCur_file()%>" class="cu_img_size"></div>
 								    	<p class="cu_col_content"><%=cur_content%></p>
 								    </div>
 <!-- 								    <div class="file"> -->
