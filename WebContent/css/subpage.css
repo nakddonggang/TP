@@ -525,13 +525,18 @@ strong#currentPage {font-weight: bold;}
 /* 대출,예약중인도서 */
 #myUseIndex_img {background-image:url("../resource/subImg/myUseIndex_img.jpeg");}
 
+/* 통계 */
+#guideStatis_img {background-image:url("../resource/subImg/guideStatis_img.jpeg");}
+
 #boardNUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 #myUseBasket_img {background-image:url("../resource/subImg/book_img.jpg");}
-#guideStatis_img {background-image:url("../resource/subImg/book_img.jpg");}
 
 
 /* amdin 사진 수정 */
-#admMemIndex_img {background-image:url("../resource/subImg/book_img.jpg");}
+
+/* 통합도서관리시스템 */
+#admMemIndex_img {background-image:url("../resource/subImg/admMemIndex_img.jpeg");}
+
 #admBookDLos_img {background-image:url("../resource/subImg/book_img.jpg");}
 #admBookDLosInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
 #admBookDLosReWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
