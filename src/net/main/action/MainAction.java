@@ -11,6 +11,7 @@ import net.board.db.BoardDAO;
 import net.board.db.BoardDTO;
 import net.book.db.BookDAO;
 import net.book.db.BookDTO;
+import net.member.db.MemberDAO;
 import util.actionForward.Action;
 import util.actionForward.ActionForward;
 
@@ -23,10 +24,10 @@ public class MainAction implements Action{
 		request.setCharacterEncoding("utf-8");
 		HttpSession session = request.getSession();
 		ActionForward forward = new ActionForward();
-		
+		MemberDAO mDAO = new MemberDAO();
 		Cookie[] cookie = request.getCookies();
 		String member_id = "";
-		
+		String member_level = null;
 		if(cookie != null){
 			for(int i=0; i<cookie.length; i++){
 				System.out.println("cookie["+i+"]"+cookie[i].getValue());
@@ -35,6 +36,10 @@ public class MainAction implements Action{
 				
 				if(cookie[i].getName().startsWith("auto")){
 					member_id = cookie[i].getValue();
+					member_level = mDAO.AdminCheck(member_id);
+					if(member_level.equals("3")) session.setAttribute("admincheck", true);
+		    		else session.setAttribute("admincheck", false);
+					System.out.println("member_id : "+member_id);
 					session.setAttribute("member_id", member_id);			
 				}
 			}
@@ -74,7 +79,7 @@ public class MainAction implements Action{
 			popularList = bkDAO.popularList();
 		}
 		
-		System.out.println("popularList: " + bkDAO.popularList().size());
+		System.out.println("popularList: " + popularList.size());
 		
 		request.setAttribute("popularList", popularList);
 		request.setAttribute("noticeList", noticeList);

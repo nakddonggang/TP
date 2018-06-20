@@ -36,12 +36,10 @@ function hb_delete(){
 <body>
 	<%
 	String member_id = (String) session.getAttribute("member_id");
-	if (member_id == null) {
-		boolean admincheck = (boolean) session.getAttribute("admincheck");
-		if(admincheck == false) {
-				response.sendRedirect("./Main.fp");
-		}
-	}
+	if (member_id != null) {
+		boolean admincheck = (boolean)session.getAttribute("admincheck");
+		if(admincheck == false) response.sendRedirect("./Main.fp");
+	} else response.sendRedirect("./Main.fp");
 	%>
 <%
 request.setCharacterEncoding("utf-8");

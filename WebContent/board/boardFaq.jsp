@@ -52,8 +52,10 @@ $(document).ready(function(){
 	pageLoad(pageNum,selected);
 	
 	function pageLoad(pageNum,selected){
-		selected = "all";
-		$("#faq_select option:eq(0)").prop("selected", true);
+		if(selected==null){
+			selected = "all";
+			$("#faq_select option:eq(0)").prop("selected", true);
+		}
 		loadAjax(pageNum, selected);
 	}
 	

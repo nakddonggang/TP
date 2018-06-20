@@ -78,15 +78,17 @@ public class MemberLoginAction implements Action {
     			out.close();
     			return null;
     		}
-    		
+    		System.out.println("autoLogin : "+autoLogin);
     		if(autoLogin != null && autoLogin.equals("checked")){
     			cookie = new Cookie("autoMember_id",member_id);
     			cookie.setMaxAge(cookie_time);
     			cookie.setPath("/");
+    			System.out.println("여기왔음.");
     		}else{
     			cookie = new Cookie("autoMember_id", null);
     			cookie.setMaxAge(0);
     			cookie.setPath("/");
+    			System.out.println("11");
     		}
     		
     		String member_level = mDAO.AdminCheck(member_id);

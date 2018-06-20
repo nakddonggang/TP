@@ -34,7 +34,7 @@ $(document).ready(function(){
 		dataType: 'json',
 		success:function(result){
 			var jsonData = JSON.parse("["+result+"]");
-			if(jsonData.length <= 2 || jsonData[jsonData.length-1].check!=0 || jsonData.length >= 3){
+			if(jsonData.length == 2 || jsonData[jsonData.length-1].check!=0 || jsonData.length >= 3){
 				$('#badge').html('★');
 				$('#alarm').click(function(){
 					if((jsonData.length <= 2 && jsonData[jsonData.length-1].check!=0) || (jsonData.length>3 && jsonData[jsonData.length-1].check!=0)){
