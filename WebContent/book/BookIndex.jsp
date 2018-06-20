@@ -406,6 +406,7 @@ firstload(pageNum, view);
 				<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
+					<div class="book_wrap">
 
 						<div class="adms">
 
@@ -445,7 +446,7 @@ firstload(pageNum, view);
 			} 
 		}
 </script>
-
+						</div>
 						</div>
 					</div>
 				</article>
