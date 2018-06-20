@@ -46,17 +46,35 @@ public class MemberLoginAction implements Action {
     		if(check == 0) {
     			response.setContentType("text/html;charset=utf-8");
     			PrintWriter out = response.getWriter();
-    			out.print("<script>");
-    			out.print("$.Alert('비밀번호 틀림',function(){location.href='./MemberLogin.me';});");
-    			out.print("</script>");
+    			out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+    			out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+    			out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+    			out.print("<script src='./js/jquery-ui.min.js'></script>");
+    			out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
+    			out.println("<script>");
+    			out.println("$(document).ready(function() { ");
+    			out.println("$.Alert('비밀번호가 일치하지 않습니다.' , function(){"
+    					+ "location.href = './MemberLogin.me'"
+    					+ "});");
+    			out.println("});");
+    			out.println("</script>");
     			out.close();
     			return null;
     		}else if(check == -1){
     			response.setContentType("text/html;charset=utf-8");
     			PrintWriter out = response.getWriter();
-    			out.print("<script>");
-    			out.print("$.Alert('아이디 틀림', function(){location.href='./MemberLogin.me';});");
-    			out.print("</script>");
+    			out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+    			out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+    			out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+    			out.print("<script src='./js/jquery-ui.min.js'></script>");
+    			out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
+    			out.println("<script>");
+    			out.println("$(document).ready(function() { ");
+    			out.println("$.Alert('아이디가 일치하지 않습니다.' , function(){"
+    					+ "location.href = './MemberLogin.me'"
+    					+ "});");
+    			out.println("});");
+    			out.println("</script>");
     			out.close();
     			return null;
     		}

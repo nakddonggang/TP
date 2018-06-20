@@ -22,7 +22,6 @@ public class MemberUpdateAction implements Action {
 		response.setContentType("text/html;charset=utf-8");
         
         String securedId = request.getParameter("securedId");
-        System.out.println("securedId : "+securedId);
         String securedName = request.getParameter("securedName");
         String securedPost = request.getParameter("securedPost");
         String securedAddress1 = request.getParameter("securedAddress1");
@@ -41,7 +40,7 @@ public class MemberUpdateAction implements Action {
         
 		PrivateKey privateKey = (PrivateKey) session.getAttribute("__rsaPrivateKey__");
         session.removeAttribute("__rsaPrivateKey__"); // 키의 재사용을 막는다. 항상 새로운 키를 받도록 강제.
-
+       
         if (privateKey == null) {
             throw new RuntimeException("암호화 비밀키 정보를 찾을 수 없습니다.");
         }
@@ -52,7 +51,6 @@ public class MemberUpdateAction implements Action {
 		    String member_post = dRSA.DecryptRsa(privateKey, securedPost);
 		    String member_address1 = dRSA.DecryptRsa(privateKey, securedAddress1);
 		    String member_address2 = dRSA.DecryptRsa(privateKey, securedAddress2);
-		    System.out.println("member_address2 : "+member_address2);
 		    String member_phone1 = dRSA.DecryptRsa(privateKey, securedPhone1);
 		    String member_phone2 = dRSA.DecryptRsa(privateKey, securedPhone2);
 		    String member_phone3 = dRSA.DecryptRsa(privateKey, securedPhone3);
@@ -67,9 +65,7 @@ public class MemberUpdateAction implements Action {
 				forward.setRedirect(true);
 				return forward;
 			}
-		
 
-				
 		mDTO.setMember_id(member_id);
 		mDTO.setMember_name(member_name);
 		mDTO.setMember_post(member_post);

@@ -90,7 +90,7 @@ public class MemberDAO {
 	//	맴버 수정
 	public void UpdateMember(MemberDTO mDTO) {
 		int result = sqlsession.update("updateMember" , mDTO);
-		System.out.println(result);
+		System.out.println("updatemember result : "+result);
 	}
 	
 	// 맴버 사용 시설 정보
