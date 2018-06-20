@@ -39,8 +39,8 @@ $(document).ready(function(){
 				});
 				return false;
 			}
+			$('#qUpdateForm').submit();
 		});
-		$('#qUpdateForm').submit();
 	});
 });
 </script>
