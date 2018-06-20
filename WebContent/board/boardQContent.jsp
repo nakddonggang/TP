@@ -53,7 +53,7 @@
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="boardQContent_img" >
+									<div id="boardQContent_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

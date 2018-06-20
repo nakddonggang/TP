@@ -84,7 +84,7 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="myUseRBookList_img" >
+									<div id="myUseRBookList_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

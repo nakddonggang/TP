@@ -39,8 +39,8 @@ $(document).ready(function(){
 				});
 				return false;
 			}
+			$('#qUpdateForm').submit();
 		});
-		$('#qUpdateForm').submit();
 	});
 });
 </script>
@@ -68,7 +68,7 @@ String member_id = (String)session.getAttribute("member_id");
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="boardQUpdate_img" >
+									<div id="boardQUpdate_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

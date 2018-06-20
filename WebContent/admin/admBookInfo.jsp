@@ -59,7 +59,7 @@ String dbook_reason= (String)request.getAttribute("dbook_reason");
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="admBookInfo_img" >
+									<div id="admBookInfo_img" class="box_thm01">
 									</div>
 								</div>
 							</div>

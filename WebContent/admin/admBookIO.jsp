@@ -85,7 +85,7 @@ function book_io(){
 						<div class="intro1">
 							<div class="slide_con">
 								<div class="box_thm">
-									<div id="admBookIO_img" >
+									<div id="admBookIO_img" class="box_thm01">
 									</div>
 								</div>
 							</div>
