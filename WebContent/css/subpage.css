@@ -422,16 +422,16 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 .info_bbutton2, .mod_btn {border: none; background-color: #FAE0D4; margin-top: 30px;}
 
 /* START 김영지 책 갤러리 형식으로 보기 css */
-.book_lst {overflow: hidden; width: 90%; margin: 0 auto; position: relative; margin-top:10px; }
-.book_lst li { float: left; width: 30%; height: 280px; margin: 10px 3px 10px 3px; padding-bottom: 26px; position: relative;}
+.book_lst {overflow: hidden; width: 100%; margin: 0 auto; position: relative; margin-top:10px; margin-bottom:20px;}
+.book_lst li { float: left; width: 24%; height: 20%; margin: 10px 2px 10px 2px; padding-bottom: 26px; position: relative;}
 .book_lst li a {color: #666; text-decoration: none; }
-.book_lst_img { width:99%; height: 270px;}
+.book_lst_img { width:97%; height: 100%;}
 #bk_li_subs { display: block; width: 99%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; margin-top: 2px;}
 /* .book_info_layer{ display: none; background: url(../book/bg_book_hover.png) no-repeat; } */
-.book_info_layer{ display: none;	position:absolute; top:0; left:0; width:97%; height:270px; background: url(../resource/img/bg_book_hover.png) repeat;}
+.book_info_layer{ display: none;	position:absolute; top:0; left:0; width:97%; height:87%; background: url(../resource/img/bg_book_hover.png) repeat;}
 .book_lst .book_info_layer > dt {height: 47px;	padding: 15px; width:99%; background-color: #222;  color: #fff; }
 .book_lst .book_info_layer > dt > span {overflow: hidden; display: inline-block;  height: 56px; line-height: 14px; word-break: break-all; text-overflow: ellipsis;  white-space: nowrap; width: 100%;}
-.book_lst li:HOVER .book_info_layer { display: block; z-index: 1; width:100%; }
+.book_lst li:HOVER .book_info_layer { display: block; z-index: 1; }
 .book_lst .book_info_layer dd dl { padding: 15px 15px 0 15px; width:100%; box-sizing : border-box; }
 .book_lst .book_info_layer dd dt { float: left; width: 47px; height: auto;  margin-right: 10px;  line-height: normal;  font-size: 11px  color: #a5a5a5; }
 .book_lst .book_info_layer dd dd {overflow: hidden;  margin-bottom: 9px;  font-size: 11px;  text-overflow: ellipsis;  white-space: nowrap;  color: #fff; }
@@ -594,14 +594,16 @@ strong#currentPage {font-weight: bold;}
 
 
 @media(max-width:1025px){
-	.book_lst li {     width: 48%;height: 400px; margin: 12px 5px 12px 5px;}
+	.book_lst li {     width: 48%;height: 400px; margin: 12px 5px 20px 5px;}
 	.book_lst_img { width:99%; height: 390px;}
 	.book_info_layer{ height:390px; }
+	.book_wrap{margin: 0 auto; width: 600px;}
 }
 
 
 
 @media (max-width:767px){
+	.book_wrap{margin: 0 auto; width: 400px;}
 	.box_wrap{margin: 0 auto; width: 320px;}
 /*main*/
 .main_concur {width: 320px; height: 350px;}
@@ -758,9 +760,9 @@ strong#currentPage {font-weight: bold;}
 	
 	/* book css */
 	  /* book img css */
-	.book_lst li {width: 70%;height: 300px; margin: 40px 30px 20px 50px;}
-	.book_lst_img { width:99%; height: 290px;}
-	.book_info_layer{ height:290px; }
+	.book_lst li {width: 70%;height: 300px; margin: 10px 30px 90px 50px;}
+	.book_lst_img { width:99%; height: 350px;}
+	.book_info_layer{ height:350px; }
 	/* book css */
 	
 	

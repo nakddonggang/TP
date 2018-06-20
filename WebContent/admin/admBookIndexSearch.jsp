@@ -193,7 +193,7 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 									BookDTO booksearchLists = booksearchList.get(i);
 						%>
 						<div class="con_lst">
-							<ul class="no_scroll" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'">
+							<ul class="no_scroll">
 								<li class="adm_num" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_number()%></li>
 								<li class="adm_pic" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><img src="./upload/book/<%=booksearchLists.getBook_file()%>" width="70px" height="80px"></li>
 								<li class="adm_subs2" id="adm_book_high" onclick="location.href='./AdminBookInfo.am?book_number=<%=booksearchLists.getBook_number()%>'"><%=booksearchLists.getBook_subject()%></li>
