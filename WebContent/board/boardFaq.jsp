@@ -112,7 +112,7 @@ $(document).ready(function(){
 							var test2 = "<p><img src='./upload/faq/"+jsonData[i].faq_file+"' width='100' height='100'></p>";
 							$('#con_detail'+i).append(test2);
 						}
-						var test3 = "<p>"+faq_content+"</p><div class='file'><span>첨부파일</span><ul>"+file+"</ul></div>"
+						var test3 = "<p>★ 질문내용 : "+jsonData[i].faq_subject+"</p><p>→ "+faq_content+"</p><div class='file'><span>첨부파일</span><ul>"+file+"</ul></div>"
 						$('#con_detail'+i).append(test3);
 						
 						/***********	수정,삭제 버튼	**************/

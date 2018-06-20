@@ -109,11 +109,11 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 								<li class="view_lst">
 								<div class="con_lst">
 									<ul class="no_scroll title_t">
-										<li class="my_p">사진</li>
-										<li class="my_p">제목</li>
-										<li class="my_p">저자</li>
-										<li class="my_p">예약일자</li>
-										<li class="my_p">신청버튼</li>
+										<li class="rb_num">사진</li>
+										<li class="rb_cont">제목</li>
+										<li class="rb_cont">저자</li>
+										<li class="rb_date">예약일자</li>
+										<li class="rb_btn">신청버튼</li>
 									</ul>
 								</div>
 					
@@ -127,13 +127,13 @@ int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 								<div class="con_lst">
 									<ul class="no_scroll">
 									
-										<li class="my_p"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></a></li>
-										<li class="my_ppp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_subject() %></a></li>
-										<li class="my_pp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_author() %></a></li>
-										<li class="my_pp"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=date.format(bDTO.getRbook_date()) %></a></li>
-										<li class="my_p"><input type="button" value="예약취소" id="" class="cancelRes btn_type7" rel="<%=bDTO.getBook_number() %>">
+										<li class="rb_num"  id="adm_book_high"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><img src="./upload/book/<%=bDTO.getBook_file()%>"width="70px" height="80px"></a></li>
+										<li class="rb_cont over_dot"   id="adm_book_high"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_subject() %></a></li>
+										<li class="rb_cont over_dot"  id="adm_book_high"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_author() %></a></li>
+										<li class="rb_date over_dot"  id="adm_book_high"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=date.format(bDTO.getRbook_date()) %></a></li>
+										<li class="rb_btn_" ><input type="button" value="예약취소" id="" class="cancelRes rb_btn_type" rel="<%=bDTO.getBook_number() %>">
 										<%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
-												%><input type="button" value ="대출신청" id="" class="borrow btn_type7" rel="<%=bDTO.getBook_number() %>">
+												%><input type="button" value ="대출신청" id="" class="borrow rb_btn_type" rel="<%=bDTO.getBook_number() %>">
 											<%} %></li>
 									</ul>
 								</div>

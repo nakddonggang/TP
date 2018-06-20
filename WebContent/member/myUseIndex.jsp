@@ -37,6 +37,39 @@
 			}
 			$("#returnBookform").submit();
 		});
+		
+		function Request(valuename){
+			var rtnval;
+			var nowAddress = unescape(location.href);
+			var parameters = new Array();
+			parameters = (nowAddress.slice(nowAddress.indexOf("?")+1,nowAddress.length)).split("&");
+			for(var i = 0 ; i < parameters.length ; i++){
+				if(parameters[i].split("=")[0] == valuename){
+					rtnval = parameters[i].split("=")[1];
+					if(rtnval == undefined || rtnval == null){
+						rtnval = "";
+					}
+					return rtnval;
+				}
+			}
+		}
+		
+		var msg = Request("alert");
+		if(msg=="1"){
+			$.Alert("이미 대출,예약했거나 예약이 꽉 찬 도서가 포함됐습니다.", function(){});
+		}
+		
+		$('.borrowBtn').each(function(index){
+			$(this).attr('id','borrow'+index);
+			$('#borrow'+index).click(function(){
+				$.Confirm(
+					'대출신청 하시겠습니까?',
+					function(){
+						location.href = './BorrowBookAction.me?book_number=' + $('#borrow'+index).attr('rel');
+					}
+				);
+			});
+		});
 	});
 </script>
 	<!-- member/myUseIndex.jsp 이용현황 목록 페이지 -->
@@ -97,12 +130,12 @@
 								for(BookDTO bDTO : bList2) {
 									%>
 									<div class="con_lst">
-										<ul class="no_scroll" onclick="location.href='./MemberMyUseRBookList.me'">
-											<li class="col_use"><%=bDTO.getBook_subject() %></li>
-											<li class="col_mem_r"><%=bDTO.getRbook_num() %></li>
-											<li class="col_mem_r"><%=rbook_rdate.format(bDTO.getRbook_date()) %></li>
+										<ul class="no_scroll">
+											<li class="col_use"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_subject() %></a></li>
+											<li class="col_mem_r"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getRbook_num() %></a></li>
+											<li class="col_mem_r"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=rbook_rdate.format(bDTO.getRbook_date()) %></a></li>
 											<li class="col_mem_r"><%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
-												%><input type="button" value ="대출신청" onclick="location.href='./BorrowBookAction.me?book_number=<%=bDTO.getBook_number()%>'" class="btn_type7">
+												%><input type="button" value ="대출신청" id="" rel="<%=bDTO.getBook_number()%>" class="borrowBtn btn_type7">
 											<%} %></li>
 										</ul>
 									</div>
@@ -114,7 +147,7 @@
 							</ul>
 							
 							<div class="btn_btm_center">
-								<input type="submit" value="상세보기" class="btn_type5" onclick="location.href='./MemberMyUseRBookList.me'">
+								<input type="button" value="상세보기" class="btn_type5" onclick="location.href='./MemberMyUseRBookList.me'">
 							</div>
 					</div>
 				
@@ -163,7 +196,7 @@
 						</ul>
 						
 						<div class="btn_btm_center">		
-										<input type = "button" value = "반납하기"  id = "useIndexBtn" class="btn_type5">				
+										<input type = "button" value = "반납하기"  id = "useIndexBtn" class="btn_type8">				
 										<input type = "button" value ="대출내역보기"  class="btn_type5" onclick = "location.href ='./MemberMyUseBorrowBookList.me'">
 								</div>
 						 </div>

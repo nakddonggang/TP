@@ -77,7 +77,7 @@ ul.tabs li.active {	background: #FFFFFF;	border-bottom: 1px solid #FFFFFF;}
 
 
 
-
+.btn_type8 {position:absolute; top:-25px; right:100px; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
 .btn_type7 {margin:13px 0 0 0;  top: 90px; width: 60px; height: 25px; line-height: 25px; color: #fff !important; border: 0; text-align: center; background: #464646; font-size: 0.5em; margin-bottom: 3px;}
 .btn_type6 {top: 90px; width: 60px; height: 25px; line-height: 25px; color: #fff !important; border: 0; text-align: center; background: #464646; font-size: 0.5em; margin-bottom: 3px;}
 .btn_type5 {position:absolute; top:-25px; right:0; width:96px; height:34px; line-height:34px; color:#fff !important; border:0; text-align:center; background:#464646; color:#fff; cursor:pointer;}
@@ -428,7 +428,7 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 .book_lst_img { width:99%; height: 270px;}
 #bk_li_subs { display: block; width: 99%; white-space: nowrap; text-overflow: ellipsis; overflow: hidden; margin-top: 2px;}
 /* .book_info_layer{ display: none; background: url(../book/bg_book_hover.png) no-repeat; } */
-.book_info_layer{ display: none;	position:absolute; top:0; left:0; width:97%; height:270px; background: url(../book/bg_book_hover.png) repeat;}
+.book_info_layer{ display: none;	position:absolute; top:0; left:0; width:97%; height:270px; background: url(../resource/img/bg_book_hover.png) repeat;}
 .book_lst .book_info_layer > dt {height: 47px;	padding: 15px; width:99%; background-color: #222;  color: #fff; }
 .book_lst .book_info_layer > dt > span {overflow: hidden; display: inline-block;  height: 56px; line-height: 14px; word-break: break-all; text-overflow: ellipsis;  white-space: nowrap; width: 100%;}
 .book_lst li:HOVER .book_info_layer { display: block; z-index: 1; width:100%; }
@@ -439,6 +439,14 @@ input.adm_btn_search {width: 9%; float:left; margin-right:5px; width:35px; heigh
 /* END 김영지 책 갤러리 형식으로 보기 css */
 .over_dot { overflow: hidden; text-overflow: ellipsis;  white-space: nowrap; }
 
+/*myUseRBookList 예약관리 작업 */
+.view_lst .con_lst > ul.no_scroll .rb_num {width:15%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .rb_cont {width:20%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .rb_date {width:17%; padding:0 10px;}
+.view_lst .con_lst > ul.no_scroll .rb_btn {width:27%; padding:0 15px 0 10px;}
+.view_lst .con_lst > ul.no_scroll .rb_btn_ {width:27%; padding:0 10px;}
+.rb_btn_type {margin-top: 30px; top: 90px; width: 48px; height: 25px; line-height: 25px; color: #fff !important; border: 0; text-align: center; background: #464646; font-size: 0.6em; margin-bottom: 3px;}
+ 
 /* start 윤창훈 작업(Notice List) */
 .view_lst .con_lst .con_detail .file .No {display:table-cell; vertical-align:middle; width:10%;}
 /* end 윤창훈 작업(Notice List) */
@@ -522,10 +530,13 @@ strong#currentPage {font-weight: bold;}
 /* FAQ */
 #boardFaq_img {background-image:url("../resource/subImg/boardFaq_img.jpg");}
 
-#myUseIndex_img {background-image:url("../resource/subImg/book_img.jpg");}
+/* 대출,예약중인도서 */
+#myUseIndex_img {background-image:url("../resource/subImg/myUseIndex_img.jpeg");}
+
 #boardNUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 #myUseBasket_img {background-image:url("../resource/subImg/book_img.jpg");}
 #guideStatis_img {background-image:url("../resource/subImg/book_img.jpg");}
+
 
 /* amdin 사진 수정 */
 #admMemIndex_img {background-image:url("../resource/subImg/book_img.jpg");}
@@ -548,6 +559,7 @@ strong#currentPage {font-weight: bold;}
 #admMemInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
 #admMemUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 
+
 /* board 사진수정 */
 #boardCuUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 #boardCuWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
@@ -563,12 +575,16 @@ strong#currentPage {font-weight: bold;}
 #boardQUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 #boardQWrite_img {background-image:url("../resource/subImg/book_img.jpg");}
 
+
 /* member 사진수정 */
 #Congratulation_img {background-image:url("../resource/subImg/book_img.jpg");}
 #memberDelete_img {background-image:url("../resource/subImg/book_img.jpg");}
 #memberInfo_img {background-image:url("../resource/subImg/book_img.jpg");}
 #memberInsert_img {background-image:url("../resource/subImg/book_img.jpg");}
-#memberLogin_img {background-image:url("../resource/subImg/book_img.jpg");}
+
+/* 로그인 임시 수정 안먹힘*/
+#memberLogin_img {background-image:url("../resource/subImg/memberLogin_img.jpg");}
+
 #memberUpdate_img {background-image:url("../resource/subImg/book_img.jpg");}
 #myUseBorrowBookList_img {background-image:url("../resource/subImg/book_img.jpg");}
 #myUseRBookList_img {background-image:url("../resource/subImg/book_img.jpg");}
@@ -773,79 +789,79 @@ strong#currentPage {font-weight: bold;}
 /* 영지 미디어 쿼리 css */
 
 @media screen and (min-width:768px) and (max-width : 1024px) {
-#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:2px; z-index:1;}
-.DIV_CON_LST { width : 100%;}
-#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
-#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
-#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 3px; display: inline-block;}
-#book_select1 {border: none; height:33px; width:18%;}
-#book_select2 {border:none; height: 33px;  width:18%;}
-input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
-input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
-#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
-#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
-#book_date_box #book_date { height: 33px; line-height: 33px; }
-#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
-.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
-.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_media_bye { display: none; }
+	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:2px; z-index:1;}
+	.DIV_CON_LST { width : 100%;}
+	#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
+	#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
+	#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 3px; display: inline-block;}
+	#book_select1 {border: none; height:33px; width:18%;}
+	#book_select2 {border:none; height: 33px;  width:18%;}
+	input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
+	input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
+	#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
+	#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
+	#book_date_box #book_date { height: 33px; line-height: 33px; }
+	#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
+	.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
+	.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_media_bye { display: none; }
 }
 @media screen and (max-width: 767px) {
-#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:2px; z-index:1;}
-.DIV_CON_LST { width : 100%;}
-#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
-#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
-#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 3px; display: inline-block;}
-#book_select1 {border: none; height:33px; width:18%;}
-#book_select2 {border:none; height: 33px;  width:18%;}
-input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
-input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
-#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
-#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
-#book_date_box #book_date { height: 33px; line-height: 33px; }
-#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
-.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
-.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_media_bye { display: none; }
+	#for_book_div { display: inline-block; width: 96%; position: absolute; left:2%; top:2px; z-index:1;}
+	.DIV_CON_LST { width : 100%;}
+	#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
+	#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
+	#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 3px; display: inline-block;}
+	#book_select1 {border: none; height:33px; width:18%;}
+	#book_select2 {border:none; height: 33px;  width:18%;}
+	input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
+	input.book_btn_search {  width:19%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
+	#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
+	#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
+	#book_date_box #book_date { height: 33px; line-height: 33px; }
+	#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
+	.book_btn_type3 {margin-right:5%; float:right; line-height: 33px; height: 33px; display: block; width:2%;}
+	.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_media_bye { display: none; }
 }
 
 @media screen and (min-width:1025px){
 
-#for_book_div {width:96%; z-index:1; position: absolute; top:30%; left:2%; }
-.DIV_CON_LST { width : 100%;}
-#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
-#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
-#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 10px; display: inline-block;}
-#book_select1 {border: none; height:33px; width:20%;}
-#book_select2 {border:none; height: 33px;  width:20%;}
-input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
-input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
-#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
-#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
-#book_date_box #book_date { height: 33px; line-height: 33px; }
-#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
-.book_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
-.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
-.book_media_bye { display: block; }
+	#for_book_div {width:96%; z-index:1; position: absolute; top:30%; left:2%; }
+	.DIV_CON_LST { width : 100%;}
+	#book_field { border:none; padding: 20px; width: 96%; margin: 12px auto; color:white; box-sizing : border-box;}
+	#book_field >h1 {margin:0 10px 15px 10px; text-align: center; font-size: 20px;}
+	#book_select_box{border:1px solid white; width: 100%; height: 35px; margin-bottom: 10px; display: inline-block;}
+	#book_select1 {border: none; height:33px; width:20%;}
+	#book_select2 {border:none; height: 33px;  width:20%;}
+	input.book_inp_search { height: 33px; line-height: 33px;  width:40%;}
+	input.book_btn_search {  width:20%; border:0; width: 35px; height:33px; line-height: 33px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png");  background-repeat:no-repeat; background-position:center; }
+	#book_date_box {  width: 100%; height: 35px; margin-bottom: 3px;}
+	#book_date_box > p { float: left; height: 33px; line-height: 33px;  width:18%; display: inline-block; border:1px solid white;}
+	#book_date_box #book_date { height: 33px; line-height: 33px; }
+	#book_sort_submit { height: 30px; width: 200px; margin: 0 auto; margin-top: 2%; }
+	.book_btn_type3 { line-height: 33px; height: 33px; display: none; width:2%;}
+	.book_btn_type4 { height: 35px; line-height: 26px; width: 80px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_btn_type5 { height: 35px; line-height: 26px; width: 100px; background:#333; cursor:pointer; color:#fff; text-align: center; border: 0;  }
+	.book_media_bye { display: block; }
 }
 
 /*통합검색 페이지 제일 작게 했을 떄 검색창이 망가져서 미디어쿼리 사용함*/
 @media (max-width:767px){
-#admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; height : 40px; width:85%;}
-#admin_select_box #admin_select1 {width:20%; border : none; float : left; height:34px; line-height: 34px; margin : 0 4px; }
-#admin_select_box #admin_select2 { width: 20%; float:right; border : none; height:32px; line-height: 32px; margin:0 4px; padding: 0 4px;}
-input.adm_inp_search {float:left; width:40%; height:34px; border:0; line-height: 34px;}
-input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; border:0; line-height: 34px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
-
-#admin_select_box2 { border: 1px solid #FAE0D4; margin: 0 7px 7px 7px; padding : 1px 2px 2px 2px; height : 40px; width: 30%; position: relative;}
-#admin_select_box2 p {height:38px; line-height: 38px; width: 30%; float: left; position: absolute; left:2px; }
-#admin_select_box2 select { border: none; height:35px; line-height: 35px; margin : 0; float: left; position: absolute; right: 2px; width: 50%;}
-#admin_sort_submit { margin: 0 0 0 20%; height:40px; width : 70%; position: relative;}
-#admin_sort_submit .adm_btn_type4 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:17%;  text-align: center;}
-#admin_sort_submit .adm_btn_type5 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:47%; text-align: center; }
+	#admin_select_box {border: 1px solid #FAE0D4; margin: 7px; padding : 2px 2px 4px 2px; height : 40px; width:85%;}
+	#admin_select_box #admin_select1 {width:20%; border : none; float : left; height:34px; line-height: 34px; margin : 0 4px; }
+	#admin_select_box #admin_select2 { width: 20%; float:right; border : none; height:32px; line-height: 32px; margin:0 4px; padding: 0 4px;}
+	input.adm_inp_search {float:left; width:40%; height:34px; border:0; line-height: 34px;}
+	input.adm_btn_search {width: 6%; float:left; margin-right:5px; height:34px; border:0; line-height: 34px; text-indent:-999em; background:#fff url("../resource/img/btn_search.png"); background-repeat:no-repeat; background-position:center;}
+	
+	#admin_select_box2 { border: 1px solid #FAE0D4; margin: 0 7px 7px 7px; padding : 1px 2px 2px 2px; height : 40px; width: 30%; position: relative;}
+	#admin_select_box2 p {height:38px; line-height: 38px; width: 30%; float: left; position: absolute; left:2px; }
+	#admin_select_box2 select { border: none; height:35px; line-height: 35px; margin : 0; float: left; position: absolute; right: 2px; width: 50%;}
+	#admin_sort_submit { margin: 0 0 0 20%; height:40px; width : 70%; position: relative;}
+	#admin_sort_submit .adm_btn_type4 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:17%;  text-align: center;}
+	#admin_sort_submit .adm_btn_type5 {width:27%; height:35px; line-height:35px; color:#fff !important; border:0; background:#464646; cursor:pointer; position: absolute; top: 3px; left:47%; text-align: center; }
 }
 /* End 김영지 작업 Admin */
 
@@ -895,9 +911,17 @@ input.adm_btn_search {  width:20%; border:0; width: 35px; height:33px; line-heig
 .hb_button {border: none; background-color: #FAE0D4; margin-top: 15px;}
  
 @media (max-width: 767px) {
-.brd_txt_lst li .con_lst > ul > li.admh_id {width:20%; padding:0 5px;}
-.brd_txt_lst li .con_lst > ul > li.admh_ten {width:15%; padding:0 3px;}
-.brd_txt_lst li .con_lst > ul > li.admh_num {width:15%; padding:0 3px;}
-.brd_txt_lst li .con_lst > ul > li.adm_isbn { display: none; }
+	.brd_txt_lst li .con_lst > ul > li.admh_id {width:20%; padding:0 5px;}
+	.brd_txt_lst li .con_lst > ul > li.admh_ten {width:15%; padding:0 3px;}
+	.brd_txt_lst li .con_lst > ul > li.admh_num {width:15%; padding:0 3px;}
+	.brd_txt_lst li .con_lst > ul > li.adm_isbn { display: none; }
+
+/* myUseRBookList.jsp 예약관리리스트 */
+	.view_lst .con_lst > ul.no_scroll .rb_cont {width:21%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .rb_date {width:21%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .rb_btn {width:35%; padding:0 15px 0 10px;}
+	.view_lst .con_lst > ul.no_scroll .rb_btn_ {width:35%; padding:0 10px;}
+	.view_lst .con_lst > ul.no_scroll .rb_num { display:none;}
+	.rb_btn_type{margin-top: 10px; width:40px; height:20px; line-height: 20px; }
 }
 /* end ADMIN 통합검색  */
