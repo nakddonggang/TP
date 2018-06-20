@@ -22,7 +22,7 @@ public class BoardCurSearch implements Action{
 		BoardDAO bDAO = new BoardDAO();
 		int count = bDAO.getCSearchCount(search);
 		
-		int pageSize = 2;	//한 화면에 보여줄 글 개수 설정
+		int pageSize = 10;	//한 화면에 보여줄 글 개수 설정
 		String pageNum = request.getParameter("pageNum");
 
 		if(pageNum == null){	//페이지 번호가 없으면 무조건 "1"페이지 설정

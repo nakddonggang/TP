@@ -140,16 +140,16 @@ $(document).ready(function(){
 						<%
 						if(pageCount < endPage)	endPage = pageCount;
 						%>
-						<a href="BoardCurSearch.cu?pageNum=1" class="prev2"><span class="hide">[처음]</span></a>
+						<a href="BoardCurSearch.cu?pageNum=1&search=<%=search %>" class="prev2"><span class="hide">[처음]</span></a>
 						<%
 						if(startPage > pageBlock)	{ %><a href="BoardCurSearch.cu?pageNum=<%=startPage-pageBlock%>" class="prev"><span class="hide">이전 페이지</span></a><%	}
 						for (int p = startPage; p <= endPage; p++) {	
 							if(p==Integer.parseInt(pageNum)) {%> &nbsp;<strong id="currentPage" title="현재 페이지"><%=p %></strong> &nbsp;<%}
-							else {%> &nbsp;<a href="BoardCurSearch.cu?pageNum=<%=p%>"><%=p %></a> &nbsp;<%}
+							else {%> &nbsp;<a href="BoardCurSearch.cu?pageNum=<%=p%>&search=<%=search %>"><%=p %></a> &nbsp;<%}
 						}
-						if(endPage < pageCount){	%><a href="BoardCurSearch.cu?pageNum=<%=startPage+pageBlock%>" class="next"><span class="hide">다음 페이지</span></a><% }
+						if(endPage < pageCount){	%><a href="BoardCurSearch.cu?pageNum=<%=startPage+pageBlock%>&search=<%=search %>" class="next"><span class="hide">다음 페이지</span></a><% }
 						%>
-						<a href="BoardCurSearch.cu?pageNum=<%=pageCount %>" class="next2"><span class="hide">[끝]</span></a>
+						<a href="BoardCurSearch.cu?pageNum=<%=pageCount %>&search=<%=search %>" class="next2"><span class="hide">[끝]</span></a>
 						 </div>
 						 
 						 <div class="btn_btm_center1">
