@@ -249,7 +249,7 @@ public class MemberFrontController extends HttpServlet{
 	
 	protected void rsaKeygen(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		KeyPairGenerator generator = KeyPairGenerator.getInstance("RSA");
-		generator.initialize(2048);
+		generator.initialize(1024);
 
 		KeyPair keyPair = generator.genKeyPair();
 		KeyFactory keyFactory = KeyFactory.getInstance("RSA");

@@ -11,7 +11,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>혜윰나래:: 도서통합검색</title>
 <link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
@@ -406,6 +406,7 @@ firstload(pageNum, view);
 				<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
+					<div class="book_wrap">
 
 						<div class="adms">
 
@@ -445,7 +446,7 @@ firstload(pageNum, view);
 			} 
 		}
 </script>
-
+						</div>
 						</div>
 					</div>
 				</article>

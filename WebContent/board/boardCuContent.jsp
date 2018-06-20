@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>혜윰나래:: 큐레이션</title>
 <link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
@@ -44,7 +44,10 @@
 		<!-- 본문 컨테이너 -->
 		<div class="container">
 			<section class="fullpage SECTION_FULL_PAGE01">
-
+				
+				<!-- 서브메뉴 -->
+				<div class="no_sub"></div>
+				<!-- //서브메뉴 -->
 				
 				<!-- 메인 페이지 -->
 				<article class="mainmenu_no_sub section SECTION">

@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>혜윰나래:: 회원 이용현황</title>
 <link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
@@ -131,9 +131,9 @@
 									%>
 									<div class="con_lst">
 										<ul class="no_scroll">
-											<li class="col_use"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_subject() %></a></li>
-											<li class="col_mem_r"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getRbook_num() %></a></li>
-											<li class="col_mem_r"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=rbook_rdate.format(bDTO.getRbook_date()) %></a></li>
+											<li class="col_use over_dot"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getBook_subject() %></a></li>
+											<li class="col_mem_r over_dot"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=bDTO.getRbook_num() %></a></li>
+											<li class="col_mem_r over_dot"><a href="./BookInfo.bk?book_number=<%=bDTO.getBook_number() %>"><%=rbook_rdate.format(bDTO.getRbook_date()) %></a></li>
 											<li class="col_mem_r"><%if(bDTO.getBbook_bstate()==null && bDTO.getRbook_num()==1){
 												%><input type="button" value ="대출신청" id="" rel="<%=bDTO.getBook_number()%>" class="borrowBtn btn_type7">
 											<%} %></li>
@@ -183,7 +183,7 @@
 							<div class="con_lst">
 							<ul class="no_scroll" >
 								<li class="col_che"><input type="checkbox" name = "returnBookCheckBox"  value ="<%=bDTO.getBook_number() %>" class = "checkbox"></li>
-								<li class="col_use"><%=bDTO.getBook_subject() %></li>
+								<li class="col_use over_dot"><%=bDTO.getBook_subject() %></li>
 								<li class="col_mem_r"><%=bbook_bdate.format(bDTO.getBbook_bdate()) %></li>
 								<li class="col_mem_r"><%=bbook_bdate.format(bDTO.getBbook_rdate()) %></li>
 							</ul>

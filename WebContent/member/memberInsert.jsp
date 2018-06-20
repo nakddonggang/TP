@@ -6,7 +6,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
+<title>혜윰나래:: 회원가입</title>
 <link href="<c:url value="/css/jquery.fullpage.css"/>" rel="stylesheet" type="text/css">
 <link href="<c:url value="/css/jquery.toast.min.css"/>"rel="stylesheet" type="text/css" />
 <link href="<c:url value="/css/import.css"/>" rel="stylesheet" type="text/css">
@@ -114,11 +114,14 @@
 </script>
 <script type="text/javascript">
 var idcheck = 0;
+var inputid;	
+var idnum;
+var ideng;
 
 	function checkId() {
-		var inputid = $("#member_id").val();	
-		var idnum = inputid.search(/[0-9]/g);
-		var ideng = inputid.search(/[a-z]/ig);
+		inputid = $("#member_id").val();	
+		idnum = inputid.search(/[0-9]/g);
+		ideng = inputid.search(/[a-z]/ig);
 		
 		$.ajax({
 			url:'./MemberIdCheck.me',
