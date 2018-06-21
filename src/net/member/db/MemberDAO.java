@@ -32,16 +32,17 @@ public class MemberDAO {
 	public int selectUserChk(String member_id, String member_pass) {
 		MemberDTO mDTO = new MemberDTO();
 		int check = 0;
+		String id = "";
 		mDTO = sqlsession.selectOne("selectMember", member_id);
 		
-		System.out.println(mDTO.getMember_id());
-		
-		String id = mDTO.getMember_id();
-		
-		if (id != null) {	
-			if (mDTO.getMember_pass().equals(member_pass)) check = 1;
-			else check = 0;
-		} else check = -1;
+		try {
+			if (id != null) {	
+				if (mDTO.getMember_pass().equals(member_pass)) check = 1;
+				else check = 0;
+			} else check = -1;
+		} catch (Exception e) {
+			check = -1;
+		}
 		
 		return check;
 	}

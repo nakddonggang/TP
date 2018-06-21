@@ -39,9 +39,18 @@ public class BorrowBookAction implements Action{
 		if(check >= 5) {
 			response.setContentType("text/html;charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.print("<script>");
-			out.print("$.Alert('대출할 수 있는 권수를 초과하였습니다. 반납하고 이용해 주세요', function(){location.href='./BookIndex.bk';});");
-			out.print("</script>");
+			out.print("<link href='./css/jquery-ui.min.css' rel='stylesheet' type='text/css'>");
+			out.print("<link href='./css/jquery-ui.theme.min.css' rel='stylesheet' type='text/css'>");
+			out.print("<script src='./js/jquery-3.3.1.min.js'></script>");
+			out.print("<script src='./js/jquery-ui.min.js'></script>");
+			out.print("<script src='./js/jQuery.Alert-1.0.js'></script>");
+			out.println("<script>");
+			out.println("$(document).ready(function() { ");
+			out.println("$.Alert('대출할 수 있는 권수를 초과하였습니다. 반납하고 이용해 주세요.' , function(){"
+					+ "location.href = './BookIndex.bk'"
+					+ "});");
+			out.println("});");
+			out.println("</script>");
 			out.close();
 		} else {
 		mDAO.HistoryInsertBorrowBook(bDTO);	// 전체대출테이블 insert
