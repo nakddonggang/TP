@@ -108,20 +108,26 @@ $(document).ready(function(){
 						var md="<div id='Borrow"+i+"'><div class='join_form'><h3>시설관리</h3><ul><li class='row'><ul class='row_sub'><li class='title'>대출현황</li><li class='inp_form' id='modAP"+i+"'></ul></li><li><ul class='row_sub'><li class='title'>예약상태</li><li class='inp_form' id='mod2AP"+i+"'></ul></li><li><ul class='row_sub'><li class='title'>책상태</li><li class='inp_form' id='mod3AP"+i+"'></ul></li></ul><div class='btn_btm_center' ><ul><li class='adm_btn_cancle'><input type='button' value='나가기' id='"+i+"' class ='btn_type4 BTN_CLOSE'></li></ul></div></div></div>";
 						$('#mod_div'+i).append(md);
 						
-						if (JSdata[i].bbook_bstate==0){
-							var md2="대출가능</li>";
+						if (JSdata[i].dbook_state!=0){
+							var md2="대출불가</li>";
 							$('#modAP'+i).append(md2);
-						} else {
-							var md2=""+JSdata[i].bbook_bdate+"~"+JSdata[i].bbook_rdate+"<br>대출중</li>";
-							$('#modAP'+i).append(md2);
-						}
-						
-						if (JSdata[i].rbook_check>=3){
 							var md3="예약불가</li>";
 							$('#mod2AP'+i).append(md3);
 						} else {
-							var md3="예약가능</li>";
-							$('#mod2AP'+i).append(md3);
+							if (JSdata[i].bbook_bstate==0){
+								var md2="대출가능</li>";
+								$('#modAP'+i).append(md2);
+							} else {
+								var md2=""+JSdata[i].bbook_bdate+"~"+JSdata[i].bbook_rdate+"<br>대출중</li>";
+								$('#modAP'+i).append(md2);
+							}
+							if (JSdata[i].rbook_check>=3){
+								var md3="예약불가</li>";
+								$('#mod2AP'+i).append(md3);
+							} else {
+								var md3="예약가능</li>";
+								$('#mod2AP'+i).append(md3);
+							}
 						}
 						
 						if (JSdata[i].dbook_state==0){

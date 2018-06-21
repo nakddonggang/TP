@@ -209,18 +209,26 @@ List<BookDTO> booksearchList = (List<BookDTO>)request.getAttribute("booksearchLi
 									<li class="row">
 										<ul class="row_sub">
 										<li class="title">대출현황</li>
-										<li class="inp_form"><%if (Integer.parseInt(booksearchLists.getBbook_bstate())==0){ %> 대출가능 <% }
+										<li class="inp_form">
+											<%if(booksearchLists.getDbook_state().equals("0")){ %>
+											<%if (Integer.parseInt(booksearchLists.getBbook_bstate())==0){ %> 대출가능 <% }
 											else { %><%=date.format(booksearchLists.getBbook_bdate())%>~<%=date.format(booksearchLists.getBbook_rdate())%> 대출중
+											<%}
+											} else {%>
+												대출불가
 											<%}%></li>
 										</ul>
 									</li>
 									<li>
 										<ul class="row_sub">
 										<li class="title">예약상태</li>
-										<li class="inp_form"><%
-									if(Integer.parseInt(booksearchLists.getRbook_check())>=3)	out.print("예약 불가");
-									else out.print("예약 가능");
-								%></li>
+										<li class="inp_form">
+										<%if(booksearchLists.getDbook_state().equals("0")){ %>
+										<%if(Integer.parseInt(booksearchLists.getRbook_check())>=3)	out.print("예약 불가");
+										else out.print("예약 가능");
+										} else {
+											%>예약불가<%
+										}%></li>
 										</ul>
 									</li>
 									<li>
