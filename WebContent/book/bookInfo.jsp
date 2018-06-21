@@ -44,15 +44,27 @@ BookDTO bookList = (BookDTO)request.getAttribute("bookList");
 			<section class="fullpage SECTION_FULL_PAGE01">
 
 				<!-- 서브메뉴 -->
-				<jsp:include page="../include/submenu_main.jsp" />
+		<article class="submenu section SECTION">
+					<div class="slide DIV_SLIDE">
+						<div class="intro1">
+							<div class="slide_con">
+								<div class="box_thm">
+									<div id="book_divv" class="box_thm01">
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+		</article>
 				<!-- //서브메뉴 -->
 				
+				<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
+				<!-- 메인 페이지 -->
 				<article class="mainmenu section SECTION">
-				<jsp:include page="../include/topbar.jsp" />
+					<jsp:include page="../include/topbar.jsp" />
 				<!-- 메인 페이지 -->
 				<div class="content">
 				
-					<%SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd"); %>
 					<div class='join_form adminfo_join_form' >
 			
 					<h3>책 정보보기</h3>
