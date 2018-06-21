@@ -409,8 +409,8 @@ firstload(pageNum, view);
 				<article class="mainmenu section SECTION">
 					<jsp:include page="../include/topbar.jsp" />
 					<div class="content">
-					<div class="book_wrap">
-
+						<div class="book_wrap">
+							<div class="book_wrap">
 						<div class="adms">
 
 													<h3>&lt; 혜윰나래 도서관 통합검색 &gt;</h3>
@@ -449,6 +449,7 @@ firstload(pageNum, view);
 			} 
 		}
 </script>
+							</div>
 						</div>
 						</div>
 					</div>
